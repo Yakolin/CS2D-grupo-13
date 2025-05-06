@@ -11,7 +11,7 @@ run-tests: compile-debug
 valgrind-debug: compile-debug
 	valgrind ./build/CS_tests
 
-all: clean run-tests
+all: clean valgrind-debug
 
 clean:
 	rm -Rf build/

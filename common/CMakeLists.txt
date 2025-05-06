@@ -1,4 +1,4 @@
-target_sources(CS_common
+target_sources(CS2D_common
     PRIVATE
     # .cpp files
     PUBLIC

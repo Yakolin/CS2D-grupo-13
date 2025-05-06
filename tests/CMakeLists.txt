@@ -1,4 +1,4 @@
-target_sources(CS_tests
+target_sources(CS2D_tests
     PRIVATE
     # .cpp files
     PUBLIC

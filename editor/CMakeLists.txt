@@ -1,4 +1,4 @@
-target_sources(CS_editor
+target_sources(CS2D_editor
     PRIVATE
     # .cpp files
     PUBLIC

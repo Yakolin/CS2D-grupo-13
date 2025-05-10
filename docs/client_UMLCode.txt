@@ -1,0 +1,38 @@
+@startuml
+class Client{
+ ClientProtocol protocol
+}
+
+class ClientProtocol{
+ Socket skt
+}
+
+abstract class Thread{
+
+}
+
+class Sender {
+ Queue<ComandoCliente> send_queue
+}
+
+class Receiver{
+ Queue<ComandoServer recv_queue
+}
+
+class View{}
+
+class Controller{}
+
+
+Client -- ClientProtocol
+Thread <|-- Sender
+Thread <|-- Receiver
+Sender --> ClientProtocol
+Receiver --> ClientProtocol
+Client-- Sender
+Client -- Receiver
+Client-- Controller
+Controller --> View
+Controller --> Client
+
+@enduml

@@ -1,19 +1,26 @@
 #ifndef CLIENT_H
 #define CLIENT_H
 #include "controller.h"
+#include "protocoloClient.h"
 #include <iostream>
 #include <iostream>
-#include <SDL2/SDL.h>
-#include <QApplication>
-#include <QMainWindow>
-#include <QPushButton>
-#include <QMessageBox>
-#include <QHBoxLayout>
-#include <QVBoxLayout>
 
 class Client {
+
+private:
+    Controller controller;
+    ProtocoloClient protocolo;
 public:
-    int run( int argc , char *argv[]);
+    explicit Client();
+
+
+    int run( int& argc,  char *argv[] );
+
+
+
+
+    ~Client();
+
 };
 
 #endif // CLIENT_H

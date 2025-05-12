@@ -28,3 +28,8 @@ void Sender::run()
         this->closed = true;
     }
 }
+
+void Sender::stop()
+{
+    this->send_queue.close();
+}

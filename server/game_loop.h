@@ -6,11 +6,13 @@
 
 #include "player.h"
 #include "common/queue.h"
+#include "player_action.h"
 
 class GameLoop : public Thread
 {
 private:
     std::map<std::string, std::unique_ptr<Player>> players;
+    Queue<std::shared_ptr<PlayerAction>> recv_queue;
 
 public:
     GameLoop() = default;

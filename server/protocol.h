@@ -5,6 +5,7 @@
 #include "common/lobby_action.h"
 #include <string>
 #include "common/game_image.h"
+#include <vector>
 
 class ServerProtocol
 {

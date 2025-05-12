@@ -20,7 +20,7 @@ private:
 public:
     GameLoop(const std::string &game_name);
     ~GameLoop();
-    void add_player(std::unique_ptr<Player> player);
+    void add_player(const uint16_t &player_id, Socket &socket);
     bool is_full();
     void run() override;
     void stop() override;

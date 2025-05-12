@@ -16,6 +16,7 @@ private:
 
 public:
     explicit Sender(Socket &socket);
+    ~Sender();
     void send(GameImage &game_image);
     void run() override;
     void stop() override;

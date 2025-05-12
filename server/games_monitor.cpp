@@ -1,15 +1,15 @@
 #include "games_monitor.h"
 
-GamesMonitor::GamesMonitor() = default;
-GamesMonitor::~GamesMonitor() = default;
+GamesMonitor::GamesMonitor() {}
+GamesMonitor::~GamesMonitor() {}
 
 bool GamesMonitor::create_game(const uint16_t &player_id, Socket &socket, const std::string &game_name)
 {
     std::lock_guard<std::mutex> lock(mutex);
     if (games.find(game_name) == games.end())
     {
-        std::unique_ptr<GameLoop> game_loop = std::make_unique<GameLoop>();
-        game_loop->add_player(std::make_unique<Player>(player_id, std::move(socket)));
+        std::unique_ptr<GameLoop> game_loop = std::make_unique<GameLoop>(game_name);
+        game_loop->add_player(player_id, socket);
         if (game_loop->is_full())
         {
             game_loop->start();
@@ -26,7 +26,7 @@ bool GamesMonitor::join_game(const uint16_t &player_id, Socket &socket, const st
     auto it = games.find(game_name);
     if (it != games.end())
     {
-        it->second->add_player(std::make_unique<Player>(player_id, std::move(socket)));
+        it->second->add_player(player_id, socket);
         if (it->second->is_full())
         {
             it->second->start();

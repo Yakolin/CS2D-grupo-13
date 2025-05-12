@@ -3,9 +3,9 @@
 GameLoop::GameLoop(const std::string &game_name) : players(), recv_queue(), game(game_name), game_started(false) {}
 GameLoop::~GameLoop() {}
 
-void GameLoop::add_player(std::unique_ptr<Player> player)
+void GameLoop::add_player(const uint16_t &player_id, Socket &socket)
 {
-    players.push_back(std::move(player));
+    players.push_back(std::make_unique<Player>(std::move(player_id), std::move(socket), recv_queue));
 }
 
 bool GameLoop::is_full() // hay que ver como se configura el YAML y chequearlo ahi

@@ -17,7 +17,7 @@ private:
 
 public:
     Receiver(uint16_t &player_id, Socket &socket, Queue<std::shared_ptr<PlayerAction>> &recv_queue);
-    ~Receiver() = default;
+    ~Receiver();
     void run() override;
 };
 #endif // !RECEIVER_H

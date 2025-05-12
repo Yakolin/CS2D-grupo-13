@@ -16,8 +16,8 @@ private:
     std::map<std::string, std::unique_ptr<GameLoop>> games;
 
 public:
-    GamesMonitor() = default;
-    ~GamesMonitor() = default;
+    GamesMonitor();
+    ~GamesMonitor();
 
     bool create_game(const uint16_t &player_id, Socket &socket, const std::string &game_name);
     bool join_game(const uint16_t &player_id, Socket &socket, const std::string &game_name);

@@ -16,7 +16,7 @@ private:
     Receiver receiver;
 
 public:
-    Player(uint16_t &&player_id, Socket &&socket, Queue<std::shared_ptr<PlayerAction>> &recv_queue);
+    Player(const uint16_t &&player_id, Socket &&socket, Queue<std::shared_ptr<PlayerAction>> &recv_queue);
     ~Player();
 
     void start();

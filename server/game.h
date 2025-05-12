@@ -10,7 +10,7 @@ private:
 
 public:
     Game(const std::string &game_name);
-    ~Game() = default;
+    ~Game();
 
     void start_game();
     void stop_game();

@@ -7,7 +7,7 @@ void Receiver::run()
 {
     try
     {
-        while (!this->closed && this->should_keep_running())
+        while (!this->closed && this->should_keep_running()) // aca se supone que pushea de forma bloqueante a la cola las acciones del jugador, antes leo del protocolo
         {
         }
     }

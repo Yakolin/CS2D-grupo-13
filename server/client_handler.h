@@ -17,7 +17,7 @@ private:
 
 public:
     ClientHandler(uint16_t client_id, Socket &&socket, GamesMonitor &games_monitor);
-    ~ClientHandler() = default;
+    ~ClientHandler();
     void run() override;
     void stop() override;
 };

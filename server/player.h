@@ -4,6 +4,7 @@
 #include "sender.h"
 #include "receiver.h"
 #include "common/socket.h"
+#include "common/queue.h"
 #include <utility>
 
 class Player
@@ -15,7 +16,7 @@ private:
     Receiver receiver;
 
 public:
-    Player(uint16_t &&player_id, Socket &&socket);
+    Player(uint16_t &&player_id, Socket &&socket, Queue<std::shared_ptr<PlayerAction>> &recv_queue);
     ~Player();
 
     void start();

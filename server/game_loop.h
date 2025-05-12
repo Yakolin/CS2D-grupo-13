@@ -18,7 +18,7 @@ private:
     bool game_started;
 
 public:
-    GameLoop(const std::string &game_name, const uint16_t &number_of_players);
+    GameLoop(const std::string &game_name);
     ~GameLoop();
     void add_player(std::unique_ptr<Player> player);
     bool is_full();

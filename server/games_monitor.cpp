@@ -3,7 +3,7 @@
 GamesMonitor::GamesMonitor() = default;
 GamesMonitor::~GamesMonitor() = default;
 
-void GamesMonitor::create_game(const uint16_t &player_id, Socket &socket, const std::string &game_name, const uint16_t &number_of_players)
+void GamesMonitor::create_game(const uint16_t &player_id, Socket &socket, const std::string &game_name)
 {
     std::lock_guard<std::mutex> lock(mutex);
     if (games.find(game_name) == games.end())

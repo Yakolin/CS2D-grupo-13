@@ -15,6 +15,7 @@ public:
     ~ServerProtocol();
     LobbyAction read_lobby_action();
     std::string read_name();
+    void send_games(std::vector<std::string> &game_names);
 };
 
 #endif // !PROTOCOL_H

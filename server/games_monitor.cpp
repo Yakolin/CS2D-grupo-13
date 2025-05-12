@@ -3,7 +3,7 @@
 GamesMonitor::GamesMonitor() = default;
 GamesMonitor::~GamesMonitor() = default;
 
-void GamesMonitor::create_game(const uint16_t &player_id, Socket &socket, const std::string &game_name)
+bool GamesMonitor::create_game(const uint16_t &player_id, Socket &socket, const std::string &game_name)
 {
     std::lock_guard<std::mutex> lock(mutex);
     if (games.find(game_name) == games.end())
@@ -15,10 +15,12 @@ void GamesMonitor::create_game(const uint16_t &player_id, Socket &socket, const 
             game_loop->start();
         }
         games[game_name] = std::move(game_loop);
+        return true;
     }
+    return false;
 }
 
-void GamesMonitor::join_game(const uint16_t &player_id, Socket &socket, const std::string &game_name)
+bool GamesMonitor::join_game(const uint16_t &player_id, Socket &socket, const std::string &game_name)
 {
     std::lock_guard<std::mutex> lock(mutex);
     auto it = games.find(game_name);
@@ -29,7 +31,9 @@ void GamesMonitor::join_game(const uint16_t &player_id, Socket &socket, const st
         {
             it->second->start();
         }
+        return true;
     }
+    return false;
 }
 
 std::vector<std::string> GamesMonitor::list_games()

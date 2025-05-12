@@ -15,9 +15,20 @@ void ClientHandler::run()
             {
             case LobbyAction::CREATE:
             {
-                std::string game_name;
-                Player player(this->socket);
-                this->games_monitor.create_game(game_name, player);
+                std::string game_name = this->protocol.read_name();
+                this->games_monitor.create_game(this->client_id, this->socket, game_name);
+                break;
+            }
+            case LobbyAction::JOIN:
+            {
+                std::string game_name = this->protocol.read_name();
+                this->games_monitor.join_game(this->client_id, this->socket, game_name);
+                break;
+            }
+            case LobbyAction::LIST:
+            {
+                std::vector<std::string> game_names = this->games_monitor.list_games();
+                this->protocol.send_games(game_names);
                 break;
             }
             }

@@ -6,8 +6,9 @@ class ClientHandler : public Thread
 private:
     Socket socket;
     GamesMonitor &games_monitor;
+
+public:
     void run() override;
-    void stop() override;
 };
 
 #endif // !CLIENT_HANDLER_H

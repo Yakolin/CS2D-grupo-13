@@ -14,22 +14,11 @@ private:
     Receiver receiver;
 
 public:
-    Player(Socket &&socket) {}
-    ~Player() {}
+    Player(Socket &&socket);
+    ~Player() = default;
 
-    void run()
-    {
-        sender.start();
-        receiver.start();
-        sender.join();
-        receiver.join();
-    }
-
-    void stop()
-    {
-        sender.stop();
-        receiver.stop();
-    }
+    void run();
+    void stop();
 };
 
 #endif // !PLAYER_H

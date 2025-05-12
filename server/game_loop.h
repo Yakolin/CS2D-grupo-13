@@ -2,7 +2,7 @@
 #define GAME_LOOP_H
 
 #include "common/thread.h"
-#include <map>
+#include <vector>
 
 #include "player.h"
 #include "common/queue.h"
@@ -11,13 +11,13 @@
 class GameLoop : public Thread
 {
 private:
-    std::map<std::string, std::unique_ptr<Player>> players;
+    std::vector<std::unique_ptr<Player>> players;
     Queue<std::shared_ptr<PlayerAction>> recv_queue;
 
 public:
-    GameLoop() = default;
+    GameLoop();
     ~GameLoop() = default;
-    void add_player(const std::string &player_name);
+    void add_player(const Player &&player);
     void run() override;
     void stop() override;
 };

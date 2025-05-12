@@ -3,7 +3,7 @@
 GamesMonitor::GamesMonitor() = default;
 GamesMonitor::~GamesMonitor() = default;
 
-void GamesMonitor::create_game(const std::string &game_name)
+void GamesMonitor::create_game(const std::string &game_name, const Player &player_creator)
 {
     std::lock_guard<std::mutex> lock(mutex);
     if (games.find(game_name) == games.end())
@@ -13,13 +13,13 @@ void GamesMonitor::create_game(const std::string &game_name)
     }
 }
 
-void GamesMonitor::join_game(const std::string &game_name, const std::string &player_name)
+void GamesMonitor::join_game(const std::string &game_name, const Player &player_to_add)
 {
     std::lock_guard<std::mutex> lock(mutex);
     auto it = games.find(game_name);
     if (it != games.end())
     {
-        it->second->add_player(player_name);
+        it->second->add_player(std::move(player_to_add));
     }
 }
 

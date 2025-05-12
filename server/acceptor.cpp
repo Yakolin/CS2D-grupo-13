@@ -38,14 +38,12 @@ void Acceptor::stop()
 void Acceptor::reap()
 {
     this->games_monitor.reap();
-    auto it = clients.begin();
-    while (it != clients.end())
+    for (auto it = clients.begin(); it != clients.end();)
     {
-        ClientHandler *c = *it;
-        if (!c->is_alive())
+        auto client = it->second.get();
+        if (!client->is_alive())
         {
-            c->join();
-            delete c;
+            it->second->join();
             it = clients.erase(it);
         }
         else

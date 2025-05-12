@@ -12,9 +12,11 @@ class Sender : public Thread
 private:
     ServerProtocol protocol;
     Queue<GameImage> send_queue;
+    bool closed;
 
 public:
     explicit Sender(Socket &socket);
+    void send(GameImage &game_image);
     void run() override;
     void stop() override;
 };

@@ -16,13 +16,19 @@ void ClientHandler::run()
             case LobbyAction::CREATE:
             {
                 std::string game_name = this->protocol.read_name();
-                this->games_monitor.create_game(this->client_id, this->socket, game_name);
+                if (this->games_monitor.create_game(this->client_id, this->socket, game_name))
+                {
+                    this->in_lobby = false;
+                }
                 break;
             }
             case LobbyAction::JOIN:
             {
                 std::string game_name = this->protocol.read_name();
-                this->games_monitor.join_game(this->client_id, this->socket, game_name);
+                if (this->games_monitor.join_game(this->client_id, this->socket, game_name))
+                {
+                    this->in_lobby = false;
+                }
                 break;
             }
             case LobbyAction::LIST:

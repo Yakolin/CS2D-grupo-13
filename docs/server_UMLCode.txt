@@ -1,0 +1,74 @@
+@startuml
+
+class Server{
+ 
+}
+
+class Game{
+
+}
+
+class Acceptor{
+
+}
+
+abstract class Thread{}
+
+class ClientHandler{}
+
+class Player{
+ void shoot(int bullets_qty)
+ void receive_damage(int damage)
+}
+
+class Equipment{
+ 
+}
+
+class GameLoop{
+ Queue<ClientAction> recv_queue
+ void broadcast()
+}
+
+class GameMonitor{}
+
+class Sender{
+ Queue<GameImage> send_queue
+}
+
+class Receiver{
+ Queue<ClientAction> &recv_queue
+}
+
+class ServerProtocol{
+ Socket skt
+ void send(GameImage image)
+
+}
+
+class LobbyAction{
+ JOIN,
+ CREATE
+}
+
+
+Game "1" -- "10" Player
+GameMonitor "1"-- "N" GameLoop
+GameLoop -- Game
+Thread <|.. ClientHandler 
+Thread <|.. Acceptor
+Acceptor "1"-- "n" ClientHandler
+Acceptor -- GameMonitor
+Server-- Acceptor
+ClientHandler -- Sender
+ClientHandler-- Receiver
+ClientHandler -- ServerProtocol
+Receiver --> ServerProtocol
+Sender --> ServerProtocol
+GameLoop "1" --> "10" ClientHandler
+Thread <|.. GameLoop
+Thread <|.. Sender
+Thread <|.. Receiver
+Player-- Equipment
+
+@enduml

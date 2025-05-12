@@ -9,12 +9,13 @@
 class Player
 {
 private:
+    uint16_t player_id;
     Socket socket;
     Sender sender;
     Receiver receiver;
 
 public:
-    Player(Socket &&socket);
+    Player(uint16_t &&player_id, Socket &&socket);
     ~Player() = default;
 
     void run();

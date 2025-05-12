@@ -4,16 +4,19 @@
 #include "common/socket.h"
 #include "games_monitor.h"
 #include <utility>
+#include "../common/lobby_action.h"
 
 class ClientHandler : public Thread
 {
 private:
+    uint16_t client_id;
     Socket socket;
     GamesMonitor &games_monitor;
     ServerProtocol protocol;
+    bool in_lobby;
 
 public:
-    ClientHandler(Socket &&socket, GamesMonitor &games_monitor);
+    ClientHandler(uint16_t client_id, Socket &&socket, GamesMonitor &games_monitor);
     ~ClientHandler() = default;
     void run() override;
     void stop() override;

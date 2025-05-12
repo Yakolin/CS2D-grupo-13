@@ -3,9 +3,9 @@
 GameLoop::GameLoop() : players(), recv_queue() {}
 GameLoop::~GameLoop() = default;
 
-void GameLoop::add_player(const Player &&player)
+void GameLoop::add_player(std::unique_ptr<Player> player)
 {
-    players.push_back(std::make_unique<Player>(std::move(player)));
+    players.push_back(std::move(player));
 }
 
 void GameLoop::run()

@@ -1,6 +1,6 @@
 #include "player.h"
 
-Player::Player(Socket &&socket) : socket(std::move(socket)), sender(this->socket), receiver(this->socket) {}
+Player::Player(uint16_t &&player_id, Socket &&socket) : player_id(std::move(player_id)), socket(std::move(socket)), sender(this->socket), receiver(this->socket) {}
 
 Player::~PLayer() {}
 

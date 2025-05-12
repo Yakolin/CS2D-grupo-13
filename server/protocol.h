@@ -2,6 +2,7 @@
 #define PROTOCOL_H
 
 #include "common/socket.h"
+#include "common/lobby_action.h"
 
 class ServerProtocol
 {
@@ -11,6 +12,7 @@ private:
 public:
     explicit ServerProtocol(Socket &socket);
     ~ServerProtocol();
+    LobbyAction read_lobby_action();
 };
 
 #endif // !PROTOCOL_H

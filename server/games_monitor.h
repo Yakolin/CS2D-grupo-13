@@ -19,8 +19,8 @@ public:
     GamesMonitor() = default;
     ~GamesMonitor() = default;
 
-    void create_game(const std::string &game_name, const Player &player_creator);
-    void join_game(const std::string &game_name, const Player &player_to_add);
+    void create_game(const uint16_t &player_id, Socket &socket, const std::string &game_name, const uint16_t &number_of_players);
+    void join_game(const uint16_t &player_id, Socket &socket, const std::string &game_name);
     std::vector<std::string> list_games();
     void reap();
     void clear();

@@ -14,7 +14,7 @@ void Acceptor::run()
         {
             Socket peer = socket_acceptor.accept();
             this->client_id_counter++;
-            clients.emplace(this->client_id_counter, std::make_unique<ClientHandler>(std::move(peer), this->games_monitor));
+            clients.emplace(this->client_id_counter, std::make_unique<ClientHandler>(this->client_id_counter, std::move(peer), this->games_monitor));
             this->reap();
             clients[this->client_id_counter]->start();
         }
@@ -54,7 +54,7 @@ void Acceptor::reap()
 }
 
 void Acceptor::clear()
-{ // esta funcion debe ser llamada al final del programa
+{
     this->games_monitor.clear();
     for (auto &[id, client] : clients)
     {
@@ -64,5 +64,5 @@ void Acceptor::clear()
         }
         client->join();
     }
-    clients.clear(); // remuevo todos los punteros
+    clients.clear();
 }

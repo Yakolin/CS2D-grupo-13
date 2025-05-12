@@ -17,7 +17,7 @@ private:
 public:
     GameLoop();
     ~GameLoop() = default;
-    void add_player(const Player &&player);
+    void add_player(std::unique_ptr<Player> player);
     void run() override;
     void stop() override;
 };

@@ -52,4 +52,6 @@ void ClientHandler::run()
 
 void ClientHandler::stop()
 {
+    this->socket.shutdown(2);
+    this->socket.close();
 }

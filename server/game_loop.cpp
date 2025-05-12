@@ -15,10 +15,10 @@ void GameLoop::start()
         player->start();
     }
     game_started = true;
-    Thread::start();
+    Thread::start(); // esto pone a ejecutar el thread, ejecuta la funcion run
 }
 
-void GameLoop::run()
+void GameLoop::run() // aca iria el constant rate loop
 {
 }
 

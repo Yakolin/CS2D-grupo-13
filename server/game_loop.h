@@ -5,6 +5,7 @@
 #include <map>
 
 #include "player.h"
+#include "common/queue.h"
 
 class GameLoop : public Thread
 {

@@ -6,6 +6,7 @@
 
 #include "game_loop.h"
 #include <vector>
+#include "player.h"
 
 class GamesMonitor
 {

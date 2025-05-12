@@ -3,10 +3,33 @@
 
 #include "sender.h"
 #include "receiver.h"
+#include "common/socket.h"
+#include <utility>
 
 class Player
 {
-    private
+private:
+    Socket socket;
+    Sender sender;
+    Receiver receiver;
+
+public:
+    Player(Socket &&socket) {}
+    ~Player() {}
+
+    void run()
+    {
+        sender.start();
+        receiver.start();
+        sender.join();
+        receiver.join();
+    }
+
+    void stop()
+    {
+        sender.stop();
+        receiver.stop();
+    }
 };
 
 #endif // !PLAYER_H

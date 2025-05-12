@@ -5,6 +5,7 @@
 #include <map>
 
 #include "game_loop.h"
+#include <vector>
 
 class GamesMonitor
 {
@@ -18,7 +19,7 @@ public:
 
     void create_game(const std::string &game_name);
     void join_game(const std::string &game_name, const std::string &player_name);
-
+    std::vector<std::string> list_games();
     void reap();
     void clear();
 };

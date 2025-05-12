@@ -4,10 +4,15 @@
 #include "common/thread.h"
 #include <map>
 
+#include "player.h"
+
 class GameLoop : public Thread
 {
 private:
-std::map < std::string, std::u public : GameLoop() = default;
+    std::map<std::string, std::unique_ptr<Player>> players;
+
+public:
+    GameLoop() = default;
     ~GameLoop() = default;
     void add_player(const std::string &player_name);
     void run() override;

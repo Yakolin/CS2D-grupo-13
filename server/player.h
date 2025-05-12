@@ -16,9 +16,9 @@ private:
 
 public:
     Player(uint16_t &&player_id, Socket &&socket);
-    ~Player() = default;
+    ~Player();
 
-    void run();
+    void start();
     void stop();
 };
 

@@ -3,7 +3,16 @@
 GamesMonitor::GamesMonitor() = default;
 GamesMonitor::~GamesMonitor() = default;
 
-void GamesMonitor::create_game(const uint16_t &player_id, Socket &socket, const std::string &game_name)
+void GamesMonitor::create_game(const uint16_t &player_id, Socket &socket, const std::string &game_name, const uint16_t &number_of_players)
+{
+    std::lock_guard<std::mutex> lock(mutex);
+    if (games.find(game_name) == games.end())
+    {
+        std::unique_ptr<GameLoop> game_loop = std::make_unique<GameLoop>();
+        game_loop->add_player(std::make_unique<Player>(player_id, std::move(socket)));
+        games[game_name] = std::move(game_loop);
+    }
+}
 {
     std::lock_guard<std::mutex> lock(mutex);
     if (games.find(game_name) == games.end())

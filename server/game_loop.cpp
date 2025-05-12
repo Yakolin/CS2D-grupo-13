@@ -8,6 +8,11 @@ void GameLoop::add_player(std::unique_ptr<Player> player)
     players.push_back(std::move(player));
 }
 
+bool GameLoop::is_full() // hay que ver como se configura el YAML y chequearlo ahi
+{
+    return false;
+}
+
 void GameLoop::start()
 {
     for (auto &player : players)

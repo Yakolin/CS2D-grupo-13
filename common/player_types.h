@@ -3,7 +3,11 @@
 
 #include <cstdint>
 
+using player_command_t = std::uint8_t;
 using ammo_t = std::uint16_t;
+using player_id_t = std::uint16_t;
+using weapon_code_t = std::uint8_t;
+using weapon_type_t = std::uint8_t;
 
 enum class PlayerCommandType
 {

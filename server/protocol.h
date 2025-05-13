@@ -1,20 +1,23 @@
 #ifndef PROTOCOL_H
 #define PROTOCOL_H
 
+#include "common/connection_closed_exception.h"
 #include "common/socket.h"
 #include "common/player_types.h"
+
 #include "player_action.h"
 
 class ServerProtocol
 {
 private:
     Socket &socket;
+    void read_byte_data(uint8_t &data);
 
 public:
     ServerProtocol(Socket &socket);
     ~ServerProtocol();
 
-    void read_player_command();
+    PlayerCommandType read_player_command();
 
     MoveRight read_move_right();
     MoveLeft read_move_left();

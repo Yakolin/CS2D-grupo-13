@@ -66,6 +66,7 @@ public:
     ~Reload();
     void action(Game &game) override;
 };
+
 class Shoot : public PlayerAction
 {
 private:

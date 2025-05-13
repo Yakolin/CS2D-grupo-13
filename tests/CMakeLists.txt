@@ -6,4 +6,4 @@ target_sources(CS2D_tests
     # .h files
     )
 
-add_subdirectory(/mocks)
+add_subdirectory(mocks/)

@@ -40,7 +40,14 @@ BuyWeapon::BuyWeapon(std::uint16_t player_id, WeaponCode weapon_code) : PlayerAc
 BuyWeapon::~BuyWeapon() {}
 void BuyWeapon::action(Game &game)
 {
-    game.buy(this->player_id, this->weapon_code);
+    game.buy_weapon(this->player_id, this->weapon_code);
+}
+
+BuyAmmo::BuyAmmo(std::uint16_t player_id, WeaponType weapon_type, ammo_t ammo_count) : PlayerAction(player_id), weapon_type(weapon_type), ammo_count(ammo_count) {}
+BuyAmmo::~BuyAmmo() {}
+void BuyAmmo::action(Game &game)
+{
+    game.buy_ammo(this->player_id, this->weapon_type, this->ammo_count);
 }
 
 Reload::Reload(std::uint16_t player_id, WeaponType ammo_type) : PlayerAction(player_id) {}

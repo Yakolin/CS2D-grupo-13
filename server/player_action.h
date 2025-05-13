@@ -62,7 +62,7 @@ private:
     WeaponCode weapon_code;
 
 public:
-    BuyWeapon(std::uint16_t player_id, WeaponType weapon_type, WeaponCode weapon_code, ammo_t ammo_count);
+    BuyWeapon(std::uint16_t player_id, WeaponCode weapon_code); // considerando que el arma viene con municion por default
     ~BuyWeapon();
     void action(Game &game) override;
 };

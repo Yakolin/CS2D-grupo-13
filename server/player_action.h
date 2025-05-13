@@ -2,7 +2,7 @@
 #define PLAYER_ACTION_H
 
 #include <cstdint>
-#include "common/player_command.h"
+#include "common/player_types.h"
 #include "game.h"
 
 class PlayerAction

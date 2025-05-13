@@ -1,23 +1,30 @@
 #ifndef GAME_H
 #define GAME_H
 
-class Game
+class InterfaceGame
+{
+public:
+    virtual ~InterfaceGame() = default;
+
+    virtual void move_right(uint16_t player_id) = 0;
+    virtual void move_left(uint16_t player_id) = 0;
+    virtual void move_up(uint16_t player_id) = 0;
+    virtual void move_down(uint16_t player_id) = 0;
+    virtual void reload(uint16_t player_id, WeaponType weapon_type) = 0;
+    virtual void shoot(uint16_t player_id, WeaponType weapon_type, ammo_t ammo_count) = 0;
+    virtual void plant_bomb(uint16_t player_id) = 0;
+    virtual void defuse_bomb(uint16_t player_id) = 0;
+    virtual void drop_weapon(uint16_t player_id) = 0;
+    virtual void drop_bomb(uint16_t player_id) = 0;
+    virtual void buy_ammo(uint16_t player_id, WeaponType weapon_type, ammo_t ammo_count) = 0;
+    virtual void buy_weapon(uint16_t player_id, WeaponCode weapon_code) = 0;
+};
+
+class Game : public InterfaceGame
 {
 public:
     Game();
     ~Game();
-    void move_right(uint16_t player_id);
-    void move_left(uint16_t player_id);
-    void move_up(uint16_t player_id);
-    void move_down(uint16_t player_id);
-    void reload(uint16_t player_id, WeaponType weapon_type);
-    void shoot(uint16_t player_id, WeaponType weapon_type, ammo_t ammo_count);
-    void plant_bomb(uint16_t player_id);
-    void defuse_bomb(uint16_t player_id);
-    void drop_weapon(uint16_t player_id);
-    void drop_bomb(uint16_t player_id);
-    void buy_ammo(uint16_t player_id, WeaponType weapon_type, ammo_t ammo_count);
-    void buy_weapon(uint16_t player_id, WeaponCode weapon_code);
 };
 
 #endif // !GAME_H

@@ -56,6 +56,29 @@ public:
         WEAPON ACTIONS
 */
 
+class BuyWeapon : public PlayerAction
+{
+private:
+    WeaponCode weapon_code;
+
+public:
+    BuyWeapon(uint16_t player_id, WeaponType weapon_type, WeaponCode weapon_code, ammo_t ammo_count);
+    ~BuyWeapon();
+    void action(Game &game) override;
+};
+
+class BuyAmmo : public PlayerAction
+{
+private:
+    WeaponType weapon_type;
+    ammo_t ammo_count;
+
+public:
+    BuyAmmo(uint16_t player_id, WeaponType weapon_type, ammo_t ammo_count);
+    ~BuyAmmo();
+    void action(Game &game) override;
+};
+
 class Reload : public PlayerAction
 {
 private:
@@ -78,5 +101,26 @@ public:
     ~Shoot();
     void action(Game &game) override;
 };
+
+class DropWeapon : public PlayerAction
+{
+private:
+    WeaponType weapon_type;
+
+public:
+    DropWeapon(uint16_t player_id, WeaponType weapon_type);
+    ~DropWeapon();
+    void action(Game &game) override;
+};
+
+class DropBomb : public PlayerAction
+{
+public:
+    DropBomb(uint16_t player_id);
+    ~DropBomb();
+    void action(Game &game) override;
+};
+
+class
 
 #endif // !PLAYER_ACTION_H

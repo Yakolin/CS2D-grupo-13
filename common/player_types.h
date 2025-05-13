@@ -1,21 +1,23 @@
 #ifndef PLAYER_TYPES_H
 #define PLAYER_TYPES_H
 
+#include <cstdint>
+
 using ammo_t = uint16_t;
 
 enum class PlayerCommandType
 {
-    BUY_AMMO,
-    BUY_WEAPON,
     MOVE_RIGHT,
     MOVE_LEFT,
     MOVE_UP,
     MOVE_DOWN,
+    BUY_WEAPON,
+    BUY_AMMO,
     RELOAD,
     SHOOT,
+    DROP_WEAPON,
     PLANT_BOMB,
     DEFUSE_BOMB,
-    DROP_WEAPON,
     DROP_BOMB
 };
 

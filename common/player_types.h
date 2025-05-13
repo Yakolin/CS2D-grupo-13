@@ -3,7 +3,7 @@
 
 #include <cstdint>
 
-using ammo_t = uint16_t;
+using ammo_t = std::uint16_t;
 
 enum class PlayerCommandType
 {

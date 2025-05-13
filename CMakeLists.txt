@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.24)
+cmake_minimum_required(VERSION 3.16.3)
 
 if (POLICY CMP0135)
     cmake_policy(SET CMP0135 NEW)
@@ -134,8 +134,13 @@ if(CS2D_SERVER)
 
     set_project_warnings(CS2D_server ${CS2D_MAKE_WARNINGS_AS_ERRORS} FALSE)
 
+    find_package(Threads REQUIRED)
+
     # Link the CS2D_common lib target
-    target_link_libraries(CS2D_server CS2D_common)
+    target_link_libraries(CS2D_server 
+        CS2D_common
+        Threads::Threads
+    )
 endif()
 
 if(CS2D_EDITOR)

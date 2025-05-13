@@ -1,4 +1,4 @@
-target_sources(quack_game_tests
+target_sources(CS2D_tests
     PRIVATE
     # .cpp files
     PUBLIC

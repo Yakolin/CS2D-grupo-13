@@ -93,11 +93,11 @@ public:
 class Shoot : public PlayerAction
 {
 private:
-    WeaponType ammo_type;
+    WeaponType weapon_type;
     ammo_t ammo_count;
 
 public:
-    Shoot(std::uint16_t player_id);
+    Shoot(std::uint16_t player_id, WeaponType weapon_type, ammo_t ammo_count);
     ~Shoot();
     void action(Game &game) override;
 };

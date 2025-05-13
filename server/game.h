@@ -11,7 +11,7 @@ public:
     void move_up(uint16_t player_id);
     void move_down(uint16_t player_id);
     void reload(uint16_t player_id, WeaponType weapon_type);
-    void shoot(uint16_t player_id);
+    void shoot(uint16_t player_id, WeaponType weapon_type, ammo_t ammo_count);
     void plant_bomb(uint16_t player_id);
     void defuse_bomb(uint16_t player_id);
     void drop_weapon(uint16_t player_id);

@@ -56,3 +56,42 @@ void Reload::action(Game &game)
 {
     game.reload(this->player_id, this->ammo_type);
 }
+
+Shoot::Shoot(std::uint16_t player_id, WeaponType weapon_type, ammo_t ammo_count) : PlayerAction(player_id), weapon_type(weapon_type), ammo_count(ammo_count) {}
+Shoot::~Shoot() {}
+void Shoot::action(Game &game)
+{
+    game.shoot(this->player_id, this->weapon_type, this->ammo_count);
+}
+
+DropWeapon::DropWeapon(std::uint16_t player_id, WeaponType weapon_type) : PlayerAction(player_id), weapon_type(weapon_type) {}
+DropWeapon::~DropWeapon() {}
+void DropWeapon::action(Game &game)
+{
+    game.drop_weapon(this->player_id);
+}
+
+/*
+        BOMB ACTIONS
+*/
+
+PlantBomb::PlantBomb(std::uint16_t player_id) : PlayerAction(player_id) {}
+PlantBomb::~PlantBomb() {}
+void PlantBomb::action(Game &game)
+{
+    game.plant_bomb(this->player_id);
+}
+
+DropBomb::DropBomb(std::uint16_t player_id) : PlayerAction(player_id) {}
+DropBomb::~DropBomb() {}
+void DropBomb::action(Game &game)
+{
+    game.drop_bomb(this->player_id);
+}
+
+DefuseBomb::DefuseBomb(std::uint16_t player_id) : PlayerAction(player_id) {}
+DefuseBomb::~DefuseBomb() {}
+void DefuseBomb::action(Game &game)
+{
+    game.defuse_bomb(this->player_id);
+}

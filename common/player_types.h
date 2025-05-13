@@ -1,6 +1,8 @@
 #ifndef PLAYER_TYPES_H
 #define PLAYER_TYPES_H
 
+using ammo_t = uint16_t;
+
 enum class PlayerCommandType
 {
     BUY_AMMO,
@@ -17,14 +19,14 @@ enum class PlayerCommandType
     DROP_BOMB
 };
 
-enum class AmmoType
+enum class WeaponType
 {
     PRIMARY,
     SECONDARY,
     KNIFE,
 };
 
-enum class WeaponType
+enum class WeaponCode
 {
     GLOCK,
     AK47,

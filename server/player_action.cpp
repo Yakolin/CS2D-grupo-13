@@ -36,9 +36,9 @@ void MoveUp::action(Game &game)
         WEAPON ACTIONS
 */
 
-Reload::Reload(uint16_t player_id) : PlayerAction(player_id) {}
+Reload::Reload(uint16_t player_id, WeaponType ammo_type) : PlayerAction(player_id) {}
 Reload::~Reload() {}
 void Reload::action(Game &game)
 {
-    game.reload(this->player_id);
+    game.reload(this->player_id, );
 }

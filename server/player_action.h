@@ -7,8 +7,10 @@
 
 class PlayerAction
 {
-public:
+protected:
     uint16_t player_id;
+
+public:
     PlayerAction(uint16_t player_id) : player_id(player_id) {}
     virtual ~PlayerAction() {}
     virtual void action(Game &game) = 0;
@@ -53,5 +55,27 @@ public:
 /*
         WEAPON ACTIONS
 */
+
+class Reload : public PlayerAction
+{
+private:
+    WeaponType ammo_type;
+
+public:
+    Reload(uint16_t player_id, WeaponType weapon_type);
+    ~Reload();
+    void action(Game &game) override;
+};
+class Shoot : public PlayerAction
+{
+private:
+    WeaponType ammo_type;
+    ammo_t ammo_count;
+
+public:
+    Shoot(uint16_t player_id);
+    ~Shoot();
+    void action(Game &game) override;
+};
 
 #endif // !PLAYER_ACTION_H

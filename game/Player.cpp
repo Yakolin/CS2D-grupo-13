@@ -1,6 +1,8 @@
 #include "Player.h"
 //  "Copyright 2025 Yaco Santamarina"
-void Player::move(Vector2&& new_position) { position = std::move(new_position); }
+void Player::move(Vector2&& direction) { 
+    position+= direction;
+}
 
 // void Player::fire_weapon_equiped() { equipement.current_weapon->fire(); }
 
@@ -15,3 +17,4 @@ TypesStates::player_state_t Player::player_info(){
     state.alive = health > 0;
     return state;
 }
+void Player:: get_damage(int damage) {health-=damage;}

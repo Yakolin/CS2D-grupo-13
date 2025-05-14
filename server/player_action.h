@@ -16,6 +16,21 @@ public:
     virtual ~ClientAction() {}
 };
 
+/*
+        LOBBY ACTIONS
+*/
+class LobbyAction
+{
+public:
+    LobbyAction() = default;
+    virtual ~LobbyAction() = default;
+    virtual void action(InterfaceGamesMonitor &monitor) = 0;
+};
+
+/*
+        PLAYER ACTIONS
+*/
+
 class PlayerAction
 {
 

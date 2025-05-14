@@ -4,6 +4,7 @@
 #include <cstdint>
 
 using player_command_t = std::uint8_t;
+using move_t = std::uint8_t;
 using ammo_t = std::uint16_t;
 using player_id_t = std::uint16_t;
 using weapon_code_t = std::uint8_t;
@@ -23,6 +24,14 @@ enum class PlayerCommandType
     PLANT_BOMB,
     DEFUSE_BOMB,
     DROP_BOMB
+};
+
+enum class MoveType
+{
+    MOVE_RIGHT,
+    MOVE_LEFT,
+    MOVE_UP,
+    MOVE_DOWN,
 };
 
 enum class WeaponType

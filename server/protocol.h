@@ -4,6 +4,7 @@
 #include "../common/connection_closed_exception.h"
 #include "../common/socket.h"
 #include "../common/player_types.h"
+#include <memory>
 
 #include "player_action.h"
 
@@ -19,7 +20,7 @@ public:
 
     PlayerCommandType read_player_command();
 
-    MoveRight read_move_right();
+    std::unique_ptr<PlayerAction> read_move(player_id_t player_id);
     /*
 
     MoveLeft read_move_left();

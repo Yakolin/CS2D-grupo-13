@@ -5,6 +5,7 @@
 #include "mocks/mock_game.h"
 #include "../common/socket.h"
 #include <thread>
+#include <memory>
 
 TEST(ServerProtocolTest, ReadPlayerCommandReturnCorrectType)
 {
@@ -28,4 +29,23 @@ TEST(ServerProtocolTest, ReadPlayerCommandReturnCorrectType)
     EXPECT_EQ(result, PlayerCommandType::MOVE_RIGHT);
 
     client_thread.join();
+}
+
+TEST(ServerProtocolTest, ReadMoveRightReturnCorrectObject)
+{
+    // Arrange
+    Socket server_socket("9999");
+
+    std::thread client_thread([]()
+                              {
+        Socket client_socket("localhost", "9999");
+
+        player_command_t command = static_cast<int32_t>(PlayerCommandType::MOVE_RIGHT);
+        client_socket.sendall(reinterpret_cast<char*>(&command), sizeof(command)); });
+
+    Socket server_client = server_socket.accept();
+    ServerProtocol protocol(server_client);
+
+    // Act
+    std::unique_ptr<PlayerAction> action = protocol.read_move_right();
 }

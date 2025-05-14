@@ -6,13 +6,13 @@ ServerProtocol::~ServerProtocol() {}
 
 void ServerProtocol::read_byte_data(uint8_t &data)
 {
-    uint8_t dataReaded;
-    this->socket.recvall(&dataReaded, sizeof(uint8_t));
+    uint8_t data_readed;
+    this->socket.recvall(&data_readed, sizeof(uint8_t));
     if (this->socket.is_stream_recv_closed())
     {
         throw ConnectionClosedException("El cliente cerró la conexión");
     }
-    data = dataReaded;
+    data = data_readed;
 }
 
 PlayerCommandType ServerProtocol::read_player_command()
@@ -22,9 +22,9 @@ PlayerCommandType ServerProtocol::read_player_command()
     return static_cast<PlayerCommandType>(command);
 }
 
-MoveRight ServerProtocol::read_move_right()
+std::unique_ptr<PlayerAction> ServerProtocol::read_move(player_id_t player_id)
 {
-    player_id_t player_id;
-    this->socket.recvall(&player_id, sizeof(player_id_t));
-    return MoveRight(player_id);
+    move_t move_type;
+    this->socket.recvall(&move_type, sizeof(move_t));
+    return std::make_unique<Move>(player_id, static_cast<MoveType>(move_type));
 }

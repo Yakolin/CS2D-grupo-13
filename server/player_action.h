@@ -20,35 +20,14 @@ public:
         MOVEMENT ACTIONS
 */
 
-class MoveRight : public PlayerAction
+class Move : public PlayerAction
 {
-public:
-    MoveRight(player_id_t player_id);
-    ~MoveRight();
-    void action(Game &game) override;
-};
+private:
+    MoveType move_type;
 
-class MoveLeft : public PlayerAction
-{
 public:
-    MoveLeft(player_id_t player_id);
-    ~MoveLeft();
-    void action(Game &game) override;
-};
-
-class MoveUp : public PlayerAction
-{
-public:
-    MoveUp(player_id_t player_id);
-    ~MoveUp();
-    void action(Game &game) override;
-};
-
-class MoveDown : public PlayerAction
-{
-public:
-    MoveDown(player_id_t player_id);
-    ~MoveDown();
+    Move(player_id_t player_id);
+    ~Move();
     void action(Game &game) override;
 };
 

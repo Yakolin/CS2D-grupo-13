@@ -6,10 +6,7 @@ class InterfaceGame
 public:
     virtual ~InterfaceGame() = default;
 
-    virtual void move_right(uint16_t player_id) = 0;
-    virtual void move_left(uint16_t player_id) = 0;
-    virtual void move_up(uint16_t player_id) = 0;
-    virtual void move_down(uint16_t player_id) = 0;
+    virtual void move(uint16_t player_id, MoveType move_type) = 0;
     virtual void reload(uint16_t player_id, WeaponType weapon_type) = 0;
     virtual void shoot(uint16_t player_id, WeaponType weapon_type, ammo_t ammo_count) = 0;
     virtual void plant_bomb(uint16_t player_id) = 0;

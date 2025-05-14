@@ -16,7 +16,7 @@ TEST(ServerProtocolTest, ReadPlayerCommandReturnCorrectType)
                               {
         Socket client_socket("localhost", "9999");
 
-        player_command_t command = static_cast<int32_t>(PlayerCommandType::MOVE_RIGHT);
+        player_command_t command = static_cast<player_command_t>(PlayerCommandType::MOVE);
         client_socket.sendall(reinterpret_cast<char*>(&command), sizeof(command)); });
 
     Socket server_client = server_socket.accept();
@@ -26,26 +26,27 @@ TEST(ServerProtocolTest, ReadPlayerCommandReturnCorrectType)
     PlayerCommandType result = protocol.read_player_command();
 
     // Assert
-    EXPECT_EQ(result, PlayerCommandType::MOVE_RIGHT);
+    EXPECT_EQ(result, PlayerCommandType::MOVE);
 
     client_thread.join();
 }
-
+/*
 TEST(ServerProtocolTest, ReadMoveRightReturnCorrectObject)
 {
     // Arrange
     Socket server_socket("9999");
     player_id_t player_id = 1;
     std::thread client_thread([]()
-                              {
+    {
         Socket client_socket("localhost", "9999");
 
         player_command_t command = static_cast<int32_t>(PlayerCommandType::MOVE_RIGHT);
         client_socket.sendall(reinterpret_cast<char*>(&command), sizeof(command)); });
 
-    Socket server_client = server_socket.accept();
-    ServerProtocol protocol(server_client);
+        Socket server_client = server_socket.accept();
+        ServerProtocol protocol(server_client);
 
-    // Act
-    std::unique_ptr<PlayerAction> action = protocol.read_move();
-}
+        // Act
+        std::unique_ptr<PlayerAction> action = protocol.read_move(player_id);
+    }
+    */

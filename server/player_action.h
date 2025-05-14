@@ -26,7 +26,7 @@ private:
     MoveType move_type;
 
 public:
-    Move(player_id_t player_id);
+    Move(player_id_t player_id, MoveType move_type);
     ~Move();
     void action(Game &game) override;
 };

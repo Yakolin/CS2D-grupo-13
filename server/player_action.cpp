@@ -4,32 +4,11 @@
     MOVEMENT ACTIONS
 */
 
-MoveDown::MoveDown(player_id_t player_id) : PlayerAction(player_id) {}
-MoveDown::~MoveDown() {}
-void MoveDown::action(Game &game)
+Move::Move(player_id_t player_id, MoveType move_type) : PlayerAction(player_id), move_type(move_type) {}
+Move::~Move() {}
+void Move::action(Game &game)
 {
-    game.move_down(this->player_id);
-}
-
-MoveLeft::MoveLeft(player_id_t player_id) : PlayerAction(player_id) {}
-MoveLeft::~MoveLeft() {}
-void MoveLeft::action(Game &game)
-{
-    game.move_left(this->player_id);
-}
-
-MoveRight::MoveRight(player_id_t player_id) : PlayerAction(player_id) {}
-MoveRight::~MoveRight() {}
-void MoveRight::action(Game &game)
-{
-    game.move_right(this->player_id);
-}
-
-MoveUp::MoveUp(player_id_t player_id) : PlayerAction(player_id) {}
-MoveUp::~MoveUp() {}
-void MoveUp::action(Game &game)
-{
-    game.move_up(this->player_id);
+    game.move(this->player_id, this->move_type);
 }
 
 /*

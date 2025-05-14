@@ -1,0 +1,44 @@
+@startuml
+class TypeStates{
+    struct PlayerState
+
+    struct ObjectState
+}
+class GameImage{
+
+}
+class Game {
+}
+
+class Player {
+    Primary primary_weapon;
+    Secondary secondary_weapon;
+    Knife knife;
+
+    Vector2 position 
+
+   void fire_weapon_equiped();
+}
+
+class Map{
+ std::vector<Walls> walls
+ std::vector<Bullets> bullets_in_air
+ std::vector<Weapon> dropped_weapons
+ Weapon::Bomb dropped_bomb
+}
+
+class Vector2{
+    float x;
+    float y;
+}
+
+Game "1"--"10" Player
+Game *-- Map
+Game --> GameImage
+Map --> TypeStates
+Map --> Vector2
+Player --> TypeStates
+Player --> Vector2
+
+GameImage "1"*--"n" TypeStates
+@enduml

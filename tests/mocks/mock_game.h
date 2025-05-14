@@ -2,8 +2,8 @@
 #define MOCK_GAME_H
 
 #include <gmock/gmock.h>
-#include "server/game.h"
-#include "common/player_types.h"
+#include "../../server/game.h"
+#include "../../common/player_types.h"
 
 class MockGame : public InterfaceGame
 {

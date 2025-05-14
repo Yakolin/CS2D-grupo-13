@@ -1,31 +1,30 @@
 #include <gtest/gtest.h>
-#include "server/protocol.h"
-#include "gmock/gmock.h"
-#include "mocks/mock_socket.h"
+
+#include "../server/protocol.h"
 #include "mocks/mock_game.h"
+#include "../common/socket.h"
+#include <thread>
 
-using ::testing::_;
-using ::testing::DoAll;
-using ::testing::Return;
-using ::testing::WithArg;
-
-TEST(ServerProtocolTest, ReadPlayerCommandReturnCorrectEnum)
+TEST(ServerProtocolTest, ReadPlayerCommandReturnCorrectType)
 {
     // Arrange
-    MockSocket mock_socket("9999");
-    ServerProtocol protocol(mock_socket);
-    uint8_t rawCmd = static_cast<uint8_t>(PlayerCommandType::MOVE_RIGHT);
+    Socket server_socket("9999");
+
+    std::thread client_thread([]()
+                              {
+        Socket client_socket("localhost", "9999");
+
+        player_command_t command = static_cast<int32_t>(PlayerCommandType::MOVE_RIGHT);
+        client_socket.sendall(reinterpret_cast<char*>(&command), sizeof(command)); });
+
+    Socket server_client = server_socket.accept();
+    ServerProtocol protocol(server_client);
 
     // Act
-    EXPECT_CALL(mock_socket, recvall(_, sizeof(rawCmd)))
-        .WillOnce(
-            DoAll(
-                WithArg<0>([&](void *buf)
-                           { *static_cast<uint8_t *>(buf) = rawCmd; }),
-                Return() // recvall es void
-                ));
-    auto result = protocol.read_player_command();
+    PlayerCommandType result = protocol.read_player_command();
 
     // Assert
     EXPECT_EQ(result, PlayerCommandType::MOVE_RIGHT);
+
+    client_thread.join();
 }

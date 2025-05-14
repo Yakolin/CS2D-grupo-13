@@ -3,6 +3,5 @@ target_sources(CS2D_tests
     # .cpp files
     PUBLIC
     # .h files
-        mock_socket.h
         mock_game.h
     )

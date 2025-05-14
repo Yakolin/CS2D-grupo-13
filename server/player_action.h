@@ -2,7 +2,7 @@
 #define PLAYER_ACTION_H
 
 #include <cstdint>
-#include "common/player_types.h"
+#include "../common/player_types.h"
 #include "game.h"
 
 class PlayerAction
@@ -82,7 +82,7 @@ public:
 class Reload : public PlayerAction
 {
 private:
-    WeaponType ammo_type;
+    WeaponType weapon_type;
 
 public:
     Reload(player_id_t player_id, WeaponType weapon_type);

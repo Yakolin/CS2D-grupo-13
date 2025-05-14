@@ -50,11 +50,11 @@ void BuyAmmo::action(Game &game)
     game.buy_ammo(this->player_id, this->weapon_type, this->ammo_count);
 }
 
-Reload::Reload(player_id_t player_id, WeaponType ammo_type) : PlayerAction(player_id) {}
+Reload::Reload(player_id_t player_id, WeaponType weapon_type) : PlayerAction(player_id), weapon_type(weapon_type) {}
 Reload::~Reload() {}
 void Reload::action(Game &game)
 {
-    game.reload(this->player_id, this->ammo_type);
+    game.reload(this->player_id, this->weapon_type);
 }
 
 Shoot::Shoot(player_id_t player_id, WeaponType weapon_type, ammo_t ammo_count) : PlayerAction(player_id), weapon_type(weapon_type), ammo_count(ammo_count) {}

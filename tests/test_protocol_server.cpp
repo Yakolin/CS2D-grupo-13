@@ -31,7 +31,7 @@ TEST(ServerProtocolTest, ReadPlayerCommandReturnCorrectType)
     client_thread.join();
 }
 
-TEST(ServerProtocolTest, ReadMoveRightReturnCorrectObject)
+TEST(ServerProtocolTest, ReadBuyWeapontReturnCorrectObject)
 {
     // Arrange
     MockGame mock_game;
@@ -41,10 +41,10 @@ TEST(ServerProtocolTest, ReadMoveRightReturnCorrectObject)
                               {
         Socket client_socket("localhost", "9999");
 
-        player_command_t command = static_cast<player_command_t>(PlayerCommandType::MOVE);
+        player_command_t command = static_cast<player_command_t>(PlayerCommandType::BUY_WEAPON);
         client_socket.sendall(reinterpret_cast<char*>(&command), sizeof(command)); 
-        move_t move_type = static_cast<move_t>(MoveType::RIGHT); 
-        client_socket.sendall(reinterpret_cast<char*>(&move_type), sizeof(move_type)); });
+        weapon_code_t weapon_type = static_cast<weapon_code_t>(WeaponCode::AK47); 
+        client_socket.sendall(reinterpret_cast<char*>(&weapon_type), sizeof(weapon_type)); });
 
     Socket server_client = server_socket.accept();
     ServerProtocol protocol(server_client);
@@ -52,11 +52,11 @@ TEST(ServerProtocolTest, ReadMoveRightReturnCorrectObject)
     // Act
 
     PlayerCommandType command = protocol.read_player_command();
-    std::unique_ptr<PlayerAction> action = protocol.read_move(player_id);
+    std::unique_ptr<PlayerAction> action = protocol.read_buy_weapon();
 
     // Assert
-    ASSERT_EQ(command, PlayerCommandType::MOVE);
-    EXPECT_CALL(mock_game, move(player_id, MoveType::RIGHT))
+    ASSERT_EQ(command, PlayerCommandType::BUY_WEAPON);
+    EXPECT_CALL(mock_game, buy_weapon(player_id, WeaponCode::AK47))
         .Times(1);
 
     // Ejecutamos la acción “inyectando” nuestro mock

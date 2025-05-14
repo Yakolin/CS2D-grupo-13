@@ -28,3 +28,10 @@ std::unique_ptr<PlayerAction> ServerProtocol::read_move(player_id_t player_id)
     this->socket.recvall(&move_type, sizeof(move_t));
     return std::make_unique<Move>(player_id, static_cast<MoveType>(move_type));
 }
+
+std::unique_ptr<PlayerAction> ServerProtocol::read_buy_weapon()
+{
+    weapon_code_t weapon_code;
+    this->socket.recvall(&weapon_code, sizeof(weapon_code_t));
+    return std::make_unique<BuyWeapon>(1, static_cast<WeaponCode>(weapon_code));
+}

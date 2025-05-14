@@ -21,9 +21,9 @@ public:
     PlayerCommandType read_player_command();
 
     std::unique_ptr<PlayerAction> read_move(player_id_t player_id);
-    /*
 
-    BuyWeapon read_buy_weapon();
+    std::unique_ptr<PlayerAction> read_buy_weapon();
+    /*
     BuyAmmo read_buy_ammo();
     Reload read_reload();
     Shoot read_shoot();

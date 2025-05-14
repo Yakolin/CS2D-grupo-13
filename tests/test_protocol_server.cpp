@@ -35,7 +35,7 @@ TEST(ServerProtocolTest, ReadMoveRightReturnCorrectObject)
 {
     // Arrange
     Socket server_socket("9999");
-
+    player_id_t player_id = 1;
     std::thread client_thread([]()
                               {
         Socket client_socket("localhost", "9999");
@@ -47,5 +47,5 @@ TEST(ServerProtocolTest, ReadMoveRightReturnCorrectObject)
     ServerProtocol protocol(server_client);
 
     // Act
-    std::unique_ptr<PlayerAction> action = protocol.read_move_right();
+    std::unique_ptr<PlayerAction> action = protocol.read_move();
 }

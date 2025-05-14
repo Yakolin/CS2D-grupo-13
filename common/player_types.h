@@ -12,10 +12,7 @@ using weapon_type_t = std::uint8_t;
 
 enum class PlayerCommandType
 {
-    MOVE_RIGHT,
-    MOVE_LEFT,
-    MOVE_UP,
-    MOVE_DOWN,
+    MOVE,
     BUY_WEAPON,
     BUY_AMMO,
     RELOAD,

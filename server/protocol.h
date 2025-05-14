@@ -23,10 +23,6 @@ public:
     std::unique_ptr<PlayerAction> read_move(player_id_t player_id);
     /*
 
-    MoveLeft read_move_left();
-    MoveUp read_move_up();
-    MoveDown read_move_down();
-
     BuyWeapon read_buy_weapon();
     BuyAmmo read_buy_ammo();
     Reload read_reload();

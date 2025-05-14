@@ -20,8 +20,8 @@ public:
 class Game : public InterfaceGame
 {
 public:
-    Game();
-    ~Game();
+    Game() = default;
+    ~Game() = default;
 };
 
 #endif // !GAME_H

@@ -211,6 +211,6 @@ if(CS2D_TESTS)
     # Change this if you have to.
     target_link_libraries(CS2D_tests
         CS2D_common
-        GTest::gtest_main
+        GTest::gmock_main
     )
 endif()

@@ -13,7 +13,7 @@ protected:
 public:
     PlayerAction(player_id_t player_id) : player_id(player_id) {}
     virtual ~PlayerAction() {}
-    virtual void action(Game &game) = 0;
+    virtual void action(InterfaceGame &game) = 0;
 };
 
 /*
@@ -28,7 +28,7 @@ private:
 public:
     Move(player_id_t player_id, MoveType move_type);
     ~Move();
-    void action(Game &game) override;
+    void action(InterfaceGame &game) override;
 };
 
 /*
@@ -43,7 +43,7 @@ private:
 public:
     BuyWeapon(player_id_t player_id, WeaponCode weapon_code); // considerando que el arma viene con municion por default
     ~BuyWeapon();
-    void action(Game &game) override;
+    void action(InterfaceGame &game) override;
 };
 
 class BuyAmmo : public PlayerAction
@@ -55,7 +55,7 @@ private:
 public:
     BuyAmmo(player_id_t player_id, WeaponType weapon_type, ammo_t ammo_count);
     ~BuyAmmo();
-    void action(Game &game) override;
+    void action(InterfaceGame &game) override;
 };
 
 class Reload : public PlayerAction
@@ -66,7 +66,7 @@ private:
 public:
     Reload(player_id_t player_id, WeaponType weapon_type);
     ~Reload();
-    void action(Game &game) override;
+    void action(InterfaceGame &game) override;
 };
 
 class Shoot : public PlayerAction
@@ -78,7 +78,7 @@ private:
 public:
     Shoot(player_id_t player_id, WeaponType weapon_type, ammo_t ammo_count);
     ~Shoot();
-    void action(Game &game) override;
+    void action(InterfaceGame &game) override;
 };
 
 class DropWeapon : public PlayerAction
@@ -89,7 +89,7 @@ private:
 public:
     DropWeapon(player_id_t player_id, WeaponType weapon_type);
     ~DropWeapon();
-    void action(Game &game) override;
+    void action(InterfaceGame &game) override;
 };
 
 /*
@@ -101,7 +101,7 @@ class PlantBomb : public PlayerAction
 public:
     PlantBomb(player_id_t player_id);
     ~PlantBomb();
-    void action(Game &game) override;
+    void action(InterfaceGame &game) override;
 };
 
 class DropBomb : public PlayerAction
@@ -109,7 +109,7 @@ class DropBomb : public PlayerAction
 public:
     DropBomb(player_id_t player_id);
     ~DropBomb();
-    void action(Game &game) override;
+    void action(InterfaceGame &game) override;
 };
 
 class DefuseBomb : public PlayerAction
@@ -117,7 +117,7 @@ class DefuseBomb : public PlayerAction
 public:
     DefuseBomb(player_id_t player_id);
     ~DefuseBomb();
-    void action(Game &game) override;
+    void action(InterfaceGame &game) override;
 };
 
 #endif // !PLAYER_ACTION_H

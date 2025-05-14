@@ -25,10 +25,10 @@ enum class PlayerCommandType
 
 enum class MoveType
 {
-    MOVE_RIGHT,
-    MOVE_LEFT,
-    MOVE_UP,
-    MOVE_DOWN,
+    RIGHT,
+    LEFT,
+    UP,
+    DOWN,
 };
 
 enum class WeaponType

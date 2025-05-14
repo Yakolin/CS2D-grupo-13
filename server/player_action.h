@@ -2,114 +2,133 @@
 #define PLAYER_ACTION_H
 
 #include "../common/player_types.h"
+#include "../common/lobby_types.h"
 #include "game.h"
 #include <cstdint>
 
-class PlayerAction {
+class ClientAction
+{
 protected:
-  player_id_t player_id;
+    player_id_t player_id;
 
 public:
-  PlayerAction(player_id_t player_id) : player_id(player_id) {}
-  virtual ~PlayerAction() {}
-  virtual void action(InterfaceGame &game) = 0;
+    ClientAction(player_id_t player_id) : player_id(player_id) {}
+    virtual ~ClientAction() {}
+};
+
+class PlayerAction
+{
+
+public:
+    PlayerAction() = default;
+    virtual ~PlayerAction() = default;
+    virtual void action(InterfaceGame &game) = 0;
 };
 
 /*
         MOVEMENT ACTIONS
 */
 
-class Move : public PlayerAction {
+class Move : public PlayerAction, public ClientAction
+{
 private:
-  MoveType move_type;
+    MoveType move_type;
 
 public:
-  Move(player_id_t player_id, MoveType move_type);
-  ~Move();
-  void action(InterfaceGame &game) override;
+    Move(player_id_t player_id, MoveType move_type);
+    ~Move();
+    void action(InterfaceGame &game) override;
 };
 
 /*
         WEAPON ACTIONS
 */
 
-class BuyWeapon : public PlayerAction {
+class BuyWeapon : public PlayerAction, public ClientAction
+{
 private:
-  WeaponCode weapon_code;
+    WeaponCode weapon_code;
 
 public:
-  BuyWeapon(player_id_t player_id,
-            WeaponCode weapon_code); // considerando que el arma viene con
-                                     // municion por default
-  ~BuyWeapon();
-  void action(InterfaceGame &game) override;
+    BuyWeapon(player_id_t player_id,
+              WeaponCode weapon_code); // considerando que el arma viene con
+                                       // municion por default
+    ~BuyWeapon();
+    void action(InterfaceGame &game) override;
 };
 
-class BuyAmmo : public PlayerAction {
+class BuyAmmo : public PlayerAction, public ClientAction
+{
 private:
-  WeaponType weapon_type;
-  ammo_t ammo_count;
+    WeaponType weapon_type;
+    ammo_t ammo_count;
 
 public:
-  BuyAmmo(player_id_t player_id, WeaponType weapon_type, ammo_t ammo_count);
-  ~BuyAmmo();
-  void action(InterfaceGame &game) override;
+    BuyAmmo(player_id_t player_id, WeaponType weapon_type, ammo_t ammo_count);
+    ~BuyAmmo();
+    void action(InterfaceGame &game) override;
 };
 
-class Reload : public PlayerAction {
+class Reload : public PlayerAction, public ClientAction
+{
 private:
-  WeaponType weapon_type;
+    WeaponType weapon_type;
 
 public:
-  Reload(player_id_t player_id, WeaponType weapon_type);
-  ~Reload();
-  void action(InterfaceGame &game) override;
+    Reload(player_id_t player_id, WeaponType weapon_type);
+    ~Reload();
+    void action(InterfaceGame &game) override;
 };
 
-class Shoot : public PlayerAction {
+class Shoot : public PlayerAction, public ClientAction
+{
 private:
-  WeaponType weapon_type;
-  ammo_t ammo_count;
+    WeaponType weapon_type;
+    ammo_t ammo_count;
 
 public:
-  Shoot(player_id_t player_id, WeaponType weapon_type, ammo_t ammo_count);
-  ~Shoot();
-  void action(InterfaceGame &game) override;
+    Shoot(player_id_t player_id, WeaponType weapon_type, ammo_t ammo_count);
+    ~Shoot();
+    void action(InterfaceGame &game) override;
 };
 
-class DropWeapon : public PlayerAction {
+class DropWeapon : public PlayerAction, public ClientAction
+{
 private:
-  WeaponType weapon_type;
+    WeaponType weapon_type;
 
 public:
-  DropWeapon(player_id_t player_id, WeaponType weapon_type);
-  ~DropWeapon();
-  void action(InterfaceGame &game) override;
+    DropWeapon(player_id_t player_id, WeaponType weapon_type);
+    ~DropWeapon();
+    void action(InterfaceGame &game) override;
 };
 
 /*
         BOMB ACTIONS
 */
 
-class PlantBomb : public PlayerAction {
+class PlantBomb : public PlayerAction, public ClientAction
+{
 public:
-  PlantBomb(player_id_t player_id);
-  ~PlantBomb();
-  void action(InterfaceGame &game) override;
+    PlantBomb(player_id_t player_id);
+    ~PlantBomb();
+    void action(InterfaceGame &game) override;
 };
 
-class DropBomb : public PlayerAction {
+class DropBomb : public PlayerAction, public ClientAction
+{
 public:
-  DropBomb(player_id_t player_id);
-  ~DropBomb();
-  void action(InterfaceGame &game) override;
+    DropBomb(player_id_t player_id);
+    ~DropBomb();
+    void action(InterfaceGame &game) override;
 };
 
-class DefuseBomb : public PlayerAction {
+class DefuseBomb : public PlayerAction, public ClientAction
+{
 public:
-  DefuseBomb(player_id_t player_id);
-  ~DefuseBomb();
-  void action(InterfaceGame &game) override;
+    DefuseBomb(player_id_t player_id);
+    ~DefuseBomb();
+    void action(InterfaceGame &game) override;
 };
 
 #endif // !PLAYER_ACTION_H

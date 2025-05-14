@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include <gmock/gmock.h>
 
 #include "../server/protocol.h"
 #include "mocks/mock_game.h"

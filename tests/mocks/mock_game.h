@@ -8,10 +8,7 @@
 class MockGame : public InterfaceGame
 {
 public:
-    MOCK_METHOD(void, move_right, (uint16_t player_id), (override));
-    MOCK_METHOD(void, move_left, (uint16_t player_id), (override));
-    MOCK_METHOD(void, move_up, (uint16_t player_id), (override));
-    MOCK_METHOD(void, move_down, (uint16_t player_id), (override));
+    MOCK_METHOD(void, move, (uint16_t player_id, MoveType move_type), (override));
     MOCK_METHOD(void, reload, (uint16_t player_id, WeaponType weapon_type), (override));
     MOCK_METHOD(void, shoot, (uint16_t player_id, WeaponType weapon_type, ammo_t ammo_count), (override));
     MOCK_METHOD(void, plant_bomb, (uint16_t player_id), (override));

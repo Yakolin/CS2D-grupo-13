@@ -1,5 +1,5 @@
-#ifndef PLAYER_TYPES_H
-#define PLAYER_TYPES_H
+#ifndef PLAYER_COMMAND_TYPES_H
+#define PLAYER_COMMAND_TYPES_H
 
 #include <cstdint>
 
@@ -37,4 +37,4 @@ enum class WeaponType {
 
 enum class WeaponCode { GLOCK, AK47, M3, AWP };
 
-#endif  // !PLAYER_TYPES_H
+#endif  // !PLAYER_COMMAND_TYPES_H

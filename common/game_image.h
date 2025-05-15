@@ -4,7 +4,7 @@
 #include <cstdint>
 #include <vector>
 
-#include "player_types.h"
+#include "player_command_types.h"
 
 using coordinate_t = std::uint16_t;
 using length_players_images_t = std::uint16_t;

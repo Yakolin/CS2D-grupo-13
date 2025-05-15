@@ -1,6 +1,7 @@
 #ifndef RECEIVER_H
 #define RECEIVER_H
 
+#include "../../common/game_image.h"
 #include "../../common/queue.h"
 #include "../../common/socket.h"
 #include "../../common/thread.h"
@@ -9,6 +10,7 @@
 
 class Receiver: public Thread {
 private:
+    bool closed;
     Queue<GameImage>& recv_queue;
     ClientProtocol protocol;
 
@@ -17,7 +19,6 @@ public:
     ~Receiver() override;
 
     void run() override;
-    void stop() override;
 };
 
 #endif  // !RECEIVER_H

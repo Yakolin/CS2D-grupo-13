@@ -19,3 +19,10 @@ ListGames::ListGames() {}
 ListGames::~ListGames() {}
 
 void ListGames::action(ClientProtocol& protocol) { protocol.send_list_games(); }
+
+
+Move::Move(MoveType move_type): MoveCommon(move_type) {}
+
+Move::~Move() {}
+
+void Move::action(ClientProtocol& protocol) { protocol.send_move(this->move_type); }

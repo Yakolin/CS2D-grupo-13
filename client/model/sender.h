@@ -5,22 +5,18 @@
 #include "../../common/socket.h"
 #include "../../common/thread.h"
 
+#include "client_action.h"
 #include "protocol.h"
 
 
-class
-
-        class Sender: public Thread {
+class Sender: public Thread {
 private:
-    Queue<>& send_queue;
     ClientProtocol protocol;
+    Queue<std::unique_ptr<InterfaceClientAction>>& send_queue;
 
 public:
-    explicit Sender(Socket& socket, Queue<GameImage>& send_queue);
+    explicit Sender(Socket& socket, Queue<std::unique_ptr<InterfaceClientAction>>& send_queue);
     ~Sender() override;
-
-    void send_lobby_action();
-    void send_player_action();
 
     void run() override;
     void stop() override;

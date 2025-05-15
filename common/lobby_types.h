@@ -3,6 +3,7 @@
 #include <cstdint>
 
 using lobby_command_t = std::uint8_t;
+using length_name_t = std::uint16_t;
 
 enum class LobbyCommandType {
     CREATE_GAME,

@@ -13,6 +13,43 @@ void ServerProtocol::read_byte_data(uint8_t& data) {
     data = data_readed;
 }
 
+const std::string ServerProtocol::read_game_name() {
+    std::string game_name;
+    length_name_t name_length;
+    this->socket.recvall(reinterpret_cast<char*>(&name_length), sizeof(name_length));
+    if (this->socket.is_stream_recv_closed()) {
+        throw ConnectionClosedException("Error al intentar leer datos del cliente");
+    }
+    length_name_t length = ntohs(name_length);
+    std::vector<char> nameGameBuffer(length);
+    this->socket.recvall(nameGameBuffer.data(), length);
+    if (this->socket.is_stream_recv_closed()) {
+        throw ConnectionClosedException("Error al intentar leer datos del cliente");
+    }
+    game_name.assign(nameGameBuffer.begin(), nameGameBuffer.end());
+    return game_name;
+}
+
+LobbyCommandType ServerProtocol::read_lobby_command() {
+    lobby_command_t command;
+    this->read_byte_data(command);
+    return static_cast<LobbyCommandType>(command);
+}
+
+std::unique_ptr<CreateGame> ServerProtocol::read_create_game(player_id_t player_id) {
+    std::string game_name = this->read_game_name();
+    return std::make_unique<CreateGame>(player_id, std::string(game_name));
+}
+
+std::unique_ptr<JoinGame> ServerProtocol::read_join_game(player_id_t player_id) {
+    std::string game_name = this->read_game_name();
+    return std::make_unique<JoinGame>(player_id, std::string(game_name));
+}
+
+std::unique_ptr<ListGames> ServerProtocol::read_list_games(player_id_t player_id) {
+    return std::make_unique<ListGames>(player_id);
+}
+
 PlayerCommandType ServerProtocol::read_player_command() {
     player_command_t command;
     this->read_byte_data(command);

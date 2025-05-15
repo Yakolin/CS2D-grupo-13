@@ -7,6 +7,7 @@
 #include "../common/player_types.h"
 
 #include "game.h"
+#include "games_monitor.h"
 
 class ClientAction {
 protected:
@@ -26,6 +27,46 @@ public:
     virtual ~LobbyAction() = default;
     virtual void action(InterfaceGamesMonitor& monitor) = 0;
 };
+
+/*
+        CREATE GAME
+*/
+
+class CreateGame: public LobbyAction, public ClientAction {
+private:
+    const std::string game_name;
+
+public:
+    CreateGame(player_id_t player_id, const std::string& game_name);
+    ~CreateGame();
+    void action(InterfaceGamesMonitor& monitor) override;
+};
+
+/*
+        JOIN GAME
+*/
+
+class JoinGame: public LobbyAction, public ClientAction {
+private:
+    const std::string game_name;
+
+public:
+    JoinGame(player_id_t player_id, const std::string& game_name);
+    ~JoinGame();
+    void action(InterfaceGamesMonitor& monitor) override;
+};
+
+/*
+        LIST GAMES
+*/
+
+class ListGames: public LobbyAction, public ClientAction {
+public:
+    ListGames(player_id_t player_id);
+    ~ListGames();
+    void action(InterfaceGamesMonitor& monitor) override;
+};
+
 
 /*
         PLAYER ACTIONS

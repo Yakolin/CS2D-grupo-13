@@ -2,8 +2,12 @@
 #define PROTOCOL_H
 
 #include <memory>
+#include <string>
+
+#include <arpa/inet.h>
 
 #include "../common/connection_closed_exception.h"
+#include "../common/lobby_types.h"
 #include "../common/player_types.h"
 #include "../common/socket.h"
 
@@ -13,17 +17,23 @@ class ServerProtocol {
 private:
     Socket& socket;
     void read_byte_data(uint8_t& data);
+    const std::string read_game_name();
 
 public:
     ServerProtocol(Socket& socket);
     ~ServerProtocol();
 
+    LobbyCommandType read_lobby_command();
+
     PlayerCommandType read_player_command();
+
+    std::unique_ptr<CreateGame> read_create_game(player_id_t player_id);
+    std::unique_ptr<JoinGame> read_join_game(player_id_t player_id);
+    std::unique_ptr<ListGames> read_list_games(player_id_t player_id);
 
     std::unique_ptr<Move> read_move(player_id_t player_id);
 
     std::unique_ptr<BuyWeapon> read_buy_weapon(player_id_t player_id);
-
     std::unique_ptr<BuyAmmo> read_buy_ammo(player_id_t player_id);
     std::unique_ptr<Reload> read_reload(player_id_t player_id);
     std::unique_ptr<Shoot> read_shoot(player_id_t player_id);

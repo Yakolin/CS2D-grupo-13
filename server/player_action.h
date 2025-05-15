@@ -3,7 +3,7 @@
 
 #include <cstdint>
 
-#include "../common/lobby_action.h"
+#include "../common/client_common_action.h"
 #include "../common/lobby_types.h"
 #include "../common/player_types.h"
 
@@ -22,10 +22,10 @@ public:
 /*
         LOBBY ACTIONS
 */
-class LobbyAction {
+class InterfaceLobbyAction {
 public:
-    LobbyAction() = default;
-    virtual ~LobbyAction() = default;
+    InterfaceLobbyAction() = default;
+    virtual ~InterfaceLobbyAction() = default;
     virtual void action(InterfaceGamesMonitor& monitor) = 0;
 };
 
@@ -33,7 +33,7 @@ public:
         CREATE GAME
 */
 
-class CreateGame: public CreateGameCommon, public LobbyAction, public ClientAction {
+class CreateGame: public CreateGameCommon, public InterfaceLobbyAction, public ClientAction {
 
 public:
     CreateGame(player_id_t player_id, const std::string& game_name);
@@ -45,9 +45,7 @@ public:
         JOIN GAME
 */
 
-class JoinGame: public LobbyAction, public ClientAction {
-private:
-    const std::string game_name;
+class JoinGame: public JoinGameCommon, public InterfaceLobbyAction, public ClientAction {
 
 public:
     JoinGame(player_id_t player_id, const std::string& game_name);
@@ -59,7 +57,7 @@ public:
         LIST GAMES
 */
 
-class ListGames: public LobbyAction, public ClientAction {
+class ListGames: public InterfaceLobbyAction, public ClientAction {
 public:
     ListGames(player_id_t player_id);
     ~ListGames();
@@ -71,11 +69,11 @@ public:
         PLAYER ACTIONS
 */
 
-class PlayerAction {
+class InterfacePlayerAction {
 
 public:
-    PlayerAction() = default;
-    virtual ~PlayerAction() = default;
+    InterfacePlayerAction() = default;
+    virtual ~InterfacePlayerAction() = default;
     virtual void action(InterfaceGame& game) = 0;
 };
 
@@ -83,9 +81,7 @@ public:
         MOVEMENT ACTIONS
 */
 
-class Move: public PlayerAction, public ClientAction {
-private:
-    MoveType move_type;
+class Move: public MoveCommon, public InterfacePlayerAction, public ClientAction {
 
 public:
     Move(player_id_t player_id, MoveType move_type);
@@ -97,9 +93,7 @@ public:
         WEAPON ACTIONS
 */
 
-class BuyWeapon: public PlayerAction, public ClientAction {
-private:
-    WeaponCode weapon_code;
+class BuyWeapon: public BuyWeaponCommon, public InterfacePlayerAction, public ClientAction {
 
 public:
     BuyWeapon(player_id_t player_id,
@@ -109,10 +103,7 @@ public:
     void action(InterfaceGame& game) override;
 };
 
-class BuyAmmo: public PlayerAction, public ClientAction {
-private:
-    WeaponType weapon_type;
-    ammo_t ammo_count;
+class BuyAmmo: public BuyAmmoCommon, public InterfacePlayerAction, public ClientAction {
 
 public:
     BuyAmmo(player_id_t player_id, WeaponType weapon_type, ammo_t ammo_count);
@@ -120,9 +111,7 @@ public:
     void action(InterfaceGame& game) override;
 };
 
-class Reload: public PlayerAction, public ClientAction {
-private:
-    WeaponType weapon_type;
+class Reload: public ReloadCommon, public InterfacePlayerAction, public ClientAction {
 
 public:
     Reload(player_id_t player_id, WeaponType weapon_type);
@@ -130,10 +119,7 @@ public:
     void action(InterfaceGame& game) override;
 };
 
-class Shoot: public PlayerAction, public ClientAction {
-private:
-    WeaponType weapon_type;
-    ammo_t ammo_count;
+class Shoot: public ShootCommon, public InterfacePlayerAction, public ClientAction {
 
 public:
     Shoot(player_id_t player_id, WeaponType weapon_type, ammo_t ammo_count);
@@ -141,9 +127,7 @@ public:
     void action(InterfaceGame& game) override;
 };
 
-class DropWeapon: public PlayerAction, public ClientAction {
-private:
-    WeaponType weapon_type;
+class DropWeapon: public DropWeaponCommon, public InterfacePlayerAction, public ClientAction {
 
 public:
     DropWeapon(player_id_t player_id, WeaponType weapon_type);
@@ -155,21 +139,21 @@ public:
         BOMB ACTIONS
 */
 
-class PlantBomb: public PlayerAction, public ClientAction {
+class PlantBomb: public InterfacePlayerAction, public ClientAction {
 public:
     PlantBomb(player_id_t player_id);
     ~PlantBomb();
     void action(InterfaceGame& game) override;
 };
 
-class DropBomb: public PlayerAction, public ClientAction {
+class DropBomb: public InterfacePlayerAction, public ClientAction {
 public:
     DropBomb(player_id_t player_id);
     ~DropBomb();
     void action(InterfaceGame& game) override;
 };
 
-class DefuseBomb: public PlayerAction, public ClientAction {
+class DefuseBomb: public InterfacePlayerAction, public ClientAction {
 public:
     DefuseBomb(player_id_t player_id);
     ~DefuseBomb();

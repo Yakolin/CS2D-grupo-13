@@ -51,7 +51,7 @@ TEST(ServerProtocolTest, ReadBuyWeapontReturnCorrectObject) {
     // Act
 
     PlayerCommandType command = protocol.read_player_command();
-    std::unique_ptr<PlayerAction> action = protocol.read_buy_weapon(player_id);
+    std::unique_ptr<InterfacePlayerAction> action = protocol.read_buy_weapon(player_id);
 
     // Assert
     ASSERT_EQ(command, PlayerCommandType::BUY_WEAPON);
@@ -85,7 +85,7 @@ TEST(ServerProtocolTest, ReadBuyAmmoReturnCorrectObject) {
     // Act
 
     PlayerCommandType command = protocol.read_player_command();
-    std::unique_ptr<PlayerAction> action = protocol.read_buy_ammo(player_id);
+    std::unique_ptr<InterfacePlayerAction> action = protocol.read_buy_ammo(player_id);
 
     // Assert
     ASSERT_EQ(command, PlayerCommandType::BUY_AMMO);
@@ -117,7 +117,7 @@ TEST(ServerProtocolTest, ReadReloadReturnCorrectObject) {
     // Act
 
     PlayerCommandType command = protocol.read_player_command();
-    std::unique_ptr<PlayerAction> action = protocol.read_reload(player_id);
+    std::unique_ptr<InterfacePlayerAction> action = protocol.read_reload(player_id);
 
     // Assert
     ASSERT_EQ(command, PlayerCommandType::RELOAD);
@@ -151,7 +151,7 @@ TEST(ServerProtocolTest, ReadShootReturnCorrectObject) {
     // Act
 
     PlayerCommandType command = protocol.read_player_command();
-    std::unique_ptr<PlayerAction> action = protocol.read_shoot(player_id);
+    std::unique_ptr<InterfacePlayerAction> action = protocol.read_shoot(player_id);
 
     // Assert
     ASSERT_EQ(command, PlayerCommandType::SHOOT);
@@ -183,7 +183,7 @@ TEST(ServerProtocolTest, ReadDropWeaponReturnCorrectObject) {
     // Act
 
     PlayerCommandType command = protocol.read_player_command();
-    std::unique_ptr<PlayerAction> action = protocol.read_drop_weapon(player_id);
+    std::unique_ptr<InterfacePlayerAction> action = protocol.read_drop_weapon(player_id);
 
     // Assert
     ASSERT_EQ(command, PlayerCommandType::DROP_WEAPON);
@@ -213,7 +213,7 @@ TEST(ServerProtocolTest, ReadPlantBombReturnCorrectObject) {
     // Act
 
     PlayerCommandType command = protocol.read_player_command();
-    std::unique_ptr<PlayerAction> action = protocol.read_plant_bomb(player_id);
+    std::unique_ptr<InterfacePlayerAction> action = protocol.read_plant_bomb(player_id);
 
     // Assert
     ASSERT_EQ(command, PlayerCommandType::PLANT_BOMB);
@@ -243,7 +243,7 @@ TEST(ServerProtocolTest, ReadDefuseBombReturnCorrectObject) {
     // Act
 
     PlayerCommandType command = protocol.read_player_command();
-    std::unique_ptr<PlayerAction> action = protocol.read_defuse_bomb(player_id);
+    std::unique_ptr<InterfacePlayerAction> action = protocol.read_defuse_bomb(player_id);
 
     // Assert
     ASSERT_EQ(command, PlayerCommandType::DEFUSE_BOMB);
@@ -273,7 +273,7 @@ TEST(ServerProtocolTest, ReadDropBombReturnCorrectObject) {
     // Act
 
     PlayerCommandType command = protocol.read_player_command();
-    std::unique_ptr<PlayerAction> action = protocol.read_drop_bomb(player_id);
+    std::unique_ptr<InterfacePlayerAction> action = protocol.read_drop_bomb(player_id);
 
     // Assert
     ASSERT_EQ(command, PlayerCommandType::DROP_BOMB);

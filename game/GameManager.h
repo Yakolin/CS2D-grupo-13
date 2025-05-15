@@ -10,26 +10,35 @@
 #include "../common/player_command_types.h"
 #include "../server/player_action.h"
 
+#include "GameException.h"
+#include "InterfaceGameManager.h"
 #include "Map.h"
 #include "PlayersTypes.h"
-class GameManager {
+
+using std::map;
+using std::shared_ptr;
+using std::string;
+
+class GameManager: public InterfaceGameManager {
 private:
-    std::string game_name;
-    std::map<player_id_t, std::shared_ptr<Player>> players;
+    string game_name;
+    map<player_id_t, shared_ptr<Player>> players;
     int round = 0;
     Map map_game;
     bool game_started = false;
-    void handle_player_action(int id, float x, float y);
-    GameImage generate_game_image();
+    shared_ptr<Player> find_player(player_id_t player_id);
 
 public:
-    explicit GameManager(const std::string& _game_name, const std::string& map_name):
+    explicit GameManager(const string& _game_name, const string& map_name):
             game_name(_game_name), map_game(map_name) {}
     ~GameManager();
-    void add_player(std::string&& _nick_name, int id);
+    void add_player(string&& _nick_name, int id);
     GameImage frame(/*vector <PlayerAction>*/);
     void start_game();
     void stop_game();
+
+    void move(uint16_t player_id, MoveType move_type) override;
+    void reload(uint16_t player_id) override;
 };
 
 #endif  // GAME_MANAGER_H_

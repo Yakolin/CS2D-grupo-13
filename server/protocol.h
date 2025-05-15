@@ -1,21 +1,21 @@
 #ifndef PROTOCOL_H
 #define PROTOCOL_H
 
+#include <memory>
+
 #include "../common/connection_closed_exception.h"
 #include "../common/player_types.h"
 #include "../common/socket.h"
-#include <memory>
 
 #include "player_action.h"
 
-class ServerProtocol
-{
+class ServerProtocol {
 private:
-    Socket &socket;
-    void read_byte_data(uint8_t &data);
+    Socket& socket;
+    void read_byte_data(uint8_t& data);
 
 public:
-    ServerProtocol(Socket &socket);
+    ServerProtocol(Socket& socket);
     ~ServerProtocol();
 
     PlayerCommandType read_player_command();
@@ -34,4 +34,4 @@ public:
     std::unique_ptr<DropBomb> read_drop_bomb(player_id_t player_id);
 };
 
-#endif // !PROTOCOL_H
+#endif  // !PROTOCOL_H

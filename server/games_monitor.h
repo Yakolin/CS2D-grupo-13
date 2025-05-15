@@ -6,8 +6,6 @@
 #include <utility>
 #include <vector>
 
-#include "player.h"
-
 class InterfaceGamesMonitor {
 public:
     InterfaceGamesMonitor() = default;

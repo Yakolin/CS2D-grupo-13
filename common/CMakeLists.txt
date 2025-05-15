@@ -5,7 +5,7 @@ target_sources(CS2D_common
     resolver.cpp
     resolvererror.cpp
     socket.cpp
-
+    
     PUBLIC
     # .h files
     liberror.h
@@ -16,4 +16,5 @@ target_sources(CS2D_common
     socket.h
     thread.h
     connection_closed_exception.h
+    client_common_action.h
     )

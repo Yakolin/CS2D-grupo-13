@@ -11,8 +11,8 @@
 class Receiver: public Thread {
 private:
     bool closed;
-    Queue<GameImage>& recv_queue;
     ClientProtocol protocol;
+    Queue<GameImage>& recv_queue;
 
 public:
     explicit Receiver(Socket& socket, Queue<GameImage>& recv_queue);

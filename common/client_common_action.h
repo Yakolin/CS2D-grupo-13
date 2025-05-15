@@ -4,6 +4,7 @@
 #include <string>
 
 #include "lobby_types.h"
+#include "player_types.h"
 
 
 /*

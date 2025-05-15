@@ -10,4 +10,5 @@ target_sources(CS2D_server
     game.h
     player_action.h
     protocol.h
+    games_monitor.h
     )

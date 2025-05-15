@@ -1,13 +1,15 @@
 #include "client_action.h"
 
-CreateGame::CreateGame(const std::string& game_name): CreateGameCommon(game_name) {}
+CreateGame::CreateGame(const std::string& game_name):
+        CreateGameCommon(game_name), InterfaceClientAction() {}
 
 CreateGame::~CreateGame() {}
 
 void CreateGame::action(ClientProtocol& protocol) { protocol.send_create_game(this->game_name); }
 
 
-JoinGame::JoinGame(const std::string& game_name): JoinGame(game_name) {}
+JoinGame::JoinGame(const std::string& game_name):
+        JoinGameCommon(game_name), InterfaceClientAction() {}
 
 JoinGame::~JoinGame() {}
 
@@ -21,7 +23,7 @@ ListGames::~ListGames() {}
 void ListGames::action(ClientProtocol& protocol) { protocol.send_list_games(); }
 
 
-Move::Move(MoveType move_type): MoveCommon(move_type) {}
+Move::Move(MoveType move_type): MoveCommon(move_type), InterfaceClientAction() {}
 
 Move::~Move() {}
 

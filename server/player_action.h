@@ -33,7 +33,7 @@ public:
         CREATE GAME
 */
 
-class CreateGame: public CreateGameCommon, public InterfaceLobbyAction, public ClientAction {
+class CreateGame: public ClientAction, public InterfaceLobbyAction, public CreateGameCommon {
 
 public:
     CreateGame(player_id_t player_id, const std::string& game_name);
@@ -45,7 +45,7 @@ public:
         JOIN GAME
 */
 
-class JoinGame: public JoinGameCommon, public InterfaceLobbyAction, public ClientAction {
+class JoinGame: public ClientAction, public InterfaceLobbyAction, public JoinGameCommon {
 
 public:
     JoinGame(player_id_t player_id, const std::string& game_name);
@@ -57,7 +57,7 @@ public:
         LIST GAMES
 */
 
-class ListGames: public InterfaceLobbyAction, public ClientAction {
+class ListGames: public ClientAction, public InterfaceLobbyAction {
 public:
     ListGames(player_id_t player_id);
     ~ListGames();
@@ -81,7 +81,7 @@ public:
         MOVEMENT ACTIONS
 */
 
-class Move: public MoveCommon, public InterfacePlayerAction, public ClientAction {
+class Move: public ClientAction, public InterfacePlayerAction, public MoveCommon {
 
 public:
     Move(player_id_t player_id, MoveType move_type);
@@ -93,7 +93,7 @@ public:
         WEAPON ACTIONS
 */
 
-class BuyWeapon: public BuyWeaponCommon, public InterfacePlayerAction, public ClientAction {
+class BuyWeapon: public ClientAction, public InterfacePlayerAction, public BuyWeaponCommon {
 
 public:
     BuyWeapon(player_id_t player_id,
@@ -103,7 +103,7 @@ public:
     void action(InterfaceGame& game) override;
 };
 
-class BuyAmmo: public BuyAmmoCommon, public InterfacePlayerAction, public ClientAction {
+class BuyAmmo: public ClientAction, public InterfacePlayerAction, public BuyAmmoCommon {
 
 public:
     BuyAmmo(player_id_t player_id, WeaponType weapon_type, ammo_t ammo_count);
@@ -111,7 +111,7 @@ public:
     void action(InterfaceGame& game) override;
 };
 
-class Reload: public ReloadCommon, public InterfacePlayerAction, public ClientAction {
+class Reload: public ClientAction, public InterfacePlayerAction, public ReloadCommon {
 
 public:
     Reload(player_id_t player_id, WeaponType weapon_type);
@@ -119,7 +119,7 @@ public:
     void action(InterfaceGame& game) override;
 };
 
-class Shoot: public ShootCommon, public InterfacePlayerAction, public ClientAction {
+class Shoot: public ClientAction, public InterfacePlayerAction, public ShootCommon {
 
 public:
     Shoot(player_id_t player_id, WeaponType weapon_type, ammo_t ammo_count);
@@ -127,7 +127,7 @@ public:
     void action(InterfaceGame& game) override;
 };
 
-class DropWeapon: public DropWeaponCommon, public InterfacePlayerAction, public ClientAction {
+class DropWeapon: public ClientAction, public InterfacePlayerAction, public DropWeaponCommon {
 
 public:
     DropWeapon(player_id_t player_id, WeaponType weapon_type);
@@ -139,21 +139,21 @@ public:
         BOMB ACTIONS
 */
 
-class PlantBomb: public InterfacePlayerAction, public ClientAction {
+class PlantBomb: public ClientAction, public InterfacePlayerAction {
 public:
     PlantBomb(player_id_t player_id);
     ~PlantBomb();
     void action(InterfaceGame& game) override;
 };
 
-class DropBomb: public InterfacePlayerAction, public ClientAction {
+class DropBomb: public ClientAction, public InterfacePlayerAction {
 public:
     DropBomb(player_id_t player_id);
     ~DropBomb();
     void action(InterfaceGame& game) override;
 };
 
-class DefuseBomb: public InterfacePlayerAction, public ClientAction {
+class DefuseBomb: public ClientAction, public InterfacePlayerAction {
 public:
     DefuseBomb(player_id_t player_id);
     ~DefuseBomb();

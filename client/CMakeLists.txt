@@ -5,3 +5,5 @@ target_sources(CS2D_client
     PUBLIC
     # .h files
     )
+
+add_subdirectory(model/)

@@ -3,6 +3,7 @@
 
 #include <cstdint>
 
+#include "../common/lobby_action.h"
 #include "../common/lobby_types.h"
 #include "../common/player_types.h"
 
@@ -32,9 +33,7 @@ public:
         CREATE GAME
 */
 
-class CreateGame: public LobbyAction, public ClientAction {
-private:
-    const std::string game_name;
+class CreateGame: public CreateGameCommon, public LobbyAction, public ClientAction {
 
 public:
     CreateGame(player_id_t player_id, const std::string& game_name);

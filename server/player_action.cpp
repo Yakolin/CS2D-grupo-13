@@ -6,7 +6,7 @@
 */
 
 CreateGame::CreateGame(player_id_t player_id, const std::string& game_name):
-        ClientAction(player_id), game_name(game_name) {}
+        ClientAction(player_id), CreateGameCommon(game_name) {}
 
 CreateGame::~CreateGame() {}
 

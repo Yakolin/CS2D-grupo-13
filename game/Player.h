@@ -18,7 +18,6 @@ public:
             points(0) {}
 
     void move(Vector2&& new_position);
-    TypesStates::player_state_t player_info();
     /*
     void get_damage(int damage);
     void change_weapon_equiped();

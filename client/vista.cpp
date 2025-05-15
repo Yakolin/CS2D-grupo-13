@@ -3,36 +3,170 @@
 const int HEIGHT_MENU = 500;
 const int WIDTH_MENU = 500;
 
+void Vista::add_button(QVBoxLayout *layout, const QString &text, const std::function<void()> &action) {
+
+    QPushButton *button = new QPushButton(text );
+    button->setFixedSize(200, 50);
+    QObject::connect(button, &QPushButton::clicked, action);
+    layout->addWidget(button,0, Qt::AlignHCenter);
+}
+
+void Vista::add_sub_options( QTreeWidgetItem *parent , const QString &text) {
+    QTreeWidgetItem *map1 = new QTreeWidgetItem(parent);
+    QFont fuente;
+    fuente.setPointSize(12);
+    fuente.setBold(false);
+    fuente.setFamily("Arial");
+    map1->setFont(0, fuente);
+    map1->setText(0, text);
+}
+
+void Vista::create_item( QTreeWidget *parent , const QStringList &options, const QString &text) {
+
+    QTreeWidgetItem *item = new QTreeWidgetItem(parent);
+    QFont fuente;
+    fuente.setPointSize(14);
+    fuente.setBold(true);
+    item->setFont(0, fuente);
+    item->setText(0, text);
+
+    for (const QString &text : options) {
+        add_sub_options(item, text);
+    }
+}
+
+void Vista::config_windows(QWidget *ventana, const QString &text, int width, int height) {
+    ventana->setWindowTitle(text);
+    ventana->setStyleSheet("background-color:rgb(71, 75, 75);");
+    ventana->resize(width, height);
+}
+
+
+void Vista::action_create() {
+
+    QTabWidget *tabs = new QTabWidget();
+    tabs->setWindowTitle("Create Game");
+    tabs->setStyleSheet("background-color:rgb(50, 58, 58);");
+    tabs->resize(500, 500);
+    tabs->setTabShape(QTabWidget::Rounded);
+    tabs->setTabsClosable(false);
+    tabs->setMovable(true);
+
+    QLabel *label = new QLabel();
+
+    QWidget *tabMap = new QWidget();
+    QWidget *tabOptions = new QWidget();
+    QWidget *tabPlayers = new QWidget();
+
+    tabs->addTab(tabMap, "Map");
+    tabs->addTab(tabOptions, "Options");
+    tabs->addTab(tabPlayers, "Players");
+
+    QListWidget *list_map = new QListWidget(tabMap);
+    list_map->addItem("Desierto");
+    list_map->addItem("Pueblito Azteca");
+    list_map->addItem("Zona de Entrenamiento");
+
+    QListWidget *list_options = new QListWidget(tabPlayers);
+    list_options->addItem("Phoenix");
+    list_options->addItem("L337 Krew");
+    list_options->addItem("Arctic Avenger");
+    list_options->addItem("Guerrilla");
+    QListWidget *list_unidad = new QListWidget(tabOptions);
+    list_unidad->addItem("Seal Force");
+    list_unidad->addItem("German GSG-9");
+    list_unidad->addItem("UK SAS");
+    list_unidad->addItem("French GIGN");
+
+    QHBoxLayout *layoutMap = new QHBoxLayout(tabMap);
+    layoutMap->addWidget(label);
+    layoutMap->addWidget(list_map);
+
+    QListWidgetItem *selected = nullptr;
+
+
+    connect(list_map, &QListWidget::itemClicked, [label, &selected](QListWidgetItem *item){
+    QString nombre = item->text();
+    selected = item;
+
+    if (nombre == "Desierto")
+        label->setPixmap(QPixmap("../assets/gfx/tiles/default_inferno.png"));
+    else if (nombre == "Pueblito Azteca")
+        label->setPixmap(QPixmap("../assets/gfx/tiles/default_aztec.png"));
+    else if (nombre == "Zona de Entrenamiento")
+        label->setPixmap(QPixmap("../assets/gfx/tiles/default_dust.png"));
+    });
+
+
+
+    //QStringList options_map = {"Desierto", "Pueblito Azteca", "Zona de Entrenamiento"};
+    //QStringList options_skins = {"Phoenix", "L337 Krew", "Arctic Avenger", "Guerrilla"};
+    //QStringList options_unidad = {"Seal Force", "German GSG-9", "UK SAS", "French GIGN"};
+
+    tabs->show();
+}
+
+void Vista::action_join() {
+    QMessageBox::information(nullptr, "Mensaje", "Se unió a una partida");
+}
+
+void Vista::action_exit() {
+    QMessageBox::StandardButton answer = QMessageBox::question(nullptr, "Mensaje", "Desea salir?");
+    if (answer == QMessageBox::Yes) {
+        QApplication::quit();
+    }
+}
+
+void Vista::action_help() {
+
+    QString ayuda = "<b>create game</b><br>"
+                "para crear una nueva partida<br>"
+                "<b>join game</b><br>"
+                "para unirse a una partida existente<br>"
+                "<b>exit</b><br>"
+                "para salir";
+    QMessageBox msgBox;
+    msgBox.setWindowTitle("Help");
+    msgBox.setText(ayuda);
+
+    msgBox.setStyleSheet("background-color:rgb(90, 94, 94); color: black");
+
+    msgBox.exec();
+
+}
+
+
+
 int Vista::menu() {
 
-    static QMainWindow mainWindow;
-    mainWindow.setWindowTitle("Counter Strike");
-    mainWindow.setStyleSheet("background-color:rgb(188, 101, 132);"); 
-    mainWindow.resize(WIDTH_MENU, HEIGHT_MENU);
+    QMainWindow *menu = new QMainWindow();
+    menu->setWindowTitle("Counter Strike");
+    menu->resize(500, 500);
 
-    QWidget *centralWidget = new QWidget(&mainWindow);
-    mainWindow.setCentralWidget(centralWidget);
+    QLabel *map = new QLabel();
+    map->setPixmap(QPixmap("../assets/gfx/cs2d.png"));
+
+    QWidget *central = new QWidget(menu);
+    central->setStyleSheet("background-color:rgb(92, 95, 95);");
+    menu->setCentralWidget(central);
+
+    QVBoxLayout *layout = new QVBoxLayout();
+    QPixmap pixmap("../assets/gfx/cs2d.png");
+    QLabel *img_icono = new QLabel();
+    img_icono->setPixmap(pixmap);
+    img_icono->setFixedSize(100, 100);
+    img_icono->setAlignment(Qt::AlignCenter);
     
-    QVBoxLayout *h_table = new QVBoxLayout(centralWidget);
+    layout->addWidget(img_icono, 0, Qt::AlignCenter);
+    add_button(layout, "create game", [this]() { this->action_create(); });
+    add_button(layout, "join game",   [this]() { this->action_join(); });
+    add_button(layout, "Help",        [this]() { this->action_help(); });
+    add_button(layout, "exit game",   [this]() { this->action_exit(); });
 
-    QPushButton *button_crear = new QPushButton("Crear Partida", &mainWindow);
-    QPushButton *button_unirse = new QPushButton("Unirse a Partida", &mainWindow);
-    button_crear->setFixedSize(200, 50);
-    button_unirse->setFixedSize(200, 50);
+    central->setLayout(layout);
 
+    menu->show();
 
-    h_table->addWidget(button_crear);
-    h_table->addWidget(button_unirse);
-    
-
-    QObject::connect(button_crear, &QPushButton::clicked, [&]() {
-        QMessageBox::information(&mainWindow, "Mensaje", "se creó una partida");
-    });
-    QObject::connect(button_unirse, &QPushButton::clicked, [&]() {
-        QMessageBox::information(&mainWindow, "Mensaje", "se unió a una partida");
-    });
-
-    mainWindow.show();
     return 0;
 
 }
@@ -47,9 +181,8 @@ QLabel* Vista::cell(const QString &text, const bool& bold) {
 
 void Vista::add_table(QVBoxLayout *scores_table, const std::map<std::string, PlayerSummary>& scores){
 
-    int cols = scores.size();
     QTableWidget *table = new QTableWidget(scores.size(), 4);
-    table->verticalHeader()->setVisible(false);
+    //table->verticalHeader()->setVisible(false);
     table->setHorizontalHeaderLabels({"Player", "Kill", "Dead", "Collected Money"});
 
     int fil = 0;
@@ -118,8 +251,8 @@ int Vista::run( int& argc,  char *argv[]) {
     ranking.ranking_terrorists = 12;
 
     //menu();
-
-    scores_game(scores, ranking);
+    action_create();
+    //scores_game(scores, ranking);
     app.exec();
     return 0;
 }

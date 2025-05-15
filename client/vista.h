@@ -14,13 +14,26 @@
 #include <QWidget>
 #include <QLineEdit>
 #include <QTableWidget>
-#include <QString>
 #include <QHeaderView>
-
+#include <QPixmap>
 #include "tipos.h"
+#include <QIcon>
 #include <map>
+#include <QTreeWidget>
+#include <QTreeWidgetItem>
+#include <QFont>
+#include <QDebug>
+#include <functional>
+#include <QTreeWidget>
+#include <QObject>
+#include <QListView>
+#include <QListWidget>
 
-class Vista {
+class Vista : public QWidget {
+    Q_OBJECT  // ¡Obligatorio para señales y slots!
+
+public slots:
+    void on_item_clicked(QTreeWidgetItem *item, int column);
 
 private:
 
@@ -39,6 +52,21 @@ private:
     post: apila los rankings de los equipos en el QVBoxLayout.
     */
     void add_ranking(QVBoxLayout *scores_table, Rankings& ranking);
+
+    void add_button(QVBoxLayout *layout, const QString &text, const std::function<void()> &action);
+
+    void action_create() ;
+    void action_join() ;
+    void action_exit() ;
+    void action_help() ;
+
+    void add_sub_options( QTreeWidgetItem *parent , const QString &text);
+
+    void create_item(QTreeWidget *parent , const QStringList &options, const QString &text );
+
+
+
+    void config_windows(QWidget *ventana, const QString &text, int width, int height);
 
 public:
     /*

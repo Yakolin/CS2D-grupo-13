@@ -1,4 +1,6 @@
-cmake_minimum_required(VERSION 3.24)
+cmake_minimum_required(VERSION 3.16.3)
+set(CMAKE_PREFIX_PATH "/usr/lib/x86_64-linux-gnu/cmake/Qt5" ${CMAKE_PREFIX_PATH})
+find_package(Qt5 REQUIRED COMPONENTS Widgets)
 
 if (POLICY CMP0135)
     cmake_policy(SET CMP0135 NEW)
@@ -118,94 +120,58 @@ if(CS2D_CLIENT)
     target_include_directories(CS2D_client PRIVATE ${libSDL2pp_SOURCE_DIR})
 
     # Link the CS2D_common lib target
-    target_link_libraries(CS2D_client CS2D_common SDL2pp::SDL2pp)
+     # Incluir Qt (Widgets)
+    target_link_libraries(CS2D_client
+        CS2D_common
+        SDL2pp::SDL2pp
+        Qt5::Widgets
+    )
 endif()
 
+# Commenting out the server, editor, and tests sections
 if(CS2D_SERVER)
-    # HEY!! TODO XXX: Change the name of the executable to the one you like!
-    add_executable(CS2D_server)
-
-    # Make them depend on CS2D_common lib
-    add_dependencies(CS2D_server CS2D_common)
-
-    # Add source files and enable warnings
-    # HEY!! TODO XXX: add more subfolders here
-    add_subdirectory(server)
-
-    set_project_warnings(CS2D_server ${CS2D_MAKE_WARNINGS_AS_ERRORS} FALSE)
-
-    # Link the CS2D_common lib target
-    target_link_libraries(CS2D_server CS2D_common)
+    #add_executable(CS2D_server)
+    #add_dependencies(CS2D_server CS2D_common)
+    #add_subdirectory(server)
+    #set_project_warnings(CS2D_server ${CS2D_MAKE_WARNINGS_AS_ERRORS} FALSE)
+    #find_package(Threads REQUIRED)
+    #target_link_libraries(CS2D_server 
+    #    CS2D_common
+    #    Threads::Threads
+    #)
 endif()
 
 if(CS2D_EDITOR)
-    # HEY!! TODO XXX: Change the name of the executable to the one you like!
-    add_executable(CS2D_editor)
-
-    # Make them depend on CS2D_common lib
-    add_dependencies(CS2D_editor CS2D_common SDL2pp::SDL2pp)
-
-    # Add source files and enable warnings
-    # HEY!! TODO XXX: add more subfolders here
-    add_subdirectory(editor)
-
-    set_project_warnings(CS2D_editor ${CS2D_MAKE_WARNINGS_AS_ERRORS} FALSE)
-
-    # add libSDL2pp's headers
-    target_include_directories(CS2D_editor PRIVATE ${libSDL2pp_SOURCE_DIR})
-
-    # Link the CS2D_common lib target
-    target_link_libraries(CS2D_editor CS2D_common SDL2pp::SDL2pp)
+    #add_executable(CS2D_editor)
+    #add_dependencies(CS2D_editor CS2D_common SDL2pp::SDL2pp)
+    #add_subdirectory(editor)
+    #set_project_warnings(CS2D_editor ${CS2D_MAKE_WARNINGS_AS_ERRORS} FALSE)
+    #target_include_directories(CS2D_editor PRIVATE ${libSDL2pp_SOURCE_DIR})
+    #target_link_libraries(CS2D_editor CS2D_common SDL2pp::SDL2pp)
 endif()
 
-
-# Testing section
-# ---------------
-
 if(CS2D_TESTS)
-    # Let's use google test
-    include(FetchContent)
-    FetchContent_Declare(
-        googletest
-        URL https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip
-    )
-
-    # For Windows: Prevent overriding the parent project's compiler/linker settings
-    # (borrowed from https://google.github.io/googletest/quickstart-cmake.html)
-    set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-    FetchContent_MakeAvailable(googletest)
-    include(GoogleTest)
-
-    # target for testing
-    # HEY!! TODO XXX: Change the name of the executable to the one you like!
-    add_executable(CS2D_tests)
-
-    # HEY!! TODO XXX: I'm assuming that the code under testing is in CS2D_common
-    # Change this if you have to.
-    add_dependencies(CS2D_tests CS2D_common)
-
-    # Say where to find the xoz headers
-    # HEY!! TODO XXX: add more subfolders here
-    target_include_directories(CS2D_tests PUBLIC .)
-
-    # Add the source files to the CS2D_tests target
-    # HEY!! TODO XXX: add more subfolders here
-    add_subdirectory(tests/)
-
-    # Set the compiler warnings to the tests target (but be a little lesser strict)
-    set_project_warnings(CS2D_tests ${CS2D_MAKE_WARNINGS_AS_ERRORS} TRUE)
-
-    # Say where googletest headers can be found
-    target_include_directories(CS2D_tests
-        PUBLIC
-        ${gtest_SOURCE_DIR}/include
-        ${gmock_SOURCE_DIR}/include
-        )
-
-    # HEY!! TODO XXX: I'm assuming that the code under testing is in CS2D_common
-    # Change this if you have to.
-    target_link_libraries(CS2D_tests
-        CS2D_common
-        GTest::gtest_main
-    )
+    #include(FetchContent)
+    #FetchContent_Declare(
+    #    googletest
+    #    URL https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip
+    #)
+    #set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+    #FetchContent_MakeAvailable(googletest)
+    #include(GoogleTest)
+    #add_executable(CS2D_tests)
+    #add_dependencies(CS2D_tests CS2D_common)
+    #target_include_directories(CS2D_tests PUBLIC .)
+    #add_subdirectory(tests/)
+    #set_project_warnings(CS2D_tests ${CS2D_MAKE_WARNINGS_AS_ERRORS} TRUE)
+    #target_include_directories(CS2D_tests
+    #    PUBLIC
+    #    ${gtest_SOURCE_DIR}/include
+    #    ${gmock_SOURCE_DIR}/include
+    #)
+    #target_link_libraries(CS2D_tests
+    #    CS2D_common
+    #    GTest::gtest_main
+    #    Qt5::Widgets
+    #)
 endif()

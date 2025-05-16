@@ -1,44 +1,44 @@
 @startuml
-class TypeStates{
-    struct PlayerState
 
-    struct ObjectState
-}
-class GameImage{
-
-}
-class Game {
+package Game {
+class GameManager {
 }
 
 class Player {
-    Primary primary_weapon;
-    Secondary secondary_weapon;
-    Knife knife;
+    Vector2 position
+    int health
+    void move(Vector2 new_position)
+    virtual PlayerImage info_player() = 0
+}
 
-    Vector2 position 
-
-   void fire_weapon_equiped();
+class CounterTerrorist {
+ PlayerImage info_player() override
+}
+class Terrorist { 
+ PlayerImage info_player() override
 }
 
 class Map{
- std::vector<Walls> walls
- std::vector<Bullets> bullets_in_air
- std::vector<Weapon> dropped_weapons
- Weapon::Bomb dropped_bomb
+  //Not implemented yet
 }
 
 class Vector2{
     float x;
     float y;
 }
-
-Game "1"--"10" Player
-Game *-- Map
-Game --> GameImage
-Map --> TypeStates
+}
+package common {
+ class GameImage
+ class PlayerImage
+}
+GameManager "1"*--"10" Player
+GameManager -- Map
+GameManager --> GameImage
+GameManager --> PlayerImage
+Player --> PlayerImage
 Map --> Vector2
-Player --> TypeStates
 Player --> Vector2
+Player <|-- CounterTerrorist 
+Player <|-- Terrorist 
 
-GameImage "1"*--"n" TypeStates
 @enduml

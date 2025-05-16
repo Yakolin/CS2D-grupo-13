@@ -12,7 +12,6 @@ class Knife
 class Bomb
 
 Weapon <|.. FireableWeapon
-Weapon <|.. Specials
 
 FireableWeapon <|-- Ak47
 FireableWeapon <|-- Glock

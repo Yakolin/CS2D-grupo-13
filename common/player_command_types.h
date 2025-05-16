@@ -29,11 +29,7 @@ enum class MoveType {
     DOWN,
 };
 
-enum class WeaponType {
-    PRIMARY,
-    SECONDARY,
-    KNIFE,
-};
+enum class WeaponType { PRIMARY, SECONDARY, KNIFE, BOMB };
 
 enum class WeaponCode { GLOCK, AK47, M3, AWP };
 

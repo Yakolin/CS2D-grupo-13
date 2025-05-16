@@ -6,11 +6,10 @@
 
 #include "player_command_types.h"
 
-using coordinate_t = std::uint16_t;
+using coordinate_t = float;  // AKA 8 - bytes
 using length_players_images_t = std::uint16_t;
 
-class Position {  // esto puede que este a nivel del server tal vez, ya que
-                  // seguramente quiera usar Position
+class Position {  // Esto puede ser directamente un Vector2
 public:
     coordinate_t x;
     coordinate_t y;
@@ -23,9 +22,11 @@ class PlayerImage {
 public:
     player_id_t player_id;
     Position position;
-
-    PlayerImage(player_id_t player_id, Position position):
-            player_id(player_id), position(position) {}
+    int health;
+    int points;
+    // Aca falta manejar las armas
+    PlayerImage(player_id_t player_id, Position position, int health, int points):
+            player_id(player_id), position(position), health(health), points(points) {}
     ~PlayerImage() = default;
 };
 

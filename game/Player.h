@@ -5,27 +5,25 @@
 #include <string>
 #include <utility>
 
+#include "../common/game_image.h"
+
 #include "Physics.h"
-#include "Type.h"
 
 class Player {
 public:
-    Player(int _id, std::string&& _nick_name, Vector2&& _position):
-            id(_id),
+    Player(std::string&& _nick_name, Vector2&& _position):
             nick_name(std::move(_nick_name)),
             position(std::move(_position)),
             health(100),
             points(0) {}
 
     void move(Vector2&& new_position);
-    /*
-    void get_damage(int damage);
-    void change_weapon_equiped();
-    void fire_weapon_equiped();
-    */
+    virtual PlayerImage get_player_image(player_id_t player_id) = 0;
+
 private:
-    int id;
     std::string nick_name;
+
+protected:  // Por ahora lo dejamo asi
     Vector2 position;
     // Equiment equipement;
     int health;

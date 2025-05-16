@@ -27,13 +27,14 @@ private:
     Map map_game;
     bool game_started = false;
     shared_ptr<Player> find_player(player_id_t player_id);
+    GameImage generate_game_image();
 
 public:
     explicit GameManager(const string& _game_name, const string& map_name):
             game_name(_game_name), map_game(map_name) {}
     ~GameManager();
     void add_player(string&& _nick_name, int id);
-    GameImage frame(/*vector <PlayerAction>*/);
+    GameImage get_frame();
     void start_game();
     void stop_game();
 

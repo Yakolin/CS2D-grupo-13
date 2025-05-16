@@ -13,10 +13,21 @@ void GameManager::add_player(string&& _nick_name, int id) {
     shared_ptr<Player> player;
     Vector2 position(0, 0);
     if (is_ct)
-        player = std::make_shared<CounterTerrorist>(id, std::move(_nick_name), std::move(position));
+        player = std::make_shared<CounterTerrorist>(std::move(_nick_name), std::move(position));
     else
-        player = std::make_shared<CounterTerrorist>(id, std::move(_nick_name), std::move(position));
+        player = std::make_shared<CounterTerrorist>(std::move(_nick_name), std::move(position));
     players.insert(make_pair(id, player));
+}
+
+// Decidi que esto se cree cada vez que se pide para evitar datos copiados
+GameImage GameManager::generate_game_image() {
+    GameImage game_image;
+    // Aca posiblemente deba de tambien pedirle al mapa que me de su imagen
+    for (auto& par: players) {
+        shared_ptr<Player> player = par.second;
+        game_image.players_images.push_back(std::move(player->get_player_image(par.first)));
+    }
+    return game_image;
 }
 
 void GameManager::start_game() {
@@ -27,19 +38,21 @@ void GameManager::start_game() {
     game_started = true;
 }
 void GameManager::stop_game() {}
-/*
-GameImage GameManager::frame() {
-    // if (!game_started) throw new GameException("E");
 
+GameImage GameManager::get_frame() {
+    if (!game_started)
+        throw GameException("The game isn´t start yet to take a frame");
+    /*
         1. Actualizar las cosas en el Mapa , como movimiento de las balas , armas q caen
-        2. Chekear colisiones
+        2. Chekear colisiones que no sean propias del jugador (colisiones de bala por ejemplo)
         3. Manejar esas colisiones como balas chocando, etc
+    */
 
-    handle_player_action(1, 1, 1);
     return generate_game_image();
 }
+
 // void process_action(unique_ptr<PlayerAction> action) { action.action(this); }
-*/
+
 
 GameManager::~GameManager() { players.clear(); }
 shared_ptr<Player> GameManager::find_player(player_id_t player_id) {

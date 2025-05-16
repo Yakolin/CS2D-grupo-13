@@ -2,6 +2,7 @@
 #define CONTROLLER_H
 
 #include "gameView.h"
+#include "mapView.h"
 
 class Controller {
 private:

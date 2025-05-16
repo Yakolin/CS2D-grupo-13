@@ -25,6 +25,8 @@ struct InfoGame{
     Map map; 
 };
 
+
+
 struct PlayerSummary {
     //std::string name;
     int kills;

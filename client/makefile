@@ -31,7 +31,7 @@ CXXFLAGS = \
 # Flags linkeo
 LDFLAGS = \
     -lQt5Widgets -lQt5Gui -lQt5Core \
-    $(shell sdl2-config --libs)
+    $(shell sdl2-config --libs) -lSDL2_image
 
 # Regla principal
 all: $(TARGET)

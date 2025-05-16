@@ -1,6 +1,9 @@
 #include "gameView.h"
 
-GameView::GameView(int& argc, char *argv[]) : app(argc, argv) ,menu(new MenuView()), seleccion(GameMenu::NONE) {
+
+GameView::GameView(int& argc, char *argv[]) : app(argc, argv) ,
+    menu(new MenuView()), 
+    seleccion(GameMenu::NONE){
     // Constructor de la clase GameView
 }
 
@@ -26,6 +29,8 @@ GameMenu GameView::run_menu( ) {
     app.exec();
     return num;
 }
+
+
 
 GameView::~GameView() {
     // Destructor de la clase GameView

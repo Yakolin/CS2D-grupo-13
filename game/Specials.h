@@ -11,5 +11,4 @@ class Knife: Weapon {
     virtual void fire() override;
 };
 
-
 #endif  // SPECIALS_H_

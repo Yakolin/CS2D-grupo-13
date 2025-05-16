@@ -1,0 +1,23 @@
+@startuml
+interface Weapon
+
+abstract FireableWeapon
+
+class Ak47 
+
+class Glock 
+
+class Knife
+
+class Bomb
+
+Weapon <|.. FireableWeapon
+Weapon <|.. Specials
+
+FireableWeapon <|-- Ak47
+FireableWeapon <|-- Glock
+Weapon <|.. Bomb
+Weapon <|.. Knife
+
+
+@enduml

@@ -1,17 +1,15 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
-#include "vista.h"
+#include "gameView.h"
 
 class Controller {
 private:
-    Vista vista;
-
+    GameView gameView;
 public:
-    explicit Controller();
+    explicit Controller(int& argc,  char *argv[]) ;
 
-    void run(int& argc,  char *argv[]);
-
+    void run();
 };
 
 #endif // CONTROLLER_H

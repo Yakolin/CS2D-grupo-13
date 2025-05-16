@@ -1,9 +1,9 @@
 #include  "client.h"
 
-Client::Client() : controller() , protocolo() {}
+Client::Client( int& argc,  char *argv[]) : controller(argc, argv), protocolo() {}
 
-int Client::run( int& argc,  char *argv[]) {
-    controller.run(argc, argv);
+int Client::run() {
+    controller.run();
 
     return 0;
 }

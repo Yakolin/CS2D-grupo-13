@@ -1,16 +1,25 @@
 # Compilador
 CXX = g++
 
-# Buscar todos los .cpp (menos el ejecutable final)
+# Archivos fuente .cpp
 SRC = $(wildcard *.cpp)
 
-# Nombre del ejecutable
-TARGET = sdl
+# Archivo header que usa Q_OBJECT
+HDR = lobbyView.h
 
-# Archivos objeto (cada .cpp → .o)
+# Archivo moc generado
+MOC_CPP = moc_lobbyView.cpp
+
+# Objetos de los .cpp
 OBJ = $(SRC:.cpp=.o)
 
-# Flags de compilación
+# Objeto del moc
+MOC_OBJ = moc_lobbyView.o
+
+# Ejecutable final
+TARGET = sdl
+
+# Flags compilación
 CXXFLAGS = \
     -fPIC \
     -I/usr/include/x86_64-linux-gnu/qt5 \
@@ -19,7 +28,7 @@ CXXFLAGS = \
     -I/usr/include/x86_64-linux-gnu/qt5/QtCore \
     $(shell sdl2-config --cflags)
 
-# Flags de linkeo
+# Flags linkeo
 LDFLAGS = \
     -lQt5Widgets -lQt5Gui -lQt5Core \
     $(shell sdl2-config --libs)
@@ -27,14 +36,22 @@ LDFLAGS = \
 # Regla principal
 all: $(TARGET)
 
-# Enlazado final
-$(TARGET): $(OBJ)
+# Linkeo
+$(TARGET): $(OBJ) $(MOC_OBJ)
 	$(CXX) -o $@ $^ $(LDFLAGS)
 
-# Regla de compilación individual
+# Regla compilación individual
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Limpiar archivos generados
+# Generar moc
+$(MOC_CPP): $(HDR)
+	moc $(HDR) -o $(MOC_CPP)
+
+# Compilar moc
+$(MOC_OBJ): $(MOC_CPP)
+	$(CXX) $(CXXFLAGS) -c $(MOC_CPP) -o $(MOC_OBJ)
+
+# Limpiar
 clean:
-	rm -f $(TARGET) $(OBJ)
+	rm -f $(TARGET) $(OBJ) $(MOC_OBJ) $(MOC_CPP)

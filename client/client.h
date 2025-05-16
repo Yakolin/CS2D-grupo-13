@@ -11,10 +11,10 @@ private:
     Controller controller;
     ProtocoloClient protocolo;
 public:
-    explicit Client();
+    explicit Client(int& argc, char *argv[]) ;
 
 
-    int run( int& argc,  char *argv[] );
+    int run( );
 
 
 

@@ -33,7 +33,7 @@ void Controller::run() {
         // gameView.run_menu();
         std::vector<std::vector<char>> mapa = cargar_mapa(MAPA_AZTECA);
         MapView map(mapa, 1216 , 544);
-        PlayerView player(x,y,"../assets/gfx/player.PNG",speed);
+        PlayerView player(x,y,"../assets/gfx/terrorist/t1_1.png",speed);
         if(!map.init_game()){
             throw std::runtime_error("No se pudo inicializar el juego visual");
             return;

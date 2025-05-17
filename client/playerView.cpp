@@ -7,10 +7,13 @@ PlayerView::PlayerView(const float& x , const float& y, const std::string rute, 
     fil(pasar_pixeles(x)),
     col(pasar_pixeles(y)),
     rutaPlayer(rute),
-    origin_rect(nullptr),
+    origin_rect({0,0,64,96}),
     destination_rect({static_cast<int>(col)* COLUMNAS_MAP, static_cast<int>(fil)* FILAS_MAP, 32, 32}),
-    speed_player(speed) 
-   // texture_player(nullptr)
+    speed_player(speed) ,
+    width_img(),
+    height_img(),
+    item({0,0}),
+    anglePlayer()
     {}
 
 
@@ -18,15 +21,19 @@ int PlayerView::pasar_pixeles(const float& pos){
     return pos * 32;
 }
 
-void PlayerView::draw_player(SDL_Renderer* renderer, SDL_Texture* tiles_player){
+void PlayerView::draw_player(SDL_Renderer* renderer, SDL_Texture* tiles_player,const  MedidasSprites& sprite){
+    int fila = 0;
+    int columan = 0;
+   /* origin_rect.x = columan * sprite.width ; // columna: 0 o 1
+    origin_rect.y = fila * sprite.height;     // fila: 0, 1 o 2
+    origin_rect.w = sprite.width ;           // 32
+    origin_rect.h = sprite.height; */           // 32
 
-   // SDL_QueryTexture(texture_players, nullptr, nullptr, &ancho, &alto);
-   // std::cout << "Ancho: " << ancho << ", Alto: " << alto << std::endl;
-
+    origin_rect = {item.col * sprite.width,item.fil * sprite.height, sprite.width/2,sprite.height/3};
      //                           col=x               fil =y       ancho, alto
     destination_rect = {static_cast<int>(col), static_cast<int>(fil),32, 32};
-    //obtener_medidas(tiles);
-    SDL_RenderCopy(renderer, tiles_player, origin_rect ,&destination_rect);
+   // SDL_RenderCopy(renderer, tiles_player, &origin_rect ,&destination_rect);
+    SDL_RenderCopyEx(renderer, tiles_player, &origin_rect, &destination_rect, anglePlayer,nullptr, SDL_FLIP_NONE);
 
 }
 
@@ -41,6 +48,20 @@ void PlayerView::add_speed(const SDL_Keycode& tecla){
     } else if (tecla == SDLK_DOWN) {
         fil += speed_player;
     }
+}
+void PlayerView::update_view_angle(const int& mouse_x,const int& mouse_y){
+
+    int jugador_centro_x = destination_rect.x + destination_rect.w / 2;
+    int jugador_centro_y = destination_rect.y + destination_rect.h / 2;
+
+    int dx = mouse_x - jugador_centro_x;
+    int dy = mouse_y - jugador_centro_y;
+
+    // Ángulo en radianes
+    float angulo = std::atan2(dy, dx);
+
+    // Convertir a grados
+    anglePlayer = angulo * 180.0f / M_PI;
 }
 
 
@@ -76,26 +97,9 @@ void PlayerView::setRutaPlayer(const std::string& ruta) {
 void PlayerView::setSpeed(float speed) {
     speed_player = speed;
 }
+
+
 PlayerView::~PlayerView(){
 
 }
 
-/*
-
-void PlayerView::setTexturePlayer(SDL_Texture* texture) {
-    texture_player = texture;
-}
-    */
-//{0, 0,209, 208}
-/*void obtener_medidas(SDL_Texture* tiles){
-    int ancho, alto;
-    SDL_QueryTexture(tiles, nullptr, nullptr, &ancho, &alto);
-    std::cout << "Ancho: " << ancho << ", Alto: " << alto << std::endl;
-}*/
-/* mov por casillas crea un cuadradito con posicion
-                            col=x               fil =y       ancho, alto
-    SDL_Rect jugadorRect = { jugadorColumna * 38, jugadorFila * 17, 32, 32 };
-    dibuja  //! nullptr detern¿mina que sprite sheet queres usar
-    SDL_RenderCopy(renderer, tiles_players, nullptr, &jugadorRect);
-
-    */

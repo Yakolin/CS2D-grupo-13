@@ -128,7 +128,16 @@ void MapView::show_map() {
     bool corriendo = true;
     SDL_Event evento;
     load_textures();
+
+    int ancho=0;
+    int alto=0;
     SDL_Texture* tiles_player = add_tiles(player->getRutaPlayer());
+    SDL_QueryTexture(tiles_player, nullptr, nullptr, &ancho, &alto);
+    std::cout << "Ancho: " << ancho << ", Alto: " << alto << std::endl;
+    MedidasSprites sprite;
+    sprite.height =alto;
+    sprite.width =ancho;
+
     while (corriendo) {
         while (SDL_PollEvent(&evento)) {
             if (evento.type == SDL_QUIT){ 
@@ -136,27 +145,30 @@ void MapView::show_map() {
             }else if(evento.type == SDL_KEYDOWN) {
                 SDL_Keycode tecla = evento.key.keysym.sym; // Se presionó una tecla
                 player->add_speed(tecla);
+            }else if (evento.type == SDL_MOUSEMOTION) {
+                int mouseX = evento.motion.x;
+                int mouseY = evento.motion.y;
+                player->update_view_angle(mouseX,mouseY);
+               // std::cout << "Mouse en: " << mouseX << ", " << mouseY << std::endl;
             }
         }
+
         SDL_RenderClear(renderer);  // Limpia el render anterio
 
         complete_map_view(); // completar mapa
-        if(!player){
-            throw std::runtime_error("PlayerView no inicializado ");
-            return;
-        }
         std::string posText = "Fil: " + std::to_string(player->getFil()) + " Col: " + std::to_string(player->getCol());
-        player->draw_player(renderer,tiles_player);
+        player->draw_player(renderer,tiles_player,sprite);
         
         SDL_RenderPresent(renderer);  // Muestra en pantalla el contenido renderizado
         SDL_Delay(16); // Espera aprox. 16ms para lograr ~60 FPS
     }
-    IMG_Quit();
+    if (tiles_player) SDL_DestroyTexture(tiles_player);
 
 }
 
 
 MapView::~MapView(){
+    IMG_Quit();
     if (backgroundTexture) SDL_DestroyTexture(backgroundTexture);  // Libera la textura
     if (renderer) SDL_DestroyRenderer(renderer);                  // Libera el renderer
     if (ventana) SDL_DestroyWindow(ventana);                      // Libera la ventana

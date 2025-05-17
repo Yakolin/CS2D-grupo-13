@@ -24,8 +24,15 @@ struct InfoGame{
     struct Personaje personaje;
     Map map; 
 };
+struct MedidasSprites{
+    int width;
+    int height;
+};
 
-
+struct ItemSprite{
+    int fil;
+    int col;
+};
 
 struct PlayerSummary {
     //std::string name;

@@ -4,6 +4,7 @@
 #include <climits>
 #include <condition_variable>
 #include <deque>
+#include <memory>  // Para std::unique_ptr
 #include <mutex>
 #include <queue>
 #include <stdexcept>
@@ -59,6 +60,26 @@ public:
         return true;
     }
 
+    // Sobrecarga para manejar rvalue references (para mover en lugar de copiar)
+    bool try_push(T&& val) {
+        std::unique_lock<std::mutex> lck(mtx);
+
+        if (closed) {
+            throw ClosedQueue();
+        }
+
+        if (q.size() == this->max_size) {
+            return false;
+        }
+
+        if (q.empty()) {
+            is_not_empty.notify_all();
+        }
+
+        q.push(std::move(val));
+        return true;
+    }
+
     bool try_pop(T& val) {
         std::unique_lock<std::mutex> lck(mtx);
 
@@ -73,7 +94,7 @@ public:
             is_not_full.notify_all();
         }
 
-        val = q.front();
+        val = std::move(q.front());  // Usar std::move para evitar copias innecesarias
         q.pop();
         return true;
     }
@@ -96,6 +117,25 @@ public:
         q.push(val);
     }
 
+    // Sobrecarga para manejar rvalue references (para mover en lugar de copiar)
+    void push(T&& val) {
+        std::unique_lock<std::mutex> lck(mtx);
+
+        if (closed) {
+            throw ClosedQueue();
+        }
+
+        while (q.size() == this->max_size) {
+            is_not_full.wait(lck);
+        }
+
+        if (q.empty()) {
+            is_not_empty.notify_all();
+        }
+
+        q.push(std::move(val));
+    }
+
     T pop() {
         std::unique_lock<std::mutex> lck(mtx);
 
@@ -110,7 +150,7 @@ public:
             is_not_full.notify_all();
         }
 
-        T const val = q.front();
+        T val = std::move(q.front());
         q.pop();
 
         return val;
@@ -132,6 +172,7 @@ private:
     Queue& operator=(const Queue&) = delete;
 };
 
+// Especialización para punteros sin modificar
 template <>
 class Queue<void*> {
 private:
@@ -253,6 +294,53 @@ public:
     T* pop() { return (T*)Queue<void*>::pop(); }
 
     void close() { return Queue<void*>::close(); }
+
+private:
+    Queue(const Queue&) = delete;
+    Queue& operator=(const Queue&) = delete;
+};
+
+// Especialización parcial para std::unique_ptr
+template <typename T>
+class Queue<std::unique_ptr<T>>: public Queue<T*> {
+public:
+    explicit Queue(const unsigned int max_size): Queue<T*>(max_size) {}
+
+    // try_push para unique_ptr
+    bool try_push(std::unique_ptr<T> const& val) { return Queue<T*>::try_push(val.get()); }
+
+    // try_push para mover unique_ptr
+    bool try_push(std::unique_ptr<T>&& val) {
+        T* raw_ptr = val.release();
+        return Queue<T*>::try_push(raw_ptr);
+    }
+
+    // try_pop para unique_ptr
+    bool try_pop(std::unique_ptr<T>& val) {
+        T* raw_ptr = nullptr;
+        bool result = Queue<T*>::try_pop(raw_ptr);
+        if (result) {
+            val.reset(raw_ptr);
+        }
+        return result;
+    }
+
+    // push para unique_ptr
+    void push(std::unique_ptr<T> const& val) { Queue<T*>::push(val.get()); }
+
+    // push para mover unique_ptr
+    void push(std::unique_ptr<T>&& val) {
+        T* raw_ptr = val.release();
+        Queue<T*>::push(raw_ptr);
+    }
+
+    // pop para unique_ptr
+    std::unique_ptr<T> pop() {
+        T* raw_ptr = Queue<T*>::pop();
+        return std::unique_ptr<T>(raw_ptr);
+    }
+
+    void close() { Queue<T*>::close(); }
 
 private:
     Queue(const Queue&) = delete;

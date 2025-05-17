@@ -9,7 +9,7 @@ void Receiver::run() {
     try {
         while (!closed && this->should_keep_running()) {
             GameImage game_image = this->protocol.read_game_image();
-            this->recv_queue.push(game_image);
+            this->recv_queue.push(std::move(game_image));
         }
     } catch (ClosedQueue& e) {
         closed = true;

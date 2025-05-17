@@ -117,8 +117,14 @@ if(CS2D_CLIENT)
     # add libSDL2pp's headers
     target_include_directories(CS2D_client PRIVATE ${libSDL2pp_SOURCE_DIR})
 
-    # Link the CS2D_common lib target
-    target_link_libraries(CS2D_client CS2D_common SDL2pp::SDL2pp)
+    target_link_libraries(
+        CS2D_client
+        PRIVATE
+          CS2D_common
+          SDL2pp::SDL2pp
+          Threads::Threads   
+    )
+    
 endif()
 
 if(CS2D_SERVER)

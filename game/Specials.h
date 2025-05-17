@@ -3,15 +3,17 @@
 #include "Weapon.h"
 
 
-class Bomb: Weapon {
+class Bomb: public Weapon {
 public:
     Bomb(): Weapon(WeaponType::BOMB) {}
-    virtual void fire() override;
+    virtual void reload() override {}
+    virtual void fire() override {}
 };
 
-class Knife: Weapon {
+class Knife: public Weapon {
 public:
-    virtual void fire() override;
+    virtual void fire() override {}
+    virtual void reload() override {}
     Knife(): Weapon(WeaponType::KNIFE) {}
 };
 

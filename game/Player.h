@@ -7,8 +7,8 @@
 
 #include "../common/game_image.h"
 
+#include "Equipement.h"
 #include "Physics.h"
-
 class Player {
 public:
     Player(std::string&& _nick_name, Vector2&& _position):
@@ -25,7 +25,7 @@ private:
 
 protected:  // Por ahora lo dejamo asi
     Vector2 position;
-    // Equiment equipement;
+    Equipement equipement;
     int health;
     int points;
 };

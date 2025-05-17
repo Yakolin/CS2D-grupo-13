@@ -60,6 +60,8 @@ private:
     */
     void load_textures();
 
+    void draw_players(const float& jugadorX ,const float& jugadorY);
+
 };
 
 #endif // MAPVIEW_H

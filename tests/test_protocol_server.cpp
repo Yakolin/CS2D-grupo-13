@@ -5,6 +5,7 @@
 #include <gtest/gtest.h>
 
 #include "../common/socket.h"
+#include "../server/client_action.h"
 #include "../server/protocol.h"
 #include "mocks/mock_game.h"
 

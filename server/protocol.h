@@ -11,7 +11,7 @@
 #include "../common/player_types.h"
 #include "../common/socket.h"
 
-#include "player_action.h"
+#include "client_action.h"
 
 class ServerProtocol {
 private:

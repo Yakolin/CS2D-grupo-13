@@ -1,5 +1,5 @@
-#ifndef PLAYER_ACTION_H
-#define PLAYER_ACTION_H
+#ifndef CLIENT_ACTION_H
+#define CLIENT_ACTION_H
 
 #include <cstdint>
 
@@ -164,4 +164,4 @@ public:
 };
 
 }  // namespace Server
-#endif  // !PLAYER_ACTION_H
+#endif  // !CLIENT_ACTION_H

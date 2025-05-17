@@ -8,6 +8,19 @@
 #include "../server/protocol.h"
 #include "mocks/mock_game.h"
 
+using Server::BuyAmmo;
+using Server::BuyWeapon;
+using Server::CreateGame;
+using Server::DefuseBomb;
+using Server::DropBomb;
+using Server::DropWeapon;
+using Server::JoinGame;
+using Server::ListGames;
+using Server::Move;
+using Server::PlantBomb;
+using Server::Reload;
+using Server::Shoot;
+
 TEST(ServerProtocolTest, ReadPlayerCommandReturnCorrectType) {
     // Arrange
     Socket server_socket("9999");

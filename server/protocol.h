@@ -27,21 +27,21 @@ public:
 
     PlayerCommandType read_player_command();
 
-    std::unique_ptr<CreateGame> read_create_game(player_id_t player_id);
-    std::unique_ptr<JoinGame> read_join_game(player_id_t player_id);
-    std::unique_ptr<ListGames> read_list_games(player_id_t player_id);
+    std::unique_ptr<Server::CreateGame> read_create_game(player_id_t player_id);
+    std::unique_ptr<Server::JoinGame> read_join_game(player_id_t player_id);
+    std::unique_ptr<Server::ListGames> read_list_games(player_id_t player_id);
 
-    std::unique_ptr<Move> read_move(player_id_t player_id);
+    std::unique_ptr<Server::Move> read_move(player_id_t player_id);
 
-    std::unique_ptr<BuyWeapon> read_buy_weapon(player_id_t player_id);
-    std::unique_ptr<BuyAmmo> read_buy_ammo(player_id_t player_id);
-    std::unique_ptr<Reload> read_reload(player_id_t player_id);
-    std::unique_ptr<Shoot> read_shoot(player_id_t player_id);
-    std::unique_ptr<DropWeapon> read_drop_weapon(player_id_t player_id);
+    std::unique_ptr<Server::BuyWeapon> read_buy_weapon(player_id_t player_id);
+    std::unique_ptr<Server::BuyAmmo> read_buy_ammo(player_id_t player_id);
+    std::unique_ptr<Server::Reload> read_reload(player_id_t player_id);
+    std::unique_ptr<Server::Shoot> read_shoot(player_id_t player_id);
+    std::unique_ptr<Server::DropWeapon> read_drop_weapon(player_id_t player_id);
 
-    std::unique_ptr<PlantBomb> read_plant_bomb(player_id_t player_id);
-    std::unique_ptr<DefuseBomb> read_defuse_bomb(player_id_t player_id);
-    std::unique_ptr<DropBomb> read_drop_bomb(player_id_t player_id);
+    std::unique_ptr<Server::PlantBomb> read_plant_bomb(player_id_t player_id);
+    std::unique_ptr<Server::DefuseBomb> read_defuse_bomb(player_id_t player_id);
+    std::unique_ptr<Server::DropBomb> read_drop_bomb(player_id_t player_id);
 };
 
 #endif  // !PROTOCOL_H

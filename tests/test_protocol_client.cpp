@@ -10,6 +10,19 @@
 #include "../common/player_types.h"
 #include "../common/socket.h"
 
+using Client::BuyAmmo;
+using Client::BuyWeapon;
+using Client::CreateGame;
+using Client::DefuseBomb;
+using Client::DropBomb;
+using Client::DropWeapon;
+using Client::JoinGame;
+using Client::ListGames;
+using Client::Move;
+using Client::PlantBomb;
+using Client::Reload;
+using Client::Shoot;
+
 TEST(ClientProtocolTest, SendLobbyCommandSendCorrectType) {
     // Arrange
     Socket server_socket("9999");

@@ -3,9 +3,13 @@
 using Server::BuyAmmo;
 using Server::BuyWeapon;
 using Server::CreateGame;
+using Server::DefuseBomb;
+using Server::DropBomb;
+using Server::DropWeapon;
 using Server::JoinGame;
 using Server::ListGames;
 using Server::Move;
+using Server::PlantBomb;
 using Server::Reload;
 using Server::Shoot;
 

@@ -16,6 +16,8 @@ public:
     LOBBY ACTIONS
 */
 
+namespace Client {
+
 class CreateGame: public CreateGameCommon, public InterfaceClientAction {
 public:
     CreateGame(const std::string& game_name);
@@ -39,7 +41,7 @@ public:
 
 /*
     PLAYER ACTIONS
-*/
+    */
 
 class Move: public MoveCommon, public InterfaceClientAction {
 public:
@@ -103,6 +105,8 @@ public:
     ~DropBomb();
     void action(ClientProtocol& protocol) override;
 };
+
+}  // namespace Client
 
 
 #endif

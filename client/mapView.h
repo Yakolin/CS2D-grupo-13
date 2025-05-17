@@ -2,6 +2,7 @@
 #define MAPVIEW_H
 #include <iostream>
 #include "tipos.h"
+#include "playerView.h"
 #include <SDL.h>
 #include <SDL_render.h>
 #include <SDL_surface.h>
@@ -17,7 +18,12 @@ class MapView  {
 public:
     explicit MapView(const std::vector<std::vector<char>>& mapa, const int& width , const int& height);
     ~MapView();
-    void start_game();
+    
+    bool init_game();
+    
+    void show_map();
+    
+    void add_player(PlayerView& player );
     
 
 private:
@@ -29,6 +35,7 @@ private:
     int height;
     std::vector<std::vector<char>> mapa;
     std::map<char, SDL_Texture*> texturas;
+    PlayerView* player;
     /*
     pre: el renderer debe haber sido craedo sin problema.
     post: carga una imagen de fondo y la conbierte en textura. //? capaz lo saque no es muy necesario de momento
@@ -60,7 +67,6 @@ private:
     */
     void load_textures();
 
-    void draw_players(const float& jugadorX ,const float& jugadorY);
 
 };
 

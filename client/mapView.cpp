@@ -7,15 +7,14 @@ MapView::MapView( const std::vector<std::vector<char>>& mapa_recibido, const int
     width(width) ,
     height(height),
     mapa(mapa_recibido),
-    texturas()
+    texturas(),
+    player(nullptr)
 {
     leyenda['#'] = "../assets/gfx/backgrounds/nuke.png";
     leyenda[' '] = "../assets/gfx/backgrounds/stone1.jpg";
     leyenda['~'] = "../assets/gfx/backgrounds/water4.jpg";
-    leyenda['='] = "../assets/gfx/sprites/aztecbridge.bmp";
-    leyenda['X'] = "../assets/sitioBomba.png";
-    leyenda['D'] = "../assets/gfx/sprites/de_vantage/foliage_2.png";
-   // leyenda['T'] = "../assets/gfx/sprites/de_vantage/foliage.png";
+    leyenda['='] = "../assets/gfx/box.PNG";
+    leyenda['.'] = "../assets/gfx/backgrounds/gras1.jpg";
 
 }
 void MapView::load_textures() {
@@ -111,63 +110,43 @@ void MapView::complete_map_view(){
     }
 
 }
-
-
-/* mov por casillas crea un cuadradito con posicion
-                            col=x               fil =y       ancho, alto
-    SDL_Rect jugadorRect = { jugadorColumna * 38, jugadorFila * 17, 32, 32 };
-    dibuja  //! nullptr detern¿mina que sprite sheet queres usar
-    SDL_RenderCopy(renderer, tiles_players, nullptr, &jugadorRect);
-
-    */
-void MapView::draw_players(const float& jugadorX , const float& jugadorY){
-   
-     //                           col=x               fil =y       ancho, alto
-    SDL_Rect jugadorRect = {static_cast<int>(jugadorX),static_cast<int>(jugadorY),32, 32};
-    SDL_Texture* tiles_players = add_tiles("../assets/player.PNG");
-    SDL_RenderCopy(renderer, tiles_players, nullptr, &jugadorRect);
-
-}
-
-void MapView::start_game() {
-    const float velocidad = 2.5f;
-    float jugadorX = 120.5f;
-    float jugadorY = 97.2f;
+bool MapView::init_game(){
 
     if(!initialize_sdl_video() || !init_render_window()){
-        return;
+        return false;
     }
+    return true;
+}
+
+void MapView::add_player(PlayerView& player_aux){
+
+    player = &player_aux;
+}
+
+void MapView::show_map() {
+
     bool corriendo = true;
     SDL_Event evento;
     load_textures();
-
+    SDL_Texture* tiles_player = add_tiles(player->getRutaPlayer());
     while (corriendo) {
         while (SDL_PollEvent(&evento)) {
             if (evento.type == SDL_QUIT){ 
                 corriendo = false;  // Se cierra la ventana
             }else if(evento.type == SDL_KEYDOWN) {
-                // Se presionó una tecla
-                SDL_Keycode tecla = evento.key.keysym.sym;
-
-                if (tecla == SDLK_UP) {
-                    std::cout << "Se presionó la flecha arriba" << std::endl;
-                    jugadorY -= velocidad;
-                } else if (tecla == SDLK_LEFT) {
-                    std::cout << "Se presionó la flecha izquierda" << std::endl;
-                    jugadorX -= velocidad;
-                } else if (tecla == SDLK_RIGHT) {
-                    std::cout << "Se presionó la flecha derecha" << std::endl;
-                    jugadorX += velocidad;
-                } else if (tecla == SDLK_DOWN) {
-                    std::cout << "Se presionó la flecha abajo" << std::endl;
-                    jugadorY += velocidad;
-                }
+                SDL_Keycode tecla = evento.key.keysym.sym; // Se presionó una tecla
+                player->add_speed(tecla);
             }
         }
         SDL_RenderClear(renderer);  // Limpia el render anterio
 
         complete_map_view(); // completar mapa
-        draw_players(jugadorX,jugadorY);
+        if(!player){
+            throw std::runtime_error("PlayerView no inicializado ");
+            return;
+        }
+        std::string posText = "Fil: " + std::to_string(player->getFil()) + " Col: " + std::to_string(player->getCol());
+        player->draw_player(renderer,tiles_player);
         
         SDL_RenderPresent(renderer);  // Muestra en pantalla el contenido renderizado
         SDL_Delay(16); // Espera aprox. 16ms para lograr ~60 FPS

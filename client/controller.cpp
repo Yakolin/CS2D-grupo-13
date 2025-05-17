@@ -1,5 +1,5 @@
 #include "controller.h"
-
+#include "playerView.h"
 Controller::Controller(int& argc,  char *argv[]) : gameView(argc, argv) {}
 #define MAPA_AZTECA  "../assets/pueblito_azteca.txt"
 
@@ -26,9 +26,23 @@ std::vector<std::vector<char>> Controller::cargar_mapa(const std::string& archiv
 }
 
 void Controller::run() {
-    // gameView.run_menu();
-    std::vector<std::vector<char>> mapa = cargar_mapa(MAPA_AZTECA);
-    MapView map(mapa, 1216 , 544);
-    map.start_game();
+    const float speed = 2.5f;
+    float x = 5;
+    float y = 5;
+    try{
+        // gameView.run_menu();
+        std::vector<std::vector<char>> mapa = cargar_mapa(MAPA_AZTECA);
+        MapView map(mapa, 1216 , 544);
+        PlayerView player(x,y,"../assets/gfx/player.PNG",speed);
+        if(!map.init_game()){
+            throw std::runtime_error("No se pudo inicializar el juego visual");
+            return;
+        }
+        map.add_player(player);
+        map.show_map();
+    }catch(const std::exception& e){
+        std::cerr << e.what() << '\n';
+    }
+
 
 }

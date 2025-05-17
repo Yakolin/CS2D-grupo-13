@@ -20,7 +20,7 @@ public:
 };
 
 /*
-        LOBBY ACTIONS
+LOBBY ACTIONS
 */
 class InterfaceLobbyAction {
 public:
@@ -30,7 +30,22 @@ public:
 };
 
 /*
-        CREATE GAME
+        PLAYER ACTIONS
+*/
+
+class InterfacePlayerAction {
+
+public:
+    InterfacePlayerAction() = default;
+    virtual ~InterfacePlayerAction() = default;
+    virtual void action(InterfaceGame& game) = 0;
+};
+
+namespace Server {
+
+
+/*
+CREATE GAME
 */
 
 class CreateGame: public ClientAction, public InterfaceLobbyAction, public CreateGameCommon {
@@ -43,7 +58,7 @@ public:
 
 /*
         JOIN GAME
-*/
+        */
 
 class JoinGame: public ClientAction, public InterfaceLobbyAction, public JoinGameCommon {
 
@@ -66,20 +81,8 @@ public:
 
 
 /*
-        PLAYER ACTIONS
-*/
-
-class InterfacePlayerAction {
-
-public:
-    InterfacePlayerAction() = default;
-    virtual ~InterfacePlayerAction() = default;
-    virtual void action(InterfaceGame& game) = 0;
-};
-
-/*
         MOVEMENT ACTIONS
-*/
+        */
 
 class Move: public ClientAction, public InterfacePlayerAction, public MoveCommon {
 
@@ -98,7 +101,7 @@ class BuyWeapon: public ClientAction, public InterfacePlayerAction, public BuyWe
 public:
     BuyWeapon(player_id_t player_id,
               WeaponCode weapon_code);  // considerando que el arma viene con
-                                        // municion por default
+    // municion por default
     ~BuyWeapon();
     void action(InterfaceGame& game) override;
 };
@@ -136,7 +139,7 @@ public:
 };
 
 /*
-        BOMB ACTIONS
+BOMB ACTIONS
 */
 
 class PlantBomb: public ClientAction, public InterfacePlayerAction {
@@ -160,4 +163,5 @@ public:
     void action(InterfaceGame& game) override;
 };
 
+}  // namespace Server
 #endif  // !PLAYER_ACTION_H

@@ -1,5 +1,14 @@
 #include "player_action.h"
 
+using Server::BuyAmmo;
+using Server::BuyWeapon;
+using Server::CreateGame;
+using Server::JoinGame;
+using Server::ListGames;
+using Server::Move;
+using Server::Reload;
+using Server::Shoot;
+
 /*
     CREATE GAME
 */
@@ -12,7 +21,9 @@ CreateGame::~CreateGame() {}
 void CreateGame::action(InterfaceGamesMonitor& monitor) {
     monitor.create_game(this->player_id, this->game_name);
 }
-
+/*
+        PLAYER ACTIONS
+*/
 /*
     JOIN GAME
 */

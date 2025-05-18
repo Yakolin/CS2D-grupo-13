@@ -12,14 +12,13 @@ class Equipement {
     std::unique_ptr<Weapon> knife;
     std::unique_ptr<Weapon> bomb;
 
-    // std::unique_ptr<Weapon> current_weapon;
 public:
     Equipement():
             primary(nullptr),
             secondary(std::unique_ptr<Glock>()),
             knife(std::unique_ptr<Knife>()),
             bomb(nullptr) {}
-
+    std::unique_ptr<Weapon> current_weapon = std::unique_ptr<Glock>();
     void put_bomb(std::unique_ptr<Weapon>& bomb);
 
     /*

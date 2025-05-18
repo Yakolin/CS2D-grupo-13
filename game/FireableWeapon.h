@@ -26,7 +26,7 @@ protected:
             magazine(current_b) {}
 
 public:
-    virtual void fire(Vector2& position, Vector2& direction) override;
+    virtual void fire(Map& map, player_id_t id, Vector2& position, Vector2& direction) override;
     virtual void reload() override;
 };
 class Ak47: public FireableWeapon {

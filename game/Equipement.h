@@ -7,18 +7,17 @@
 #include "FireableWeapon.h"
 #include "Specials.h"
 class Equipement {
-    std::unique_ptr<Weapon> primary;
-    std::unique_ptr<Weapon> secondary;
-    std::unique_ptr<Weapon> knife;
-    std::unique_ptr<Weapon> bomb;
 
 public:
     Equipement():
             primary(nullptr),
-            secondary(std::unique_ptr<Glock>()),
-            knife(std::unique_ptr<Knife>()),
+            secondary(std::make_unique<Glock>()),
+            knife(std::make_unique<Knife>()),
             bomb(nullptr) {}
-    std::unique_ptr<Weapon> current_weapon = std::unique_ptr<Glock>();
+    std::unique_ptr<Weapon> primary;
+    std::unique_ptr<Weapon> secondary;
+    std::unique_ptr<Weapon> knife;
+    std::unique_ptr<Weapon> bomb;
     void put_bomb(std::unique_ptr<Weapon>& bomb);
 
     /*

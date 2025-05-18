@@ -6,6 +6,7 @@
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
+#include "../common/game_image.h"
 #include "../common/lobby_types.h"
 #include "../common/player_types.h"
 #include "../common/socket.h"
@@ -443,6 +444,58 @@ TEST(ServerProtocolTest, ReadEquipReturnCorrectObject) {
 
     // Ejecutamos la acción “inyectando” nuestro mock
     action->action(mock_game);
+
+    client_thread.join();
+}
+
+TEST(ServerProtocolTest, SendGameImageSendCorrectObject) {
+    // Arrange
+    Socket server_listener("9999");
+    std::thread client_thread([&]() {
+        Socket client("localhost", "9999");
+
+        uint16_t net_count;
+        client.recvall(&net_count, sizeof(net_count));
+        uint16_t count = ntohs(net_count);
+        EXPECT_EQ(count, 2u);
+
+
+        for (int i = 0; i < count; ++i) {
+            uint16_t net_id, net_x, net_y;
+            client.recvall(&net_id, sizeof(net_id));
+            client.recvall(&net_x, sizeof(net_x));
+            client.recvall(&net_y, sizeof(net_y));
+
+            uint16_t id = ntohs(net_id);
+            uint16_t x = ntohs(net_x);
+            uint16_t y = ntohs(net_y);
+
+            if (i == 0) {
+                EXPECT_EQ(id, 11u);
+                EXPECT_EQ(x, 100u);
+                EXPECT_EQ(y, 200u);
+            } else {
+                EXPECT_EQ(id, 22u);
+                EXPECT_EQ(x, 300u);
+                EXPECT_EQ(y, 400u);
+            }
+        }
+    });
+
+    Socket server_sock = server_listener.accept();
+    ServerProtocol protocol(server_sock);
+
+
+    GameImage image;
+    image.players_images = {PlayerImage{
+                                    11,
+                                    Position(100, 200),
+                            },
+                            PlayerImage{22, Position(300, 400)}};
+
+
+    protocol.send_game_image(image);
+
 
     client_thread.join();
 }

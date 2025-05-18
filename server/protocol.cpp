@@ -129,3 +129,35 @@ std::unique_ptr<Equip> ServerProtocol::read_equip(player_id_t player_id) {
     this->read_byte_data(equip_type);
     return std::make_unique<Equip>(player_id, static_cast<EquipType>(equip_type));
 }
+void ServerProtocol::send_byte_data(uint8_t& data) {
+    this->socket.sendall(&data, sizeof(uint8_t));
+    if (this->socket.is_stream_send_closed()) {
+        throw ConnectionClosedException("Error al intentar enviar datos al cliente");
+    }
+}
+
+void ServerProtocol::send_two_byte_data(uint16_t& data) {
+    uint16_t data_to_send = htons(data);
+    this->socket.sendall(&data_to_send, sizeof(uint16_t));
+    if (this->socket.is_stream_send_closed()) {
+        throw ConnectionClosedException("Error al intentar enviar datos al cliente");
+    }
+}
+void ServerProtocol::send_player_image(GameImage& game_image) {
+    std::vector<PlayerImage> players_images = game_image.players_images;
+    length_players_images_t length_players = players_images.size();
+    this->send_two_byte_data(length_players);
+
+    for (const PlayerImage& player_image: players_images) {
+        player_id_t player_id = player_image.player_id;
+        this->send_two_byte_data(player_id);
+
+        coordinate_t x = player_image.position.x;
+        this->send_two_byte_data(x);
+
+        coordinate_t y = player_image.position.y;
+        this->send_two_byte_data(y);
+    }
+}
+
+void ServerProtocol::send_game_image(GameImage& game_image) { this->send_player_image(game_image); }

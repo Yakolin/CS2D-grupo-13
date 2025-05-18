@@ -3,23 +3,30 @@
 
 #include <memory>
 #include <string>
+#include <vector>
 
 #include <arpa/inet.h>
 
 #include "../common/connection_closed_exception.h"
+#include "../common/game_image.h"
 #include "../common/lobby_types.h"
 #include "../common/player_types.h"
 #include "../common/socket.h"
 #include "../common/utility.h"
 
 #include "client_action.h"
-
 class ServerProtocol {
 private:
     Socket& socket;
     void read_byte_data(uint8_t& data);
     void read_two_byte_data(uint16_t& data);
+
     const std::string read_game_name();
+
+    void send_byte_data(uint8_t& data);
+    void send_two_byte_data(uint16_t& data);
+
+    void send_player_image(GameImage& game_image);
 
 public:
     ServerProtocol(Socket& socket);
@@ -45,6 +52,8 @@ public:
 
     std::unique_ptr<Server::Drop> read_drop(player_id_t player_id);
     std::unique_ptr<Server::Equip> read_equip(player_id_t player_id);
+
+    void send_game_image(GameImage& game_image);
 };
 
 #endif  // !PROTOCOL_H

@@ -3,7 +3,7 @@
 const int FILAS_MAP =17;
 const int COLUMNAS_MAP =38;
 
-PlayerView::PlayerView(const float& x , const float& y, const std::string rute, const float& speed ):
+PlayerView::PlayerView(const float& x , const float& y, const std::string rute, const float& speed,SDL_Rect* camera_reseiver, ManageTexture* manejador ):
     fil(pasar_pixeles(x)),
     col(pasar_pixeles(y)),
     rutaPlayer(rute),
@@ -13,22 +13,38 @@ PlayerView::PlayerView(const float& x , const float& y, const std::string rute, 
     width_img(),
     height_img(),
     item({0,0}),
-    anglePlayer()
-    {}
+    anglePlayer(),
+    camera(camera_reseiver),
+    manejador(manejador)
+    {
+        calcular();
+    }
 
 int PlayerView::pasar_pixeles(const float& pos){
     return pos * 32;
 }
 
-void PlayerView::draw_player(SDL_Renderer* renderer, SDL_Texture* tiles_player,const  MedidasSprites& sprite,const SDL_Rect& camera){
+void PlayerView::calcular(){
 
-    origin_rect = {item.col * sprite.width,item.fil * sprite.height, sprite.width/2,sprite.height/3};
+    SDL_Texture* tiles_player = manejador->get(Objet::PLAYER);
+    if (!tiles_player) {
+        std::cerr << "Error: No se pudo cargar la textura del jugador." << std::endl;
+        return;
+    }
+    SDL_QueryTexture(tiles_player, nullptr, nullptr, &width_img, &height_img);
+   // std::cout << "Ancho: " << width_img << ", Alto: " << height_img << std::endl;
+}
+
+void PlayerView::draw(SDL_Renderer& renderer ){
+
+    SDL_Texture* tiles_player = manejador->get(Objet::PLAYER);
+    origin_rect = {item.col * width_img,item.fil * height_img, width_img/2,height_img/3};
      //                           col=x               fil =y       ancho, alto
-    destination_rect = {static_cast<int>(col) - camera.x ,
-                        static_cast<int>(fil) - camera.y,
+    destination_rect = {static_cast<int>(col) - camera->x ,
+                        static_cast<int>(fil) - camera->y,
                         32, 32};
-   // SDL_RenderCopy(renderer, tiles_player, &origin_rect ,&destination_rect);
-    SDL_RenderCopyEx(renderer, tiles_player, &origin_rect, &destination_rect, anglePlayer,nullptr, SDL_FLIP_NONE);
+    //SDL_RenderCopy(&renderer, tiles_player, &origin_rect ,&destination_rect);
+    SDL_RenderCopyEx(&renderer, tiles_player, &origin_rect, &destination_rect, anglePlayer,nullptr, SDL_FLIP_NONE);
 
 }
 

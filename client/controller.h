@@ -1,8 +1,10 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
-
+#include "playerView.h"
 #include "gameView.h"
 #include "mapView.h"
+#include "menuView.h"
+#include "scoreBoard.h"
 #include <vector>
 #include <iostream>
 #include <iostream>
@@ -11,9 +13,12 @@
 #include <sstream>       
 #include <vector>
 #include <stdexcept>  
+#include <QApplication>
 class Controller {
 private:
     GameView gameView;
+    QApplication app;
+    GameMenu seleccion;
 
     std::vector<std::vector<char>> cargar_mapa(const std::string& archivo) ;
 public:

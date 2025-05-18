@@ -4,17 +4,30 @@
 #include <QMainWindow>
 #include <QVBoxLayout>
 #include <QLabel>
-#include <QPixmap>
 #include <QPushButton>
 #include "tipos.h"
 #include <QObject>
 #include <QPixmap>
-#include <QMessageBox>
-#include <QApplication>
 #include <QString>
 #include <functional>
 #include <QDebug>
 #include <map>
+#include <QMessageBox>
+#include <QHBoxLayout>
+#include <QGridLayout>
+#include <QFormLayout>
+#include <QTableWidgetItem>
+#include <QWidget>
+#include <QLineEdit>
+#include <QTableWidget>
+#include <QHeaderView>
+#include <QIcon>
+#include <QTreeWidget>
+#include <QTreeWidgetItem>
+#include <QFont>
+#include <functional>
+#include <QListView>
+#include <QListWidget>
 
 
 class MenuView {

@@ -33,7 +33,7 @@ void MenuView::action_join() {
 void MenuView::action_exit() {
     QMessageBox::StandardButton answer = QMessageBox::question(nullptr, "Mensaje", "Desea salir?");
     if (answer == QMessageBox::Yes) {
-        QApplication::quit();
+        window->close();
     }
 }
 
@@ -99,3 +99,19 @@ GameMenu MenuView::run() {
     return GameMenu::NONE;
 }
 MenuView::~MenuView(){}
+
+/*void GameView::config_windows(QWidget *ventana, const QString &text, int width, int height) {
+    ventana->setWindowTitle(text);
+    ventana->setStyleSheet("background-color:rgb(117, 133, 133);");
+    ventana->resize(width, height);
+}
+
+
+
+QLabel* GameView::cell(const QString &text, const bool& bold) {
+    QLabel *label = new QLabel(bold ? "<b>" + text + "</b>" : text);
+    label->setStyleSheet("border: 1px solid black; padding: 4px;");
+    label->setAlignment(Qt::AlignCenter);
+    return label;
+}
+*/

@@ -12,7 +12,6 @@ public:
     ScoreBoard(QWidget *parent = nullptr);
 
 
-    void ranking();
     /*
     pre: recibe un mapa cargado con los puntajes de los jugadores y un QVBoxLayout 
     post: crea una tabla con los puntajes de los jugadores y lo apila en el QVBoxLayout
@@ -24,8 +23,7 @@ public:
     pre: recibe un mapa cargado con los puntajes de los jugadores y un ranking de los equipos
     post: muestra los puntajes del juego
     */
-    int scores_game();
-    void setTable(QTableWidget *table);
+    int show_scores_game();
 
 private:
 

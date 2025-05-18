@@ -2,6 +2,8 @@
 #define PLAYERVIEW_H
 #include <iostream>
 #include "tipos.h"
+#include "manageTexture.h"
+#include "renderizable.h"
 #include <SDL.h>
 #include <SDL_render.h>
 #include <SDL_surface.h>
@@ -11,12 +13,12 @@
 #include <SDL_image.h>
 #include <map>
 
-class PlayerView {
+class PlayerView : public Renderizable{
 public:
-    PlayerView(const float& x , const float& y, const std::string rute, const float& speed);
+    PlayerView(const float& x , const float& y, const std::string rute, const float& speed, SDL_Rect* camera_reseiver, ManageTexture* manger_texture);
     ~PlayerView();
 
-    void draw_player(SDL_Renderer* renderer,SDL_Texture* tiles,const  MedidasSprites& sprite, const SDL_Rect& camera);
+    void draw(SDL_Renderer& renderer) override;
 
     void add_speed(const SDL_Keycode& tecla);
 
@@ -49,10 +51,15 @@ private:
     ItemSprite spritePlayer;
     ItemSprite item;
     float anglePlayer;
+    SDL_Rect* camera;
+    ManageTexture* manejador;
 
    // SDL_Texture texture_player;
+    void calcular();
 
     int pasar_pixeles(const float& pos);
+
+    SDL_Texture* add_tiles(const std::string& img );
 
 };
 

@@ -1,0 +1,1 @@
+/usr/bin/c++ -g -o CS2D_editor  -Wl,-rpath,"/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/libsdl2pp-build:/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" libCS2D_common.a _deps/libsdl2pp-build/libSDL2pp.so.8.3.0 _deps/sdl2-build/libSDL2maind.a _deps/sdl2-build/libSDL2-2.0d.so.0.3000.8 

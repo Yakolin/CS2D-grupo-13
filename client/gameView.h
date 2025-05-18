@@ -1,66 +1,50 @@
 #ifndef GAME_VIEW_H
 #define GAME_VIEW_H
 #include "tipos.h"
+#include "manageTexture.h"
+#include "renderizable.h"
+#include "playerView.h"
+#include "mapView.h"
 #include <SDL2/SDL.h>
-#include <QApplication>
-#include <QMainWindow>
-#include <QPushButton>
-#include <QMessageBox>
-#include <QHBoxLayout>
-#include <QVBoxLayout>
-#include <QGridLayout>
-#include <QFormLayout>
-#include <QTableWidgetItem>
-#include <QLabel>
-#include <QWidget>
-#include <QLineEdit>
-#include <QTableWidget>
-#include <QHeaderView>
-#include <QPixmap>
-#include "tipos.h"
-#include <QIcon>
-#include <map>
-#include <QTreeWidget>
-#include <QTreeWidgetItem>
-#include <QFont>
-#include <QDebug>
-#include <functional>
-#include <QTreeWidget>
-#include <QObject>
-#include <QListView>
-#include <QListWidget>
-#include "menuView.h"
+#include <fstream>
 
 class GameView {
 
 private:
+    std::map<char, std::string> leyenda;
+    std::map<char,Objet> ids;
+    SDL_Window* ventana ;
+    SDL_Renderer* renderer ;
+    SDL_Texture* backgroundTexture;
+    PlayerView* player;
+    SDL_Rect camera;
+    ManageTexture manger_texture;
+    int width ;
+    int height;
 
-    QApplication app;
-    MenuView *menu;
-    GameMenu seleccion;
 
-    /*
-    pre:-
-    post: crea una celda para la tabla de puntajes
-    */
-    QLabel* cell(const QString &text, const bool& bold);
+    void add_player(PlayerView& player );
+
+    bool handle_events(const SDL_Event& evento);
+
+    SDL_Texture* add_tiles(const std::string& img );
+
+    std::vector<std::vector<char>> cargar_mapa(const std::string& archivo);
+
+    void load_textures();
 
 
-    void config_windows(QWidget *ventana, const QString &text, int width, int height);
-
-    void dibujar() ;
-
-    bool cargarTexturaFondo(SDL_Renderer* renderer);
 
 public:
-    explicit GameView(int& argc, char *argv[]);
-    /*
-    pre: -
-    post: muestra el menu
-    */
-    GameMenu run_menu();
+    explicit GameView(const int& width_reseiver , const int& height_reseiver);
 
-    void start_game();
+    /*
+    pre:  width y height deben ser mayores que 0.
+    post: devuelve true si la unicializacion salio bien de ventana y renderer.
+    */
+    bool init_render_window();
+
+    void draw_game();
 
 
     ~GameView();

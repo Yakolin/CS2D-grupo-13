@@ -60,7 +60,7 @@ void ScoreBoard::add_ranking(QVBoxLayout *scores_table) {
 
 }
 
-int ScoreBoard::scores_game() {
+int ScoreBoard::show_scores_game() {
 
     QWidget *info_ranking = new QWidget();
     info_ranking->setWindowTitle("Scores");
@@ -68,8 +68,8 @@ int ScoreBoard::scores_game() {
     info_ranking->resize(500, 500);
 
     QVBoxLayout* scores_table = new QVBoxLayout(info_ranking);
+    
     add_table(scores_table);
-
     add_ranking(scores_table);
 
     info_ranking->setLayout(scores_table);

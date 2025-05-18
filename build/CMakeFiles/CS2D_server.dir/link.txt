@@ -1,0 +1,1 @@
+/usr/bin/c++ -g -o CS2D_server  libCS2D_common.a 

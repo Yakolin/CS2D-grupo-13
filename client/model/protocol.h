@@ -32,10 +32,9 @@ public:
     void send_buy_ammo(WeaponType weapon_type, ammo_t ammo_count);
     void send_reload(WeaponType weapon_type);
     void send_shoot(WeaponType weapon_type, ammo_t ammo_count);
-    void send_drop_weapon();
     void send_plant_bomb();
     void send_defuse_bomb();
-    void send_drop_bomb();
+    void send_drop();
 
     GameImage read_game_image();
 };

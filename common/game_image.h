@@ -4,20 +4,12 @@
 #include <cstdint>
 #include <vector>
 
-#include "common/player_types.h"
+#include "player_types.h"
+#include "utility.h"
 
-using coordinate_t = std::uint16_t;
+
 using length_players_images_t = std::uint16_t;
 
-class Position {  // esto puede que este a nivel del server tal vez, ya que seguramente quiera usar
-                  // Position
-public:
-    coordinate_t x;
-    coordinate_t y;
-
-    Position(coordinate_t x, coordinate_t y): x(x), y(y) {}
-    ~Position() = default;
-};
 
 class PlayerImage {
 public:

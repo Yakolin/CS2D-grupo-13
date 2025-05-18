@@ -5,6 +5,7 @@
 
 #include "lobby_types.h"
 #include "player_types.h"
+#include "utility.h"
 
 
 /*
@@ -63,34 +64,23 @@ public:
     virtual ~BuyAmmoCommon() = default;
 };
 
-class ReloadCommon {
-protected:
-    const WeaponType weapon_type;
-
-public:
-    ReloadCommon(WeaponType weapon_type): weapon_type(weapon_type) {}
-    virtual ~ReloadCommon() = default;
-};
-
 class ShootCommon {
 protected:
-    const WeaponType weapon_type;
+    const Position position;
     const ammo_t ammo_count;
 
 public:
-    ShootCommon(WeaponType weapon_type, ammo_t ammo_count):
-            weapon_type(weapon_type), ammo_count(ammo_count) {}
+    ShootCommon(Position position, ammo_t ammo_count): position(position), ammo_count(ammo_count) {}
     virtual ~ShootCommon() = default;
 };
 
-class DropWeaponCommon {
+class EquipCommon {
 protected:
-    const WeaponType weapon_type;
+    const EquipType equip_type;
 
 public:
-    DropWeaponCommon(WeaponType weapon_type): weapon_type(weapon_type) {}
-    virtual ~DropWeaponCommon() = default;
+    EquipCommon(EquipType equip_type): equip_type(equip_type) {}
+    virtual ~EquipCommon() = default;
 };
-
 
 #endif  // !CLIENT_COMMON_ACTION_H

@@ -6,6 +6,7 @@
 #include "../common/client_common_action.h"
 #include "../common/lobby_types.h"
 #include "../common/player_types.h"
+#include "../common/utility.h"
 
 #include "game.h"
 #include "games_monitor.h"
@@ -114,10 +115,10 @@ public:
     void action(InterfaceGame& game) override;
 };
 
-class Reload: public ClientAction, public InterfacePlayerAction, public ReloadCommon {
+class Reload: public ClientAction, public InterfacePlayerAction {
 
 public:
-    Reload(player_id_t player_id, WeaponType weapon_type);
+    Reload(player_id_t player_id);
     ~Reload();
     void action(InterfaceGame& game) override;
 };
@@ -125,21 +126,13 @@ public:
 class Shoot: public ClientAction, public InterfacePlayerAction, public ShootCommon {
 
 public:
-    Shoot(player_id_t player_id, WeaponType weapon_type, ammo_t ammo_count);
+    Shoot(player_id_t player_id, Position position, ammo_t ammo_count);
     ~Shoot();
     void action(InterfaceGame& game) override;
 };
 
-class DropWeapon: public ClientAction, public InterfacePlayerAction, public DropWeaponCommon {
-
-public:
-    DropWeapon(player_id_t player_id, WeaponType weapon_type);
-    ~DropWeapon();
-    void action(InterfaceGame& game) override;
-};
-
 /*
-BOMB ACTIONS
+        BOMB ACTIONS
 */
 
 class PlantBomb: public ClientAction, public InterfacePlayerAction {
@@ -149,17 +142,29 @@ public:
     void action(InterfaceGame& game) override;
 };
 
-class DropBomb: public ClientAction, public InterfacePlayerAction {
-public:
-    DropBomb(player_id_t player_id);
-    ~DropBomb();
-    void action(InterfaceGame& game) override;
-};
 
 class DefuseBomb: public ClientAction, public InterfacePlayerAction {
 public:
     DefuseBomb(player_id_t player_id);
     ~DefuseBomb();
+    void action(InterfaceGame& game) override;
+};
+
+/*
+GAME ACTIONS
+*/
+
+class Drop: public ClientAction, public InterfacePlayerAction {
+public:
+    Drop(player_id_t player_id);
+    ~Drop();
+    void action(InterfaceGame& game) override;
+};
+
+class Equip: public ClientAction, public InterfacePlayerAction, public EquipCommon {
+public:
+    Equip(player_id_t player_id, EquipType equip_type);
+    ~Equip();
     void action(InterfaceGame& game) override;
 };
 

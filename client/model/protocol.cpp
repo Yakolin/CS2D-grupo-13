@@ -44,13 +44,11 @@ void ClientProtocol::send_shoot(WeaponType weapon_type, ammo_t ammo_count) {
     socket.sendall(reinterpret_cast<const char*>(&ammo_count), sizeof(ammo_count));
 }
 
-void ClientProtocol::send_drop_weapon() {}
+void ClientProtocol::send_drop() {}
 
 void ClientProtocol::send_plant_bomb() {}
 
 void ClientProtocol::send_defuse_bomb() {}
-
-void ClientProtocol::send_drop_bomb() {}
 
 void ClientProtocol::read_byte_data(uint8_t& data) {
     uint8_t data_readed;

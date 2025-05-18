@@ -41,7 +41,7 @@ public:
 
 /*
     PLAYER ACTIONS
-    */
+*/
 
 class Move: public MoveCommon, public InterfaceClientAction {
 public:
@@ -78,13 +78,6 @@ public:
     void action(ClientProtocol& protocol) override;
 };
 
-class DropWeapon: public InterfaceClientAction {
-public:
-    DropWeapon(WeaponType weapon_type);
-    ~DropWeapon();
-    void action(ClientProtocol& protocol) override;
-};
-
 class PlantBomb: public InterfaceClientAction {
 public:
     PlantBomb();
@@ -99,10 +92,17 @@ public:
     void action(ClientProtocol& protocol) override;
 };
 
-class DropBomb: public InterfaceClientAction {
+class Drop: public InterfaceClientAction {
 public:
-    DropBomb();
-    ~DropBomb();
+    Drop();
+    ~Drop();
+    void action(ClientProtocol& protocol) override;
+};
+
+class Equip: public EquipCommon, public InterfaceClientAction {
+public:
+    Equip();
+    ~Equip();
     void action(ClientProtocol& protocol) override;
 };
 

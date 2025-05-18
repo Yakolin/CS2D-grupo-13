@@ -25,6 +25,7 @@ public:
     void fire_weapon_equiped(Map& map, const Vector2& mouse_pointer);
     void get_damage(float damage);
     virtual PlayerImage get_player_image() = 0;
+    virtual void plant_bomb() = 0;
     player_id_t get_id() { return id; }
 
 private:

@@ -14,6 +14,7 @@ public:
             Player(id, std::move(_nick_name), std::move(_position)) {}
     ~CounterTerrorist() = default;
     virtual PlayerImage get_player_image() override;
+    virtual void plant_bomb() override {}
 };
 class Terrorist: public Player {
 private:
@@ -23,6 +24,7 @@ public:
             Player(id, std::move(_nick_name), std::move(_position)) {}
     ~Terrorist() = default;
     virtual PlayerImage get_player_image() override;
+    virtual void plant_bomb() override;
 };
 
 #endif  // !PLAYER_TYPES_H

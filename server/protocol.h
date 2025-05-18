@@ -53,6 +53,8 @@ public:
     std::unique_ptr<Server::Drop> read_drop(player_id_t player_id);
     std::unique_ptr<Server::Equip> read_equip(player_id_t player_id);
 
+    void send_player_id(player_id_t& player_id);
+
     void send_game_image(GameImage& game_image);
 };
 

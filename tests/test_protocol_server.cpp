@@ -74,7 +74,6 @@ TEST(ServerProtocolTest, ReadLobbyCommandReturnCorrectType) {
     client_thread.join();
 }
 
-
 TEST(ServerProtocolTest, ReadCreateGameReturnCorrectObject) {
     // Arrange
     MockGamesMonitor mock_games_monitor;
@@ -172,6 +171,31 @@ TEST(ServerProtocolTest, ReadListGamesReturnCorrectObject) {
     client_thread.join();
 }
 
+TEST(ServerProtocolTest, SendHandshakeReturnCorrectObject) {
+    // Arrange
+    Socket server_listener("9999");
+    std::thread client_thread([&]() {
+        Socket client("localhost", "9999");
+
+        uint8_t recv_handshake;
+        client.recvall(&recv_handshake, sizeof(recv_handshake));
+        EXPECT_EQ(recv_handshake, static_cast<uint8_t>(HandshakeType::HANDSHAKE));
+
+        uint16_t net_player_id;
+        client.recvall(&net_player_id, sizeof(net_player_id));
+        uint16_t player_id = ntohs(net_player_id);
+        EXPECT_EQ(player_id, 123u);
+    });
+
+    Socket server_sock = server_listener.accept();
+    ServerProtocol protocol(server_sock);
+    player_id_t pid = 123;
+
+    // Act
+    protocol.send_player_id(pid);
+
+    client_thread.join();
+}
 
 TEST(ServerProtocolTest, ReadBuyWeapontReturnCorrectObject) {
     // Arrange

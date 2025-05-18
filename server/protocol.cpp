@@ -143,6 +143,13 @@ void ServerProtocol::send_two_byte_data(uint16_t& data) {
         throw ConnectionClosedException("Error al intentar enviar datos al cliente");
     }
 }
+
+void ServerProtocol::send_player_id(player_id_t& player_id) {
+    uint8_t handshake = static_cast<uint8_t>(HandshakeType::HANDSHAKE);
+    this->send_byte_data(handshake);
+    this->send_two_byte_data(player_id);
+}
+
 void ServerProtocol::send_player_image(GameImage& game_image) {
     std::vector<PlayerImage> players_images = game_image.players_images;
     length_players_images_t length_players = players_images.size();

@@ -29,3 +29,10 @@ Vector2& Vector2::normalize() {
 bool Vector2::operator==(const Vector2& other) const {
     return this->x == other.x && this->y == other.y;
 }
+
+
+/* RECTANGLE */
+
+bool Rectangle::is_in(const Vector2& position) {
+    return point_min.x <= position.x <= point_max.x && point_min.y <= position.x <= point_max.y;
+}

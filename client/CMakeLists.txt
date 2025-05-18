@@ -1,5 +1,6 @@
 target_sources(CS2D_client
     PRIVATE
+
     client.cpp
     clientMain.cpp
     controller.cpp
@@ -21,3 +22,5 @@ target_sources(CS2D_client
     controller.h
     lobbyView.h
     )
+
+add_subdirectory(model/)

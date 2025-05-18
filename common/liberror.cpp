@@ -25,6 +25,7 @@
 
 #include <errno.h>
 
+
 LibError::LibError(int error_code, const char* fmt, ...) noexcept {
     /* Aquí empieza la magia arcana proveniente de C.
      *
@@ -116,5 +117,6 @@ LibError::LibError(int error_code, const char* fmt, ...) noexcept {
 }
 
 const char* LibError::what() const noexcept { return msg_error; }
+
 
 LibError::~LibError() {}

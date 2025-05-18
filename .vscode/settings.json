@@ -1,4 +1,5 @@
 {
+
     "C_Cpp.errorSquiggles": "disabled",
     "editor.quickSuggestions": {
         "comments": "on",
@@ -8,15 +9,18 @@
         "algorithm": "cpp",
         "format": "cpp",
         "ostream": "cpp",
+
         "array": "cpp",
         "atomic": "cpp",
         "bit": "cpp",
         "cctype": "cpp",
+
         "charconv": "cpp",
         "clocale": "cpp",
         "cmath": "cpp",
         "compare": "cpp",
         "concepts": "cpp",
+
         "cstdarg": "cpp",
         "cstddef": "cpp",
         "cstdint": "cpp",
@@ -27,11 +31,13 @@
         "cwchar": "cpp",
         "cwctype": "cpp",
         "deque": "cpp",
+
         "map": "cpp",
         "string": "cpp",
         "unordered_map": "cpp",
         "vector": "cpp",
         "exception": "cpp",
+
         "functional": "cpp",
         "iterator": "cpp",
         "memory": "cpp",
@@ -40,17 +46,22 @@
         "optional": "cpp",
         "random": "cpp",
         "ratio": "cpp",
+
+
         "string_view": "cpp",
         "system_error": "cpp",
         "tuple": "cpp",
         "type_traits": "cpp",
         "utility": "cpp",
+
+
         "initializer_list": "cpp",
         "iomanip": "cpp",
         "iosfwd": "cpp",
         "iostream": "cpp",
         "istream": "cpp",
         "limits": "cpp",
+
         "new": "cpp",
         "numbers": "cpp",
         "semaphore": "cpp",
@@ -64,5 +75,6 @@
         "typeinfo": "cpp",
         "variant": "cpp",
         "fstream": "cpp"
+
     }
 }

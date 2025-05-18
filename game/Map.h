@@ -15,16 +15,7 @@
 
 class Map {
 private:
-    enum CollisionType {
-        BULLET_WALL,
-        BULLET_WEAPON,
-        BULLET_PLAYER,
-        BULLET_BOMB_A,
-        BULLET_BOMB_B,
-        PLAYER_WEAPON,
-        PLAYER_BOMB_A,
-        PLAYER_BOMB_B
-    };
+    enum CollisionType { BULLET_WALL, BULLET_PLAYER, PLAYER_WEAPON, PLAYER_BOMB_A, PLAYER_BOMB_B };
     std::map<player_id_t, std::shared_ptr<Player>>& players;
     std::string map_name;
     // std::vector<Wall> walls;

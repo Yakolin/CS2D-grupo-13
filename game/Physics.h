@@ -17,6 +17,7 @@ public:
     Vector2& operator=(Vector2&& other) = default;
     Vector2& operator=(const Vector2& other) = default;
     bool operator==(const Vector2& other) const;
+    float get_norm() const;
     Vector2& normalize();
 };
 

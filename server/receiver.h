@@ -1,23 +1,49 @@
 #ifndef RECEIVER_H
 #define RECEIVER_H
 
-#include "common/socket.h"
-#include "protocol.h"
-#include "common/thread.h"
-#include "common/queue.h"
-#include "player_action.h"
+#include <memory>
 
-class Receiver : public Thread
-{
-private:
-    uint16_t &player_id;
+#include "common/player_types.h"
+#include "common/queue.h"
+#include "common/socket.h"
+#include "common/thread.h"
+
+#include "client_action.h"
+#include "protocol.h"
+
+
+class Receiver: public Thread {
+protected:
+    player_id_t& player_id;
     ServerProtocol protocol;
-    Queue<std::shared_ptr<PlayerAction>> &recv_queue;
     bool closed;
 
 public:
-    Receiver(uint16_t &player_id, Socket &socket, Queue<std::shared_ptr<PlayerAction>> &recv_queue);
-    ~Receiver();
+    Receiver(player_id_t& player_id, Socket& socket):
+            player_id(player_id), protocol(socket), closed(false) {}
+    virtual ~Receiver() = default;
+};
+
+class LobbyReceiver: public Receiver {
+private:
+    std::shared_ptr<Queue<std::unique_ptr<InterfaceLobbyAction>>>& recv_lobby_queue;
+
+public:
+    LobbyReceiver(player_id_t& player_id, Socket& socket,
+                  std::shared_ptr<Queue<std::unique_ptr<InterfaceLobbyAction>>>& recv_lobby_queue);
+    ~LobbyReceiver();
     void run() override;
 };
-#endif // !RECEIVER_H
+
+class GameReceiver: public Receiver {
+private:
+    std::shared_ptr<Queue<std::unique_ptr<InterfacePlayerAction>>>& recv_game_queue;
+
+public:
+    GameReceiver(player_id_t& player_id, Socket& socket,
+                 std::shared_ptr<Queue<std::unique_ptr<InterfacePlayerAction>>>& recv_game_queue);
+    ~GameReceiver();
+    void run() override;
+};
+
+#endif  // !RECEIVER_H

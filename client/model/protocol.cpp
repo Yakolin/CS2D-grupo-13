@@ -104,9 +104,18 @@ void ClientProtocol::read_two_byte_data(uint16_t& data) {
     if (this->socket.is_stream_recv_closed()) {
         throw ConnectionClosedException("El cliente cerró la conexión");
     }
-    data = data_readed;
+    data = ntohs(data_readed);
 }
 
+player_id_t ClientProtocol::read_player_id() {
+    uint8_t handshake;
+    this->read_byte_data(handshake);
+    player_id_t player_id;
+    if (static_cast<HandshakeType>(handshake) == HandshakeType::HANDSHAKE) {
+        this->read_two_byte_data(player_id);
+    }
+    return player_id;
+}
 
 void ClientProtocol::read_player_image(GameImage& game_image) {
 

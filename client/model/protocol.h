@@ -40,6 +40,8 @@ public:
     void send_defuse_bomb();
     void send_drop();
 
+    player_id_t read_player_id();
+
     GameImage read_game_image();
 };
 

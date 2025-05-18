@@ -36,6 +36,9 @@ private:
     std::vector<std::vector<char>> mapa;
     std::map<char, SDL_Texture*> texturas;
     PlayerView* player;
+    int width_map ;
+    int height_map;
+    SDL_Rect camera;
     /*
     pre: el renderer debe haber sido craedo sin problema.
     post: carga una imagen de fondo y la conbierte en textura. //? capaz lo saque no es muy necesario de momento
@@ -66,6 +69,8 @@ private:
     post:Carga cada textura imagen segun en una ruta y la guarda en el mapa texturas.
     */
     void load_textures();
+
+    bool handle_events(const SDL_Event& evento);
 
 
 };

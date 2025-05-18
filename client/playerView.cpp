@@ -16,22 +16,17 @@ PlayerView::PlayerView(const float& x , const float& y, const std::string rute, 
     anglePlayer()
     {}
 
-
 int PlayerView::pasar_pixeles(const float& pos){
     return pos * 32;
 }
 
-void PlayerView::draw_player(SDL_Renderer* renderer, SDL_Texture* tiles_player,const  MedidasSprites& sprite){
-    int fila = 0;
-    int columan = 0;
-   /* origin_rect.x = columan * sprite.width ; // columna: 0 o 1
-    origin_rect.y = fila * sprite.height;     // fila: 0, 1 o 2
-    origin_rect.w = sprite.width ;           // 32
-    origin_rect.h = sprite.height; */           // 32
+void PlayerView::draw_player(SDL_Renderer* renderer, SDL_Texture* tiles_player,const  MedidasSprites& sprite,const SDL_Rect& camera){
 
     origin_rect = {item.col * sprite.width,item.fil * sprite.height, sprite.width/2,sprite.height/3};
      //                           col=x               fil =y       ancho, alto
-    destination_rect = {static_cast<int>(col), static_cast<int>(fil),32, 32};
+    destination_rect = {static_cast<int>(col) - camera.x ,
+                        static_cast<int>(fil) - camera.y,
+                        32, 32};
    // SDL_RenderCopy(renderer, tiles_player, &origin_rect ,&destination_rect);
     SDL_RenderCopyEx(renderer, tiles_player, &origin_rect, &destination_rect, anglePlayer,nullptr, SDL_FLIP_NONE);
 
@@ -98,6 +93,17 @@ void PlayerView::setSpeed(float speed) {
     speed_player = speed;
 }
 
+int PlayerView::getWidthImg() const {
+    return width_img;
+}
+
+int PlayerView::getHeightImg() const {
+    return height_img;
+}
+
+float PlayerView::getAnglePlayer() const {
+    return anglePlayer;
+}
 
 PlayerView::~PlayerView(){
 

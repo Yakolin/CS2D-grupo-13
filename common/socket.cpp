@@ -20,6 +20,7 @@
 #define STREAM_BOTH_CLOSED 0x03
 #define STREAM_BOTH_OPEN 0x00
 
+
 Socket::Socket(const char* hostname, const char* servname) {
     Resolver resolver(hostname, servname, false);
 
@@ -454,4 +455,5 @@ void Socket::chk_skt_or_fail() const {
                                  "perhaps you are using a *previously moved* "
                                  "socket (and therefore invalid).");
     }
+
 }

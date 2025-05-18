@@ -7,6 +7,7 @@
 
 class Runnable {
 public:
+
     virtual void start() = 0;
     virtual void join() = 0;
     virtual void stop() = 0;
@@ -67,6 +68,7 @@ public:
 
     Thread(Thread&& other) = delete;
     Thread& operator=(Thread&& other) = delete;
+
 };
 
 #endif

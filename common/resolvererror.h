@@ -6,6 +6,7 @@
 /*
  * Clase que encapsula un "gai" error. Vease getaddrinfo()
  * */
+
 class ResolverError: public std::exception {
 private:
     int gai_errno;
@@ -22,5 +23,6 @@ public:
      * Esto garantiza que será llamado.
      * */
     virtual ~ResolverError();
+
 };
 #endif

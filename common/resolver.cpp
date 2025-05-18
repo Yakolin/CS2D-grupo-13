@@ -14,6 +14,7 @@
 #include "liberror.h"
 #include "resolvererror.h"
 
+
 Resolver::Resolver(const char* hostname, const char* servname, bool is_passive) {
     struct addrinfo hints;
     this->result = this->_next = nullptr;
@@ -158,4 +159,5 @@ void Resolver::chk_addr_or_fail() const {
                                  "perhaps you are using a *previously moved* "
                                  "resolver (and therefore invalid).");
     }
-}
+ };
+#endif

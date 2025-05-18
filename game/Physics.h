@@ -15,7 +15,8 @@ public:
     Vector2 operator-(const Vector2& other) const;
     Vector2& operator-=(const Vector2& other);
     Vector2& operator=(Vector2&& other) = default;
-    Vector2& operator=(const Vector2&) = default;
+    Vector2& operator=(const Vector2& other) = default;
+    bool operator==(const Vector2& other) const;
     Vector2& normalize();
 };
 

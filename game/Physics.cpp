@@ -22,3 +22,6 @@ Vector2& Vector2::normalize() {
     this->y = y / norm;
     return *this;
 }
+bool Vector2::operator==(const Vector2& other) const {
+    return this->x == other.x && this->y == other.y;
+}

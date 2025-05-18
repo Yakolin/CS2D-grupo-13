@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.24)
+cmake_minimum_required(VERSION 3.16.3)
 
 if (POLICY CMP0135)
     cmake_policy(SET CMP0135 NEW)
@@ -117,8 +117,14 @@ if(CS2D_CLIENT)
     # add libSDL2pp's headers
     target_include_directories(CS2D_client PRIVATE ${libSDL2pp_SOURCE_DIR})
 
-    # Link the CS2D_common lib target
-    target_link_libraries(CS2D_client CS2D_common SDL2pp::SDL2pp)
+    target_link_libraries(
+        CS2D_client
+        PRIVATE
+          CS2D_common
+          SDL2pp::SDL2pp
+          Threads::Threads   
+    )
+    
 endif()
 
 if(CS2D_SERVER)
@@ -134,8 +140,13 @@ if(CS2D_SERVER)
 
     set_project_warnings(CS2D_server ${CS2D_MAKE_WARNINGS_AS_ERRORS} FALSE)
 
+    find_package(Threads REQUIRED)
+
     # Link the CS2D_common lib target
-    target_link_libraries(CS2D_server CS2D_common)
+    target_link_libraries(CS2D_server 
+        CS2D_common
+        Threads::Threads
+    )
 endif()
 
 if(CS2D_EDITOR)
@@ -206,6 +217,6 @@ if(CS2D_TESTS)
     # Change this if you have to.
     target_link_libraries(CS2D_tests
         CS2D_common
-        GTest::gtest_main
+        GTest::gmock_main
     )
 endif()

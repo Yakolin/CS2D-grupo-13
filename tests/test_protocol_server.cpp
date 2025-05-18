@@ -6,10 +6,13 @@
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
+#include "../common/lobby_types.h"
+#include "../common/player_types.h"
 #include "../common/socket.h"
 #include "../server/client_action.h"
 #include "../server/protocol.h"
 #include "mocks/mock_game.h"
+#include "mocks/mock_games_monitor.h"
 
 using Server::BuyAmmo;
 using Server::BuyWeapon;
@@ -32,7 +35,7 @@ TEST(ServerProtocolTest, ReadPlayerCommandReturnCorrectType) {
         Socket client_socket("localhost", "9999");
 
         player_command_t command = static_cast<player_command_t>(PlayerCommandType::MOVE);
-        client_socket.sendall(reinterpret_cast<char*>(&command), sizeof(command));
+        client_socket.sendall(&command, sizeof(player_command_t));
     });
 
     Socket server_client = server_socket.accept();
@@ -55,7 +58,7 @@ TEST(ServerProtocolTest, ReadLobbyCommandReturnCorrectType) {
         Socket client_socket("localhost", "9999");
 
         lobby_command_t command = static_cast<lobby_command_t>(LobbyCommandType::CREATE_GAME);
-        client_socket.sendall(reinterpret_cast<char*>(&command), sizeof(command));
+        client_socket.sendall(&command, sizeof(lobby_command_t));
     });
 
     Socket server_client = server_socket.accept();
@@ -69,21 +72,22 @@ TEST(ServerProtocolTest, ReadLobbyCommandReturnCorrectType) {
 
     client_thread.join();
 }
-/*
+
 
 TEST(ServerProtocolTest, ReadCreateGameReturnCorrectObject) {
     // Arrange
-    MockGame mock_game;
+    MockGamesMonitor mock_games_monitor;
     Socket server_socket("9999");
     player_id_t player_id = 1;
-    std::string game_name = "mateo game";
     std::thread client_thread([]() {
         Socket client_socket("localhost", "9999");
-
+        std::string game_name = "mateo game";
         lobby_command_t command = static_cast<lobby_command_t>(LobbyCommandType::CREATE_GAME);
-        client_socket.sendall(reinterpret_cast<char*>(&command), sizeof(command));
+        client_socket.sendall(&command, sizeof(command));
 
-        client_socket.sendall(reinterpret_cast<char*>(&weapon_type), sizeof(weapon_type));
+        length_name_t length_name = htons(static_cast<length_name_t>(game_name.size()));
+        client_socket.sendall(&length_name, sizeof(length_name_t));
+        client_socket.sendall(game_name.c_str(), game_name.size());
     });
 
     Socket server_client = server_socket.accept();
@@ -91,19 +95,19 @@ TEST(ServerProtocolTest, ReadCreateGameReturnCorrectObject) {
 
     // Act
 
-    PlayerCommandType command = protocol.read_player_command();
-    std::unique_ptr<InterfacePlayerAction> action = protocol.read_buy_weapon(player_id);
+    LobbyCommandType command = protocol.read_lobby_command();
+    std::unique_ptr<InterfaceLobbyAction> action = protocol.read_create_game(player_id);
 
     // Assert
-    ASSERT_EQ(command, PlayerCommandType::BUY_WEAPON);
-    EXPECT_CALL(mock_game, buy_weapon(player_id, WeaponCode::AK47)).Times(1);
+    ASSERT_EQ(command, LobbyCommandType::CREATE_GAME);
+    EXPECT_CALL(mock_games_monitor, create_game(player_id, "mateo game")).Times(1);
 
     // Ejecutamos la acción “inyectando” nuestro mock
-    action->action(mock_game);
+    action->action(mock_games_monitor);
 
     client_thread.join();
 }
-*/
+
 
 TEST(ServerProtocolTest, ReadBuyWeapontReturnCorrectObject) {
     // Arrange
@@ -114,9 +118,9 @@ TEST(ServerProtocolTest, ReadBuyWeapontReturnCorrectObject) {
         Socket client_socket("localhost", "9999");
 
         player_command_t command = static_cast<player_command_t>(PlayerCommandType::BUY_WEAPON);
-        client_socket.sendall(reinterpret_cast<char*>(&command), sizeof(command));
+        client_socket.sendall(&command, sizeof(player_command_t));
         weapon_code_t weapon_type = static_cast<weapon_code_t>(WeaponCode::AK47);
-        client_socket.sendall(reinterpret_cast<char*>(&weapon_type), sizeof(weapon_type));
+        client_socket.sendall(&weapon_type, sizeof(weapon_code_t));
     });
 
     Socket server_client = server_socket.accept();
@@ -146,12 +150,12 @@ TEST(ServerProtocolTest, ReadBuyAmmoReturnCorrectObject) {
         Socket client_socket("localhost", "9999");
 
         player_command_t command = static_cast<player_command_t>(PlayerCommandType::BUY_AMMO);
-        client_socket.sendall(reinterpret_cast<char*>(&command), sizeof(command));
+        client_socket.sendall(&command, sizeof(player_command_t));
         weapon_type_t weapon_type = static_cast<weapon_type_t>(WeaponType::PRIMARY);
         ammo_t ammo_count = 10;
         ammo_count = htons(ammo_count);
-        client_socket.sendall(reinterpret_cast<char*>(&weapon_type), sizeof(weapon_type));
-        client_socket.sendall(reinterpret_cast<char*>(&ammo_count), sizeof(ammo_count));
+        client_socket.sendall(&weapon_type, sizeof(weapon_type_t));
+        client_socket.sendall(&ammo_count, sizeof(ammo_t));
     });
 
     Socket server_client = server_socket.accept();
@@ -182,7 +186,7 @@ TEST(ServerProtocolTest, ReadReloadReturnCorrectObject) {
         Socket client_socket("localhost", "9999");
 
         player_command_t command = static_cast<player_command_t>(PlayerCommandType::RELOAD);
-        client_socket.sendall(reinterpret_cast<char*>(&command), sizeof(command));
+        client_socket.sendall(&command, sizeof(player_command_t));
     });
 
     Socket server_client = server_socket.accept();
@@ -219,9 +223,9 @@ TEST(ServerProtocolTest, ReadShootReturnCorrectObject) {
         x = htons(x);
         y = htons(y);
         ammo_count = htons(ammo_count);
-        client_socket.sendall(reinterpret_cast<char*>(&x), sizeof(x));
-        client_socket.sendall(reinterpret_cast<char*>(&y), sizeof(y));
-        client_socket.sendall(reinterpret_cast<char*>(&ammo_count), sizeof(ammo_count));
+        client_socket.sendall(&x, sizeof(coordinate_t));
+        client_socket.sendall(&y, sizeof(coordinate_t));
+        client_socket.sendall(&ammo_count, sizeof(ammo_t));
     });
 
     Socket server_client = server_socket.accept();
@@ -251,7 +255,7 @@ TEST(ServerProtocolTest, ReadPlantBombReturnCorrectObject) {
         Socket client_socket("localhost", "9999");
 
         player_command_t command = static_cast<player_command_t>(PlayerCommandType::PLANT_BOMB);
-        client_socket.sendall(reinterpret_cast<char*>(&command), sizeof(command));
+        client_socket.sendall(&command, sizeof(player_command_t));
     });
 
     Socket server_client = server_socket.accept();
@@ -281,7 +285,7 @@ TEST(ServerProtocolTest, ReadDefuseBombReturnCorrectObject) {
         Socket client_socket("localhost", "9999");
 
         player_command_t command = static_cast<player_command_t>(PlayerCommandType::DEFUSE_BOMB);
-        client_socket.sendall(reinterpret_cast<char*>(&command), sizeof(command));
+        client_socket.sendall(&command, sizeof(player_command_t));
     });
 
     Socket server_client = server_socket.accept();
@@ -358,9 +362,9 @@ TEST(ServerProtocolTest, ReadEquipReturnCorrectObject) {
         Socket client_socket("localhost", "9999");
 
         player_command_t command = static_cast<player_command_t>(PlayerCommandType::EQUIP);
-        client_socket.sendall(reinterpret_cast<char*>(&command), sizeof(command));
+        client_socket.sendall(&command, sizeof(player_command_t));
         equip_type_t equip_type = static_cast<equip_type_t>(EquipType::ROLL_DOWN);
-        client_socket.sendall(reinterpret_cast<char*>(&equip_type), sizeof(equip_type));
+        client_socket.sendall(&equip_type, sizeof(equip_type_t));
     });
 
     Socket server_client = server_socket.accept();

@@ -1,5 +1,6 @@
 #ifndef GAME_PHYSICS_H_
 #define GAME_PHYSICS_H_
+#include <cmath>
 #include <utility>
 //  "Copyright 2025 Yaco Santamarina"
 class Vector2 {
@@ -9,12 +10,13 @@ public:
     Vector2(float _x, float _y): x(_x), y(_y) {}
     Vector2(Vector2&& other) = default;
     Vector2(const Vector2&) = default;
-    Vector2 operator+(const Vector2& other);
+    Vector2 operator+(const Vector2& other) const;
     Vector2& operator+=(const Vector2& other);
-    Vector2 operator-(const Vector2& other);
+    Vector2 operator-(const Vector2& other) const;
     Vector2& operator-=(const Vector2& other);
     Vector2& operator=(Vector2&& other) = default;
     Vector2& operator=(const Vector2&) = default;
+    Vector2& normalize();
 };
 
 class Rectangle {

@@ -1,12 +1,13 @@
 #include "FireableWeapon.h"
-
-void FireableWeapon::fire() {  // Quiza deberia ser un WHILE! total, es algo q es por tiempo!
+void FireableWeapon::fire(
+        Vector2& position,
+        Vector2& direction) {  // Quiza deberia ser un WHILE! total, es algo q es por tiempo!
     if (current_bullets > 0) {
         int bullets_fired = std::min(current_bullets, fire_rate);
         current_bullets -= bullets_fired;
-        std::cout << "Disparadas: " << bullets_fired
-                  << " balas. Balas restantes en cargador: " << current_bullets << std::endl;
         // Instanciar balas por tiempo y demas
+        // Por ahora laburo con solo una bala
+        // map.add_bullet(Bullet(position, direction, 0.5f,))
     } else {
         std::cout << "No pudiste disparar balas \n";
     }

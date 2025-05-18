@@ -1,9 +1,26 @@
 target_sources(CS2D_client
     PRIVATE
-    # .cpp files
-    main.cpp
+
+    client.cpp
+    clientMain.cpp
+    controller.cpp
+    clientMain.cpp
+    lobbyView.cpp
+    gameView.cpp
+    mapView.cpp
+    playerView.cpp
+    scoreboard.cpp
+
     PUBLIC
-    # .h files
+    gameView.cpp
+    gameView.h
+    lobbyView.h
+    mapView.h
+    playerView.h
+    scoreboard.h
+    client.h
+    controller.h
+    lobbyView.h
     )
 
 add_subdirectory(model/)

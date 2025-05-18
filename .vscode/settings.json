@@ -1,16 +1,26 @@
 {
+
+    "C_Cpp.errorSquiggles": "disabled",
+    "editor.quickSuggestions": {
+        "comments": "on",
+        "strings": "on"
+    },
     "files.associations": {
-        "thread": "cpp",
-        "any": "cpp",
+        "algorithm": "cpp",
+        "format": "cpp",
+        "ostream": "cpp",
+
         "array": "cpp",
         "atomic": "cpp",
         "bit": "cpp",
         "cctype": "cpp",
-        "chrono": "cpp",
-        "cinttypes": "cpp",
+
+        "charconv": "cpp",
         "clocale": "cpp",
         "cmath": "cpp",
-        "condition_variable": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp",
+
         "cstdarg": "cpp",
         "cstddef": "cpp",
         "cstdint": "cpp",
@@ -21,15 +31,13 @@
         "cwchar": "cpp",
         "cwctype": "cpp",
         "deque": "cpp",
-        "forward_list": "cpp",
-        "list": "cpp",
+
         "map": "cpp",
-        "set": "cpp",
+        "string": "cpp",
         "unordered_map": "cpp",
-        "unordered_set": "cpp",
         "vector": "cpp",
         "exception": "cpp",
-        "algorithm": "cpp",
+
         "functional": "cpp",
         "iterator": "cpp",
         "memory": "cpp",
@@ -38,27 +46,35 @@
         "optional": "cpp",
         "random": "cpp",
         "ratio": "cpp",
-        "string": "cpp",
+
+
         "string_view": "cpp",
         "system_error": "cpp",
         "tuple": "cpp",
         "type_traits": "cpp",
         "utility": "cpp",
-        "fstream": "cpp",
+
+
         "initializer_list": "cpp",
         "iomanip": "cpp",
         "iosfwd": "cpp",
         "iostream": "cpp",
         "istream": "cpp",
         "limits": "cpp",
-        "mutex": "cpp",
+
         "new": "cpp",
-        "ostream": "cpp",
+        "numbers": "cpp",
+        "semaphore": "cpp",
+        "span": "cpp",
         "sstream": "cpp",
         "stdexcept": "cpp",
+        "stop_token": "cpp",
         "streambuf": "cpp",
-        "cfenv": "cpp",
+        "text_encoding": "cpp",
+        "thread": "cpp",
         "typeinfo": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "fstream": "cpp"
+
     }
 }

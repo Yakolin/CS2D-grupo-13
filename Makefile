@@ -6,10 +6,12 @@ compile-debug:
 	cmake --build  build/ $(EXTRA_COMPILE)
 
 run-tests: compile-debug
+
 	./build/CS2D_tests
 
 valgrind-debug: compile-debug
 	valgrind ./build/CS2D_tests
+
 
 all: clean valgrind-debug
 

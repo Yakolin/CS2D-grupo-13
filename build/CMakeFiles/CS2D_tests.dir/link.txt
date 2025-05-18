@@ -1,0 +1,1 @@
+/usr/bin/c++ -g -o CS2D_tests  -Wl,-rpath,"/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/lib" libCS2D_common.a lib/libgtest_main.so.1.12.1 /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.15.13 lib/libgtest.so.1.12.1 /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.15.13 /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.13 

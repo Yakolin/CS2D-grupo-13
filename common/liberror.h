@@ -9,7 +9,9 @@
  * de decodificar el `errno` en un mensaje más entendible.
  * */
 
+
 class LibError: public std::exception {
+
     char msg_error[256];
 
 public:
@@ -27,11 +29,16 @@ public:
      * if (ret == -1)
      *      throw LibError(errno, "The function %s has failed: ", "foo");
      *  */
+
+
     LibError(int error_code, const char* fmt, ...) noexcept;
 
     virtual const char* what() const noexcept override;
 
+
     virtual ~LibError();
 };
 
+
 #endif
+

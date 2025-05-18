@@ -34,5 +34,7 @@ bool Vector2::operator==(const Vector2& other) const {
 /* RECTANGLE */
 
 bool Rectangle::is_in(const Vector2& position) {
-    return point_min.x <= position.x <= point_max.x && point_min.y <= position.x <= point_max.y;
+    bool x_in = point_min.x <= position.x && position.x <= point_max.x;
+    bool y_in = point_min.y <= position.y && position.y <= point_max.y;
+    return x_in && y_in;
 }

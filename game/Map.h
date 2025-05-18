@@ -19,8 +19,6 @@ private:
     std::map<player_id_t, std::shared_ptr<Player>>& players;
     std::string map_name;
     // std::vector<Wall> walls;
-    Rectangle bomb_A;
-    Rectangle bomb_B;
     // Rectangle spawn_CT;
     // Rectangle spawn_TT;
     std::vector<std::unique_ptr<Weapon>> dropped_weapons;
@@ -32,12 +30,15 @@ private:
     void update_bullets_in_air();
 
 public:
+    Rectangle bomb_A;
+    Rectangle bomb_B;
     explicit Map(const std::string& _map_name,
                  std::map<player_id_t, std::shared_ptr<Player>>& players):
             players(players),
             map_name(_map_name),
-            bomb_A(1, 1, Vector2(1, 1)),
+            bomb_A(1, 1, Vector2(6, 6)),
             bomb_B(1, 1, Vector2(7, 8)) {}
+
     void update_map_state();
     void add_bullet(Bullet& bullet) { bullets_in_air.push_back(std::move(bullet)); }
     void add_weapon(std::unique_ptr<Weapon>& weapon) {

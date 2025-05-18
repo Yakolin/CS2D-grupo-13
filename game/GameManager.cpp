@@ -9,13 +9,13 @@ using std::shared_ptr;
 using std::string;
 
 void GameManager::add_player(string&& _nick_name, int id) {
-    bool is_ct = (players.size() % 2 == 0) ? false : true;
+    bool is_ct = ((players.size() + 1) % 2 == 0) ? false : true;
     shared_ptr<Player> player;
     Vector2 position(0, 0);
     if (is_ct)
         player = std::make_shared<CounterTerrorist>(id, std::move(_nick_name), std::move(position));
     else
-        player = std::make_shared<CounterTerrorist>(id, std::move(_nick_name), std::move(position));
+        player = std::make_shared<Terrorist>(id, std::move(_nick_name), std::move(position));
     players.insert(make_pair(id, player));
 }
 
@@ -95,4 +95,13 @@ void GameManager::reload(uint16_t player_id) {
         shared_ptr<Player> player = find_player(player_id);
         player.reload_current_weapon();
     */
+}
+void GameManager::plant_bomb(uint16_t player_id) {
+    shared_ptr<Player> player = find_player(player_id);
+    if (map_game.bomb_A.is_in(player->position) || map_game.bomb_B.is_in(player->position)) {
+        std::cout << "El jugador SI esta en una zona de bomba\n";
+        player->plant_bomb();
+    } else {
+        std::cout << "El jugador NO esta en ninguna zona de bomba\n";
+    }
 }

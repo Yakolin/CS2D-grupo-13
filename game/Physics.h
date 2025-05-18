@@ -30,6 +30,6 @@ public:
     Rectangle(float width, float height, Vector2& point):
             point_min(std::move(point)),
             point_max(std::move(Vector2(point.x + width, point.y + height))) {}
-    bool is_in(Vector2& position);
+    bool is_in(const Vector2& position);
 };
 #endif  //  GAME_PHYSICS_H_

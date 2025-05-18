@@ -47,6 +47,7 @@ public:
 
     std::unique_ptr<Server::Equip> read_equip(player_id_t player_id);
 
+    void send_list_games(std::vector<std::string>& list_games);
     void send_player_id(player_id_t& player_id);
 
     void send_game_image(GameImage& game_image);

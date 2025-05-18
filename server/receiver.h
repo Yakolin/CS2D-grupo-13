@@ -9,8 +9,8 @@
 #include "common/thread.h"
 
 #include "client_action.h"
+#include "functor_parse_client_action.h"
 #include "protocol.h"
-
 
 class Receiver: public Thread {
 protected:

@@ -42,6 +42,33 @@ public:
     virtual void action(InterfaceGame& game) = 0;
 };
 
+class InterfaceSenderLobby {
+public:
+    InterfaceSenderLobby() = default;
+    virtual ~InterfaceSenderLobby() = default;
+    virtual void send(ServerProtocol& protocol) = 0;
+};
+
+class SendListGames: public InterfaceSenderLobby {
+private:
+    std::vector<std::string>& list_games;
+
+public:
+    SendListGames(std::vector<std::string>& list_games);
+    ~SendListGames();
+    void send(ServerProtocol& protocol) override;
+};
+
+class SendHandshake: public InterfaceSenderLobby {
+private:
+    player_id_t& player_id;
+
+public:
+    SendHandshake(player_id_t& player_id);
+    ~SendHandshake();
+    void send(ServerProtocol& protocol) override;
+};
+
 namespace Server {
 
 
@@ -79,7 +106,6 @@ public:
     ~ListGames();
     void action(InterfaceGamesMonitor& monitor) override;
 };
-
 
 /*
         MOVEMENT ACTIONS

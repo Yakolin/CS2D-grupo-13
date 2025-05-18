@@ -4,6 +4,7 @@
 
 using lobby_command_t = std::uint8_t;
 using length_name_t = std::uint16_t;
+using length_games_list_t = std::uint16_t;
 
 enum class HandshakeType { HANDSHAKE };
 

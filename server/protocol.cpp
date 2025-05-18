@@ -22,12 +22,12 @@ void ServerProtocol::read_byte_data(uint8_t& data) {
 }
 
 void ServerProtocol::read_two_byte_data(uint16_t& data) {
-    uint16_t dataReaded;
-    this->socket.recvall(&dataReaded, sizeof(uint16_t));
+    uint16_t data_readed;
+    this->socket.recvall(&data_readed, sizeof(uint16_t));
     if (this->socket.is_stream_recv_closed()) {
         throw ConnectionClosedException("El cliente cerró la conexión");
     }
-    data = ntohs(dataReaded);
+    data = ntohs(data_readed);
 }
 
 const std::string ServerProtocol::read_game_name() {
@@ -116,6 +116,21 @@ void ServerProtocol::send_two_byte_data(uint16_t& data) {
     this->socket.sendall(&data_to_send, sizeof(uint16_t));
     if (this->socket.is_stream_send_closed()) {
         throw ConnectionClosedException("Error al intentar enviar datos al cliente");
+    }
+}
+
+void ServerProtocol::send_list_games(std::vector<std::string>& list_games) {
+    length_games_list_t list_size = list_games.size();
+    this->send_two_byte_data(list_size);
+
+    for (const std::string& game_name: list_games) {
+        length_name_t name_length = game_name.size();
+        this->send_two_byte_data(name_length);
+
+        this->socket.sendall(game_name.data(), name_length);
+        if (this->socket.is_stream_send_closed()) {
+            throw ConnectionClosedException("Error al intentar enviar datos al cliente");
+        }
     }
 }
 

@@ -13,6 +13,22 @@ using Server::PlantBomb;
 using Server::Reload;
 using Server::Shoot;
 
+
+SendListGames::SendListGames(std::vector<std::string>& list_games):
+        list_games(list_games), InterfaceSenderLobby() {}
+
+SendListGames::~SendListGames() {}
+
+void SendListGames::send(ServerProtocol& protocol) { protocol.send_list_games(this->list_games); }
+
+
+SendHandshake::SendHandshake(const player_id_t& player_id):
+        player_id(player_id), InterfaceSenderLobby() {}
+
+SendHandshake::~SendHandshake() {}
+
+void SendHandshake::send(ServerProtocol& protocol) { protocol.send_player_id(this->player_id); }
+
 /*
     CREATE GAME
 */

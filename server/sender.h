@@ -1,25 +1,27 @@
 #ifndef SENDER_H
 #define SENDER_H
 
+#include "common/game_image.h"
+#include "common/queue.h"
 #include "common/socket.h"
 #include "common/thread.h"
-#include "protocol.h"
-#include "common/queue.h"
-#include "common/game_image.h"
 
-class Sender : public Thread
-{
+#include "protocol.h"
+
+class Sender: public Thread {
 private:
     ServerProtocol protocol;
     Queue<GameImage> send_queue;
     bool closed;
 
 public:
-    explicit Sender(Socket &socket);
-    ~Sender();
-    void send(GameImage &game_image);
-    void run() override;
-    void stop() override;
+    explicit Sender(Socket& socket);
+    virtual ~Sender();
 };
 
-#endif // H
+class LobbySender: public Sender {
+private:
+    Queue <
+}
+
+#endif  // H

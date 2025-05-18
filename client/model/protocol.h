@@ -1,6 +1,8 @@
 #ifndef PROTOCOL_H
 #define PROTOCOL_H
 
+#include <arpa/inet.h>
+
 #include "../../common/connection_closed_exception.h"
 #include "../../common/game_image.h"
 #include "../../common/lobby_types.h"
@@ -15,6 +17,8 @@ private:
     void read_two_byte_data(uint16_t& data);
     void read_player_image(GameImage& game_image);
 
+    void send_byte_data(uint8_t& data);
+    void send_two_byte_data(uint16_t& data);
 
 public:
     ClientProtocol(Socket& socket);

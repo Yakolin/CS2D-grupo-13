@@ -4,26 +4,65 @@ ClientProtocol::ClientProtocol(Socket& socket): socket(socket) {}
 
 ClientProtocol::~ClientProtocol() {}
 
+void ClientProtocol::send_byte_data(uint8_t& data) {
+    this->socket.sendall(&data, sizeof(uint8_t));
+    if (this->socket.is_stream_send_closed()) {
+        throw ConnectionClosedException("Error al intentar enviar datos al cliente");
+    }
+}
+
+void ClientProtocol::send_two_byte_data(uint16_t& data) {
+    uint16_t data_to_send = htons(data);
+    this->socket.sendall(&data_to_send, sizeof(uint16_t));
+    if (this->socket.is_stream_send_closed()) {
+        throw ConnectionClosedException("Error al intentar enviar datos al cliente");
+    }
+}
+
 void ClientProtocol::send_lobby_command(LobbyCommandType command) {
-    socket.sendall(reinterpret_cast<char*>(&command), sizeof(command));
+    uint8_t command_byte = static_cast<uint8_t>(command);
+    this->send_byte_data(command_byte);
 }
 
 void ClientProtocol::send_player_command(PlayerCommandType command) {
-    socket.sendall(reinterpret_cast<char*>(&command), sizeof(command));
+    uint8_t command_byte = static_cast<uint8_t>(command);
+    this->send_byte_data(command_byte);
 }
 
 void ClientProtocol::send_create_game(const std::string& game_name) {
-    socket.sendall(reinterpret_cast<const char*>(&game_name), sizeof(game_name));
+    uint8_t header = static_cast<uint8_t>(LobbyCommandType::CREATE_GAME);
+    this->send_byte_data(header);
+
+    uint16_t length = static_cast<uint16_t>(game_name.size());
+    this->send_two_byte_data(length);
+    this->socket.sendall(game_name.c_str(), game_name.size());
+    if (this->socket.is_stream_send_closed()) {
+        throw ConnectionClosedException("Error al intentar enviar datos al servidor");
+    }
 }
 
 void ClientProtocol::send_join_game(const std::string& game_name) {
-    socket.sendall(reinterpret_cast<const char*>(&game_name), sizeof(game_name));
+    uint8_t header = static_cast<uint8_t>(LobbyCommandType::JOIN_GAME);
+    this->send_byte_data(header);
+
+    uint16_t length = static_cast<uint16_t>(game_name.size());
+    this->send_two_byte_data(length);
+    this->socket.sendall(game_name.c_str(), game_name.size());
+    if (this->socket.is_stream_send_closed()) {
+        throw ConnectionClosedException("Error al intentar enviar datos del servidor");
+    }
 }
 
-void ClientProtocol::send_list_games() {}
+void ClientProtocol::send_list_games() {
+    uint8_t header = static_cast<uint8_t>(LobbyCommandType::LIST_GAMES);
+    this->send_byte_data(header);
+}
 
 void ClientProtocol::send_move(MoveType move_type) {
-    socket.sendall(reinterpret_cast<const char*>(&move_type), sizeof(move_type));
+    uint8_t move_command = static_cast<uint8_t>(PlayerCommandType::MOVE);
+    uint8_t move_type_byte = static_cast<uint8_t>(move_type);
+    this->send_byte_data(move_command);
+    this->send_byte_data(move_type_byte);
 }
 
 void ClientProtocol::send_buy_weapon(WeaponCode weapon_code) {
@@ -70,6 +109,7 @@ void ClientProtocol::read_two_byte_data(uint16_t& data) {
 
 
 void ClientProtocol::read_player_image(GameImage& game_image) {
+
     length_players_images_t length_players_images;
     this->read_two_byte_data(length_players_images);
     for (auto i = 0; i < length_players_images; ++i) {

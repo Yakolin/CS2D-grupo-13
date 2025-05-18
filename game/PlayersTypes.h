@@ -10,19 +10,19 @@
 */
 class CounterTerrorist: public Player {
 public:
-    CounterTerrorist(std::string&& _nick_name, Vector2&& _position):
-            Player(std::move(_nick_name), std::move(_position)) {}
+    CounterTerrorist(player_id_t id, std::string&& _nick_name, Vector2&& _position):
+            Player(id, std::move(_nick_name), std::move(_position)) {}
     ~CounterTerrorist() = default;
-    virtual PlayerImage get_player_image(player_id_t player_id) override;
+    virtual PlayerImage get_player_image() override;
 };
 class Terrorist: public Player {
 private:
     // Weapon Bomb
 public:
-    Terrorist(std::string&& _nick_name, Vector2&& _position):
-            Player(std::move(_nick_name), std::move(_position)) {}
+    Terrorist(player_id_t id, std::string&& _nick_name, Vector2&& _position):
+            Player(id, std::move(_nick_name), std::move(_position)) {}
     ~Terrorist() = default;
-    virtual PlayerImage get_player_image(player_id_t player_id) override;
+    virtual PlayerImage get_player_image() override;
 };
 
 #endif  // !PLAYER_TYPES_H

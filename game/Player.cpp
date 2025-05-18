@@ -2,11 +2,13 @@
 //  "Copyright 2025 Yaco Santamarina"
 void Player::move(Vector2&& direction) { position += direction; }
 
-void Player::fire_weapon_equiped(const Vector2& mouse_pointer) {
+void Player::fire_weapon_equiped(Map& map, const Vector2& mouse_pointer) {
     Vector2 direction = mouse_pointer - position;
     direction.normalize();
-    equipement.current_weapon->fire(position, direction);
+    // Esto deberia de ser en realidad current weapon pero no se como hacerlo
+    if (equipement.secondary)
+        equipement.secondary->fire(map, id, position, direction);
+    // Exception)?
 }
-
 void Player::get_damage(float damage) { health -= damage; }
 // void Player::change_weapon_equiped() {}

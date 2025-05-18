@@ -35,13 +35,16 @@ private:
     std::vector<std::unique_ptr<Weapon>> dropped_weapons;
     std::vector<Bullet> bullets_in_air;
 
+
+    /* Collisions */
+    void check_bullets_collisions();
     void check_collisions();
     void update_bullets_in_air();
 
 public:
     explicit Map(const std::string& _map_name,
                  std::map<player_id_t, std::shared_ptr<Player>>& players):
-            map_name(_map_name), players(players) {}
+            players(players), map_name(_map_name) {}
     void update_map_state();
     void add_bullet(Bullet& bullet) { bullets_in_air.push_back(std::move(bullet)); }
     void add_weapon(std::unique_ptr<Weapon>& weapon) {

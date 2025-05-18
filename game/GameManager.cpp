@@ -13,9 +13,9 @@ void GameManager::add_player(string&& _nick_name, int id) {
     shared_ptr<Player> player;
     Vector2 position(0, 0);
     if (is_ct)
-        player = std::make_shared<CounterTerrorist>(std::move(_nick_name), std::move(position));
+        player = std::make_shared<CounterTerrorist>(id, std::move(_nick_name), std::move(position));
     else
-        player = std::make_shared<CounterTerrorist>(std::move(_nick_name), std::move(position));
+        player = std::make_shared<CounterTerrorist>(id, std::move(_nick_name), std::move(position));
     players.insert(make_pair(id, player));
 }
 
@@ -23,9 +23,9 @@ void GameManager::add_player(string&& _nick_name, int id) {
 GameImage GameManager::generate_game_image() {
     GameImage game_image;
     // Aca posiblemente deba de tambien pedirle al mapa que me de su imagen
-    for (auto& par: players) {
+    for (const auto& par: players) {
         shared_ptr<Player> player = par.second;
-        game_image.players_images.push_back(std::move(player->get_player_image(par.first)));
+        game_image.players_images.push_back(std::move(player->get_player_image()));
     }
     return game_image;
 }
@@ -47,6 +47,7 @@ GameImage GameManager::get_frame() {
         2. Chekear colisiones que no sean propias del jugador (colisiones de bala por ejemplo)
         3. Manejar esas colisiones como balas chocando, etc
     */
+    map_game.update_map_state();
 
     return generate_game_image();
 }
@@ -64,6 +65,7 @@ shared_ptr<Player> GameManager::find_player(player_id_t player_id) {
 }
 
 /* InterfaceGameManager */
+
 void GameManager::move(uint16_t player_id, MoveType move_type) {
     shared_ptr<Player> player = find_player(player_id);
     switch (move_type) {
@@ -82,6 +84,11 @@ void GameManager::move(uint16_t player_id, MoveType move_type) {
         default:
             throw GameException("MoveType corrupted");
     }
+}
+
+void GameManager::shoot(uint16_t player_id, float mouse_x, float mouse_y) {
+    shared_ptr<Player> player = find_player(player_id);
+    player->fire_weapon_equiped(map_game, Vector2(mouse_x, mouse_y));
 }
 void GameManager::reload(uint16_t player_id) {
     /*

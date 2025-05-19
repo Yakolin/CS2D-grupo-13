@@ -1249,6 +1249,30 @@ client/scoreboard.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/client/scoreboard.cpp.s
 .PHONY : client/scoreboard.cpp.s
 
+client/vista.o: client/vista.cpp.o
+.PHONY : client/vista.o
+
+# target to build an object file
+client/vista.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/client/vista.cpp.o
+.PHONY : client/vista.cpp.o
+
+client/vista.i: client/vista.cpp.i
+.PHONY : client/vista.i
+
+# target to preprocess a source file
+client/vista.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/client/vista.cpp.i
+.PHONY : client/vista.cpp.i
+
+client/vista.s: client/vista.cpp.s
+.PHONY : client/vista.s
+
+# target to generate assembly for a file
+client/vista.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/client/vista.cpp.s
+.PHONY : client/vista.cpp.s
+
 common/liberror.o: common/liberror.cpp.o
 .PHONY : common/liberror.o
 
@@ -1590,6 +1614,9 @@ help:
 	@echo "... client/scoreboard.o"
 	@echo "... client/scoreboard.i"
 	@echo "... client/scoreboard.s"
+	@echo "... client/vista.o"
+	@echo "... client/vista.i"
+	@echo "... client/vista.s"
 	@echo "... common/liberror.o"
 	@echo "... common/liberror.i"
 	@echo "... common/liberror.s"

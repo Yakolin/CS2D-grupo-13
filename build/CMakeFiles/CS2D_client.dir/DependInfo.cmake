@@ -24,6 +24,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/client/model/sender.cpp" "CMakeFiles/CS2D_client.dir/client/model/sender.cpp.o" "gcc" "CMakeFiles/CS2D_client.dir/client/model/sender.cpp.o.d"
   "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/client/playerView.cpp" "CMakeFiles/CS2D_client.dir/client/playerView.cpp.o" "gcc" "CMakeFiles/CS2D_client.dir/client/playerView.cpp.o.d"
   "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/client/scoreboard.cpp" "CMakeFiles/CS2D_client.dir/client/scoreboard.cpp.o" "gcc" "CMakeFiles/CS2D_client.dir/client/scoreboard.cpp.o.d"
+  "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/client/vista.cpp" "CMakeFiles/CS2D_client.dir/client/vista.cpp.o" "gcc" "CMakeFiles/CS2D_client.dir/client/vista.cpp.o.d"
   "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/common/socket.cpp" "CMakeFiles/CS2D_client.dir/common/socket.cpp.o" "gcc" "CMakeFiles/CS2D_client.dir/common/socket.cpp.o.d"
   )
 

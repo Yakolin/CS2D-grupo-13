@@ -32,6 +32,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/CS2D_client.dir/client/playerView.cpp.o.d"
   "CMakeFiles/CS2D_client.dir/client/scoreboard.cpp.o"
   "CMakeFiles/CS2D_client.dir/client/scoreboard.cpp.o.d"
+  "CMakeFiles/CS2D_client.dir/client/vista.cpp.o"
+  "CMakeFiles/CS2D_client.dir/client/vista.cpp.o.d"
   "CMakeFiles/CS2D_client.dir/common/socket.cpp.o"
   "CMakeFiles/CS2D_client.dir/common/socket.cpp.o.d"
   "CS2D_client"

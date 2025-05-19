@@ -11,6 +11,7 @@ target_sources(CS2D_client
     scoreboard.cpp
     manageTexture.cpp
     menuView.cpp
+    vista.cpp
     PUBLIC
     
     gameView.h
@@ -25,6 +26,7 @@ target_sources(CS2D_client
     menuView.h
     renderizable.h
     tipos.h
+    vista.h
 
     )
 

@@ -230,10 +230,24 @@ CMakeFiles/CS2D_client.dir/client/menuView.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CS2D_client.dir/client/menuView.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/client/menuView.cpp" -o CMakeFiles/CS2D_client.dir/client/menuView.cpp.s
 
+CMakeFiles/CS2D_client.dir/client/vista.cpp.o: CMakeFiles/CS2D_client.dir/flags.make
+CMakeFiles/CS2D_client.dir/client/vista.cpp.o: /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/client/vista.cpp
+CMakeFiles/CS2D_client.dir/client/vista.cpp.o: CMakeFiles/CS2D_client.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/CS2D_client.dir/client/vista.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CS2D_client.dir/client/vista.cpp.o -MF CMakeFiles/CS2D_client.dir/client/vista.cpp.o.d -o CMakeFiles/CS2D_client.dir/client/vista.cpp.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/client/vista.cpp"
+
+CMakeFiles/CS2D_client.dir/client/vista.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CS2D_client.dir/client/vista.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/client/vista.cpp" > CMakeFiles/CS2D_client.dir/client/vista.cpp.i
+
+CMakeFiles/CS2D_client.dir/client/vista.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CS2D_client.dir/client/vista.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/client/vista.cpp" -o CMakeFiles/CS2D_client.dir/client/vista.cpp.s
+
 CMakeFiles/CS2D_client.dir/common/socket.cpp.o: CMakeFiles/CS2D_client.dir/flags.make
 CMakeFiles/CS2D_client.dir/common/socket.cpp.o: /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/common/socket.cpp
 CMakeFiles/CS2D_client.dir/common/socket.cpp.o: CMakeFiles/CS2D_client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/CS2D_client.dir/common/socket.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/CS2D_client.dir/common/socket.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CS2D_client.dir/common/socket.cpp.o -MF CMakeFiles/CS2D_client.dir/common/socket.cpp.o.d -o CMakeFiles/CS2D_client.dir/common/socket.cpp.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/common/socket.cpp"
 
 CMakeFiles/CS2D_client.dir/common/socket.cpp.i: cmake_force
@@ -247,7 +261,7 @@ CMakeFiles/CS2D_client.dir/common/socket.cpp.s: cmake_force
 CMakeFiles/CS2D_client.dir/client/model/protocol.cpp.o: CMakeFiles/CS2D_client.dir/flags.make
 CMakeFiles/CS2D_client.dir/client/model/protocol.cpp.o: /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/client/model/protocol.cpp
 CMakeFiles/CS2D_client.dir/client/model/protocol.cpp.o: CMakeFiles/CS2D_client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/CS2D_client.dir/client/model/protocol.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/CS2D_client.dir/client/model/protocol.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CS2D_client.dir/client/model/protocol.cpp.o -MF CMakeFiles/CS2D_client.dir/client/model/protocol.cpp.o.d -o CMakeFiles/CS2D_client.dir/client/model/protocol.cpp.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/client/model/protocol.cpp"
 
 CMakeFiles/CS2D_client.dir/client/model/protocol.cpp.i: cmake_force
@@ -261,7 +275,7 @@ CMakeFiles/CS2D_client.dir/client/model/protocol.cpp.s: cmake_force
 CMakeFiles/CS2D_client.dir/client/model/receiver.cpp.o: CMakeFiles/CS2D_client.dir/flags.make
 CMakeFiles/CS2D_client.dir/client/model/receiver.cpp.o: /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/client/model/receiver.cpp
 CMakeFiles/CS2D_client.dir/client/model/receiver.cpp.o: CMakeFiles/CS2D_client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/CS2D_client.dir/client/model/receiver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/CS2D_client.dir/client/model/receiver.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CS2D_client.dir/client/model/receiver.cpp.o -MF CMakeFiles/CS2D_client.dir/client/model/receiver.cpp.o.d -o CMakeFiles/CS2D_client.dir/client/model/receiver.cpp.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/client/model/receiver.cpp"
 
 CMakeFiles/CS2D_client.dir/client/model/receiver.cpp.i: cmake_force
@@ -275,7 +289,7 @@ CMakeFiles/CS2D_client.dir/client/model/receiver.cpp.s: cmake_force
 CMakeFiles/CS2D_client.dir/client/model/sender.cpp.o: CMakeFiles/CS2D_client.dir/flags.make
 CMakeFiles/CS2D_client.dir/client/model/sender.cpp.o: /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/client/model/sender.cpp
 CMakeFiles/CS2D_client.dir/client/model/sender.cpp.o: CMakeFiles/CS2D_client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/CS2D_client.dir/client/model/sender.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/CS2D_client.dir/client/model/sender.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CS2D_client.dir/client/model/sender.cpp.o -MF CMakeFiles/CS2D_client.dir/client/model/sender.cpp.o.d -o CMakeFiles/CS2D_client.dir/client/model/sender.cpp.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/client/model/sender.cpp"
 
 CMakeFiles/CS2D_client.dir/client/model/sender.cpp.i: cmake_force
@@ -289,7 +303,7 @@ CMakeFiles/CS2D_client.dir/client/model/sender.cpp.s: cmake_force
 CMakeFiles/CS2D_client.dir/client/model/client_action.cpp.o: CMakeFiles/CS2D_client.dir/flags.make
 CMakeFiles/CS2D_client.dir/client/model/client_action.cpp.o: /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/client/model/client_action.cpp
 CMakeFiles/CS2D_client.dir/client/model/client_action.cpp.o: CMakeFiles/CS2D_client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/CS2D_client.dir/client/model/client_action.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/CS2D_client.dir/client/model/client_action.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CS2D_client.dir/client/model/client_action.cpp.o -MF CMakeFiles/CS2D_client.dir/client/model/client_action.cpp.o.d -o CMakeFiles/CS2D_client.dir/client/model/client_action.cpp.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/client/model/client_action.cpp"
 
 CMakeFiles/CS2D_client.dir/client/model/client_action.cpp.i: cmake_force
@@ -313,6 +327,7 @@ CS2D_client_OBJECTS = \
 "CMakeFiles/CS2D_client.dir/client/scoreboard.cpp.o" \
 "CMakeFiles/CS2D_client.dir/client/manageTexture.cpp.o" \
 "CMakeFiles/CS2D_client.dir/client/menuView.cpp.o" \
+"CMakeFiles/CS2D_client.dir/client/vista.cpp.o" \
 "CMakeFiles/CS2D_client.dir/common/socket.cpp.o" \
 "CMakeFiles/CS2D_client.dir/client/model/protocol.cpp.o" \
 "CMakeFiles/CS2D_client.dir/client/model/receiver.cpp.o" \
@@ -333,6 +348,7 @@ CS2D_client: CMakeFiles/CS2D_client.dir/client/playerView.cpp.o
 CS2D_client: CMakeFiles/CS2D_client.dir/client/scoreboard.cpp.o
 CS2D_client: CMakeFiles/CS2D_client.dir/client/manageTexture.cpp.o
 CS2D_client: CMakeFiles/CS2D_client.dir/client/menuView.cpp.o
+CS2D_client: CMakeFiles/CS2D_client.dir/client/vista.cpp.o
 CS2D_client: CMakeFiles/CS2D_client.dir/common/socket.cpp.o
 CS2D_client: CMakeFiles/CS2D_client.dir/client/model/protocol.cpp.o
 CS2D_client: CMakeFiles/CS2D_client.dir/client/model/receiver.cpp.o
@@ -348,7 +364,7 @@ CS2D_client: /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.15.13
 CS2D_client: /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.13
 CS2D_client: _deps/sdl2-build/libSDL2-2.0d.so.0.3000.8
 CS2D_client: CMakeFiles/CS2D_client.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_18) "Linking CXX executable CS2D_client"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_19) "Linking CXX executable CS2D_client"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/CS2D_client.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

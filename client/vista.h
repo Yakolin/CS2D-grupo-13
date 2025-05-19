@@ -23,7 +23,7 @@ public:
 
     explicit Vista(int& argc,  char *argv[]);
     void run();
-
+    ~Vista();
 };
 
 #endif // VISTA_H

@@ -19,6 +19,7 @@ MOC_OBJ = moc_lobbyView.o
 # Ejecutable final
 TARGET = sdl
 
+
 # Flags compilación
 CXXFLAGS = \
     -fPIC \
@@ -35,6 +36,8 @@ LDFLAGS = \
 
 # Regla principal
 all: $(TARGET)
+
+
 
 # Linkeo
 $(TARGET): $(OBJ) $(MOC_OBJ)
@@ -55,3 +58,7 @@ $(MOC_OBJ): $(MOC_CPP)
 # Limpiar
 clean:
 	rm -f $(TARGET) $(OBJ) $(MOC_OBJ) $(MOC_CPP)
+
+# Ejecutar desde la raíz del proyecto
+run:
+	cd .. && ./client/sdl

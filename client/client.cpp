@@ -1,17 +1,12 @@
 #include  "client.h"
 
 Client::Client( int& argc,  char *argv[]) : 
-    controller(argc, argv)
-    //protocolo() 
+    vista(argc, argv)
     {}
 
 int Client::run() {
-    #include <unistd.h>
-#include <iostream>
-    char cwd[1024];
-    getcwd(cwd, sizeof(cwd));
-    std::cout << "Working directory: " << cwd << std::endl;
-    controller.run();
+    
+    vista.run();
 
     return 0;
 }

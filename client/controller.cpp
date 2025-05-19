@@ -1,22 +1,39 @@
 #include "controller.h"
+#include <SDL.h>
 
 
-Controller::Controller(int& argc,  char *argv[]) : 
-            gameView(500,500), 
-            app(argc,argv), 
-            seleccion(GameMenu::NONE) 
-            {}
+Controller::Controller() = default;
 
+void Controller::sender_pos_mouse(int x, int y){
+    int tile_size = 32; // tamaño en pixeles de cada bloque del mapa
 
-
-void Controller::run() {
-    //MenuView menu;  //libpng warning: iCCP: known incorrect sRGB profile 
-    //GameMenu num = menu.run(); // no es un problema peor la imagen esta corrupta //todo editarla
-    //ScoreBoard table; // funciona
-    //table.show_scores_game(); // funciona //todo agregar actualizacion , dejar de harcodear
-//--------------------------------------------------------------------------------------------------
-    gameView.draw_game();
-    
-    //app.exec(); 
+    int col = x / tile_size; // columna en la matriz
+    int fil = y / tile_size; // fila en la matriz
+    ///... resto de codigo
 
 }
+
+void Controller::sender_mov_player(SDL_Keycode key) {
+    enum class Movement { UP, DOWN, LEFT, RIGHT, NONE };
+    Movement mov = Movement::NONE;
+
+    switch (key) {
+        case SDLK_w:
+            mov = Movement::UP;
+            break;
+        case SDLK_s:
+            mov = Movement::DOWN;
+            break;
+        case SDLK_a:
+            mov = Movement::LEFT;
+            break;
+        case SDLK_d:
+            mov = Movement::RIGHT;
+            break;
+        default:
+            mov = Movement::NONE;
+            break;
+    }
+}
+
+void Controller::run() {}

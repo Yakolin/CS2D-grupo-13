@@ -2,6 +2,7 @@
 #define GAME_VIEW_H
 #include "tipos.h"
 #include "manageTexture.h"
+#include "controller.h"
 #include "renderizable.h"
 #include "playerView.h"
 #include "mapView.h"
@@ -11,6 +12,7 @@
 class GameView {
 
 private:
+    Controller *controller;
     std::map<char, std::string> leyenda;
     std::map<char,Objet> ids;
     SDL_Window* ventana ;
@@ -36,7 +38,7 @@ private:
 
 
 public:
-    explicit GameView(const int& width_reseiver , const int& height_reseiver);
+    explicit GameView( Controller *controller, const int& width_reseiver , const int& height_reseiver);
 
     /*
     pre:  width y height deben ser mayores que 0.

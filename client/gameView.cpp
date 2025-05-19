@@ -1,7 +1,7 @@
 #include "gameView.h"
 
 
-#define MAPA_AZTECA  "../assets/pueblito_azteca.txt"
+#define MAPA_AZTECA  "assets/pueblito_azteca.txt"
 GameView::GameView(const int& width_reseiver , const int& height_reseiver):
     leyenda(),
     ids(),
@@ -14,11 +14,11 @@ GameView::GameView(const int& width_reseiver , const int& height_reseiver):
     width(width_reseiver),
     height(height_reseiver)
     {
-    leyenda['#'] = "../assets/gfx/backgrounds/nuke.png";
-    leyenda[' '] = "../assets/gfx/backgrounds/stone1.jpg";
-    leyenda['~'] = "../assets/gfx/backgrounds/water4.jpg";
-    leyenda['='] = "../assets/gfx/box.PNG";
-    leyenda['.'] = "../assets/gfx/backgrounds/gras1.jpg";
+    leyenda['#'] = "assets/gfx/backgrounds/nuke.png";
+    leyenda[' '] = "assets/gfx/backgrounds/stone1.jpg";
+    leyenda['~'] = "assets/gfx/backgrounds/water4.jpg";
+    leyenda['='] = "assets/gfx/box.PNG";
+    leyenda['.'] = "assets/gfx/backgrounds/gras1.jpg";
 
     ids['#'] = Objet::WALL;
     ids[' '] = Objet::STONE;
@@ -52,7 +52,7 @@ bool GameView::handle_events(const SDL_Event& evento){
 
 /*bool GameView::cargarTexturaFondo(SDL_Renderer* renderer) {
 
-    SDL_Surface* surface = SDL_LoadBMP("../assets/gfx/tiles/default_aztec.bmp"); // Carga la imagen BMP desde la ruta dada a una superficie
+    SDL_Surface* surface = SDL_LoadBMP("assets/gfx/tiles/default_aztec.bmp"); // Carga la imagen BMP desde la ruta dada a una superficie
     if (!surface) {
         std::cerr << "Error cargando imagen: " << SDL_GetError() << std::endl; 
         return false;
@@ -135,14 +135,14 @@ void GameView::draw_game(){
     }
     //------------------cargo texturas------------
     load_textures();
-    if(!manger_texture.load(Objet::PLAYER,"../assets/gfx/terrorist/t1_1.png", renderer)){
+    if(!manger_texture.load(Objet::PLAYER,"assets/gfx/terrorist/t1_1.png", renderer)){
         std::cerr << "Error: No se pudo cargar la textura del jugador." << std::endl;
     }
     //--------------inicializo clases----------------
     const float speed = 2.5f;
     float x = 5;
     float y = 5;
-    PlayerView player(x,y,"../assets/gfx/terrorist/t1_1.png",speed,&camera, &manger_texture);
+    PlayerView player(x,y,"assets/gfx/terrorist/t1_1.png",speed,&camera, &manger_texture);
     add_player(player);
 
     //------------juego----------------------------

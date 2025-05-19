@@ -113,6 +113,9 @@ endif()
 if(CS2D_CLIENT)
     # HEY!! TODO XXX: Change the name of the executable to the one you like!
     add_executable(CS2D_client)
+    # para que me deje compilar las rutas correctamente
+    set_target_properties(CS2D_client PROPERTIES
+    VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}")
 
     # Make them depend on CS2D_common lib
     add_dependencies(CS2D_client CS2D_common SDL2pp::SDL2pp)

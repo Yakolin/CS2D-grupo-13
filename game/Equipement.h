@@ -21,8 +21,6 @@ public:
     void put_bomb(std::unique_ptr<Weapon>& bomb);
 
     /*
-        fire_current_weapon();
-        reload_current_weapon();
         change_weapon();
         drop_weapon();
     */

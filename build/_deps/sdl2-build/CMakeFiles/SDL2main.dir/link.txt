@@ -1,2 +1,2 @@
-/usr/bin/ar qc libSDL2maind.a CMakeFiles/SDL2main.dir/src/main/dummy/SDL_dummy_main.c.o
+/usr/bin/ar qc libSDL2maind.a CMakeFiles/SDL2main.dir/SDL2main_autogen/mocs_compilation.cpp.o CMakeFiles/SDL2main.dir/src/main/dummy/SDL_dummy_main.c.o
 /usr/bin/ranlib libSDL2maind.a

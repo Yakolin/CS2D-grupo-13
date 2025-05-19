@@ -77,7 +77,7 @@ void MenuView::add_button(QVBoxLayout *layout, const QString &text) {
 
 
 GameMenu MenuView::run() {
-    GameMenu election;
+    //GameMenu election;
 
     QWidget *central = new QWidget(window);
     window->setCentralWidget(central);
@@ -102,7 +102,7 @@ MenuView::~MenuView(){}
 
 /*void GameView::config_windows(QWidget *ventana, const QString &text, int width, int height) {
     ventana->setWindowTitle(text);
-    ventana->setStyleSheet("background-color:rgb(117, 133, 133);");
+    ventana->setStyleSheet("background-color:rgb(37, 135, 40);");
     ventana->resize(width, height);
 }
 

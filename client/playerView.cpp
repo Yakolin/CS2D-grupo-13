@@ -60,6 +60,7 @@ void PlayerView::add_speed(const SDL_Keycode& tecla){
         fil += speed_player;
     }
 }
+
 void PlayerView::update_view_angle(const int& mouse_x,const int& mouse_y){
 
     int jugador_centro_x = destination_rect.x + destination_rect.w / 2;

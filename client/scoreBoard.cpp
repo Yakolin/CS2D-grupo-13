@@ -7,7 +7,7 @@
 #include <QLabel>
 #include <map>
 #include <string>
-ScoreBoard::ScoreBoard(QWidget *parent) :  scores(), ranking_group() {
+ScoreBoard::ScoreBoard() :  scores(), ranking_group() {
     scores["player1"] = {10, 2, 100};
     scores["player2"] = {5, 1, 50};
     scores["player3"] = {8, 3, 80};

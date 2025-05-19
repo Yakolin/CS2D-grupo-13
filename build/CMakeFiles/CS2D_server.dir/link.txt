@@ -1,1 +1,1 @@
-/usr/bin/c++ -g -o CS2D_server  libCS2D_common.a 
+/usr/bin/c++ -g CMakeFiles/CS2D_server.dir/CS2D_server_autogen/mocs_compilation.cpp.o CMakeFiles/CS2D_server.dir/server/main.cpp.o CMakeFiles/CS2D_server.dir/server/protocol.cpp.o CMakeFiles/CS2D_server.dir/server/client_action.cpp.o -o CS2D_server  libCS2D_common.a 

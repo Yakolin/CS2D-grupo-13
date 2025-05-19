@@ -13,11 +13,10 @@ void Controller::run() {
     //MenuView menu;  //libpng warning: iCCP: known incorrect sRGB profile 
     //GameMenu num = menu.run(); // no es un problema peor la imagen esta corrupta //todo editarla
     //ScoreBoard table; // funciona
-    //table.show_scores_game(); // funciona //todo agregar acutualizacion , dejar de harcodear
+    //table.show_scores_game(); // funciona //todo agregar actualizacion , dejar de harcodear
 //--------------------------------------------------------------------------------------------------
-   // GameView game( 38*32,17*32);
     gameView.draw_game();
     
-    //app.exec(); // todo mantener qt activo durante toda la ejecusion
+    //app.exec(); 
 
 }

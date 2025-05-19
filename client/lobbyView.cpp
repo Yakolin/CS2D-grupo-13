@@ -1,5 +1,12 @@
 #include "lobbyView.h"
-
+#include <QDebug>
+#include <QTabWidget>
+#include <QListWidget>
+#include <QLabel>
+#include <QHBoxLayout>
+#include <QStringList>
+#include <QPixmap>
+#include <map>
 LobbyView::LobbyView() :
     tabs(new QTabWidget(this)),
     options_map(),
@@ -39,6 +46,7 @@ LobbyView::LobbyView() :
 
 QListWidget * LobbyView::create_item( QWidget *parent , const QStringList &options, const QString &text) {
 
+    qDebug() << text;
     QListWidget *list_map = new QListWidget(parent);
     QFont fuente;
     // fuente.setPointSize(10); // tamaño letra
@@ -92,11 +100,9 @@ void LobbyView::action_create() {
     QHBoxLayout *layoutPlayers = new QHBoxLayout(tabPlayers); // tabs
     layoutPlayers->addWidget(list_unidad);
     layoutPlayers->addWidget(labelPlayers);
-    QListWidgetItem* selected = nullptr;
+  //  QListWidgetItem* selected = nullptr;
 
 
-
-    //tabs->show();
 }
 
 LobbyView::~LobbyView(){}

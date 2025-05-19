@@ -12,7 +12,6 @@ run-tests: compile-debug
 valgrind-debug: compile-debug
 	valgrind ./build/CS2D_tests
 
-
 all: clean valgrind-debug
 
 clean:

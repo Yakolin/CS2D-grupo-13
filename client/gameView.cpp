@@ -157,8 +157,6 @@ void GameView::draw_game(){
         while (SDL_PollEvent(&evento)) {
             corriendo = handle_events(evento);
         }
-
-        // renderizado
         SDL_RenderClear(renderer);
         
 //---------------------------------------------------------------------------

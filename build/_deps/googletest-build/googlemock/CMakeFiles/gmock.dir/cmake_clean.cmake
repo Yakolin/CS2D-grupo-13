@@ -3,8 +3,15 @@ file(REMOVE_RECURSE
   "../../../lib/.1.12.1"
   "../../../lib/libgmock.so"
   "../../../lib/libgmock.so.1.12.1"
+  "CMakeFiles/gmock_autogen.dir/AutogenUsed.txt"
+  "CMakeFiles/gmock_autogen.dir/ParseCache.txt"
+  "gmock_autogen"
+  "CMakeFiles/gmock.dir/gmock_autogen/mocs_compilation.cpp.o"
+  "CMakeFiles/gmock.dir/gmock_autogen/mocs_compilation.cpp.o.d"
   "CMakeFiles/gmock.dir/src/gmock-all.cc.o"
   "CMakeFiles/gmock.dir/src/gmock-all.cc.o.d"
+  "gmock_autogen/mocs_compilation.cpp"
+  "gmock_autogen/timestamp"
 )
 
 # Per-language clean rules from dependency scanning.

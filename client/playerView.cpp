@@ -49,14 +49,13 @@ void PlayerView::draw(SDL_Renderer& renderer ){
 }
 
 void PlayerView::add_speed(const SDL_Keycode& tecla){
-    
-    if (tecla == SDLK_UP) { // arriba
+    if (tecla == SDLK_w || tecla == SDLK_UP) { // arriba
         fil -= speed_player;
-    } else if (tecla == SDLK_LEFT) { 
+    } else if (tecla == SDLK_a || tecla == SDLK_LEFT) { // izquierda
         col -= speed_player;
-    } else if (tecla == SDLK_RIGHT) {
+    } else if (tecla == SDLK_d || tecla == SDLK_RIGHT) { // derecha
         col += speed_player;
-    } else if (tecla == SDLK_DOWN) {
+    } else if (tecla == SDLK_s || tecla == SDLK_DOWN) { // abajo
         fil += speed_player;
     }
 }

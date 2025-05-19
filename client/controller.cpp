@@ -13,7 +13,7 @@ void Controller::sender_pos_mouse(int x, int y){
     std::cout << "Fila: " << fil << ", Columna: " << col << std::endl;
 
 }
-
+// el enum esta en tipos.h dentro de esta carpeta
 void Controller::sender_mov_player(SDL_Keycode key) {
 
     Movement mov = Movement::NONE;

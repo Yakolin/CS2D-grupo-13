@@ -37,6 +37,7 @@ void GameView::load_textures() {
 
 
 bool GameView::handle_events(const SDL_Event& evento){
+    
     if (evento.type == SDL_QUIT){ 
         return false;  // Se cierra la ventana
     }else if(evento.type == SDL_KEYDOWN) {

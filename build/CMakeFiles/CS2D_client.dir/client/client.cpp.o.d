@@ -603,6 +603,47 @@ CMakeFiles/CS2D_client.dir/client/client.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qfont.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QListView \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qlistview.h \
+ /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/client/model/receiver.h \
+ /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/client/model/../../common/game_image.h \
+ /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/client/model/../../common/player_types.h \
+ /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/client/model/../../common/utility.h \
+ /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/client/model/../../common/queue.h \
+ /usr/include/c++/13/condition_variable \
+ /usr/include/c++/13/bits/unique_lock.h /usr/include/c++/13/stop_token \
+ /usr/include/c++/13/bits/std_thread.h /usr/include/c++/13/semaphore \
+ /usr/include/c++/13/bits/semaphore_base.h \
+ /usr/include/c++/13/bits/atomic_timed_wait.h \
+ /usr/include/c++/13/bits/this_thread_sleep.h \
+ /usr/include/x86_64-linux-gnu/sys/time.h /usr/include/semaphore.h \
+ /usr/include/x86_64-linux-gnu/bits/semaphore.h /usr/include/c++/13/deque \
+ /usr/include/c++/13/bits/stl_deque.h /usr/include/c++/13/bits/deque.tcc \
+ /usr/include/c++/13/queue /usr/include/c++/13/bits/stl_queue.h \
+ /usr/include/c++/13/mutex \
+ /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/client/model/../../common/socket.h \
+ /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/client/model/../../common/thread.h \
+ /usr/include/c++/13/thread \
+ /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/client/model/protocol.h \
+ /usr/include/arpa/inet.h /usr/include/netinet/in.h \
+ /usr/include/x86_64-linux-gnu/sys/socket.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
+ /usr/include/x86_64-linux-gnu/bits/socket.h \
+ /usr/include/x86_64-linux-gnu/bits/socket_type.h \
+ /usr/include/x86_64-linux-gnu/bits/sockaddr.h \
+ /usr/include/x86_64-linux-gnu/asm/socket.h \
+ /usr/include/asm-generic/socket.h /usr/include/linux/posix_types.h \
+ /usr/include/linux/stddef.h \
+ /usr/include/x86_64-linux-gnu/asm/posix_types.h \
+ /usr/include/x86_64-linux-gnu/asm/posix_types_64.h \
+ /usr/include/asm-generic/posix_types.h \
+ /usr/include/x86_64-linux-gnu/asm/bitsperlong.h \
+ /usr/include/asm-generic/bitsperlong.h \
+ /usr/include/x86_64-linux-gnu/asm/sockios.h \
+ /usr/include/asm-generic/sockios.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
+ /usr/include/x86_64-linux-gnu/bits/in.h \
+ /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/client/model/../../common/connection_closed_exception.h \
+ /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/client/model/../../common/lobby_types.h \
+ /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/client/model/../../common/player_types.h \
  /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/client/scoreBoard.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QApplication \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qapplication.h \

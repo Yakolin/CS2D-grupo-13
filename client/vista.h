@@ -4,6 +4,7 @@
 #include "gameView.h"
 #include "mapView.h"
 #include "menuView.h"
+#include "model/receiver.h" // necesario para recibir cosas
 #include "scoreBoard.h"
 #include <vector>
 #include <iostream>

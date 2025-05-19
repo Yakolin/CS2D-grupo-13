@@ -18,3 +18,4 @@ void Vista::run() {
     //app.exec(); 
 
 }
+Vista::~Vista() {}

@@ -3,10 +3,10 @@
 
 #include <memory>
 
-#include "common/player_types.h"
-#include "common/queue.h"
-#include "common/socket.h"
-#include "common/thread.h"
+#include "../../common/player_types.h"
+#include "../../common/queue.h"
+#include "../../common/socket.h"
+#include "../../common/thread.h"
 
 #include "client_action.h"
 #include "functor_parse_client_action.h"
@@ -22,6 +22,7 @@ public:
     Receiver(player_id_t& player_id, Socket& socket):
             player_id(player_id), protocol(socket), closed(false) {}
     virtual ~Receiver() = default;
+    virtual void run() override = 0;
 };
 
 class LobbyReceiver: public Receiver {

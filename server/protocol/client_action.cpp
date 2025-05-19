@@ -22,7 +22,7 @@ SendListGames::~SendListGames() {}
 void SendListGames::send(ServerProtocol& protocol) { protocol.send_list_games(this->list_games); }
 
 
-SendHandshake::SendHandshake(const player_id_t& player_id):
+SendHandshake::SendHandshake(player_id_t& player_id):
         player_id(player_id), InterfaceSenderLobby() {}
 
 SendHandshake::~SendHandshake() {}
@@ -38,8 +38,8 @@ CreateGame::CreateGame(player_id_t player_id, const std::string& game_name):
 
 CreateGame::~CreateGame() {}
 
-void CreateGame::action(InterfaceGamesMonitor& monitor) {
-    monitor.create_game(this->player_id, this->game_name);
+void CreateGame::action(ClientHandler& client_handler, InterfaceGamesMonitor& monitor) {
+    monitor.create_game(this->player_id, client_handler, this->game_name);
 }
 /*
         PLAYER ACTIONS
@@ -53,19 +53,21 @@ JoinGame::JoinGame(player_id_t player_id, const std::string& game_name):
 
 JoinGame::~JoinGame() {}
 
-void JoinGame::action(InterfaceGamesMonitor& monitor) {
-    monitor.join_game(this->player_id, this->game_name);
+void JoinGame::action(ClientHandler& client_handler, InterfaceGamesMonitor& monitor) {
+    monitor.join_game(this->player_id, client_handler, this->game_name);
 }
 
 /*
     LIST GAMES
 */
 
-ListGames::ListGames(player_id_t player_id): ClientAction(player_id), InterfaceLobbyAction() {}
+ListGames::ListGames(): InterfaceLobbyAction() {}
 
 ListGames::~ListGames() {}
 
-void ListGames::action(InterfaceGamesMonitor& monitor) { monitor.list_games(); }
+void ListGames::action(ClientHandler& client_handler, InterfaceGamesMonitor& monitor) {
+    monitor.list_games(client_handler);
+}
 
 /*
     MOVEMENT ACTIONS

@@ -2,18 +2,17 @@
 #define ACCEPTOR_H
 #include <algorithm>
 #include <iostream>
-#include <utility>
 #include <map>
+#include <utility>
 
-#include "../common/liberror.h"
-#include "../common/socket.h"
-#include "../common/thread.h"
+#include "../../common/liberror.h"
+#include "../../common/socket.h"
+#include "../../common/thread.h"
 
 #include "client_handler.h"
 #include "games_monitor.h"
 
-class Acceptor : public Thread
-{
+class Acceptor: public Thread {
 private:
     Socket socket_acceptor;
     std::map<uint16_t, std::unique_ptr<ClientHandler>> clients;
@@ -24,7 +23,7 @@ private:
     void clear();
 
 public:
-    explicit Acceptor(const char *port);
+    explicit Acceptor(const char* port);
 
     ~Acceptor();
 
@@ -32,4 +31,4 @@ public:
     void stop() override;
 };
 
-#endif // !
+#endif  // !

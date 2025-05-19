@@ -23,7 +23,7 @@ void ParseLobbyAction::run() {
             this->action = this->protocol.read_join_game(this->player_id);
             break;
         case LobbyCommandType::LIST_GAMES:
-            this->action = std::make_unique<ListGames>(this->player_id);
+            this->action = std::make_unique<ListGames>();
             break;
         default:
             throw std::runtime_error("LobbyCommandType no soportado");

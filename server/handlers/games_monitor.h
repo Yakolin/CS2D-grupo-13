@@ -7,7 +7,7 @@
 #include <utility>
 #include <vector>
 
-#include "../client_handler/client_handler.h"
+#include "../client_handler/handler.h"
 #include "../protocol/client_action.h"
 
 #include "game_loop.h"

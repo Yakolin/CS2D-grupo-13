@@ -28,15 +28,15 @@ void LobbyReceiver::run() {
 }
 
 
-GameReceiver::GameReceiver(
+PlayerReceiver::PlayerReceiver(
         player_id_t& player_id, Socket& socket,
         std::shared_ptr<Queue<std::unique_ptr<InterfacePlayerAction>>>& recv_game_queue):
         Receiver(player_id, socket), recv_game_queue(recv_game_queue) {}
 
-GameReceiver::~GameReceiver() {}
+PlayerReceiver::~PlayerReceiver() {}
 
 
-void GameReceiver::run() {
+void PlayerReceiver::run() {
     try {
         while (!this->closed && this->should_keep_running()) {
             PlayerCommandType command = this->protocol.read_player_command();

@@ -8,6 +8,10 @@ void LobbySender::send(std::unique_ptr<InterfaceSenderLobby>& action) {
     this->send_lobby_queue.push(std::move(action));
 }
 
+void LobbySender::send(GameImage& game_image) {  // null object patern
+    throw WrongSenderException("Wrong sender");
+}
+
 void LobbySender::run() {
     try {
         while (!this->closed && this->should_keep_running()) {
@@ -25,13 +29,17 @@ void LobbySender::run() {
 void LobbySender::stop() { this->send_lobby_queue.close(); }
 
 
-GameSender::GameSender(Socket& socket): Sender(socket), send_game_queue(QUEUE_MAX_SIZE) {}
+PlayerSender::PlayerSender(Socket& socket): Sender(socket), send_game_queue(QUEUE_MAX_SIZE) {}
 
-GameSender::~GameSender() {}
+PlayerSender::~PlayerSender() {}
 
-void GameSender::send(GameImage& game_image) { this->send_game_queue.push(game_image); }
+void PlayerSender::send(GameImage& game_image) { this->send_game_queue.push(game_image); }
 
-void GameSender::run() {
+void Sender::send(std::unique_ptr<InterfaceSenderLobby>& action) {  // null object patern
+    throw WrongSenderException("Wrong sender");
+}
+
+void PlayerSender::run() {
     try {
         while (!this->closed && this->should_keep_running()) {
             GameImage game_image = this->send_game_queue.pop();
@@ -45,4 +53,4 @@ void GameSender::run() {
     }
 }
 
-void GameSender::stop() { this->send_game_queue.close(); }
+void PlayerSender::stop() { this->send_game_queue.close(); }

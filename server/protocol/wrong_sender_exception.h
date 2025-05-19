@@ -1,5 +1,5 @@
-#ifndef CLIENT_CLOSED_EXCEPTION_H
-#define CLIENT_CLOSED_EXCEPTION_H
+#ifndef WRONG_SENDER_EXCEPTION_H
+#define WRONG_SENDER_EXCEPTION_H
 
 #pragma once
 #include <stdexcept>
@@ -10,4 +10,4 @@ public:
     explicit WrongSenderException(const std::string& message): std::runtime_error(message) {}
 };
 
-#endif  // CLIENT_CLOSED_EXCEPTION_H
+#endif

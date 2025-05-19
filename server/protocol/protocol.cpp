@@ -16,7 +16,7 @@ void ServerProtocol::read_byte_data(uint8_t& data) {
     uint8_t data_readed;
     this->socket.recvall(&data_readed, sizeof(uint8_t));
     if (this->socket.is_stream_recv_closed()) {
-        throw ConnectionClosedException("El cliente cerró la conexión");
+        throw WrongSenderException("El cliente cerró la conexión");
     }
     data = data_readed;
 }
@@ -25,7 +25,7 @@ void ServerProtocol::read_two_byte_data(uint16_t& data) {
     uint16_t data_readed;
     this->socket.recvall(&data_readed, sizeof(uint16_t));
     if (this->socket.is_stream_recv_closed()) {
-        throw ConnectionClosedException("El cliente cerró la conexión");
+        throw WrongSenderException("El cliente cerró la conexión");
     }
     data = ntohs(data_readed);
 }
@@ -35,13 +35,13 @@ const std::string ServerProtocol::read_game_name() {
     length_name_t name_length;
     this->socket.recvall(reinterpret_cast<char*>(&name_length), sizeof(name_length));
     if (this->socket.is_stream_recv_closed()) {
-        throw ConnectionClosedException("Error al intentar leer datos del cliente");
+        throw WrongSenderException("Error al intentar leer datos del cliente");
     }
     length_name_t length = ntohs(name_length);
     std::vector<char> nameGameBuffer(length);
     this->socket.recvall(nameGameBuffer.data(), length);
     if (this->socket.is_stream_recv_closed()) {
-        throw ConnectionClosedException("Error al intentar leer datos del cliente");
+        throw WrongSenderException("Error al intentar leer datos del cliente");
     }
     game_name.assign(nameGameBuffer.begin(), nameGameBuffer.end());
     return game_name;
@@ -107,7 +107,7 @@ std::unique_ptr<Equip> ServerProtocol::read_equip(player_id_t player_id) {
 void ServerProtocol::send_byte_data(uint8_t& data) {
     this->socket.sendall(&data, sizeof(uint8_t));
     if (this->socket.is_stream_send_closed()) {
-        throw ConnectionClosedException("Error al intentar enviar datos al cliente");
+        throw WrongSenderException("Error al intentar enviar datos al cliente");
     }
 }
 
@@ -115,7 +115,7 @@ void ServerProtocol::send_two_byte_data(uint16_t& data) {
     uint16_t data_to_send = htons(data);
     this->socket.sendall(&data_to_send, sizeof(uint16_t));
     if (this->socket.is_stream_send_closed()) {
-        throw ConnectionClosedException("Error al intentar enviar datos al cliente");
+        throw WrongSenderException("Error al intentar enviar datos al cliente");
     }
 }
 
@@ -129,7 +129,7 @@ void ServerProtocol::send_list_games(std::vector<std::string>& list_games) {
 
         this->socket.sendall(game_name.data(), name_length);
         if (this->socket.is_stream_send_closed()) {
-            throw ConnectionClosedException("Error al intentar enviar datos al cliente");
+            throw WrongSenderException("Error al intentar enviar datos al cliente");
         }
     }
 }

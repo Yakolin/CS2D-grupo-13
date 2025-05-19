@@ -1,24 +1,10 @@
-#include "client_handler.h"
+#include "handler.h"
 
-ClientHandler::ClientHandler(uint16_t client_id, Socket&& socket, GamesMonitor& games_monitor):
-        client_id(client_id), socket(std::move(socket)), receiver(), sender(), in_lobby(true) {}
+LobbyHandler::LobbyHandler(player_id_t client_id, Socket&& socket, GamesMonitor& games_monitor):
+        Handler(client_id, socket), in_lobby(true) {}
 
-ClientHandler::~ClientHandler() {}
+LobbyHandler::~LobbyHandler() {}
 
-void ClientHandler::stop_threads() {
-    if (this->receiver) {
-        if (this->receiver->is_alive()) {
-            this->receiver->stop();
-            this->receiver->join();
-        }
-    }
-    if (this->sender) {
-        if (this->receiver->is_alive()) {
-            this->sender->stop();
-            this->sender->join();
-        }
-    }
-}
 
 void ClientHandler::run_lobby(GamesMonitor& games_monitor) {
     std::shared_ptr<Queue<std::unique_ptr<InterfaceLobbyAction>>> lobby_queue =
@@ -34,7 +20,10 @@ void ClientHandler::run_lobby(GamesMonitor& games_monitor) {
     }
 }
 
-void ClientHandler::send_handshake() { this->sender-> }
+void ClientHandler::send_handshake() {
+    std::unique_ptr<SendHandshake> handshake = std::make_unique<SendHandshake>(this->client_id);
+    this->sender->send(handshake);
+}
 
 void ClientHandler::run_game() { this->stop_threads(); }
 

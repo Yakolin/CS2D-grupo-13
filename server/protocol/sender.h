@@ -9,6 +9,7 @@
 #include "../../common/thread.h"
 
 #include "protocol.h"
+#include "wrong_sender_exception.h"
 
 #define QUEUE_MAX_SIZE 10000
 
@@ -22,6 +23,8 @@ public:
     virtual ~Sender() = default;
     virtual void run() override = 0;
     virtual void stop() override = 0;
+    virtual void send(std::unique_ptr<InterfaceSenderLobby>& action) = 0;
+    virtual void send(GameImage& game_image) = 0;
 };
 
 class LobbySender: public Sender {
@@ -31,19 +34,21 @@ private:
 public:
     explicit LobbySender(Socket& socket);
     ~LobbySender();
-    void send(std::unique_ptr<InterfaceSenderLobby>& action);
+    void send(std::unique_ptr<InterfaceSenderLobby>& action) override;
+    void send(GameImage& game_image) override;
     void run() override;
     void stop() override;
 };
 
-class GameSender: public Sender {
+class PlayerSender: public Sender {
 private:
     Queue<GameImage> send_game_queue;
 
 public:
-    explicit GameSender(Socket& socket);
-    ~GameSender();
-    void send(GameImage& game_image);
+    explicit PlayerSender(Socket& socket);
+    ~PlayerSender();
+    void send(std::unique_ptr<InterfaceSenderLobby>& action) override;
+    void send(GameImage& game_image) override;
     void run() override;
     void stop() override;
 };

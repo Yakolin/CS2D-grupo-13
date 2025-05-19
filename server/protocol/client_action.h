@@ -7,8 +7,8 @@
 #include "../../common/lobby_types.h"
 #include "../../common/player_types.h"
 #include "../../common/utility.h"
-#include "../client_handler/client_handler.h"
 #include "../client_handler/games_monitor.h"
+#include "../client_handler/handler.h"
 #include "../game.h"
 
 #include "protocol.h"

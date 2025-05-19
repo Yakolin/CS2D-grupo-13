@@ -36,14 +36,14 @@ public:
     void run() override;
 };
 
-class GameReceiver: public Receiver {
+class PlayerReceiver: public Receiver {
 private:
     std::shared_ptr<Queue<std::unique_ptr<InterfacePlayerAction>>>& recv_game_queue;
 
 public:
-    GameReceiver(player_id_t& player_id, Socket& socket,
-                 std::shared_ptr<Queue<std::unique_ptr<InterfacePlayerAction>>>& recv_game_queue);
-    ~GameReceiver();
+    PlayerReceiver(player_id_t& player_id, Socket& socket,
+                   std::shared_ptr<Queue<std::unique_ptr<InterfacePlayerAction>>>& recv_game_queue);
+    ~PlayerReceiver();
     void run() override;
 };
 

@@ -9,7 +9,7 @@
 #include "../game.h"
 #include "../protocol/client_action.h"
 
-#include "client_handler.h"
+#include "handler.h"
 
 class GameLoop: public Thread {
 private:

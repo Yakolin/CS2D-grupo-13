@@ -23,6 +23,7 @@ private:
     // Rectangle spawn_TT;
     std::vector<std::unique_ptr<Weapon>> dropped_weapons;
     std::vector<Bullet> bullets_in_air;
+    std::unique_ptr<Bomb> bomb;
 
     /* Collisions */
     void check_bullets_collisions();
@@ -44,5 +45,6 @@ public:
     void add_weapon(std::unique_ptr<Weapon>& weapon) {
         dropped_weapons.push_back(std::move(weapon));
     }
+    void add_bomb(std::unique_ptr<Bomb>& _bomb) { bomb = std::move(_bomb); }
 };
 #endif  // MAP_H_

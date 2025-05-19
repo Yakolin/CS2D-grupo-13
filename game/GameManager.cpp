@@ -97,10 +97,10 @@ void GameManager::reload(uint16_t player_id) {
     */
 }
 void GameManager::plant_bomb(uint16_t player_id) {
-    shared_ptr<Player> player = find_player(player_id);
-    if (map_game.bomb_A.is_in(player->position) || map_game.bomb_B.is_in(player->position)) {
+    shared_ptr<Player> terro = find_player(player_id);
+    if (map_game.bomb_A.is_in(terro->position) || map_game.bomb_B.is_in(terro->position)) {
         std::cout << "El jugador SI esta en una zona de bomba\n";
-        player->plant_bomb();
+        // Esto esta mal igual . terro->plant_bomb();
     } else {
         std::cout << "El jugador NO esta en ninguna zona de bomba\n";
     }

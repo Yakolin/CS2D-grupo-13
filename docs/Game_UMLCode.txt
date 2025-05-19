@@ -4,11 +4,14 @@ package Game {
 class GameManager {
 }
 
-class Player {
+abstract Player {
     Vector2 position
     int health
     void move(Vector2 new_position)
     virtual PlayerImage info_player() = 0
+}
+class Equipement{
+  //Unique pointers a Weapons
 }
 
 class CounterTerrorist {
@@ -19,26 +22,58 @@ class Terrorist {
 }
 
 class Map{
-  //Not implemented yet
+  std::vector<Bullet> bullets_in_air
+  std::vector<std::unique_ptr<Weapon>> dropped_weapons;
 }
-
 class Vector2{
     float x;
     float y;
 }
+class Rectangle {
+Vector2 point_min
+Vector2 point_max
 }
+class Bullet
+interface Weapon
+
+abstract FireableWeapon
+
+class Ak47 
+
+class Glock 
+
+class Knife
+
+class Bomb
+
+Weapon <|.. FireableWeapon
+
+FireableWeapon <|-- Ak47
+FireableWeapon <|-- Glock
+Weapon <|.. Bomb
+Weapon <|.. Knife
+}
+
 package common {
  class GameImage
  class PlayerImage
 }
+
 GameManager "1"*--"10" Player
 GameManager -- Map
 GameManager --> GameImage
 GameManager --> PlayerImage
 Player --> PlayerImage
 Map --> Vector2
+Map --> Rectangle
+Map --> "*" Player : reference
+Map "1" *--"n" Bullet
+Rectangle *-- Vector2
 Player --> Vector2
 Player <|-- CounterTerrorist 
 Player <|-- Terrorist 
+Player *-- Equipement
 
+Equipement "1" *-- "4" Weapon
+Map "1" *-- "n" Weapon
 @enduml

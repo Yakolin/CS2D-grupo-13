@@ -217,7 +217,6 @@ Socket::Socket(Socket&& other) {
     other.closed = true;
 
     this->stream_status = other.stream_status;
-
 }
 
 Socket& Socket::operator=(Socket&& other) {
@@ -462,5 +461,4 @@ void Socket::chk_skt_or_fail() const {
                                  "perhaps you are using a *previously moved* "
                                  "socket (and therefore invalid).");
     }
-
 }

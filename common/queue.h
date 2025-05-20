@@ -4,19 +4,14 @@
 #include <climits>
 #include <condition_variable>
 #include <deque>
-#include <queue>
-#include <climits>
-#include <condition_variable>
-#include <deque>
 #include <memory>  // Para std::unique_ptr
 #include <mutex>
+#include <queue>
 #include <stdexcept>
-#include <memory>  // Para std::unique_ptr
 
 
 struct ClosedQueue: public std::runtime_error {
     ClosedQueue(): std::runtime_error("The queue is closed") {}
-
 };
 
 /*

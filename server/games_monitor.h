@@ -5,7 +5,7 @@
 #include <mutex>
 #include <utility>
 #include <vector>
-
+#include <string>
 class InterfaceGamesMonitor {
 public:
     InterfaceGamesMonitor() = default;

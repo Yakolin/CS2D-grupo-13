@@ -1,43 +1,45 @@
 #ifndef PLAYERVIEW_H
 #define PLAYERVIEW_H
 #include <iostream>
-#include "tipos.h"
-#include "manageTexture.h"
-#include "renderizable.h"
+#include <map>
+#include <vector>
+
 #include <SDL.h>
+#include <SDL_image.h>
 #include <SDL_render.h>
 #include <SDL_surface.h>
 #include <SDL_video.h>
-#include <iostream>
-#include <vector>
-#include <SDL_image.h>
-#include <map>
 
-class PlayerView : public Renderizable{
+#include "manageTexture.h"
+#include "renderizable.h"
+#include "tipos.h"
+
+class PlayerView: public Renderizable {
 public:
-    PlayerView(const float& x , const float& y, const std::string rute, const float& speed, SDL_Rect* camera_reseiver, ManageTexture* manger_texture);
+    PlayerView(const float& x, const float& y, const std::string rute, const float& speed,
+               SDL_Rect* camera_reseiver, ManageTexture* manger_texture);
     ~PlayerView();
 
     void draw(SDL_Renderer& renderer) override;
 
     void add_speed(const SDL_Keycode& tecla);
 
-    void update_view_angle(const int& mause_x,const int& mause_y);
-    
+    void update_view_angle(const int& mause_x, const int& mause_y);
+
     float getFil() const;
     float getCol() const;
     float getSpeed() const;
     std::string getRutaPlayer() const;
-    int getWidthImg() const; //todo no inicializadas
-    int getHeightImg() const;//todo no incializadas no usar 
+    int getWidthImg() const;   // todo no inicializadas
+    int getHeightImg() const;  // todo no incializadas no usar
     float getAnglePlayer() const;
-    //MedidasSprites getItem() const;
+    // MedidasSprites getItem() const;
 
     void setFil(float newFil);
     void setCol(float newCol);
     void setSpeed(float newSpeed);
     void setRutaPlayer(const std::string& nuevaRuta);
-   // void setTexturePlayer(SDL_Texture texture);
+    // void setTexturePlayer(SDL_Texture texture);
 
 private:
     float fil;
@@ -54,13 +56,12 @@ private:
     SDL_Rect* camera;
     ManageTexture* manejador;
 
-   // SDL_Texture texture_player;
+    // SDL_Texture texture_player;
     void calcular();
 
     int pasar_pixeles(const float& pos);
 
-    SDL_Texture* add_tiles(const std::string& img );
-
+    SDL_Texture* add_tiles(const std::string& img);
 };
 
-#endif // PLAYERVIEW_H
+#endif  // PLAYERVIEW_H

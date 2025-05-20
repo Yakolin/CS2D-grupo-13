@@ -17,6 +17,7 @@
 class Vista {
 
 public:
+  //  Receiver receiver;
     Controller controller;
     GameView gameView;
     QApplication app;

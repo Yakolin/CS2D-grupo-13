@@ -1,18 +1,19 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
-#include "tipos.h"
-#include <vector>
-#include <iostream>
 #include <fstream>
-#include <string>       
-#include <sstream>       
-#include <stdexcept>  
+#include <iostream>
+#include <sstream>
+#include <stdexcept>
+#include <string>
+#include <vector>
+
 #include <SDL.h>
+
+#include "tipos.h"
 class Controller {
 private:
-
 public:
-        Controller() ;
+    Controller();
     /*
     pre:
     post: envia las cordenadas del mause en pixeles , puedes castear con las dimenciones del mapa
@@ -22,10 +23,10 @@ public:
     pre:
     post:envia el mov del jugaodor
     */
-    void sender_mov_player( SDL_Keycode tecla);
+    void sender_mov_player(SDL_Keycode tecla);
 
 
     void run();
 };
 
-#endif // CONTROLLER_H
+#endif  // CONTROLLER_H

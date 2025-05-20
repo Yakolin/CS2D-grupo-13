@@ -1,29 +1,27 @@
 #ifndef GAMES_MONITOR_H
 #define GAMES_MONITOR_H
 
-#include <mutex>
 #include <map>
-
-#include "game_loop.h"
-#include <vector>
-#include "player.h"
+#include <mutex>
 #include <utility>
-
-class GamesMonitor
-{
-private:
-    std::mutex mutex;
-    std::map<std::string, std::unique_ptr<GameLoop>> games;
-
+#include <vector>
+#include <string>
+class InterfaceGamesMonitor {
 public:
-    GamesMonitor();
-    ~GamesMonitor();
-
-    bool create_game(const uint16_t &player_id, Socket &socket, const std::string &game_name);
-    bool join_game(const uint16_t &player_id, Socket &socket, const std::string &game_name);
-    std::vector<std::string> list_games();
-    void reap();
-    void clear();
+    InterfaceGamesMonitor() = default;
+    virtual ~InterfaceGamesMonitor() = default;
+    virtual bool create_game(const uint16_t& player_id, const std::string& game_name) = 0;
+    virtual bool join_game(const uint16_t& player_id, const std::string& game_name) = 0;
+    virtual std::vector<std::string> list_games() = 0;
 };
 
-#endif // !GAMES_MONITOR_H
+class GamesMonitor: public InterfaceGamesMonitor {
+private:
+    std::mutex mutex;
+
+public:
+    GamesMonitor() = default;
+    ~GamesMonitor() = default;
+};
+
+#endif  // !GAMES_MONITOR_H

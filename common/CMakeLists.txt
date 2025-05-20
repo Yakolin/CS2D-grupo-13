@@ -6,13 +6,19 @@ target_sources(CS2D_common
     resolvererror.cpp
     socket.cpp
 
+    
     PUBLIC
     # .h files
     liberror.h
+    player_types.h
+    queue.h
+
     resolver.h
     resolvererror.h
     socket.h
     thread.h
-    queue.h
-    lobby_action.h
+
+    connection_closed_exception.h
+    client_common_action.h
+
     )

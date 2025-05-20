@@ -6,10 +6,19 @@ compile-debug:
 	cmake --build  build/ $(EXTRA_COMPILE)
 
 run-tests: compile-debug
-	./build/CS_tests
+
+	./build/CS2D_tests
+
+run-client:  compile-debug
+	cd "$(CURDIR)" && ./build/CS2D_client
+
+run-server: compile-debug
+
+	./build/CS2D_server
+
 
 valgrind-debug: compile-debug
-	valgrind ./build/CS_tests
+	valgrind ./build/CS2D_tests
 
 all: clean valgrind-debug
 

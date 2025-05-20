@@ -19,19 +19,27 @@
 
 class Handler {
 protected:
-    player_id_t id;
+    player_id_t client_id;
     Socket socket;
 
 public:
-    Handler(plyer_id_t id, Socket&& socket): id(id), socket(std::move(socket)) {}
-    virtual ~Handler() = default
+    Handler(player_id_t client_id, Socket&& socket):
+            client_id(client_id), socket(std::move(socket)) {}
+
+    // move-ctor: mueve id y socket
+    Handler(Handler&& other) noexcept:
+            client_id(other.client_id), socket(std::move(other.socket)) {}
+
+    virtual ~Handler() = default;
+
+    Handler(const Handler&) = delete;
+    Handler& operator=(const Handler&) = delete;
 };
 
-class LobbyHandler: public Handler, Thread {
+class LobbyHandler: public Handler, public Thread {
 private:
     GamesMonitor& games_monitor;
     ServerProtocol protocol;
-    bool in_lobby;
 
 public:
     LobbyHandler(player_id_t client_id, Socket&& socket, GamesMonitor& games_monitor);
@@ -39,6 +47,7 @@ public:
 
     void run() override;
     void stop() override;
+    void send(std::unique_ptr<InterfaceSenderLobby> action);
 };
 
 class PlayerHandler: public Handler {
@@ -47,8 +56,12 @@ private:
     PlayerSender sender;
 
 public:
-    PlayerHandler(player_id_t id, Socket&& socket);
+    PlayerHandler(player_id_t id, Socket&& socket,
+                  std::shared_ptr<Queue<std::unique_ptr<InterfacePlayerAction>>>& recv_game_queue);
     ~PlayerHandler();
+    void start();
+    void stop();
+    void send(GameImage& game_image);
 };
 
 #endif  // !HANDLER_H

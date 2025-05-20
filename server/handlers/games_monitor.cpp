@@ -3,42 +3,41 @@
 GamesMonitor::GamesMonitor() {}
 GamesMonitor::~GamesMonitor() {}
 
-void GamesMonitor::create_game(const player_id_t player_id, ClientHandler& client_creator,
+void GamesMonitor::create_game(const player_id_t player_id, LobbyHandler& client_creator,
                                const std::string& game_name) {
     std::lock_guard<std::mutex> lock(mutex);
     if (games.find(game_name) == games.end()) {
-        std::unique_ptr<GameLoop> game_loop =
-                std::make_unique<GameLoop>(game_name, std::move(client_creator));
+        std::unique_ptr<GameLoop> game_loop = std::make_unique<GameLoop>(game_name, client_creator);
         if (game_loop->is_full()) {
             game_loop->start();
         }
         games[game_name] = std::move(game_loop);
-        return true;
+        client_creator.send(std::make_unique<SendHandshake>(player_id));
+        client_creator.stop();
     }
-    return false;
 }
 
-void GamesMonitor::join_game(const player_id_t player_id, ClientHandler& client_handler,
+void GamesMonitor::join_game(const player_id_t player_id, LobbyHandler& lobby_handler,
                              const std::string& game_name) {
     std::lock_guard<std::mutex> lock(mutex);
     auto it = games.find(game_name);
     if (it != games.end()) {
-        it->second->add_player(player_id, client_handler);
+        it->second->add_player(std::move(lobby_handler));
         if (it->second->is_full()) {
             it->second->start();
         }
-        return true;
+        lobby_handler.send(std::make_unique<SendHandshake>(player_id));
+        lobby_handler.stop();
     }
-    return false;
 }
 
-std::vector<std::string> GamesMonitor::list_games(ClientHandler& client_handler) {
+void GamesMonitor::list_games(LobbyHandler& lobby_handler) {
     std::lock_guard<std::mutex> lock(mutex);
     std::vector<std::string> game_names;
     for (const auto& game: games) {
         game_names.push_back(game.first);
     }
-    return game_names;
+    lobby_handler.send(std::make_unique<SendListGames>(game_names));
 }
 
 void GamesMonitor::reap() {

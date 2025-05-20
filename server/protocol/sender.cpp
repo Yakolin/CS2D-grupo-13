@@ -1,5 +1,5 @@
 #include "sender.h"
-
+/*
 LobbySender::LobbySender(Socket& socket): Sender(socket), send_lobby_queue(QUEUE_MAX_SIZE) {}
 
 LobbySender::~LobbySender() {}
@@ -9,7 +9,7 @@ void LobbySender::send(std::unique_ptr<InterfaceSenderLobby>& action) {
 }
 
 void LobbySender::send(GameImage& game_image) {  // null object patern
-    throw WrongSenderException("Wrong sender");
+throw WrongSenderException("Wrong sender");
 }
 
 void LobbySender::run() {
@@ -28,16 +28,13 @@ void LobbySender::run() {
 
 void LobbySender::stop() { this->send_lobby_queue.close(); }
 
+*/
 
 PlayerSender::PlayerSender(Socket& socket): Sender(socket), send_game_queue(QUEUE_MAX_SIZE) {}
 
 PlayerSender::~PlayerSender() {}
 
 void PlayerSender::send(GameImage& game_image) { this->send_game_queue.push(game_image); }
-
-void Sender::send(std::unique_ptr<InterfaceSenderLobby>& action) {  // null object patern
-    throw WrongSenderException("Wrong sender");
-}
 
 void PlayerSender::run() {
     try {

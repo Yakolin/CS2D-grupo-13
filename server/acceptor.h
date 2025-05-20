@@ -5,17 +5,17 @@
 #include <map>
 #include <utility>
 
-#include "../../common/liberror.h"
-#include "../../common/socket.h"
-#include "../../common/thread.h"
-
-#include "client_handler.h"
-#include "games_monitor.h"
+#include "../common/liberror.h"
+#include "../common/player_types.h"
+#include "../common/socket.h"
+#include "../common/thread.h"
+#include "../handlers/games_monitor.h"
+#include "../handlers/handler.h"
 
 class Acceptor: public Thread {
 private:
     Socket socket_acceptor;
-    std::map<uint16_t, std::unique_ptr<ClientHandler>> clients;
+    std::map<player_id_t, std::unique_ptr<LobbyHandler>> clients;
     GamesMonitor games_monitor;
     uint16_t client_id_counter;
 

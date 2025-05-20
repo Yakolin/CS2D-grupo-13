@@ -38,8 +38,8 @@ CreateGame::CreateGame(player_id_t player_id, const std::string& game_name):
 
 CreateGame::~CreateGame() {}
 
-void CreateGame::action(ClientHandler& client_handler, InterfaceGamesMonitor& monitor) {
-    monitor.create_game(this->player_id, client_handler, this->game_name);
+void CreateGame::action(LobbyHandler& lobby_handler, InterfaceGamesMonitor& monitor) {
+    monitor.create_game(this->player_id, lobby_handler, this->game_name);
 }
 /*
         PLAYER ACTIONS
@@ -53,8 +53,8 @@ JoinGame::JoinGame(player_id_t player_id, const std::string& game_name):
 
 JoinGame::~JoinGame() {}
 
-void JoinGame::action(ClientHandler& client_handler, InterfaceGamesMonitor& monitor) {
-    monitor.join_game(this->player_id, client_handler, this->game_name);
+void JoinGame::action(LobbyHandler& lobby_handler, InterfaceGamesMonitor& monitor) {
+    monitor.join_game(this->player_id, lobby_handler, this->game_name);
 }
 
 /*
@@ -65,8 +65,8 @@ ListGames::ListGames(): InterfaceLobbyAction() {}
 
 ListGames::~ListGames() {}
 
-void ListGames::action(ClientHandler& client_handler, InterfaceGamesMonitor& monitor) {
-    monitor.list_games(client_handler);
+void ListGames::action(LobbyHandler& lobby_handler, InterfaceGamesMonitor& monitor) {
+    monitor.list_games(lobby_handler);
 }
 
 /*

@@ -11,16 +11,19 @@
 
 #include "handler.h"
 
+#define QUEUE_MAX_SIZE 10000
+
 class GameLoop: public Thread {
 private:
-    std::vector<std::unique_ptr<ClientHandler>> players;
+    std::vector<std::unique_ptr<PlayerHandler>> players;
     std::shared_ptr<Queue<std::unique_ptr<InterfacePlayerAction>>> recv_queue;
     bool game_started;
+    void step();
 
 public:
-    GameLoop(std::unique_ptr<ClientHandler>&& client_creator, const std::string& game_name);
+    GameLoop(LobbyHandler&& client_creator, const std::string& game_name);
     ~GameLoop();
-    void add_player(const uint16_t& player_id, std::unique_ptr<ClientHandler>&& client_to_add);
+    void add_player(LobbyHandler&& client_to_add);
     bool is_full();
     void run() override;
     void stop() override;

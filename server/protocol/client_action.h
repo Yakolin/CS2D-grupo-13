@@ -7,9 +7,9 @@
 #include "../../common/lobby_types.h"
 #include "../../common/player_types.h"
 #include "../../common/utility.h"
-#include "../client_handler/games_monitor.h"
-#include "../client_handler/handler.h"
 #include "../game.h"
+#include "../handlers/games_monitor.h"
+#include "../handlers/handler.h"
 
 #include "protocol.h"
 
@@ -29,7 +29,7 @@ class InterfaceLobbyAction {
 public:
     InterfaceLobbyAction() = default;
     virtual ~InterfaceLobbyAction() = default;
-    virtual void action(ClientHandler& client_handler, InterfaceGamesMonitor& monitor) = 0;
+    virtual void action(LobbyHandler& lobby_handler, InterfaceGamesMonitor& monitor) = 0;
 };
 
 /*
@@ -83,7 +83,7 @@ class CreateGame: public ClientAction, public InterfaceLobbyAction, public Creat
 public:
     CreateGame(player_id_t player_id, const std::string& game_name);
     ~CreateGame();
-    void action(ClientHandler& client_handler, InterfaceGamesMonitor& monitor) override;
+    void action(LobbyHandler& lobby_handler, InterfaceGamesMonitor& monitor) override;
 };
 
 /*
@@ -95,7 +95,7 @@ class JoinGame: public ClientAction, public InterfaceLobbyAction, public JoinGam
 public:
     JoinGame(player_id_t player_id, const std::string& game_name);
     ~JoinGame();
-    void action(ClientHandler& client_handler, InterfaceGamesMonitor& monitor) override;
+    void action(LobbyHandler& lobby_handler, InterfaceGamesMonitor& monitor) override;
 };
 
 /*
@@ -106,7 +106,7 @@ class ListGames: public InterfaceLobbyAction {
 public:
     ListGames();
     ~ListGames();
-    void action(ClientHandler& client_handler, InterfaceGamesMonitor& monitor) override;
+    void action(LobbyHandler& lobby_handler, InterfaceGamesMonitor& monitor) override;
 };
 
 /*

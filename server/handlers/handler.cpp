@@ -1,34 +1,45 @@
 #include "handler.h"
 
 LobbyHandler::LobbyHandler(player_id_t client_id, Socket&& socket, GamesMonitor& games_monitor):
-        Handler(client_id, socket), in_lobby(true) {}
+        Handler(client_id, std::move(socket)),
+        games_monitor(games_monitor),
+        protocol(this->socket) {}
 
 LobbyHandler::~LobbyHandler() {}
 
-
-void ClientHandler::run_lobby(GamesMonitor& games_monitor) {
-    std::shared_ptr<Queue<std::unique_ptr<InterfaceLobbyAction>>> lobby_queue =
-            std::make_shared<Queue<std::unique_ptr<InterfaceLobbyAction>>>(QUEUE_MAX_SIZE);
-    this->receiver = std::make_unique<LobbyReceiver>(this->client_id, this->socket, lobby_queue,
-                                                     games_monitor);
-    this->sender = std::make_unique<LobbySender>(this->socket);
-    this->receiver->start();
-    this->sender->start();
-    while (this->in_lobby) {
-        std::unique_ptr<InterfaceLobbyAction> action = lobby_queue->pop();
-        action->action(games_monitor);
+void LobbyHandler::run() {
+    while (this->should_keep_running()) {
+        LobbyCommandType command = this->protocol.read_lobby_command();
+        std::unique_ptr<InterfaceLobbyAction> action;
+        ParseLobbyAction parser(this->client_id, this->protocol, command, action);
+        parser();
+        action->action(*this, this->games_monitor);
     }
 }
 
-void ClientHandler::send_handshake() {
-    std::unique_ptr<SendHandshake> handshake = std::make_unique<SendHandshake>(this->client_id);
-    this->sender->send(handshake);
+void LobbyHandler::send(std::unique_ptr<InterfaceSenderLobby> action) {
+    action->send(this->protocol);
 }
 
-void ClientHandler::run_game() { this->stop_threads(); }
+PlayerHandler::PlayerHandler(
+        player_id_t client_id, Socket&& socket,
+        std::shared_ptr<Queue<std::unique_ptr<InterfacePlayerAction>>>& recv_game_queue):
+        Handler(client_id, std::move(socket)),
+        receiver(this->client_id, this->socket, recv_game_queue),
+        sender(this->socket) {}
 
-void ClientHandler::stop() {
-    this->stop_threads();
+PlayerHandler::~PlayerHandler() {}
+
+void PlayerHandler::start() {
+    this->receiver.start();
+    this->sender.start();
+}
+
+void PlayerHandler::send(GameImage& game_image) { this->sender.send(game_image); }
+
+void PlayerHandler::stop() {
+    this->receiver.stop();
+    this->sender.stop();
     this->socket.shutdown(2);
     this->socket.close();
 }

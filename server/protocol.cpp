@@ -1,12 +1,12 @@
 #include "protocol.h"
 
-using Server::BuyAmmo;
-using Server::BuyWeapon;
-using Server::CreateGame;
-using Server::Equip;
-using Server::JoinGame;
-using Server::Move;
-using Server::Shoot;
+using ServerSpace::BuyAmmo;
+using ServerSpace::BuyWeapon;
+using ServerSpace::CreateGame;
+using ServerSpace::Equip;
+using ServerSpace::JoinGame;
+using ServerSpace::Move;
+using ServerSpace::Shoot;
 
 ServerProtocol::ServerProtocol(Socket& socket): socket(socket) {}
 
@@ -16,7 +16,7 @@ void ServerProtocol::read_byte_data(uint8_t& data) {
     uint8_t data_readed;
     this->socket.recvall(&data_readed, sizeof(uint8_t));
     if (this->socket.is_stream_recv_closed()) {
-        throw WrongSenderException("El cliente cerró la conexión");
+        throw ConnectionClosedException("El cliente cerró la conexión");
     }
     data = data_readed;
 }
@@ -25,7 +25,7 @@ void ServerProtocol::read_two_byte_data(uint16_t& data) {
     uint16_t data_readed;
     this->socket.recvall(&data_readed, sizeof(uint16_t));
     if (this->socket.is_stream_recv_closed()) {
-        throw WrongSenderException("El cliente cerró la conexión");
+        throw ConnectionClosedException("El cliente cerró la conexión");
     }
     data = ntohs(data_readed);
 }
@@ -35,13 +35,13 @@ const std::string ServerProtocol::read_game_name() {
     length_name_t name_length;
     this->socket.recvall(reinterpret_cast<char*>(&name_length), sizeof(name_length));
     if (this->socket.is_stream_recv_closed()) {
-        throw WrongSenderException("Error al intentar leer datos del cliente");
+        throw ConnectionClosedException("Error al intentar leer datos del cliente");
     }
     length_name_t length = ntohs(name_length);
     std::vector<char> nameGameBuffer(length);
     this->socket.recvall(nameGameBuffer.data(), length);
     if (this->socket.is_stream_recv_closed()) {
-        throw WrongSenderException("Error al intentar leer datos del cliente");
+        throw ConnectionClosedException("Error al intentar leer datos del cliente");
     }
     game_name.assign(nameGameBuffer.begin(), nameGameBuffer.end());
     return game_name;
@@ -53,14 +53,14 @@ LobbyCommandType ServerProtocol::read_lobby_command() {
     return static_cast<LobbyCommandType>(command);
 }
 
-std::unique_ptr<CreateGame> ServerProtocol::read_create_game(player_id_t player_id) {
+std::unique_ptr<CreateGame> ServerProtocol::read_create_game() {
     std::string game_name = this->read_game_name();
-    return std::make_unique<CreateGame>(player_id, std::string(game_name));
+    return std::make_unique<CreateGame>(game_name);
 }
 
-std::unique_ptr<JoinGame> ServerProtocol::read_join_game(player_id_t player_id) {
+std::unique_ptr<JoinGame> ServerProtocol::read_join_game() {
     std::string game_name = this->read_game_name();
-    return std::make_unique<JoinGame>(player_id, std::string(game_name));
+    return std::make_unique<JoinGame>(game_name);
 }
 
 PlayerCommandType ServerProtocol::read_player_command() {
@@ -107,7 +107,7 @@ std::unique_ptr<Equip> ServerProtocol::read_equip(player_id_t player_id) {
 void ServerProtocol::send_byte_data(uint8_t& data) {
     this->socket.sendall(&data, sizeof(uint8_t));
     if (this->socket.is_stream_send_closed()) {
-        throw WrongSenderException("Error al intentar enviar datos al cliente");
+        throw ConnectionClosedException("Error al intentar enviar datos al cliente");
     }
 }
 
@@ -115,7 +115,7 @@ void ServerProtocol::send_two_byte_data(uint16_t& data) {
     uint16_t data_to_send = htons(data);
     this->socket.sendall(&data_to_send, sizeof(uint16_t));
     if (this->socket.is_stream_send_closed()) {
-        throw WrongSenderException("Error al intentar enviar datos al cliente");
+        throw ConnectionClosedException("Error al intentar enviar datos al cliente");
     }
 }
 
@@ -129,7 +129,7 @@ void ServerProtocol::send_list_games(std::vector<std::string>& list_games) {
 
         this->socket.sendall(game_name.data(), name_length);
         if (this->socket.is_stream_send_closed()) {
-            throw WrongSenderException("Error al intentar enviar datos al cliente");
+            throw ConnectionClosedException("Error al intentar enviar datos al cliente");
         }
     }
 }

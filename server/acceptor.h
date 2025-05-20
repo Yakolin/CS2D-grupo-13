@@ -9,8 +9,8 @@
 #include "../common/player_types.h"
 #include "../common/socket.h"
 #include "../common/thread.h"
-#include "../handlers/games_monitor.h"
-#include "../handlers/handler.h"
+#include "handlers/games_monitor.h"
+#include "handlers/lobby_handler.h"
 
 class Acceptor: public Thread {
 private:

@@ -9,9 +9,10 @@
 #include "../../common/utility.h"
 #include "../game.h"
 #include "../handlers/games_monitor.h"
-#include "../handlers/handler.h"
+#include "../handlers/lobby_handler.h"
 
-#include "protocol.h"
+class LobbyHandler;
+class InterfaceGamesMonitor;
 
 class ClientAction {
 protected:
@@ -44,44 +45,19 @@ public:
     virtual void action(InterfaceGame& game) = 0;
 };
 
-class InterfaceSenderLobby {
-public:
-    InterfaceSenderLobby() = default;
-    virtual ~InterfaceSenderLobby() = default;
-    virtual void send(ServerProtocol& protocol) = 0;
-};
-
-class SendListGames: public InterfaceSenderLobby {
-private:
-    std::vector<std::string>& list_games;
-
-public:
-    SendListGames(std::vector<std::string>& list_games);
-    ~SendListGames();
-    void send(ServerProtocol& protocol) override;
-};
-
-class SendHandshake: public InterfaceSenderLobby {
-private:
-    player_id_t& player_id;
-
-public:
-    SendHandshake(player_id_t& player_id);
-    ~SendHandshake();
-    void send(ServerProtocol& protocol) override;
-};
-
-namespace Server {
+namespace ServerSpace {
 
 
 /*
 CREATE GAME
 */
 
-class CreateGame: public ClientAction, public InterfaceLobbyAction, public CreateGameCommon {
+class CreateGame: public InterfaceLobbyAction, public CreateGameCommon {
+private:
+    const std::string game_name;
 
 public:
-    CreateGame(player_id_t player_id, const std::string& game_name);
+    CreateGame(const std::string& game_name);
     ~CreateGame();
     void action(LobbyHandler& lobby_handler, InterfaceGamesMonitor& monitor) override;
 };
@@ -90,10 +66,12 @@ public:
         JOIN GAME
         */
 
-class JoinGame: public ClientAction, public InterfaceLobbyAction, public JoinGameCommon {
+class JoinGame: public InterfaceLobbyAction, public JoinGameCommon {
+private:
+    const std::string game_name;
 
 public:
-    JoinGame(player_id_t player_id, const std::string& game_name);
+    JoinGame(const std::string& game_name);
     ~JoinGame();
     void action(LobbyHandler& lobby_handler, InterfaceGamesMonitor& monitor) override;
 };
@@ -196,5 +174,5 @@ public:
     void action(InterfaceGame& game) override;
 };
 
-}  // namespace Server
+}  // namespace ServerSpace
 #endif  // !CLIENT_ACTION_H

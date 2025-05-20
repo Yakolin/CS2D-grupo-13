@@ -12,39 +12,20 @@
 #include "functor_parse_client_action.h"
 #include "protocol.h"
 
+
 class Receiver: public Thread {
-protected:
+private:
     player_id_t& player_id;
     ServerProtocol protocol;
+    std::shared_ptr<Queue<std::unique_ptr<InterfacePlayerAction>>>& recv_queue;
     bool closed;
 
 public:
-    Receiver(player_id_t& player_id, Socket& socket):
-            player_id(player_id), protocol(socket), closed(false) {}
-    virtual ~Receiver() = default;
-    virtual void run() override = 0;
-};
-
-class LobbyReceiver: public Receiver {
-private:
-    std::shared_ptr<Queue<std::unique_ptr<InterfaceLobbyAction>>>& recv_lobby_queue;
-
-public:
-    LobbyReceiver(player_id_t& player_id, Socket& socket,
-                  std::shared_ptr<Queue<std::unique_ptr<InterfaceLobbyAction>>>& recv_lobby_queue);
-    ~LobbyReceiver();
+    Receiver(player_id_t& player_id, Socket& socket,
+             std::shared_ptr<Queue<std::unique_ptr<InterfacePlayerAction>>>& recv_queue);
+    ~Receiver();
     void run() override;
-};
-
-class PlayerReceiver: public Receiver {
-private:
-    std::shared_ptr<Queue<std::unique_ptr<InterfacePlayerAction>>>& recv_game_queue;
-
-public:
-    PlayerReceiver(player_id_t& player_id, Socket& socket,
-                   std::shared_ptr<Queue<std::unique_ptr<InterfacePlayerAction>>>& recv_game_queue);
-    ~PlayerReceiver();
-    void run() override;
+    void stop() override;
 };
 
 #endif  // !RECEIVER_H

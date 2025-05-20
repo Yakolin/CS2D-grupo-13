@@ -1,15 +1,14 @@
 #include "functor_parse_client_action.h"
 
-using Server::DefuseBomb;
-using Server::Drop;
-using Server::ListGames;
-using Server::PlantBomb;
-using Server::Reload;
+using ServerSpace::DefuseBomb;
+using ServerSpace::Drop;
+using ServerSpace::ListGames;
+using ServerSpace::PlantBomb;
+using ServerSpace::Reload;
 
-ParseLobbyAction::ParseLobbyAction(player_id_t& player_id, ServerProtocol& protocol,
-                                   LobbyCommandType& command,
+ParseLobbyAction::ParseLobbyAction(ServerProtocol& protocol, LobbyCommandType& command,
                                    std::unique_ptr<InterfaceLobbyAction>& action):
-        Parse(player_id, protocol), command(command), action(action) {}
+        Parse(protocol), command(command), action(action) {}
 
 ParseLobbyAction::~ParseLobbyAction() {}
 
@@ -17,10 +16,10 @@ ParseLobbyAction::~ParseLobbyAction() {}
 void ParseLobbyAction::run() {
     switch (this->command) {
         case LobbyCommandType::CREATE_GAME:
-            this->action = this->protocol.read_create_game(this->player_id);
+            this->action = this->protocol.read_create_game();
             break;
         case LobbyCommandType::JOIN_GAME:
-            this->action = this->protocol.read_join_game(this->player_id);
+            this->action = this->protocol.read_join_game();
             break;
         case LobbyCommandType::LIST_GAMES:
             this->action = std::make_unique<ListGames>();
@@ -34,7 +33,7 @@ void ParseLobbyAction::run() {
 ParsePlayerAction::ParsePlayerAction(player_id_t& player_id, ServerProtocol& protocol,
                                      PlayerCommandType& command,
                                      std::unique_ptr<InterfacePlayerAction>& action):
-        Parse(player_id, protocol), command(command), action(action) {}
+        Parse(protocol), player_id(player_id), command(command), action(action) {}
 
 ParsePlayerAction::~ParsePlayerAction() {}
 

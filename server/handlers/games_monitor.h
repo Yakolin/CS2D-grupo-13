@@ -7,19 +7,18 @@
 #include <utility>
 #include <vector>
 
-#include "../handlers/handler.h"
-#include "../protocol/client_action.h"
-
 #include "game_loop.h"
+#include "lobby_handler.h"
+
+class LobbyHandler;
+class GameLoop;
 
 class InterfaceGamesMonitor {
 public:
     InterfaceGamesMonitor() = default;
     virtual ~InterfaceGamesMonitor() = default;
-    virtual void create_game(const player_id_t player_id, LobbyHandler& handler,
-                             const std::string& game_name) = 0;
-    virtual void join_game(const player_id_t player_id, LobbyHandler& handler,
-                           const std::string& game_name) = 0;
+    virtual void create_game(LobbyHandler& handler, const std::string& game_name) = 0;
+    virtual void join_game(LobbyHandler& handler, const std::string& game_name) = 0;
     virtual void list_games(LobbyHandler& client_handler) = 0;
 };
 
@@ -33,10 +32,8 @@ public:
     GamesMonitor();
     ~GamesMonitor();
 
-    void create_game(const player_id_t player_id, LobbyHandler& client_handler,
-                     const std::string& game_name);
-    void join_game(const player_id_t player_id, LobbyHandler& client_handler,
-                   const std::string& game_name) override;
+    void create_game(LobbyHandler& client_handler, const std::string& game_name) override;
+    void join_game(LobbyHandler& client_handler, const std::string& game_name) override;
     void list_games(LobbyHandler& client_handler) override;
     void reap();
     void clear();

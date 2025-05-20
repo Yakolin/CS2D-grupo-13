@@ -1,17 +1,18 @@
 #include "game_loop.h"
 
-GameLoop::GameLoop(LobbyHandler&& client_creator, const std::string& game_name):
+GameLoop::GameLoop(LobbyHandler& client_creator, const std::string& game_name):
+        game_name(game_name),
         players(),
         recv_queue(std::make_shared<Queue<std::unique_ptr<InterfacePlayerAction>>>(QUEUE_MAX_SIZE)),
         game_started(false) {
-    this->add_player(std::move(client_creator));
+    this->add_player(client_creator);
 }
 
 GameLoop::~GameLoop() {}
 
-void GameLoop::add_player(LobbyHandler&& client_to_add) {
-    players.emplace_back(
-            std::make_unique<PlayerHandler>(std::move(client_to_add), this->recv_queue));
+void GameLoop::add_player(LobbyHandler& client_to_add) {
+    std::unique_ptr<PlayerHandler> player_handler = client_to_add.start_game(this->recv_queue);
+    players.emplace_back(std::move(player_handler));
 }
 
 bool GameLoop::is_full()  // hay que ver como se configura el YAML y chequearlo ahi

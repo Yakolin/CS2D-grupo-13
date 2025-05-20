@@ -1,10 +1,13 @@
 #include "FireableWeapon.h"
 
 #include "Map.h"
-/*
-void FireableWeapon::fire(
+//Duda a como resolver esto, que pasa si quiero de igual forma que exista este metodo de superclase que sea fire pero que sea generico?
+// quiza no se, la glock y la usp y las demas disparan de igual forma (en este ejemplo del tp quiza no)
+// pero quiero que puedan usar ese metodo implementado por el padre? 
+
+void Glock::fire(
         Map& map, player_id_t id, Vector2& position,
-        Vector2& direction) {  // Quiza deberia ser un WHILE! total, es algo q es por tiempo!
+        Vector2& direction) {
     if (current_bullets > 0) {
         int bullets_fired = std::min(current_bullets, fire_rate);
         current_bullets -= bullets_fired;
@@ -30,4 +33,3 @@ void FireableWeapon::reload() {
                      "estas lleno\n";
     }
 }
-*/

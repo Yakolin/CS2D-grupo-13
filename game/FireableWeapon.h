@@ -15,8 +15,7 @@ private:
     int max_bullets;
     int current_bullets;
     int magazine;
-
-protected:
+    public:
     FireableWeapon(WeaponType type, int dmg, int rate, int max_b, int current_b):
             Weapon(type),
             damage(dmg),
@@ -26,16 +25,20 @@ protected:
             magazine(current_b) {}
 
 public:
-    virtual void fire(Map& map, player_id_t id, Vector2& position, Vector2& direction) override;
-    virtual void reload() override;
+    virtual void fire(Map& map, player_id_t id, Vector2& position, Vector2& direction) override = 0;
+    virtual void reload() override = 0;
 };
 class Ak47: public FireableWeapon {
 public:
     Ak47(): FireableWeapon(WeaponType::PRIMARY, 25, 3, 90, 30) {}
+    void fire(Map& map, player_id_t id, Vector2& position, Vector2& direction) override;
+    void reload() override;
 };
 class Glock: public FireableWeapon {
 public:
     Glock(): FireableWeapon(WeaponType::SECONDARY, 15, 1, 120, 30) {}
+    void fire(Map& map, player_id_t id, Vector2& position, Vector2& direction) override;
+    void reload() override;
 };
 
 #endif  // FIREABLE_WEAPON_H_

@@ -1,6 +1,7 @@
 #include "FireableWeapon.h"
 
 #include "Map.h"
+/*
 void FireableWeapon::fire(
         Map& map, player_id_t id, Vector2& position,
         Vector2& direction) {  // Quiza deberia ser un WHILE! total, es algo q es por tiempo!
@@ -29,3 +30,4 @@ void FireableWeapon::reload() {
                      "estas lleno\n";
     }
 }
+*/

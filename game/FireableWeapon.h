@@ -12,14 +12,14 @@
 class FireableWeapon: public Weapon {
 
 protected:
-    int damage;
-    int fire_rate;
-    int max_bullets;
-    int current_bullets;
-    int magazine;
+    uint8_t damage;
+    uint8_t fire_rate;
+    uint8_t max_bullets;
+    uint8_t current_bullets;
+    uint8_t magazine;
 
 public:
-    FireableWeapon(WeaponType type, int dmg, int rate, int max_b, int current_b):
+    FireableWeapon(WeaponType type, uint8_t dmg, uint8_t rate, uint8_t max_b, uint8_t current_b):
             Weapon(type),
             damage(dmg),
             fire_rate(rate),

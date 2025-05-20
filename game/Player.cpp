@@ -10,5 +10,5 @@ void Player::fire_weapon_equiped(Map& map, const Vector2& mouse_pointer) {
         equipement.secondary->fire(map, id, position, direction);
     // Exception)?
 }
-void Player::get_damage(float damage) { health -= damage; }
+void Player::get_damage(uint8_t damage) { health -= damage; }
 // void Player::change_weapon_equiped() {}

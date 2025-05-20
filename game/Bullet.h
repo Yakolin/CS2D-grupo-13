@@ -13,14 +13,14 @@ public:
     Vector2 position;
     Vector2 direction;
     float velocity;
-    float damage;
+    uint8_t damage;
     float size = 0.5f;
     struct BulletSpeeds {
         float slow_bullet = 0.25;
         float mid_bullet = 0.5;
         float fast_bullet = 0.75;
     };
-    Bullet(bullet_id_t id, Vector2 position, Vector2 direction, float velocity, float damage):
+    Bullet(bullet_id_t id, Vector2 position, Vector2 direction, float velocity, uint8_t damage):
             id(id),
             position(std::move(position)),
             direction(std::move(direction)),

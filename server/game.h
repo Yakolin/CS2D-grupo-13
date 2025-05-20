@@ -1,7 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "../common/player_types.h"
+#include "../common/player_command_types.h"
 #include "../common/utility.h"
 
 class InterfaceGame {

@@ -22,8 +22,8 @@ void Glock::fire(Map& map, player_id_t id, Vector2& position, Vector2& direction
 
 void FireableWeapon::reload() {
     if (max_bullets > 0 && current_bullets < magazine) {  // Si en el inventario tengo >= 0 balas
-        int needed_bullets = magazine - current_bullets;
-        int avalible_bullets = std::min(needed_bullets, max_bullets);
+        uint8_t needed_bullets = magazine - current_bullets;
+        uint8_t avalible_bullets = std::min(needed_bullets, max_bullets);
         current_bullets += avalible_bullets;
         max_bullets -= avalible_bullets;
         std::cout << "Recargas : " << avalible_bullets

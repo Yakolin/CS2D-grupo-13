@@ -10,7 +10,7 @@ target_sources(CS2D_common
     PUBLIC
     # .h files
     liberror.h
-    player_types.h
+    player_command_types.h
     queue.h
 
     resolver.h

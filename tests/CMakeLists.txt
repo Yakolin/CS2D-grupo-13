@@ -13,7 +13,7 @@ target_sources(CS2D_tests
     ../server/protocol.h
     ../server/game.h
     ../server/client_action.h
-    ../common/player_types.h
+    ../common/player_command_types.h
     ../common/lobby_types.h
     ../client/model/client_action.h
     ../client/model/protocol.h

@@ -162,5 +162,5 @@ void Resolver::chk_addr_or_fail() const {
     }
 
  }
-#endif
+
 

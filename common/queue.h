@@ -4,7 +4,13 @@
 #include <climits>
 #include <condition_variable>
 #include <deque>
-
+#include <queue>
+#include <climits>
+#include <condition_variable>
+#include <deque>
+#include <memory>  // Para std::unique_ptr
+#include <mutex>
+#include <stdexcept>
 #include <memory>  // Para std::unique_ptr
 
 

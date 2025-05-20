@@ -15,6 +15,8 @@ enum class Skin {  PHOENIX, L337_KREW, ARCTIC_AVENGER, GUERRILLA, SEAL, GSG9, SA
 enum class Map { DESIERTO, PUEBLITO_AZTECA, ZONA_ENTRENAMIENTO };
 
 enum class Objet {STONE, WALL,GRASS,BOX, PLAYER, WATER};
+
+enum class Movement { UP, DOWN, LEFT, RIGHT, NONE };
 struct Personaje{
     Team team;
     Skin skin;

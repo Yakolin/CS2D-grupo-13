@@ -8,6 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "" "CS2D_common_autogen/timestamp" "custom" "CS2D_common_autogen/deps"
+  "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CS2D_common_autogen/mocs_compilation.cpp" "CMakeFiles/CS2D_common.dir/CS2D_common_autogen/mocs_compilation.cpp.o" "gcc" "CMakeFiles/CS2D_common.dir/CS2D_common_autogen/mocs_compilation.cpp.o.d"
   "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/common/liberror.cpp" "CMakeFiles/CS2D_common.dir/common/liberror.cpp.o" "gcc" "CMakeFiles/CS2D_common.dir/common/liberror.cpp.o.d"
   "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/common/resolver.cpp" "CMakeFiles/CS2D_common.dir/common/resolver.cpp.o" "gcc" "CMakeFiles/CS2D_common.dir/common/resolver.cpp.o.d"
   "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/common/resolvererror.cpp" "CMakeFiles/CS2D_common.dir/common/resolvererror.cpp.o" "gcc" "CMakeFiles/CS2D_common.dir/common/resolvererror.cpp.o.d"

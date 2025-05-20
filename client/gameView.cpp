@@ -1,8 +1,9 @@
 #include "gameView.h"
 
 
-#define MAPA_AZTECA  "../assets/pueblito_azteca.txt"
-GameView::GameView(const int& width_reseiver , const int& height_reseiver):
+#define MAPA_AZTECA  "assets/pueblito_azteca.txt"
+GameView::GameView(Controller* controller,const int& width_reseiver , const int& height_reseiver):
+    controller(controller),
     leyenda(),
     ids(),
     ventana(),
@@ -14,11 +15,11 @@ GameView::GameView(const int& width_reseiver , const int& height_reseiver):
     width(width_reseiver),
     height(height_reseiver)
     {
-    leyenda['#'] = "../assets/gfx/backgrounds/nuke.png";
-    leyenda[' '] = "../assets/gfx/backgrounds/stone1.jpg";
-    leyenda['~'] = "../assets/gfx/backgrounds/water4.jpg";
-    leyenda['='] = "../assets/gfx/box.PNG";
-    leyenda['.'] = "../assets/gfx/backgrounds/gras1.jpg";
+    leyenda['#'] = "assets/gfx/backgrounds/nuke.png";
+    leyenda[' '] = "assets/gfx/backgrounds/stone1.jpg";
+    leyenda['~'] = "assets/gfx/backgrounds/water4.jpg";
+    leyenda['='] = "assets/gfx/box.PNG";
+    leyenda['.'] = "assets/gfx/backgrounds/gras1.jpg";
 
     ids['#'] = Objet::WALL;
     ids[' '] = Objet::STONE;
@@ -36,15 +37,18 @@ void GameView::load_textures() {
 
 
 bool GameView::handle_events(const SDL_Event& evento){
+    
     if (evento.type == SDL_QUIT){ 
         return false;  // Se cierra la ventana
     }else if(evento.type == SDL_KEYDOWN) {
         SDL_Keycode tecla = evento.key.keysym.sym; // Se presionó una tecla
         player->add_speed(tecla);
+        controller->sender_mov_player(tecla);
     }else if (evento.type == SDL_MOUSEMOTION) {
         int mouseX = evento.motion.x;
         int mouseY = evento.motion.y;
         player->update_view_angle(mouseX,mouseY);
+        controller->sender_pos_mouse(mouseX,mouseY);
         // std::cout << "Mouse en: " << mouseX << ", " << mouseY << std::endl;
     }
     return true;
@@ -52,7 +56,7 @@ bool GameView::handle_events(const SDL_Event& evento){
 
 /*bool GameView::cargarTexturaFondo(SDL_Renderer* renderer) {
 
-    SDL_Surface* surface = SDL_LoadBMP("../assets/gfx/tiles/default_aztec.bmp"); // Carga la imagen BMP desde la ruta dada a una superficie
+    SDL_Surface* surface = SDL_LoadBMP("assets/gfx/tiles/default_aztec.bmp"); // Carga la imagen BMP desde la ruta dada a una superficie
     if (!surface) {
         std::cerr << "Error cargando imagen: " << SDL_GetError() << std::endl; 
         return false;
@@ -73,7 +77,7 @@ void GameView::add_player(PlayerView& player_aux){
     player = &player_aux;
 }
 
-//! mover a juegoView
+
 std::vector<std::vector<char>> GameView::cargar_mapa(const std::string& archivo) {
     
     std::vector<std::vector<char>> mapa;
@@ -135,14 +139,14 @@ void GameView::draw_game(){
     }
     //------------------cargo texturas------------
     load_textures();
-    if(!manger_texture.load(Objet::PLAYER,"../assets/gfx/terrorist/t1_1.png", renderer)){
+    if(!manger_texture.load(Objet::PLAYER,"assets/gfx/terrorist/t1_1.png", renderer)){
         std::cerr << "Error: No se pudo cargar la textura del jugador." << std::endl;
     }
     //--------------inicializo clases----------------
     const float speed = 2.5f;
     float x = 5;
     float y = 5;
-    PlayerView player(x,y,"../assets/gfx/terrorist/t1_1.png",speed,&camera, &manger_texture);
+    PlayerView player(x,y,"assets/gfx/terrorist/t1_1.png",speed,&camera, &manger_texture);
     add_player(player);
 
     //------------juego----------------------------
@@ -157,8 +161,6 @@ void GameView::draw_game(){
         while (SDL_PollEvent(&evento)) {
             corriendo = handle_events(evento);
         }
-
-        // renderizado
         SDL_RenderClear(renderer);
         
 //---------------------------------------------------------------------------
@@ -191,18 +193,3 @@ GameView::~GameView() {
 
 }
 
-//---------------------------------------------------------------------------
-       //  Actualiza la cámara para que siga al jugador
-       /* camera.x = player.getCol() + player.getWidthImg()/2 - camera.w/2;
-        camera.y = player.getFil() + player.getHeightImg()/2 - camera.h/2;
-
-        // Limita la cámara para que no se salga del mapa
-        if (camera.x < 0) camera.x = 0;
-        if (camera.y < 0) camera.y = 0;
-        if (camera.x > map.getMapWidth() - camera.w) camera.x = map.getMapWidth() - camera.w;
-        if (camera.y >map.getHeight() - camera.h) camera.y =map.getHeight() - camera.h;
-        std::cout << "Camera: (" << camera.x << ", " << camera.y << ") ";
-        std::cout << "Player: (" << player.getCol() << ", " << player.getFil() << ")\n";*/
-//------------------------------------------------------------------------------------
-       // map.draw(*renderer); // completar mapa
-      //  player.draw(*renderer);

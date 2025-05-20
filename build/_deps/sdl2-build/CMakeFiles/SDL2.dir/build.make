@@ -125,66 +125,87 @@ _deps/sdl2-build/wayland-generated-protocols/xdg-shell-protocol.c: _deps/sdl2-bu
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_14) "Generating wayland-generated-protocols/xdg-shell-protocol.c"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/wayland-scanner private-code /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/build/_deps/sdl2-src/wayland-protocols/xdg-shell.xml /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/build/_deps/sdl2-build/wayland-generated-protocols/xdg-shell-protocol.c
 
+_deps/sdl2-build/SDL2_autogen/timestamp: /usr/lib/qt5/bin/moc
+_deps/sdl2-build/SDL2_autogen/timestamp: /usr/lib/qt5/bin/uic
+_deps/sdl2-build/SDL2_autogen/timestamp: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_15) "Automatic MOC and UIC for target SDL2"
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cmake -E cmake_autogen "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build/CMakeFiles/SDL2_autogen.dir/AutogenInfo.json" Debug
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cmake -E touch "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build/SDL2_autogen/timestamp"
+
 _deps/sdl2-build/wayland-generated-protocols/fractional-scale-v1-client-protocol.h: _deps/sdl2-src/wayland-protocols/fractional-scale-v1.xml
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_15) "Generating wayland-generated-protocols/fractional-scale-v1-client-protocol.h"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_16) "Generating wayland-generated-protocols/fractional-scale-v1-client-protocol.h"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/wayland-scanner client-header /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/build/_deps/sdl2-src/wayland-protocols/fractional-scale-v1.xml /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/build/_deps/sdl2-build/wayland-generated-protocols/fractional-scale-v1-client-protocol.h
 
 _deps/sdl2-build/wayland-generated-protocols/idle-inhibit-unstable-v1-client-protocol.h: _deps/sdl2-src/wayland-protocols/idle-inhibit-unstable-v1.xml
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_16) "Generating wayland-generated-protocols/idle-inhibit-unstable-v1-client-protocol.h"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_17) "Generating wayland-generated-protocols/idle-inhibit-unstable-v1-client-protocol.h"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/wayland-scanner client-header /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/build/_deps/sdl2-src/wayland-protocols/idle-inhibit-unstable-v1.xml /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/build/_deps/sdl2-build/wayland-generated-protocols/idle-inhibit-unstable-v1-client-protocol.h
 
 _deps/sdl2-build/wayland-generated-protocols/keyboard-shortcuts-inhibit-unstable-v1-client-protocol.h: _deps/sdl2-src/wayland-protocols/keyboard-shortcuts-inhibit-unstable-v1.xml
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_17) "Generating wayland-generated-protocols/keyboard-shortcuts-inhibit-unstable-v1-client-protocol.h"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_18) "Generating wayland-generated-protocols/keyboard-shortcuts-inhibit-unstable-v1-client-protocol.h"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/wayland-scanner client-header /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/build/_deps/sdl2-src/wayland-protocols/keyboard-shortcuts-inhibit-unstable-v1.xml /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/build/_deps/sdl2-build/wayland-generated-protocols/keyboard-shortcuts-inhibit-unstable-v1-client-protocol.h
 
 _deps/sdl2-build/wayland-generated-protocols/pointer-constraints-unstable-v1-client-protocol.h: _deps/sdl2-src/wayland-protocols/pointer-constraints-unstable-v1.xml
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_18) "Generating wayland-generated-protocols/pointer-constraints-unstable-v1-client-protocol.h"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_19) "Generating wayland-generated-protocols/pointer-constraints-unstable-v1-client-protocol.h"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/wayland-scanner client-header /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/build/_deps/sdl2-src/wayland-protocols/pointer-constraints-unstable-v1.xml /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/build/_deps/sdl2-build/wayland-generated-protocols/pointer-constraints-unstable-v1-client-protocol.h
 
 _deps/sdl2-build/wayland-generated-protocols/primary-selection-unstable-v1-client-protocol.h: _deps/sdl2-src/wayland-protocols/primary-selection-unstable-v1.xml
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_19) "Generating wayland-generated-protocols/primary-selection-unstable-v1-client-protocol.h"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_20) "Generating wayland-generated-protocols/primary-selection-unstable-v1-client-protocol.h"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/wayland-scanner client-header /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/build/_deps/sdl2-src/wayland-protocols/primary-selection-unstable-v1.xml /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/build/_deps/sdl2-build/wayland-generated-protocols/primary-selection-unstable-v1-client-protocol.h
 
 _deps/sdl2-build/wayland-generated-protocols/relative-pointer-unstable-v1-client-protocol.h: _deps/sdl2-src/wayland-protocols/relative-pointer-unstable-v1.xml
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_20) "Generating wayland-generated-protocols/relative-pointer-unstable-v1-client-protocol.h"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_21) "Generating wayland-generated-protocols/relative-pointer-unstable-v1-client-protocol.h"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/wayland-scanner client-header /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/build/_deps/sdl2-src/wayland-protocols/relative-pointer-unstable-v1.xml /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/build/_deps/sdl2-build/wayland-generated-protocols/relative-pointer-unstable-v1-client-protocol.h
 
 _deps/sdl2-build/wayland-generated-protocols/tablet-unstable-v2-client-protocol.h: _deps/sdl2-src/wayland-protocols/tablet-unstable-v2.xml
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_21) "Generating wayland-generated-protocols/tablet-unstable-v2-client-protocol.h"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_22) "Generating wayland-generated-protocols/tablet-unstable-v2-client-protocol.h"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/wayland-scanner client-header /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/build/_deps/sdl2-src/wayland-protocols/tablet-unstable-v2.xml /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/build/_deps/sdl2-build/wayland-generated-protocols/tablet-unstable-v2-client-protocol.h
 
 _deps/sdl2-build/wayland-generated-protocols/text-input-unstable-v3-client-protocol.h: _deps/sdl2-src/wayland-protocols/text-input-unstable-v3.xml
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_22) "Generating wayland-generated-protocols/text-input-unstable-v3-client-protocol.h"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_23) "Generating wayland-generated-protocols/text-input-unstable-v3-client-protocol.h"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/wayland-scanner client-header /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/build/_deps/sdl2-src/wayland-protocols/text-input-unstable-v3.xml /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/build/_deps/sdl2-build/wayland-generated-protocols/text-input-unstable-v3-client-protocol.h
 
 _deps/sdl2-build/wayland-generated-protocols/viewporter-client-protocol.h: _deps/sdl2-src/wayland-protocols/viewporter.xml
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_23) "Generating wayland-generated-protocols/viewporter-client-protocol.h"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_24) "Generating wayland-generated-protocols/viewporter-client-protocol.h"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/wayland-scanner client-header /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/build/_deps/sdl2-src/wayland-protocols/viewporter.xml /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/build/_deps/sdl2-build/wayland-generated-protocols/viewporter-client-protocol.h
 
 _deps/sdl2-build/wayland-generated-protocols/wayland-client-protocol.h: _deps/sdl2-src/wayland-protocols/wayland.xml
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_24) "Generating wayland-generated-protocols/wayland-client-protocol.h"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_25) "Generating wayland-generated-protocols/wayland-client-protocol.h"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/wayland-scanner client-header /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/build/_deps/sdl2-src/wayland-protocols/wayland.xml /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/build/_deps/sdl2-build/wayland-generated-protocols/wayland-client-protocol.h
 
 _deps/sdl2-build/wayland-generated-protocols/xdg-activation-v1-client-protocol.h: _deps/sdl2-src/wayland-protocols/xdg-activation-v1.xml
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_25) "Generating wayland-generated-protocols/xdg-activation-v1-client-protocol.h"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_26) "Generating wayland-generated-protocols/xdg-activation-v1-client-protocol.h"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/wayland-scanner client-header /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/build/_deps/sdl2-src/wayland-protocols/xdg-activation-v1.xml /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/build/_deps/sdl2-build/wayland-generated-protocols/xdg-activation-v1-client-protocol.h
 
 _deps/sdl2-build/wayland-generated-protocols/xdg-decoration-unstable-v1-client-protocol.h: _deps/sdl2-src/wayland-protocols/xdg-decoration-unstable-v1.xml
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_26) "Generating wayland-generated-protocols/xdg-decoration-unstable-v1-client-protocol.h"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_27) "Generating wayland-generated-protocols/xdg-decoration-unstable-v1-client-protocol.h"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/wayland-scanner client-header /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/build/_deps/sdl2-src/wayland-protocols/xdg-decoration-unstable-v1.xml /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/build/_deps/sdl2-build/wayland-generated-protocols/xdg-decoration-unstable-v1-client-protocol.h
 
 _deps/sdl2-build/wayland-generated-protocols/xdg-output-unstable-v1-client-protocol.h: _deps/sdl2-src/wayland-protocols/xdg-output-unstable-v1.xml
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_27) "Generating wayland-generated-protocols/xdg-output-unstable-v1-client-protocol.h"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_28) "Generating wayland-generated-protocols/xdg-output-unstable-v1-client-protocol.h"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/wayland-scanner client-header /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/build/_deps/sdl2-src/wayland-protocols/xdg-output-unstable-v1.xml /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/build/_deps/sdl2-build/wayland-generated-protocols/xdg-output-unstable-v1-client-protocol.h
 
 _deps/sdl2-build/wayland-generated-protocols/xdg-shell-client-protocol.h: _deps/sdl2-src/wayland-protocols/xdg-shell.xml
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_28) "Generating wayland-generated-protocols/xdg-shell-client-protocol.h"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_29) "Generating wayland-generated-protocols/xdg-shell-client-protocol.h"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/wayland-scanner client-header /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/build/_deps/sdl2-src/wayland-protocols/xdg-shell.xml /mnt/c/Users/mari/OneDrive/Desktop/tp\ final\ taller/CS2D-grupo-13/build/_deps/sdl2-build/wayland-generated-protocols/xdg-shell-client-protocol.h
+
+_deps/sdl2-build/CMakeFiles/SDL2.dir/SDL2_autogen/mocs_compilation.cpp.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
+_deps/sdl2-build/CMakeFiles/SDL2.dir/SDL2_autogen/mocs_compilation.cpp.o: _deps/sdl2-build/SDL2_autogen/mocs_compilation.cpp
+_deps/sdl2-build/CMakeFiles/SDL2.dir/SDL2_autogen/mocs_compilation.cpp.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object _deps/sdl2-build/CMakeFiles/SDL2.dir/SDL2_autogen/mocs_compilation.cpp.o"
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/SDL2_autogen/mocs_compilation.cpp.o -MF CMakeFiles/SDL2.dir/SDL2_autogen/mocs_compilation.cpp.o.d -o CMakeFiles/SDL2.dir/SDL2_autogen/mocs_compilation.cpp.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build/SDL2_autogen/mocs_compilation.cpp"
+
+_deps/sdl2-build/CMakeFiles/SDL2.dir/SDL2_autogen/mocs_compilation.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/SDL2.dir/SDL2_autogen/mocs_compilation.cpp.i"
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build/SDL2_autogen/mocs_compilation.cpp" > CMakeFiles/SDL2.dir/SDL2_autogen/mocs_compilation.cpp.i
+
+_deps/sdl2-build/CMakeFiles/SDL2.dir/SDL2_autogen/mocs_compilation.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/SDL2.dir/SDL2_autogen/mocs_compilation.cpp.s"
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build/SDL2_autogen/mocs_compilation.cpp" -o CMakeFiles/SDL2.dir/SDL2_autogen/mocs_compilation.cpp.s
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL.c.o: _deps/sdl2-src/src/SDL.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_29) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_31) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL.c.o -MF CMakeFiles/SDL2.dir/src/SDL.c.o.d -o CMakeFiles/SDL2.dir/src/SDL.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/SDL.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL.c.i: cmake_force
@@ -198,7 +219,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_assert.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_assert.c.o: _deps/sdl2-src/src/SDL_assert.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_assert.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_30) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_assert.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_32) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_assert.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_assert.c.o -MF CMakeFiles/SDL2.dir/src/SDL_assert.c.o.d -o CMakeFiles/SDL2.dir/src/SDL_assert.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/SDL_assert.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_assert.c.i: cmake_force
@@ -212,7 +233,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_assert.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_dataqueue.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_dataqueue.c.o: _deps/sdl2-src/src/SDL_dataqueue.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_dataqueue.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_31) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_dataqueue.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_33) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_dataqueue.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_dataqueue.c.o -MF CMakeFiles/SDL2.dir/src/SDL_dataqueue.c.o.d -o CMakeFiles/SDL2.dir/src/SDL_dataqueue.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/SDL_dataqueue.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_dataqueue.c.i: cmake_force
@@ -226,7 +247,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_dataqueue.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_error.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_error.c.o: _deps/sdl2-src/src/SDL_error.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_error.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_32) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_error.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_34) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_error.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_error.c.o -MF CMakeFiles/SDL2.dir/src/SDL_error.c.o.d -o CMakeFiles/SDL2.dir/src/SDL_error.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/SDL_error.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_error.c.i: cmake_force
@@ -240,7 +261,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_error.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_guid.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_guid.c.o: _deps/sdl2-src/src/SDL_guid.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_guid.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_33) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_guid.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_35) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_guid.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_guid.c.o -MF CMakeFiles/SDL2.dir/src/SDL_guid.c.o.d -o CMakeFiles/SDL2.dir/src/SDL_guid.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/SDL_guid.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_guid.c.i: cmake_force
@@ -254,7 +275,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_guid.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_hints.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_hints.c.o: _deps/sdl2-src/src/SDL_hints.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_hints.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_34) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_hints.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_36) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_hints.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_hints.c.o -MF CMakeFiles/SDL2.dir/src/SDL_hints.c.o.d -o CMakeFiles/SDL2.dir/src/SDL_hints.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/SDL_hints.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_hints.c.i: cmake_force
@@ -268,7 +289,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_hints.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_list.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_list.c.o: _deps/sdl2-src/src/SDL_list.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_list.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_35) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_list.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_37) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_list.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_list.c.o -MF CMakeFiles/SDL2.dir/src/SDL_list.c.o.d -o CMakeFiles/SDL2.dir/src/SDL_list.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/SDL_list.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_list.c.i: cmake_force
@@ -282,7 +303,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_list.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_log.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_log.c.o: _deps/sdl2-src/src/SDL_log.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_log.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_36) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_log.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_38) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_log.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_log.c.o -MF CMakeFiles/SDL2.dir/src/SDL_log.c.o.d -o CMakeFiles/SDL2.dir/src/SDL_log.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/SDL_log.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_log.c.i: cmake_force
@@ -296,7 +317,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_log.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_utils.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_utils.c.o: _deps/sdl2-src/src/SDL_utils.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_utils.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_37) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_utils.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_39) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_utils.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_utils.c.o -MF CMakeFiles/SDL2.dir/src/SDL_utils.c.o.d -o CMakeFiles/SDL2.dir/src/SDL_utils.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/SDL_utils.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_utils.c.i: cmake_force
@@ -310,7 +331,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_utils.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/atomic/SDL_atomic.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/atomic/SDL_atomic.c.o: _deps/sdl2-src/src/atomic/SDL_atomic.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/atomic/SDL_atomic.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_38) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/atomic/SDL_atomic.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_40) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/atomic/SDL_atomic.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/atomic/SDL_atomic.c.o -MF CMakeFiles/SDL2.dir/src/atomic/SDL_atomic.c.o.d -o CMakeFiles/SDL2.dir/src/atomic/SDL_atomic.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/atomic/SDL_atomic.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/atomic/SDL_atomic.c.i: cmake_force
@@ -324,7 +345,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/atomic/SDL_atomic.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/atomic/SDL_spinlock.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/atomic/SDL_spinlock.c.o: _deps/sdl2-src/src/atomic/SDL_spinlock.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/atomic/SDL_spinlock.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_39) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/atomic/SDL_spinlock.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_41) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/atomic/SDL_spinlock.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/atomic/SDL_spinlock.c.o -MF CMakeFiles/SDL2.dir/src/atomic/SDL_spinlock.c.o.d -o CMakeFiles/SDL2.dir/src/atomic/SDL_spinlock.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/atomic/SDL_spinlock.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/atomic/SDL_spinlock.c.i: cmake_force
@@ -338,7 +359,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/atomic/SDL_spinlock.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_audio.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_audio.c.o: _deps/sdl2-src/src/audio/SDL_audio.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_audio.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_40) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_audio.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_42) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_audio.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_audio.c.o -MF CMakeFiles/SDL2.dir/src/audio/SDL_audio.c.o.d -o CMakeFiles/SDL2.dir/src/audio/SDL_audio.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/audio/SDL_audio.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_audio.c.i: cmake_force
@@ -352,7 +373,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_audio.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_audiocvt.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_audiocvt.c.o: _deps/sdl2-src/src/audio/SDL_audiocvt.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_audiocvt.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_41) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_audiocvt.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_43) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_audiocvt.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_audiocvt.c.o -MF CMakeFiles/SDL2.dir/src/audio/SDL_audiocvt.c.o.d -o CMakeFiles/SDL2.dir/src/audio/SDL_audiocvt.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/audio/SDL_audiocvt.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_audiocvt.c.i: cmake_force
@@ -366,7 +387,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_audiocvt.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_audiodev.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_audiodev.c.o: _deps/sdl2-src/src/audio/SDL_audiodev.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_audiodev.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_42) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_audiodev.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_44) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_audiodev.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_audiodev.c.o -MF CMakeFiles/SDL2.dir/src/audio/SDL_audiodev.c.o.d -o CMakeFiles/SDL2.dir/src/audio/SDL_audiodev.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/audio/SDL_audiodev.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_audiodev.c.i: cmake_force
@@ -380,7 +401,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_audiodev.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_audiotypecvt.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_audiotypecvt.c.o: _deps/sdl2-src/src/audio/SDL_audiotypecvt.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_audiotypecvt.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_43) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_audiotypecvt.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_45) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_audiotypecvt.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_audiotypecvt.c.o -MF CMakeFiles/SDL2.dir/src/audio/SDL_audiotypecvt.c.o.d -o CMakeFiles/SDL2.dir/src/audio/SDL_audiotypecvt.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/audio/SDL_audiotypecvt.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_audiotypecvt.c.i: cmake_force
@@ -394,7 +415,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_audiotypecvt.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_mixer.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_mixer.c.o: _deps/sdl2-src/src/audio/SDL_mixer.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_mixer.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_44) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_mixer.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_46) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_mixer.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_mixer.c.o -MF CMakeFiles/SDL2.dir/src/audio/SDL_mixer.c.o.d -o CMakeFiles/SDL2.dir/src/audio/SDL_mixer.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/audio/SDL_mixer.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_mixer.c.i: cmake_force
@@ -408,7 +429,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_mixer.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_wave.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_wave.c.o: _deps/sdl2-src/src/audio/SDL_wave.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_wave.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_45) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_wave.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_47) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_wave.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_wave.c.o -MF CMakeFiles/SDL2.dir/src/audio/SDL_wave.c.o.d -o CMakeFiles/SDL2.dir/src/audio/SDL_wave.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/audio/SDL_wave.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_wave.c.i: cmake_force
@@ -422,7 +443,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/SDL_wave.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/cpuinfo/SDL_cpuinfo.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/cpuinfo/SDL_cpuinfo.c.o: _deps/sdl2-src/src/cpuinfo/SDL_cpuinfo.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/cpuinfo/SDL_cpuinfo.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_46) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/cpuinfo/SDL_cpuinfo.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_48) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/cpuinfo/SDL_cpuinfo.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/cpuinfo/SDL_cpuinfo.c.o -MF CMakeFiles/SDL2.dir/src/cpuinfo/SDL_cpuinfo.c.o.d -o CMakeFiles/SDL2.dir/src/cpuinfo/SDL_cpuinfo.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/cpuinfo/SDL_cpuinfo.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/cpuinfo/SDL_cpuinfo.c.i: cmake_force
@@ -436,7 +457,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/cpuinfo/SDL_cpuinfo.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/dynapi/SDL_dynapi.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/dynapi/SDL_dynapi.c.o: _deps/sdl2-src/src/dynapi/SDL_dynapi.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/dynapi/SDL_dynapi.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_47) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/dynapi/SDL_dynapi.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_49) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/dynapi/SDL_dynapi.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/dynapi/SDL_dynapi.c.o -MF CMakeFiles/SDL2.dir/src/dynapi/SDL_dynapi.c.o.d -o CMakeFiles/SDL2.dir/src/dynapi/SDL_dynapi.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/dynapi/SDL_dynapi.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/dynapi/SDL_dynapi.c.i: cmake_force
@@ -450,7 +471,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/dynapi/SDL_dynapi.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_clipboardevents.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_clipboardevents.c.o: _deps/sdl2-src/src/events/SDL_clipboardevents.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_clipboardevents.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_48) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_clipboardevents.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_50) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_clipboardevents.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_clipboardevents.c.o -MF CMakeFiles/SDL2.dir/src/events/SDL_clipboardevents.c.o.d -o CMakeFiles/SDL2.dir/src/events/SDL_clipboardevents.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/events/SDL_clipboardevents.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_clipboardevents.c.i: cmake_force
@@ -464,7 +485,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_clipboardevents.c.s: cmake_f
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_displayevents.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_displayevents.c.o: _deps/sdl2-src/src/events/SDL_displayevents.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_displayevents.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_49) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_displayevents.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_51) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_displayevents.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_displayevents.c.o -MF CMakeFiles/SDL2.dir/src/events/SDL_displayevents.c.o.d -o CMakeFiles/SDL2.dir/src/events/SDL_displayevents.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/events/SDL_displayevents.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_displayevents.c.i: cmake_force
@@ -478,7 +499,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_displayevents.c.s: cmake_for
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_dropevents.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_dropevents.c.o: _deps/sdl2-src/src/events/SDL_dropevents.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_dropevents.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_50) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_dropevents.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_52) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_dropevents.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_dropevents.c.o -MF CMakeFiles/SDL2.dir/src/events/SDL_dropevents.c.o.d -o CMakeFiles/SDL2.dir/src/events/SDL_dropevents.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/events/SDL_dropevents.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_dropevents.c.i: cmake_force
@@ -492,7 +513,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_dropevents.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_events.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_events.c.o: _deps/sdl2-src/src/events/SDL_events.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_events.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_51) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_events.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_53) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_events.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_events.c.o -MF CMakeFiles/SDL2.dir/src/events/SDL_events.c.o.d -o CMakeFiles/SDL2.dir/src/events/SDL_events.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/events/SDL_events.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_events.c.i: cmake_force
@@ -506,7 +527,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_events.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_gesture.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_gesture.c.o: _deps/sdl2-src/src/events/SDL_gesture.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_gesture.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_52) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_gesture.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_54) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_gesture.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_gesture.c.o -MF CMakeFiles/SDL2.dir/src/events/SDL_gesture.c.o.d -o CMakeFiles/SDL2.dir/src/events/SDL_gesture.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/events/SDL_gesture.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_gesture.c.i: cmake_force
@@ -520,7 +541,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_gesture.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_keyboard.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_keyboard.c.o: _deps/sdl2-src/src/events/SDL_keyboard.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_keyboard.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_53) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_keyboard.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_55) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_keyboard.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_keyboard.c.o -MF CMakeFiles/SDL2.dir/src/events/SDL_keyboard.c.o.d -o CMakeFiles/SDL2.dir/src/events/SDL_keyboard.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/events/SDL_keyboard.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_keyboard.c.i: cmake_force
@@ -534,7 +555,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_keyboard.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_keysym_to_scancode.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_keysym_to_scancode.c.o: _deps/sdl2-src/src/events/SDL_keysym_to_scancode.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_keysym_to_scancode.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_54) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_keysym_to_scancode.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_56) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_keysym_to_scancode.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_keysym_to_scancode.c.o -MF CMakeFiles/SDL2.dir/src/events/SDL_keysym_to_scancode.c.o.d -o CMakeFiles/SDL2.dir/src/events/SDL_keysym_to_scancode.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/events/SDL_keysym_to_scancode.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_keysym_to_scancode.c.i: cmake_force
@@ -548,7 +569,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_keysym_to_scancode.c.s: cmak
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_mouse.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_mouse.c.o: _deps/sdl2-src/src/events/SDL_mouse.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_mouse.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_55) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_mouse.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_57) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_mouse.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_mouse.c.o -MF CMakeFiles/SDL2.dir/src/events/SDL_mouse.c.o.d -o CMakeFiles/SDL2.dir/src/events/SDL_mouse.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/events/SDL_mouse.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_mouse.c.i: cmake_force
@@ -562,7 +583,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_mouse.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_quit.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_quit.c.o: _deps/sdl2-src/src/events/SDL_quit.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_quit.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_56) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_quit.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_58) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_quit.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_quit.c.o -MF CMakeFiles/SDL2.dir/src/events/SDL_quit.c.o.d -o CMakeFiles/SDL2.dir/src/events/SDL_quit.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/events/SDL_quit.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_quit.c.i: cmake_force
@@ -576,7 +597,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_quit.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_scancode_tables.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_scancode_tables.c.o: _deps/sdl2-src/src/events/SDL_scancode_tables.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_scancode_tables.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_57) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_scancode_tables.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_59) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_scancode_tables.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_scancode_tables.c.o -MF CMakeFiles/SDL2.dir/src/events/SDL_scancode_tables.c.o.d -o CMakeFiles/SDL2.dir/src/events/SDL_scancode_tables.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/events/SDL_scancode_tables.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_scancode_tables.c.i: cmake_force
@@ -590,7 +611,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_scancode_tables.c.s: cmake_f
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_touch.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_touch.c.o: _deps/sdl2-src/src/events/SDL_touch.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_touch.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_58) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_touch.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_60) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_touch.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_touch.c.o -MF CMakeFiles/SDL2.dir/src/events/SDL_touch.c.o.d -o CMakeFiles/SDL2.dir/src/events/SDL_touch.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/events/SDL_touch.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_touch.c.i: cmake_force
@@ -604,7 +625,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_touch.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_windowevents.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_windowevents.c.o: _deps/sdl2-src/src/events/SDL_windowevents.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_windowevents.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_59) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_windowevents.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_61) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_windowevents.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_windowevents.c.o -MF CMakeFiles/SDL2.dir/src/events/SDL_windowevents.c.o.d -o CMakeFiles/SDL2.dir/src/events/SDL_windowevents.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/events/SDL_windowevents.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_windowevents.c.i: cmake_force
@@ -618,7 +639,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/SDL_windowevents.c.s: cmake_forc
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/imKStoUCS.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/imKStoUCS.c.o: _deps/sdl2-src/src/events/imKStoUCS.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/imKStoUCS.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_60) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/imKStoUCS.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_62) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/imKStoUCS.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/imKStoUCS.c.o -MF CMakeFiles/SDL2.dir/src/events/imKStoUCS.c.o.d -o CMakeFiles/SDL2.dir/src/events/imKStoUCS.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/events/imKStoUCS.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/imKStoUCS.c.i: cmake_force
@@ -632,7 +653,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/events/imKStoUCS.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/file/SDL_rwops.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/file/SDL_rwops.c.o: _deps/sdl2-src/src/file/SDL_rwops.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/file/SDL_rwops.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_61) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/file/SDL_rwops.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_63) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/file/SDL_rwops.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/file/SDL_rwops.c.o -MF CMakeFiles/SDL2.dir/src/file/SDL_rwops.c.o.d -o CMakeFiles/SDL2.dir/src/file/SDL_rwops.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/file/SDL_rwops.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/file/SDL_rwops.c.i: cmake_force
@@ -646,7 +667,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/file/SDL_rwops.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/haptic/SDL_haptic.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/haptic/SDL_haptic.c.o: _deps/sdl2-src/src/haptic/SDL_haptic.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/haptic/SDL_haptic.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_62) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/haptic/SDL_haptic.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_64) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/haptic/SDL_haptic.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/haptic/SDL_haptic.c.o -MF CMakeFiles/SDL2.dir/src/haptic/SDL_haptic.c.o.d -o CMakeFiles/SDL2.dir/src/haptic/SDL_haptic.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/haptic/SDL_haptic.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/haptic/SDL_haptic.c.i: cmake_force
@@ -660,7 +681,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/haptic/SDL_haptic.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/hidapi/SDL_hidapi.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/hidapi/SDL_hidapi.c.o: _deps/sdl2-src/src/hidapi/SDL_hidapi.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/hidapi/SDL_hidapi.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_63) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/hidapi/SDL_hidapi.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_65) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/hidapi/SDL_hidapi.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/hidapi/SDL_hidapi.c.o -MF CMakeFiles/SDL2.dir/src/hidapi/SDL_hidapi.c.o.d -o CMakeFiles/SDL2.dir/src/hidapi/SDL_hidapi.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/hidapi/SDL_hidapi.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/hidapi/SDL_hidapi.c.i: cmake_force
@@ -674,7 +695,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/hidapi/SDL_hidapi.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/SDL_gamecontroller.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/SDL_gamecontroller.c.o: _deps/sdl2-src/src/joystick/SDL_gamecontroller.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/SDL_gamecontroller.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_64) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/SDL_gamecontroller.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_66) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/SDL_gamecontroller.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/SDL_gamecontroller.c.o -MF CMakeFiles/SDL2.dir/src/joystick/SDL_gamecontroller.c.o.d -o CMakeFiles/SDL2.dir/src/joystick/SDL_gamecontroller.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/joystick/SDL_gamecontroller.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/SDL_gamecontroller.c.i: cmake_force
@@ -688,7 +709,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/SDL_gamecontroller.c.s: cmake_
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/SDL_joystick.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/SDL_joystick.c.o: _deps/sdl2-src/src/joystick/SDL_joystick.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/SDL_joystick.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_65) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/SDL_joystick.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_67) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/SDL_joystick.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/SDL_joystick.c.o -MF CMakeFiles/SDL2.dir/src/joystick/SDL_joystick.c.o.d -o CMakeFiles/SDL2.dir/src/joystick/SDL_joystick.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/joystick/SDL_joystick.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/SDL_joystick.c.i: cmake_force
@@ -702,7 +723,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/SDL_joystick.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/SDL_steam_virtual_gamepad.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/SDL_steam_virtual_gamepad.c.o: _deps/sdl2-src/src/joystick/SDL_steam_virtual_gamepad.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/SDL_steam_virtual_gamepad.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_66) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/SDL_steam_virtual_gamepad.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_68) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/SDL_steam_virtual_gamepad.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/SDL_steam_virtual_gamepad.c.o -MF CMakeFiles/SDL2.dir/src/joystick/SDL_steam_virtual_gamepad.c.o.d -o CMakeFiles/SDL2.dir/src/joystick/SDL_steam_virtual_gamepad.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/joystick/SDL_steam_virtual_gamepad.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/SDL_steam_virtual_gamepad.c.i: cmake_force
@@ -716,7 +737,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/SDL_steam_virtual_gamepad.c.s:
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/controller_type.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/controller_type.c.o: _deps/sdl2-src/src/joystick/controller_type.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/controller_type.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_67) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/controller_type.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_69) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/controller_type.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/controller_type.c.o -MF CMakeFiles/SDL2.dir/src/joystick/controller_type.c.o.d -o CMakeFiles/SDL2.dir/src/joystick/controller_type.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/joystick/controller_type.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/controller_type.c.i: cmake_force
@@ -730,7 +751,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/controller_type.c.s: cmake_for
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_atan2.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_atan2.c.o: _deps/sdl2-src/src/libm/e_atan2.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_atan2.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_68) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_atan2.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_70) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_atan2.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_atan2.c.o -MF CMakeFiles/SDL2.dir/src/libm/e_atan2.c.o.d -o CMakeFiles/SDL2.dir/src/libm/e_atan2.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/libm/e_atan2.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_atan2.c.i: cmake_force
@@ -744,7 +765,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_atan2.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_exp.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_exp.c.o: _deps/sdl2-src/src/libm/e_exp.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_exp.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_69) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_exp.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_71) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_exp.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_exp.c.o -MF CMakeFiles/SDL2.dir/src/libm/e_exp.c.o.d -o CMakeFiles/SDL2.dir/src/libm/e_exp.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/libm/e_exp.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_exp.c.i: cmake_force
@@ -758,7 +779,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_exp.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_fmod.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_fmod.c.o: _deps/sdl2-src/src/libm/e_fmod.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_fmod.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_70) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_fmod.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_72) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_fmod.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_fmod.c.o -MF CMakeFiles/SDL2.dir/src/libm/e_fmod.c.o.d -o CMakeFiles/SDL2.dir/src/libm/e_fmod.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/libm/e_fmod.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_fmod.c.i: cmake_force
@@ -772,7 +793,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_fmod.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_log.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_log.c.o: _deps/sdl2-src/src/libm/e_log.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_log.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_71) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_log.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_73) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_log.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_log.c.o -MF CMakeFiles/SDL2.dir/src/libm/e_log.c.o.d -o CMakeFiles/SDL2.dir/src/libm/e_log.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/libm/e_log.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_log.c.i: cmake_force
@@ -786,7 +807,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_log.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_log10.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_log10.c.o: _deps/sdl2-src/src/libm/e_log10.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_log10.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_72) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_log10.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_74) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_log10.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_log10.c.o -MF CMakeFiles/SDL2.dir/src/libm/e_log10.c.o.d -o CMakeFiles/SDL2.dir/src/libm/e_log10.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/libm/e_log10.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_log10.c.i: cmake_force
@@ -800,7 +821,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_log10.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_pow.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_pow.c.o: _deps/sdl2-src/src/libm/e_pow.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_pow.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_73) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_pow.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_75) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_pow.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_pow.c.o -MF CMakeFiles/SDL2.dir/src/libm/e_pow.c.o.d -o CMakeFiles/SDL2.dir/src/libm/e_pow.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/libm/e_pow.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_pow.c.i: cmake_force
@@ -814,7 +835,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_pow.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_rem_pio2.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_rem_pio2.c.o: _deps/sdl2-src/src/libm/e_rem_pio2.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_rem_pio2.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_74) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_rem_pio2.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_76) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_rem_pio2.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_rem_pio2.c.o -MF CMakeFiles/SDL2.dir/src/libm/e_rem_pio2.c.o.d -o CMakeFiles/SDL2.dir/src/libm/e_rem_pio2.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/libm/e_rem_pio2.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_rem_pio2.c.i: cmake_force
@@ -828,7 +849,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_rem_pio2.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_sqrt.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_sqrt.c.o: _deps/sdl2-src/src/libm/e_sqrt.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_sqrt.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_75) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_sqrt.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_77) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_sqrt.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_sqrt.c.o -MF CMakeFiles/SDL2.dir/src/libm/e_sqrt.c.o.d -o CMakeFiles/SDL2.dir/src/libm/e_sqrt.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/libm/e_sqrt.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_sqrt.c.i: cmake_force
@@ -842,7 +863,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/e_sqrt.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/k_cos.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/k_cos.c.o: _deps/sdl2-src/src/libm/k_cos.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/k_cos.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_76) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/k_cos.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_78) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/k_cos.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/k_cos.c.o -MF CMakeFiles/SDL2.dir/src/libm/k_cos.c.o.d -o CMakeFiles/SDL2.dir/src/libm/k_cos.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/libm/k_cos.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/k_cos.c.i: cmake_force
@@ -856,7 +877,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/k_cos.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/k_rem_pio2.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/k_rem_pio2.c.o: _deps/sdl2-src/src/libm/k_rem_pio2.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/k_rem_pio2.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_77) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/k_rem_pio2.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_79) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/k_rem_pio2.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/k_rem_pio2.c.o -MF CMakeFiles/SDL2.dir/src/libm/k_rem_pio2.c.o.d -o CMakeFiles/SDL2.dir/src/libm/k_rem_pio2.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/libm/k_rem_pio2.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/k_rem_pio2.c.i: cmake_force
@@ -870,7 +891,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/k_rem_pio2.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/k_sin.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/k_sin.c.o: _deps/sdl2-src/src/libm/k_sin.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/k_sin.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_78) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/k_sin.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_80) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/k_sin.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/k_sin.c.o -MF CMakeFiles/SDL2.dir/src/libm/k_sin.c.o.d -o CMakeFiles/SDL2.dir/src/libm/k_sin.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/libm/k_sin.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/k_sin.c.i: cmake_force
@@ -884,7 +905,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/k_sin.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/k_tan.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/k_tan.c.o: _deps/sdl2-src/src/libm/k_tan.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/k_tan.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_79) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/k_tan.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_81) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/k_tan.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/k_tan.c.o -MF CMakeFiles/SDL2.dir/src/libm/k_tan.c.o.d -o CMakeFiles/SDL2.dir/src/libm/k_tan.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/libm/k_tan.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/k_tan.c.i: cmake_force
@@ -898,7 +919,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/k_tan.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_atan.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_atan.c.o: _deps/sdl2-src/src/libm/s_atan.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_atan.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_80) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_atan.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_82) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_atan.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_atan.c.o -MF CMakeFiles/SDL2.dir/src/libm/s_atan.c.o.d -o CMakeFiles/SDL2.dir/src/libm/s_atan.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/libm/s_atan.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_atan.c.i: cmake_force
@@ -912,7 +933,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_atan.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_copysign.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_copysign.c.o: _deps/sdl2-src/src/libm/s_copysign.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_copysign.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_81) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_copysign.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_83) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_copysign.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_copysign.c.o -MF CMakeFiles/SDL2.dir/src/libm/s_copysign.c.o.d -o CMakeFiles/SDL2.dir/src/libm/s_copysign.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/libm/s_copysign.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_copysign.c.i: cmake_force
@@ -926,7 +947,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_copysign.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_cos.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_cos.c.o: _deps/sdl2-src/src/libm/s_cos.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_cos.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_82) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_cos.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_84) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_cos.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_cos.c.o -MF CMakeFiles/SDL2.dir/src/libm/s_cos.c.o.d -o CMakeFiles/SDL2.dir/src/libm/s_cos.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/libm/s_cos.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_cos.c.i: cmake_force
@@ -940,7 +961,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_cos.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_fabs.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_fabs.c.o: _deps/sdl2-src/src/libm/s_fabs.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_fabs.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_83) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_fabs.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_85) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_fabs.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_fabs.c.o -MF CMakeFiles/SDL2.dir/src/libm/s_fabs.c.o.d -o CMakeFiles/SDL2.dir/src/libm/s_fabs.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/libm/s_fabs.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_fabs.c.i: cmake_force
@@ -954,7 +975,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_fabs.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_floor.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_floor.c.o: _deps/sdl2-src/src/libm/s_floor.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_floor.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_84) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_floor.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_86) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_floor.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_floor.c.o -MF CMakeFiles/SDL2.dir/src/libm/s_floor.c.o.d -o CMakeFiles/SDL2.dir/src/libm/s_floor.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/libm/s_floor.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_floor.c.i: cmake_force
@@ -968,7 +989,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_floor.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_scalbn.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_scalbn.c.o: _deps/sdl2-src/src/libm/s_scalbn.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_scalbn.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_85) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_scalbn.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_87) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_scalbn.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_scalbn.c.o -MF CMakeFiles/SDL2.dir/src/libm/s_scalbn.c.o.d -o CMakeFiles/SDL2.dir/src/libm/s_scalbn.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/libm/s_scalbn.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_scalbn.c.i: cmake_force
@@ -982,7 +1003,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_scalbn.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_sin.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_sin.c.o: _deps/sdl2-src/src/libm/s_sin.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_sin.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_86) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_sin.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_88) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_sin.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_sin.c.o -MF CMakeFiles/SDL2.dir/src/libm/s_sin.c.o.d -o CMakeFiles/SDL2.dir/src/libm/s_sin.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/libm/s_sin.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_sin.c.i: cmake_force
@@ -996,7 +1017,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_sin.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_tan.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_tan.c.o: _deps/sdl2-src/src/libm/s_tan.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_tan.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_87) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_tan.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_89) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_tan.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_tan.c.o -MF CMakeFiles/SDL2.dir/src/libm/s_tan.c.o.d -o CMakeFiles/SDL2.dir/src/libm/s_tan.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/libm/s_tan.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_tan.c.i: cmake_force
@@ -1010,7 +1031,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/libm/s_tan.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/locale/SDL_locale.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/locale/SDL_locale.c.o: _deps/sdl2-src/src/locale/SDL_locale.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/locale/SDL_locale.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_88) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/locale/SDL_locale.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_90) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/locale/SDL_locale.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/locale/SDL_locale.c.o -MF CMakeFiles/SDL2.dir/src/locale/SDL_locale.c.o.d -o CMakeFiles/SDL2.dir/src/locale/SDL_locale.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/locale/SDL_locale.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/locale/SDL_locale.c.i: cmake_force
@@ -1024,7 +1045,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/locale/SDL_locale.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/misc/SDL_url.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/misc/SDL_url.c.o: _deps/sdl2-src/src/misc/SDL_url.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/misc/SDL_url.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_89) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/misc/SDL_url.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_91) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/misc/SDL_url.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/misc/SDL_url.c.o -MF CMakeFiles/SDL2.dir/src/misc/SDL_url.c.o.d -o CMakeFiles/SDL2.dir/src/misc/SDL_url.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/misc/SDL_url.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/misc/SDL_url.c.i: cmake_force
@@ -1038,7 +1059,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/misc/SDL_url.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/power/SDL_power.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/power/SDL_power.c.o: _deps/sdl2-src/src/power/SDL_power.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/power/SDL_power.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_90) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/power/SDL_power.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_92) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/power/SDL_power.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/power/SDL_power.c.o -MF CMakeFiles/SDL2.dir/src/power/SDL_power.c.o.d -o CMakeFiles/SDL2.dir/src/power/SDL_power.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/power/SDL_power.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/power/SDL_power.c.i: cmake_force
@@ -1052,7 +1073,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/power/SDL_power.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/SDL_d3dmath.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/SDL_d3dmath.c.o: _deps/sdl2-src/src/render/SDL_d3dmath.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/SDL_d3dmath.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_91) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/SDL_d3dmath.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_93) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/SDL_d3dmath.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/SDL_d3dmath.c.o -MF CMakeFiles/SDL2.dir/src/render/SDL_d3dmath.c.o.d -o CMakeFiles/SDL2.dir/src/render/SDL_d3dmath.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/render/SDL_d3dmath.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/SDL_d3dmath.c.i: cmake_force
@@ -1066,7 +1087,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/SDL_d3dmath.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/SDL_render.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/SDL_render.c.o: _deps/sdl2-src/src/render/SDL_render.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/SDL_render.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_92) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/SDL_render.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_94) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/SDL_render.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/SDL_render.c.o -MF CMakeFiles/SDL2.dir/src/render/SDL_render.c.o.d -o CMakeFiles/SDL2.dir/src/render/SDL_render.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/render/SDL_render.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/SDL_render.c.i: cmake_force
@@ -1080,7 +1101,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/SDL_render.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/SDL_yuv_sw.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/SDL_yuv_sw.c.o: _deps/sdl2-src/src/render/SDL_yuv_sw.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/SDL_yuv_sw.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_93) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/SDL_yuv_sw.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_95) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/SDL_yuv_sw.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/SDL_yuv_sw.c.o -MF CMakeFiles/SDL2.dir/src/render/SDL_yuv_sw.c.o.d -o CMakeFiles/SDL2.dir/src/render/SDL_yuv_sw.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/render/SDL_yuv_sw.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/SDL_yuv_sw.c.i: cmake_force
@@ -1094,7 +1115,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/SDL_yuv_sw.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d/SDL_render_d3d.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d/SDL_render_d3d.c.o: _deps/sdl2-src/src/render/direct3d/SDL_render_d3d.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d/SDL_render_d3d.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_94) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d/SDL_render_d3d.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_96) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d/SDL_render_d3d.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d/SDL_render_d3d.c.o -MF CMakeFiles/SDL2.dir/src/render/direct3d/SDL_render_d3d.c.o.d -o CMakeFiles/SDL2.dir/src/render/direct3d/SDL_render_d3d.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/render/direct3d/SDL_render_d3d.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d/SDL_render_d3d.c.i: cmake_force
@@ -1108,7 +1129,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d/SDL_render_d3d.c.s: cma
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d/SDL_shaders_d3d.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d/SDL_shaders_d3d.c.o: _deps/sdl2-src/src/render/direct3d/SDL_shaders_d3d.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d/SDL_shaders_d3d.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_95) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d/SDL_shaders_d3d.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_97) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d/SDL_shaders_d3d.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d/SDL_shaders_d3d.c.o -MF CMakeFiles/SDL2.dir/src/render/direct3d/SDL_shaders_d3d.c.o.d -o CMakeFiles/SDL2.dir/src/render/direct3d/SDL_shaders_d3d.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/render/direct3d/SDL_shaders_d3d.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d/SDL_shaders_d3d.c.i: cmake_force
@@ -1122,7 +1143,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d/SDL_shaders_d3d.c.s: cm
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d11/SDL_render_d3d11.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d11/SDL_render_d3d11.c.o: _deps/sdl2-src/src/render/direct3d11/SDL_render_d3d11.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d11/SDL_render_d3d11.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_96) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d11/SDL_render_d3d11.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_98) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d11/SDL_render_d3d11.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d11/SDL_render_d3d11.c.o -MF CMakeFiles/SDL2.dir/src/render/direct3d11/SDL_render_d3d11.c.o.d -o CMakeFiles/SDL2.dir/src/render/direct3d11/SDL_render_d3d11.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/render/direct3d11/SDL_render_d3d11.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d11/SDL_render_d3d11.c.i: cmake_force
@@ -1136,7 +1157,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d11/SDL_render_d3d11.c.s:
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d11/SDL_shaders_d3d11.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d11/SDL_shaders_d3d11.c.o: _deps/sdl2-src/src/render/direct3d11/SDL_shaders_d3d11.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d11/SDL_shaders_d3d11.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_97) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d11/SDL_shaders_d3d11.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_99) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d11/SDL_shaders_d3d11.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d11/SDL_shaders_d3d11.c.o -MF CMakeFiles/SDL2.dir/src/render/direct3d11/SDL_shaders_d3d11.c.o.d -o CMakeFiles/SDL2.dir/src/render/direct3d11/SDL_shaders_d3d11.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/render/direct3d11/SDL_shaders_d3d11.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d11/SDL_shaders_d3d11.c.i: cmake_force
@@ -1150,7 +1171,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d11/SDL_shaders_d3d11.c.s
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d12/SDL_render_d3d12.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d12/SDL_render_d3d12.c.o: _deps/sdl2-src/src/render/direct3d12/SDL_render_d3d12.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d12/SDL_render_d3d12.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_98) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d12/SDL_render_d3d12.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_100) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d12/SDL_render_d3d12.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d12/SDL_render_d3d12.c.o -MF CMakeFiles/SDL2.dir/src/render/direct3d12/SDL_render_d3d12.c.o.d -o CMakeFiles/SDL2.dir/src/render/direct3d12/SDL_render_d3d12.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/render/direct3d12/SDL_render_d3d12.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d12/SDL_render_d3d12.c.i: cmake_force
@@ -1164,7 +1185,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d12/SDL_render_d3d12.c.s:
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d12/SDL_shaders_d3d12.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d12/SDL_shaders_d3d12.c.o: _deps/sdl2-src/src/render/direct3d12/SDL_shaders_d3d12.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d12/SDL_shaders_d3d12.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_99) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d12/SDL_shaders_d3d12.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_101) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d12/SDL_shaders_d3d12.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d12/SDL_shaders_d3d12.c.o -MF CMakeFiles/SDL2.dir/src/render/direct3d12/SDL_shaders_d3d12.c.o.d -o CMakeFiles/SDL2.dir/src/render/direct3d12/SDL_shaders_d3d12.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/render/direct3d12/SDL_shaders_d3d12.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d12/SDL_shaders_d3d12.c.i: cmake_force
@@ -1178,7 +1199,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/direct3d12/SDL_shaders_d3d12.c.s
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengl/SDL_render_gl.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengl/SDL_render_gl.c.o: _deps/sdl2-src/src/render/opengl/SDL_render_gl.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengl/SDL_render_gl.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_100) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengl/SDL_render_gl.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_102) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengl/SDL_render_gl.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengl/SDL_render_gl.c.o -MF CMakeFiles/SDL2.dir/src/render/opengl/SDL_render_gl.c.o.d -o CMakeFiles/SDL2.dir/src/render/opengl/SDL_render_gl.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/render/opengl/SDL_render_gl.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengl/SDL_render_gl.c.i: cmake_force
@@ -1192,7 +1213,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengl/SDL_render_gl.c.s: cmake_
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengl/SDL_shaders_gl.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengl/SDL_shaders_gl.c.o: _deps/sdl2-src/src/render/opengl/SDL_shaders_gl.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengl/SDL_shaders_gl.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_101) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengl/SDL_shaders_gl.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_103) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengl/SDL_shaders_gl.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengl/SDL_shaders_gl.c.o -MF CMakeFiles/SDL2.dir/src/render/opengl/SDL_shaders_gl.c.o.d -o CMakeFiles/SDL2.dir/src/render/opengl/SDL_shaders_gl.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/render/opengl/SDL_shaders_gl.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengl/SDL_shaders_gl.c.i: cmake_force
@@ -1206,7 +1227,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengl/SDL_shaders_gl.c.s: cmake
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengles/SDL_render_gles.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengles/SDL_render_gles.c.o: _deps/sdl2-src/src/render/opengles/SDL_render_gles.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengles/SDL_render_gles.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_102) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengles/SDL_render_gles.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_104) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengles/SDL_render_gles.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengles/SDL_render_gles.c.o -MF CMakeFiles/SDL2.dir/src/render/opengles/SDL_render_gles.c.o.d -o CMakeFiles/SDL2.dir/src/render/opengles/SDL_render_gles.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/render/opengles/SDL_render_gles.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengles/SDL_render_gles.c.i: cmake_force
@@ -1220,7 +1241,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengles/SDL_render_gles.c.s: cm
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengles2/SDL_render_gles2.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengles2/SDL_render_gles2.c.o: _deps/sdl2-src/src/render/opengles2/SDL_render_gles2.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengles2/SDL_render_gles2.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_103) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengles2/SDL_render_gles2.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_105) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengles2/SDL_render_gles2.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengles2/SDL_render_gles2.c.o -MF CMakeFiles/SDL2.dir/src/render/opengles2/SDL_render_gles2.c.o.d -o CMakeFiles/SDL2.dir/src/render/opengles2/SDL_render_gles2.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/render/opengles2/SDL_render_gles2.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengles2/SDL_render_gles2.c.i: cmake_force
@@ -1234,7 +1255,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengles2/SDL_render_gles2.c.s: 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengles2/SDL_shaders_gles2.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengles2/SDL_shaders_gles2.c.o: _deps/sdl2-src/src/render/opengles2/SDL_shaders_gles2.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengles2/SDL_shaders_gles2.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_104) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengles2/SDL_shaders_gles2.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_106) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengles2/SDL_shaders_gles2.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengles2/SDL_shaders_gles2.c.o -MF CMakeFiles/SDL2.dir/src/render/opengles2/SDL_shaders_gles2.c.o.d -o CMakeFiles/SDL2.dir/src/render/opengles2/SDL_shaders_gles2.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/render/opengles2/SDL_shaders_gles2.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengles2/SDL_shaders_gles2.c.i: cmake_force
@@ -1248,7 +1269,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/opengles2/SDL_shaders_gles2.c.s:
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/ps2/SDL_render_ps2.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/ps2/SDL_render_ps2.c.o: _deps/sdl2-src/src/render/ps2/SDL_render_ps2.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/ps2/SDL_render_ps2.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_105) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/ps2/SDL_render_ps2.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_107) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/ps2/SDL_render_ps2.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/ps2/SDL_render_ps2.c.o -MF CMakeFiles/SDL2.dir/src/render/ps2/SDL_render_ps2.c.o.d -o CMakeFiles/SDL2.dir/src/render/ps2/SDL_render_ps2.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/render/ps2/SDL_render_ps2.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/ps2/SDL_render_ps2.c.i: cmake_force
@@ -1262,7 +1283,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/ps2/SDL_render_ps2.c.s: cmake_fo
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/psp/SDL_render_psp.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/psp/SDL_render_psp.c.o: _deps/sdl2-src/src/render/psp/SDL_render_psp.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/psp/SDL_render_psp.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_106) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/psp/SDL_render_psp.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_108) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/psp/SDL_render_psp.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/psp/SDL_render_psp.c.o -MF CMakeFiles/SDL2.dir/src/render/psp/SDL_render_psp.c.o.d -o CMakeFiles/SDL2.dir/src/render/psp/SDL_render_psp.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/render/psp/SDL_render_psp.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/psp/SDL_render_psp.c.i: cmake_force
@@ -1276,7 +1297,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/psp/SDL_render_psp.c.s: cmake_fo
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_blendfillrect.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_blendfillrect.c.o: _deps/sdl2-src/src/render/software/SDL_blendfillrect.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_blendfillrect.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_107) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_blendfillrect.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_109) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_blendfillrect.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_blendfillrect.c.o -MF CMakeFiles/SDL2.dir/src/render/software/SDL_blendfillrect.c.o.d -o CMakeFiles/SDL2.dir/src/render/software/SDL_blendfillrect.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/render/software/SDL_blendfillrect.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_blendfillrect.c.i: cmake_force
@@ -1290,7 +1311,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_blendfillrect.c.s: 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_blendline.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_blendline.c.o: _deps/sdl2-src/src/render/software/SDL_blendline.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_blendline.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_108) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_blendline.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_110) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_blendline.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_blendline.c.o -MF CMakeFiles/SDL2.dir/src/render/software/SDL_blendline.c.o.d -o CMakeFiles/SDL2.dir/src/render/software/SDL_blendline.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/render/software/SDL_blendline.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_blendline.c.i: cmake_force
@@ -1304,7 +1325,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_blendline.c.s: cmak
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_blendpoint.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_blendpoint.c.o: _deps/sdl2-src/src/render/software/SDL_blendpoint.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_blendpoint.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_109) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_blendpoint.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_111) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_blendpoint.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_blendpoint.c.o -MF CMakeFiles/SDL2.dir/src/render/software/SDL_blendpoint.c.o.d -o CMakeFiles/SDL2.dir/src/render/software/SDL_blendpoint.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/render/software/SDL_blendpoint.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_blendpoint.c.i: cmake_force
@@ -1318,7 +1339,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_blendpoint.c.s: cma
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_drawline.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_drawline.c.o: _deps/sdl2-src/src/render/software/SDL_drawline.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_drawline.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_110) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_drawline.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_112) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_drawline.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_drawline.c.o -MF CMakeFiles/SDL2.dir/src/render/software/SDL_drawline.c.o.d -o CMakeFiles/SDL2.dir/src/render/software/SDL_drawline.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/render/software/SDL_drawline.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_drawline.c.i: cmake_force
@@ -1332,7 +1353,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_drawline.c.s: cmake
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_drawpoint.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_drawpoint.c.o: _deps/sdl2-src/src/render/software/SDL_drawpoint.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_drawpoint.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_111) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_drawpoint.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_113) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_drawpoint.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_drawpoint.c.o -MF CMakeFiles/SDL2.dir/src/render/software/SDL_drawpoint.c.o.d -o CMakeFiles/SDL2.dir/src/render/software/SDL_drawpoint.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/render/software/SDL_drawpoint.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_drawpoint.c.i: cmake_force
@@ -1346,7 +1367,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_drawpoint.c.s: cmak
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_render_sw.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_render_sw.c.o: _deps/sdl2-src/src/render/software/SDL_render_sw.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_render_sw.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_112) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_render_sw.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_114) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_render_sw.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_render_sw.c.o -MF CMakeFiles/SDL2.dir/src/render/software/SDL_render_sw.c.o.d -o CMakeFiles/SDL2.dir/src/render/software/SDL_render_sw.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/render/software/SDL_render_sw.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_render_sw.c.i: cmake_force
@@ -1360,7 +1381,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_render_sw.c.s: cmak
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_rotate.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_rotate.c.o: _deps/sdl2-src/src/render/software/SDL_rotate.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_rotate.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_113) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_rotate.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_115) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_rotate.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_rotate.c.o -MF CMakeFiles/SDL2.dir/src/render/software/SDL_rotate.c.o.d -o CMakeFiles/SDL2.dir/src/render/software/SDL_rotate.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/render/software/SDL_rotate.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_rotate.c.i: cmake_force
@@ -1374,7 +1395,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_rotate.c.s: cmake_f
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_triangle.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_triangle.c.o: _deps/sdl2-src/src/render/software/SDL_triangle.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_triangle.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_114) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_triangle.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_116) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_triangle.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_triangle.c.o -MF CMakeFiles/SDL2.dir/src/render/software/SDL_triangle.c.o.d -o CMakeFiles/SDL2.dir/src/render/software/SDL_triangle.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/render/software/SDL_triangle.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_triangle.c.i: cmake_force
@@ -1388,7 +1409,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/software/SDL_triangle.c.s: cmake
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/vitagxm/SDL_render_vita_gxm.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/vitagxm/SDL_render_vita_gxm.c.o: _deps/sdl2-src/src/render/vitagxm/SDL_render_vita_gxm.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/vitagxm/SDL_render_vita_gxm.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_115) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/vitagxm/SDL_render_vita_gxm.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_117) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/vitagxm/SDL_render_vita_gxm.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/vitagxm/SDL_render_vita_gxm.c.o -MF CMakeFiles/SDL2.dir/src/render/vitagxm/SDL_render_vita_gxm.c.o.d -o CMakeFiles/SDL2.dir/src/render/vitagxm/SDL_render_vita_gxm.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/render/vitagxm/SDL_render_vita_gxm.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/vitagxm/SDL_render_vita_gxm.c.i: cmake_force
@@ -1402,7 +1423,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/vitagxm/SDL_render_vita_gxm.c.s:
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/vitagxm/SDL_render_vita_gxm_memory.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/vitagxm/SDL_render_vita_gxm_memory.c.o: _deps/sdl2-src/src/render/vitagxm/SDL_render_vita_gxm_memory.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/vitagxm/SDL_render_vita_gxm_memory.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_116) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/vitagxm/SDL_render_vita_gxm_memory.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_118) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/vitagxm/SDL_render_vita_gxm_memory.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/vitagxm/SDL_render_vita_gxm_memory.c.o -MF CMakeFiles/SDL2.dir/src/render/vitagxm/SDL_render_vita_gxm_memory.c.o.d -o CMakeFiles/SDL2.dir/src/render/vitagxm/SDL_render_vita_gxm_memory.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/render/vitagxm/SDL_render_vita_gxm_memory.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/vitagxm/SDL_render_vita_gxm_memory.c.i: cmake_force
@@ -1416,7 +1437,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/vitagxm/SDL_render_vita_gxm_memo
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/vitagxm/SDL_render_vita_gxm_tools.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/vitagxm/SDL_render_vita_gxm_tools.c.o: _deps/sdl2-src/src/render/vitagxm/SDL_render_vita_gxm_tools.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/vitagxm/SDL_render_vita_gxm_tools.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_117) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/vitagxm/SDL_render_vita_gxm_tools.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_119) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/vitagxm/SDL_render_vita_gxm_tools.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/vitagxm/SDL_render_vita_gxm_tools.c.o -MF CMakeFiles/SDL2.dir/src/render/vitagxm/SDL_render_vita_gxm_tools.c.o.d -o CMakeFiles/SDL2.dir/src/render/vitagxm/SDL_render_vita_gxm_tools.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/render/vitagxm/SDL_render_vita_gxm_tools.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/vitagxm/SDL_render_vita_gxm_tools.c.i: cmake_force
@@ -1430,7 +1451,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/render/vitagxm/SDL_render_vita_gxm_tool
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/sensor/SDL_sensor.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/sensor/SDL_sensor.c.o: _deps/sdl2-src/src/sensor/SDL_sensor.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/sensor/SDL_sensor.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_118) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/sensor/SDL_sensor.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_120) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/sensor/SDL_sensor.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/sensor/SDL_sensor.c.o -MF CMakeFiles/SDL2.dir/src/sensor/SDL_sensor.c.o.d -o CMakeFiles/SDL2.dir/src/sensor/SDL_sensor.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/sensor/SDL_sensor.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/sensor/SDL_sensor.c.i: cmake_force
@@ -1444,7 +1465,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/sensor/SDL_sensor.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_crc16.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_crc16.c.o: _deps/sdl2-src/src/stdlib/SDL_crc16.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_crc16.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_119) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_crc16.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_121) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_crc16.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_crc16.c.o -MF CMakeFiles/SDL2.dir/src/stdlib/SDL_crc16.c.o.d -o CMakeFiles/SDL2.dir/src/stdlib/SDL_crc16.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/stdlib/SDL_crc16.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_crc16.c.i: cmake_force
@@ -1458,7 +1479,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_crc16.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_crc32.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_crc32.c.o: _deps/sdl2-src/src/stdlib/SDL_crc32.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_crc32.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_120) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_crc32.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_122) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_crc32.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_crc32.c.o -MF CMakeFiles/SDL2.dir/src/stdlib/SDL_crc32.c.o.d -o CMakeFiles/SDL2.dir/src/stdlib/SDL_crc32.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/stdlib/SDL_crc32.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_crc32.c.i: cmake_force
@@ -1472,7 +1493,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_crc32.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_getenv.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_getenv.c.o: _deps/sdl2-src/src/stdlib/SDL_getenv.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_getenv.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_121) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_getenv.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_123) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_getenv.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_getenv.c.o -MF CMakeFiles/SDL2.dir/src/stdlib/SDL_getenv.c.o.d -o CMakeFiles/SDL2.dir/src/stdlib/SDL_getenv.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/stdlib/SDL_getenv.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_getenv.c.i: cmake_force
@@ -1486,7 +1507,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_getenv.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_iconv.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_iconv.c.o: _deps/sdl2-src/src/stdlib/SDL_iconv.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_iconv.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_122) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_iconv.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_124) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_iconv.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_iconv.c.o -MF CMakeFiles/SDL2.dir/src/stdlib/SDL_iconv.c.o.d -o CMakeFiles/SDL2.dir/src/stdlib/SDL_iconv.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/stdlib/SDL_iconv.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_iconv.c.i: cmake_force
@@ -1500,7 +1521,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_iconv.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_malloc.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_malloc.c.o: _deps/sdl2-src/src/stdlib/SDL_malloc.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_malloc.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_123) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_malloc.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_125) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_malloc.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_malloc.c.o -MF CMakeFiles/SDL2.dir/src/stdlib/SDL_malloc.c.o.d -o CMakeFiles/SDL2.dir/src/stdlib/SDL_malloc.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/stdlib/SDL_malloc.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_malloc.c.i: cmake_force
@@ -1514,7 +1535,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_malloc.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_mslibc.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_mslibc.c.o: _deps/sdl2-src/src/stdlib/SDL_mslibc.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_mslibc.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_124) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_mslibc.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_126) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_mslibc.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_mslibc.c.o -MF CMakeFiles/SDL2.dir/src/stdlib/SDL_mslibc.c.o.d -o CMakeFiles/SDL2.dir/src/stdlib/SDL_mslibc.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/stdlib/SDL_mslibc.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_mslibc.c.i: cmake_force
@@ -1528,7 +1549,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_mslibc.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_qsort.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_qsort.c.o: _deps/sdl2-src/src/stdlib/SDL_qsort.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_qsort.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_125) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_qsort.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_127) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_qsort.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_qsort.c.o -MF CMakeFiles/SDL2.dir/src/stdlib/SDL_qsort.c.o.d -o CMakeFiles/SDL2.dir/src/stdlib/SDL_qsort.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/stdlib/SDL_qsort.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_qsort.c.i: cmake_force
@@ -1542,7 +1563,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_qsort.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_stdlib.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_stdlib.c.o: _deps/sdl2-src/src/stdlib/SDL_stdlib.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_stdlib.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_126) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_stdlib.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_128) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_stdlib.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_stdlib.c.o -MF CMakeFiles/SDL2.dir/src/stdlib/SDL_stdlib.c.o.d -o CMakeFiles/SDL2.dir/src/stdlib/SDL_stdlib.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/stdlib/SDL_stdlib.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_stdlib.c.i: cmake_force
@@ -1556,7 +1577,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_stdlib.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_string.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_string.c.o: _deps/sdl2-src/src/stdlib/SDL_string.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_string.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_127) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_string.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_129) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_string.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_string.c.o -MF CMakeFiles/SDL2.dir/src/stdlib/SDL_string.c.o.d -o CMakeFiles/SDL2.dir/src/stdlib/SDL_string.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/stdlib/SDL_string.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_string.c.i: cmake_force
@@ -1570,7 +1591,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_string.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_strtokr.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_strtokr.c.o: _deps/sdl2-src/src/stdlib/SDL_strtokr.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_strtokr.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_128) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_strtokr.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_130) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_strtokr.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_strtokr.c.o -MF CMakeFiles/SDL2.dir/src/stdlib/SDL_strtokr.c.o.d -o CMakeFiles/SDL2.dir/src/stdlib/SDL_strtokr.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/stdlib/SDL_strtokr.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_strtokr.c.i: cmake_force
@@ -1584,7 +1605,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/stdlib/SDL_strtokr.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/SDL_thread.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/SDL_thread.c.o: _deps/sdl2-src/src/thread/SDL_thread.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/SDL_thread.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_129) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/SDL_thread.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_131) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/SDL_thread.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/SDL_thread.c.o -MF CMakeFiles/SDL2.dir/src/thread/SDL_thread.c.o.d -o CMakeFiles/SDL2.dir/src/thread/SDL_thread.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/thread/SDL_thread.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/SDL_thread.c.i: cmake_force
@@ -1598,7 +1619,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/SDL_thread.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/timer/SDL_timer.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/timer/SDL_timer.c.o: _deps/sdl2-src/src/timer/SDL_timer.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/timer/SDL_timer.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_130) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/timer/SDL_timer.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_132) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/timer/SDL_timer.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/timer/SDL_timer.c.o -MF CMakeFiles/SDL2.dir/src/timer/SDL_timer.c.o.d -o CMakeFiles/SDL2.dir/src/timer/SDL_timer.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/timer/SDL_timer.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/timer/SDL_timer.c.i: cmake_force
@@ -1612,7 +1633,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/timer/SDL_timer.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_RLEaccel.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_RLEaccel.c.o: _deps/sdl2-src/src/video/SDL_RLEaccel.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_RLEaccel.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_131) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_RLEaccel.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_133) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_RLEaccel.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_RLEaccel.c.o -MF CMakeFiles/SDL2.dir/src/video/SDL_RLEaccel.c.o.d -o CMakeFiles/SDL2.dir/src/video/SDL_RLEaccel.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/SDL_RLEaccel.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_RLEaccel.c.i: cmake_force
@@ -1626,7 +1647,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_RLEaccel.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit.c.o: _deps/sdl2-src/src/video/SDL_blit.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_132) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_134) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit.c.o -MF CMakeFiles/SDL2.dir/src/video/SDL_blit.c.o.d -o CMakeFiles/SDL2.dir/src/video/SDL_blit.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/SDL_blit.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit.c.i: cmake_force
@@ -1640,7 +1661,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_0.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_0.c.o: _deps/sdl2-src/src/video/SDL_blit_0.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_0.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_133) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_0.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_135) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_0.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_0.c.o -MF CMakeFiles/SDL2.dir/src/video/SDL_blit_0.c.o.d -o CMakeFiles/SDL2.dir/src/video/SDL_blit_0.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/SDL_blit_0.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_0.c.i: cmake_force
@@ -1654,7 +1675,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_0.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_1.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_1.c.o: _deps/sdl2-src/src/video/SDL_blit_1.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_1.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_134) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_1.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_136) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_1.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_1.c.o -MF CMakeFiles/SDL2.dir/src/video/SDL_blit_1.c.o.d -o CMakeFiles/SDL2.dir/src/video/SDL_blit_1.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/SDL_blit_1.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_1.c.i: cmake_force
@@ -1668,7 +1689,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_1.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_A.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_A.c.o: _deps/sdl2-src/src/video/SDL_blit_A.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_A.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_135) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_A.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_137) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_A.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_A.c.o -MF CMakeFiles/SDL2.dir/src/video/SDL_blit_A.c.o.d -o CMakeFiles/SDL2.dir/src/video/SDL_blit_A.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/SDL_blit_A.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_A.c.i: cmake_force
@@ -1682,7 +1703,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_A.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_N.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_N.c.o: _deps/sdl2-src/src/video/SDL_blit_N.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_N.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_136) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_N.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_138) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_N.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_N.c.o -MF CMakeFiles/SDL2.dir/src/video/SDL_blit_N.c.o.d -o CMakeFiles/SDL2.dir/src/video/SDL_blit_N.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/SDL_blit_N.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_N.c.i: cmake_force
@@ -1696,7 +1717,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_N.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_auto.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_auto.c.o: _deps/sdl2-src/src/video/SDL_blit_auto.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_auto.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_137) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_auto.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_139) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_auto.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_auto.c.o -MF CMakeFiles/SDL2.dir/src/video/SDL_blit_auto.c.o.d -o CMakeFiles/SDL2.dir/src/video/SDL_blit_auto.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/SDL_blit_auto.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_auto.c.i: cmake_force
@@ -1710,7 +1731,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_auto.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_copy.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_copy.c.o: _deps/sdl2-src/src/video/SDL_blit_copy.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_copy.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_138) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_copy.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_140) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_copy.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_copy.c.o -MF CMakeFiles/SDL2.dir/src/video/SDL_blit_copy.c.o.d -o CMakeFiles/SDL2.dir/src/video/SDL_blit_copy.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/SDL_blit_copy.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_copy.c.i: cmake_force
@@ -1724,7 +1745,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_copy.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_slow.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_slow.c.o: _deps/sdl2-src/src/video/SDL_blit_slow.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_slow.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_139) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_slow.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_141) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_slow.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_slow.c.o -MF CMakeFiles/SDL2.dir/src/video/SDL_blit_slow.c.o.d -o CMakeFiles/SDL2.dir/src/video/SDL_blit_slow.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/SDL_blit_slow.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_slow.c.i: cmake_force
@@ -1738,7 +1759,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_blit_slow.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_bmp.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_bmp.c.o: _deps/sdl2-src/src/video/SDL_bmp.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_bmp.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_140) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_bmp.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_142) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_bmp.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_bmp.c.o -MF CMakeFiles/SDL2.dir/src/video/SDL_bmp.c.o.d -o CMakeFiles/SDL2.dir/src/video/SDL_bmp.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/SDL_bmp.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_bmp.c.i: cmake_force
@@ -1752,7 +1773,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_bmp.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_clipboard.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_clipboard.c.o: _deps/sdl2-src/src/video/SDL_clipboard.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_clipboard.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_141) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_clipboard.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_143) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_clipboard.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_clipboard.c.o -MF CMakeFiles/SDL2.dir/src/video/SDL_clipboard.c.o.d -o CMakeFiles/SDL2.dir/src/video/SDL_clipboard.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/SDL_clipboard.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_clipboard.c.i: cmake_force
@@ -1766,7 +1787,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_clipboard.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_egl.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_egl.c.o: _deps/sdl2-src/src/video/SDL_egl.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_egl.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_142) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_egl.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_144) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_egl.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_egl.c.o -MF CMakeFiles/SDL2.dir/src/video/SDL_egl.c.o.d -o CMakeFiles/SDL2.dir/src/video/SDL_egl.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/SDL_egl.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_egl.c.i: cmake_force
@@ -1780,7 +1801,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_egl.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_fillrect.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_fillrect.c.o: _deps/sdl2-src/src/video/SDL_fillrect.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_fillrect.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_143) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_fillrect.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_145) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_fillrect.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_fillrect.c.o -MF CMakeFiles/SDL2.dir/src/video/SDL_fillrect.c.o.d -o CMakeFiles/SDL2.dir/src/video/SDL_fillrect.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/SDL_fillrect.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_fillrect.c.i: cmake_force
@@ -1794,7 +1815,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_fillrect.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_pixels.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_pixels.c.o: _deps/sdl2-src/src/video/SDL_pixels.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_pixels.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_144) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_pixels.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_146) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_pixels.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_pixels.c.o -MF CMakeFiles/SDL2.dir/src/video/SDL_pixels.c.o.d -o CMakeFiles/SDL2.dir/src/video/SDL_pixels.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/SDL_pixels.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_pixels.c.i: cmake_force
@@ -1808,7 +1829,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_pixels.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_rect.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_rect.c.o: _deps/sdl2-src/src/video/SDL_rect.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_rect.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_145) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_rect.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_147) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_rect.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_rect.c.o -MF CMakeFiles/SDL2.dir/src/video/SDL_rect.c.o.d -o CMakeFiles/SDL2.dir/src/video/SDL_rect.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/SDL_rect.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_rect.c.i: cmake_force
@@ -1822,7 +1843,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_rect.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_shape.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_shape.c.o: _deps/sdl2-src/src/video/SDL_shape.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_shape.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_146) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_shape.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_148) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_shape.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_shape.c.o -MF CMakeFiles/SDL2.dir/src/video/SDL_shape.c.o.d -o CMakeFiles/SDL2.dir/src/video/SDL_shape.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/SDL_shape.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_shape.c.i: cmake_force
@@ -1836,7 +1857,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_shape.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_stretch.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_stretch.c.o: _deps/sdl2-src/src/video/SDL_stretch.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_stretch.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_147) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_stretch.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_149) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_stretch.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_stretch.c.o -MF CMakeFiles/SDL2.dir/src/video/SDL_stretch.c.o.d -o CMakeFiles/SDL2.dir/src/video/SDL_stretch.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/SDL_stretch.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_stretch.c.i: cmake_force
@@ -1850,7 +1871,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_stretch.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_surface.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_surface.c.o: _deps/sdl2-src/src/video/SDL_surface.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_surface.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_148) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_surface.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_150) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_surface.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_surface.c.o -MF CMakeFiles/SDL2.dir/src/video/SDL_surface.c.o.d -o CMakeFiles/SDL2.dir/src/video/SDL_surface.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/SDL_surface.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_surface.c.i: cmake_force
@@ -1864,7 +1885,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_surface.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_video.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_video.c.o: _deps/sdl2-src/src/video/SDL_video.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_video.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_149) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_video.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_151) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_video.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_video.c.o -MF CMakeFiles/SDL2.dir/src/video/SDL_video.c.o.d -o CMakeFiles/SDL2.dir/src/video/SDL_video.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/SDL_video.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_video.c.i: cmake_force
@@ -1878,7 +1899,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_video.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_vulkan_utils.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_vulkan_utils.c.o: _deps/sdl2-src/src/video/SDL_vulkan_utils.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_vulkan_utils.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_150) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_vulkan_utils.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_152) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_vulkan_utils.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_vulkan_utils.c.o -MF CMakeFiles/SDL2.dir/src/video/SDL_vulkan_utils.c.o.d -o CMakeFiles/SDL2.dir/src/video/SDL_vulkan_utils.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/SDL_vulkan_utils.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_vulkan_utils.c.i: cmake_force
@@ -1892,7 +1913,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_vulkan_utils.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_yuv.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_yuv.c.o: _deps/sdl2-src/src/video/SDL_yuv.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_yuv.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_151) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_yuv.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_153) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_yuv.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_yuv.c.o -MF CMakeFiles/SDL2.dir/src/video/SDL_yuv.c.o.d -o CMakeFiles/SDL2.dir/src/video/SDL_yuv.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/SDL_yuv.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_yuv.c.i: cmake_force
@@ -1906,7 +1927,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/SDL_yuv.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/yuv2rgb/yuv_rgb_lsx.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/yuv2rgb/yuv_rgb_lsx.c.o: _deps/sdl2-src/src/video/yuv2rgb/yuv_rgb_lsx.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/yuv2rgb/yuv_rgb_lsx.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_152) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/yuv2rgb/yuv_rgb_lsx.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_154) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/yuv2rgb/yuv_rgb_lsx.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/yuv2rgb/yuv_rgb_lsx.c.o -MF CMakeFiles/SDL2.dir/src/video/yuv2rgb/yuv_rgb_lsx.c.o.d -o CMakeFiles/SDL2.dir/src/video/yuv2rgb/yuv_rgb_lsx.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/yuv2rgb/yuv_rgb_lsx.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/yuv2rgb/yuv_rgb_lsx.c.i: cmake_force
@@ -1920,7 +1941,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/yuv2rgb/yuv_rgb_lsx.c.s: cmake_fo
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/yuv2rgb/yuv_rgb_sse.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/yuv2rgb/yuv_rgb_sse.c.o: _deps/sdl2-src/src/video/yuv2rgb/yuv_rgb_sse.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/yuv2rgb/yuv_rgb_sse.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_153) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/yuv2rgb/yuv_rgb_sse.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_155) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/yuv2rgb/yuv_rgb_sse.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/yuv2rgb/yuv_rgb_sse.c.o -MF CMakeFiles/SDL2.dir/src/video/yuv2rgb/yuv_rgb_sse.c.o.d -o CMakeFiles/SDL2.dir/src/video/yuv2rgb/yuv_rgb_sse.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/yuv2rgb/yuv_rgb_sse.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/yuv2rgb/yuv_rgb_sse.c.i: cmake_force
@@ -1934,7 +1955,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/yuv2rgb/yuv_rgb_sse.c.s: cmake_fo
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/yuv2rgb/yuv_rgb_std.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/yuv2rgb/yuv_rgb_std.c.o: _deps/sdl2-src/src/video/yuv2rgb/yuv_rgb_std.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/yuv2rgb/yuv_rgb_std.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_154) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/yuv2rgb/yuv_rgb_std.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_156) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/yuv2rgb/yuv_rgb_std.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/yuv2rgb/yuv_rgb_std.c.o -MF CMakeFiles/SDL2.dir/src/video/yuv2rgb/yuv_rgb_std.c.o.d -o CMakeFiles/SDL2.dir/src/video/yuv2rgb/yuv_rgb_std.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/yuv2rgb/yuv_rgb_std.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/yuv2rgb/yuv_rgb_std.c.i: cmake_force
@@ -1948,7 +1969,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/yuv2rgb/yuv_rgb_std.c.s: cmake_fo
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/dummy/SDL_dummyaudio.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/dummy/SDL_dummyaudio.c.o: _deps/sdl2-src/src/audio/dummy/SDL_dummyaudio.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/dummy/SDL_dummyaudio.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_155) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/dummy/SDL_dummyaudio.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_157) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/dummy/SDL_dummyaudio.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/dummy/SDL_dummyaudio.c.o -MF CMakeFiles/SDL2.dir/src/audio/dummy/SDL_dummyaudio.c.o.d -o CMakeFiles/SDL2.dir/src/audio/dummy/SDL_dummyaudio.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/audio/dummy/SDL_dummyaudio.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/dummy/SDL_dummyaudio.c.i: cmake_force
@@ -1962,7 +1983,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/dummy/SDL_dummyaudio.c.s: cmake_f
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/disk/SDL_diskaudio.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/disk/SDL_diskaudio.c.o: _deps/sdl2-src/src/audio/disk/SDL_diskaudio.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/disk/SDL_diskaudio.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_156) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/disk/SDL_diskaudio.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_158) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/disk/SDL_diskaudio.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/disk/SDL_diskaudio.c.o -MF CMakeFiles/SDL2.dir/src/audio/disk/SDL_diskaudio.c.o.d -o CMakeFiles/SDL2.dir/src/audio/disk/SDL_diskaudio.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/audio/disk/SDL_diskaudio.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/disk/SDL_diskaudio.c.i: cmake_force
@@ -1976,7 +1997,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/disk/SDL_diskaudio.c.s: cmake_for
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/loadso/dlopen/SDL_sysloadso.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/loadso/dlopen/SDL_sysloadso.c.o: _deps/sdl2-src/src/loadso/dlopen/SDL_sysloadso.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/loadso/dlopen/SDL_sysloadso.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_157) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/loadso/dlopen/SDL_sysloadso.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_159) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/loadso/dlopen/SDL_sysloadso.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/loadso/dlopen/SDL_sysloadso.c.o -MF CMakeFiles/SDL2.dir/src/loadso/dlopen/SDL_sysloadso.c.o.d -o CMakeFiles/SDL2.dir/src/loadso/dlopen/SDL_sysloadso.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/loadso/dlopen/SDL_sysloadso.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/loadso/dlopen/SDL_sysloadso.c.i: cmake_force
@@ -1990,7 +2011,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/loadso/dlopen/SDL_sysloadso.c.s: cmake_
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/virtual/SDL_virtualjoystick.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/virtual/SDL_virtualjoystick.c.o: _deps/sdl2-src/src/joystick/virtual/SDL_virtualjoystick.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/virtual/SDL_virtualjoystick.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_158) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/virtual/SDL_virtualjoystick.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_160) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/virtual/SDL_virtualjoystick.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/virtual/SDL_virtualjoystick.c.o -MF CMakeFiles/SDL2.dir/src/joystick/virtual/SDL_virtualjoystick.c.o.d -o CMakeFiles/SDL2.dir/src/joystick/virtual/SDL_virtualjoystick.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/joystick/virtual/SDL_virtualjoystick.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/virtual/SDL_virtualjoystick.c.i: cmake_force
@@ -2004,7 +2025,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/virtual/SDL_virtualjoystick.c.
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/dummy/SDL_nullevents.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/dummy/SDL_nullevents.c.o: _deps/sdl2-src/src/video/dummy/SDL_nullevents.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/dummy/SDL_nullevents.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_159) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/dummy/SDL_nullevents.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_161) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/dummy/SDL_nullevents.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/dummy/SDL_nullevents.c.o -MF CMakeFiles/SDL2.dir/src/video/dummy/SDL_nullevents.c.o.d -o CMakeFiles/SDL2.dir/src/video/dummy/SDL_nullevents.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/dummy/SDL_nullevents.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/dummy/SDL_nullevents.c.i: cmake_force
@@ -2018,7 +2039,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/dummy/SDL_nullevents.c.s: cmake_f
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/dummy/SDL_nullframebuffer.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/dummy/SDL_nullframebuffer.c.o: _deps/sdl2-src/src/video/dummy/SDL_nullframebuffer.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/dummy/SDL_nullframebuffer.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_160) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/dummy/SDL_nullframebuffer.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_162) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/dummy/SDL_nullframebuffer.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/dummy/SDL_nullframebuffer.c.o -MF CMakeFiles/SDL2.dir/src/video/dummy/SDL_nullframebuffer.c.o.d -o CMakeFiles/SDL2.dir/src/video/dummy/SDL_nullframebuffer.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/dummy/SDL_nullframebuffer.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/dummy/SDL_nullframebuffer.c.i: cmake_force
@@ -2032,7 +2053,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/dummy/SDL_nullframebuffer.c.s: cm
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/dummy/SDL_nullvideo.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/dummy/SDL_nullvideo.c.o: _deps/sdl2-src/src/video/dummy/SDL_nullvideo.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/dummy/SDL_nullvideo.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_161) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/dummy/SDL_nullvideo.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_163) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/dummy/SDL_nullvideo.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/dummy/SDL_nullvideo.c.o -MF CMakeFiles/SDL2.dir/src/video/dummy/SDL_nullvideo.c.o.d -o CMakeFiles/SDL2.dir/src/video/dummy/SDL_nullvideo.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/dummy/SDL_nullvideo.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/dummy/SDL_nullvideo.c.i: cmake_force
@@ -2046,7 +2067,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/dummy/SDL_nullvideo.c.s: cmake_fo
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenevents.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenevents.c.o: _deps/sdl2-src/src/video/offscreen/SDL_offscreenevents.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenevents.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_162) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenevents.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_164) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenevents.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenevents.c.o -MF CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenevents.c.o.d -o CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenevents.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/offscreen/SDL_offscreenevents.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenevents.c.i: cmake_force
@@ -2060,7 +2081,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenevents.c.s
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenframebuffer.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenframebuffer.c.o: _deps/sdl2-src/src/video/offscreen/SDL_offscreenframebuffer.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenframebuffer.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_163) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenframebuffer.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_165) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenframebuffer.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenframebuffer.c.o -MF CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenframebuffer.c.o.d -o CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenframebuffer.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/offscreen/SDL_offscreenframebuffer.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenframebuffer.c.i: cmake_force
@@ -2074,7 +2095,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenframebuffe
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenopengles.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenopengles.c.o: _deps/sdl2-src/src/video/offscreen/SDL_offscreenopengles.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenopengles.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_164) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenopengles.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_166) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenopengles.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenopengles.c.o -MF CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenopengles.c.o.d -o CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenopengles.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/offscreen/SDL_offscreenopengles.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenopengles.c.i: cmake_force
@@ -2088,7 +2109,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenopengles.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenvideo.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenvideo.c.o: _deps/sdl2-src/src/video/offscreen/SDL_offscreenvideo.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenvideo.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_165) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenvideo.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_167) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenvideo.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenvideo.c.o -MF CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenvideo.c.o.d -o CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenvideo.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/offscreen/SDL_offscreenvideo.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenvideo.c.i: cmake_force
@@ -2102,7 +2123,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenvideo.c.s:
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenwindow.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenwindow.c.o: _deps/sdl2-src/src/video/offscreen/SDL_offscreenwindow.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenwindow.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_166) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenwindow.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_168) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenwindow.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenwindow.c.o -MF CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenwindow.c.o.d -o CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenwindow.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/offscreen/SDL_offscreenwindow.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenwindow.c.i: cmake_force
@@ -2116,7 +2137,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenwindow.c.s
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/dsp/SDL_dspaudio.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/dsp/SDL_dspaudio.c.o: _deps/sdl2-src/src/audio/dsp/SDL_dspaudio.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/dsp/SDL_dspaudio.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_167) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/dsp/SDL_dspaudio.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_169) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/dsp/SDL_dspaudio.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/dsp/SDL_dspaudio.c.o -MF CMakeFiles/SDL2.dir/src/audio/dsp/SDL_dspaudio.c.o.d -o CMakeFiles/SDL2.dir/src/audio/dsp/SDL_dspaudio.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/audio/dsp/SDL_dspaudio.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/dsp/SDL_dspaudio.c.i: cmake_force
@@ -2130,7 +2151,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/dsp/SDL_dspaudio.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/alsa/SDL_alsa_audio.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/alsa/SDL_alsa_audio.c.o: _deps/sdl2-src/src/audio/alsa/SDL_alsa_audio.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/alsa/SDL_alsa_audio.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_168) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/alsa/SDL_alsa_audio.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_170) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/alsa/SDL_alsa_audio.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/alsa/SDL_alsa_audio.c.o -MF CMakeFiles/SDL2.dir/src/audio/alsa/SDL_alsa_audio.c.o.d -o CMakeFiles/SDL2.dir/src/audio/alsa/SDL_alsa_audio.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/audio/alsa/SDL_alsa_audio.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/alsa/SDL_alsa_audio.c.i: cmake_force
@@ -2144,7 +2165,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/alsa/SDL_alsa_audio.c.s: cmake_fo
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/jack/SDL_jackaudio.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/jack/SDL_jackaudio.c.o: _deps/sdl2-src/src/audio/jack/SDL_jackaudio.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/jack/SDL_jackaudio.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_169) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/jack/SDL_jackaudio.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_171) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/jack/SDL_jackaudio.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/jack/SDL_jackaudio.c.o -MF CMakeFiles/SDL2.dir/src/audio/jack/SDL_jackaudio.c.o.d -o CMakeFiles/SDL2.dir/src/audio/jack/SDL_jackaudio.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/audio/jack/SDL_jackaudio.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/jack/SDL_jackaudio.c.i: cmake_force
@@ -2158,7 +2179,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/jack/SDL_jackaudio.c.s: cmake_for
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/pipewire/SDL_pipewire.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/pipewire/SDL_pipewire.c.o: _deps/sdl2-src/src/audio/pipewire/SDL_pipewire.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/pipewire/SDL_pipewire.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_170) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/pipewire/SDL_pipewire.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_172) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/pipewire/SDL_pipewire.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/pipewire/SDL_pipewire.c.o -MF CMakeFiles/SDL2.dir/src/audio/pipewire/SDL_pipewire.c.o.d -o CMakeFiles/SDL2.dir/src/audio/pipewire/SDL_pipewire.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/audio/pipewire/SDL_pipewire.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/pipewire/SDL_pipewire.c.i: cmake_force
@@ -2172,7 +2193,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/pipewire/SDL_pipewire.c.s: cmake_
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/pulseaudio/SDL_pulseaudio.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/pulseaudio/SDL_pulseaudio.c.o: _deps/sdl2-src/src/audio/pulseaudio/SDL_pulseaudio.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/pulseaudio/SDL_pulseaudio.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_171) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/pulseaudio/SDL_pulseaudio.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_173) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/pulseaudio/SDL_pulseaudio.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/pulseaudio/SDL_pulseaudio.c.o -MF CMakeFiles/SDL2.dir/src/audio/pulseaudio/SDL_pulseaudio.c.o.d -o CMakeFiles/SDL2.dir/src/audio/pulseaudio/SDL_pulseaudio.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/audio/pulseaudio/SDL_pulseaudio.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/pulseaudio/SDL_pulseaudio.c.i: cmake_force
@@ -2186,7 +2207,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/pulseaudio/SDL_pulseaudio.c.s: cm
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/sndio/SDL_sndioaudio.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/sndio/SDL_sndioaudio.c.o: _deps/sdl2-src/src/audio/sndio/SDL_sndioaudio.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/sndio/SDL_sndioaudio.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_172) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/sndio/SDL_sndioaudio.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_174) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/sndio/SDL_sndioaudio.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/sndio/SDL_sndioaudio.c.o -MF CMakeFiles/SDL2.dir/src/audio/sndio/SDL_sndioaudio.c.o.d -o CMakeFiles/SDL2.dir/src/audio/sndio/SDL_sndioaudio.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/audio/sndio/SDL_sndioaudio.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/sndio/SDL_sndioaudio.c.i: cmake_force
@@ -2200,7 +2221,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/audio/sndio/SDL_sndioaudio.c.s: cmake_f
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11clipboard.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11clipboard.c.o: _deps/sdl2-src/src/video/x11/SDL_x11clipboard.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11clipboard.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_173) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11clipboard.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_175) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11clipboard.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11clipboard.c.o -MF CMakeFiles/SDL2.dir/src/video/x11/SDL_x11clipboard.c.o.d -o CMakeFiles/SDL2.dir/src/video/x11/SDL_x11clipboard.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/x11/SDL_x11clipboard.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11clipboard.c.i: cmake_force
@@ -2214,7 +2235,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11clipboard.c.s: cmake_f
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11dyn.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11dyn.c.o: _deps/sdl2-src/src/video/x11/SDL_x11dyn.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11dyn.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_174) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11dyn.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_176) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11dyn.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11dyn.c.o -MF CMakeFiles/SDL2.dir/src/video/x11/SDL_x11dyn.c.o.d -o CMakeFiles/SDL2.dir/src/video/x11/SDL_x11dyn.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/x11/SDL_x11dyn.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11dyn.c.i: cmake_force
@@ -2228,7 +2249,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11dyn.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11events.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11events.c.o: _deps/sdl2-src/src/video/x11/SDL_x11events.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11events.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_175) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11events.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_177) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11events.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11events.c.o -MF CMakeFiles/SDL2.dir/src/video/x11/SDL_x11events.c.o.d -o CMakeFiles/SDL2.dir/src/video/x11/SDL_x11events.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/x11/SDL_x11events.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11events.c.i: cmake_force
@@ -2242,7 +2263,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11events.c.s: cmake_forc
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11framebuffer.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11framebuffer.c.o: _deps/sdl2-src/src/video/x11/SDL_x11framebuffer.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11framebuffer.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_176) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11framebuffer.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_178) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11framebuffer.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11framebuffer.c.o -MF CMakeFiles/SDL2.dir/src/video/x11/SDL_x11framebuffer.c.o.d -o CMakeFiles/SDL2.dir/src/video/x11/SDL_x11framebuffer.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/x11/SDL_x11framebuffer.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11framebuffer.c.i: cmake_force
@@ -2256,7 +2277,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11framebuffer.c.s: cmake
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11keyboard.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11keyboard.c.o: _deps/sdl2-src/src/video/x11/SDL_x11keyboard.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11keyboard.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_177) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11keyboard.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_179) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11keyboard.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11keyboard.c.o -MF CMakeFiles/SDL2.dir/src/video/x11/SDL_x11keyboard.c.o.d -o CMakeFiles/SDL2.dir/src/video/x11/SDL_x11keyboard.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/x11/SDL_x11keyboard.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11keyboard.c.i: cmake_force
@@ -2270,7 +2291,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11keyboard.c.s: cmake_fo
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11messagebox.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11messagebox.c.o: _deps/sdl2-src/src/video/x11/SDL_x11messagebox.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11messagebox.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_178) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11messagebox.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_180) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11messagebox.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11messagebox.c.o -MF CMakeFiles/SDL2.dir/src/video/x11/SDL_x11messagebox.c.o.d -o CMakeFiles/SDL2.dir/src/video/x11/SDL_x11messagebox.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/x11/SDL_x11messagebox.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11messagebox.c.i: cmake_force
@@ -2284,7 +2305,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11messagebox.c.s: cmake_
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11modes.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11modes.c.o: _deps/sdl2-src/src/video/x11/SDL_x11modes.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11modes.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_179) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11modes.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_181) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11modes.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11modes.c.o -MF CMakeFiles/SDL2.dir/src/video/x11/SDL_x11modes.c.o.d -o CMakeFiles/SDL2.dir/src/video/x11/SDL_x11modes.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/x11/SDL_x11modes.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11modes.c.i: cmake_force
@@ -2298,7 +2319,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11modes.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11mouse.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11mouse.c.o: _deps/sdl2-src/src/video/x11/SDL_x11mouse.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11mouse.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_180) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11mouse.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_182) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11mouse.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11mouse.c.o -MF CMakeFiles/SDL2.dir/src/video/x11/SDL_x11mouse.c.o.d -o CMakeFiles/SDL2.dir/src/video/x11/SDL_x11mouse.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/x11/SDL_x11mouse.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11mouse.c.i: cmake_force
@@ -2312,7 +2333,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11mouse.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11opengl.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11opengl.c.o: _deps/sdl2-src/src/video/x11/SDL_x11opengl.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11opengl.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_181) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11opengl.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_183) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11opengl.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11opengl.c.o -MF CMakeFiles/SDL2.dir/src/video/x11/SDL_x11opengl.c.o.d -o CMakeFiles/SDL2.dir/src/video/x11/SDL_x11opengl.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/x11/SDL_x11opengl.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11opengl.c.i: cmake_force
@@ -2326,7 +2347,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11opengl.c.s: cmake_forc
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11opengles.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11opengles.c.o: _deps/sdl2-src/src/video/x11/SDL_x11opengles.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11opengles.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_182) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11opengles.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_184) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11opengles.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11opengles.c.o -MF CMakeFiles/SDL2.dir/src/video/x11/SDL_x11opengles.c.o.d -o CMakeFiles/SDL2.dir/src/video/x11/SDL_x11opengles.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/x11/SDL_x11opengles.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11opengles.c.i: cmake_force
@@ -2340,7 +2361,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11opengles.c.s: cmake_fo
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11shape.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11shape.c.o: _deps/sdl2-src/src/video/x11/SDL_x11shape.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11shape.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_183) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11shape.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_185) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11shape.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11shape.c.o -MF CMakeFiles/SDL2.dir/src/video/x11/SDL_x11shape.c.o.d -o CMakeFiles/SDL2.dir/src/video/x11/SDL_x11shape.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/x11/SDL_x11shape.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11shape.c.i: cmake_force
@@ -2354,7 +2375,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11shape.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11touch.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11touch.c.o: _deps/sdl2-src/src/video/x11/SDL_x11touch.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11touch.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_184) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11touch.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_186) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11touch.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11touch.c.o -MF CMakeFiles/SDL2.dir/src/video/x11/SDL_x11touch.c.o.d -o CMakeFiles/SDL2.dir/src/video/x11/SDL_x11touch.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/x11/SDL_x11touch.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11touch.c.i: cmake_force
@@ -2368,7 +2389,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11touch.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11video.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11video.c.o: _deps/sdl2-src/src/video/x11/SDL_x11video.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11video.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_185) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11video.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_187) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11video.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11video.c.o -MF CMakeFiles/SDL2.dir/src/video/x11/SDL_x11video.c.o.d -o CMakeFiles/SDL2.dir/src/video/x11/SDL_x11video.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/x11/SDL_x11video.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11video.c.i: cmake_force
@@ -2382,7 +2403,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11video.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11vulkan.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11vulkan.c.o: _deps/sdl2-src/src/video/x11/SDL_x11vulkan.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11vulkan.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_186) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11vulkan.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_188) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11vulkan.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11vulkan.c.o -MF CMakeFiles/SDL2.dir/src/video/x11/SDL_x11vulkan.c.o.d -o CMakeFiles/SDL2.dir/src/video/x11/SDL_x11vulkan.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/x11/SDL_x11vulkan.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11vulkan.c.i: cmake_force
@@ -2396,7 +2417,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11vulkan.c.s: cmake_forc
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11window.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11window.c.o: _deps/sdl2-src/src/video/x11/SDL_x11window.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11window.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_187) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11window.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_189) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11window.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11window.c.o -MF CMakeFiles/SDL2.dir/src/video/x11/SDL_x11window.c.o.d -o CMakeFiles/SDL2.dir/src/video/x11/SDL_x11window.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/x11/SDL_x11window.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11window.c.i: cmake_force
@@ -2410,7 +2431,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11window.c.s: cmake_forc
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11xfixes.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11xfixes.c.o: _deps/sdl2-src/src/video/x11/SDL_x11xfixes.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11xfixes.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_188) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11xfixes.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_190) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11xfixes.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11xfixes.c.o -MF CMakeFiles/SDL2.dir/src/video/x11/SDL_x11xfixes.c.o.d -o CMakeFiles/SDL2.dir/src/video/x11/SDL_x11xfixes.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/x11/SDL_x11xfixes.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11xfixes.c.i: cmake_force
@@ -2424,7 +2445,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11xfixes.c.s: cmake_forc
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11xinput2.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11xinput2.c.o: _deps/sdl2-src/src/video/x11/SDL_x11xinput2.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11xinput2.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_189) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11xinput2.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_191) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11xinput2.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11xinput2.c.o -MF CMakeFiles/SDL2.dir/src/video/x11/SDL_x11xinput2.c.o.d -o CMakeFiles/SDL2.dir/src/video/x11/SDL_x11xinput2.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/x11/SDL_x11xinput2.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11xinput2.c.i: cmake_force
@@ -2438,7 +2459,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/SDL_x11xinput2.c.s: cmake_for
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/edid-parse.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/edid-parse.c.o: _deps/sdl2-src/src/video/x11/edid-parse.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/edid-parse.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_190) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/edid-parse.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_192) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/edid-parse.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/edid-parse.c.o -MF CMakeFiles/SDL2.dir/src/video/x11/edid-parse.c.o.d -o CMakeFiles/SDL2.dir/src/video/x11/edid-parse.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/x11/edid-parse.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/edid-parse.c.i: cmake_force
@@ -2452,7 +2473,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/x11/edid-parse.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmdyn.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmdyn.c.o: _deps/sdl2-src/src/video/kmsdrm/SDL_kmsdrmdyn.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmdyn.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_191) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmdyn.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_193) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmdyn.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmdyn.c.o -MF CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmdyn.c.o.d -o CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmdyn.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/kmsdrm/SDL_kmsdrmdyn.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmdyn.c.i: cmake_force
@@ -2466,7 +2487,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmdyn.c.s: cmake_f
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmevents.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmevents.c.o: _deps/sdl2-src/src/video/kmsdrm/SDL_kmsdrmevents.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmevents.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_192) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmevents.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_194) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmevents.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmevents.c.o -MF CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmevents.c.o.d -o CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmevents.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/kmsdrm/SDL_kmsdrmevents.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmevents.c.i: cmake_force
@@ -2480,7 +2501,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmevents.c.s: cmak
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmmouse.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmmouse.c.o: _deps/sdl2-src/src/video/kmsdrm/SDL_kmsdrmmouse.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmmouse.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_193) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmmouse.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_195) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmmouse.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmmouse.c.o -MF CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmmouse.c.o.d -o CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmmouse.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/kmsdrm/SDL_kmsdrmmouse.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmmouse.c.i: cmake_force
@@ -2494,7 +2515,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmmouse.c.s: cmake
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmopengles.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmopengles.c.o: _deps/sdl2-src/src/video/kmsdrm/SDL_kmsdrmopengles.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmopengles.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_194) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmopengles.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_196) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmopengles.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmopengles.c.o -MF CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmopengles.c.o.d -o CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmopengles.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/kmsdrm/SDL_kmsdrmopengles.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmopengles.c.i: cmake_force
@@ -2508,7 +2529,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmopengles.c.s: cm
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmvideo.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmvideo.c.o: _deps/sdl2-src/src/video/kmsdrm/SDL_kmsdrmvideo.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmvideo.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_195) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmvideo.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_197) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmvideo.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmvideo.c.o -MF CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmvideo.c.o.d -o CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmvideo.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/kmsdrm/SDL_kmsdrmvideo.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmvideo.c.i: cmake_force
@@ -2522,7 +2543,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmvideo.c.s: cmake
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmvulkan.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmvulkan.c.o: _deps/sdl2-src/src/video/kmsdrm/SDL_kmsdrmvulkan.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmvulkan.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_196) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmvulkan.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_198) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmvulkan.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmvulkan.c.o -MF CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmvulkan.c.o.d -o CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmvulkan.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/kmsdrm/SDL_kmsdrmvulkan.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmvulkan.c.i: cmake_force
@@ -2536,7 +2557,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/kmsdrm/SDL_kmsdrmvulkan.c.s: cmak
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandclipboard.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandclipboard.c.o: _deps/sdl2-src/src/video/wayland/SDL_waylandclipboard.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandclipboard.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_197) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandclipboard.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_199) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandclipboard.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandclipboard.c.o -MF CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandclipboard.c.o.d -o CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandclipboard.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/wayland/SDL_waylandclipboard.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandclipboard.c.i: cmake_force
@@ -2550,7 +2571,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandclipboard.c.s:
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylanddatamanager.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylanddatamanager.c.o: _deps/sdl2-src/src/video/wayland/SDL_waylanddatamanager.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylanddatamanager.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_198) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylanddatamanager.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_200) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylanddatamanager.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylanddatamanager.c.o -MF CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylanddatamanager.c.o.d -o CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylanddatamanager.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/wayland/SDL_waylanddatamanager.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylanddatamanager.c.i: cmake_force
@@ -2564,7 +2585,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylanddatamanager.c.
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylanddyn.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylanddyn.c.o: _deps/sdl2-src/src/video/wayland/SDL_waylanddyn.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylanddyn.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_199) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylanddyn.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_201) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylanddyn.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylanddyn.c.o -MF CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylanddyn.c.o.d -o CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylanddyn.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/wayland/SDL_waylanddyn.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylanddyn.c.i: cmake_force
@@ -2578,7 +2599,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylanddyn.c.s: cmake
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandevents.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandevents.c.o: _deps/sdl2-src/src/video/wayland/SDL_waylandevents.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandevents.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_200) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandevents.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_202) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandevents.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandevents.c.o -MF CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandevents.c.o.d -o CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandevents.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/wayland/SDL_waylandevents.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandevents.c.i: cmake_force
@@ -2592,7 +2613,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandevents.c.s: cm
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandkeyboard.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandkeyboard.c.o: _deps/sdl2-src/src/video/wayland/SDL_waylandkeyboard.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandkeyboard.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_201) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandkeyboard.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_203) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandkeyboard.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandkeyboard.c.o -MF CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandkeyboard.c.o.d -o CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandkeyboard.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/wayland/SDL_waylandkeyboard.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandkeyboard.c.i: cmake_force
@@ -2606,7 +2627,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandkeyboard.c.s: 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandmessagebox.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandmessagebox.c.o: _deps/sdl2-src/src/video/wayland/SDL_waylandmessagebox.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandmessagebox.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_202) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandmessagebox.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_204) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandmessagebox.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandmessagebox.c.o -MF CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandmessagebox.c.o.d -o CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandmessagebox.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/wayland/SDL_waylandmessagebox.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandmessagebox.c.i: cmake_force
@@ -2620,7 +2641,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandmessagebox.c.s
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandmouse.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandmouse.c.o: _deps/sdl2-src/src/video/wayland/SDL_waylandmouse.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandmouse.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_203) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandmouse.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_205) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandmouse.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandmouse.c.o -MF CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandmouse.c.o.d -o CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandmouse.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/wayland/SDL_waylandmouse.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandmouse.c.i: cmake_force
@@ -2634,7 +2655,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandmouse.c.s: cma
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandopengles.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandopengles.c.o: _deps/sdl2-src/src/video/wayland/SDL_waylandopengles.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandopengles.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_204) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandopengles.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_206) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandopengles.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandopengles.c.o -MF CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandopengles.c.o.d -o CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandopengles.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/wayland/SDL_waylandopengles.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandopengles.c.i: cmake_force
@@ -2648,7 +2669,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandopengles.c.s: 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandtouch.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandtouch.c.o: _deps/sdl2-src/src/video/wayland/SDL_waylandtouch.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandtouch.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_205) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandtouch.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_207) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandtouch.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandtouch.c.o -MF CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandtouch.c.o.d -o CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandtouch.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/wayland/SDL_waylandtouch.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandtouch.c.i: cmake_force
@@ -2662,7 +2683,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandtouch.c.s: cma
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandvideo.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandvideo.c.o: _deps/sdl2-src/src/video/wayland/SDL_waylandvideo.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandvideo.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_206) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandvideo.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_208) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandvideo.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandvideo.c.o -MF CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandvideo.c.o.d -o CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandvideo.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/wayland/SDL_waylandvideo.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandvideo.c.i: cmake_force
@@ -2676,7 +2697,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandvideo.c.s: cma
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandvulkan.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandvulkan.c.o: _deps/sdl2-src/src/video/wayland/SDL_waylandvulkan.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandvulkan.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_207) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandvulkan.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_209) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandvulkan.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandvulkan.c.o -MF CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandvulkan.c.o.d -o CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandvulkan.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/wayland/SDL_waylandvulkan.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandvulkan.c.i: cmake_force
@@ -2690,7 +2711,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandvulkan.c.s: cm
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandwindow.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandwindow.c.o: _deps/sdl2-src/src/video/wayland/SDL_waylandwindow.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandwindow.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_208) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandwindow.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_210) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandwindow.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandwindow.c.o -MF CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandwindow.c.o.d -o CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandwindow.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/video/wayland/SDL_waylandwindow.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandwindow.c.i: cmake_force
@@ -2704,7 +2725,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/video/wayland/SDL_waylandwindow.c.s: cm
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/fractional-scale-v1-protocol.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/fractional-scale-v1-protocol.c.o: _deps/sdl2-build/wayland-generated-protocols/fractional-scale-v1-protocol.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/fractional-scale-v1-protocol.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_209) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/fractional-scale-v1-protocol.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_211) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/fractional-scale-v1-protocol.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/fractional-scale-v1-protocol.c.o -MF CMakeFiles/SDL2.dir/wayland-generated-protocols/fractional-scale-v1-protocol.c.o.d -o CMakeFiles/SDL2.dir/wayland-generated-protocols/fractional-scale-v1-protocol.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build/wayland-generated-protocols/fractional-scale-v1-protocol.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/fractional-scale-v1-protocol.c.i: cmake_force
@@ -2718,7 +2739,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/fractional-scal
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/idle-inhibit-unstable-v1-protocol.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/idle-inhibit-unstable-v1-protocol.c.o: _deps/sdl2-build/wayland-generated-protocols/idle-inhibit-unstable-v1-protocol.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/idle-inhibit-unstable-v1-protocol.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_210) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/idle-inhibit-unstable-v1-protocol.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_212) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/idle-inhibit-unstable-v1-protocol.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/idle-inhibit-unstable-v1-protocol.c.o -MF CMakeFiles/SDL2.dir/wayland-generated-protocols/idle-inhibit-unstable-v1-protocol.c.o.d -o CMakeFiles/SDL2.dir/wayland-generated-protocols/idle-inhibit-unstable-v1-protocol.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build/wayland-generated-protocols/idle-inhibit-unstable-v1-protocol.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/idle-inhibit-unstable-v1-protocol.c.i: cmake_force
@@ -2732,7 +2753,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/idle-inhibit-un
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/keyboard-shortcuts-inhibit-unstable-v1-protocol.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/keyboard-shortcuts-inhibit-unstable-v1-protocol.c.o: _deps/sdl2-build/wayland-generated-protocols/keyboard-shortcuts-inhibit-unstable-v1-protocol.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/keyboard-shortcuts-inhibit-unstable-v1-protocol.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_211) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/keyboard-shortcuts-inhibit-unstable-v1-protocol.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_213) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/keyboard-shortcuts-inhibit-unstable-v1-protocol.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/keyboard-shortcuts-inhibit-unstable-v1-protocol.c.o -MF CMakeFiles/SDL2.dir/wayland-generated-protocols/keyboard-shortcuts-inhibit-unstable-v1-protocol.c.o.d -o CMakeFiles/SDL2.dir/wayland-generated-protocols/keyboard-shortcuts-inhibit-unstable-v1-protocol.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build/wayland-generated-protocols/keyboard-shortcuts-inhibit-unstable-v1-protocol.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/keyboard-shortcuts-inhibit-unstable-v1-protocol.c.i: cmake_force
@@ -2746,7 +2767,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/keyboard-shortc
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/pointer-constraints-unstable-v1-protocol.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/pointer-constraints-unstable-v1-protocol.c.o: _deps/sdl2-build/wayland-generated-protocols/pointer-constraints-unstable-v1-protocol.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/pointer-constraints-unstable-v1-protocol.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_212) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/pointer-constraints-unstable-v1-protocol.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_214) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/pointer-constraints-unstable-v1-protocol.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/pointer-constraints-unstable-v1-protocol.c.o -MF CMakeFiles/SDL2.dir/wayland-generated-protocols/pointer-constraints-unstable-v1-protocol.c.o.d -o CMakeFiles/SDL2.dir/wayland-generated-protocols/pointer-constraints-unstable-v1-protocol.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build/wayland-generated-protocols/pointer-constraints-unstable-v1-protocol.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/pointer-constraints-unstable-v1-protocol.c.i: cmake_force
@@ -2760,7 +2781,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/pointer-constra
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/primary-selection-unstable-v1-protocol.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/primary-selection-unstable-v1-protocol.c.o: _deps/sdl2-build/wayland-generated-protocols/primary-selection-unstable-v1-protocol.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/primary-selection-unstable-v1-protocol.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_213) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/primary-selection-unstable-v1-protocol.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_215) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/primary-selection-unstable-v1-protocol.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/primary-selection-unstable-v1-protocol.c.o -MF CMakeFiles/SDL2.dir/wayland-generated-protocols/primary-selection-unstable-v1-protocol.c.o.d -o CMakeFiles/SDL2.dir/wayland-generated-protocols/primary-selection-unstable-v1-protocol.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build/wayland-generated-protocols/primary-selection-unstable-v1-protocol.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/primary-selection-unstable-v1-protocol.c.i: cmake_force
@@ -2774,7 +2795,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/primary-selecti
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/relative-pointer-unstable-v1-protocol.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/relative-pointer-unstable-v1-protocol.c.o: _deps/sdl2-build/wayland-generated-protocols/relative-pointer-unstable-v1-protocol.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/relative-pointer-unstable-v1-protocol.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_214) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/relative-pointer-unstable-v1-protocol.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_216) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/relative-pointer-unstable-v1-protocol.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/relative-pointer-unstable-v1-protocol.c.o -MF CMakeFiles/SDL2.dir/wayland-generated-protocols/relative-pointer-unstable-v1-protocol.c.o.d -o CMakeFiles/SDL2.dir/wayland-generated-protocols/relative-pointer-unstable-v1-protocol.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build/wayland-generated-protocols/relative-pointer-unstable-v1-protocol.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/relative-pointer-unstable-v1-protocol.c.i: cmake_force
@@ -2788,7 +2809,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/relative-pointe
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/tablet-unstable-v2-protocol.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/tablet-unstable-v2-protocol.c.o: _deps/sdl2-build/wayland-generated-protocols/tablet-unstable-v2-protocol.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/tablet-unstable-v2-protocol.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_215) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/tablet-unstable-v2-protocol.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_217) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/tablet-unstable-v2-protocol.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/tablet-unstable-v2-protocol.c.o -MF CMakeFiles/SDL2.dir/wayland-generated-protocols/tablet-unstable-v2-protocol.c.o.d -o CMakeFiles/SDL2.dir/wayland-generated-protocols/tablet-unstable-v2-protocol.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build/wayland-generated-protocols/tablet-unstable-v2-protocol.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/tablet-unstable-v2-protocol.c.i: cmake_force
@@ -2802,7 +2823,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/tablet-unstable
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/text-input-unstable-v3-protocol.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/text-input-unstable-v3-protocol.c.o: _deps/sdl2-build/wayland-generated-protocols/text-input-unstable-v3-protocol.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/text-input-unstable-v3-protocol.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_216) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/text-input-unstable-v3-protocol.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_218) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/text-input-unstable-v3-protocol.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/text-input-unstable-v3-protocol.c.o -MF CMakeFiles/SDL2.dir/wayland-generated-protocols/text-input-unstable-v3-protocol.c.o.d -o CMakeFiles/SDL2.dir/wayland-generated-protocols/text-input-unstable-v3-protocol.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build/wayland-generated-protocols/text-input-unstable-v3-protocol.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/text-input-unstable-v3-protocol.c.i: cmake_force
@@ -2816,7 +2837,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/text-input-unst
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/viewporter-protocol.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/viewporter-protocol.c.o: _deps/sdl2-build/wayland-generated-protocols/viewporter-protocol.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/viewporter-protocol.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_217) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/viewporter-protocol.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_219) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/viewporter-protocol.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/viewporter-protocol.c.o -MF CMakeFiles/SDL2.dir/wayland-generated-protocols/viewporter-protocol.c.o.d -o CMakeFiles/SDL2.dir/wayland-generated-protocols/viewporter-protocol.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build/wayland-generated-protocols/viewporter-protocol.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/viewporter-protocol.c.i: cmake_force
@@ -2830,7 +2851,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/viewporter-prot
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/wayland-protocol.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/wayland-protocol.c.o: _deps/sdl2-build/wayland-generated-protocols/wayland-protocol.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/wayland-protocol.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_218) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/wayland-protocol.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_220) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/wayland-protocol.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/wayland-protocol.c.o -MF CMakeFiles/SDL2.dir/wayland-generated-protocols/wayland-protocol.c.o.d -o CMakeFiles/SDL2.dir/wayland-generated-protocols/wayland-protocol.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build/wayland-generated-protocols/wayland-protocol.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/wayland-protocol.c.i: cmake_force
@@ -2844,7 +2865,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/wayland-protoco
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-activation-v1-protocol.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-activation-v1-protocol.c.o: _deps/sdl2-build/wayland-generated-protocols/xdg-activation-v1-protocol.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-activation-v1-protocol.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_219) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-activation-v1-protocol.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_221) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-activation-v1-protocol.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-activation-v1-protocol.c.o -MF CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-activation-v1-protocol.c.o.d -o CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-activation-v1-protocol.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build/wayland-generated-protocols/xdg-activation-v1-protocol.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-activation-v1-protocol.c.i: cmake_force
@@ -2858,7 +2879,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-activation-
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-decoration-unstable-v1-protocol.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-decoration-unstable-v1-protocol.c.o: _deps/sdl2-build/wayland-generated-protocols/xdg-decoration-unstable-v1-protocol.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-decoration-unstable-v1-protocol.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_220) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-decoration-unstable-v1-protocol.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_222) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-decoration-unstable-v1-protocol.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-decoration-unstable-v1-protocol.c.o -MF CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-decoration-unstable-v1-protocol.c.o.d -o CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-decoration-unstable-v1-protocol.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build/wayland-generated-protocols/xdg-decoration-unstable-v1-protocol.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-decoration-unstable-v1-protocol.c.i: cmake_force
@@ -2872,7 +2893,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-decoration-
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-output-unstable-v1-protocol.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-output-unstable-v1-protocol.c.o: _deps/sdl2-build/wayland-generated-protocols/xdg-output-unstable-v1-protocol.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-output-unstable-v1-protocol.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_221) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-output-unstable-v1-protocol.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_223) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-output-unstable-v1-protocol.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-output-unstable-v1-protocol.c.o -MF CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-output-unstable-v1-protocol.c.o.d -o CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-output-unstable-v1-protocol.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build/wayland-generated-protocols/xdg-output-unstable-v1-protocol.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-output-unstable-v1-protocol.c.i: cmake_force
@@ -2886,7 +2907,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-output-unst
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-shell-protocol.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-shell-protocol.c.o: _deps/sdl2-build/wayland-generated-protocols/xdg-shell-protocol.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-shell-protocol.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_222) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-shell-protocol.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_224) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-shell-protocol.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-shell-protocol.c.o -MF CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-shell-protocol.c.o.d -o CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-shell-protocol.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build/wayland-generated-protocols/xdg-shell-protocol.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-shell-protocol.c.i: cmake_force
@@ -2900,7 +2921,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/wayland-generated-protocols/xdg-shell-proto
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/unix/SDL_poll.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/unix/SDL_poll.c.o: _deps/sdl2-src/src/core/unix/SDL_poll.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/unix/SDL_poll.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_223) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/unix/SDL_poll.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_225) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/unix/SDL_poll.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/unix/SDL_poll.c.o -MF CMakeFiles/SDL2.dir/src/core/unix/SDL_poll.c.o.d -o CMakeFiles/SDL2.dir/src/core/unix/SDL_poll.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/core/unix/SDL_poll.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/unix/SDL_poll.c.i: cmake_force
@@ -2914,7 +2935,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/unix/SDL_poll.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/haptic/linux/SDL_syshaptic.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/haptic/linux/SDL_syshaptic.c.o: _deps/sdl2-src/src/haptic/linux/SDL_syshaptic.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/haptic/linux/SDL_syshaptic.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_224) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/haptic/linux/SDL_syshaptic.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_226) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/haptic/linux/SDL_syshaptic.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/haptic/linux/SDL_syshaptic.c.o -MF CMakeFiles/SDL2.dir/src/haptic/linux/SDL_syshaptic.c.o.d -o CMakeFiles/SDL2.dir/src/haptic/linux/SDL_syshaptic.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/haptic/linux/SDL_syshaptic.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/haptic/linux/SDL_syshaptic.c.i: cmake_force
@@ -2928,7 +2949,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/haptic/linux/SDL_syshaptic.c.s: cmake_f
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_dbus.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_dbus.c.o: _deps/sdl2-src/src/core/linux/SDL_dbus.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_dbus.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_225) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_dbus.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_227) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_dbus.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_dbus.c.o -MF CMakeFiles/SDL2.dir/src/core/linux/SDL_dbus.c.o.d -o CMakeFiles/SDL2.dir/src/core/linux/SDL_dbus.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/core/linux/SDL_dbus.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_dbus.c.i: cmake_force
@@ -2942,7 +2963,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_dbus.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_ime.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_ime.c.o: _deps/sdl2-src/src/core/linux/SDL_ime.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_ime.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_226) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_ime.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_228) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_ime.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_ime.c.o -MF CMakeFiles/SDL2.dir/src/core/linux/SDL_ime.c.o.d -o CMakeFiles/SDL2.dir/src/core/linux/SDL_ime.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/core/linux/SDL_ime.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_ime.c.i: cmake_force
@@ -2956,7 +2977,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_ime.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_ibus.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_ibus.c.o: _deps/sdl2-src/src/core/linux/SDL_ibus.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_ibus.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_227) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_ibus.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_229) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_ibus.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_ibus.c.o -MF CMakeFiles/SDL2.dir/src/core/linux/SDL_ibus.c.o.d -o CMakeFiles/SDL2.dir/src/core/linux/SDL_ibus.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/core/linux/SDL_ibus.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_ibus.c.i: cmake_force
@@ -2970,7 +2991,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_ibus.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_fcitx.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_fcitx.c.o: _deps/sdl2-src/src/core/linux/SDL_fcitx.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_fcitx.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_228) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_fcitx.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_230) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_fcitx.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_fcitx.c.o -MF CMakeFiles/SDL2.dir/src/core/linux/SDL_fcitx.c.o.d -o CMakeFiles/SDL2.dir/src/core/linux/SDL_fcitx.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/core/linux/SDL_fcitx.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_fcitx.c.i: cmake_force
@@ -2984,7 +3005,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_fcitx.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_udev.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_udev.c.o: _deps/sdl2-src/src/core/linux/SDL_udev.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_udev.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_229) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_udev.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_231) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_udev.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_udev.c.o -MF CMakeFiles/SDL2.dir/src/core/linux/SDL_udev.c.o.d -o CMakeFiles/SDL2.dir/src/core/linux/SDL_udev.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/core/linux/SDL_udev.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_udev.c.i: cmake_force
@@ -2998,7 +3019,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_udev.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_evdev.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_evdev.c.o: _deps/sdl2-src/src/core/linux/SDL_evdev.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_evdev.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_230) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_evdev.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_232) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_evdev.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_evdev.c.o -MF CMakeFiles/SDL2.dir/src/core/linux/SDL_evdev.c.o.d -o CMakeFiles/SDL2.dir/src/core/linux/SDL_evdev.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/core/linux/SDL_evdev.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_evdev.c.i: cmake_force
@@ -3012,7 +3033,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_evdev.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_evdev_kbd.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_evdev_kbd.c.o: _deps/sdl2-src/src/core/linux/SDL_evdev_kbd.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_evdev_kbd.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_231) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_evdev_kbd.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_233) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_evdev_kbd.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_evdev_kbd.c.o -MF CMakeFiles/SDL2.dir/src/core/linux/SDL_evdev_kbd.c.o.d -o CMakeFiles/SDL2.dir/src/core/linux/SDL_evdev_kbd.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/core/linux/SDL_evdev_kbd.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_evdev_kbd.c.i: cmake_force
@@ -3026,7 +3047,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_evdev_kbd.c.s: cmake_for
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_evdev_capabilities.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_evdev_capabilities.c.o: _deps/sdl2-src/src/core/linux/SDL_evdev_capabilities.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_evdev_capabilities.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_232) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_evdev_capabilities.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_234) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_evdev_capabilities.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_evdev_capabilities.c.o -MF CMakeFiles/SDL2.dir/src/core/linux/SDL_evdev_capabilities.c.o.d -o CMakeFiles/SDL2.dir/src/core/linux/SDL_evdev_capabilities.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/core/linux/SDL_evdev_capabilities.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_evdev_capabilities.c.i: cmake_force
@@ -3040,7 +3061,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_evdev_capabilities.c.s: 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_threadprio.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_threadprio.c.o: _deps/sdl2-src/src/core/linux/SDL_threadprio.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_threadprio.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_233) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_threadprio.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_235) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_threadprio.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_threadprio.c.o -MF CMakeFiles/SDL2.dir/src/core/linux/SDL_threadprio.c.o.d -o CMakeFiles/SDL2.dir/src/core/linux/SDL_threadprio.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/core/linux/SDL_threadprio.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_threadprio.c.i: cmake_force
@@ -3054,7 +3075,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_threadprio.c.s: cmake_fo
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_sandbox.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_sandbox.c.o: _deps/sdl2-src/src/core/linux/SDL_sandbox.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_sandbox.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_234) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_sandbox.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_236) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_sandbox.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_sandbox.c.o -MF CMakeFiles/SDL2.dir/src/core/linux/SDL_sandbox.c.o.d -o CMakeFiles/SDL2.dir/src/core/linux/SDL_sandbox.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/core/linux/SDL_sandbox.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_sandbox.c.i: cmake_force
@@ -3068,7 +3089,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/core/linux/SDL_sandbox.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_combined.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_combined.c.o: _deps/sdl2-src/src/joystick/hidapi/SDL_hidapi_combined.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_combined.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_235) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_combined.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_237) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_combined.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_combined.c.o -MF CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_combined.c.o.d -o CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_combined.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/joystick/hidapi/SDL_hidapi_combined.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_combined.c.i: cmake_force
@@ -3082,7 +3103,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_combined.c.s
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_gamecube.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_gamecube.c.o: _deps/sdl2-src/src/joystick/hidapi/SDL_hidapi_gamecube.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_gamecube.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_236) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_gamecube.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_238) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_gamecube.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_gamecube.c.o -MF CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_gamecube.c.o.d -o CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_gamecube.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/joystick/hidapi/SDL_hidapi_gamecube.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_gamecube.c.i: cmake_force
@@ -3096,7 +3117,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_gamecube.c.s
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_luna.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_luna.c.o: _deps/sdl2-src/src/joystick/hidapi/SDL_hidapi_luna.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_luna.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_237) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_luna.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_239) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_luna.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_luna.c.o -MF CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_luna.c.o.d -o CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_luna.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/joystick/hidapi/SDL_hidapi_luna.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_luna.c.i: cmake_force
@@ -3110,7 +3131,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_luna.c.s: cm
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_ps3.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_ps3.c.o: _deps/sdl2-src/src/joystick/hidapi/SDL_hidapi_ps3.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_ps3.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_238) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_ps3.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_240) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_ps3.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_ps3.c.o -MF CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_ps3.c.o.d -o CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_ps3.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/joystick/hidapi/SDL_hidapi_ps3.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_ps3.c.i: cmake_force
@@ -3124,7 +3145,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_ps3.c.s: cma
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_ps4.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_ps4.c.o: _deps/sdl2-src/src/joystick/hidapi/SDL_hidapi_ps4.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_ps4.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_239) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_ps4.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_241) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_ps4.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_ps4.c.o -MF CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_ps4.c.o.d -o CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_ps4.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/joystick/hidapi/SDL_hidapi_ps4.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_ps4.c.i: cmake_force
@@ -3138,7 +3159,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_ps4.c.s: cma
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_ps5.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_ps5.c.o: _deps/sdl2-src/src/joystick/hidapi/SDL_hidapi_ps5.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_ps5.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_240) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_ps5.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_242) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_ps5.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_ps5.c.o -MF CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_ps5.c.o.d -o CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_ps5.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/joystick/hidapi/SDL_hidapi_ps5.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_ps5.c.i: cmake_force
@@ -3152,7 +3173,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_ps5.c.s: cma
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_rumble.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_rumble.c.o: _deps/sdl2-src/src/joystick/hidapi/SDL_hidapi_rumble.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_rumble.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_241) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_rumble.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_243) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_rumble.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_rumble.c.o -MF CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_rumble.c.o.d -o CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_rumble.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/joystick/hidapi/SDL_hidapi_rumble.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_rumble.c.i: cmake_force
@@ -3166,7 +3187,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_rumble.c.s: 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_shield.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_shield.c.o: _deps/sdl2-src/src/joystick/hidapi/SDL_hidapi_shield.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_shield.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_242) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_shield.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_244) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_shield.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_shield.c.o -MF CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_shield.c.o.d -o CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_shield.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/joystick/hidapi/SDL_hidapi_shield.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_shield.c.i: cmake_force
@@ -3180,7 +3201,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_shield.c.s: 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_stadia.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_stadia.c.o: _deps/sdl2-src/src/joystick/hidapi/SDL_hidapi_stadia.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_stadia.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_243) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_stadia.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_245) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_stadia.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_stadia.c.o -MF CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_stadia.c.o.d -o CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_stadia.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/joystick/hidapi/SDL_hidapi_stadia.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_stadia.c.i: cmake_force
@@ -3194,7 +3215,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_stadia.c.s: 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_steam.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_steam.c.o: _deps/sdl2-src/src/joystick/hidapi/SDL_hidapi_steam.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_steam.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_244) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_steam.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_246) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_steam.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_steam.c.o -MF CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_steam.c.o.d -o CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_steam.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/joystick/hidapi/SDL_hidapi_steam.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_steam.c.i: cmake_force
@@ -3208,7 +3229,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_steam.c.s: c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_steamdeck.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_steamdeck.c.o: _deps/sdl2-src/src/joystick/hidapi/SDL_hidapi_steamdeck.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_steamdeck.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_245) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_steamdeck.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_247) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_steamdeck.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_steamdeck.c.o -MF CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_steamdeck.c.o.d -o CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_steamdeck.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/joystick/hidapi/SDL_hidapi_steamdeck.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_steamdeck.c.i: cmake_force
@@ -3222,7 +3243,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_steamdeck.c.
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_switch.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_switch.c.o: _deps/sdl2-src/src/joystick/hidapi/SDL_hidapi_switch.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_switch.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_246) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_switch.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_248) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_switch.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_switch.c.o -MF CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_switch.c.o.d -o CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_switch.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/joystick/hidapi/SDL_hidapi_switch.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_switch.c.i: cmake_force
@@ -3236,7 +3257,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_switch.c.s: 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_wii.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_wii.c.o: _deps/sdl2-src/src/joystick/hidapi/SDL_hidapi_wii.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_wii.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_247) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_wii.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_249) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_wii.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_wii.c.o -MF CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_wii.c.o.d -o CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_wii.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/joystick/hidapi/SDL_hidapi_wii.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_wii.c.i: cmake_force
@@ -3250,7 +3271,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_wii.c.s: cma
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_xbox360.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_xbox360.c.o: _deps/sdl2-src/src/joystick/hidapi/SDL_hidapi_xbox360.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_xbox360.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_248) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_xbox360.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_250) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_xbox360.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_xbox360.c.o -MF CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_xbox360.c.o.d -o CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_xbox360.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/joystick/hidapi/SDL_hidapi_xbox360.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_xbox360.c.i: cmake_force
@@ -3264,7 +3285,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_xbox360.c.s:
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_xbox360w.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_xbox360w.c.o: _deps/sdl2-src/src/joystick/hidapi/SDL_hidapi_xbox360w.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_xbox360w.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_249) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_xbox360w.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_251) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_xbox360w.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_xbox360w.c.o -MF CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_xbox360w.c.o.d -o CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_xbox360w.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/joystick/hidapi/SDL_hidapi_xbox360w.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_xbox360w.c.i: cmake_force
@@ -3278,7 +3299,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_xbox360w.c.s
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_xboxone.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_xboxone.c.o: _deps/sdl2-src/src/joystick/hidapi/SDL_hidapi_xboxone.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_xboxone.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_250) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_xboxone.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_252) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_xboxone.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_xboxone.c.o -MF CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_xboxone.c.o.d -o CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_xboxone.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/joystick/hidapi/SDL_hidapi_xboxone.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_xboxone.c.i: cmake_force
@@ -3292,7 +3313,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_xboxone.c.s:
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapijoystick.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapijoystick.c.o: _deps/sdl2-src/src/joystick/hidapi/SDL_hidapijoystick.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapijoystick.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_251) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapijoystick.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_253) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapijoystick.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapijoystick.c.o -MF CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapijoystick.c.o.d -o CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapijoystick.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/joystick/hidapi/SDL_hidapijoystick.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapijoystick.c.i: cmake_force
@@ -3306,7 +3327,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapijoystick.c.s:
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/linux/SDL_sysjoystick.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/linux/SDL_sysjoystick.c.o: _deps/sdl2-src/src/joystick/linux/SDL_sysjoystick.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/linux/SDL_sysjoystick.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_252) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/linux/SDL_sysjoystick.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_254) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/linux/SDL_sysjoystick.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/linux/SDL_sysjoystick.c.o -MF CMakeFiles/SDL2.dir/src/joystick/linux/SDL_sysjoystick.c.o.d -o CMakeFiles/SDL2.dir/src/joystick/linux/SDL_sysjoystick.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/joystick/linux/SDL_sysjoystick.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/linux/SDL_sysjoystick.c.i: cmake_force
@@ -3320,7 +3341,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/linux/SDL_sysjoystick.c.s: cma
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/steam/SDL_steamcontroller.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/steam/SDL_steamcontroller.c.o: _deps/sdl2-src/src/joystick/steam/SDL_steamcontroller.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/steam/SDL_steamcontroller.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_253) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/steam/SDL_steamcontroller.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_255) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/steam/SDL_steamcontroller.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/steam/SDL_steamcontroller.c.o -MF CMakeFiles/SDL2.dir/src/joystick/steam/SDL_steamcontroller.c.o.d -o CMakeFiles/SDL2.dir/src/joystick/steam/SDL_steamcontroller.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/joystick/steam/SDL_steamcontroller.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/steam/SDL_steamcontroller.c.i: cmake_force
@@ -3334,7 +3355,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/joystick/steam/SDL_steamcontroller.c.s:
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_systhread.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_systhread.c.o: _deps/sdl2-src/src/thread/pthread/SDL_systhread.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_systhread.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_254) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_systhread.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_256) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_systhread.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_systhread.c.o -MF CMakeFiles/SDL2.dir/src/thread/pthread/SDL_systhread.c.o.d -o CMakeFiles/SDL2.dir/src/thread/pthread/SDL_systhread.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/thread/pthread/SDL_systhread.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_systhread.c.i: cmake_force
@@ -3348,7 +3369,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_systhread.c.s: cmake
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_sysmutex.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_sysmutex.c.o: _deps/sdl2-src/src/thread/pthread/SDL_sysmutex.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_sysmutex.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_255) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_sysmutex.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_257) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_sysmutex.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_sysmutex.c.o -MF CMakeFiles/SDL2.dir/src/thread/pthread/SDL_sysmutex.c.o.d -o CMakeFiles/SDL2.dir/src/thread/pthread/SDL_sysmutex.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/thread/pthread/SDL_sysmutex.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_sysmutex.c.i: cmake_force
@@ -3362,7 +3383,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_sysmutex.c.s: cmake_
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_syscond.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_syscond.c.o: _deps/sdl2-src/src/thread/pthread/SDL_syscond.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_syscond.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_256) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_syscond.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_258) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_syscond.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_syscond.c.o -MF CMakeFiles/SDL2.dir/src/thread/pthread/SDL_syscond.c.o.d -o CMakeFiles/SDL2.dir/src/thread/pthread/SDL_syscond.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/thread/pthread/SDL_syscond.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_syscond.c.i: cmake_force
@@ -3376,7 +3397,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_syscond.c.s: cmake_f
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_systls.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_systls.c.o: _deps/sdl2-src/src/thread/pthread/SDL_systls.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_systls.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_257) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_systls.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_259) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_systls.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_systls.c.o -MF CMakeFiles/SDL2.dir/src/thread/pthread/SDL_systls.c.o.d -o CMakeFiles/SDL2.dir/src/thread/pthread/SDL_systls.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/thread/pthread/SDL_systls.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_systls.c.i: cmake_force
@@ -3390,7 +3411,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_systls.c.s: cmake_fo
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_syssem.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_syssem.c.o: _deps/sdl2-src/src/thread/pthread/SDL_syssem.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_syssem.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_258) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_syssem.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_260) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_syssem.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_syssem.c.o -MF CMakeFiles/SDL2.dir/src/thread/pthread/SDL_syssem.c.o.d -o CMakeFiles/SDL2.dir/src/thread/pthread/SDL_syssem.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/thread/pthread/SDL_syssem.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_syssem.c.i: cmake_force
@@ -3404,7 +3425,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_syssem.c.s: cmake_fo
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/misc/unix/SDL_sysurl.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/misc/unix/SDL_sysurl.c.o: _deps/sdl2-src/src/misc/unix/SDL_sysurl.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/misc/unix/SDL_sysurl.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_259) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/misc/unix/SDL_sysurl.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_261) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/misc/unix/SDL_sysurl.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/misc/unix/SDL_sysurl.c.o -MF CMakeFiles/SDL2.dir/src/misc/unix/SDL_sysurl.c.o.d -o CMakeFiles/SDL2.dir/src/misc/unix/SDL_sysurl.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/misc/unix/SDL_sysurl.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/misc/unix/SDL_sysurl.c.i: cmake_force
@@ -3418,7 +3439,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/misc/unix/SDL_sysurl.c.s: cmake_force
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/power/linux/SDL_syspower.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/power/linux/SDL_syspower.c.o: _deps/sdl2-src/src/power/linux/SDL_syspower.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/power/linux/SDL_syspower.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_260) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/power/linux/SDL_syspower.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_262) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/power/linux/SDL_syspower.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/power/linux/SDL_syspower.c.o -MF CMakeFiles/SDL2.dir/src/power/linux/SDL_syspower.c.o.d -o CMakeFiles/SDL2.dir/src/power/linux/SDL_syspower.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/power/linux/SDL_syspower.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/power/linux/SDL_syspower.c.i: cmake_force
@@ -3432,7 +3453,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/power/linux/SDL_syspower.c.s: cmake_for
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/locale/unix/SDL_syslocale.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/locale/unix/SDL_syslocale.c.o: _deps/sdl2-src/src/locale/unix/SDL_syslocale.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/locale/unix/SDL_syslocale.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_261) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/locale/unix/SDL_syslocale.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_263) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/locale/unix/SDL_syslocale.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/locale/unix/SDL_syslocale.c.o -MF CMakeFiles/SDL2.dir/src/locale/unix/SDL_syslocale.c.o.d -o CMakeFiles/SDL2.dir/src/locale/unix/SDL_syslocale.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/locale/unix/SDL_syslocale.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/locale/unix/SDL_syslocale.c.i: cmake_force
@@ -3446,7 +3467,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/locale/unix/SDL_syslocale.c.s: cmake_fo
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/filesystem/unix/SDL_sysfilesystem.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/filesystem/unix/SDL_sysfilesystem.c.o: _deps/sdl2-src/src/filesystem/unix/SDL_sysfilesystem.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/filesystem/unix/SDL_sysfilesystem.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_262) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/filesystem/unix/SDL_sysfilesystem.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_264) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/filesystem/unix/SDL_sysfilesystem.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/filesystem/unix/SDL_sysfilesystem.c.o -MF CMakeFiles/SDL2.dir/src/filesystem/unix/SDL_sysfilesystem.c.o.d -o CMakeFiles/SDL2.dir/src/filesystem/unix/SDL_sysfilesystem.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/filesystem/unix/SDL_sysfilesystem.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/filesystem/unix/SDL_sysfilesystem.c.i: cmake_force
@@ -3460,7 +3481,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/filesystem/unix/SDL_sysfilesystem.c.s: 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/timer/unix/SDL_systimer.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/timer/unix/SDL_systimer.c.o: _deps/sdl2-src/src/timer/unix/SDL_systimer.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/timer/unix/SDL_systimer.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_263) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/timer/unix/SDL_systimer.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_265) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/timer/unix/SDL_systimer.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/timer/unix/SDL_systimer.c.o -MF CMakeFiles/SDL2.dir/src/timer/unix/SDL_systimer.c.o.d -o CMakeFiles/SDL2.dir/src/timer/unix/SDL_systimer.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/timer/unix/SDL_systimer.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/timer/unix/SDL_systimer.c.i: cmake_force
@@ -3474,7 +3495,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/timer/unix/SDL_systimer.c.s: cmake_forc
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/sensor/dummy/SDL_dummysensor.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/sensor/dummy/SDL_dummysensor.c.o: _deps/sdl2-src/src/sensor/dummy/SDL_dummysensor.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/sensor/dummy/SDL_dummysensor.c.o: _deps/sdl2-build/CMakeFiles/SDL2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_264) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/sensor/dummy/SDL_dummysensor.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_266) "Building C object _deps/sdl2-build/CMakeFiles/SDL2.dir/src/sensor/dummy/SDL_dummysensor.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2.dir/src/sensor/dummy/SDL_dummysensor.c.o -MF CMakeFiles/SDL2.dir/src/sensor/dummy/SDL_dummysensor.c.o.d -o CMakeFiles/SDL2.dir/src/sensor/dummy/SDL_dummysensor.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/sensor/dummy/SDL_dummysensor.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2.dir/src/sensor/dummy/SDL_dummysensor.c.i: cmake_force
@@ -3487,6 +3508,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/src/sensor/dummy/SDL_dummysensor.c.s: cmake
 
 # Object files for target SDL2
 SDL2_OBJECTS = \
+"CMakeFiles/SDL2.dir/SDL2_autogen/mocs_compilation.cpp.o" \
 "CMakeFiles/SDL2.dir/src/SDL.c.o" \
 "CMakeFiles/SDL2.dir/src/SDL_assert.c.o" \
 "CMakeFiles/SDL2.dir/src/SDL_dataqueue.c.o" \
@@ -3727,6 +3749,7 @@ SDL2_OBJECTS = \
 # External object files for target SDL2
 SDL2_EXTERNAL_OBJECTS =
 
+_deps/sdl2-build/libSDL2-2.0d.so.0.3000.8: _deps/sdl2-build/CMakeFiles/SDL2.dir/SDL2_autogen/mocs_compilation.cpp.o
 _deps/sdl2-build/libSDL2-2.0d.so.0.3000.8: _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL.c.o
 _deps/sdl2-build/libSDL2-2.0d.so.0.3000.8: _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_assert.c.o
 _deps/sdl2-build/libSDL2-2.0d.so.0.3000.8: _deps/sdl2-build/CMakeFiles/SDL2.dir/src/SDL_dataqueue.c.o
@@ -3965,7 +3988,7 @@ _deps/sdl2-build/libSDL2-2.0d.so.0.3000.8: _deps/sdl2-build/CMakeFiles/SDL2.dir/
 _deps/sdl2-build/libSDL2-2.0d.so.0.3000.8: _deps/sdl2-build/CMakeFiles/SDL2.dir/src/sensor/dummy/SDL_dummysensor.c.o
 _deps/sdl2-build/libSDL2-2.0d.so.0.3000.8: _deps/sdl2-build/CMakeFiles/SDL2.dir/build.make
 _deps/sdl2-build/libSDL2-2.0d.so.0.3000.8: _deps/sdl2-build/CMakeFiles/SDL2.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_265) "Linking C shared library libSDL2-2.0d.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_267) "Linking CXX shared library libSDL2-2.0d.so"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/SDL2.dir/link.txt --verbose=$(VERBOSE)
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && $(CMAKE_COMMAND) -E cmake_symlink_library libSDL2-2.0d.so.0.3000.8 libSDL2-2.0d.so.0 libSDL2-2.0d.so
 
@@ -3983,6 +4006,7 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/clean:
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && $(CMAKE_COMMAND) -P CMakeFiles/SDL2.dir/cmake_clean.cmake
 .PHONY : _deps/sdl2-build/CMakeFiles/SDL2.dir/clean
 
+_deps/sdl2-build/CMakeFiles/SDL2.dir/depend: _deps/sdl2-build/SDL2_autogen/timestamp
 _deps/sdl2-build/CMakeFiles/SDL2.dir/depend: _deps/sdl2-build/wayland-generated-protocols/fractional-scale-v1-client-protocol.h
 _deps/sdl2-build/CMakeFiles/SDL2.dir/depend: _deps/sdl2-build/wayland-generated-protocols/fractional-scale-v1-protocol.c
 _deps/sdl2-build/CMakeFiles/SDL2.dir/depend: _deps/sdl2-build/wayland-generated-protocols/idle-inhibit-unstable-v1-client-protocol.h

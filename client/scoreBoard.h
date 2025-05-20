@@ -9,7 +9,7 @@
 
 class ScoreBoard  {
 public:
-    ScoreBoard(QWidget *parent = nullptr);
+    ScoreBoard();
 
 
     /*

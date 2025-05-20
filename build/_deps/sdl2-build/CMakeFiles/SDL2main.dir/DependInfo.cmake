@@ -9,6 +9,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/main/dummy/SDL_dummy_main.c" "_deps/sdl2-build/CMakeFiles/SDL2main.dir/src/main/dummy/SDL_dummy_main.c.o" "gcc" "_deps/sdl2-build/CMakeFiles/SDL2main.dir/src/main/dummy/SDL_dummy_main.c.o.d"
+  "" "_deps/sdl2-build/SDL2main_autogen/timestamp" "custom" "_deps/sdl2-build/SDL2main_autogen/deps"
+  "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build/SDL2main_autogen/mocs_compilation.cpp" "_deps/sdl2-build/CMakeFiles/SDL2main.dir/SDL2main_autogen/mocs_compilation.cpp.o" "gcc" "_deps/sdl2-build/CMakeFiles/SDL2main.dir/SDL2main_autogen/mocs_compilation.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

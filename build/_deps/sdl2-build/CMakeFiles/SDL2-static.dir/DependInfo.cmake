@@ -244,6 +244,8 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build/wayland-generated-protocols/xdg-decoration-unstable-v1-protocol.c" "_deps/sdl2-build/CMakeFiles/SDL2-static.dir/wayland-generated-protocols/xdg-decoration-unstable-v1-protocol.c.o" "gcc" "_deps/sdl2-build/CMakeFiles/SDL2-static.dir/wayland-generated-protocols/xdg-decoration-unstable-v1-protocol.c.o.d"
   "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build/wayland-generated-protocols/xdg-output-unstable-v1-protocol.c" "_deps/sdl2-build/CMakeFiles/SDL2-static.dir/wayland-generated-protocols/xdg-output-unstable-v1-protocol.c.o" "gcc" "_deps/sdl2-build/CMakeFiles/SDL2-static.dir/wayland-generated-protocols/xdg-output-unstable-v1-protocol.c.o.d"
   "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build/wayland-generated-protocols/xdg-shell-protocol.c" "_deps/sdl2-build/CMakeFiles/SDL2-static.dir/wayland-generated-protocols/xdg-shell-protocol.c.o" "gcc" "_deps/sdl2-build/CMakeFiles/SDL2-static.dir/wayland-generated-protocols/xdg-shell-protocol.c.o.d"
+  "" "_deps/sdl2-build/SDL2-static_autogen/timestamp" "custom" "_deps/sdl2-build/SDL2-static_autogen/deps"
+  "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build/SDL2-static_autogen/mocs_compilation.cpp" "_deps/sdl2-build/CMakeFiles/SDL2-static.dir/SDL2-static_autogen/mocs_compilation.cpp.o" "gcc" "_deps/sdl2-build/CMakeFiles/SDL2-static.dir/SDL2-static_autogen/mocs_compilation.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

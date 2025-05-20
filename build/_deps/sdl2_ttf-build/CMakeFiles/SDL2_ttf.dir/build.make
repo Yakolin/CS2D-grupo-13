@@ -69,10 +69,31 @@ include _deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf.dir/progress.make
 # Include the compile flags for this target's objects.
 include _deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf.dir/flags.make
 
+_deps/sdl2_ttf-build/SDL2_ttf_autogen/timestamp: /usr/lib/qt5/bin/moc
+_deps/sdl2_ttf-build/SDL2_ttf_autogen/timestamp: /usr/lib/qt5/bin/uic
+_deps/sdl2_ttf-build/SDL2_ttf_autogen/timestamp: _deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target SDL2_ttf"
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_ttf-build" && /usr/bin/cmake -E cmake_autogen "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf_autogen.dir/AutogenInfo.json" Debug
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_ttf-build" && /usr/bin/cmake -E touch "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_ttf-build/SDL2_ttf_autogen/timestamp"
+
+_deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf.dir/SDL2_ttf_autogen/mocs_compilation.cpp.o: _deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf.dir/flags.make
+_deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf.dir/SDL2_ttf_autogen/mocs_compilation.cpp.o: _deps/sdl2_ttf-build/SDL2_ttf_autogen/mocs_compilation.cpp
+_deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf.dir/SDL2_ttf_autogen/mocs_compilation.cpp.o: _deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object _deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf.dir/SDL2_ttf_autogen/mocs_compilation.cpp.o"
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_ttf-build" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf.dir/SDL2_ttf_autogen/mocs_compilation.cpp.o -MF CMakeFiles/SDL2_ttf.dir/SDL2_ttf_autogen/mocs_compilation.cpp.o.d -o CMakeFiles/SDL2_ttf.dir/SDL2_ttf_autogen/mocs_compilation.cpp.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_ttf-build/SDL2_ttf_autogen/mocs_compilation.cpp"
+
+_deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf.dir/SDL2_ttf_autogen/mocs_compilation.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/SDL2_ttf.dir/SDL2_ttf_autogen/mocs_compilation.cpp.i"
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_ttf-build" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_ttf-build/SDL2_ttf_autogen/mocs_compilation.cpp" > CMakeFiles/SDL2_ttf.dir/SDL2_ttf_autogen/mocs_compilation.cpp.i
+
+_deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf.dir/SDL2_ttf_autogen/mocs_compilation.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/SDL2_ttf.dir/SDL2_ttf_autogen/mocs_compilation.cpp.s"
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_ttf-build" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_ttf-build/SDL2_ttf_autogen/mocs_compilation.cpp" -o CMakeFiles/SDL2_ttf.dir/SDL2_ttf_autogen/mocs_compilation.cpp.s
+
 _deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf.dir/SDL_ttf.c.o: _deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf.dir/flags.make
 _deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf.dir/SDL_ttf.c.o: _deps/sdl2_ttf-src/SDL_ttf.c
 _deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf.dir/SDL_ttf.c.o: _deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building C object _deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf.dir/SDL_ttf.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building C object _deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf.dir/SDL_ttf.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_ttf-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf.dir/SDL_ttf.c.o -MF CMakeFiles/SDL2_ttf.dir/SDL_ttf.c.o.d -o CMakeFiles/SDL2_ttf.dir/SDL_ttf.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_ttf-src/SDL_ttf.c"
 
 _deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf.dir/SDL_ttf.c.i: cmake_force
@@ -85,17 +106,19 @@ _deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf.dir/SDL_ttf.c.s: cmake_force
 
 # Object files for target SDL2_ttf
 SDL2_ttf_OBJECTS = \
+"CMakeFiles/SDL2_ttf.dir/SDL2_ttf_autogen/mocs_compilation.cpp.o" \
 "CMakeFiles/SDL2_ttf.dir/SDL_ttf.c.o"
 
 # External object files for target SDL2_ttf
 SDL2_ttf_EXTERNAL_OBJECTS =
 
+_deps/sdl2_ttf-build/libSDL2_ttf-2.0d.so.0.2200.0: _deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf.dir/SDL2_ttf_autogen/mocs_compilation.cpp.o
 _deps/sdl2_ttf-build/libSDL2_ttf-2.0d.so.0.2200.0: _deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf.dir/SDL_ttf.c.o
 _deps/sdl2_ttf-build/libSDL2_ttf-2.0d.so.0.2200.0: _deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf.dir/build.make
 _deps/sdl2_ttf-build/libSDL2_ttf-2.0d.so.0.2200.0: _deps/sdl2-build/libSDL2-2.0d.so.0.3000.8
 _deps/sdl2_ttf-build/libSDL2_ttf-2.0d.so.0.2200.0: /usr/lib/x86_64-linux-gnu/libfreetype.so
 _deps/sdl2_ttf-build/libSDL2_ttf-2.0d.so.0.2200.0: _deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking C shared library libSDL2_ttf-2.0d.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX shared library libSDL2_ttf-2.0d.so"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_ttf-build" && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/SDL2_ttf.dir/link.txt --verbose=$(VERBOSE)
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_ttf-build" && $(CMAKE_COMMAND) -E cmake_symlink_library libSDL2_ttf-2.0d.so.0.2200.0 libSDL2_ttf-2.0d.so.0 libSDL2_ttf-2.0d.so
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_ttf-build" && /usr/bin/cmake -E create_symlink libSDL2_ttf-2.0d.so.0 libSDL2_ttfd.so
@@ -114,7 +137,7 @@ _deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf.dir/clean:
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_ttf-build" && $(CMAKE_COMMAND) -P CMakeFiles/SDL2_ttf.dir/cmake_clean.cmake
 .PHONY : _deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf.dir/clean
 
-_deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf.dir/depend:
+_deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf.dir/depend: _deps/sdl2_ttf-build/SDL2_ttf_autogen/timestamp
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13" "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_ttf-src" "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_ttf-build" "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf.dir/DependInfo.cmake" "--color=$(COLOR)"
 .PHONY : _deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf.dir/depend
 

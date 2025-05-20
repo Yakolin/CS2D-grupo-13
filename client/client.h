@@ -1,22 +1,17 @@
 #ifndef CLIENT_H
 #define CLIENT_H
-#include "controller.h"
-//#include "protocoloClient.h"
-#include <iostream>
+#include "vista.h"
 #include <iostream>
 
 class Client {
 
 private:
-    Controller controller;
-    //ProtocoloClient protocolo;
+    Vista vista;
 public:
     explicit Client(int& argc, char *argv[]) ;
 
 
     int run( );
-
-
 
 
     ~Client();

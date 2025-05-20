@@ -69,10 +69,31 @@ include _deps/googletest-build/googletest/CMakeFiles/gtest.dir/progress.make
 # Include the compile flags for this target's objects.
 include _deps/googletest-build/googletest/CMakeFiles/gtest.dir/flags.make
 
+_deps/googletest-build/googletest/gtest_autogen/timestamp: /usr/lib/qt5/bin/moc
+_deps/googletest-build/googletest/gtest_autogen/timestamp: /usr/lib/qt5/bin/uic
+_deps/googletest-build/googletest/gtest_autogen/timestamp: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target gtest"
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/googletest-build/googletest" && /usr/bin/cmake -E cmake_autogen "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/googletest-build/googletest/CMakeFiles/gtest_autogen.dir/AutogenInfo.json" Debug
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/googletest-build/googletest" && /usr/bin/cmake -E touch "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/googletest-build/googletest/gtest_autogen/timestamp"
+
+_deps/googletest-build/googletest/CMakeFiles/gtest.dir/gtest_autogen/mocs_compilation.cpp.o: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/flags.make
+_deps/googletest-build/googletest/CMakeFiles/gtest.dir/gtest_autogen/mocs_compilation.cpp.o: _deps/googletest-build/googletest/gtest_autogen/mocs_compilation.cpp
+_deps/googletest-build/googletest/CMakeFiles/gtest.dir/gtest_autogen/mocs_compilation.cpp.o: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object _deps/googletest-build/googletest/CMakeFiles/gtest.dir/gtest_autogen/mocs_compilation.cpp.o"
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/googletest-build/googletest" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/googletest-build/googletest/CMakeFiles/gtest.dir/gtest_autogen/mocs_compilation.cpp.o -MF CMakeFiles/gtest.dir/gtest_autogen/mocs_compilation.cpp.o.d -o CMakeFiles/gtest.dir/gtest_autogen/mocs_compilation.cpp.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/googletest-build/googletest/gtest_autogen/mocs_compilation.cpp"
+
+_deps/googletest-build/googletest/CMakeFiles/gtest.dir/gtest_autogen/mocs_compilation.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/gtest.dir/gtest_autogen/mocs_compilation.cpp.i"
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/googletest-build/googletest" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/googletest-build/googletest/gtest_autogen/mocs_compilation.cpp" > CMakeFiles/gtest.dir/gtest_autogen/mocs_compilation.cpp.i
+
+_deps/googletest-build/googletest/CMakeFiles/gtest.dir/gtest_autogen/mocs_compilation.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/gtest.dir/gtest_autogen/mocs_compilation.cpp.s"
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/googletest-build/googletest" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/googletest-build/googletest/gtest_autogen/mocs_compilation.cpp" -o CMakeFiles/gtest.dir/gtest_autogen/mocs_compilation.cpp.s
+
 _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/flags.make
 _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o: _deps/googletest-src/googletest/src/gtest-all.cc
 _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/googletest-build/googletest" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o -MF CMakeFiles/gtest.dir/src/gtest-all.cc.o.d -o CMakeFiles/gtest.dir/src/gtest-all.cc.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/googletest-src/googletest/src/gtest-all.cc"
 
 _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.i: cmake_force
@@ -85,15 +106,17 @@ _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.s: cmake
 
 # Object files for target gtest
 gtest_OBJECTS = \
+"CMakeFiles/gtest.dir/gtest_autogen/mocs_compilation.cpp.o" \
 "CMakeFiles/gtest.dir/src/gtest-all.cc.o"
 
 # External object files for target gtest
 gtest_EXTERNAL_OBJECTS =
 
+lib/libgtest.so.1.12.1: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/gtest_autogen/mocs_compilation.cpp.o
 lib/libgtest.so.1.12.1: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o
 lib/libgtest.so.1.12.1: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build.make
 lib/libgtest.so.1.12.1: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX shared library ../../../lib/libgtest.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX shared library ../../../lib/libgtest.so"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/googletest-build/googletest" && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/gtest.dir/link.txt --verbose=$(VERBOSE)
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/googletest-build/googletest" && $(CMAKE_COMMAND) -E cmake_symlink_library ../../../lib/libgtest.so.1.12.1 ../../../lib/libgtest.so.1.12.1 ../../../lib/libgtest.so
 
@@ -108,7 +131,7 @@ _deps/googletest-build/googletest/CMakeFiles/gtest.dir/clean:
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/googletest-build/googletest" && $(CMAKE_COMMAND) -P CMakeFiles/gtest.dir/cmake_clean.cmake
 .PHONY : _deps/googletest-build/googletest/CMakeFiles/gtest.dir/clean
 
-_deps/googletest-build/googletest/CMakeFiles/gtest.dir/depend:
+_deps/googletest-build/googletest/CMakeFiles/gtest.dir/depend: _deps/googletest-build/googletest/gtest_autogen/timestamp
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13" "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/googletest-src/googletest" "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/googletest-build/googletest" "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/googletest-build/googletest/CMakeFiles/gtest.dir/DependInfo.cmake" "--color=$(COLOR)"
 .PHONY : _deps/googletest-build/googletest/CMakeFiles/gtest.dir/depend
 

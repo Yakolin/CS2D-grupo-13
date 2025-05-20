@@ -1,7 +1,7 @@
 #ifndef LOBBY_VIEW_H
 #define LOBBY_VIEW_H
 #include "tipos.h"
-#include "lobbyView.h"
+
 #include <QWidget>
 #include <QLayout>
 #include <QListWidget>
@@ -24,7 +24,7 @@ public:
     void add_button(QVBoxLayout *layout, const QString &text, const std::function<void()> &action);
     void add_tab(QTabWidget *tabs, const QString &text, QWidget *widget);
 
-    ~LobbyView();
+    virtual ~LobbyView();
 
 private:
     QTabWidget *tabs;

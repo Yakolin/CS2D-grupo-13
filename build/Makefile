@@ -85,6 +85,51 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
 
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+.PHONY : list_install_components/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
 # The main all target
 all: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build//CMakeFiles/progress.marks"
@@ -141,6 +186,136 @@ CS2D_client: cmake_check_build_system
 CS2D_client/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/build
 .PHONY : CS2D_client/fast
+
+#=============================================================================
+# Target rules for targets named CS2D_server
+
+# Build rule for target.
+CS2D_server: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CS2D_server
+.PHONY : CS2D_server
+
+# fast build rule for target.
+CS2D_server/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_server.dir/build.make CMakeFiles/CS2D_server.dir/build
+.PHONY : CS2D_server/fast
+
+#=============================================================================
+# Target rules for targets named CS2D_tests
+
+# Build rule for target.
+CS2D_tests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CS2D_tests
+.PHONY : CS2D_tests
+
+# fast build rule for target.
+CS2D_tests/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_tests.dir/build.make CMakeFiles/CS2D_tests.dir/build
+.PHONY : CS2D_tests/fast
+
+#=============================================================================
+# Target rules for targets named CS2D_common_autogen_timestamp_deps
+
+# Build rule for target.
+CS2D_common_autogen_timestamp_deps: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CS2D_common_autogen_timestamp_deps
+.PHONY : CS2D_common_autogen_timestamp_deps
+
+# fast build rule for target.
+CS2D_common_autogen_timestamp_deps/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_common_autogen_timestamp_deps.dir/build.make CMakeFiles/CS2D_common_autogen_timestamp_deps.dir/build
+.PHONY : CS2D_common_autogen_timestamp_deps/fast
+
+#=============================================================================
+# Target rules for targets named CS2D_common_autogen
+
+# Build rule for target.
+CS2D_common_autogen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CS2D_common_autogen
+.PHONY : CS2D_common_autogen
+
+# fast build rule for target.
+CS2D_common_autogen/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_common_autogen.dir/build.make CMakeFiles/CS2D_common_autogen.dir/build
+.PHONY : CS2D_common_autogen/fast
+
+#=============================================================================
+# Target rules for targets named CS2D_client_autogen_timestamp_deps
+
+# Build rule for target.
+CS2D_client_autogen_timestamp_deps: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CS2D_client_autogen_timestamp_deps
+.PHONY : CS2D_client_autogen_timestamp_deps
+
+# fast build rule for target.
+CS2D_client_autogen_timestamp_deps/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client_autogen_timestamp_deps.dir/build.make CMakeFiles/CS2D_client_autogen_timestamp_deps.dir/build
+.PHONY : CS2D_client_autogen_timestamp_deps/fast
+
+#=============================================================================
+# Target rules for targets named CS2D_client_autogen
+
+# Build rule for target.
+CS2D_client_autogen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CS2D_client_autogen
+.PHONY : CS2D_client_autogen
+
+# fast build rule for target.
+CS2D_client_autogen/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client_autogen.dir/build.make CMakeFiles/CS2D_client_autogen.dir/build
+.PHONY : CS2D_client_autogen/fast
+
+#=============================================================================
+# Target rules for targets named CS2D_server_autogen_timestamp_deps
+
+# Build rule for target.
+CS2D_server_autogen_timestamp_deps: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CS2D_server_autogen_timestamp_deps
+.PHONY : CS2D_server_autogen_timestamp_deps
+
+# fast build rule for target.
+CS2D_server_autogen_timestamp_deps/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_server_autogen_timestamp_deps.dir/build.make CMakeFiles/CS2D_server_autogen_timestamp_deps.dir/build
+.PHONY : CS2D_server_autogen_timestamp_deps/fast
+
+#=============================================================================
+# Target rules for targets named CS2D_server_autogen
+
+# Build rule for target.
+CS2D_server_autogen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CS2D_server_autogen
+.PHONY : CS2D_server_autogen
+
+# fast build rule for target.
+CS2D_server_autogen/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_server_autogen.dir/build.make CMakeFiles/CS2D_server_autogen.dir/build
+.PHONY : CS2D_server_autogen/fast
+
+#=============================================================================
+# Target rules for targets named CS2D_tests_autogen_timestamp_deps
+
+# Build rule for target.
+CS2D_tests_autogen_timestamp_deps: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CS2D_tests_autogen_timestamp_deps
+.PHONY : CS2D_tests_autogen_timestamp_deps
+
+# fast build rule for target.
+CS2D_tests_autogen_timestamp_deps/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_tests_autogen_timestamp_deps.dir/build.make CMakeFiles/CS2D_tests_autogen_timestamp_deps.dir/build
+.PHONY : CS2D_tests_autogen_timestamp_deps/fast
+
+#=============================================================================
+# Target rules for targets named CS2D_tests_autogen
+
+# Build rule for target.
+CS2D_tests_autogen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CS2D_tests_autogen
+.PHONY : CS2D_tests_autogen
+
+# fast build rule for target.
+CS2D_tests_autogen/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_tests_autogen.dir/build.make CMakeFiles/CS2D_tests_autogen.dir/build
+.PHONY : CS2D_tests_autogen/fast
 
 #=============================================================================
 # Target rules for targets named sdl_headers_copy
@@ -221,6 +396,110 @@ uninstall/fast:
 .PHONY : uninstall/fast
 
 #=============================================================================
+# Target rules for targets named SDL2main_autogen_timestamp_deps
+
+# Build rule for target.
+SDL2main_autogen_timestamp_deps: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SDL2main_autogen_timestamp_deps
+.PHONY : SDL2main_autogen_timestamp_deps
+
+# fast build rule for target.
+SDL2main_autogen_timestamp_deps/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/SDL2main_autogen_timestamp_deps.dir/build.make _deps/sdl2-build/CMakeFiles/SDL2main_autogen_timestamp_deps.dir/build
+.PHONY : SDL2main_autogen_timestamp_deps/fast
+
+#=============================================================================
+# Target rules for targets named SDL2main_autogen
+
+# Build rule for target.
+SDL2main_autogen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SDL2main_autogen
+.PHONY : SDL2main_autogen
+
+# fast build rule for target.
+SDL2main_autogen/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/SDL2main_autogen.dir/build.make _deps/sdl2-build/CMakeFiles/SDL2main_autogen.dir/build
+.PHONY : SDL2main_autogen/fast
+
+#=============================================================================
+# Target rules for targets named SDL2_autogen_timestamp_deps
+
+# Build rule for target.
+SDL2_autogen_timestamp_deps: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SDL2_autogen_timestamp_deps
+.PHONY : SDL2_autogen_timestamp_deps
+
+# fast build rule for target.
+SDL2_autogen_timestamp_deps/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/SDL2_autogen_timestamp_deps.dir/build.make _deps/sdl2-build/CMakeFiles/SDL2_autogen_timestamp_deps.dir/build
+.PHONY : SDL2_autogen_timestamp_deps/fast
+
+#=============================================================================
+# Target rules for targets named SDL2_autogen
+
+# Build rule for target.
+SDL2_autogen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SDL2_autogen
+.PHONY : SDL2_autogen
+
+# fast build rule for target.
+SDL2_autogen/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/SDL2_autogen.dir/build.make _deps/sdl2-build/CMakeFiles/SDL2_autogen.dir/build
+.PHONY : SDL2_autogen/fast
+
+#=============================================================================
+# Target rules for targets named SDL2-static_autogen_timestamp_deps
+
+# Build rule for target.
+SDL2-static_autogen_timestamp_deps: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SDL2-static_autogen_timestamp_deps
+.PHONY : SDL2-static_autogen_timestamp_deps
+
+# fast build rule for target.
+SDL2-static_autogen_timestamp_deps/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/SDL2-static_autogen_timestamp_deps.dir/build.make _deps/sdl2-build/CMakeFiles/SDL2-static_autogen_timestamp_deps.dir/build
+.PHONY : SDL2-static_autogen_timestamp_deps/fast
+
+#=============================================================================
+# Target rules for targets named SDL2-static_autogen
+
+# Build rule for target.
+SDL2-static_autogen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SDL2-static_autogen
+.PHONY : SDL2-static_autogen
+
+# fast build rule for target.
+SDL2-static_autogen/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/SDL2-static_autogen.dir/build.make _deps/sdl2-build/CMakeFiles/SDL2-static_autogen.dir/build
+.PHONY : SDL2-static_autogen/fast
+
+#=============================================================================
+# Target rules for targets named SDL2_test_autogen_timestamp_deps
+
+# Build rule for target.
+SDL2_test_autogen_timestamp_deps: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SDL2_test_autogen_timestamp_deps
+.PHONY : SDL2_test_autogen_timestamp_deps
+
+# fast build rule for target.
+SDL2_test_autogen_timestamp_deps/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/SDL2_test_autogen_timestamp_deps.dir/build.make _deps/sdl2-build/CMakeFiles/SDL2_test_autogen_timestamp_deps.dir/build
+.PHONY : SDL2_test_autogen_timestamp_deps/fast
+
+#=============================================================================
+# Target rules for targets named SDL2_test_autogen
+
+# Build rule for target.
+SDL2_test_autogen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SDL2_test_autogen
+.PHONY : SDL2_test_autogen
+
+# fast build rule for target.
+SDL2_test_autogen/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/SDL2_test_autogen.dir/build.make _deps/sdl2-build/CMakeFiles/SDL2_test_autogen.dir/build
+.PHONY : SDL2_test_autogen/fast
+
+#=============================================================================
 # Target rules for targets named SDL2_image
 
 # Build rule for target.
@@ -232,6 +511,32 @@ SDL2_image: cmake_check_build_system
 SDL2_image/fast:
 	$(MAKE) $(MAKESILENT) -f _deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/build.make _deps/sdl2_image-build/CMakeFiles/SDL2_image.dir/build
 .PHONY : SDL2_image/fast
+
+#=============================================================================
+# Target rules for targets named SDL2_image_autogen_timestamp_deps
+
+# Build rule for target.
+SDL2_image_autogen_timestamp_deps: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SDL2_image_autogen_timestamp_deps
+.PHONY : SDL2_image_autogen_timestamp_deps
+
+# fast build rule for target.
+SDL2_image_autogen_timestamp_deps/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/sdl2_image-build/CMakeFiles/SDL2_image_autogen_timestamp_deps.dir/build.make _deps/sdl2_image-build/CMakeFiles/SDL2_image_autogen_timestamp_deps.dir/build
+.PHONY : SDL2_image_autogen_timestamp_deps/fast
+
+#=============================================================================
+# Target rules for targets named SDL2_image_autogen
+
+# Build rule for target.
+SDL2_image_autogen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SDL2_image_autogen
+.PHONY : SDL2_image_autogen
+
+# fast build rule for target.
+SDL2_image_autogen/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/sdl2_image-build/CMakeFiles/SDL2_image_autogen.dir/build.make _deps/sdl2_image-build/CMakeFiles/SDL2_image_autogen.dir/build
+.PHONY : SDL2_image_autogen/fast
 
 #=============================================================================
 # Target rules for targets named SDL2_mixer
@@ -247,6 +552,32 @@ SDL2_mixer/fast:
 .PHONY : SDL2_mixer/fast
 
 #=============================================================================
+# Target rules for targets named SDL2_mixer_autogen_timestamp_deps
+
+# Build rule for target.
+SDL2_mixer_autogen_timestamp_deps: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SDL2_mixer_autogen_timestamp_deps
+.PHONY : SDL2_mixer_autogen_timestamp_deps
+
+# fast build rule for target.
+SDL2_mixer_autogen_timestamp_deps/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer_autogen_timestamp_deps.dir/build.make _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer_autogen_timestamp_deps.dir/build
+.PHONY : SDL2_mixer_autogen_timestamp_deps/fast
+
+#=============================================================================
+# Target rules for targets named SDL2_mixer_autogen
+
+# Build rule for target.
+SDL2_mixer_autogen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SDL2_mixer_autogen
+.PHONY : SDL2_mixer_autogen
+
+# fast build rule for target.
+SDL2_mixer_autogen/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer_autogen.dir/build.make _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer_autogen.dir/build
+.PHONY : SDL2_mixer_autogen/fast
+
+#=============================================================================
 # Target rules for targets named SDL2_ttf
 
 # Build rule for target.
@@ -260,6 +591,32 @@ SDL2_ttf/fast:
 .PHONY : SDL2_ttf/fast
 
 #=============================================================================
+# Target rules for targets named SDL2_ttf_autogen_timestamp_deps
+
+# Build rule for target.
+SDL2_ttf_autogen_timestamp_deps: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SDL2_ttf_autogen_timestamp_deps
+.PHONY : SDL2_ttf_autogen_timestamp_deps
+
+# fast build rule for target.
+SDL2_ttf_autogen_timestamp_deps/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf_autogen_timestamp_deps.dir/build.make _deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf_autogen_timestamp_deps.dir/build
+.PHONY : SDL2_ttf_autogen_timestamp_deps/fast
+
+#=============================================================================
+# Target rules for targets named SDL2_ttf_autogen
+
+# Build rule for target.
+SDL2_ttf_autogen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SDL2_ttf_autogen
+.PHONY : SDL2_ttf_autogen
+
+# fast build rule for target.
+SDL2_ttf_autogen/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf_autogen.dir/build.make _deps/sdl2_ttf-build/CMakeFiles/SDL2_ttf_autogen.dir/build
+.PHONY : SDL2_ttf_autogen/fast
+
+#=============================================================================
 # Target rules for targets named SDL2pp
 
 # Build rule for target.
@@ -271,6 +628,284 @@ SDL2pp: cmake_check_build_system
 SDL2pp/fast:
 	$(MAKE) $(MAKESILENT) -f _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/build.make _deps/libsdl2pp-build/CMakeFiles/SDL2pp.dir/build
 .PHONY : SDL2pp/fast
+
+#=============================================================================
+# Target rules for targets named SDL2pp_autogen_timestamp_deps
+
+# Build rule for target.
+SDL2pp_autogen_timestamp_deps: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SDL2pp_autogen_timestamp_deps
+.PHONY : SDL2pp_autogen_timestamp_deps
+
+# fast build rule for target.
+SDL2pp_autogen_timestamp_deps/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/libsdl2pp-build/CMakeFiles/SDL2pp_autogen_timestamp_deps.dir/build.make _deps/libsdl2pp-build/CMakeFiles/SDL2pp_autogen_timestamp_deps.dir/build
+.PHONY : SDL2pp_autogen_timestamp_deps/fast
+
+#=============================================================================
+# Target rules for targets named SDL2pp_autogen
+
+# Build rule for target.
+SDL2pp_autogen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SDL2pp_autogen
+.PHONY : SDL2pp_autogen
+
+# fast build rule for target.
+SDL2pp_autogen/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/libsdl2pp-build/CMakeFiles/SDL2pp_autogen.dir/build.make _deps/libsdl2pp-build/CMakeFiles/SDL2pp_autogen.dir/build
+.PHONY : SDL2pp_autogen/fast
+
+#=============================================================================
+# Target rules for targets named gmock
+
+# Build rule for target.
+gmock: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gmock
+.PHONY : gmock
+
+# fast build rule for target.
+gmock/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/build.make _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/build
+.PHONY : gmock/fast
+
+#=============================================================================
+# Target rules for targets named gmock_main
+
+# Build rule for target.
+gmock_main: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gmock_main
+.PHONY : gmock_main
+
+# fast build rule for target.
+gmock_main/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/build.make _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/build
+.PHONY : gmock_main/fast
+
+#=============================================================================
+# Target rules for targets named gmock_autogen_timestamp_deps
+
+# Build rule for target.
+gmock_autogen_timestamp_deps: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gmock_autogen_timestamp_deps
+.PHONY : gmock_autogen_timestamp_deps
+
+# fast build rule for target.
+gmock_autogen_timestamp_deps/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googlemock/CMakeFiles/gmock_autogen_timestamp_deps.dir/build.make _deps/googletest-build/googlemock/CMakeFiles/gmock_autogen_timestamp_deps.dir/build
+.PHONY : gmock_autogen_timestamp_deps/fast
+
+#=============================================================================
+# Target rules for targets named gmock_autogen
+
+# Build rule for target.
+gmock_autogen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gmock_autogen
+.PHONY : gmock_autogen
+
+# fast build rule for target.
+gmock_autogen/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googlemock/CMakeFiles/gmock_autogen.dir/build.make _deps/googletest-build/googlemock/CMakeFiles/gmock_autogen.dir/build
+.PHONY : gmock_autogen/fast
+
+#=============================================================================
+# Target rules for targets named gmock_main_autogen_timestamp_deps
+
+# Build rule for target.
+gmock_main_autogen_timestamp_deps: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gmock_main_autogen_timestamp_deps
+.PHONY : gmock_main_autogen_timestamp_deps
+
+# fast build rule for target.
+gmock_main_autogen_timestamp_deps/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googlemock/CMakeFiles/gmock_main_autogen_timestamp_deps.dir/build.make _deps/googletest-build/googlemock/CMakeFiles/gmock_main_autogen_timestamp_deps.dir/build
+.PHONY : gmock_main_autogen_timestamp_deps/fast
+
+#=============================================================================
+# Target rules for targets named gmock_main_autogen
+
+# Build rule for target.
+gmock_main_autogen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gmock_main_autogen
+.PHONY : gmock_main_autogen
+
+# fast build rule for target.
+gmock_main_autogen/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googlemock/CMakeFiles/gmock_main_autogen.dir/build.make _deps/googletest-build/googlemock/CMakeFiles/gmock_main_autogen.dir/build
+.PHONY : gmock_main_autogen/fast
+
+#=============================================================================
+# Target rules for targets named gtest
+
+# Build rule for target.
+gtest: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gtest
+.PHONY : gtest
+
+# fast build rule for target.
+gtest/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build
+.PHONY : gtest/fast
+
+#=============================================================================
+# Target rules for targets named gtest_main
+
+# Build rule for target.
+gtest_main: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gtest_main
+.PHONY : gtest_main
+
+# fast build rule for target.
+gtest_main/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build
+.PHONY : gtest_main/fast
+
+#=============================================================================
+# Target rules for targets named gtest_autogen_timestamp_deps
+
+# Build rule for target.
+gtest_autogen_timestamp_deps: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gtest_autogen_timestamp_deps
+.PHONY : gtest_autogen_timestamp_deps
+
+# fast build rule for target.
+gtest_autogen_timestamp_deps/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest_autogen_timestamp_deps.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_autogen_timestamp_deps.dir/build
+.PHONY : gtest_autogen_timestamp_deps/fast
+
+#=============================================================================
+# Target rules for targets named gtest_autogen
+
+# Build rule for target.
+gtest_autogen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gtest_autogen
+.PHONY : gtest_autogen
+
+# fast build rule for target.
+gtest_autogen/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest_autogen.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_autogen.dir/build
+.PHONY : gtest_autogen/fast
+
+#=============================================================================
+# Target rules for targets named gtest_main_autogen_timestamp_deps
+
+# Build rule for target.
+gtest_main_autogen_timestamp_deps: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gtest_main_autogen_timestamp_deps
+.PHONY : gtest_main_autogen_timestamp_deps
+
+# fast build rule for target.
+gtest_main_autogen_timestamp_deps/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main_autogen_timestamp_deps.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main_autogen_timestamp_deps.dir/build
+.PHONY : gtest_main_autogen_timestamp_deps/fast
+
+#=============================================================================
+# Target rules for targets named gtest_main_autogen
+
+# Build rule for target.
+gtest_main_autogen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gtest_main_autogen
+.PHONY : gtest_main_autogen
+
+# fast build rule for target.
+gtest_main_autogen/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main_autogen.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main_autogen.dir/build
+.PHONY : gtest_main_autogen/fast
+
+CS2D_client_autogen/mocs_compilation.o: CS2D_client_autogen/mocs_compilation.cpp.o
+.PHONY : CS2D_client_autogen/mocs_compilation.o
+
+# target to build an object file
+CS2D_client_autogen/mocs_compilation.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/CS2D_client_autogen/mocs_compilation.cpp.o
+.PHONY : CS2D_client_autogen/mocs_compilation.cpp.o
+
+CS2D_client_autogen/mocs_compilation.i: CS2D_client_autogen/mocs_compilation.cpp.i
+.PHONY : CS2D_client_autogen/mocs_compilation.i
+
+# target to preprocess a source file
+CS2D_client_autogen/mocs_compilation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/CS2D_client_autogen/mocs_compilation.cpp.i
+.PHONY : CS2D_client_autogen/mocs_compilation.cpp.i
+
+CS2D_client_autogen/mocs_compilation.s: CS2D_client_autogen/mocs_compilation.cpp.s
+.PHONY : CS2D_client_autogen/mocs_compilation.s
+
+# target to generate assembly for a file
+CS2D_client_autogen/mocs_compilation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/CS2D_client_autogen/mocs_compilation.cpp.s
+.PHONY : CS2D_client_autogen/mocs_compilation.cpp.s
+
+CS2D_common_autogen/mocs_compilation.o: CS2D_common_autogen/mocs_compilation.cpp.o
+.PHONY : CS2D_common_autogen/mocs_compilation.o
+
+# target to build an object file
+CS2D_common_autogen/mocs_compilation.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_common.dir/build.make CMakeFiles/CS2D_common.dir/CS2D_common_autogen/mocs_compilation.cpp.o
+.PHONY : CS2D_common_autogen/mocs_compilation.cpp.o
+
+CS2D_common_autogen/mocs_compilation.i: CS2D_common_autogen/mocs_compilation.cpp.i
+.PHONY : CS2D_common_autogen/mocs_compilation.i
+
+# target to preprocess a source file
+CS2D_common_autogen/mocs_compilation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_common.dir/build.make CMakeFiles/CS2D_common.dir/CS2D_common_autogen/mocs_compilation.cpp.i
+.PHONY : CS2D_common_autogen/mocs_compilation.cpp.i
+
+CS2D_common_autogen/mocs_compilation.s: CS2D_common_autogen/mocs_compilation.cpp.s
+.PHONY : CS2D_common_autogen/mocs_compilation.s
+
+# target to generate assembly for a file
+CS2D_common_autogen/mocs_compilation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_common.dir/build.make CMakeFiles/CS2D_common.dir/CS2D_common_autogen/mocs_compilation.cpp.s
+.PHONY : CS2D_common_autogen/mocs_compilation.cpp.s
+
+CS2D_server_autogen/mocs_compilation.o: CS2D_server_autogen/mocs_compilation.cpp.o
+.PHONY : CS2D_server_autogen/mocs_compilation.o
+
+# target to build an object file
+CS2D_server_autogen/mocs_compilation.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_server.dir/build.make CMakeFiles/CS2D_server.dir/CS2D_server_autogen/mocs_compilation.cpp.o
+.PHONY : CS2D_server_autogen/mocs_compilation.cpp.o
+
+CS2D_server_autogen/mocs_compilation.i: CS2D_server_autogen/mocs_compilation.cpp.i
+.PHONY : CS2D_server_autogen/mocs_compilation.i
+
+# target to preprocess a source file
+CS2D_server_autogen/mocs_compilation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_server.dir/build.make CMakeFiles/CS2D_server.dir/CS2D_server_autogen/mocs_compilation.cpp.i
+.PHONY : CS2D_server_autogen/mocs_compilation.cpp.i
+
+CS2D_server_autogen/mocs_compilation.s: CS2D_server_autogen/mocs_compilation.cpp.s
+.PHONY : CS2D_server_autogen/mocs_compilation.s
+
+# target to generate assembly for a file
+CS2D_server_autogen/mocs_compilation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_server.dir/build.make CMakeFiles/CS2D_server.dir/CS2D_server_autogen/mocs_compilation.cpp.s
+.PHONY : CS2D_server_autogen/mocs_compilation.cpp.s
+
+CS2D_tests_autogen/mocs_compilation.o: CS2D_tests_autogen/mocs_compilation.cpp.o
+.PHONY : CS2D_tests_autogen/mocs_compilation.o
+
+# target to build an object file
+CS2D_tests_autogen/mocs_compilation.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_tests.dir/build.make CMakeFiles/CS2D_tests.dir/CS2D_tests_autogen/mocs_compilation.cpp.o
+.PHONY : CS2D_tests_autogen/mocs_compilation.cpp.o
+
+CS2D_tests_autogen/mocs_compilation.i: CS2D_tests_autogen/mocs_compilation.cpp.i
+.PHONY : CS2D_tests_autogen/mocs_compilation.i
+
+# target to preprocess a source file
+CS2D_tests_autogen/mocs_compilation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_tests.dir/build.make CMakeFiles/CS2D_tests.dir/CS2D_tests_autogen/mocs_compilation.cpp.i
+.PHONY : CS2D_tests_autogen/mocs_compilation.cpp.i
+
+CS2D_tests_autogen/mocs_compilation.s: CS2D_tests_autogen/mocs_compilation.cpp.s
+.PHONY : CS2D_tests_autogen/mocs_compilation.s
+
+# target to generate assembly for a file
+CS2D_tests_autogen/mocs_compilation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_tests.dir/build.make CMakeFiles/CS2D_tests.dir/CS2D_tests_autogen/mocs_compilation.cpp.s
+.PHONY : CS2D_tests_autogen/mocs_compilation.cpp.s
 
 client/client.o: client/client.cpp.o
 .PHONY : client/client.o
@@ -295,30 +930,6 @@ client/client.s: client/client.cpp.s
 client/client.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/client/client.cpp.s
 .PHONY : client/client.cpp.s
-
-client/clientMain.o: client/clientMain.cpp.o
-.PHONY : client/clientMain.o
-
-# target to build an object file
-client/clientMain.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/client/clientMain.cpp.o
-.PHONY : client/clientMain.cpp.o
-
-client/clientMain.i: client/clientMain.cpp.i
-.PHONY : client/clientMain.i
-
-# target to preprocess a source file
-client/clientMain.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/client/clientMain.cpp.i
-.PHONY : client/clientMain.cpp.i
-
-client/clientMain.s: client/clientMain.cpp.s
-.PHONY : client/clientMain.s
-
-# target to generate assembly for a file
-client/clientMain.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/client/clientMain.cpp.s
-.PHONY : client/clientMain.cpp.s
 
 client/controller.o: client/controller.cpp.o
 .PHONY : client/controller.o
@@ -392,6 +1003,54 @@ client/lobbyView.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/client/lobbyView.cpp.s
 .PHONY : client/lobbyView.cpp.s
 
+client/main.o: client/main.cpp.o
+.PHONY : client/main.o
+
+# target to build an object file
+client/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/client/main.cpp.o
+.PHONY : client/main.cpp.o
+
+client/main.i: client/main.cpp.i
+.PHONY : client/main.i
+
+# target to preprocess a source file
+client/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/client/main.cpp.i
+.PHONY : client/main.cpp.i
+
+client/main.s: client/main.cpp.s
+.PHONY : client/main.s
+
+# target to generate assembly for a file
+client/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/client/main.cpp.s
+.PHONY : client/main.cpp.s
+
+client/manageTexture.o: client/manageTexture.cpp.o
+.PHONY : client/manageTexture.o
+
+# target to build an object file
+client/manageTexture.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/client/manageTexture.cpp.o
+.PHONY : client/manageTexture.cpp.o
+
+client/manageTexture.i: client/manageTexture.cpp.i
+.PHONY : client/manageTexture.i
+
+# target to preprocess a source file
+client/manageTexture.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/client/manageTexture.cpp.i
+.PHONY : client/manageTexture.cpp.i
+
+client/manageTexture.s: client/manageTexture.cpp.s
+.PHONY : client/manageTexture.s
+
+# target to generate assembly for a file
+client/manageTexture.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/client/manageTexture.cpp.s
+.PHONY : client/manageTexture.cpp.s
+
 client/mapView.o: client/mapView.cpp.o
 .PHONY : client/mapView.o
 
@@ -415,6 +1074,132 @@ client/mapView.s: client/mapView.cpp.s
 client/mapView.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/client/mapView.cpp.s
 .PHONY : client/mapView.cpp.s
+
+client/menuView.o: client/menuView.cpp.o
+.PHONY : client/menuView.o
+
+# target to build an object file
+client/menuView.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/client/menuView.cpp.o
+.PHONY : client/menuView.cpp.o
+
+client/menuView.i: client/menuView.cpp.i
+.PHONY : client/menuView.i
+
+# target to preprocess a source file
+client/menuView.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/client/menuView.cpp.i
+.PHONY : client/menuView.cpp.i
+
+client/menuView.s: client/menuView.cpp.s
+.PHONY : client/menuView.s
+
+# target to generate assembly for a file
+client/menuView.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/client/menuView.cpp.s
+.PHONY : client/menuView.cpp.s
+
+client/model/client_action.o: client/model/client_action.cpp.o
+.PHONY : client/model/client_action.o
+
+# target to build an object file
+client/model/client_action.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/client/model/client_action.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_tests.dir/build.make CMakeFiles/CS2D_tests.dir/client/model/client_action.cpp.o
+.PHONY : client/model/client_action.cpp.o
+
+client/model/client_action.i: client/model/client_action.cpp.i
+.PHONY : client/model/client_action.i
+
+# target to preprocess a source file
+client/model/client_action.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/client/model/client_action.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_tests.dir/build.make CMakeFiles/CS2D_tests.dir/client/model/client_action.cpp.i
+.PHONY : client/model/client_action.cpp.i
+
+client/model/client_action.s: client/model/client_action.cpp.s
+.PHONY : client/model/client_action.s
+
+# target to generate assembly for a file
+client/model/client_action.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/client/model/client_action.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_tests.dir/build.make CMakeFiles/CS2D_tests.dir/client/model/client_action.cpp.s
+.PHONY : client/model/client_action.cpp.s
+
+client/model/protocol.o: client/model/protocol.cpp.o
+.PHONY : client/model/protocol.o
+
+# target to build an object file
+client/model/protocol.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/client/model/protocol.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_tests.dir/build.make CMakeFiles/CS2D_tests.dir/client/model/protocol.cpp.o
+.PHONY : client/model/protocol.cpp.o
+
+client/model/protocol.i: client/model/protocol.cpp.i
+.PHONY : client/model/protocol.i
+
+# target to preprocess a source file
+client/model/protocol.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/client/model/protocol.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_tests.dir/build.make CMakeFiles/CS2D_tests.dir/client/model/protocol.cpp.i
+.PHONY : client/model/protocol.cpp.i
+
+client/model/protocol.s: client/model/protocol.cpp.s
+.PHONY : client/model/protocol.s
+
+# target to generate assembly for a file
+client/model/protocol.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/client/model/protocol.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_tests.dir/build.make CMakeFiles/CS2D_tests.dir/client/model/protocol.cpp.s
+.PHONY : client/model/protocol.cpp.s
+
+client/model/receiver.o: client/model/receiver.cpp.o
+.PHONY : client/model/receiver.o
+
+# target to build an object file
+client/model/receiver.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/client/model/receiver.cpp.o
+.PHONY : client/model/receiver.cpp.o
+
+client/model/receiver.i: client/model/receiver.cpp.i
+.PHONY : client/model/receiver.i
+
+# target to preprocess a source file
+client/model/receiver.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/client/model/receiver.cpp.i
+.PHONY : client/model/receiver.cpp.i
+
+client/model/receiver.s: client/model/receiver.cpp.s
+.PHONY : client/model/receiver.s
+
+# target to generate assembly for a file
+client/model/receiver.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/client/model/receiver.cpp.s
+.PHONY : client/model/receiver.cpp.s
+
+client/model/sender.o: client/model/sender.cpp.o
+.PHONY : client/model/sender.o
+
+# target to build an object file
+client/model/sender.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/client/model/sender.cpp.o
+.PHONY : client/model/sender.cpp.o
+
+client/model/sender.i: client/model/sender.cpp.i
+.PHONY : client/model/sender.i
+
+# target to preprocess a source file
+client/model/sender.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/client/model/sender.cpp.i
+.PHONY : client/model/sender.cpp.i
+
+client/model/sender.s: client/model/sender.cpp.s
+.PHONY : client/model/sender.s
+
+# target to generate assembly for a file
+client/model/sender.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/client/model/sender.cpp.s
+.PHONY : client/model/sender.cpp.s
 
 client/playerView.o: client/playerView.cpp.o
 .PHONY : client/playerView.o
@@ -463,6 +1248,30 @@ client/scoreboard.s: client/scoreboard.cpp.s
 client/scoreboard.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/client/scoreboard.cpp.s
 .PHONY : client/scoreboard.cpp.s
+
+client/vista.o: client/vista.cpp.o
+.PHONY : client/vista.o
+
+# target to build an object file
+client/vista.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/client/vista.cpp.o
+.PHONY : client/vista.cpp.o
+
+client/vista.i: client/vista.cpp.i
+.PHONY : client/vista.i
+
+# target to preprocess a source file
+client/vista.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/client/vista.cpp.i
+.PHONY : client/vista.cpp.i
+
+client/vista.s: client/vista.cpp.s
+.PHONY : client/vista.s
+
+# target to generate assembly for a file
+client/vista.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/client/vista.cpp.s
+.PHONY : client/vista.cpp.s
 
 common/liberror.o: common/liberror.cpp.o
 .PHONY : common/liberror.o
@@ -542,6 +1351,7 @@ common/socket.o: common/socket.cpp.o
 # target to build an object file
 common/socket.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_common.dir/build.make CMakeFiles/CS2D_common.dir/common/socket.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/common/socket.cpp.o
 .PHONY : common/socket.cpp.o
 
 common/socket.i: common/socket.cpp.i
@@ -550,6 +1360,7 @@ common/socket.i: common/socket.cpp.i
 # target to preprocess a source file
 common/socket.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_common.dir/build.make CMakeFiles/CS2D_common.dir/common/socket.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/common/socket.cpp.i
 .PHONY : common/socket.cpp.i
 
 common/socket.s: common/socket.cpp.s
@@ -558,7 +1369,134 @@ common/socket.s: common/socket.cpp.s
 # target to generate assembly for a file
 common/socket.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_common.dir/build.make CMakeFiles/CS2D_common.dir/common/socket.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_client.dir/build.make CMakeFiles/CS2D_client.dir/common/socket.cpp.s
 .PHONY : common/socket.cpp.s
+
+server/client_action.o: server/client_action.cpp.o
+.PHONY : server/client_action.o
+
+# target to build an object file
+server/client_action.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_server.dir/build.make CMakeFiles/CS2D_server.dir/server/client_action.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_tests.dir/build.make CMakeFiles/CS2D_tests.dir/server/client_action.cpp.o
+.PHONY : server/client_action.cpp.o
+
+server/client_action.i: server/client_action.cpp.i
+.PHONY : server/client_action.i
+
+# target to preprocess a source file
+server/client_action.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_server.dir/build.make CMakeFiles/CS2D_server.dir/server/client_action.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_tests.dir/build.make CMakeFiles/CS2D_tests.dir/server/client_action.cpp.i
+.PHONY : server/client_action.cpp.i
+
+server/client_action.s: server/client_action.cpp.s
+.PHONY : server/client_action.s
+
+# target to generate assembly for a file
+server/client_action.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_server.dir/build.make CMakeFiles/CS2D_server.dir/server/client_action.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_tests.dir/build.make CMakeFiles/CS2D_tests.dir/server/client_action.cpp.s
+.PHONY : server/client_action.cpp.s
+
+server/main.o: server/main.cpp.o
+.PHONY : server/main.o
+
+# target to build an object file
+server/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_server.dir/build.make CMakeFiles/CS2D_server.dir/server/main.cpp.o
+.PHONY : server/main.cpp.o
+
+server/main.i: server/main.cpp.i
+.PHONY : server/main.i
+
+# target to preprocess a source file
+server/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_server.dir/build.make CMakeFiles/CS2D_server.dir/server/main.cpp.i
+.PHONY : server/main.cpp.i
+
+server/main.s: server/main.cpp.s
+.PHONY : server/main.s
+
+# target to generate assembly for a file
+server/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_server.dir/build.make CMakeFiles/CS2D_server.dir/server/main.cpp.s
+.PHONY : server/main.cpp.s
+
+server/protocol.o: server/protocol.cpp.o
+.PHONY : server/protocol.o
+
+# target to build an object file
+server/protocol.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_server.dir/build.make CMakeFiles/CS2D_server.dir/server/protocol.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_tests.dir/build.make CMakeFiles/CS2D_tests.dir/server/protocol.cpp.o
+.PHONY : server/protocol.cpp.o
+
+server/protocol.i: server/protocol.cpp.i
+.PHONY : server/protocol.i
+
+# target to preprocess a source file
+server/protocol.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_server.dir/build.make CMakeFiles/CS2D_server.dir/server/protocol.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_tests.dir/build.make CMakeFiles/CS2D_tests.dir/server/protocol.cpp.i
+.PHONY : server/protocol.cpp.i
+
+server/protocol.s: server/protocol.cpp.s
+.PHONY : server/protocol.s
+
+# target to generate assembly for a file
+server/protocol.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_server.dir/build.make CMakeFiles/CS2D_server.dir/server/protocol.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_tests.dir/build.make CMakeFiles/CS2D_tests.dir/server/protocol.cpp.s
+.PHONY : server/protocol.cpp.s
+
+tests/test_protocol_client.o: tests/test_protocol_client.cpp.o
+.PHONY : tests/test_protocol_client.o
+
+# target to build an object file
+tests/test_protocol_client.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_tests.dir/build.make CMakeFiles/CS2D_tests.dir/tests/test_protocol_client.cpp.o
+.PHONY : tests/test_protocol_client.cpp.o
+
+tests/test_protocol_client.i: tests/test_protocol_client.cpp.i
+.PHONY : tests/test_protocol_client.i
+
+# target to preprocess a source file
+tests/test_protocol_client.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_tests.dir/build.make CMakeFiles/CS2D_tests.dir/tests/test_protocol_client.cpp.i
+.PHONY : tests/test_protocol_client.cpp.i
+
+tests/test_protocol_client.s: tests/test_protocol_client.cpp.s
+.PHONY : tests/test_protocol_client.s
+
+# target to generate assembly for a file
+tests/test_protocol_client.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_tests.dir/build.make CMakeFiles/CS2D_tests.dir/tests/test_protocol_client.cpp.s
+.PHONY : tests/test_protocol_client.cpp.s
+
+tests/test_protocol_server.o: tests/test_protocol_server.cpp.o
+.PHONY : tests/test_protocol_server.o
+
+# target to build an object file
+tests/test_protocol_server.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_tests.dir/build.make CMakeFiles/CS2D_tests.dir/tests/test_protocol_server.cpp.o
+.PHONY : tests/test_protocol_server.cpp.o
+
+tests/test_protocol_server.i: tests/test_protocol_server.cpp.i
+.PHONY : tests/test_protocol_server.i
+
+# target to preprocess a source file
+tests/test_protocol_server.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_tests.dir/build.make CMakeFiles/CS2D_tests.dir/tests/test_protocol_server.cpp.i
+.PHONY : tests/test_protocol_server.cpp.i
+
+tests/test_protocol_server.s: tests/test_protocol_server.cpp.s
+.PHONY : tests/test_protocol_server.s
+
+# target to generate assembly for a file
+tests/test_protocol_server.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CS2D_tests.dir/build.make CMakeFiles/CS2D_tests.dir/tests/test_protocol_server.cpp.s
+.PHONY : tests/test_protocol_server.cpp.s
 
 # Help Target
 help:
@@ -567,11 +1505,49 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... install"
+	@echo "... install/local"
+	@echo "... install/strip"
+	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... CS2D_client_autogen"
+	@echo "... CS2D_client_autogen_timestamp_deps"
+	@echo "... CS2D_common_autogen"
+	@echo "... CS2D_common_autogen_timestamp_deps"
+	@echo "... CS2D_server_autogen"
+	@echo "... CS2D_server_autogen_timestamp_deps"
+	@echo "... CS2D_tests_autogen"
+	@echo "... CS2D_tests_autogen_timestamp_deps"
+	@echo "... SDL2-static_autogen"
+	@echo "... SDL2-static_autogen_timestamp_deps"
+	@echo "... SDL2_autogen"
+	@echo "... SDL2_autogen_timestamp_deps"
+	@echo "... SDL2_image_autogen"
+	@echo "... SDL2_image_autogen_timestamp_deps"
+	@echo "... SDL2_mixer_autogen"
+	@echo "... SDL2_mixer_autogen_timestamp_deps"
+	@echo "... SDL2_test_autogen"
+	@echo "... SDL2_test_autogen_timestamp_deps"
+	@echo "... SDL2_ttf_autogen"
+	@echo "... SDL2_ttf_autogen_timestamp_deps"
+	@echo "... SDL2main_autogen"
+	@echo "... SDL2main_autogen_timestamp_deps"
+	@echo "... SDL2pp_autogen"
+	@echo "... SDL2pp_autogen_timestamp_deps"
+	@echo "... gmock_autogen"
+	@echo "... gmock_autogen_timestamp_deps"
+	@echo "... gmock_main_autogen"
+	@echo "... gmock_main_autogen_timestamp_deps"
+	@echo "... gtest_autogen"
+	@echo "... gtest_autogen_timestamp_deps"
+	@echo "... gtest_main_autogen"
+	@echo "... gtest_main_autogen_timestamp_deps"
 	@echo "... sdl_headers_copy"
 	@echo "... uninstall"
 	@echo "... CS2D_client"
 	@echo "... CS2D_common"
+	@echo "... CS2D_server"
+	@echo "... CS2D_tests"
 	@echo "... SDL2"
 	@echo "... SDL2-static"
 	@echo "... SDL2_image"
@@ -580,12 +1556,25 @@ help:
 	@echo "... SDL2_ttf"
 	@echo "... SDL2main"
 	@echo "... SDL2pp"
+	@echo "... gmock"
+	@echo "... gmock_main"
+	@echo "... gtest"
+	@echo "... gtest_main"
+	@echo "... CS2D_client_autogen/mocs_compilation.o"
+	@echo "... CS2D_client_autogen/mocs_compilation.i"
+	@echo "... CS2D_client_autogen/mocs_compilation.s"
+	@echo "... CS2D_common_autogen/mocs_compilation.o"
+	@echo "... CS2D_common_autogen/mocs_compilation.i"
+	@echo "... CS2D_common_autogen/mocs_compilation.s"
+	@echo "... CS2D_server_autogen/mocs_compilation.o"
+	@echo "... CS2D_server_autogen/mocs_compilation.i"
+	@echo "... CS2D_server_autogen/mocs_compilation.s"
+	@echo "... CS2D_tests_autogen/mocs_compilation.o"
+	@echo "... CS2D_tests_autogen/mocs_compilation.i"
+	@echo "... CS2D_tests_autogen/mocs_compilation.s"
 	@echo "... client/client.o"
 	@echo "... client/client.i"
 	@echo "... client/client.s"
-	@echo "... client/clientMain.o"
-	@echo "... client/clientMain.i"
-	@echo "... client/clientMain.s"
 	@echo "... client/controller.o"
 	@echo "... client/controller.i"
 	@echo "... client/controller.s"
@@ -595,15 +1584,39 @@ help:
 	@echo "... client/lobbyView.o"
 	@echo "... client/lobbyView.i"
 	@echo "... client/lobbyView.s"
+	@echo "... client/main.o"
+	@echo "... client/main.i"
+	@echo "... client/main.s"
+	@echo "... client/manageTexture.o"
+	@echo "... client/manageTexture.i"
+	@echo "... client/manageTexture.s"
 	@echo "... client/mapView.o"
 	@echo "... client/mapView.i"
 	@echo "... client/mapView.s"
+	@echo "... client/menuView.o"
+	@echo "... client/menuView.i"
+	@echo "... client/menuView.s"
+	@echo "... client/model/client_action.o"
+	@echo "... client/model/client_action.i"
+	@echo "... client/model/client_action.s"
+	@echo "... client/model/protocol.o"
+	@echo "... client/model/protocol.i"
+	@echo "... client/model/protocol.s"
+	@echo "... client/model/receiver.o"
+	@echo "... client/model/receiver.i"
+	@echo "... client/model/receiver.s"
+	@echo "... client/model/sender.o"
+	@echo "... client/model/sender.i"
+	@echo "... client/model/sender.s"
 	@echo "... client/playerView.o"
 	@echo "... client/playerView.i"
 	@echo "... client/playerView.s"
 	@echo "... client/scoreboard.o"
 	@echo "... client/scoreboard.i"
 	@echo "... client/scoreboard.s"
+	@echo "... client/vista.o"
+	@echo "... client/vista.i"
+	@echo "... client/vista.s"
 	@echo "... common/liberror.o"
 	@echo "... common/liberror.i"
 	@echo "... common/liberror.s"
@@ -616,6 +1629,21 @@ help:
 	@echo "... common/socket.o"
 	@echo "... common/socket.i"
 	@echo "... common/socket.s"
+	@echo "... server/client_action.o"
+	@echo "... server/client_action.i"
+	@echo "... server/client_action.s"
+	@echo "... server/main.o"
+	@echo "... server/main.i"
+	@echo "... server/main.s"
+	@echo "... server/protocol.o"
+	@echo "... server/protocol.i"
+	@echo "... server/protocol.s"
+	@echo "... tests/test_protocol_client.o"
+	@echo "... tests/test_protocol_client.i"
+	@echo "... tests/test_protocol_client.s"
+	@echo "... tests/test_protocol_server.o"
+	@echo "... tests/test_protocol_server.i"
+	@echo "... tests/test_protocol_server.s"
 .PHONY : help
 
 

@@ -85,6 +85,51 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
 
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+.PHONY : list_install_components/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
 # The main all target
 all: cmake_check_build_system
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" && $(CMAKE_COMMAND) -E cmake_progress_start "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build//CMakeFiles/progress.marks"
@@ -199,6 +244,214 @@ uninstall: _deps/sdl2-build/CMakeFiles/uninstall.dir/rule
 uninstall/fast:
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" && $(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/uninstall.dir/build.make _deps/sdl2-build/CMakeFiles/uninstall.dir/build
 .PHONY : uninstall/fast
+
+# Convenience name for target.
+_deps/sdl2-build/CMakeFiles/SDL2main_autogen_timestamp_deps.dir/rule:
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sdl2-build/CMakeFiles/SDL2main_autogen_timestamp_deps.dir/rule
+.PHONY : _deps/sdl2-build/CMakeFiles/SDL2main_autogen_timestamp_deps.dir/rule
+
+# Convenience name for target.
+SDL2main_autogen_timestamp_deps: _deps/sdl2-build/CMakeFiles/SDL2main_autogen_timestamp_deps.dir/rule
+.PHONY : SDL2main_autogen_timestamp_deps
+
+# fast build rule for target.
+SDL2main_autogen_timestamp_deps/fast:
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" && $(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/SDL2main_autogen_timestamp_deps.dir/build.make _deps/sdl2-build/CMakeFiles/SDL2main_autogen_timestamp_deps.dir/build
+.PHONY : SDL2main_autogen_timestamp_deps/fast
+
+# Convenience name for target.
+_deps/sdl2-build/CMakeFiles/SDL2main_autogen.dir/rule:
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sdl2-build/CMakeFiles/SDL2main_autogen.dir/rule
+.PHONY : _deps/sdl2-build/CMakeFiles/SDL2main_autogen.dir/rule
+
+# Convenience name for target.
+SDL2main_autogen: _deps/sdl2-build/CMakeFiles/SDL2main_autogen.dir/rule
+.PHONY : SDL2main_autogen
+
+# fast build rule for target.
+SDL2main_autogen/fast:
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" && $(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/SDL2main_autogen.dir/build.make _deps/sdl2-build/CMakeFiles/SDL2main_autogen.dir/build
+.PHONY : SDL2main_autogen/fast
+
+# Convenience name for target.
+_deps/sdl2-build/CMakeFiles/SDL2_autogen_timestamp_deps.dir/rule:
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sdl2-build/CMakeFiles/SDL2_autogen_timestamp_deps.dir/rule
+.PHONY : _deps/sdl2-build/CMakeFiles/SDL2_autogen_timestamp_deps.dir/rule
+
+# Convenience name for target.
+SDL2_autogen_timestamp_deps: _deps/sdl2-build/CMakeFiles/SDL2_autogen_timestamp_deps.dir/rule
+.PHONY : SDL2_autogen_timestamp_deps
+
+# fast build rule for target.
+SDL2_autogen_timestamp_deps/fast:
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" && $(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/SDL2_autogen_timestamp_deps.dir/build.make _deps/sdl2-build/CMakeFiles/SDL2_autogen_timestamp_deps.dir/build
+.PHONY : SDL2_autogen_timestamp_deps/fast
+
+# Convenience name for target.
+_deps/sdl2-build/CMakeFiles/SDL2_autogen.dir/rule:
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sdl2-build/CMakeFiles/SDL2_autogen.dir/rule
+.PHONY : _deps/sdl2-build/CMakeFiles/SDL2_autogen.dir/rule
+
+# Convenience name for target.
+SDL2_autogen: _deps/sdl2-build/CMakeFiles/SDL2_autogen.dir/rule
+.PHONY : SDL2_autogen
+
+# fast build rule for target.
+SDL2_autogen/fast:
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" && $(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/SDL2_autogen.dir/build.make _deps/sdl2-build/CMakeFiles/SDL2_autogen.dir/build
+.PHONY : SDL2_autogen/fast
+
+# Convenience name for target.
+_deps/sdl2-build/CMakeFiles/SDL2-static_autogen_timestamp_deps.dir/rule:
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sdl2-build/CMakeFiles/SDL2-static_autogen_timestamp_deps.dir/rule
+.PHONY : _deps/sdl2-build/CMakeFiles/SDL2-static_autogen_timestamp_deps.dir/rule
+
+# Convenience name for target.
+SDL2-static_autogen_timestamp_deps: _deps/sdl2-build/CMakeFiles/SDL2-static_autogen_timestamp_deps.dir/rule
+.PHONY : SDL2-static_autogen_timestamp_deps
+
+# fast build rule for target.
+SDL2-static_autogen_timestamp_deps/fast:
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" && $(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/SDL2-static_autogen_timestamp_deps.dir/build.make _deps/sdl2-build/CMakeFiles/SDL2-static_autogen_timestamp_deps.dir/build
+.PHONY : SDL2-static_autogen_timestamp_deps/fast
+
+# Convenience name for target.
+_deps/sdl2-build/CMakeFiles/SDL2-static_autogen.dir/rule:
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sdl2-build/CMakeFiles/SDL2-static_autogen.dir/rule
+.PHONY : _deps/sdl2-build/CMakeFiles/SDL2-static_autogen.dir/rule
+
+# Convenience name for target.
+SDL2-static_autogen: _deps/sdl2-build/CMakeFiles/SDL2-static_autogen.dir/rule
+.PHONY : SDL2-static_autogen
+
+# fast build rule for target.
+SDL2-static_autogen/fast:
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" && $(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/SDL2-static_autogen.dir/build.make _deps/sdl2-build/CMakeFiles/SDL2-static_autogen.dir/build
+.PHONY : SDL2-static_autogen/fast
+
+# Convenience name for target.
+_deps/sdl2-build/CMakeFiles/SDL2_test_autogen_timestamp_deps.dir/rule:
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sdl2-build/CMakeFiles/SDL2_test_autogen_timestamp_deps.dir/rule
+.PHONY : _deps/sdl2-build/CMakeFiles/SDL2_test_autogen_timestamp_deps.dir/rule
+
+# Convenience name for target.
+SDL2_test_autogen_timestamp_deps: _deps/sdl2-build/CMakeFiles/SDL2_test_autogen_timestamp_deps.dir/rule
+.PHONY : SDL2_test_autogen_timestamp_deps
+
+# fast build rule for target.
+SDL2_test_autogen_timestamp_deps/fast:
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" && $(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/SDL2_test_autogen_timestamp_deps.dir/build.make _deps/sdl2-build/CMakeFiles/SDL2_test_autogen_timestamp_deps.dir/build
+.PHONY : SDL2_test_autogen_timestamp_deps/fast
+
+# Convenience name for target.
+_deps/sdl2-build/CMakeFiles/SDL2_test_autogen.dir/rule:
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/sdl2-build/CMakeFiles/SDL2_test_autogen.dir/rule
+.PHONY : _deps/sdl2-build/CMakeFiles/SDL2_test_autogen.dir/rule
+
+# Convenience name for target.
+SDL2_test_autogen: _deps/sdl2-build/CMakeFiles/SDL2_test_autogen.dir/rule
+.PHONY : SDL2_test_autogen
+
+# fast build rule for target.
+SDL2_test_autogen/fast:
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" && $(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/SDL2_test_autogen.dir/build.make _deps/sdl2-build/CMakeFiles/SDL2_test_autogen.dir/build
+.PHONY : SDL2_test_autogen/fast
+
+SDL2-static_autogen/mocs_compilation.o: SDL2-static_autogen/mocs_compilation.cpp.o
+.PHONY : SDL2-static_autogen/mocs_compilation.o
+
+# target to build an object file
+SDL2-static_autogen/mocs_compilation.cpp.o:
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" && $(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/SDL2-static.dir/build.make _deps/sdl2-build/CMakeFiles/SDL2-static.dir/SDL2-static_autogen/mocs_compilation.cpp.o
+.PHONY : SDL2-static_autogen/mocs_compilation.cpp.o
+
+SDL2-static_autogen/mocs_compilation.i: SDL2-static_autogen/mocs_compilation.cpp.i
+.PHONY : SDL2-static_autogen/mocs_compilation.i
+
+# target to preprocess a source file
+SDL2-static_autogen/mocs_compilation.cpp.i:
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" && $(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/SDL2-static.dir/build.make _deps/sdl2-build/CMakeFiles/SDL2-static.dir/SDL2-static_autogen/mocs_compilation.cpp.i
+.PHONY : SDL2-static_autogen/mocs_compilation.cpp.i
+
+SDL2-static_autogen/mocs_compilation.s: SDL2-static_autogen/mocs_compilation.cpp.s
+.PHONY : SDL2-static_autogen/mocs_compilation.s
+
+# target to generate assembly for a file
+SDL2-static_autogen/mocs_compilation.cpp.s:
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" && $(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/SDL2-static.dir/build.make _deps/sdl2-build/CMakeFiles/SDL2-static.dir/SDL2-static_autogen/mocs_compilation.cpp.s
+.PHONY : SDL2-static_autogen/mocs_compilation.cpp.s
+
+SDL2_autogen/mocs_compilation.o: SDL2_autogen/mocs_compilation.cpp.o
+.PHONY : SDL2_autogen/mocs_compilation.o
+
+# target to build an object file
+SDL2_autogen/mocs_compilation.cpp.o:
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" && $(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/SDL2.dir/build.make _deps/sdl2-build/CMakeFiles/SDL2.dir/SDL2_autogen/mocs_compilation.cpp.o
+.PHONY : SDL2_autogen/mocs_compilation.cpp.o
+
+SDL2_autogen/mocs_compilation.i: SDL2_autogen/mocs_compilation.cpp.i
+.PHONY : SDL2_autogen/mocs_compilation.i
+
+# target to preprocess a source file
+SDL2_autogen/mocs_compilation.cpp.i:
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" && $(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/SDL2.dir/build.make _deps/sdl2-build/CMakeFiles/SDL2.dir/SDL2_autogen/mocs_compilation.cpp.i
+.PHONY : SDL2_autogen/mocs_compilation.cpp.i
+
+SDL2_autogen/mocs_compilation.s: SDL2_autogen/mocs_compilation.cpp.s
+.PHONY : SDL2_autogen/mocs_compilation.s
+
+# target to generate assembly for a file
+SDL2_autogen/mocs_compilation.cpp.s:
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" && $(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/SDL2.dir/build.make _deps/sdl2-build/CMakeFiles/SDL2.dir/SDL2_autogen/mocs_compilation.cpp.s
+.PHONY : SDL2_autogen/mocs_compilation.cpp.s
+
+SDL2_test_autogen/mocs_compilation.o: SDL2_test_autogen/mocs_compilation.cpp.o
+.PHONY : SDL2_test_autogen/mocs_compilation.o
+
+# target to build an object file
+SDL2_test_autogen/mocs_compilation.cpp.o:
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" && $(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/SDL2_test.dir/build.make _deps/sdl2-build/CMakeFiles/SDL2_test.dir/SDL2_test_autogen/mocs_compilation.cpp.o
+.PHONY : SDL2_test_autogen/mocs_compilation.cpp.o
+
+SDL2_test_autogen/mocs_compilation.i: SDL2_test_autogen/mocs_compilation.cpp.i
+.PHONY : SDL2_test_autogen/mocs_compilation.i
+
+# target to preprocess a source file
+SDL2_test_autogen/mocs_compilation.cpp.i:
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" && $(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/SDL2_test.dir/build.make _deps/sdl2-build/CMakeFiles/SDL2_test.dir/SDL2_test_autogen/mocs_compilation.cpp.i
+.PHONY : SDL2_test_autogen/mocs_compilation.cpp.i
+
+SDL2_test_autogen/mocs_compilation.s: SDL2_test_autogen/mocs_compilation.cpp.s
+.PHONY : SDL2_test_autogen/mocs_compilation.s
+
+# target to generate assembly for a file
+SDL2_test_autogen/mocs_compilation.cpp.s:
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" && $(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/SDL2_test.dir/build.make _deps/sdl2-build/CMakeFiles/SDL2_test.dir/SDL2_test_autogen/mocs_compilation.cpp.s
+.PHONY : SDL2_test_autogen/mocs_compilation.cpp.s
+
+SDL2main_autogen/mocs_compilation.o: SDL2main_autogen/mocs_compilation.cpp.o
+.PHONY : SDL2main_autogen/mocs_compilation.o
+
+# target to build an object file
+SDL2main_autogen/mocs_compilation.cpp.o:
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" && $(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/SDL2main.dir/build.make _deps/sdl2-build/CMakeFiles/SDL2main.dir/SDL2main_autogen/mocs_compilation.cpp.o
+.PHONY : SDL2main_autogen/mocs_compilation.cpp.o
+
+SDL2main_autogen/mocs_compilation.i: SDL2main_autogen/mocs_compilation.cpp.i
+.PHONY : SDL2main_autogen/mocs_compilation.i
+
+# target to preprocess a source file
+SDL2main_autogen/mocs_compilation.cpp.i:
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" && $(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/SDL2main.dir/build.make _deps/sdl2-build/CMakeFiles/SDL2main.dir/SDL2main_autogen/mocs_compilation.cpp.i
+.PHONY : SDL2main_autogen/mocs_compilation.cpp.i
+
+SDL2main_autogen/mocs_compilation.s: SDL2main_autogen/mocs_compilation.cpp.s
+.PHONY : SDL2main_autogen/mocs_compilation.s
+
+# target to generate assembly for a file
+SDL2main_autogen/mocs_compilation.cpp.s:
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" && $(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/SDL2main.dir/build.make _deps/sdl2-build/CMakeFiles/SDL2main.dir/SDL2main_autogen/mocs_compilation.cpp.s
+.PHONY : SDL2main_autogen/mocs_compilation.cpp.s
 
 src/SDL.o: src/SDL.c.o
 .PHONY : src/SDL.o
@@ -6987,13 +7240,37 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... install"
+	@echo "... install/local"
+	@echo "... install/strip"
+	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... SDL2-static_autogen"
+	@echo "... SDL2-static_autogen_timestamp_deps"
+	@echo "... SDL2_autogen"
+	@echo "... SDL2_autogen_timestamp_deps"
+	@echo "... SDL2_test_autogen"
+	@echo "... SDL2_test_autogen_timestamp_deps"
+	@echo "... SDL2main_autogen"
+	@echo "... SDL2main_autogen_timestamp_deps"
 	@echo "... sdl_headers_copy"
 	@echo "... uninstall"
 	@echo "... SDL2"
 	@echo "... SDL2-static"
 	@echo "... SDL2_test"
 	@echo "... SDL2main"
+	@echo "... SDL2-static_autogen/mocs_compilation.o"
+	@echo "... SDL2-static_autogen/mocs_compilation.i"
+	@echo "... SDL2-static_autogen/mocs_compilation.s"
+	@echo "... SDL2_autogen/mocs_compilation.o"
+	@echo "... SDL2_autogen/mocs_compilation.i"
+	@echo "... SDL2_autogen/mocs_compilation.s"
+	@echo "... SDL2_test_autogen/mocs_compilation.o"
+	@echo "... SDL2_test_autogen/mocs_compilation.i"
+	@echo "... SDL2_test_autogen/mocs_compilation.s"
+	@echo "... SDL2main_autogen/mocs_compilation.o"
+	@echo "... SDL2main_autogen/mocs_compilation.i"
+	@echo "... SDL2main_autogen/mocs_compilation.s"
 	@echo "... src/SDL.o"
 	@echo "... src/SDL.i"
 	@echo "... src/SDL.s"

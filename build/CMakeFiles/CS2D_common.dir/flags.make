@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I"/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/."
+CXX_INCLUDES = -I"/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CS2D_common_autogen/include" -I"/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/."
 
 CXX_FLAGS = -g -std=gnu++20 -fPIC -Wall -Wextra -Wmisleading-indentation -Wzero-as-null-pointer-constant -Wnon-virtual-dtor -Wunused -Woverloaded-virtual -Wpedantic -Wnull-dereference -Wformat=2 -Wimplicit-fallthrough -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wsuggest-override -Werror
 

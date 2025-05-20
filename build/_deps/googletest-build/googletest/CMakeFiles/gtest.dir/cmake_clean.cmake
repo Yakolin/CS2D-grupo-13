@@ -3,8 +3,15 @@ file(REMOVE_RECURSE
   "../../../lib/.1.12.1"
   "../../../lib/libgtest.so"
   "../../../lib/libgtest.so.1.12.1"
+  "CMakeFiles/gtest_autogen.dir/AutogenUsed.txt"
+  "CMakeFiles/gtest_autogen.dir/ParseCache.txt"
+  "gtest_autogen"
+  "CMakeFiles/gtest.dir/gtest_autogen/mocs_compilation.cpp.o"
+  "CMakeFiles/gtest.dir/gtest_autogen/mocs_compilation.cpp.o.d"
   "CMakeFiles/gtest.dir/src/gtest-all.cc.o"
   "CMakeFiles/gtest.dir/src/gtest-all.cc.o.d"
+  "gtest_autogen/mocs_compilation.cpp"
+  "gtest_autogen/timestamp"
 )
 
 # Per-language clean rules from dependency scanning.

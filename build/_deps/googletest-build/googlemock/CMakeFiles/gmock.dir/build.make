@@ -69,10 +69,31 @@ include _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/progress.make
 # Include the compile flags for this target's objects.
 include _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/flags.make
 
+_deps/googletest-build/googlemock/gmock_autogen/timestamp: /usr/lib/qt5/bin/moc
+_deps/googletest-build/googlemock/gmock_autogen/timestamp: /usr/lib/qt5/bin/uic
+_deps/googletest-build/googlemock/gmock_autogen/timestamp: _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target gmock"
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/googletest-build/googlemock" && /usr/bin/cmake -E cmake_autogen "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/googletest-build/googlemock/CMakeFiles/gmock_autogen.dir/AutogenInfo.json" Debug
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/googletest-build/googlemock" && /usr/bin/cmake -E touch "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/googletest-build/googlemock/gmock_autogen/timestamp"
+
+_deps/googletest-build/googlemock/CMakeFiles/gmock.dir/gmock_autogen/mocs_compilation.cpp.o: _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/flags.make
+_deps/googletest-build/googlemock/CMakeFiles/gmock.dir/gmock_autogen/mocs_compilation.cpp.o: _deps/googletest-build/googlemock/gmock_autogen/mocs_compilation.cpp
+_deps/googletest-build/googlemock/CMakeFiles/gmock.dir/gmock_autogen/mocs_compilation.cpp.o: _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/gmock_autogen/mocs_compilation.cpp.o"
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/googletest-build/googlemock" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/gmock_autogen/mocs_compilation.cpp.o -MF CMakeFiles/gmock.dir/gmock_autogen/mocs_compilation.cpp.o.d -o CMakeFiles/gmock.dir/gmock_autogen/mocs_compilation.cpp.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/googletest-build/googlemock/gmock_autogen/mocs_compilation.cpp"
+
+_deps/googletest-build/googlemock/CMakeFiles/gmock.dir/gmock_autogen/mocs_compilation.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/gmock.dir/gmock_autogen/mocs_compilation.cpp.i"
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/googletest-build/googlemock" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/googletest-build/googlemock/gmock_autogen/mocs_compilation.cpp" > CMakeFiles/gmock.dir/gmock_autogen/mocs_compilation.cpp.i
+
+_deps/googletest-build/googlemock/CMakeFiles/gmock.dir/gmock_autogen/mocs_compilation.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/gmock.dir/gmock_autogen/mocs_compilation.cpp.s"
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/googletest-build/googlemock" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/googletest-build/googlemock/gmock_autogen/mocs_compilation.cpp" -o CMakeFiles/gmock.dir/gmock_autogen/mocs_compilation.cpp.s
+
 _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o: _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/flags.make
 _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o: _deps/googletest-src/googlemock/src/gmock-all.cc
 _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o: _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/googletest-build/googlemock" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o -MF CMakeFiles/gmock.dir/src/gmock-all.cc.o.d -o CMakeFiles/gmock.dir/src/gmock-all.cc.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/googletest-src/googlemock/src/gmock-all.cc"
 
 _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.i: cmake_force
@@ -85,16 +106,18 @@ _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.s: cmake
 
 # Object files for target gmock
 gmock_OBJECTS = \
+"CMakeFiles/gmock.dir/gmock_autogen/mocs_compilation.cpp.o" \
 "CMakeFiles/gmock.dir/src/gmock-all.cc.o"
 
 # External object files for target gmock
 gmock_EXTERNAL_OBJECTS =
 
+lib/libgmock.so.1.12.1: _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/gmock_autogen/mocs_compilation.cpp.o
 lib/libgmock.so.1.12.1: _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o
 lib/libgmock.so.1.12.1: _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/build.make
 lib/libgmock.so.1.12.1: lib/libgtest.so.1.12.1
 lib/libgmock.so.1.12.1: _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX shared library ../../../lib/libgmock.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX shared library ../../../lib/libgmock.so"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/googletest-build/googlemock" && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/gmock.dir/link.txt --verbose=$(VERBOSE)
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/googletest-build/googlemock" && $(CMAKE_COMMAND) -E cmake_symlink_library ../../../lib/libgmock.so.1.12.1 ../../../lib/libgmock.so.1.12.1 ../../../lib/libgmock.so
 
@@ -109,7 +132,7 @@ _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/clean:
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/googletest-build/googlemock" && $(CMAKE_COMMAND) -P CMakeFiles/gmock.dir/cmake_clean.cmake
 .PHONY : _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/clean
 
-_deps/googletest-build/googlemock/CMakeFiles/gmock.dir/depend:
+_deps/googletest-build/googlemock/CMakeFiles/gmock.dir/depend: _deps/googletest-build/googlemock/gmock_autogen/timestamp
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13" "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/googletest-src/googlemock" "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/googletest-build/googlemock" "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/googletest-build/googlemock/CMakeFiles/gmock.dir/DependInfo.cmake" "--color=$(COLOR)"
 .PHONY : _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/depend
 

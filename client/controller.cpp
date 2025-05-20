@@ -1,23 +1,32 @@
 #include "controller.h"
+#include <SDL.h>
+#include <iostream>
 
+Controller::Controller() = default;
 
-Controller::Controller(int& argc,  char *argv[]) : 
-            gameView(500,500), 
-            app(argc,argv), 
-            seleccion(GameMenu::NONE) 
-            {}
+void Controller::sender_pos_mouse(int x, int y){
+    int tile_size = 32; // tamaño en pixeles de cada bloque del mapa
 
-
-
-void Controller::run() {
-    //MenuView menu;  //libpng warning: iCCP: known incorrect sRGB profile 
-    //GameMenu num = menu.run(); // no es un problema peor la imagen esta corrupta //todo editarla
-    //ScoreBoard table; // funciona
-    //table.show_scores_game(); // funciona //todo agregar acutualizacion , dejar de harcodear
-//--------------------------------------------------------------------------------------------------
-   // GameView game( 38*32,17*32);
-    gameView.draw_game();
-    
-    //app.exec(); // todo mantener qt activo durante toda la ejecusion
+    int col = x / tile_size; // columna en la matriz
+    int fil = y / tile_size; // fila en la matriz
+    ///... resto de codigo
+    std::cout << "Fila: " << fil << ", Columna: " << col << std::endl;
 
 }
+// el enum esta en tipos.h dentro de esta carpeta
+void Controller::sender_mov_player(SDL_Keycode key) {
+
+    Movement mov = Movement::NONE;
+    if (key == SDLK_UP || key == SDLK_w) {
+        mov = Movement::UP;
+    } else if (key == SDLK_LEFT || key == SDLK_a) {
+        mov = Movement::LEFT;
+    } else if (key == SDLK_RIGHT || key == SDLK_d) {
+        mov = Movement::RIGHT;
+    } else if (key == SDLK_DOWN || key == SDLK_s) {
+        mov = Movement::DOWN;
+    }
+    std::cout << static_cast<int>(mov) << std::endl;
+}
+
+void Controller::run() {}

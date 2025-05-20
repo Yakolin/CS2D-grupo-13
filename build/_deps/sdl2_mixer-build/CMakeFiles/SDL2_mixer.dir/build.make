@@ -69,10 +69,31 @@ include _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/progress.make
 # Include the compile flags for this target's objects.
 include _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/flags.make
 
+_deps/sdl2_mixer-build/SDL2_mixer_autogen/timestamp: /usr/lib/qt5/bin/moc
+_deps/sdl2_mixer-build/SDL2_mixer_autogen/timestamp: /usr/lib/qt5/bin/uic
+_deps/sdl2_mixer-build/SDL2_mixer_autogen/timestamp: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target SDL2_mixer"
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/cmake -E cmake_autogen "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer_autogen.dir/AutogenInfo.json" Debug
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/cmake -E touch "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build/SDL2_mixer_autogen/timestamp"
+
+_deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/SDL2_mixer_autogen/mocs_compilation.cpp.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/flags.make
+_deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/SDL2_mixer_autogen/mocs_compilation.cpp.o: _deps/sdl2_mixer-build/SDL2_mixer_autogen/mocs_compilation.cpp
+_deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/SDL2_mixer_autogen/mocs_compilation.cpp.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/SDL2_mixer_autogen/mocs_compilation.cpp.o"
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/SDL2_mixer_autogen/mocs_compilation.cpp.o -MF CMakeFiles/SDL2_mixer.dir/SDL2_mixer_autogen/mocs_compilation.cpp.o.d -o CMakeFiles/SDL2_mixer.dir/SDL2_mixer_autogen/mocs_compilation.cpp.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build/SDL2_mixer_autogen/mocs_compilation.cpp"
+
+_deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/SDL2_mixer_autogen/mocs_compilation.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/SDL2_mixer.dir/SDL2_mixer_autogen/mocs_compilation.cpp.i"
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build/SDL2_mixer_autogen/mocs_compilation.cpp" > CMakeFiles/SDL2_mixer.dir/SDL2_mixer_autogen/mocs_compilation.cpp.i
+
+_deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/SDL2_mixer_autogen/mocs_compilation.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/SDL2_mixer.dir/SDL2_mixer_autogen/mocs_compilation.cpp.s"
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build/SDL2_mixer_autogen/mocs_compilation.cpp" -o CMakeFiles/SDL2_mixer.dir/SDL2_mixer_autogen/mocs_compilation.cpp.s
+
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/load_aiff.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/flags.make
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/load_aiff.c.o: _deps/sdl2_mixer-src/src/codecs/load_aiff.c
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/load_aiff.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/load_aiff.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/load_aiff.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/load_aiff.c.o -MF CMakeFiles/SDL2_mixer.dir/src/codecs/load_aiff.c.o.d -o CMakeFiles/SDL2_mixer.dir/src/codecs/load_aiff.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-src/src/codecs/load_aiff.c"
 
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/load_aiff.c.i: cmake_force
@@ -86,7 +107,7 @@ _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/load_aiff.c.s: cmake
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/load_voc.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/flags.make
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/load_voc.c.o: _deps/sdl2_mixer-src/src/codecs/load_voc.c
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/load_voc.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/load_voc.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/load_voc.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/load_voc.c.o -MF CMakeFiles/SDL2_mixer.dir/src/codecs/load_voc.c.o.d -o CMakeFiles/SDL2_mixer.dir/src/codecs/load_voc.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-src/src/codecs/load_voc.c"
 
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/load_voc.c.i: cmake_force
@@ -100,7 +121,7 @@ _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/load_voc.c.s: cmake_
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/mp3utils.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/flags.make
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/mp3utils.c.o: _deps/sdl2_mixer-src/src/codecs/mp3utils.c
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/mp3utils.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/mp3utils.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/mp3utils.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/mp3utils.c.o -MF CMakeFiles/SDL2_mixer.dir/src/codecs/mp3utils.c.o.d -o CMakeFiles/SDL2_mixer.dir/src/codecs/mp3utils.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-src/src/codecs/mp3utils.c"
 
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/mp3utils.c.i: cmake_force
@@ -114,7 +135,7 @@ _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/mp3utils.c.s: cmake_
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_cmd.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/flags.make
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_cmd.c.o: _deps/sdl2_mixer-src/src/codecs/music_cmd.c
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_cmd.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_cmd.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_cmd.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_cmd.c.o -MF CMakeFiles/SDL2_mixer.dir/src/codecs/music_cmd.c.o.d -o CMakeFiles/SDL2_mixer.dir/src/codecs/music_cmd.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-src/src/codecs/music_cmd.c"
 
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_cmd.c.i: cmake_force
@@ -128,7 +149,7 @@ _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_cmd.c.s: cmake
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_drflac.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/flags.make
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_drflac.c.o: _deps/sdl2_mixer-src/src/codecs/music_drflac.c
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_drflac.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_drflac.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_drflac.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_drflac.c.o -MF CMakeFiles/SDL2_mixer.dir/src/codecs/music_drflac.c.o.d -o CMakeFiles/SDL2_mixer.dir/src/codecs/music_drflac.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-src/src/codecs/music_drflac.c"
 
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_drflac.c.i: cmake_force
@@ -142,7 +163,7 @@ _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_drflac.c.s: cm
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_flac.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/flags.make
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_flac.c.o: _deps/sdl2_mixer-src/src/codecs/music_flac.c
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_flac.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_flac.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_flac.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_flac.c.o -MF CMakeFiles/SDL2_mixer.dir/src/codecs/music_flac.c.o.d -o CMakeFiles/SDL2_mixer.dir/src/codecs/music_flac.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-src/src/codecs/music_flac.c"
 
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_flac.c.i: cmake_force
@@ -156,7 +177,7 @@ _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_flac.c.s: cmak
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_fluidsynth.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/flags.make
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_fluidsynth.c.o: _deps/sdl2_mixer-src/src/codecs/music_fluidsynth.c
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_fluidsynth.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_fluidsynth.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_fluidsynth.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_fluidsynth.c.o -MF CMakeFiles/SDL2_mixer.dir/src/codecs/music_fluidsynth.c.o.d -o CMakeFiles/SDL2_mixer.dir/src/codecs/music_fluidsynth.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-src/src/codecs/music_fluidsynth.c"
 
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_fluidsynth.c.i: cmake_force
@@ -170,7 +191,7 @@ _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_fluidsynth.c.s
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_gme.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/flags.make
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_gme.c.o: _deps/sdl2_mixer-src/src/codecs/music_gme.c
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_gme.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_gme.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_gme.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_gme.c.o -MF CMakeFiles/SDL2_mixer.dir/src/codecs/music_gme.c.o.d -o CMakeFiles/SDL2_mixer.dir/src/codecs/music_gme.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-src/src/codecs/music_gme.c"
 
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_gme.c.i: cmake_force
@@ -184,7 +205,7 @@ _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_gme.c.s: cmake
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_minimp3.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/flags.make
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_minimp3.c.o: _deps/sdl2_mixer-src/src/codecs/music_minimp3.c
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_minimp3.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_minimp3.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_minimp3.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_minimp3.c.o -MF CMakeFiles/SDL2_mixer.dir/src/codecs/music_minimp3.c.o.d -o CMakeFiles/SDL2_mixer.dir/src/codecs/music_minimp3.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-src/src/codecs/music_minimp3.c"
 
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_minimp3.c.i: cmake_force
@@ -198,7 +219,7 @@ _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_minimp3.c.s: c
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_modplug.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/flags.make
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_modplug.c.o: _deps/sdl2_mixer-src/src/codecs/music_modplug.c
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_modplug.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_modplug.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_12) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_modplug.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_modplug.c.o -MF CMakeFiles/SDL2_mixer.dir/src/codecs/music_modplug.c.o.d -o CMakeFiles/SDL2_mixer.dir/src/codecs/music_modplug.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-src/src/codecs/music_modplug.c"
 
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_modplug.c.i: cmake_force
@@ -212,7 +233,7 @@ _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_modplug.c.s: c
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_mpg123.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/flags.make
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_mpg123.c.o: _deps/sdl2_mixer-src/src/codecs/music_mpg123.c
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_mpg123.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_mpg123.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_13) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_mpg123.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_mpg123.c.o -MF CMakeFiles/SDL2_mixer.dir/src/codecs/music_mpg123.c.o.d -o CMakeFiles/SDL2_mixer.dir/src/codecs/music_mpg123.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-src/src/codecs/music_mpg123.c"
 
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_mpg123.c.i: cmake_force
@@ -226,7 +247,7 @@ _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_mpg123.c.s: cm
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_nativemidi.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/flags.make
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_nativemidi.c.o: _deps/sdl2_mixer-src/src/codecs/music_nativemidi.c
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_nativemidi.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_12) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_nativemidi.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_14) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_nativemidi.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_nativemidi.c.o -MF CMakeFiles/SDL2_mixer.dir/src/codecs/music_nativemidi.c.o.d -o CMakeFiles/SDL2_mixer.dir/src/codecs/music_nativemidi.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-src/src/codecs/music_nativemidi.c"
 
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_nativemidi.c.i: cmake_force
@@ -240,7 +261,7 @@ _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_nativemidi.c.s
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_ogg.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/flags.make
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_ogg.c.o: _deps/sdl2_mixer-src/src/codecs/music_ogg.c
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_ogg.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_13) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_ogg.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_15) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_ogg.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_ogg.c.o -MF CMakeFiles/SDL2_mixer.dir/src/codecs/music_ogg.c.o.d -o CMakeFiles/SDL2_mixer.dir/src/codecs/music_ogg.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-src/src/codecs/music_ogg.c"
 
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_ogg.c.i: cmake_force
@@ -254,7 +275,7 @@ _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_ogg.c.s: cmake
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_ogg_stb.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/flags.make
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_ogg_stb.c.o: _deps/sdl2_mixer-src/src/codecs/music_ogg_stb.c
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_ogg_stb.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_14) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_ogg_stb.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_16) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_ogg_stb.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_ogg_stb.c.o -MF CMakeFiles/SDL2_mixer.dir/src/codecs/music_ogg_stb.c.o.d -o CMakeFiles/SDL2_mixer.dir/src/codecs/music_ogg_stb.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-src/src/codecs/music_ogg_stb.c"
 
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_ogg_stb.c.i: cmake_force
@@ -268,7 +289,7 @@ _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_ogg_stb.c.s: c
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_opus.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/flags.make
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_opus.c.o: _deps/sdl2_mixer-src/src/codecs/music_opus.c
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_opus.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_15) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_opus.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_17) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_opus.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_opus.c.o -MF CMakeFiles/SDL2_mixer.dir/src/codecs/music_opus.c.o.d -o CMakeFiles/SDL2_mixer.dir/src/codecs/music_opus.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-src/src/codecs/music_opus.c"
 
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_opus.c.i: cmake_force
@@ -282,7 +303,7 @@ _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_opus.c.s: cmak
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_timidity.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/flags.make
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_timidity.c.o: _deps/sdl2_mixer-src/src/codecs/music_timidity.c
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_timidity.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_16) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_timidity.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_18) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_timidity.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_timidity.c.o -MF CMakeFiles/SDL2_mixer.dir/src/codecs/music_timidity.c.o.d -o CMakeFiles/SDL2_mixer.dir/src/codecs/music_timidity.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-src/src/codecs/music_timidity.c"
 
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_timidity.c.i: cmake_force
@@ -296,7 +317,7 @@ _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_timidity.c.s: 
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_wav.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/flags.make
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_wav.c.o: _deps/sdl2_mixer-src/src/codecs/music_wav.c
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_wav.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_17) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_wav.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_19) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_wav.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_wav.c.o -MF CMakeFiles/SDL2_mixer.dir/src/codecs/music_wav.c.o.d -o CMakeFiles/SDL2_mixer.dir/src/codecs/music_wav.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-src/src/codecs/music_wav.c"
 
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_wav.c.i: cmake_force
@@ -310,7 +331,7 @@ _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_wav.c.s: cmake
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_wavpack.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/flags.make
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_wavpack.c.o: _deps/sdl2_mixer-src/src/codecs/music_wavpack.c
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_wavpack.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_18) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_wavpack.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_20) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_wavpack.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_wavpack.c.o -MF CMakeFiles/SDL2_mixer.dir/src/codecs/music_wavpack.c.o.d -o CMakeFiles/SDL2_mixer.dir/src/codecs/music_wavpack.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-src/src/codecs/music_wavpack.c"
 
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_wavpack.c.i: cmake_force
@@ -324,7 +345,7 @@ _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_wavpack.c.s: c
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_xmp.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/flags.make
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_xmp.c.o: _deps/sdl2_mixer-src/src/codecs/music_xmp.c
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_xmp.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_19) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_xmp.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_21) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_xmp.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_xmp.c.o -MF CMakeFiles/SDL2_mixer.dir/src/codecs/music_xmp.c.o.d -o CMakeFiles/SDL2_mixer.dir/src/codecs/music_xmp.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-src/src/codecs/music_xmp.c"
 
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_xmp.c.i: cmake_force
@@ -338,7 +359,7 @@ _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/music_xmp.c.s: cmake
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/effect_position.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/flags.make
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/effect_position.c.o: _deps/sdl2_mixer-src/src/effect_position.c
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/effect_position.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_20) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/effect_position.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_22) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/effect_position.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/effect_position.c.o -MF CMakeFiles/SDL2_mixer.dir/src/effect_position.c.o.d -o CMakeFiles/SDL2_mixer.dir/src/effect_position.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-src/src/effect_position.c"
 
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/effect_position.c.i: cmake_force
@@ -352,7 +373,7 @@ _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/effect_position.c.s: cmake_
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/effect_stereoreverse.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/flags.make
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/effect_stereoreverse.c.o: _deps/sdl2_mixer-src/src/effect_stereoreverse.c
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/effect_stereoreverse.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_21) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/effect_stereoreverse.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_23) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/effect_stereoreverse.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/effect_stereoreverse.c.o -MF CMakeFiles/SDL2_mixer.dir/src/effect_stereoreverse.c.o.d -o CMakeFiles/SDL2_mixer.dir/src/effect_stereoreverse.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-src/src/effect_stereoreverse.c"
 
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/effect_stereoreverse.c.i: cmake_force
@@ -366,7 +387,7 @@ _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/effect_stereoreverse.c.s: c
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/effects_internal.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/flags.make
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/effects_internal.c.o: _deps/sdl2_mixer-src/src/effects_internal.c
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/effects_internal.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_22) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/effects_internal.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_24) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/effects_internal.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/effects_internal.c.o -MF CMakeFiles/SDL2_mixer.dir/src/effects_internal.c.o.d -o CMakeFiles/SDL2_mixer.dir/src/effects_internal.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-src/src/effects_internal.c"
 
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/effects_internal.c.i: cmake_force
@@ -380,7 +401,7 @@ _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/effects_internal.c.s: cmake
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/mixer.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/flags.make
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/mixer.c.o: _deps/sdl2_mixer-src/src/mixer.c
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/mixer.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_23) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/mixer.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_25) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/mixer.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/mixer.c.o -MF CMakeFiles/SDL2_mixer.dir/src/mixer.c.o.d -o CMakeFiles/SDL2_mixer.dir/src/mixer.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-src/src/mixer.c"
 
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/mixer.c.i: cmake_force
@@ -394,7 +415,7 @@ _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/mixer.c.s: cmake_force
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/music.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/flags.make
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/music.c.o: _deps/sdl2_mixer-src/src/music.c
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/music.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_24) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/music.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_26) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/music.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/music.c.o -MF CMakeFiles/SDL2_mixer.dir/src/music.c.o.d -o CMakeFiles/SDL2_mixer.dir/src/music.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-src/src/music.c"
 
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/music.c.i: cmake_force
@@ -408,7 +429,7 @@ _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/music.c.s: cmake_force
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/utils.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/flags.make
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/utils.c.o: _deps/sdl2_mixer-src/src/utils.c
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/utils.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_25) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/utils.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_27) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/utils.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/utils.c.o -MF CMakeFiles/SDL2_mixer.dir/src/utils.c.o.d -o CMakeFiles/SDL2_mixer.dir/src/utils.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-src/src/utils.c"
 
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/utils.c.i: cmake_force
@@ -422,7 +443,7 @@ _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/utils.c.s: cmake_force
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/common.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/flags.make
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/common.c.o: _deps/sdl2_mixer-src/src/codecs/timidity/common.c
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/common.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_26) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/common.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_28) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/common.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/common.c.o -MF CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/common.c.o.d -o CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/common.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-src/src/codecs/timidity/common.c"
 
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/common.c.i: cmake_force
@@ -436,7 +457,7 @@ _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/common.c.s:
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/instrum.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/flags.make
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/instrum.c.o: _deps/sdl2_mixer-src/src/codecs/timidity/instrum.c
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/instrum.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_27) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/instrum.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_29) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/instrum.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/instrum.c.o -MF CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/instrum.c.o.d -o CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/instrum.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-src/src/codecs/timidity/instrum.c"
 
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/instrum.c.i: cmake_force
@@ -450,7 +471,7 @@ _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/instrum.c.s
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/mix.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/flags.make
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/mix.c.o: _deps/sdl2_mixer-src/src/codecs/timidity/mix.c
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/mix.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_28) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/mix.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_30) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/mix.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/mix.c.o -MF CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/mix.c.o.d -o CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/mix.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-src/src/codecs/timidity/mix.c"
 
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/mix.c.i: cmake_force
@@ -464,7 +485,7 @@ _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/mix.c.s: cm
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/output.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/flags.make
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/output.c.o: _deps/sdl2_mixer-src/src/codecs/timidity/output.c
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/output.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_29) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/output.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_31) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/output.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/output.c.o -MF CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/output.c.o.d -o CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/output.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-src/src/codecs/timidity/output.c"
 
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/output.c.i: cmake_force
@@ -478,7 +499,7 @@ _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/output.c.s:
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/playmidi.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/flags.make
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/playmidi.c.o: _deps/sdl2_mixer-src/src/codecs/timidity/playmidi.c
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/playmidi.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_30) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/playmidi.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_32) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/playmidi.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/playmidi.c.o -MF CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/playmidi.c.o.d -o CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/playmidi.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-src/src/codecs/timidity/playmidi.c"
 
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/playmidi.c.i: cmake_force
@@ -492,7 +513,7 @@ _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/playmidi.c.
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/readmidi.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/flags.make
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/readmidi.c.o: _deps/sdl2_mixer-src/src/codecs/timidity/readmidi.c
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/readmidi.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_31) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/readmidi.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_33) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/readmidi.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/readmidi.c.o -MF CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/readmidi.c.o.d -o CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/readmidi.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-src/src/codecs/timidity/readmidi.c"
 
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/readmidi.c.i: cmake_force
@@ -506,7 +527,7 @@ _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/readmidi.c.
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/resample.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/flags.make
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/resample.c.o: _deps/sdl2_mixer-src/src/codecs/timidity/resample.c
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/resample.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_32) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/resample.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_34) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/resample.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/resample.c.o -MF CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/resample.c.o.d -o CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/resample.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-src/src/codecs/timidity/resample.c"
 
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/resample.c.i: cmake_force
@@ -520,7 +541,7 @@ _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/resample.c.
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/tables.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/flags.make
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/tables.c.o: _deps/sdl2_mixer-src/src/codecs/timidity/tables.c
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/tables.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_33) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/tables.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_35) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/tables.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/tables.c.o -MF CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/tables.c.o.d -o CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/tables.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-src/src/codecs/timidity/tables.c"
 
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/tables.c.i: cmake_force
@@ -534,7 +555,7 @@ _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/tables.c.s:
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/timidity.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/flags.make
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/timidity.c.o: _deps/sdl2_mixer-src/src/codecs/timidity/timidity.c
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/timidity.c.o: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_34) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/timidity.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_36) "Building C object _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/timidity.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/timidity.c.o -MF CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/timidity.c.o.d -o CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/timidity.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-src/src/codecs/timidity/timidity.c"
 
 _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/timidity.c.i: cmake_force
@@ -547,6 +568,7 @@ _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/timidity/timidity.c.
 
 # Object files for target SDL2_mixer
 SDL2_mixer_OBJECTS = \
+"CMakeFiles/SDL2_mixer.dir/SDL2_mixer_autogen/mocs_compilation.cpp.o" \
 "CMakeFiles/SDL2_mixer.dir/src/codecs/load_aiff.c.o" \
 "CMakeFiles/SDL2_mixer.dir/src/codecs/load_voc.c.o" \
 "CMakeFiles/SDL2_mixer.dir/src/codecs/mp3utils.c.o" \
@@ -585,6 +607,7 @@ SDL2_mixer_OBJECTS = \
 # External object files for target SDL2_mixer
 SDL2_mixer_EXTERNAL_OBJECTS =
 
+_deps/sdl2_mixer-build/libSDL2_mixer-2.0d.so.0.800.0: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/SDL2_mixer_autogen/mocs_compilation.cpp.o
 _deps/sdl2_mixer-build/libSDL2_mixer-2.0d.so.0.800.0: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/load_aiff.c.o
 _deps/sdl2_mixer-build/libSDL2_mixer-2.0d.so.0.800.0: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/load_voc.c.o
 _deps/sdl2_mixer-build/libSDL2_mixer-2.0d.so.0.800.0: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/src/codecs/mp3utils.c.o
@@ -622,7 +645,7 @@ _deps/sdl2_mixer-build/libSDL2_mixer-2.0d.so.0.800.0: _deps/sdl2_mixer-build/CMa
 _deps/sdl2_mixer-build/libSDL2_mixer-2.0d.so.0.800.0: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/build.make
 _deps/sdl2_mixer-build/libSDL2_mixer-2.0d.so.0.800.0: _deps/sdl2-build/libSDL2-2.0d.so.0.3000.8
 _deps/sdl2_mixer-build/libSDL2_mixer-2.0d.so.0.800.0: _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_35) "Linking C shared library libSDL2_mixer-2.0d.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_37) "Linking CXX shared library libSDL2_mixer-2.0d.so"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/SDL2_mixer.dir/link.txt --verbose=$(VERBOSE)
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && $(CMAKE_COMMAND) -E cmake_symlink_library libSDL2_mixer-2.0d.so.0.800.0 libSDL2_mixer-2.0d.so.0 libSDL2_mixer-2.0d.so
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && /usr/bin/cmake -E create_symlink libSDL2_mixer-2.0d.so.0 libSDL2_mixerd.so
@@ -641,7 +664,7 @@ _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/clean:
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" && $(CMAKE_COMMAND) -P CMakeFiles/SDL2_mixer.dir/cmake_clean.cmake
 .PHONY : _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/clean
 
-_deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/depend:
+_deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/depend: _deps/sdl2_mixer-build/SDL2_mixer_autogen/timestamp
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13" "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-src" "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build" "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/DependInfo.cmake" "--color=$(COLOR)"
 .PHONY : _deps/sdl2_mixer-build/CMakeFiles/SDL2_mixer.dir/depend
 

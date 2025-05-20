@@ -69,10 +69,31 @@ include _deps/sdl2-build/CMakeFiles/SDL2main.dir/progress.make
 # Include the compile flags for this target's objects.
 include _deps/sdl2-build/CMakeFiles/SDL2main.dir/flags.make
 
+_deps/sdl2-build/SDL2main_autogen/timestamp: /usr/lib/qt5/bin/moc
+_deps/sdl2-build/SDL2main_autogen/timestamp: /usr/lib/qt5/bin/uic
+_deps/sdl2-build/SDL2main_autogen/timestamp: _deps/sdl2-build/CMakeFiles/SDL2main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target SDL2main"
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cmake -E cmake_autogen "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build/CMakeFiles/SDL2main_autogen.dir/AutogenInfo.json" Debug
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cmake -E touch "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build/SDL2main_autogen/timestamp"
+
+_deps/sdl2-build/CMakeFiles/SDL2main.dir/SDL2main_autogen/mocs_compilation.cpp.o: _deps/sdl2-build/CMakeFiles/SDL2main.dir/flags.make
+_deps/sdl2-build/CMakeFiles/SDL2main.dir/SDL2main_autogen/mocs_compilation.cpp.o: _deps/sdl2-build/SDL2main_autogen/mocs_compilation.cpp
+_deps/sdl2-build/CMakeFiles/SDL2main.dir/SDL2main_autogen/mocs_compilation.cpp.o: _deps/sdl2-build/CMakeFiles/SDL2main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object _deps/sdl2-build/CMakeFiles/SDL2main.dir/SDL2main_autogen/mocs_compilation.cpp.o"
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2main.dir/SDL2main_autogen/mocs_compilation.cpp.o -MF CMakeFiles/SDL2main.dir/SDL2main_autogen/mocs_compilation.cpp.o.d -o CMakeFiles/SDL2main.dir/SDL2main_autogen/mocs_compilation.cpp.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build/SDL2main_autogen/mocs_compilation.cpp"
+
+_deps/sdl2-build/CMakeFiles/SDL2main.dir/SDL2main_autogen/mocs_compilation.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/SDL2main.dir/SDL2main_autogen/mocs_compilation.cpp.i"
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build/SDL2main_autogen/mocs_compilation.cpp" > CMakeFiles/SDL2main.dir/SDL2main_autogen/mocs_compilation.cpp.i
+
+_deps/sdl2-build/CMakeFiles/SDL2main.dir/SDL2main_autogen/mocs_compilation.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/SDL2main.dir/SDL2main_autogen/mocs_compilation.cpp.s"
+	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build/SDL2main_autogen/mocs_compilation.cpp" -o CMakeFiles/SDL2main.dir/SDL2main_autogen/mocs_compilation.cpp.s
+
 _deps/sdl2-build/CMakeFiles/SDL2main.dir/src/main/dummy/SDL_dummy_main.c.o: _deps/sdl2-build/CMakeFiles/SDL2main.dir/flags.make
 _deps/sdl2-build/CMakeFiles/SDL2main.dir/src/main/dummy/SDL_dummy_main.c.o: _deps/sdl2-src/src/main/dummy/SDL_dummy_main.c
 _deps/sdl2-build/CMakeFiles/SDL2main.dir/src/main/dummy/SDL_dummy_main.c.o: _deps/sdl2-build/CMakeFiles/SDL2main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building C object _deps/sdl2-build/CMakeFiles/SDL2main.dir/src/main/dummy/SDL_dummy_main.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building C object _deps/sdl2-build/CMakeFiles/SDL2main.dir/src/main/dummy/SDL_dummy_main.c.o"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT _deps/sdl2-build/CMakeFiles/SDL2main.dir/src/main/dummy/SDL_dummy_main.c.o -MF CMakeFiles/SDL2main.dir/src/main/dummy/SDL_dummy_main.c.o.d -o CMakeFiles/SDL2main.dir/src/main/dummy/SDL_dummy_main.c.o -c "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src/src/main/dummy/SDL_dummy_main.c"
 
 _deps/sdl2-build/CMakeFiles/SDL2main.dir/src/main/dummy/SDL_dummy_main.c.i: cmake_force
@@ -85,15 +106,17 @@ _deps/sdl2-build/CMakeFiles/SDL2main.dir/src/main/dummy/SDL_dummy_main.c.s: cmak
 
 # Object files for target SDL2main
 SDL2main_OBJECTS = \
+"CMakeFiles/SDL2main.dir/SDL2main_autogen/mocs_compilation.cpp.o" \
 "CMakeFiles/SDL2main.dir/src/main/dummy/SDL_dummy_main.c.o"
 
 # External object files for target SDL2main
 SDL2main_EXTERNAL_OBJECTS =
 
+_deps/sdl2-build/libSDL2maind.a: _deps/sdl2-build/CMakeFiles/SDL2main.dir/SDL2main_autogen/mocs_compilation.cpp.o
 _deps/sdl2-build/libSDL2maind.a: _deps/sdl2-build/CMakeFiles/SDL2main.dir/src/main/dummy/SDL_dummy_main.c.o
 _deps/sdl2-build/libSDL2maind.a: _deps/sdl2-build/CMakeFiles/SDL2main.dir/build.make
 _deps/sdl2-build/libSDL2maind.a: _deps/sdl2-build/CMakeFiles/SDL2main.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking C static library libSDL2maind.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library libSDL2maind.a"
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && $(CMAKE_COMMAND) -P CMakeFiles/SDL2main.dir/cmake_clean_target.cmake
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/SDL2main.dir/link.txt --verbose=$(VERBOSE)
 
@@ -105,7 +128,7 @@ _deps/sdl2-build/CMakeFiles/SDL2main.dir/clean:
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" && $(CMAKE_COMMAND) -P CMakeFiles/SDL2main.dir/cmake_clean.cmake
 .PHONY : _deps/sdl2-build/CMakeFiles/SDL2main.dir/clean
 
-_deps/sdl2-build/CMakeFiles/SDL2main.dir/depend:
+_deps/sdl2-build/CMakeFiles/SDL2main.dir/depend: _deps/sdl2-build/SDL2main_autogen/timestamp
 	cd "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13" "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-src" "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build" "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build" "/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2-build/CMakeFiles/SDL2main.dir/DependInfo.cmake" "--color=$(COLOR)"
 .PHONY : _deps/sdl2-build/CMakeFiles/SDL2main.dir/depend
 

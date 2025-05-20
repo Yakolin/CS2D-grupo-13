@@ -213,9 +213,6 @@ CMAKE_OBJDUMP:FILEPATH=/usr/bin/objdump
 //Build static libraries with -fPIC
 CMAKE_POSITION_INDEPENDENT_CODE:BOOL=ON
 
-//No help, variable specified on the command line.
-CMAKE_PREFIX_PATH:UNINITIALIZED=/usr/lib/x86_64-linux-gnu/cmake/Qt5
-
 //Value Computed by CMake
 CMAKE_PROJECT_DESCRIPTION:STATIC=
 
@@ -405,26 +402,8 @@ FREETYPE_LIBRARY_DEBUG:FILEPATH=FREETYPE_LIBRARY_DEBUG-NOTFOUND
 //Path to a library.
 FREETYPE_LIBRARY_RELEASE:FILEPATH=/usr/lib/x86_64-linux-gnu/libfreetype.so
 
-//Extra compile options of FluidSynth
-FluidSynth_COMPILE_OPTIONS:STRING=
-
 //The directory containing a CMake configuration file for FluidSynth.
 FluidSynth_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/fluidsynth
-
-//Path to a file.
-FluidSynth_INCLUDE_PATH:PATH=FluidSynth_INCLUDE_PATH-NOTFOUND
-
-//Path to a library.
-FluidSynth_LIBRARY:FILEPATH=FluidSynth_LIBRARY-NOTFOUND
-
-//Extra link directories of FluidSynth
-FluidSynth_LINK_DIRECTORIES:PATH=
-
-//Extra link libraries of FluidSynth
-FluidSynth_LINK_LIBRARIES:STRING=
-
-//Extra link flags of FluidSynth
-FluidSynth_LINK_OPTIONS:STRING=
 
 //Path to a library.
 GBM_LIB:FILEPATH=/usr/lib/x86_64-linux-gnu/libgbm.so
@@ -483,7 +462,7 @@ OpusFile_INCLUDE_PATH:PATH=/usr/include/opus
 OpusFile_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libopusfile.so
 
 //Extra link directories of opusfile
-OpusFile_LINK_DIRECTORIES:PATH=
+OpusFile_LINK_DIRECTORIES:PATH=/usr/lib/x86_64-linux-gnu
 
 //Extra link libraries of opusfile
 OpusFile_LINK_LIBRARIES:STRING=
@@ -724,6 +703,9 @@ SDL2_SOURCE_DIR:STATIC=/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-g
 
 //Value Computed by CMake
 SDL2_image_BINARY_DIR:STATIC=/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/sdl2_image-build
+
+//The directory containing a CMake configuration file for SDL2_image.
+SDL2_image_DIR:PATH=/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles/pkgRedirects
 
 //Value Computed by CMake
 SDL2_image_IS_TOP_LEVEL:STATIC=OFF
@@ -1186,26 +1168,8 @@ libSDL2pp_IS_TOP_LEVEL:STATIC=OFF
 //Value Computed by CMake
 libSDL2pp_SOURCE_DIR:STATIC=/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/_deps/libsdl2pp-src
 
-//Extra compile options of libxmp
-libxmp_COMPILE_OPTIONS:STRING=
-
 //The directory containing a CMake configuration file for libxmp.
 libxmp_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/libxmp
-
-//Path to a file.
-libxmp_INCLUDE_PATH:PATH=libxmp_INCLUDE_PATH-NOTFOUND
-
-//Path to a library.
-libxmp_LIBRARY:FILEPATH=libxmp_LIBRARY-NOTFOUND
-
-//Extra link flags of libxmp
-libxmp_LINK_DIRECTORIES:PATH=
-
-//Extra link libraries of libxmp
-libxmp_LINK_LIBRARIES:STRING=
-
-//Extra link flags of libxmp
-libxmp_LINK_OPTIONS:STRING=
 
 //Path to a library.
 pkgcfg_lib_DBUS_dbus-1:FILEPATH=/usr/lib/x86_64-linux-gnu/libdbus-1.so
@@ -1441,7 +1405,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=8
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=15
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -2041,31 +2005,6 @@ LIBC_HAS_WORKING_LIBUNWIND:INTERNAL=
 LIBC_IS_GLIBC:INTERNAL=1
 //Test LIBUNWIND_HAS_WORKINGLIBUNWIND
 LIBUNWIND_HAS_WORKINGLIBUNWIND:INTERNAL=
-PC_FLUIDSYNTH_CFLAGS:INTERNAL=
-PC_FLUIDSYNTH_CFLAGS_I:INTERNAL=
-PC_FLUIDSYNTH_CFLAGS_OTHER:INTERNAL=
-PC_FLUIDSYNTH_FOUND:INTERNAL=
-PC_FLUIDSYNTH_INCLUDEDIR:INTERNAL=
-PC_FLUIDSYNTH_LIBDIR:INTERNAL=
-PC_FLUIDSYNTH_LIBS:INTERNAL=
-PC_FLUIDSYNTH_LIBS_L:INTERNAL=
-PC_FLUIDSYNTH_LIBS_OTHER:INTERNAL=
-PC_FLUIDSYNTH_LIBS_PATHS:INTERNAL=
-PC_FLUIDSYNTH_MODULE_NAME:INTERNAL=
-PC_FLUIDSYNTH_PREFIX:INTERNAL=
-PC_FLUIDSYNTH_STATIC_CFLAGS:INTERNAL=
-PC_FLUIDSYNTH_STATIC_CFLAGS_I:INTERNAL=
-PC_FLUIDSYNTH_STATIC_CFLAGS_OTHER:INTERNAL=
-PC_FLUIDSYNTH_STATIC_LIBDIR:INTERNAL=
-PC_FLUIDSYNTH_STATIC_LIBS:INTERNAL=
-PC_FLUIDSYNTH_STATIC_LIBS_L:INTERNAL=
-PC_FLUIDSYNTH_STATIC_LIBS_OTHER:INTERNAL=
-PC_FLUIDSYNTH_STATIC_LIBS_PATHS:INTERNAL=
-PC_FLUIDSYNTH_VERSION:INTERNAL=
-PC_FLUIDSYNTH_fluidsynth_INCLUDEDIR:INTERNAL=
-PC_FLUIDSYNTH_fluidsynth_LIBDIR:INTERNAL=
-PC_FLUIDSYNTH_fluidsynth_PREFIX:INTERNAL=
-PC_FLUIDSYNTH_fluidsynth_VERSION:INTERNAL=
 PC_LIBUNWIND_CFLAGS:INTERNAL=
 PC_LIBUNWIND_CFLAGS_I:INTERNAL=
 PC_LIBUNWIND_CFLAGS_OTHER:INTERNAL=
@@ -2130,31 +2069,6 @@ PC_OPUSFILE_opusfile_INCLUDEDIR:INTERNAL=
 PC_OPUSFILE_opusfile_LIBDIR:INTERNAL=
 PC_OPUSFILE_opusfile_PREFIX:INTERNAL=
 PC_OPUSFILE_opusfile_VERSION:INTERNAL=
-PC_XMP_CFLAGS:INTERNAL=
-PC_XMP_CFLAGS_I:INTERNAL=
-PC_XMP_CFLAGS_OTHER:INTERNAL=
-PC_XMP_FOUND:INTERNAL=
-PC_XMP_INCLUDEDIR:INTERNAL=
-PC_XMP_LIBDIR:INTERNAL=
-PC_XMP_LIBS:INTERNAL=
-PC_XMP_LIBS_L:INTERNAL=
-PC_XMP_LIBS_OTHER:INTERNAL=
-PC_XMP_LIBS_PATHS:INTERNAL=
-PC_XMP_MODULE_NAME:INTERNAL=
-PC_XMP_PREFIX:INTERNAL=
-PC_XMP_STATIC_CFLAGS:INTERNAL=
-PC_XMP_STATIC_CFLAGS_I:INTERNAL=
-PC_XMP_STATIC_CFLAGS_OTHER:INTERNAL=
-PC_XMP_STATIC_LIBDIR:INTERNAL=
-PC_XMP_STATIC_LIBS:INTERNAL=
-PC_XMP_STATIC_LIBS_L:INTERNAL=
-PC_XMP_STATIC_LIBS_OTHER:INTERNAL=
-PC_XMP_STATIC_LIBS_PATHS:INTERNAL=
-PC_XMP_VERSION:INTERNAL=
-PC_XMP_libxmp_INCLUDEDIR:INTERNAL=
-PC_XMP_libxmp_LIBDIR:INTERNAL=
-PC_XMP_libxmp_PREFIX:INTERNAL=
-PC_XMP_libxmp_VERSION:INTERNAL=
 //ADVANCED property for variable: PKG_CONFIG_ARGN
 PKG_CONFIG_ARGN-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PKG_CONFIG_EXECUTABLE
@@ -2470,8 +2384,6 @@ SDL2MIXER_VORBIS-STRINGS:INTERNAL=STB;TREMOR;VORBISFILE
 //ADVANCED property for variable: SDL2TTF_DEBUG_POSTFIX
 SDL2TTF_DEBUG_POSTFIX-ADVANCED:INTERNAL=1
 //Redirected by FetchContent
-SDL2_image_DIR:INTERNAL=/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles/pkgRedirects
-//Redirected by FetchContent
 SDL2_mixer_DIR:INTERNAL=/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles/pkgRedirects
 //Redirected by FetchContent
 SDL2_ttf_DIR:INTERNAL=/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles/pkgRedirects
@@ -2537,10 +2449,8 @@ __pkg_config_arguments_PKG_WAYLAND:INTERNAL=wayland-client>=1.18;wayland-egl;way
 __pkg_config_checked_DBUS:INTERNAL=1
 __pkg_config_checked_EGL:INTERNAL=1
 __pkg_config_checked_IBUS:INTERNAL=1
-__pkg_config_checked_PC_FLUIDSYNTH:INTERNAL=1
 __pkg_config_checked_PC_LIBUNWIND:INTERNAL=1
 __pkg_config_checked_PC_OPUSFILE:INTERNAL=1
-__pkg_config_checked_PC_XMP:INTERNAL=1
 __pkg_config_checked_PKG_ESD:INTERNAL=1
 __pkg_config_checked_PKG_JACK:INTERNAL=1
 __pkg_config_checked_PKG_KMSDRM:INTERNAL=1

@@ -1,12 +1,12 @@
 #include  "client.h"
 
 Client::Client( int& argc,  char *argv[]) : 
-    controller(argc, argv)
-    //protocolo() 
+    vista(argc, argv)
     {}
 
 int Client::run() {
-    controller.run();
+    
+    vista.run();
 
     return 0;
 }

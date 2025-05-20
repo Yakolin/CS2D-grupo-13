@@ -34,13 +34,11 @@ class Ak47: public FireableWeapon {
 public:
     Ak47(): FireableWeapon(WeaponType::PRIMARY, 25, 3, 90, 30) {}
     virtual void fire(Map& map, player_id_t id, Vector2& position, Vector2& direction) override;
-    virtual void reload() override;
 };
 class Glock: public FireableWeapon {
 public:
     Glock(): FireableWeapon(WeaponType::SECONDARY, 15, 1, 120, 30) {}
     virtual void fire(Map& map, player_id_t id, Vector2& position, Vector2& direction) override;
-    virtual void reload() override;
 };
 
 #endif  // FIREABLE_WEAPON_H_

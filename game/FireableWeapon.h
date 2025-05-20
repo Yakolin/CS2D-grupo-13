@@ -8,14 +8,17 @@
 
 #include "Bullet.h"
 #include "Weapon.h"
+
 class FireableWeapon: public Weapon {
+
 protected:
     int damage;
     int fire_rate;
     int max_bullets;
     int current_bullets;
     int magazine;
-    public:
+
+public:
     FireableWeapon(WeaponType type, int dmg, int rate, int max_b, int current_b):
             Weapon(type),
             damage(dmg),
@@ -24,7 +27,6 @@ protected:
             current_bullets(current_b),
             magazine(current_b) {}
     // void reload_basic();
-public:
     virtual void fire(Map& map, player_id_t id, Vector2& position, Vector2& direction) override = 0;
     virtual void reload() override;
 };

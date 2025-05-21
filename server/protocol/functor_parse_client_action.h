@@ -8,8 +8,6 @@
 #include "client_action.h"
 #include "protocol.h"
 
-class InterfacePlayerAction;
-
 class ParsePlayerAction {
 private:
     player_id_t& player_id;

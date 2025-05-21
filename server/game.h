@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "../common/player_types.h"
+#include "../common/player_command_types.h"
 #include "../common/utility.h"
 #include "interfaces/interface_game.h"
 

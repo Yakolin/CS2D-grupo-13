@@ -1,9 +1,10 @@
-#ifndef PLAYER_TYPES_H
-#define PLAYER_TYPES_H
+#ifndef PLAYER_COMMAND_TYPES_H
+#define PLAYER_COMMAND_TYPES_H
 
 #include <cstdint>
 
 using player_command_t = std::uint8_t;
+using bullet_id_t = std::uint16_t;
 using move_t = std::uint8_t;
 using ammo_t = std::uint16_t;
 using player_id_t = std::uint16_t;
@@ -17,15 +18,20 @@ enum class PlayerCommandType {
     BUY_AMMO,
     RELOAD,
     SHOOT,
-    DROP,
     PLANT_BOMB,
     DEFUSE_BOMB,
+    DROP,
     EQUIP
 };
 
-enum class MoveType { RIGHT, LEFT, UP, DOWN };
+enum class MoveType {
+    RIGHT,
+    LEFT,
+    UP,
+    DOWN,
+};
 
-enum class WeaponType { PRIMARY, SECONDARY, KNIFE };
+enum class WeaponType { PRIMARY, SECONDARY, KNIFE, BOMB };
 
 enum class WeaponCode { GLOCK, AK47, M3, AWP };
 

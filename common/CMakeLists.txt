@@ -14,11 +14,10 @@ target_sources(CS2D_common
     game_image.h
     liberror.h
     lobby_types.h
-    player_types.h
+    player_command_types.h
     queue.h
     resolver.h
     resolvererror.h
     socket.h
     thread.h
-    utility.h
     )

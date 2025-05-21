@@ -6,7 +6,7 @@
 #include <utility>
 
 #include "../common/liberror.h"
-#include "../common/player_types.h"
+#include "../common/player_command_types.h"
 #include "../common/socket.h"
 #include "../common/thread.h"
 #include "protocol/client_handler.h"

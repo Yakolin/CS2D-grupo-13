@@ -6,7 +6,7 @@
 #include <vector>
 
 #include "../../common/game_image.h"
-#include "../../common/player_types.h"
+#include "../../common/player_command_types.h"
 #include "../../common/queue.h"
 
 class InterfacePlayerAction;

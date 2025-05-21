@@ -5,7 +5,7 @@
 
 #include "../../common/client_common_action.h"
 #include "../../common/lobby_types.h"
-#include "../../common/player_types.h"
+#include "../../common/player_command_types.h"
 #include "../../common/utility.h"
 #include "../game.h"
 #include "../interfaces/interface_games_monitor.h"

@@ -8,11 +8,8 @@
 #include "../../common/player_types.h"
 #include "../../common/utility.h"
 #include "../game.h"
-#include "../handlers/games_monitor.h"
-#include "../handlers/lobby_handler.h"
-
-class LobbyHandler;
-class InterfaceGamesMonitor;
+#include "../interfaces/interface_games_monitor.h"
+#include "../interfaces/interface_lobby_action.h"
 
 class ClientAction {
 protected:
@@ -21,16 +18,6 @@ protected:
 public:
     ClientAction(player_id_t player_id): player_id(player_id) {}
     virtual ~ClientAction() {}
-};
-
-/*
-LOBBY ACTIONS
-*/
-class InterfaceLobbyAction {
-public:
-    InterfaceLobbyAction() = default;
-    virtual ~InterfaceLobbyAction() = default;
-    virtual void action(LobbyHandler& lobby_handler, InterfaceGamesMonitor& monitor) = 0;
 };
 
 /*
@@ -47,45 +34,6 @@ public:
 
 namespace ServerSpace {
 
-
-/*
-CREATE GAME
-*/
-
-class CreateGame: public InterfaceLobbyAction, public CreateGameCommon {
-private:
-    const std::string game_name;
-
-public:
-    CreateGame(const std::string& game_name);
-    ~CreateGame();
-    void action(LobbyHandler& lobby_handler, InterfaceGamesMonitor& monitor) override;
-};
-
-/*
-        JOIN GAME
-        */
-
-class JoinGame: public InterfaceLobbyAction, public JoinGameCommon {
-private:
-    const std::string game_name;
-
-public:
-    JoinGame(const std::string& game_name);
-    ~JoinGame();
-    void action(LobbyHandler& lobby_handler, InterfaceGamesMonitor& monitor) override;
-};
-
-/*
-        LIST GAMES
-*/
-
-class ListGames: public InterfaceLobbyAction {
-public:
-    ListGames();
-    ~ListGames();
-    void action(LobbyHandler& lobby_handler, InterfaceGamesMonitor& monitor) override;
-};
 
 /*
         MOVEMENT ACTIONS

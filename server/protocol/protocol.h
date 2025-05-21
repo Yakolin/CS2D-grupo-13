@@ -48,8 +48,8 @@ public:
 
     PlayerCommandType read_player_command();
 
-    std::unique_ptr<ServerSpace::CreateGame> read_create_game();
-    std::unique_ptr<ServerSpace::JoinGame> read_join_game();
+    std::string read_create_game();
+    std::string read_join_game();
 
     std::unique_ptr<ServerSpace::Move> read_move(player_id_t player_id);
 

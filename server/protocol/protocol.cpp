@@ -53,15 +53,9 @@ LobbyCommandType ServerProtocol::read_lobby_command() {
     return static_cast<LobbyCommandType>(command);
 }
 
-std::unique_ptr<CreateGame> ServerProtocol::read_create_game() {
-    std::string game_name = this->read_game_name();
-    return std::make_unique<CreateGame>(game_name);
-}
+std::string ServerProtocol::read_create_game() { return this->read_game_name(); }
 
-std::unique_ptr<JoinGame> ServerProtocol::read_join_game() {
-    std::string game_name = this->read_game_name();
-    return std::make_unique<JoinGame>(game_name);
-}
+std::string ServerProtocol::read_join_game() { return this->read_game_name(); }
 
 PlayerCommandType ServerProtocol::read_player_command() {
     player_command_t command;

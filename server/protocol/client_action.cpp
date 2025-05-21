@@ -2,56 +2,14 @@
 
 using ServerSpace::BuyAmmo;
 using ServerSpace::BuyWeapon;
-using ServerSpace::CreateGame;
 using ServerSpace::DefuseBomb;
 using ServerSpace::Drop;
 using ServerSpace::Equip;
-using ServerSpace::JoinGame;
-using ServerSpace::ListGames;
 using ServerSpace::Move;
 using ServerSpace::PlantBomb;
 using ServerSpace::Reload;
 using ServerSpace::Shoot;
 
-/*
-    CREATE GAME
-*/
-
-CreateGame::CreateGame(const std::string& game_name):
-        InterfaceLobbyAction(), CreateGameCommon(game_name) {}
-
-CreateGame::~CreateGame() {}
-
-void CreateGame::action(LobbyHandler& lobby_handler, InterfaceGamesMonitor& monitor) {
-    monitor.create_game(lobby_handler, this->game_name);
-}
-/*
-        PLAYER ACTIONS
-*/
-/*
-    JOIN GAME
-*/
-
-JoinGame::JoinGame(const std::string& game_name):
-        InterfaceLobbyAction(), JoinGameCommon(game_name) {}
-
-JoinGame::~JoinGame() {}
-
-void JoinGame::action(LobbyHandler& lobby_handler, InterfaceGamesMonitor& monitor) {
-    monitor.join_game(lobby_handler, this->game_name);
-}
-
-/*
-    LIST GAMES
-*/
-
-ListGames::ListGames(): InterfaceLobbyAction() {}
-
-ListGames::~ListGames() {}
-
-void ListGames::action(LobbyHandler& lobby_handler, InterfaceGamesMonitor& monitor) {
-    monitor.list_games(lobby_handler);
-}
 
 /*
     MOVEMENT ACTIONS

@@ -13,8 +13,8 @@ void Acceptor::run() {
             Socket peer = socket_acceptor.accept();
             this->client_id_counter++;
             clients.emplace(this->client_id_counter,
-                            std::make_unique<LobbyHandler>(this->client_id_counter, std::move(peer),
-                                                           this->games_monitor));
+                            std::make_unique<ClientHandler>(this->client_id_counter,
+                                                            std::move(peer), this->games_monitor));
             this->reap();
             clients[this->client_id_counter]->start();
         }
@@ -34,7 +34,6 @@ void Acceptor::reap() {
     for (auto it = clients.begin(); it != clients.end();) {
         auto client = it->second.get();
         if (!client->is_alive()) {
-            it->second->join();
             it = clients.erase(it);
         } else {
             ++it;
@@ -48,7 +47,6 @@ void Acceptor::clear() {
         if (client->is_alive()) {
             client->stop();
         }
-        client->join();
     }
     clients.clear();
 }

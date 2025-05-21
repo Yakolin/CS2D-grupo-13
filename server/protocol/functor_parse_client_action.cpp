@@ -2,38 +2,13 @@
 
 using ServerSpace::DefuseBomb;
 using ServerSpace::Drop;
-using ServerSpace::ListGames;
 using ServerSpace::PlantBomb;
 using ServerSpace::Reload;
-
-ParseLobbyAction::ParseLobbyAction(ServerProtocol& protocol, LobbyCommandType& command,
-                                   std::unique_ptr<InterfaceLobbyAction>& action):
-        Parse(protocol), command(command), action(action) {}
-
-ParseLobbyAction::~ParseLobbyAction() {}
-
-
-void ParseLobbyAction::run() {
-    switch (this->command) {
-        case LobbyCommandType::CREATE_GAME:
-            this->action = this->protocol.read_create_game();
-            break;
-        case LobbyCommandType::JOIN_GAME:
-            this->action = this->protocol.read_join_game();
-            break;
-        case LobbyCommandType::LIST_GAMES:
-            this->action = std::make_unique<ListGames>();
-            break;
-        default:
-            throw std::runtime_error("LobbyCommandType no soportado");
-    }
-}
-
 
 ParsePlayerAction::ParsePlayerAction(player_id_t& player_id, ServerProtocol& protocol,
                                      PlayerCommandType& command,
                                      std::unique_ptr<InterfacePlayerAction>& action):
-        Parse(protocol), player_id(player_id), command(command), action(action) {}
+        protocol(protocol), player_id(player_id), command(command), action(action) {}
 
 ParsePlayerAction::~ParsePlayerAction() {}
 

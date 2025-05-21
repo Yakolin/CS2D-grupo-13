@@ -9,13 +9,14 @@
 #include "../common/player_types.h"
 #include "../common/socket.h"
 #include "../common/thread.h"
-#include "handlers/games_monitor.h"
-#include "handlers/lobby_handler.h"
+#include "protocol/client_handler.h"
+#include "protocol/games_monitor.h"
+
 
 class Acceptor: public Thread {
 private:
     Socket socket_acceptor;
-    std::map<player_id_t, std::unique_ptr<LobbyHandler>> clients;
+    std::map<player_id_t, std::unique_ptr<ClientHandler>> clients;
     GamesMonitor games_monitor;
     uint16_t client_id_counter;
 

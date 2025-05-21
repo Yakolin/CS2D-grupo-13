@@ -12,19 +12,16 @@
 
 #define QUEUE_MAX_SIZE 10000
 
-
 class Sender: public Thread {
 protected:
-    Queue<GameImage> send_queue;
+    std::shared_ptr<Queue<GameImage>>& send_queue;
     ServerProtocol protocol;
     bool closed;
 
 public:
-    explicit Sender(Socket& socket);
+    explicit Sender(Socket& socket, std::shared_ptr<Queue<GameImage>>& send_queue);
     ~Sender() = default;
     void run() override;
-    void stop() override;
-    void send(GameImage& game_image);
 };
 
 

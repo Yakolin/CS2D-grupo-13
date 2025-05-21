@@ -3,14 +3,14 @@
 
 #include "interface_game.h"
 
-class InterfaceGame;
+class InterfaceGameManager;
 
 class InterfacePlayerAction {
 
 public:
     InterfacePlayerAction() = default;
     virtual ~InterfacePlayerAction() = default;
-    virtual void action(InterfaceGame& game) = 0;
+    virtual void action(InterfaceGameManager& game) = 0;
 };
 
 #endif  // !INTERFACE_PLAYER_ACTION_H

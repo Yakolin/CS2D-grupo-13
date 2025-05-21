@@ -2,9 +2,7 @@
 
 using ServerSpace::BuyAmmo;
 using ServerSpace::BuyWeapon;
-using ServerSpace::CreateGame;
 using ServerSpace::Equip;
-using ServerSpace::JoinGame;
 using ServerSpace::Move;
 using ServerSpace::Shoot;
 

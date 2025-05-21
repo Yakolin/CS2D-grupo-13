@@ -20,7 +20,7 @@ Move::Move(player_id_t player_id, MoveType move_type):
 
 Move::~Move() {}
 
-void Move::action(InterfaceGame& game) { game.move(this->player_id, this->move_type); }
+void Move::action(InterfaceGameManager& game) { game.move(this->player_id, this->move_type); }
 
 /*
     WEAPON ACTIONS
@@ -31,7 +31,9 @@ BuyWeapon::BuyWeapon(player_id_t player_id, WeaponCode weapon_code):
 
 BuyWeapon::~BuyWeapon() {}
 
-void BuyWeapon::action(InterfaceGame& game) { game.buy_weapon(this->player_id, this->weapon_code); }
+void BuyWeapon::action(InterfaceGameManager& game) {
+    game.buy_weapon(this->player_id, this->weapon_code);
+}
 
 
 BuyAmmo::BuyAmmo(player_id_t player_id, WeaponType weapon_type, ammo_t ammo_count):
@@ -39,7 +41,7 @@ BuyAmmo::BuyAmmo(player_id_t player_id, WeaponType weapon_type, ammo_t ammo_coun
 
 BuyAmmo::~BuyAmmo() {}
 
-void BuyAmmo::action(InterfaceGame& game) {
+void BuyAmmo::action(InterfaceGameManager& game) {
     game.buy_ammo(this->player_id, this->weapon_type, this->ammo_count);
 }
 
@@ -48,7 +50,7 @@ Reload::Reload(player_id_t player_id): ClientAction(player_id), InterfacePlayerA
 
 Reload::~Reload() {}
 
-void Reload::action(InterfaceGame& game) { game.reload(this->player_id); }
+void Reload::action(InterfaceGameManager& game) { game.reload(this->player_id); }
 
 
 Shoot::Shoot(player_id_t player_id, Position position, ammo_t ammo_count):
@@ -56,7 +58,7 @@ Shoot::Shoot(player_id_t player_id, Position position, ammo_t ammo_count):
 
 Shoot::~Shoot() {}
 
-void Shoot::action(InterfaceGame& game) {
+void Shoot::action(InterfaceGameManager& game) {
     game.shoot(this->player_id, this->position, this->ammo_count);
 }
 
@@ -68,14 +70,14 @@ PlantBomb::PlantBomb(player_id_t player_id): ClientAction(player_id), InterfaceP
 
 PlantBomb::~PlantBomb() {}
 
-void PlantBomb::action(InterfaceGame& game) { game.plant_bomb(this->player_id); }
+void PlantBomb::action(InterfaceGameManager& game) { game.plant_bomb(this->player_id); }
 
 
 DefuseBomb::DefuseBomb(player_id_t player_id): ClientAction(player_id), InterfacePlayerAction() {}
 
 DefuseBomb::~DefuseBomb() {}
 
-void DefuseBomb::action(InterfaceGame& game) { game.defuse_bomb(this->player_id); }
+void DefuseBomb::action(InterfaceGameManager& game) { game.defuse_bomb(this->player_id); }
 
 /*
 GAME ACTIONS
@@ -85,7 +87,7 @@ Drop::Drop(player_id_t player_id): ClientAction(player_id), InterfacePlayerActio
 
 Drop::~Drop() {}
 
-void Drop::action(InterfaceGame& game) { game.drop(this->player_id); }
+void Drop::action(InterfaceGameManager& game) { game.drop(this->player_id); }
 
 
 Equip::Equip(player_id_t player_id, EquipType equip_type):
@@ -93,4 +95,4 @@ Equip::Equip(player_id_t player_id, EquipType equip_type):
 
 Equip::~Equip() {}
 
-void Equip::action(InterfaceGame& game) { game.equip(this->player_id, this->equip_type); }
+void Equip::action(InterfaceGameManager& game) { game.equip(this->player_id, this->equip_type); }

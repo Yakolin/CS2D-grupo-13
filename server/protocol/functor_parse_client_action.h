@@ -12,10 +12,10 @@ class InterfacePlayerAction;
 
 class ParsePlayerAction {
 private:
-    ServerProtocol& protocol;
     player_id_t& player_id;
-    std::unique_ptr<InterfacePlayerAction>& action;
+    ServerProtocol& protocol;
     PlayerCommandType& command;
+    std::unique_ptr<InterfacePlayerAction>& action;
 
 public:
     ParsePlayerAction(player_id_t& player_id, ServerProtocol& protocol, PlayerCommandType& command,

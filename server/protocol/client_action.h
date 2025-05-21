@@ -9,7 +9,6 @@
 #include "../../common/utility.h"
 #include "../game.h"
 #include "../interfaces/interface_games_monitor.h"
-#include "../interfaces/interface_lobby_action.h"
 
 class ClientAction {
 protected:
@@ -18,18 +17,6 @@ protected:
 public:
     ClientAction(player_id_t player_id): player_id(player_id) {}
     virtual ~ClientAction() {}
-};
-
-/*
-        PLAYER ACTIONS
-*/
-
-class InterfacePlayerAction {
-
-public:
-    InterfacePlayerAction() = default;
-    virtual ~InterfacePlayerAction() = default;
-    virtual void action(InterfaceGame& game) = 0;
 };
 
 namespace ServerSpace {

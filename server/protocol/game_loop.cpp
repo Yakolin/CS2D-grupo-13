@@ -6,7 +6,7 @@ GameLoop::GameLoop(const std::string& game_name):
         send_queues(),
         recv_queue(std::make_shared<Queue<std::unique_ptr<InterfacePlayerAction>>>(QUEUE_MAX_SIZE)),
         constant_rate_loop([this]() { return this->should_keep_running(); },
-                           [this](unsigned int it) { this->step(it); }),
+                           [this]() { this->step(); }),
         game_started(false) {}
 
 GameLoop::~GameLoop() {}
@@ -28,7 +28,7 @@ bool GameLoop::is_full()  // hay que ver como se configura el YAML y chequearlo 
 void GameLoop::run() { this->constant_rate_loop.execute(); }
 
 
-void GameLoop::step(unsigned int iteration) {
+void GameLoop::step() {
     try {
         std::unique_ptr<InterfacePlayerAction> action = recv_queue->pop();
     } catch (const ClosedQueue& e) {

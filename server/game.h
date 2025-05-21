@@ -11,6 +11,7 @@
 class GameManager {
 private:
     const std::string& game_name;
+    player_id_t player_id;
 
 public:
     GameManager(const std::string& game_name);
@@ -18,7 +19,7 @@ public:
 
     void start_game();
     void stop_game();
-    void add_player(player_id_t new_player);
+    void add_player(player_id_t& new_player);
 };
 
 #endif  // !GAME_H

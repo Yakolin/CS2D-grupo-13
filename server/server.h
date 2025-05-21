@@ -7,9 +7,8 @@
 #include "acceptor.h"
 #define QUIT "q"  // es la forma en la que paramos el acceptor, esta en el enunciado
 
-namespace
 
-        class Server {
+class Server {
 private:
     const char* port;
     Acceptor acceptor;

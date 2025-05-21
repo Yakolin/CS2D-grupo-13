@@ -10,7 +10,8 @@
 #include "../../common/thread.h"
 #include "../game.h"
 #include "../interfaces/interface_game.h"
-#include "../protocol/client_action.h"
+
+#include "client_action.h"
 
 
 #define QUEUE_MAX_SIZE 10000
@@ -24,7 +25,7 @@ private:
     ConstantRateLoop constant_rate_loop;
     bool game_started;
 
-    void step(unsigned int iteration);
+    void step();
     void broadcast();
 
 public:

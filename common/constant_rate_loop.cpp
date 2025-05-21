@@ -10,7 +10,7 @@ using namespace std::chrono;
 #define FRAME_RATE std::chrono::milliseconds(FRAME_INTERVAL)
 
 ConstantRateLoop::ConstantRateLoop(const std::function<bool()>& keep_running_func,
-                                   const std::function<void(unsigned int)>& step_func):
+                                   const std::function<void()>& step_func):
         should_keep_running(keep_running_func), func(step_func) {}
 
 ConstantRateLoop::~ConstantRateLoop() {}
@@ -18,9 +18,9 @@ ConstantRateLoop::~ConstantRateLoop() {}
 void ConstantRateLoop::execute() {
     using clock = std::chrono::steady_clock;
     auto t1 = clock::now();
-    unsigned int it = 0;
+    unsigned int it = 0;  // Mantenemos la variable para cálculos internos
     while (should_keep_running()) {
-        func(it);
+        func();  // Llamamos a la función sin parámetro
         auto t2 = clock::now();
         auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1);
         auto rest = FRAME_RATE - elapsed;

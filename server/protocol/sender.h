@@ -20,7 +20,7 @@ protected:
 
 public:
     explicit Sender(Socket& socket, std::shared_ptr<Queue<GameImage>>& send_queue);
-    ~Sender() = default;
+    ~Sender();
     void run() override;
 };
 

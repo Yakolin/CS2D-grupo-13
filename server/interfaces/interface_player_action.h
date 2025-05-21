@@ -3,6 +3,8 @@
 
 #include "interface_game.h"
 
+class InterfaceGame;
+
 class InterfacePlayerAction {
 
 public:

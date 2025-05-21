@@ -1,7 +1,7 @@
 #include "sender.h"
 
 Sender::Sender(Socket& socket, std::shared_ptr<Queue<GameImage>>& send_queue):
-        send_queue(send_queue), protocol(protocol), closed(false) {}
+        send_queue(send_queue), protocol(socket), closed(false) {}
 
 Sender::~Sender() {}
 

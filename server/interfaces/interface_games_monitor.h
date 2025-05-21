@@ -9,7 +9,7 @@
 #include "../../common/player_types.h"
 #include "../../common/queue.h"
 
-#include "interface_player_action.h"
+class InterfacePlayerAction;
 
 class InterfaceGamesMonitor {
 public:

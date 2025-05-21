@@ -15,7 +15,9 @@ bool GamesMonitor::create_game(
             game_loop->start();
         }
         games[game_name] = std::move(game_loop);
+        return true;
     }
+    return false;
 }
 
 bool GamesMonitor::join_game(
@@ -29,7 +31,9 @@ bool GamesMonitor::join_game(
         if (it->second->is_full()) {
             it->second->start();
         }
+        return true;
     }
+    return false;
 }
 
 std::vector<std::string> GamesMonitor::list_games() {

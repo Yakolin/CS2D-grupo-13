@@ -47,6 +47,7 @@ void Receiver::run_lobby() {
                     break;
                 }
                 default:
+                    throw std::runtime_error("Comando invalido");
             }
         }
     } catch (const ConnectionClosedException& e) {}

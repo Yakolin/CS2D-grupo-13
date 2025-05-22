@@ -10,6 +10,7 @@ using ammo_t = std::uint16_t;
 using player_id_t = std::uint16_t;
 using weapon_code_t = std::uint8_t;
 using weapon_type_t = std::uint8_t;
+using coordinate_t = uint16_t; 
 
 enum class PlayerCommandType {
     MOVE,
@@ -17,10 +18,9 @@ enum class PlayerCommandType {
     BUY_AMMO,
     RELOAD,
     SHOOT,
-    DROP_WEAPON,
     PLANT_BOMB,
     DEFUSE_BOMB,
-    DROP_BOMB
+    DROP
 };
 
 enum class MoveType {

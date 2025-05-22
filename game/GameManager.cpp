@@ -86,7 +86,7 @@ void GameManager::move(uint16_t player_id, MoveType move_type) {
     }
 }
 
-void GameManager::shoot(uint16_t player_id, float mouse_x, float mouse_y) {
+void GameManager::shoot(uint16_t player_id, coordinate_t mouse_x, coordinate_t mouse_y) {
     shared_ptr<Player> player = find_player(player_id);
     player->fire_weapon_equiped(map_game, Vector2(mouse_x, mouse_y));
 }

@@ -3,6 +3,7 @@
 #include <algorithm>
 
 void Map::check_bullets_collisions() {
+    /*
     for (auto bullet = bullets_in_air.begin(); bullet != bullets_in_air.end(); bullet++) {
         auto player_afected =
                 std::find_if(players.begin(), players.end(), [&](const auto& player_pair) {
@@ -16,9 +17,10 @@ void Map::check_bullets_collisions() {
             break;
         }
     }
+    */
 }
 void Map::check_collisions() {
-    check_bullets_collisions();
+    check_bullets_collisions(); // REVISAR LA COLISION DE LAS BALAS ya que Vector2 es con uint16
     // Check collision walls
     // Check dropped weapons
 }

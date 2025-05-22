@@ -2,12 +2,13 @@
 #define GAME_PHYSICS_H_
 #include <cmath>
 #include <utility>
+#include "../common/player_command_types.h"
 //  "Copyright 2025 Yaco Santamarina"
 class Vector2 {
 public:
-    float x;
-    float y;
-    Vector2(float _x, float _y): x(_x), y(_y) {}
+    coordinate_t x;
+    coordinate_t y;
+    Vector2(coordinate_t _x, coordinate_t _y): x(_x), y(_y) {}
     Vector2(Vector2&& other) = default;
     Vector2(const Vector2&) = default;
     Vector2 operator+(const Vector2& other) const;
@@ -17,7 +18,7 @@ public:
     Vector2& operator=(Vector2&& other) = default;
     Vector2& operator=(const Vector2& other) = default;
     bool operator==(const Vector2& other) const;
-    float get_norm() const;
+    coordinate_t get_norm() const; //Falta implementar
     Vector2& normalize();
 };
 
@@ -27,7 +28,7 @@ private:
     Vector2 point_max;
 
 public:
-    Rectangle(float width, float height, const Vector2& point):
+    Rectangle(coordinate_t width, coordinate_t height, const Vector2& point):
             point_min(std::move(point)),
             point_max(std::move(Vector2(point.x + width, point.y + height))) {}
     bool is_in(const Vector2& position);

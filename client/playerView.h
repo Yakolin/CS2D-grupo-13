@@ -2,6 +2,7 @@
 #define PLAYERVIEW_H
 #include <iostream>
 #include <map>
+#include <string>
 #include <vector>
 
 #include <SDL.h>
@@ -16,7 +17,7 @@
 
 class PlayerView: public Renderizable {
 public:
-    PlayerView(const float& x, const float& y, const std::string rute, const float& speed,
+    PlayerView(const float& x, const float& y, const std::string& rute, const float& speed,
                SDL_Rect* camera_reseiver, ManageTexture* manger_texture);
     ~PlayerView();
 

@@ -16,7 +16,7 @@ public:
     LOBBY ACTIONS
 */
 
-namespace Client {
+namespace ClientSpace {
 
 class CreateGame: public CreateGameCommon, public InterfaceClientAction {
 public:

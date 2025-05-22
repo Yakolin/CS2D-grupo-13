@@ -16,7 +16,7 @@ class LobbyView: public QWidget {
     Q_OBJECT
 
 public:
-    explicit LobbyView();
+    LobbyView();
 
     void action_create();
     QListWidget* create_item(QWidget* parent, const QStringList& options, const QString& text);

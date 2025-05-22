@@ -3,12 +3,11 @@ const int HEIGHT_MENU = 500;
 const int WIDTH_MENU = 500;
 
 MenuView::MenuView():
-        window(new QMainWindow()),
+        window(new QMainWindow(nullptr)),
         img_icono(new QLabel()),
         info_game(),
         clicked_text(),
         botones() {
-
     botones["create game"] = GameMenu::CREATE;
     botones["join game"] = GameMenu::JOIN;
     botones["help"] = GameMenu::HELP;
@@ -58,7 +57,6 @@ void MenuView::action_help() {
 
 
 void MenuView::add_button(QVBoxLayout* layout, const QString& text) {
-    
     QPushButton* button = new QPushButton(text);
     button->setFixedSize(200, 50);
 
@@ -81,6 +79,7 @@ void MenuView::add_button(QVBoxLayout* layout, const QString& text) {
 
 
 GameMenu MenuView::run() {
+    // GameMenu election;
 
     QWidget* central = new QWidget(window);
     window->setCentralWidget(central);

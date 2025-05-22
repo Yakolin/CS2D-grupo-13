@@ -26,12 +26,12 @@ public:
     post: muestra los puntajes del juego
     */
     int show_scores_game();
-    ~ScoreBoard();
+
 private:
     std::map<std::string, PlayerSummary> scores;
     Rankings ranking_group;
 
-    
+    ~ScoreBoard();
 };
 
 #endif  // SCOREBOARD_H

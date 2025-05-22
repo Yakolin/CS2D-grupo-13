@@ -3,20 +3,23 @@
 const int FILAS_MAP = 17;
 const int COLUMNAS_MAP = 38;
 
-PlayerView::PlayerView(const float& x, const float& y, const std::string rute, const float& speed,
-                       SDL_Rect* camera_reseiver, ManageTexture* manejador):
+PlayerView::PlayerView(const float& x, 
+                        const float& y, 
+                        const std::string& rute, 
+                        const float& speed,
+                       SDL_Rect* camera_receiver, 
+                       ManageTexture* manejador):
         fil(pasar_pixeles(x)),
         col(pasar_pixeles(y)),
         rutaPlayer(rute),
         origin_rect({0, 0, 64, 96}),
-        destination_rect(
-                {static_cast<int>(col) , static_cast<int>(fil) , 32, 32}),
+        destination_rect({static_cast<int>(col), static_cast<int>(fil) , 32, 32}),
         speed_player(speed),
         width_img(),
         height_img(),
         item({0, 0}),
         anglePlayer(),
-        camera(camera_reseiver),
+        camera(camera_receiver),
         manejador(manejador) {
     calcular();
 }
@@ -41,7 +44,6 @@ void PlayerView::draw(SDL_Renderer& renderer) {
     //                           col=x               fil =y       ancho, alto
     destination_rect = {static_cast<int>(col) - camera->x, static_cast<int>(fil) - camera->y, 32,
                         32};
-   
     // SDL_RenderCopy(&renderer, tiles_player, &origin_rect ,&destination_rect);
     SDL_RenderCopyEx(&renderer, tiles_player, &origin_rect, &destination_rect, anglePlayer, nullptr,
                      SDL_FLIP_NONE);
@@ -57,10 +59,6 @@ void PlayerView::add_speed(const SDL_Keycode& tecla) {
     } else if (tecla == SDLK_s || tecla == SDLK_DOWN) {  // abajo
         fil += speed_player;
     }
-    int fila_matriz = fil / 32;
-    int columna_matriz = col / 32;
-    std::cout << "Fila: " << fila_matriz << " Columna: " << columna_matriz << std::endl;
-
 }
 
 void PlayerView::update_view_angle(const int& mouse_x, const int& mouse_y) {
@@ -102,4 +100,3 @@ int PlayerView::getHeightImg() const { return height_img; }
 float PlayerView::getAnglePlayer() const { return anglePlayer; }
 
 PlayerView::~PlayerView() {}
-

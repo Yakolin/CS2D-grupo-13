@@ -16,6 +16,7 @@ LobbyView::LobbyView():
         img_maps(),
         img_skins_terrorist(),
         img_skins_counter_terrorist() {
+            
     tabs->setWindowTitle("Create Game");
     tabs->setStyleSheet("background-color:rgb(198, 199, 199);");
     tabs->resize(500, 500);
@@ -78,7 +79,7 @@ void LobbyView::section_maps(const QString& text, const std::map<QString, QStrin
     layoutMap->addWidget(labelMap);
 
     connect(list_map, &QListWidget::itemClicked,
-            [this, labelMap, options](QListWidgetItem* item) {
+            [this, labelMap,  options](QListWidgetItem* item) {
                 QString nombre = item->text();
                 labelMap->setPixmap(QPixmap(options.at(nombre)));
             });
@@ -107,7 +108,7 @@ void LobbyView::action_create() {
     QHBoxLayout* layoutPlayers = new QHBoxLayout(tabPlayers);  // tabs
     layoutPlayers->addWidget(list_unidad);
     layoutPlayers->addWidget(labelPlayers);
-      //QListWidgetItem* selected = nullptr;
+    //  QListWidgetItem* selected = nullptr;
 }
 
 LobbyView::~LobbyView() {}

@@ -1,17 +1,17 @@
 #include "client_action.h"
 
-using Client::BuyAmmo;
-using Client::BuyWeapon;
-using Client::CreateGame;
-using Client::DefuseBomb;
-using Client::Drop;
-using Client::Equip;
-using Client::JoinGame;
-using Client::ListGames;
-using Client::Move;
-using Client::PlantBomb;
-using Client::Reload;
-using Client::Shoot;
+using ClientSpace::BuyAmmo;
+using ClientSpace::BuyWeapon;
+using ClientSpace::CreateGame;
+using ClientSpace::DefuseBomb;
+using ClientSpace::Drop;
+using ClientSpace::Equip;
+using ClientSpace::JoinGame;
+using ClientSpace::ListGames;
+using ClientSpace::Move;
+using ClientSpace::PlantBomb;
+using ClientSpace::Reload;
+using ClientSpace::Shoot;
 
 CreateGame::CreateGame(const std::string& game_name):
         CreateGameCommon(game_name), InterfaceClientAction() {}

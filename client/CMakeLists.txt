@@ -8,7 +8,7 @@ target_sources(CS2D_client
     gameView.cpp
     mapView.cpp
     playerView.cpp
-    scoreBoard.cpp
+    scoreboard.cpp
     manageTexture.cpp
     menuView.cpp
     vista.cpp
@@ -18,7 +18,7 @@ target_sources(CS2D_client
     lobbyView.h
     mapView.h
     playerView.h
-    scoreBoard.h
+    scoreboard.h
     client.h
     controller.h
     lobbyView.h

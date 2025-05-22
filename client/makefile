@@ -2,7 +2,9 @@
 CXX = g++
 
 # Archivos fuente .cpp
-SRC = $(wildcard *.cpp)
+SRC = $(shell find . -name '*.cpp')
+
+
 
 # Archivo header que usa Q_OBJECT
 HDR = lobbyView.h
@@ -21,16 +23,13 @@ TARGET = sdl
 
 
 # Flags compilación
-# Flags compilación (agregamos -g para depuración)
 CXXFLAGS = \
-    -g \
     -fPIC \
     -I/usr/include/x86_64-linux-gnu/qt5 \
     -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets \
     -I/usr/include/x86_64-linux-gnu/qt5/QtGui \
     -I/usr/include/x86_64-linux-gnu/qt5/QtCore \
     $(shell sdl2-config --cflags)
-
 
 # Flags linkeo
 LDFLAGS = \

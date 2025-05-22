@@ -785,8 +785,8 @@ _deps/sdl2-build/CMakeFiles/SDL2.dir/clean:
 
 # All Build rule for target.
 _deps/sdl2-build/CMakeFiles/SDL2-static.dir/all: _deps/sdl2-build/CMakeFiles/sdl_headers_copy.dir/all
-_deps/sdl2-build/CMakeFiles/SDL2-static.dir/all: _deps/sdl2-build/CMakeFiles/SDL2-static_autogen_timestamp_deps.dir/all
 _deps/sdl2-build/CMakeFiles/SDL2-static.dir/all: _deps/sdl2-build/CMakeFiles/SDL2-static_autogen.dir/all
+_deps/sdl2-build/CMakeFiles/SDL2-static.dir/all: _deps/sdl2-build/CMakeFiles/SDL2-static_autogen_timestamp_deps.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/SDL2-static.dir/build.make _deps/sdl2-build/CMakeFiles/SDL2-static.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/sdl2-build/CMakeFiles/SDL2-static.dir/build.make _deps/sdl2-build/CMakeFiles/SDL2-static.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/mnt/c/Users/mari/OneDrive/Desktop/tp final taller/CS2D-grupo-13/build/CMakeFiles" --progress-num=39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72 "Built target SDL2-static"

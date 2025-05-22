@@ -160,7 +160,4 @@ void Resolver::chk_addr_or_fail() const {
                                  "perhaps you are using a *previously moved* "
                                  "resolver (and therefore invalid).");
     }
-
- }
-
-
+}

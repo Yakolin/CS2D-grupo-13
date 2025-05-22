@@ -5,7 +5,7 @@ target_sources(CS2D_server
     server.cpp
     acceptor.cpp
     game.cpp
-
+    
     PUBLIC
     # .h files
     server.h
@@ -14,3 +14,4 @@ target_sources(CS2D_server
     )
 add_subdirectory(interfaces/)
 add_subdirectory(protocol/)
+    

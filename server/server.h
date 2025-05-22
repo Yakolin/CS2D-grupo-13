@@ -5,6 +5,7 @@
 #include <string>
 
 #include "acceptor.h"
+
 #define QUIT "q"  // es la forma en la que paramos el acceptor, esta en el enunciado
 
 

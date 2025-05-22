@@ -17,7 +17,6 @@ public:
     explicit ResolverError(int gai_errno);
 
 
-
     virtual const char* what() const noexcept override;
 
 
@@ -28,7 +27,5 @@ public:
      * Esto garantiza que será llamado.
      * */
     virtual ~ResolverError();
-
 };
 #endif
-

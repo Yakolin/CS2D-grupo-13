@@ -13,7 +13,6 @@
  * */
 class Resolver {
 private:
-
     struct addrinfo* result;
     struct addrinfo* _next;
 
@@ -77,6 +76,5 @@ public:
      * Libera los recursos.
      * */
     ~Resolver();
-
 };
 #endif

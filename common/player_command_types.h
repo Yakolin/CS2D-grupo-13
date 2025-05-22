@@ -11,6 +11,7 @@ using player_id_t = std::uint16_t;
 using weapon_code_t = std::uint8_t;
 using weapon_type_t = std::uint8_t;
 using equip_type_t = std::uint8_t;
+using coordinate_t = uint16_t; 
 
 enum class PlayerCommandType {
     MOVE,
@@ -20,7 +21,7 @@ enum class PlayerCommandType {
     SHOOT,
     PLANT_BOMB,
     DEFUSE_BOMB,
-    DROP,
+    DROP
     EQUIP
 };
 
@@ -43,4 +44,4 @@ enum class EquipType {
     KNIFE
 };
 
-#endif  // !PLAYER_TYPES_H
+#endif  // !PLAYER_COMMAND_TYPES_H

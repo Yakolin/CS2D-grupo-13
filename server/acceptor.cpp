@@ -36,6 +36,7 @@ void Acceptor::reap() {
         if (!client->is_alive()) {
             it = clients.erase(it);
         } else {
+
             ++it;
         }
     }

@@ -9,19 +9,19 @@
 
 #include "Bullet.h"
 #include "Physics.h"
-#include "Weapon.h"
 #include "Specials.h"
+#include "Weapon.h"
 
 class Map {
 private:
-    std::map<player_id_t, Vector2> players; // pid - vector2
+    std::map<player_id_t, Vector2> players;  // pid - vector2
     std::string map_name;
     // std::vector<Wall> walls;
     // Rectangle spawn_CT;
     // Rectangle spawn_TT;
-    std::vector<std::unique_ptr<Weapon>> dropped_weapons;
+    // std::vector<std::unique_ptr<Weapon>> dropped_weapons;
     std::vector<Bullet> bullets_in_air;
-    std::unique_ptr<Bomb> bomb;
+    // std::unique_ptr<Bomb> bomb;
 
     /* Collisions */
     void check_bullets_collisions();
@@ -32,18 +32,15 @@ public:
     Rectangle bomb_A;
     Rectangle bomb_B;
     explicit Map(const std::string& _map_name):
-            map_name(_map_name),
-            bomb_A(1, 1, Vector2(6, 6)),
-            bomb_B(1, 1, Vector2(7, 8)) {}
+            map_name(_map_name), bomb_A(1, 1, Vector2(6, 6)), bomb_B(1, 1, Vector2(7, 8)) {}
 
     void update_map_state();
     void add_bullet(Bullet& bullet) { bullets_in_air.push_back(std::move(bullet)); }
-    void add_weapon(std::unique_ptr<Weapon>& weapon) {
-        dropped_weapons.push_back(std::move(weapon));
-    }
-    void add_bomb(std::unique_ptr<Bomb>& _bomb) { bomb = std::move(_bomb); }
-    void add_player(player_id_t id){ players.insert(std::make_pair(id, Vector2(0,0))); } //Quiza no deba ser el 0 0
+    void add_player(player_id_t id) {
+        players.insert(std::make_pair(id, Vector2(0, 0)));
+    }  // Quiza no deba ser el 0 0
     void move_player(player_id_t id, const Vector2& direction);
     Vector2 player_position(player_id_t id);
 };
+
 #endif  // MAP_H_

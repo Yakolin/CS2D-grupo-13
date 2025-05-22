@@ -19,7 +19,6 @@ class Vista {
 public:
   //  Receiver receiver;
     Controller controller;
-    GameView gameView;
     QApplication app;
     std::vector<std::vector<char>> cargar_mapa(const std::string& archivo) ;
 

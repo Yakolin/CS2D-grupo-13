@@ -33,20 +33,20 @@ LobbyView::LobbyView():
     options_unidad << "Counter terrorists"
                    << "Terrorist";
 
-    img_maps["Desierto"] = "../assets/gfx/tiles/default_inferno.png";
-    img_maps["Pueblito Azteca"] = "../assets/gfx/tiles/default_aztec.png";
-    img_maps["Zona de Entrenamiento"] = "../assets/gfx/tiles/default_dust.png";
+    img_maps["Desierto"] = "assets/gfx/tiles/default_inferno.png";
+    img_maps["Pueblito Azteca"] = "assets/gfx/tiles/default_aztec.png";
+    img_maps["Zona de Entrenamiento"] = "assets/gfx/tiles/default_dust.png";
     //  (Seal force, German GSG-9, UK SAS o French GIGN
-    img_skins_counter_terrorist["Seal Force"] = "../assets/gfx/player/ct3.bmp";
-    img_skins_counter_terrorist["German GSG-9"] = "../assets/gfx/player/ct1.bmp";
-    img_skins_counter_terrorist["UK SAS"] = "../assets/gfx/player/ct4.bmp";
-    img_skins_counter_terrorist["French GIGN"] = "../assets/gfx/player/ct2_bmp";
+    img_skins_counter_terrorist["Seal Force"] = "assets/gfx/player/ct3.bmp";
+    img_skins_counter_terrorist["German GSG-9"] = "assets/gfx/player/ct1.bmp";
+    img_skins_counter_terrorist["UK SAS"] = "assets/gfx/player/ct4.bmp";
+    img_skins_counter_terrorist["French GIGN"] = "assets/gfx/player/ct2_bmp";
 
     // Skins Terrorist
-    img_skins_terrorist["Phoenix"] = "../assets/gfx/player/t4.bmp";  //
-    img_skins_terrorist["L337 Krew"] = "../assets/gfx/player/t1.bmp";
-    img_skins_terrorist["Arctic Avenger"] = "../assets/gfx/player/t3.bmp";  //
-    img_skins_terrorist["Guerrilla"] = "../assets/gfx/player/t2.bmp";       //
+    img_skins_terrorist["Phoenix"] = "assets/gfx/player/t4.bmp";  //
+    img_skins_terrorist["L337 Krew"] = "assets/gfx/player/t1.bmp";
+    img_skins_terrorist["Arctic Avenger"] = "assets/gfx/player/t3.bmp";  //
+    img_skins_terrorist["Guerrilla"] = "assets/gfx/player/t2.bmp";       //
 }
 
 
@@ -76,12 +76,10 @@ void LobbyView::section_maps(const QString& text, const std::map<QString, QStrin
     QHBoxLayout* layoutMap = new QHBoxLayout(tabMap);  // tabs
     layoutMap->addWidget(list_map);
     layoutMap->addWidget(labelMap);
-    QListWidgetItem* selected = nullptr;
 
     connect(list_map, &QListWidget::itemClicked,
-            [this, labelMap, &selected, options](QListWidgetItem* item) {
+            [this, labelMap, options](QListWidgetItem* item) {
                 QString nombre = item->text();
-                selected = item;
                 labelMap->setPixmap(QPixmap(options.at(nombre)));
             });
 }
@@ -109,7 +107,7 @@ void LobbyView::action_create() {
     QHBoxLayout* layoutPlayers = new QHBoxLayout(tabPlayers);  // tabs
     layoutPlayers->addWidget(list_unidad);
     layoutPlayers->addWidget(labelPlayers);
-    //  QListWidgetItem* selected = nullptr;
+      //QListWidgetItem* selected = nullptr;
 }
 
 LobbyView::~LobbyView() {}

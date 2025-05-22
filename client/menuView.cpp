@@ -3,17 +3,18 @@ const int HEIGHT_MENU = 500;
 const int WIDTH_MENU = 500;
 
 MenuView::MenuView():
-        window(new QMainWindow(nullptr)),
+        window(new QMainWindow()),
         img_icono(new QLabel()),
         info_game(),
         clicked_text(),
         botones() {
+
     botones["create game"] = GameMenu::CREATE;
     botones["join game"] = GameMenu::JOIN;
     botones["help"] = GameMenu::HELP;
     botones["exit"] = GameMenu::EXIT;
 
-    QPixmap img_img("../assets/gfx/cs2d.png");
+    QPixmap img_img("assets/gfx/cs2d.png");
     img_icono->setPixmap(img_img);
     window->setStyleSheet("background-color:rgb(92, 95, 95);");
     window->setWindowTitle("Counter Strike");
@@ -57,6 +58,7 @@ void MenuView::action_help() {
 
 
 void MenuView::add_button(QVBoxLayout* layout, const QString& text) {
+    
     QPushButton* button = new QPushButton(text);
     button->setFixedSize(200, 50);
 
@@ -79,7 +81,6 @@ void MenuView::add_button(QVBoxLayout* layout, const QString& text) {
 
 
 GameMenu MenuView::run() {
-    // GameMenu election;
 
     QWidget* central = new QWidget(window);
     window->setCentralWidget(central);

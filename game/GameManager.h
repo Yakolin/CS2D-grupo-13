@@ -37,7 +37,7 @@ public:
     void stop_game();
 
     void move(uint16_t player_id, MoveType move_type) override;
-    void shoot(uint16_t player_id, float mouse_x, float mouse_y) override;
+    void shoot(uint16_t player_id, coordinate_t mouse_x, coordinate_t mouse_y) override;
     void reload(uint16_t player_id) override;
     void plant_bomb(uint16_t player_id) override;
 };

@@ -5,8 +5,8 @@
 #include <string>
 #include <utility>
 
+#include "../common/player_command_types.h"
 #include "../common/game_image.h"
-
 #include "Equipement.h"
 #include "Physics.h"
 

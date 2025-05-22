@@ -6,7 +6,6 @@
 
 #include "player_command_types.h"
 
-using coordinate_t = float;  // AKA 8 - bytes
 using length_players_images_t = std::uint16_t;
 
 class Position {  // Esto puede ser directamente un Vector2

@@ -1,4 +1,11 @@
 cmake_minimum_required(VERSION 3.16.3)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
+
+set(CMAKE_PREFIX_PATH "/usr/lib/x86_64-linux-gnu/cmake/Qt5" ${CMAKE_PREFIX_PATH})
+find_package(Qt5 REQUIRED COMPONENTS Widgets)
+
 
 if (POLICY CMP0135)
     cmake_policy(SET CMP0135 NEW)
@@ -97,6 +104,8 @@ if(CS2D_CLIENT OR CS2D_EDITOR)
     )
 
     FetchContent_MakeAvailable(SDL2 SDL2_image SDL2_mixer SDL2_ttf libSDL2pp)
+    find_package(SDL2_image REQUIRED)
+
 endif()
 
 # Program section
@@ -104,6 +113,9 @@ endif()
 if(CS2D_CLIENT)
     # HEY!! TODO XXX: Change the name of the executable to the one you like!
     add_executable(CS2D_client)
+    # para que me deje compilar las rutas correctamente
+    set_target_properties(CS2D_client PROPERTIES
+    VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}")
 
     # Make them depend on CS2D_common lib
     add_dependencies(CS2D_client CS2D_common SDL2pp::SDL2pp)
@@ -115,13 +127,26 @@ if(CS2D_CLIENT)
     set_project_warnings(CS2D_client ${CS2D_MAKE_WARNINGS_AS_ERRORS} FALSE)
 
     # add libSDL2pp's headers
-    target_include_directories(CS2D_client PRIVATE ${libSDL2pp_SOURCE_DIR})
+    target_include_directories(CS2D_client PRIVATE 
+        ${libSDL2pp_SOURCE_DIR}
+        ${SDL2_image_SOURCE_DIR}/include
+        )
+
 
     # Link the CS2D_common lib target
-    target_link_libraries(CS2D_client CS2D_common SDL2pp::SDL2pp)
+     # Incluir Qt (Widgets)
+    target_link_libraries(CS2D_client
+        CS2D_common
+        SDL2pp::SDL2pp
+        Qt5::Widgets
+        SDL2_image
+    )
+
 endif()
 
+# Commenting out the server, editor, and tests sections
 if(CS2D_SERVER)
+
     # HEY!! TODO XXX: Change the name of the executable to the one you like!
     add_executable(CS2D_server)
 
@@ -141,32 +166,17 @@ if(CS2D_SERVER)
         CS2D_common
         Threads::Threads
     )
+
 endif()
 
 if(CS2D_EDITOR)
-    # HEY!! TODO XXX: Change the name of the executable to the one you like!
-    add_executable(CS2D_editor)
-
-    # Make them depend on CS2D_common lib
-    add_dependencies(CS2D_editor CS2D_common SDL2pp::SDL2pp)
-
-    # Add source files and enable warnings
-    # HEY!! TODO XXX: add more subfolders here
-    add_subdirectory(editor)
-
-    set_project_warnings(CS2D_editor ${CS2D_MAKE_WARNINGS_AS_ERRORS} FALSE)
-
-    # add libSDL2pp's headers
-    target_include_directories(CS2D_editor PRIVATE ${libSDL2pp_SOURCE_DIR})
-
-    # Link the CS2D_common lib target
-    target_link_libraries(CS2D_editor CS2D_common SDL2pp::SDL2pp)
+    #add_executable(CS2D_editor)
+    #add_dependencies(CS2D_editor CS2D_common SDL2pp::SDL2pp)
+    #add_subdirectory(editor)
+    #set_project_warnings(CS2D_editor ${CS2D_MAKE_WARNINGS_AS_ERRORS} FALSE)
+    #target_include_directories(CS2D_editor PRIVATE ${libSDL2pp_SOURCE_DIR})
+    #target_link_libraries(CS2D_editor CS2D_common SDL2pp::SDL2pp)
 endif()
-
-
-# Testing section
-# ---------------
-
 if(CS2D_TESTS)
     # Let's use google test
     include(FetchContent)

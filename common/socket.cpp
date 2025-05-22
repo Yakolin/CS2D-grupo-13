@@ -20,6 +20,7 @@
 #define STREAM_BOTH_CLOSED 0x03
 #define STREAM_BOTH_OPEN 0x00
 
+
 Socket::Socket(const char* hostname, const char* servname) {
     Resolver resolver(hostname, servname, false);
 
@@ -214,7 +215,9 @@ Socket::Socket(Socket&& other) {
      * */
     other.skt = -1;
     other.closed = true;
+
     this->stream_status = other.stream_status;
+
 }
 
 Socket& Socket::operator=(Socket&& other) {
@@ -240,7 +243,9 @@ Socket& Socket::operator=(Socket&& other) {
     this->closed = other.closed;
     other.skt = -1;
     other.closed = true;
+
     this->stream_status = other.stream_status;
+
 
     return *this;
 }
@@ -331,9 +336,13 @@ int Socket::recvall(void* data, unsigned int sz) {
              * y haber notificado el error.
              *
              * Nosotros podemos entonces meramente
-             *  - lanzar excepción si recibimos algunos bytes pero no todos los pedidos
+
+             *  - lanzar excepción si recibimos algunos bytes pero no todos los
+             * pedidos
              *  - propagar la excepción `Socket::recvsome` si esto falló.
-             *  - retornar end of stream (0) si es lo q recibimos de `Socket::recvsome`
+             *  - retornar end of stream (0) si es lo q recibimos de
+             * `Socket::recvsome`
+
              * */
             assert(s == 0);
             if (received)
@@ -453,4 +462,5 @@ void Socket::chk_skt_or_fail() const {
                                  "perhaps you are using a *previously moved* "
                                  "socket (and therefore invalid).");
     }
+
 }

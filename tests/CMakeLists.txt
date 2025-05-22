@@ -2,8 +2,11 @@ target_sources(CS2D_tests
     PRIVATE
     # .cpp files
     test_protocol_server.cpp
+    test_protocol_client.cpp
     ../server/protocol/protocol.cpp
     ../server/protocol/client_action.cpp
+    ../client/model/client_action.cpp
+    ../client/model/protocol.cpp
 
     PUBLIC
     # .h files

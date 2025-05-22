@@ -38,10 +38,10 @@ public:
     void start_game();
     void stop_game();
 
-    void move(uint16_t player_id, MoveType move_type) override;
-    void shoot(uint16_t player_id, coordinate_t mouse_x, coordinate_t mouse_y) override;
-    void reload(uint16_t player_id) override;
-    void plant_bomb(uint16_t player_id) override;
+    void move(player_id_t player_id, MoveType move_type) override;
+    void shoot(player_id_t player_id, coordinate_t mouse_x, coordinate_t mouse_y) override;
+    void reload(player_id_t player_id) override;
+    void plant_bomb(player_id_t player_id) override;
 };
 
 #endif  // GAME_MANAGER_H_

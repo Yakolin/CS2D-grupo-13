@@ -65,7 +65,7 @@ shared_ptr<Player> GameManager::find_player(player_id_t player_id) {
 
 /* InterfaceGameManager */
 
-void GameManager::move(uint16_t player_id, MoveType move_type) {
+void GameManager::move(player_id_t player_id, MoveType move_type) {
     shared_ptr<Player> player = find_player(player_id);
     // Esto no va mas, es necesario que el MAPA los mueva en su contexto
     switch (move_type) {
@@ -86,7 +86,7 @@ void GameManager::move(uint16_t player_id, MoveType move_type) {
     }
 }
 
-void GameManager::shoot(uint16_t player_id, coordinate_t mouse_x, coordinate_t mouse_y) {
+void GameManager::shoot(player_id_t player_id, coordinate_t mouse_x, coordinate_t mouse_y) {
     shared_ptr<Player> player = find_player(player_id);
     // Aca falta laburar el tema este de que en realidad el mapa nos tiene que decir la posicion
     // actual del player en el mapa
@@ -94,19 +94,18 @@ void GameManager::shoot(uint16_t player_id, coordinate_t mouse_x, coordinate_t m
     Vector2 direction = position - Vector2(mouse_x, mouse_y);
     player->fire_weapon_equiped(position, direction);
 }
-void GameManager::reload(uint16_t player_id) {
+void GameManager::reload(player_id_t player_id) {
     /*
         shared_ptr<Player> player = find_player(player_id);
         player.reload_current_weapon();
     */
 }
-void GameManager::plant_bomb(uint16_t player_id) {
-    shared_ptr<Player> terro = find_player(player_id);
-    // Aca igual,  deberia de encargarse el MAPA!
+void GameManager::plant_bomb(player_id_t player_id) {
+    // shared_ptr<Player> terro = find_player(player_id);
+    //  Aca igual,  deberia de encargarse el MAPA!
     Vector2 player_position = map_game.player_position(player_id);
     if (map_game.bomb_A.is_in(player_position) || map_game.bomb_B.is_in(player_position)) {
         std::cout << "El jugador SI esta en una zona de bomba\n";
-        // Esto esta mal igual . terro->plant_bomb();
     } else {
         std::cout << "El jugador NO esta en ninguna zona de bomba\n";
     }

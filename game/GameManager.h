@@ -13,6 +13,8 @@
 #include "GameException.h"
 #include "InterfaceGameManager.h"
 #include "Map.h"
+#include "Player.h"
+#include "PlayersTypes.h"
 using std::map;
 using std::shared_ptr;
 using std::string;
@@ -29,9 +31,9 @@ private:
 
 public:
     explicit GameManager(const string& _game_name, const string& map_name):
-            game_name(_game_name), map_game(map_name, players) {}
+            game_name(_game_name), map_game(map_name) {}
     ~GameManager();
-    void add_player(string&& _nick_name, int id);
+    void add_player(string&& _nick_name, player_id_t id);
     GameImage get_frame();
     void start_game();
     void stop_game();

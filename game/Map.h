@@ -9,13 +9,12 @@
 
 #include "Bullet.h"
 #include "Physics.h"
-#include "Player.h"
-#include "PlayersTypes.h"
 #include "Weapon.h"
+#include "Specials.h"
 
 class Map {
 private:
-    std::map<player_id_t, std::shared_ptr<Player>>& players; // pid - vector2
+    std::map<player_id_t, Vector2> players; // pid - vector2
     std::string map_name;
     // std::vector<Wall> walls;
     // Rectangle spawn_CT;
@@ -32,9 +31,7 @@ private:
 public:
     Rectangle bomb_A;
     Rectangle bomb_B;
-    explicit Map(const std::string& _map_name,
-                 std::map<player_id_t, std::shared_ptr<Player>>& players):
-            players(players),
+    explicit Map(const std::string& _map_name):
             map_name(_map_name),
             bomb_A(1, 1, Vector2(6, 6)),
             bomb_B(1, 1, Vector2(7, 8)) {}
@@ -45,5 +42,6 @@ public:
         dropped_weapons.push_back(std::move(weapon));
     }
     void add_bomb(std::unique_ptr<Bomb>& _bomb) { bomb = std::move(_bomb); }
+    void add_player(player_id_t id){ players.insert(std::make_pair(id, Vector2(0,0))); } //Quiza no deba ser el 0 0
 };
 #endif  // MAP_H_

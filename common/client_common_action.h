@@ -4,7 +4,7 @@
 #include "lobby_types.h"
 #include "player_command_types.h"
 #include <string>
-#include "utility.h"
+#include "game_image.h"
 
 
 /*

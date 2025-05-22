@@ -10,7 +10,9 @@ Acceptor::~Acceptor() {}
 void Acceptor::run() {
     try {
         while (this->should_keep_running()) {
+            std::cout << "esperando conexion..\n";
             Socket peer = socket_acceptor.accept();
+            std::cout << "un client se conecto\n";
             this->client_id_counter++;
             clients.emplace(this->client_id_counter,
                             std::make_unique<ClientHandler>(this->client_id_counter,

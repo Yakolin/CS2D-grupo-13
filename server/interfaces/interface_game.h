@@ -4,7 +4,7 @@
 #include <memory>
 
 #include "../../common/player_command_types.h"
-#include "../../common/utility.h"
+#include "../../common/game_image.h"
 
 #include "interface_player_action.h"
 

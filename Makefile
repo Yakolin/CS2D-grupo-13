@@ -10,11 +10,11 @@ run-tests: compile-debug
 	./build/CS2D_tests
 
 run-client:  compile-debug
-	cd "$(CURDIR)" && ./build/CS2D_client
+	cd "$(CURDIR)" && ./build/CS2D_client 127.0.0.1 7777
 
 run-server: compile-debug
 
-	./build/CS2D_server
+	./build/CS2D_server 7777
 
 
 valgrind-debug: compile-debug

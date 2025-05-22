@@ -11,7 +11,7 @@
 #include "../common/queue.h"
 #include "model/receiver.h"  // necesario para recibir cosas
 #include "../common/socket.h" 
-#include "../common/utility.h"
+#include "../common/game_image.h"
 #include "controller.h"
 #include "gameView.h"
 #include "mapView.h"

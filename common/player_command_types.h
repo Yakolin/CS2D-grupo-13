@@ -21,7 +21,7 @@ enum class PlayerCommandType {
     SHOOT,
     PLANT_BOMB,
     DEFUSE_BOMB,
-    DROP
+    DROP,
     EQUIP
 };
 
@@ -29,7 +29,7 @@ enum class MoveType {
     RIGHT,
     LEFT,
     UP,
-    DOWN,
+    DOWN
 };
 
 enum class WeaponType { PRIMARY, SECONDARY, KNIFE, BOMB };

@@ -1,6 +1,7 @@
 
 #include <iostream>
 
+
 #include "client.h"
 const int ERROR_CLIENT =1;
 int main(int argc, char* argv[]) {
@@ -8,6 +9,7 @@ int main(int argc, char* argv[]) {
         std::cout << "no hay suficientes argumentos, enviar hostname puerto\n";
         return ERROR_CLIENT;
     }
+
     Client client(argc, argv);
     return client.run();
 }

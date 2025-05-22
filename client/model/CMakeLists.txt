@@ -18,7 +18,7 @@ target_sources(CS2D_client
     ../../common/connection_closed_exception.h
     ../../common/game_image.h
     ../../common/lobby_types.h
-    ../../common/player_types.h
+    ../../common/player_command_types.h
     ../../common/thread.h
     ../../common/client_common_action.h
     )

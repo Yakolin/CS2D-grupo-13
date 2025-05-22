@@ -1,28 +1,26 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "../common/player_types.h"
+
+#include <string>
+
+#include "../common/player_command_types.h"
 #include "../common/utility.h"
+#include "interfaces/interface_game.h"
 
-class InterfaceGame {
+
+class GameManager {
+private:
+    const std::string& game_name;
+    player_id_t player_id;
+
 public:
-    virtual ~InterfaceGame() = default;
+    GameManager(const std::string& game_name);
+    ~GameManager();
 
-    virtual void move(player_id_t player_id, MoveType move_type) = 0;
-    virtual void reload(player_id_t player_id) = 0;
-    virtual void shoot(player_id_t player_id, Position position, ammo_t ammo_count) = 0;
-    virtual void plant_bomb(player_id_t player_id) = 0;
-    virtual void defuse_bomb(player_id_t player_id) = 0;
-    virtual void drop(player_id_t player_id) = 0;
-    virtual void buy_ammo(player_id_t player_id, WeaponType weapon_type, ammo_t ammo_count) = 0;
-    virtual void buy_weapon(player_id_t player_id, WeaponCode weapon_code) = 0;
-    virtual void equip(player_id_t player_id, EquipType equip_type) = 0;
-};
-
-class Game: public InterfaceGame {
-public:
-    Game() = default;
-    ~Game() = default;
+    void start_game();
+    void stop_game();
+    void add_player(player_id_t& new_player);
 };
 
 #endif  // !GAME_H

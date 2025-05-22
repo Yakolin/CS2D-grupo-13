@@ -8,7 +8,6 @@
  * */
 class Socket {
 private:
-
     int skt;
     bool closed;
     int stream_status;
@@ -182,6 +181,5 @@ public:
      * automáticamente.
      * */
     ~Socket();
-
 };
 #endif

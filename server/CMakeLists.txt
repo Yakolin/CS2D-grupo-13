@@ -2,13 +2,16 @@ target_sources(CS2D_server
     PRIVATE
     # .cpp files
     main.cpp
-    protocol.cpp
-    client_action.cpp
-
+    server.cpp
+    acceptor.cpp
+    game.cpp
+    
     PUBLIC
     # .h files
+    server.h
+    acceptor.h
     game.h
-    client_action.h
-    protocol.h
-    games_monitor.h
     )
+add_subdirectory(interfaces/)
+add_subdirectory(protocol/)
+    

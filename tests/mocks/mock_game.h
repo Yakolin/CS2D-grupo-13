@@ -3,11 +3,11 @@
 
 #include <gmock/gmock.h>
 
-#include "../../common/player_types.h"
+#include "../../common/player_command_types.h"
 #include "../../common/utility.h"
 #include "../../server/game.h"
 
-class MockGame: public InterfaceGame {
+class MockGame: public InterfaceGameManager {
 public:
     MOCK_METHOD(void, move, (player_id_t player_id, MoveType move_type), (override));
     MOCK_METHOD(void, reload, (player_id_t player_id), (override));
@@ -20,6 +20,7 @@ public:
                 (override));
     MOCK_METHOD(void, buy_weapon, (player_id_t player_id, WeaponCode weapon_code), (override));
     MOCK_METHOD(void, equip, (player_id_t player_id, EquipType equip_type), (override));
+    MOCK_METHOD(void, process, (std::unique_ptr<InterfacePlayerAction> & action), (override));
 };
 
 #endif  // MOCK_GAME_H

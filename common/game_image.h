@@ -5,6 +5,8 @@
 #include <vector>
 
 #include "player_command_types.h"
+#include "utility.h"
+
 
 using length_players_images_t = std::uint16_t;
 

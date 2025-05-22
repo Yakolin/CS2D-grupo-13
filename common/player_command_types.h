@@ -10,6 +10,7 @@ using ammo_t = std::uint16_t;
 using player_id_t = std::uint16_t;
 using weapon_code_t = std::uint8_t;
 using weapon_type_t = std::uint8_t;
+using equip_type_t = std::uint8_t;
 using coordinate_t = uint16_t; 
 
 enum class PlayerCommandType {
@@ -21,6 +22,7 @@ enum class PlayerCommandType {
     PLANT_BOMB,
     DEFUSE_BOMB,
     DROP
+    EQUIP
 };
 
 enum class MoveType {
@@ -33,5 +35,13 @@ enum class MoveType {
 enum class WeaponType { PRIMARY, SECONDARY, KNIFE, BOMB };
 
 enum class WeaponCode { GLOCK, AK47, M3, AWP };
+
+enum class EquipType {
+    ROLL_DOWN,  // podria usar la ruedita
+    ROLL_UP,
+    PRIMARY,  // podria usar los numeros para cambiar armas
+    SECONDARY,
+    KNIFE
+};
 
 #endif  // !PLAYER_COMMAND_TYPES_H

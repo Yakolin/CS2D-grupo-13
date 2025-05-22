@@ -1,0 +1,65 @@
+@startuml
+class Acceptor{
+ Socket acceptor
+}
+abstract class Thread{}
+abstract class Handler{
+ #Socket socket
+ #player_id_t player_id
+}
+class LobbyHandler{}
+class PlayerHandler{}
+class LobbyLoop{
+ shared_ptr<Queue<unique_ptr<InterfaceLobbyAction>>> recv_queue
+}
+class GameLoop{
+ shared_ptr<Queue<unique_ptr<InterfacePlayerAction>>> recv_queue
+}
+class GameMonitor{}
+abstract class Receiver{
+ #player_id_t &player_id
+ #ServerProtocol protocol
+ #bool closed
+}
+abstract class Sender{
+ #ServerProtocol protocol
+ #bool closed
+}
+class LobbySender{}
+class LobbyReceiver{
+  shared_ptr<Queue<unique_ptr<InterfaceLobbyAction>>> &recv_queue
+}
+class PlayerSender{}
+class PlayerReceiver{
+  shared_ptr<Queue<unique_ptr<InterfacePlayerAction>>> recv_queue
+}
+interface InterfaceGameMonitor{
+ void {abstract} create()
+ void {abstract} join()
+ void {abstract} list_games()
+}
+
+
+Thread <|-- Acceptor
+Thread <|-- LobbyLoop
+Thread <|-- GameLoop
+Thread <|-- Receiver
+Thread <|-- Sender
+Receiver <|-- LobbyReceiver
+Receiver <|-- PlayerReceiver
+Sender <|-- LobbySender
+Sender <|-- PlayerSender
+Handler <|-- LobbyHandler
+Handler <|-- PlayerHandler
+Acceptor *-- LobbyLoop
+LobbyLoop *-- GameMonitor
+LobbyLoop "1" --> "n" LobbyHandler
+Acceptor "1" *-- "n" LobbyHandler
+GameMonitor "1" *-- "n" GameLoop
+LobbyHandler *-- LobbyReceiver
+LobbyHandler *-- LobbySender
+PlayerHandler *-- PlayerReceiver
+PlayerHandler *-- PlayerSender
+GameLoop "1" *-- "n" PlayerHandler
+InterfaceGameMonitor <|.. GameMonitor
+@enduml

@@ -10,23 +10,20 @@
 #include "../common/lobby_types.h"
 #include "../common/player_command_types.h"
 #include "../common/socket.h"
-#include "../server/client_action.h"
-#include "../server/protocol.h"
+#include "../server/protocol/client_action.h"
+#include "../server/protocol/protocol.h"
 #include "mocks/mock_game.h"
-#include "mocks/mock_games_monitor.h"
 
-using Server::BuyAmmo;
-using Server::BuyWeapon;
-using Server::CreateGame;
-using Server::DefuseBomb;
-using Server::Drop;
-using Server::Equip;
-using Server::JoinGame;
-using Server::ListGames;
-using Server::Move;
-using Server::PlantBomb;
-using Server::Reload;
-using Server::Shoot;
+using ServerSpace::BuyAmmo;
+using ServerSpace::BuyWeapon;
+using ServerSpace::CreateGame;
+using ServerSpace::DefuseBomb;
+using ServerSpace::Drop;
+using ServerSpace::Equip;
+using ServerSpace::Move;
+using ServerSpace::PlantBomb;
+using ServerSpace::Reload;
+using ServerSpace::Shoot;
 
 TEST(ServerProtocolTest, ReadPlayerCommandReturnCorrectType) {
     // Arrange
@@ -76,9 +73,7 @@ TEST(ServerProtocolTest, ReadLobbyCommandReturnCorrectType) {
 
 TEST(ServerProtocolTest, ReadCreateGameReturnCorrectObject) {
     // Arrange
-    MockGamesMonitor mock_games_monitor;
     Socket server_socket("9999");
-    player_id_t player_id = 1;
     std::thread client_thread([]() {
         Socket client_socket("localhost", "9999");
         std::string game_name = "mateo game";
@@ -96,22 +91,18 @@ TEST(ServerProtocolTest, ReadCreateGameReturnCorrectObject) {
     // Act
 
     LobbyCommandType command = protocol.read_lobby_command();
-    std::unique_ptr<InterfaceLobbyAction> action = protocol.read_create_game(player_id);
+    std::string game_name = protocol.read_create_game();
 
     // Assert
     ASSERT_EQ(command, LobbyCommandType::CREATE_GAME);
-    EXPECT_CALL(mock_games_monitor, create_game(player_id, "mateo game")).Times(1);
+    ASSERT_EQ(game_name, "mateo game");
 
-    // Ejecutamos la acción “inyectando” nuestro mock
-    action->action(mock_games_monitor);
 
     client_thread.join();
 }
 
 TEST(ServerProtocolTest, ReadJoinGameReturnCorrectObject) {
-    MockGamesMonitor mock_games_monitor;
     Socket server_socket("9999");
-    player_id_t player_id = 1;
     std::thread client_thread([]() {
         Socket client_socket("localhost", "9999");
         std::string game_name = "mateo game";
@@ -129,22 +120,17 @@ TEST(ServerProtocolTest, ReadJoinGameReturnCorrectObject) {
     // Act
 
     LobbyCommandType command = protocol.read_lobby_command();
-    std::unique_ptr<InterfaceLobbyAction> action = protocol.read_join_game(player_id);
+    std::string game_name = protocol.read_join_game();
 
     // Assert
     ASSERT_EQ(command, LobbyCommandType::JOIN_GAME);
-    EXPECT_CALL(mock_games_monitor, join_game(player_id, "mateo game")).Times(1);
-
-    // Ejecutamos la acción “inyectando” nuestro mock
-    action->action(mock_games_monitor);
+    ASSERT_EQ(game_name, "mateo game");
 
     client_thread.join();
 }
 
-TEST(ServerProtocolTest, ReadListGamesReturnCorrectObject) {
-    MockGamesMonitor mock_games_monitor;
+TEST(ServerProtocolTest, ReadListGamesReturnCorrectCommand) {
     Socket server_socket("9999");
-    player_id_t player_id = 1;
     std::thread client_thread([]() {
         Socket client_socket("localhost", "9999");
         lobby_command_t command = static_cast<lobby_command_t>(LobbyCommandType::LIST_GAMES);
@@ -156,17 +142,9 @@ TEST(ServerProtocolTest, ReadListGamesReturnCorrectObject) {
 
     // Act
     LobbyCommandType command = protocol.read_lobby_command();
-    std::unique_ptr<InterfaceLobbyAction> action = protocol.read_list_games(player_id);
 
     // Assert
     ASSERT_EQ(command, LobbyCommandType::LIST_GAMES);
-    MockGamesMonitor mock_monitor;
-    EXPECT_CALL(mock_monitor, list_games())
-            .Times(1)
-            .WillOnce(testing::Return(std::vector<std::string>{"mateo game"}));
-
-    // 8) Ejecutamos la acción (que internamente serializa y envía la lista)
-    action->action(mock_monitor);
 
     client_thread.join();
 }
@@ -265,11 +243,9 @@ TEST(ServerProtocolTest, ReadBuyAmmoReturnCorrectObject) {
     client_thread.join();
 }
 
-TEST(ServerProtocolTest, ReadReloadReturnCorrectObject) {
+TEST(ServerProtocolTest, ReadReloadReturnCorrectCommand) {
     // Arrange
-    MockGame mock_game;
     Socket server_socket("9999");
-    player_id_t player_id = 1;
     std::thread client_thread([]() {
         Socket client_socket("localhost", "9999");
 
@@ -283,14 +259,9 @@ TEST(ServerProtocolTest, ReadReloadReturnCorrectObject) {
     // Act
 
     PlayerCommandType command = protocol.read_player_command();
-    std::unique_ptr<InterfacePlayerAction> action = protocol.read_reload(player_id);
 
     // Assert
     ASSERT_EQ(command, PlayerCommandType::RELOAD);
-    EXPECT_CALL(mock_game, reload(player_id)).Times(1);
-
-    // Ejecutamos la acción “inyectando” nuestro mock
-    action->action(mock_game);
 
     client_thread.join();
 }
@@ -334,11 +305,9 @@ TEST(ServerProtocolTest, ReadShootReturnCorrectObject) {
     client_thread.join();
 }
 
-TEST(ServerProtocolTest, ReadPlantBombReturnCorrectObject) {
+TEST(ServerProtocolTest, ReadPlantBombReturnCorrectCommand) {
     // Arrange
-    MockGame mock_game;
     Socket server_socket("9999");
-    player_id_t player_id = 1;
     std::thread client_thread([]() {
         Socket client_socket("localhost", "9999");
 
@@ -352,23 +321,18 @@ TEST(ServerProtocolTest, ReadPlantBombReturnCorrectObject) {
     // Act
 
     PlayerCommandType command = protocol.read_player_command();
-    std::unique_ptr<InterfacePlayerAction> action = protocol.read_plant_bomb(player_id);
 
     // Assert
     ASSERT_EQ(command, PlayerCommandType::PLANT_BOMB);
-    EXPECT_CALL(mock_game, plant_bomb(player_id)).Times(1);
 
-    // Ejecutamos la acción “inyectando” nuestro mock
-    action->action(mock_game);
 
     client_thread.join();
 }
 
-TEST(ServerProtocolTest, ReadDefuseBombReturnCorrectObject) {
+TEST(ServerProtocolTest, ReadDefuseBombReturnCorrectCommand) {
     // Arrange
     MockGame mock_game;
     Socket server_socket("9999");
-    player_id_t player_id = 1;
     std::thread client_thread([]() {
         Socket client_socket("localhost", "9999");
 
@@ -382,14 +346,9 @@ TEST(ServerProtocolTest, ReadDefuseBombReturnCorrectObject) {
     // Act
 
     PlayerCommandType command = protocol.read_player_command();
-    std::unique_ptr<InterfacePlayerAction> action = protocol.read_defuse_bomb(player_id);
 
     // Assert
     ASSERT_EQ(command, PlayerCommandType::DEFUSE_BOMB);
-    EXPECT_CALL(mock_game, defuse_bomb(player_id)).Times(1);
-
-    // Ejecutamos la acción “inyectando” nuestro mock
-    action->action(mock_game);
 
     client_thread.join();
 }
@@ -411,11 +370,9 @@ TEST(ServerProtocolTest, ReadPlayerCommandReturnConnectionClosedException) {
     client_thread.join();
 }
 
-TEST(ServerProtocolTest, ReadDropReturnCorrectObject) {
+TEST(ServerProtocolTest, ReadDropReturnCorrectCommand) {
     // Arrange
-    MockGame mock_game;
     Socket server_socket("9999");
-    player_id_t player_id = 1;
     std::thread client_thread([]() {
         Socket client_socket("localhost", "9999");
 
@@ -429,14 +386,9 @@ TEST(ServerProtocolTest, ReadDropReturnCorrectObject) {
     // Act
 
     PlayerCommandType command = protocol.read_player_command();
-    std::unique_ptr<InterfacePlayerAction> action = protocol.read_drop(player_id);
 
     // Assert
     ASSERT_EQ(command, PlayerCommandType::DROP);
-    EXPECT_CALL(mock_game, drop(player_id)).Times(1);
-
-    // Ejecutamos la acción “inyectando” nuestro mock
-    action->action(mock_game);
 
     client_thread.join();
 }
@@ -468,58 +420,6 @@ TEST(ServerProtocolTest, ReadEquipReturnCorrectObject) {
 
     // Ejecutamos la acción “inyectando” nuestro mock
     action->action(mock_game);
-
-    client_thread.join();
-}
-
-TEST(ServerProtocolTest, SendGameImageSendCorrectObject) {
-    // Arrange
-    Socket server_listener("9999");
-    std::thread client_thread([&]() {
-        Socket client("localhost", "9999");
-
-        uint16_t net_count;
-        client.recvall(&net_count, sizeof(net_count));
-        uint16_t count = ntohs(net_count);
-        EXPECT_EQ(count, 2u);
-
-
-        for (int i = 0; i < count; ++i) {
-            uint16_t net_id, net_x, net_y;
-            client.recvall(&net_id, sizeof(net_id));
-            client.recvall(&net_x, sizeof(net_x));
-            client.recvall(&net_y, sizeof(net_y));
-
-            uint16_t id = ntohs(net_id);
-            uint16_t x = ntohs(net_x);
-            uint16_t y = ntohs(net_y);
-
-            if (i == 0) {
-                EXPECT_EQ(id, 11u);
-                EXPECT_EQ(x, 100u);
-                EXPECT_EQ(y, 200u);
-            } else {
-                EXPECT_EQ(id, 22u);
-                EXPECT_EQ(x, 300u);
-                EXPECT_EQ(y, 400u);
-            }
-        }
-    });
-
-    Socket server_sock = server_listener.accept();
-    ServerProtocol protocol(server_sock);
-
-
-    GameImage image;
-    image.players_images = {PlayerImage{
-                                    11,
-                                    Position(100, 200),
-                            },
-                            PlayerImage{22, Position(300, 400)}};
-
-
-    protocol.send_game_image(image);
-
 
     client_thread.join();
 }

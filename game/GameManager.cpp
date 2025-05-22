@@ -25,8 +25,8 @@ GameImage GameManager::generate_game_image() {
     // Aca posiblemente deba de tambien pedirle al mapa que me de su imagen
     for (const auto& par: players) {
         shared_ptr<Player> player = par.second;
-        // Falta conseguir las posiciones del player en el mapa
-        // game_image.players_images.push_back(std::move(player->get_player_image()));
+        Vector2 player_position = map_game.player_position(par.first);
+        game_image.players_images.push_back(std::move(player->get_player_image(player_position)));
     }
     return game_image;
 }
@@ -52,11 +52,8 @@ GameImage GameManager::get_frame() {
 
     return generate_game_image();
 }
-
-// void process_action(unique_ptr<PlayerAction> action) { action.action(this); }
-
-
 GameManager::~GameManager() { players.clear(); }
+
 shared_ptr<Player> GameManager::find_player(player_id_t player_id) {
     auto it = players.find(player_id);
     if (it != players.end())
@@ -72,13 +69,16 @@ void GameManager::move(uint16_t player_id, MoveType move_type) {
     // Esto no va mas, es necesario que el MAPA los mueva en su contexto
     switch (move_type) {
         case MoveType::UP:
-            //Falta cada accion desde el mapa aca
+            map_game.move_player(player_id, Vector2(0,1));
             break;
         case MoveType::DOWN:
+            map_game.move_player(player_id, Vector2(0,-1));
             break;
         case MoveType::RIGHT:
+            map_game.move_player(player_id, Vector2(1,0));
             break;
         case MoveType::LEFT:
+            map_game.move_player(player_id, Vector2(-1,0));
             break;
         default:
             throw GameException("MoveType corrupted");
@@ -101,12 +101,11 @@ void GameManager::reload(uint16_t player_id) {
 void GameManager::plant_bomb(uint16_t player_id) {
     shared_ptr<Player> terro = find_player(player_id);
     //Aca igual,  deberia de encargarse el MAPA!
-    /*
-    if (map_game.bomb_A.is_in() || map_game.bomb_B.is_in()) {
+    Vector2 player_position = map_game.player_position(player_id);
+    if (map_game.bomb_A.is_in(player_position) || map_game.bomb_B.is_in(player_position)) {
         std::cout << "El jugador SI esta en una zona de bomba\n";
         // Esto esta mal igual . terro->plant_bomb();
     } else {
         std::cout << "El jugador NO esta en ninguna zona de bomba\n";
     }
-    */
 }

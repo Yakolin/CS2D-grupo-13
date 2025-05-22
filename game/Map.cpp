@@ -31,3 +31,16 @@ void Map::update_map_state() {
     update_bullets_in_air();
     check_collisions();
 }
+void Map::move_player(player_id_t id, const Vector2& direction){
+    auto it = players.find(id);
+    if (it != players.end()){
+        it->second += direction;
+    }
+    //Exception?
+}
+Vector2 Map::player_position(player_id_t id) {
+    auto it = players.find(id);
+    if (it != players.end()) return it->second;
+    return Vector2(0,0);
+    //Exception?
+}

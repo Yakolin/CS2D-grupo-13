@@ -43,5 +43,7 @@ public:
     }
     void add_bomb(std::unique_ptr<Bomb>& _bomb) { bomb = std::move(_bomb); }
     void add_player(player_id_t id){ players.insert(std::make_pair(id, Vector2(0,0))); } //Quiza no deba ser el 0 0
+    void move_player(player_id_t id, const Vector2& direction);
+    Vector2 player_position(player_id_t id);
 };
 #endif  // MAP_H_

@@ -2,17 +2,18 @@
 const int HEIGHT_MENU = 500;
 const int WIDTH_MENU = 500;
 
-MenuView::MenuView() : window(new QMainWindow(nullptr)), 
-    img_icono(new QLabel()), 
-    info_game(),
-    clicked_text(),
-    botones() {
+MenuView::MenuView():
+        window(new QMainWindow(nullptr)),
+        img_icono(new QLabel()),
+        info_game(),
+        clicked_text(),
+        botones() {
     botones["create game"] = GameMenu::CREATE;
     botones["join game"] = GameMenu::JOIN;
     botones["help"] = GameMenu::HELP;
     botones["exit"] = GameMenu::EXIT;
-    
-    QPixmap img_img("../assets/gfx/cs2d.png");
+
+    QPixmap img_img("assets/gfx/cs2d.png");
     img_icono->setPixmap(img_img);
     window->setStyleSheet("background-color:rgb(92, 95, 95);");
     window->setWindowTitle("Counter Strike");
@@ -20,7 +21,7 @@ MenuView::MenuView() : window(new QMainWindow(nullptr)),
 }
 
 void MenuView::action_create() {
-    LobbyView *lobby = new LobbyView();
+    LobbyView* lobby = new LobbyView();
     lobby->action_create();
     lobby->show();
 }
@@ -40,11 +41,11 @@ void MenuView::action_exit() {
 void MenuView::action_help() {
 
     QString ayuda = "<b>create game</b><br>"
-                "para crear una nueva partida<br>"
-                "<b>join game</b><br>"
-                "para unirse a una partida existente<br>"
-                "<b>exit</b><br>"
-                "para salir";
+                    "para crear una nueva partida<br>"
+                    "<b>join game</b><br>"
+                    "para unirse a una partida existente<br>"
+                    "<b>exit</b><br>"
+                    "para salir";
     QMessageBox msgBox;
     msgBox.setWindowTitle("Help");
     msgBox.setText(ayuda);
@@ -52,24 +53,25 @@ void MenuView::action_help() {
     msgBox.setStyleSheet("background-color:rgb(90, 94, 94); color: black");
 
     msgBox.exec();
-
 }
 
 
-void MenuView::add_button(QVBoxLayout *layout, const QString &text) {
-    QPushButton *button = new QPushButton(text);
+void MenuView::add_button(QVBoxLayout* layout, const QString& text) {
+    QPushButton* button = new QPushButton(text);
     button->setFixedSize(200, 50);
 
-    QObject::connect(button, &QPushButton::clicked, [this,button]() {
-
+    QObject::connect(button, &QPushButton::clicked, [this, button]() {
         clicked_text = button->text();
         // Podés hacer una acción asociada, por ejemplo:
-        //qDebug() << "Botón clickeado:" << clicked_text;
-        if (clicked_text == "create game") action_create();
-        else if (clicked_text == "join game") action_join();
-        else if (clicked_text == "Help") action_help();
-        else if (clicked_text == "exit game") action_exit();
-    
+        // qDebug() << "Botón clickeado:" << clicked_text;
+        if (clicked_text == "create game")
+            action_create();
+        else if (clicked_text == "join game")
+            action_join();
+        else if (clicked_text == "Help")
+            action_help();
+        else if (clicked_text == "exit game")
+            action_exit();
     });
 
     layout->addWidget(button, 0, Qt::AlignHCenter);
@@ -77,11 +79,11 @@ void MenuView::add_button(QVBoxLayout *layout, const QString &text) {
 
 
 GameMenu MenuView::run() {
-    //GameMenu election;
+    // GameMenu election;
 
-    QWidget *central = new QWidget(window);
+    QWidget* central = new QWidget(window);
     window->setCentralWidget(central);
-    QVBoxLayout *layout = new QVBoxLayout();
+    QVBoxLayout* layout = new QVBoxLayout();
 
     layout->addWidget(img_icono, 0, Qt::AlignCenter);
     add_button(layout, "create game");
@@ -98,7 +100,7 @@ GameMenu MenuView::run() {
     }
     return GameMenu::NONE;
 }
-MenuView::~MenuView(){}
+MenuView::~MenuView() {}
 
 /*void GameView::config_windows(QWidget *ventana, const QString &text, int width, int height) {
     ventana->setWindowTitle(text);

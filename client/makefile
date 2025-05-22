@@ -2,7 +2,9 @@
 CXX = g++
 
 # Archivos fuente .cpp
-SRC = $(wildcard *.cpp)
+SRC = $(shell find . -name '*.cpp')
+
+
 
 # Archivo header que usa Q_OBJECT
 HDR = lobbyView.h

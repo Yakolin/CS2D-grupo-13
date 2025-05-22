@@ -1,30 +1,37 @@
 #ifndef VISTA_H
 #define VISTA_H
+#include <QApplication>
+#include <fstream>
+#include <iostream>
+#include <sstream>
+#include <stdexcept>
+#include <string>
+#include <vector>
+#include "../common/game_image.h"
+#include "../common/queue.h"
+#include "model/receiver.h"  // necesario para recibir cosas
+#include "../common/socket.h" 
+#include "../common/utility.h"
 #include "controller.h"
 #include "gameView.h"
 #include "mapView.h"
 #include "menuView.h"
-#include "model/receiver.h" // necesario para recibir cosas
 #include "scoreBoard.h"
-#include <vector>
-#include <iostream>
-#include <fstream>
-#include <string>       
-#include <sstream>       
-#include <stdexcept>  
-#include <QApplication>
 
 class Vista {
 
 public:
+    int& argc;
+    char** argv;
+    Socket skt; // enviar referencia al controller
+    Queue<GameImage> deque;
+    Receiver receiver;
     Controller controller;
-    GameView gameView;
-    QApplication app;
-    std::vector<std::vector<char>> cargar_mapa(const std::string& archivo) ;
 
-    explicit Vista(int& argc,  char *argv[]);
+
+    explicit Vista(int& argc, char* argv[]);
     void run();
     ~Vista();
 };
 
-#endif // VISTA_H
+#endif  // VISTA_H

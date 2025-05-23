@@ -14,3 +14,8 @@ bool Rectangle::is_in(const Vector2& position) {
     bool y_in = point_min.y <= position.y && position.y <= point_max.y;
     return x_in && y_in;
 }
+Vector2 Rectangle::get_random_position() {
+    uint16_t x = point_min.x + rand() % (point_max.x - point_min.x);
+    uint16_t y = point_min.y + rand() % (point_max.y - point_min.y);
+    return Vector2(x, y);
+}

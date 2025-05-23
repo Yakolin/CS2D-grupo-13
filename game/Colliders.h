@@ -31,6 +31,7 @@ public:
             point_min(std::move(point)),
             point_max(std::move(Vector2(point.x + width, point.y + height))) {}
     bool is_in(const Vector2& position) override;
+    Vector2 get_random_position();
     virtual ~Rectangle() override = default;
 };
 

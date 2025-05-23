@@ -9,6 +9,7 @@ target_sources(CS2D_server
     receiver.cpp
     sender.cpp
     client_handler.cpp
+    game.cpp
 
     PUBLIC
     # .h files
@@ -20,4 +21,5 @@ target_sources(CS2D_server
     receiver.h
     sender.h
     client_handler.h
+    game.h
     )

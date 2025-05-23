@@ -13,11 +13,11 @@ private:
     player_id_t& player_id;
     ServerProtocol& protocol;
     PlayerCommandType& command;
-    std::unique_ptr<IActionToPlayer>& action;
+    std::unique_ptr<ClientAction>& action;
 
 public:
     ParsePlayerAction(player_id_t& player_id, ServerProtocol& protocol, PlayerCommandType& command,
-                      std::unique_ptr<IActionToPlayer>& action);
+                      std::unique_ptr<ClientAction>& action);
     ~ParsePlayerAction();
     void run();
     void operator()() { this->run(); }

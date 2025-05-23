@@ -66,11 +66,11 @@ public:
 
 class ShootCommon {
 protected:
-    const Position position;
-    const ammo_t ammo_count;
+    const coordinate_t mouse_x;
+    const coordinate_t mouse_y;
 
 public:
-    ShootCommon(Position position, ammo_t ammo_count): position(position), ammo_count(ammo_count) {}
+    ShootCommon(coordinate_t mouse_x, coordinate_t mouse_y): mouse_x(mouse_x), mouse_y(mouse_y) {}
     virtual ~ShootCommon() = default;
 };
 

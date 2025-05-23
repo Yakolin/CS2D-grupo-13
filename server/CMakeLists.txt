@@ -12,4 +12,3 @@ target_sources(CS2D_server
     )
 add_subdirectory(interfaces/)
 add_subdirectory(protocol/)
-add_subdirectory(game/)

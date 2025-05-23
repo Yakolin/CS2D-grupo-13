@@ -129,7 +129,15 @@ void ClientProtocol::read_player_image(GameImage& game_image) {
         this->read_two_byte_data(x);
         coordinate_t y;
         this->read_two_byte_data(y);
-        game_image.players_images.emplace_back(PlayerImage(player_id, Position(x, y)));
+
+        health_t health;
+        this->read_byte_data(health);
+
+        points_t points;
+        this->read_byte_data(points);
+
+        game_image.players_images.emplace_back(
+                PlayerImage(player_id, Position(x, y), health, points));
     }
 }
 

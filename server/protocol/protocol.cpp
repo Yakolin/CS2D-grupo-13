@@ -84,11 +84,9 @@ std::unique_ptr<BuyAmmo> ServerProtocol::read_buy_ammo(player_id_t player_id) {
 std::unique_ptr<Shoot> ServerProtocol::read_shoot(player_id_t player_id) {
     coordinate_t x;
     coordinate_t y;
-    ammo_t ammo_count;
     this->read_two_byte_data(x);
     this->read_two_byte_data(y);
-    this->read_two_byte_data(ammo_count);
-    return std::make_unique<Shoot>(player_id, Position(x, y), ammo_count);
+    return std::make_unique<Shoot>(player_id, x, y);
 }
 
 std::unique_ptr<Equip> ServerProtocol::read_equip(player_id_t player_id) {
@@ -146,6 +144,12 @@ void ServerProtocol::send_player_image(GameImage& game_image) {
 
         coordinate_t y = player_image.position.y;
         this->send_two_byte_data(y);
+
+        health_t health = player_image.health;
+        this->send_byte_data(health);
+
+        points_t points = player_image.points;
+        this->send_byte_data(points);
     }
 }
 

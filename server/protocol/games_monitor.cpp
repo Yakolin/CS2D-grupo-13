@@ -3,10 +3,9 @@
 GamesMonitor::GamesMonitor() {}
 GamesMonitor::~GamesMonitor() {}
 
-bool GamesMonitor::create_game(
-        player_id_t player_id, const std::string& game_name,
-        std::shared_ptr<Queue<std::unique_ptr<IActionToPlayer>>>& recv_queue,
-        std::shared_ptr<Queue<GameImage>>& send_queue) {
+bool GamesMonitor::create_game(player_id_t player_id, const std::string& game_name,
+                               std::shared_ptr<Queue<std::unique_ptr<ClientAction>>>& recv_queue,
+                               std::shared_ptr<Queue<GameImage>>& send_queue) {
     std::lock_guard<std::mutex> lock(mutex);
     if (games.find(game_name) == games.end()) {
         std::unique_ptr<GameLoop> game_loop = std::make_unique<GameLoop>(game_name);
@@ -20,10 +19,9 @@ bool GamesMonitor::create_game(
     return false;
 }
 
-bool GamesMonitor::join_game(
-        player_id_t player_id, const std::string& game_name,
-        std::shared_ptr<Queue<std::unique_ptr<IActionToPlayer>>>& recv_queue,
-        std::shared_ptr<Queue<GameImage>>& send_queue) {
+bool GamesMonitor::join_game(player_id_t player_id, const std::string& game_name,
+                             std::shared_ptr<Queue<std::unique_ptr<ClientAction>>>& recv_queue,
+                             std::shared_ptr<Queue<GameImage>>& send_queue) {
     std::lock_guard<std::mutex> lock(mutex);
     auto it = games.find(game_name);
     if (it != games.end()) {

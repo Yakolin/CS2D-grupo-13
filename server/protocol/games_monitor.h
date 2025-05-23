@@ -21,11 +21,11 @@ public:
     ~GamesMonitor();
 
     bool create_game(player_id_t player_id, const std::string& game_name,
-                     std::shared_ptr<Queue<std::unique_ptr<IActionToPlayer>>>& recv_queue,
+                     std::shared_ptr<Queue<std::unique_ptr<ClientAction>>>& recv_queue,
                      std::shared_ptr<Queue<GameImage>>& send_queue) override;
 
     bool join_game(player_id_t player_id, const std::string& game_name,
-                   std::shared_ptr<Queue<std::unique_ptr<IActionToPlayer>>>& recv_queue,
+                   std::shared_ptr<Queue<std::unique_ptr<ClientAction>>>& recv_queue,
                    std::shared_ptr<Queue<GameImage>>& send_queue) override;
 
     std::vector<std::string> list_games() override;

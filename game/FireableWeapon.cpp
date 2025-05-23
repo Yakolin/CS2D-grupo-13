@@ -1,9 +1,13 @@
 #include "FireableWeapon.h"
 
-void Glock::set_on_action(player_id_t id, Vector2& position, Vector2& direction) {
+void Glock::set_on_action(std::map<player_id_t, std::unique_ptr<Collider>>& damage_colliders,
+                          player_id_t id, Vector2& position, Vector2& direction) {
     if (current_bullets > 0) {
-        int bullets_fired = std::min(current_bullets, fire_rate);
+        uint8_t bullets_fired = std::min(current_bullets, fire_rate);
         current_bullets -= bullets_fired;
+        std::cout << "Disparaste " << bullets_fired
+                  << " balas. Balas restantes: " << current_bullets << std::endl;
+        damage_colliders.insert(std::make_pair(id, std::make_unique<Line>(position, direction, 2)));
     } else {
         std::cout << "No pudiste disparar balas \n";
     }

@@ -9,7 +9,7 @@
 
 class Bullet {
 public:
-    bullet_id_t id;
+    player_id_t id;
     Vector2 position;
     Vector2 direction;
     float velocity;
@@ -20,7 +20,7 @@ public:
         float mid_bullet = 0.5;
         float fast_bullet = 0.75;
     };
-    Bullet(bullet_id_t id, Vector2 position, Vector2 direction, float velocity, uint8_t damage):
+    Bullet(player_id_t id, Vector2 position, Vector2 direction, float velocity, uint8_t damage):
             id(id),
             position(std::move(position)),
             direction(std::move(direction)),

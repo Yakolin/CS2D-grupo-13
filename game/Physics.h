@@ -21,5 +21,6 @@ public:
     bool operator==(const Vector2& other) const;
     coordinate_t get_norm() const;  // Falta implementar
     Vector2& normalize();
+    float distance(const Vector2& other);
 };
 #endif  //  GAME_PHYSICS_H_

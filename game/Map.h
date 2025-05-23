@@ -25,13 +25,8 @@ private:
     void check_collisions();
 
 public:
-    Rectangle bomb_A;
-    Rectangle bomb_B;
     explicit Map(const std::string& _map_name):
-            map_name(_map_name),
-            collision_manager(players_positions),
-            bomb_A(1, 1, Vector2(1, 1)),
-            bomb_B(1, 1, Vector2(3202, 3202)) {}
+            map_name(_map_name), collision_manager(players_positions) {}
     void update_map_state();
     void move_player(player_id_t id, const Vector2& direction);
     Vector2 get_position(player_id_t player_id);

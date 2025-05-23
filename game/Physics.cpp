@@ -29,3 +29,9 @@ Vector2& Vector2::normalize() {
 bool Vector2::operator==(const Vector2& other) const {
     return this->x == other.x && this->y == other.y;
 }
+
+float Vector2::distance(const Vector2& other) {
+    float dx = x - other.x;
+    float dy = y - other.y;
+    return std::sqrt(dx * dx + dy * dy);
+}

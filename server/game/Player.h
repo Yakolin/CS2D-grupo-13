@@ -5,8 +5,9 @@
 #include <string>
 #include <utility>
 
-#include "../common/player_command_types.h"
-#include "../common/game_image.h"
+#include "../../common/game_image.h"
+#include "../../common/player_command_types.h"
+
 #include "Equipement.h"
 #include "Physics.h"
 
@@ -20,7 +21,7 @@ public:
             id(id),
             health(100),
             points(0) {}
-
+    virtual ~Player() {}
     void move(Vector2&& new_position);
     void fire_weapon_equiped(Map& map, const Vector2& mouse_pointer);
     void get_damage(uint8_t damage);

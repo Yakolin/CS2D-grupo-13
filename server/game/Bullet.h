@@ -3,7 +3,7 @@
 
 #include <utility>
 
-#include "../common/player_command_types.h"
+#include "../../common/player_command_types.h"
 
 #include "Physics.h"
 

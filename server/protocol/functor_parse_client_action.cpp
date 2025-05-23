@@ -7,7 +7,7 @@ using ServerSpace::Reload;
 
 ParsePlayerAction::ParsePlayerAction(player_id_t& player_id, ServerProtocol& protocol,
                                      PlayerCommandType& command,
-                                     std::unique_ptr<InterfacePlayerAction>& action):
+                                     std::unique_ptr<IActionToPlayer>& action):
         player_id(player_id), protocol(protocol), command(command), action(action) {}
 
 ParsePlayerAction::~ParsePlayerAction() {}

@@ -5,7 +5,7 @@ GamesMonitor::~GamesMonitor() {}
 
 bool GamesMonitor::create_game(
         player_id_t player_id, const std::string& game_name,
-        std::shared_ptr<Queue<std::unique_ptr<InterfacePlayerAction>>>& recv_queue,
+        std::shared_ptr<Queue<std::unique_ptr<IActionToPlayer>>>& recv_queue,
         std::shared_ptr<Queue<GameImage>>& send_queue) {
     std::lock_guard<std::mutex> lock(mutex);
     if (games.find(game_name) == games.end()) {
@@ -22,7 +22,7 @@ bool GamesMonitor::create_game(
 
 bool GamesMonitor::join_game(
         player_id_t player_id, const std::string& game_name,
-        std::shared_ptr<Queue<std::unique_ptr<InterfacePlayerAction>>>& recv_queue,
+        std::shared_ptr<Queue<std::unique_ptr<IActionToPlayer>>>& recv_queue,
         std::shared_ptr<Queue<GameImage>>& send_queue) {
     std::lock_guard<std::mutex> lock(mutex);
     auto it = games.find(game_name);

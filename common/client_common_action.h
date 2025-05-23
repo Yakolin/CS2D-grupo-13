@@ -1,10 +1,11 @@
 #ifndef CLIENT_COMMON_ACTION_H
 #define CLIENT_COMMON_ACTION_H
 
+#include <string>
+
+#include "game_image.h"
 #include "lobby_types.h"
 #include "player_command_types.h"
-#include <string>
-#include "utility.h"
 
 
 /*

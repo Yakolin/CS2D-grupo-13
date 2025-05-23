@@ -5,7 +5,6 @@
 
 #include "../../common/player_command_types.h"
 #include "../../common/utility.h"
-#include "../../server/game.h"
 
 class MockGame: public InterfaceGameManager {
 public:
@@ -20,7 +19,7 @@ public:
                 (override));
     MOCK_METHOD(void, buy_weapon, (player_id_t player_id, WeaponCode weapon_code), (override));
     MOCK_METHOD(void, equip, (player_id_t player_id, EquipType equip_type), (override));
-    MOCK_METHOD(void, process, (std::unique_ptr<InterfacePlayerAction> & action), (override));
+    MOCK_METHOD(void, process, (std::unique_ptr<IActionToPlayer> & action), (override));
 };
 
 #endif  // MOCK_GAME_H

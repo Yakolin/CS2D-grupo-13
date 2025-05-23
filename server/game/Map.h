@@ -10,12 +10,12 @@
 #include "Bullet.h"
 #include "Physics.h"
 #include "Player.h"
-#include "PlayersTypes.h"
+#include "PlayerType.h"
 #include "Weapon.h"
 
 class Map {
 private:
-    std::map<player_id_t, std::shared_ptr<Player>>& players; // pid - vector2
+    std::map<player_id_t, std::shared_ptr<Player>>& players;  // pid - vector2
     std::string map_name;
     // std::vector<Wall> walls;
     // Rectangle spawn_CT;

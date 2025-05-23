@@ -1,5 +1,5 @@
-#ifndef PLAYER_TYPES_H
-#define PLAYER_TYPES_H
+#ifndef PLAYER_TYPE_H
+#define PLAYER_TYPE_H
 
 #include <string>
 #include <utility>
@@ -26,4 +26,4 @@ public:
     void plant_bomb(Map& map);
 };
 
-#endif  // !PLAYER_TYPES_H
+#endif  // !PLAYER_TYPE_H

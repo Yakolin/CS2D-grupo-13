@@ -58,7 +58,7 @@ void Receiver::run_game() {
     try {
         while (!this->closed && this->should_keep_running()) {
             PlayerCommandType command = this->protocol.read_player_command();
-            std::unique_ptr<InterfacePlayerAction> action;
+            std::unique_ptr<IActionToPlayer> action;
             ParsePlayerAction parser(this->player_id, this->protocol, command, action);
             parser();
             if (!this->closed) {

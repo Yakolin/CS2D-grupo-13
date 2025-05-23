@@ -1,4 +1,4 @@
-#include "PlayersTypes.h"
+#include "PlayerType.h"
 
 /* COUNTER_TERRORIST */
 PlayerImage CounterTerrorist::get_player_image() {

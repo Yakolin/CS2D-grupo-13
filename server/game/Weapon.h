@@ -1,6 +1,6 @@
 #ifndef WEAPON_H_
 #define WEAPON_H_
-#include "../common/player_command_types.h"
+#include "../../common/player_command_types.h"
 
 #include "Physics.h"
 class Map;

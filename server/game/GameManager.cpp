@@ -66,7 +66,7 @@ shared_ptr<Player> GameManager::find_player(player_id_t player_id) {
 
 /* InterfaceGameManager */
 
-void GameManager::move(uint16_t player_id, MoveType move_type) {
+void GameManager::move(player_id_t player_id, MoveType move_type) {
     shared_ptr<Player> player = find_player(player_id);
     switch (move_type) {
         case MoveType::UP:
@@ -86,7 +86,7 @@ void GameManager::move(uint16_t player_id, MoveType move_type) {
     }
 }
 
-void GameManager::shoot(uint16_t player_id, coordinate_t mouse_x, coordinate_t mouse_y) {
+void GameManager::shoot(player_id_t player_id, coordinate_t mouse_x, coordinate_t mouse_y) {
     shared_ptr<Player> player = find_player(player_id);
     player->fire_weapon_equiped(map_game, Vector2(mouse_x, mouse_y));
 }
@@ -96,7 +96,7 @@ void GameManager::reload(uint16_t player_id) {
         player.reload_current_weapon();
     */
 }
-void GameManager::plant_bomb(uint16_t player_id) {
+void GameManager::plant_bomb(player_id_t player_id) {
     shared_ptr<Player> terro = find_player(player_id);
     if (map_game.bomb_A.is_in(terro->position) || map_game.bomb_B.is_in(terro->position)) {
         std::cout << "El jugador SI esta en una zona de bomba\n";

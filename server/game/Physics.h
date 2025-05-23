@@ -2,7 +2,8 @@
 #define GAME_PHYSICS_H_
 #include <cmath>
 #include <utility>
-#include "../common/player_command_types.h"
+
+#include "../../common/player_command_types.h"
 //  "Copyright 2025 Yaco Santamarina"
 class Vector2 {
 public:
@@ -18,7 +19,7 @@ public:
     Vector2& operator=(Vector2&& other) = default;
     Vector2& operator=(const Vector2& other) = default;
     bool operator==(const Vector2& other) const;
-    coordinate_t get_norm() const; //Falta implementar
+    coordinate_t get_norm() const;  // Falta implementar
     Vector2& normalize();
 };
 

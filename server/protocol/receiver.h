@@ -21,7 +21,7 @@ class Receiver: public Thread {
 private:
     player_id_t& player_id;
     ServerProtocol protocol;
-    std::shared_ptr<Queue<std::unique_ptr<InterfacePlayerAction>>> recv_queue;
+    std::shared_ptr<Queue<std::unique_ptr<IActionToPlayer>>> recv_queue;
     std::shared_ptr<Queue<GameImage>>& send_queue;
     GamesMonitor& games_monitor;
     bool closed;

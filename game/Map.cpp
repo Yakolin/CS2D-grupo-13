@@ -23,13 +23,7 @@ void Map::check_collisions() {
     // Check collision walls
     // Check dropped weapons
 }
-void Map::update_bullets_in_air() {
-    for (auto& bullet: bullets_in_air) bullet.move();
-}
-void Map::update_map_state() {
-    update_bullets_in_air();
-    check_collisions();
-}
+void Map::update_map_state() { check_collisions(); }
 void Map::move_player(player_id_t id, const Vector2& direction) {
     // Chekear con el colliderManager si esta posicion es valida
     auto it = players_positions.find(id);

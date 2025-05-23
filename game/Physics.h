@@ -2,6 +2,7 @@
 #define GAME_PHYSICS_H_
 #include <cmath>
 #include <utility>
+
 #include "../common/player_command_types.h"
 //  "Copyright 2025 Yaco Santamarina"
 class Vector2 {
@@ -18,19 +19,7 @@ public:
     Vector2& operator=(Vector2&& other) = default;
     Vector2& operator=(const Vector2& other) = default;
     bool operator==(const Vector2& other) const;
-    coordinate_t get_norm() const; //Falta implementar
+    coordinate_t get_norm() const;  // Falta implementar
     Vector2& normalize();
-};
-
-class Rectangle {
-private:
-    Vector2 point_min;
-    Vector2 point_max;
-
-public:
-    Rectangle(coordinate_t width, coordinate_t height, const Vector2& point):
-            point_min(std::move(point)),
-            point_max(std::move(Vector2(point.x + width, point.y + height))) {}
-    bool is_in(const Vector2& position);
 };
 #endif  //  GAME_PHYSICS_H_

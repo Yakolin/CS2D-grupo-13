@@ -7,8 +7,8 @@
 #include <utility>
 #include <vector>
 
+#include "Colliders.h"
 #include "CollisionManager.h"
-#include "Physics.h"
 #include "Specials.h"
 #include "Weapon.h"
 class Map {
@@ -23,15 +23,13 @@ private:
     /* Collisions */
     void check_bullets_collisions();
     void check_collisions();
-    void update_bullets_in_air();
 
 public:
-    std::vector<Bullet> bullets_in_air;  // No deberia ser publico posiblemente
     Rectangle bomb_A;
     Rectangle bomb_B;
     explicit Map(const std::string& _map_name):
             map_name(_map_name),
-            collision_manager(players_positions, bullets_in_air),
+            collision_manager(players_positions),
             bomb_A(1, 1, Vector2(1, 1)),
             bomb_B(1, 1, Vector2(3202, 3202)) {}
     void update_map_state();

@@ -87,7 +87,7 @@ void GameManager::shoot(player_id_t player_id, coordinate_t mouse_x, coordinate_
     Vector2 position = map_game.get_position(player_id);
     Vector2 direction = position - Vector2(mouse_x, mouse_y);
     // direction.normalize(); Aca entra el tema de como calcular el movimiento de las balas
-    player->fire_weapon_equiped(map_game.bullets_in_air, position, direction);
+    player->fire_weapon_equiped(map_game, position, direction);
 }
 void GameManager::reload(player_id_t player_id) {
     /*

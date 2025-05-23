@@ -15,13 +15,14 @@ shared_ptr<Player> GameManager::find_player(player_id_t player_id) {
         throw GameException("Player not found in the map structure");
 }
 void GameManager::add_player(string&& _nick_name, player_id_t id) {
-    bool is_ct = ((players.size() + 1) % 2 == 0) ? false : true;
+    Team team = ((players.size() + 1) % 2 == 0) ? Team::CT : Team::TT;
     shared_ptr<Player> player;
-    if (is_ct)
+    if (team == Team::CT)
         player = std::make_shared<CounterTerrorist>(id, std::move(_nick_name));
     else
         player = std::make_shared<Terrorist>(id, std::move(_nick_name));
     players.insert(make_pair(id, player));
+    players_team.insert(std::make_pair(id, team));
     map_game.add_player(id);
 }
 
@@ -42,6 +43,7 @@ void GameManager::start_game() {
         std::cout << "El juego no tiene suficientes jugadores\n";
         return;
     }
+    map_game.respawn_players(players_team);
     game_started = true;
 }
 void GameManager::stop_game() {}
@@ -55,11 +57,9 @@ GameImage GameManager::get_frame() {
         3. Manejar esas colisiones como balas chocando, etc
     */
     map_game.update_map_state();
-
     return generate_game_image();
 }
 GameManager::~GameManager() { players.clear(); }
-
 
 /* InterfaceGameManager */
 

@@ -7,32 +7,34 @@
 #include <utility>
 #include <vector>
 
-#include "Colliders.h"
+#include "../common/game_image.h"
+
 #include "CollisionManager.h"
 #include "Specials.h"
 #include "Weapon.h"
+
 class Map {
 private:
     std::string map_name;
-    // std::vector<Wall> walls;
-    // Rectangle spawn_CT;
-    // Rectangle spawn_TT;
+    Rectangle spawn_CT;
+    Rectangle spawn_TT;
     std::map<player_id_t, Vector2> players_positions;
-    std::vector<Weapon> dropped_weapons;
     CollisionManager collision_manager;
-    /* Collisions */
-    void check_bullets_collisions();
-    void check_collisions();
 
 public:
+    std::map<player_id_t, std::unique_ptr<Collider>> damage_colliders;
     explicit Map(const std::string& _map_name):
-            map_name(_map_name), collision_manager(players_positions) {}
+            map_name(_map_name),
+            spawn_CT(5, 5, Vector2(3100, 3100)),
+            spawn_TT(5, 5, Vector2(3120, 3120)),
+            collision_manager(players_positions, damage_colliders) {}
     void update_map_state();
     void move_player(player_id_t id, const Vector2& direction);
     Vector2 get_position(player_id_t player_id);
     void add_player(player_id_t id) {
         players_positions.insert(std::make_pair(id, Vector2(3200, 3200)));
     }
+    void respawn_players(const std::map<player_id_t, Team>& players_teams);
 };
 
 #endif  // MAP_H_

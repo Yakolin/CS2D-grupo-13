@@ -6,7 +6,6 @@
 #include <string>
 #include <utility>
 
-#include "../common/game_image.h"
 #include "../common/player_command_types.h"
 #include "../server/player_action.h"
 
@@ -20,9 +19,11 @@ using std::shared_ptr;
 using std::string;
 
 class GameManager: public InterfaceGameManager {
+
 private:
     string game_name;
     map<player_id_t, shared_ptr<Player>> players;
+    map<player_id_t, Team> players_team;
     int round = 0;
     Map map_game;
     bool game_started = false;

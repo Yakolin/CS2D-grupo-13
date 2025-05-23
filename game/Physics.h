@@ -9,6 +9,7 @@ class Vector2 {
 public:
     coordinate_t x;
     coordinate_t y;
+    Vector2(): x(0), y(0) {}
     Vector2(coordinate_t _x, coordinate_t _y): x(_x), y(_y) {}
     Vector2(Vector2&& other) = default;
     Vector2(const Vector2&) = default;

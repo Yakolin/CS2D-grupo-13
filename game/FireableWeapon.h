@@ -5,10 +5,10 @@
 //  "Copyright 2025 Yaco Santamarina"
 #include <algorithm>
 #include <iostream>
+#include <utility>
+#include <vector>
 
-#include "Bullet.h"
 #include "Weapon.h"
-
 class FireableWeapon: public Weapon {
 
 protected:
@@ -27,18 +27,21 @@ public:
             current_bullets(current_b),
             magazine(current_b) {}
     // void reload_basic();
-    virtual void set_on_action(player_id_t id, Vector2& position, Vector2& direction) override = 0;
+    virtual void set_on_action(std::vector<Bullet>& bullets, player_id_t id, Vector2& position,
+                               Vector2& direction) override = 0;
     virtual void reload() override;
 };
 class Ak47: public FireableWeapon {
 public:
     Ak47(): FireableWeapon(WeaponType::PRIMARY, 25, 3, 90, 30) {}
-    virtual void set_on_action(player_id_t id, Vector2& position, Vector2& direction) override;
+    virtual void set_on_action(std::vector<Bullet>& bullets, player_id_t id, Vector2& position,
+                               Vector2& direction) override;
 };
 class Glock: public FireableWeapon {
 public:
     Glock(): FireableWeapon(WeaponType::SECONDARY, 15, 1, 120, 30) {}
-    virtual void set_on_action(player_id_t id, Vector2& position, Vector2& direction) override;
+    virtual void set_on_action(std::vector<Bullet>& bullets, player_id_t id, Vector2& position,
+                               Vector2& direction) override;
 };
 
 #endif  // FIREABLE_WEAPON_H_

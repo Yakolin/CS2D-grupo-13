@@ -1,4 +1,3 @@
-
 #include "GameManager.h"
 
 #include <iostream>
@@ -8,6 +7,13 @@
 using std::shared_ptr;
 using std::string;
 
+shared_ptr<Player> GameManager::find_player(player_id_t player_id) {
+    auto it = players.find(player_id);
+    if (it != players.end())
+        return it->second;
+    else
+        throw GameException("Player not found in the map structure");
+}
 void GameManager::add_player(string&& _nick_name, player_id_t id) {
     bool is_ct = ((players.size() + 1) % 2 == 0) ? false : true;
     shared_ptr<Player> player;
@@ -16,8 +22,7 @@ void GameManager::add_player(string&& _nick_name, player_id_t id) {
     else
         player = std::make_shared<Terrorist>(id, std::move(_nick_name));
     players.insert(make_pair(id, player));
-    map_game.add_player(
-            id);  // Aca quizas deberia de decirle QUE tipo es, de alguna forma debe saberlo el map
+    map_game.add_player(id);
 }
 
 // Decidi que esto se cree cada vez que se pide para evitar datos copiados
@@ -26,7 +31,7 @@ GameImage GameManager::generate_game_image() {
     // Aca posiblemente deba de tambien pedirle al mapa que me de su imagen
     for (const auto& par: players) {
         shared_ptr<Player> player = par.second;
-        Vector2 player_position = map_game.player_position(par.first);
+        Vector2 player_position = map_game.get_position(par.first);
         game_image.players_images.push_back(std::move(player->get_player_image(player_position)));
     }
     return game_image;
@@ -55,19 +60,10 @@ GameImage GameManager::get_frame() {
 }
 GameManager::~GameManager() { players.clear(); }
 
-shared_ptr<Player> GameManager::find_player(player_id_t player_id) {
-    auto it = players.find(player_id);
-    if (it != players.end())
-        return it->second;
-    else
-        throw GameException("Player not found in the map structure");
-}
 
 /* InterfaceGameManager */
 
 void GameManager::move(player_id_t player_id, MoveType move_type) {
-    shared_ptr<Player> player = find_player(player_id);
-    // Esto no va mas, es necesario que el MAPA los mueva en su contexto
     switch (move_type) {
         case MoveType::UP:
             map_game.move_player(player_id, Vector2(0, 1));
@@ -88,11 +84,10 @@ void GameManager::move(player_id_t player_id, MoveType move_type) {
 
 void GameManager::shoot(player_id_t player_id, coordinate_t mouse_x, coordinate_t mouse_y) {
     shared_ptr<Player> player = find_player(player_id);
-    // Aca falta laburar el tema este de que en realidad el mapa nos tiene que decir la posicion
-    // actual del player en el mapa
-    Vector2 position = map_game.player_position(player_id);
+    Vector2 position = map_game.get_position(player_id);
     Vector2 direction = position - Vector2(mouse_x, mouse_y);
-    player->fire_weapon_equiped(position, direction);
+    // direction.normalize(); Aca entra el tema de como calcular el movimiento de las balas
+    player->fire_weapon_equiped(map_game.bullets_in_air, position, direction);
 }
 void GameManager::reload(player_id_t player_id) {
     /*
@@ -102,8 +97,7 @@ void GameManager::reload(player_id_t player_id) {
 }
 void GameManager::plant_bomb(player_id_t player_id) {
     // shared_ptr<Player> terro = find_player(player_id);
-    //  Aca igual,  deberia de encargarse el MAPA!
-    Vector2 player_position = map_game.player_position(player_id);
+    Vector2 player_position = map_game.get_position(player_id);
     if (map_game.bomb_A.is_in(player_position) || map_game.bomb_B.is_in(player_position)) {
         std::cout << "El jugador SI esta en una zona de bomba\n";
     } else {

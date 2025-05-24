@@ -1,7 +1,7 @@
 #ifndef INTERFACE_PLAYER_H
 #define INTERFACE_PLAYER_H
 
-#include "../../common/game_image.h"
+#include "../../common/player_command_types.h"
 
 class IPlayerAction {
 public:

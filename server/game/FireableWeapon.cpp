@@ -1,7 +1,7 @@
 #include "FireableWeapon.h"
 
 void Glock::set_on_action(std::map<player_id_t, std::unique_ptr<Collider>>& damage_colliders,
-                          player_id_t id, Vector2& position, Vector2& direction) {
+                          player_id_t id, Position& position, Position& direction) {
     if (current_bullets > 0) {
         uint8_t bullets_fired = std::min(current_bullets, fire_rate);
         current_bullets -= bullets_fired;

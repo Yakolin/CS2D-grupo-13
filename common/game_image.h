@@ -3,11 +3,7 @@
 
 #include <cstdint>
 #include <vector>
-
-#include "game_image.h"
 #include "player_command_types.h"
-//#include "game_image.h"
-
 using length_players_images_t = std::uint16_t;
 enum class Team { CT, TT };
 class Position {  // Esto puede ser directamente un Vector2
@@ -15,11 +11,17 @@ public:
     coordinate_t x;
     coordinate_t y;
 
-    bool operator==(const Position& other) const { return x == other.x && y == other.y; }
+    bool operator==(const Position& other) const {
+        return x == other.x && y == other.y;
+    }
 
     Position(coordinate_t x, coordinate_t y): x(x), y(y) {}
     ~Position() = default;
 };
+
+using coordinate_t = std::uint16_t;
+using health_t = std::uint8_t;
+using points_t = std::uint8_t;
 
 class PlayerImage {
 public:

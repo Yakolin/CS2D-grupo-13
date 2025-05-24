@@ -7,40 +7,24 @@
 
 class Position {
 public:
+public:
     coordinate_t x;
     coordinate_t y;
-
-    Position(coordinate_t x, coordinate_t y): x(x), y(y) {}
+    Position(): x(0), y(0) {}
+    Position(coordinate_t _x, coordinate_t _y): x(_x), y(_y) {}
+    Position(Position&& other) = default;
     Position(const Position&) = default;
-    ~Position() = default;
-
-    Position& operator=(const Position& other) = default;
+    Position operator+(const Position& other) const;
+    Position& operator+=(const Position& other);
+    Position operator-(const Position& other) const;
+    Position& operator-=(const Position& other);
     Position& operator=(Position&& other) = default;
-
-    bool operator==(const Position& other) const { return x == other.x && y == other.y; }
-    bool operator!=(const Position& other) const { return !(*this == other); }
-
-    Position operator+(const Position& other) const {
-        return Position(this->x + other.x, this->y + other.y);
-    }
-
-    Position& operator+=(const Position& other) {
-        this->x += other.x;
-        this->y += other.y;
-        return *this;
-    }
-
-    Position operator-(const Position& other) const {
-        return Position(this->x - other.x, this->y - other.y);
-    }
-
-    Position& operator-=(const Position& other) {
-        this->x -= other.x;
-        this->y -= other.y;
-        return *this;
-    }
-
-    coordinate_t get_norm() const { return std::sqrt(x * x + y * y); }
+    Position& operator=(const Position& other) = default;
+    bool operator==(const Position& other) const;
+    coordinate_t get_norm() const;  // Falta implementar
+    Position& normalize();
+    float distance(const Position& other);
 };
+
 
 #endif  // !UTILITY_H

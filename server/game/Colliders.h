@@ -4,34 +4,34 @@
 #define COLLIDERS_H_
 #include <utility>
 
-#include "Physics.h"
+#include "../../common/utility.h"
 class Collider {
 public:
-    virtual bool is_in(const Vector2& position) = 0;
+    virtual bool is_in(const Position& position) = 0;
     virtual ~Collider() = 0;
 };
 class Line: public Collider {
-    Vector2 start;
-    Vector2 end;
+    Position start;
+    Position end;
     uint8_t width;
 
 public:
-    Line(Vector2 start, Vector2 end, uint8_t width): start(start), end(end), width(width) {}
+    Line(Position start, Position end, uint8_t width): start(start), end(end), width(width) {}
     virtual ~Line() override = default;
-    virtual bool is_in(const Vector2& position) override;
+    virtual bool is_in(const Position& position) override;
 };
 
 class Rectangle: public Collider {
 private:
-    Vector2 point_min;
-    Vector2 point_max;
+    Position point_min;
+    Position point_max;
 
 public:
-    Rectangle(coordinate_t width, coordinate_t height, const Vector2& point):
+    Rectangle(coordinate_t width, coordinate_t height, const Position& point):
             point_min(std::move(point)),
-            point_max(std::move(Vector2(point.x + width, point.y + height))) {}
-    bool is_in(const Vector2& position) override;
-    Vector2 get_random_position();
+            point_max(std::move(Position(point.x + width, point.y + height))) {}
+    virtual bool is_in(const Position& position) override;
+    Position get_random_position();
     virtual ~Rectangle() override = default;
 };
 

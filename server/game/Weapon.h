@@ -1,28 +1,19 @@
 #ifndef WEAPON_H_
 #define WEAPON_H_
-<<<<<<< HEAD:game/Weapon.h
+
 #include <map>
 #include <memory>
 
-#include "../common/player_command_types.h"
-        == == ==
-        =
 #include "../../common/player_command_types.h"
-                >>>>>>> origin / Server - Branch:
-        server /
-        game /
-        Weapon.h
-
 #include "Colliders.h"
-#include "Physics.h"
-        class Weapon {
+class Weapon {
 public:
     WeaponType type;
     virtual ~Weapon() = default;
     virtual void set_on_action(
             std::map<player_id_t, std::unique_ptr<Collider>>& damage_colliders, player_id_t id,
-            Vector2& position,
-            Vector2& direction) = 0;  // Recordatorio de este = 0. Significa que es puro
+            Position& position,
+            Position& direction) = 0;  // Recordatorio de este = 0. Significa que es puro
     virtual void reload() = 0;
 
 protected:

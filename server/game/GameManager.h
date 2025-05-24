@@ -6,24 +6,14 @@
 #include <string>
 #include <utility>
 
-<<<<<<< HEAD:game/GameManager.h
-#include "../common/player_command_types.h"
-#include "../server/player_action.h"
-        == == ==
-        =
 #include "../../common/game_image.h"
 #include "../../common/player_command_types.h"
 #include "../interfaces/interface_game.h"
 #include "../protocol/client_action.h"
-                >>>>>>> origin / Server - Branch:
-        server /
-        game /
-        GameManager.h
-
 #include "GameException.h"
 #include "Map.h"
 #include "Player.h"
-#include "PlayersTypes.h"
+#include "PlayerType.h"
         using std::map;
 using std::shared_ptr;
 using std::string;
@@ -52,10 +42,12 @@ public:
     void start_game();
     void stop_game();
 
-    void move(player_id_t player_id, MoveType move_type) override;
-    void shoot(player_id_t player_id, coordinate_t mouse_x, coordinate_t mouse_y) override;
-    void reload(player_id_t player_id) override;
-    void plant_bomb(player_id_t player_id) override;
+    /*
+        void move(player_id_t player_id, MoveType move_type) override;
+        void shoot(player_id_t player_id, coordinate_t mouse_x, coordinate_t mouse_y) override;
+        void reload(player_id_t player_id) override;
+        void plant_bomb(player_id_t player_id) override;
+    */
 };
 
 #endif  // GAME_MANAGER_H_

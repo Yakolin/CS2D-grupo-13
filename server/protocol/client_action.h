@@ -7,7 +7,6 @@
 #include "../../common/game_image.h"
 #include "../../common/lobby_types.h"
 #include "../../common/player_command_types.h"
-#include "../game.h"
 #include "../interfaces/interface_player_action.h"
 
 class ClientAction {

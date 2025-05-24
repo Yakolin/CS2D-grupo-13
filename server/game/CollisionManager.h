@@ -6,14 +6,14 @@
 #include <vector>
 
 #include "Colliders.h"
-#include "Physics.h"
+#include "../../common/utility.h"
 
 class CollisionManager {
-    std::map<player_id_t, Vector2>& players;
+    std::map<player_id_t, Position>& players;
     std::map<player_id_t, std::unique_ptr<Collider>>& damage_colliders;
     // std::vector<Dropped> dropped
 public:
-    explicit CollisionManager(std::map<player_id_t, Vector2>& players_map,
+    explicit CollisionManager(std::map<player_id_t, Position>& players_map,
                               std::map<player_id_t, std::unique_ptr<Collider>>& damage_colliders):
             players(players_map), damage_colliders(damage_colliders) {}
 };

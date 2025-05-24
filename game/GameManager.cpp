@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "../../common/game_image.h"
+#include "../common/game_image.h"
 
 using std::shared_ptr;
 using std::string;
@@ -88,20 +88,20 @@ GameImage GameManager::get_frame() {
 GameManager::~GameManager() { players.clear(); }
 
 /* InterfaceGameManager */
-/*
+
 void GameManager::move(player_id_t player_id, MoveType move_type) {
     switch (move_type) {
         case MoveType::UP:
-            map_game.move_player(player_id, Vector2(0, 1));
+            map_game.move_player(player_id, Position(0, 1));
             break;
         case MoveType::DOWN:
-            map_game.move_player(player_id, Vector2(0, -1));
+            map_game.move_player(player_id, Position(0, -1));
             break;
         case MoveType::RIGHT:
-            map_game.move_player(player_id, Vector2(1, 0));
+            map_game.move_player(player_id, Position(1, 0));
             break;
         case MoveType::LEFT:
-            map_game.move_player(player_id, Vector2(-1, 0));
+            map_game.move_player(player_id, Position(-1, 0));
             break;
         default:
             throw GameException("MoveType corrupted");
@@ -110,19 +110,25 @@ void GameManager::move(player_id_t player_id, MoveType move_type) {
 
 void GameManager::shoot(player_id_t player_id, coordinate_t mouse_x, coordinate_t mouse_y) {
     shared_ptr<Player> player = find_player(player_id);
-    Vector2 position = map_game.get_position(player_id);
-    Vector2 direction = position - Vector2(mouse_x, mouse_y);
+    Position position = map_game.get_position(player_id);
+    Position direction = position - Position(mouse_x, mouse_y);
     // direction.normalize(); Aca entra el tema de como calcular el movimiento de las balas
     player->fire_weapon_equiped(map_game, position, direction);
 }
 void GameManager::reload(player_id_t player_id) {
+    /*
         shared_ptr<Player> player = find_player(player_id);
         player.reload_current_weapon();
+    */
 }
 void GameManager::plant_bomb(player_id_t player_id) {
-    shared_ptr<Player> terro = find_player(player_id);
-    Vector2 player_position = map_game.get_position(player_id);
+    /* shared_ptr<Player> terro = find_player(player_id);
+    Position player_position = map_game.get_position(player_id);
 
     if (map_game.bomb_A.is_in(player_position) || map_game.bomb_B.is_in(player_position)) {
+        std::cout << "El jugador SI esta en una zona de bomba\n";
+    } else {
+        std::cout << "El jugador NO esta en ninguna zona de bomba\n";
+    }
+    */
 }
-*/

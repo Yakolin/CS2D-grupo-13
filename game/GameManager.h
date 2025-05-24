@@ -29,6 +29,8 @@ private:
     bool game_started = false;
     shared_ptr<Player> find_player(player_id_t player_id);
     GameImage generate_game_image();
+    void reset_players();
+    bool check_round_finished();
 
 public:
     explicit GameManager(const string& _game_name, const string& map_name):

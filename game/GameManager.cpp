@@ -25,7 +25,12 @@ void GameManager::add_player(string&& _nick_name, player_id_t id) {
     players_team.insert(std::make_pair(id, team));
     map_game.add_player(id);
 }
-
+void GameManager::reset_players() {
+    for (const auto& player: players) {
+        player.second->reset();
+    }
+    map_game.respawn_players(players_team);
+}
 // Decidi que esto se cree cada vez que se pide para evitar datos copiados
 GameImage GameManager::generate_game_image() {
     GameImage game_image;
@@ -43,11 +48,11 @@ void GameManager::start_game() {
         std::cout << "El juego no tiene suficientes jugadores\n";
         return;
     }
-    map_game.respawn_players(players_team);
+    reset_players();
     game_started = true;
 }
 void GameManager::stop_game() {}
-
+bool GameManager::check_round_finished() { return false; }
 GameImage GameManager::get_frame() {
     if (!game_started)
         throw GameException("The game isn´t start yet to take a frame");
@@ -56,6 +61,11 @@ GameImage GameManager::get_frame() {
         2. Chekear colisiones que no sean propias del jugador (colisiones de bala por ejemplo)
         3. Manejar esas colisiones como balas chocando, etc
     */
+    if (check_round_finished()) {
+        round++;
+        std::cout << "Ronda terminada\n";
+        reset_players();
+    }
     map_game.update_map_state();
     return generate_game_image();
 }

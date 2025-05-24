@@ -7,20 +7,26 @@
 
 #include "../../common/game_image.h"
 #include "../../common/player_command_types.h"
+#include "../../common/utility.h"
+#include "../interfaces/interface_player_action.h"
+
 #include "Equipement.h"
 #include "Map.h"
-#include "../../common/utility.h"
 
-class Player : public IPlayerAction {
+class Player: public IPlayerAction {
 public:
     Player(player_id_t id): id(id), health(100), points(0) {}
     virtual ~Player() = default;
     void reset();
     void get_damage(uint8_t damage);
     virtual PlayerImage get_player_image(Position& position) = 0;
-    void move(const MoveType& move_type) override;
-    virtual void reload() override;
-    
+    virtual void move(const MoveType& move_type) override {
+        if (move_type == MoveType::UP) {
+            std::cout << "Arriba";
+        }
+    }
+    virtual void reload() override {}
+
     /*
     virtual void shoot(const coordinate_t& mouse_x, const coordinate_t& mouse_y) override;
     virtual void plant_bomb() override;

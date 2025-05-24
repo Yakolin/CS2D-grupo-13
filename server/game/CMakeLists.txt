@@ -7,7 +7,6 @@ target_sources(CS2D_server
     FireableWeapon.cpp
     GameManager.cpp
     Map.cpp
-    Physics.cpp
     Player.cpp
     PlayerType.cpp
 
@@ -21,7 +20,6 @@ target_sources(CS2D_server
     GameManager.h
     Map.h
     MapTypes.h
-    Physics.h
     Player.h
     PlayerType.h
     Specials.h

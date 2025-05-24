@@ -6,7 +6,7 @@ target_sources(CS2D_common
     resolver.cpp
     resolvererror.cpp
     socket.cpp
-
+    utility.cpp
     PUBLIC
     # .h files
     client_common_action.h

@@ -29,7 +29,7 @@ bool Position::operator==(const Position& other) const {
     return this->x == other.x && this->y == other.y;
 }
 
-float Position::distance(const Position& other) {
+float Position::distance(const Position& other) const {
     float dx = x - other.x;
     float dy = y - other.y;
     return std::sqrt(dx * dx + dy * dy);

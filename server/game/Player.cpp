@@ -1,10 +1,10 @@
 #include "Player.h"
 
 #include <memory>
-    //  "Copyright 2025 Yaco Santamarina"
-    // void Player::move(Position&& direction) { position += direction; }
+//  "Copyright 2025 Yaco Santamarina"
+// void Player::move(Position&& direction) { position += direction; }
 void Player::get_damage(uint8_t damage) { health -= damage; }
-    // void Player::change_weapon_equiped() {}
+// void Player::change_weapon_equiped() {}
 
 void Player::reset() {
     if (health == 0) {
@@ -14,4 +14,3 @@ void Player::reset() {
     }
     health = 100;
 }
-

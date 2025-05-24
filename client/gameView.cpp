@@ -3,8 +3,7 @@
 
 #define MAPA_AZTECA "assets/pueblito_azteca.txt"
 
-GameView::GameView(Socket&& skt ,Controller& controller, const int& width_reseiver,
-                   const int& height_reseiver):
+GameView::GameView(Socket&& skt, const int& width_reseiver, const int& height_reseiver):
         socket(std::move(skt)),
         send_queue(std::make_shared<Queue<std::unique_ptr<InterfaceClientAction>>>(MAX_QUEUE_SIZE)),
         recv_queue(std::make_shared<Queue<GameImage>>(MAX_QUEUE_SIZE)),

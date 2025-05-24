@@ -7,7 +7,6 @@
 
 class Position {
 public:
-public:
     coordinate_t x;
     coordinate_t y;
     Position(): x(0), y(0) {}
@@ -23,7 +22,7 @@ public:
     bool operator==(const Position& other) const;
     coordinate_t get_norm() const;  // Falta implementar
     Position& normalize();
-    float distance(const Position& other);
+    float distance(const Position& other) const;
 };
 
 

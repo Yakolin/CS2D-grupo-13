@@ -2,23 +2,24 @@
 #define GAME_VIEW_H
 #include <fstream>
 #include <map>
-#include <string>
-#include <vector>
 #include <memory>
+#include <string>
+#include <utility>
+#include <vector>
 
 #include <SDL2/SDL.h>
+
+#include "../common/game_image.h"
+#include "../common/queue.h"
+#include "model/client_action.h"
+#include "model/receiver.h"
+
 #include "controller.h"
 #include "manageTexture.h"
 #include "mapView.h"
 #include "playerView.h"
 #include "renderizable.h"
 #include "tipos.h"
-#include "model/receiver.h"
-#include "../common/queue.h"
-#include "../common/game_image.h"
-#include "model/client_action.h"
-
-#include <utility>
 
 #define MAX_QUEUE_SIZE 100000
 
@@ -30,7 +31,7 @@ private:
     std::shared_ptr<Queue<GameImage>> recv_queue;
     Receiver receiver;
     Sender sender;
-    Controller& controller;
+    Controller controller;
     std::map<char, std::string> leyenda;
     std::map<char, Objet> ids;
     SDL_Window* ventana;
@@ -53,8 +54,7 @@ private:
 
 
 public:
-    explicit GameView(Socket&& skt ,Controller& controller, const int& width_reseiver,
-                   const int& height_reseiver);
+    explicit GameView(Socket&& skt, const int& width_reseiver, const int& height_reseiver);
 
     /*
     pre:  width y height deben ser mayores que 0.

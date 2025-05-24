@@ -7,12 +7,13 @@
 #include <stdexcept>
 #include <string>
 #include <vector>
+
 #include "../common/game_image.h"
 #include "../common/queue.h"
-#include "model/receiver.h"  // necesario para recibir cosas
-#include "../common/socket.h" 
-#include "../common/game_image.h"
+#include "../common/socket.h"
 #include "model/protocol.h"
+#include "model/receiver.h"  // necesario para recibir cosas
+
 #include "controller.h"
 #include "gameView.h"
 #include "mapView.h"
@@ -22,13 +23,9 @@
 class Vista {
 
 public:
-
     int& argc;
     char** argv;
-    Socket skt; // enviar referencia al controller
-    Queue<GameImage> deque;
-    Receiver receiver;
-    Controller controller;
+    Socket skt;  // enviar referencia al controller
     ClientProtocol protocolo;
 
 

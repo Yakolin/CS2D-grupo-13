@@ -1,6 +1,7 @@
 #include "sender.h"
 
-Sender::Sender(Socket& socket, std::shared_ptr<Queue<std::unique_ptr<InterfaceClientAction>>>& send_queue):
+Sender::Sender(Socket& socket,
+               std::shared_ptr<Queue<std::unique_ptr<InterfaceClientAction>>>& send_queue):
         closed(false), protocol(socket), send_queue(send_queue) {}
 
 Sender::~Sender() {}
@@ -9,7 +10,7 @@ void Sender::run() {
 
     try {
         while (!closed && this->should_keep_running()) {
-            std::unique_ptr<InterfaceClientAction> client_action = this->send_queue.pop();
+            std::unique_ptr<InterfaceClientAction> client_action = this->send_queue->pop();
             client_action->action(this->protocol);
         }
     } catch (ClosedQueue& e) {

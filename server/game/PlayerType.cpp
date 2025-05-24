@@ -1,7 +1,7 @@
 #include "PlayerType.h"
 
 /* COUNTER_TERRORIST */
-PlayerImage CounterTerrorist::get_player_image(Vector2& position) {
+PlayerImage CounterTerrorist::get_player_image(Position& position) {
     return PlayerImage(id, Position(position.x, position.y), health, points);
 }
 
@@ -10,9 +10,6 @@ PlayerImage CounterTerrorist::get_player_image(Vector2& position) {
 
 // Aca posiblemente como en un futuro agregue el invitario, deba de indicar que el TT tiene la
 // BOMBA!
-void Terrorist::plant_bomb(Map& map) {
-    // Si el arma actual es la bomba entonces si podes llamar a fire
-}
-PlayerImage Terrorist::get_player_image(Vector2& position) {
+PlayerImage Terrorist::get_player_image(Position& position) {
     return PlayerImage(id, Position(position.x, position.y), health, points);
 }

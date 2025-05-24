@@ -17,17 +17,19 @@ enum class Map { DESIERTO, PUEBLITO_AZTECA, ZONA_ENTRENAMIENTO };
 enum class Objet { STONE, WALL, GRASS, BOX, PLAYER, WATER };
 
 enum class Movement { UP, DOWN, LEFT, RIGHT, NONE };
-struct Personaje {
-    Team team;
-    Skin skin;
-    int fila;
-    int columna;
+
+struct InfoGame{
+    std::string name_player;
+    std::string name_game; 
 };
-struct InfoGame {
-    GameMenu menu;
-    struct Personaje personaje;
-    Map map;
+
+struct Player {
+    std::string team;
+    std::string skin;
+    InfoGame info;
+    std::string map;
 };
+
 struct MedidasSprites {
     int width;
     int height;

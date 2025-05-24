@@ -1,0 +1,73 @@
+# Compilador
+CXX = g++
+
+# Buscar todos los archivos .cpp en cualquier subdirectorio
+SRC = $(shell find client common -type f -name '*.cpp')
+
+# Headers que usan Q_OBJECT (para moc)
+HDR = ./client/lobbyView.h ./client/menuView.h
+
+# Archivos moc generados (uno por cada header que usa Q_OBJECT)
+MOC_CPP = ./client/moc_lobbyView.cpp ./client/moc_menuView.cpp
+
+# Archivos objeto normales
+OBJ = $(SRC:.cpp=.o)
+
+# Objetos moc generados
+MOC_OBJ = ./client/moc_lobbyView.o ./client/moc_menuView.o
+
+# Nombre del ejecutable final
+TARGET = sdl
+
+# Flags de compilación
+CXXFLAGS = \
+    -fPIC \
+    -I/usr/include/x86_64-linux-gnu/qt5 \
+    -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets \
+    -I/usr/include/x86_64-linux-gnu/qt5/QtGui \
+    -I/usr/include/x86_64-linux-gnu/qt5/QtCore \
+    $(shell sdl2-config --cflags)
+
+# Flags de linkeo
+LDFLAGS = \
+    -lQt5Widgets -lQt5Gui -lQt5Core \
+    $(shell sdl2-config --libs) -lSDL2_image
+
+# Regla principal
+all: $(TARGET)
+
+# Linkeo
+$(TARGET): $(OBJ) $(MOC_OBJ)
+	$(CXX) -o $@ $^ $(LDFLAGS)
+
+# Compilar archivos .cpp normales
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+# Generar moc para lobbyView.h
+./client/moc_lobbyView.cpp: ./client/lobbyView.h
+	moc ./client/lobbyView.h -o ./client/moc_lobbyView.cpp
+
+# Generar moc para menuView.h
+./client/moc_menuView.cpp: ./client/menuView.h
+	moc ./client/menuView.h -o ./client/moc_menuView.cpp
+
+# Compilar moc_lobbyView.cpp
+./client/moc_lobbyView.o: ./client/moc_lobbyView.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+# Compilar moc_menuView.cpp
+./client/moc_menuView.o: ./client/moc_menuView.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+# Limpiar archivos generados
+clean:
+	rm -f $(TARGET) $(OBJ) $(MOC_OBJ) $(MOC_CPP)
+
+# Ejecutar el programa
+run: all
+	./$(TARGET) 127.0.0.1 7777
+
+run-server: all
+
+	./build/CS2D_server 7777

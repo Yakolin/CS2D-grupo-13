@@ -33,6 +33,10 @@ void Controller::sender_mov_player(SDL_Keycode key) {
     std::cout << static_cast<int>(mov) << std::endl;
 }
 
+
+
+
+
 void Controller::run() {}
 
 Controller::~Controller(){}

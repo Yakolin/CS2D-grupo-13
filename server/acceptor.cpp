@@ -17,8 +17,8 @@ void Acceptor::run() {
             clients.emplace(this->client_id_counter,
                             std::make_unique<ClientHandler>(this->client_id_counter,
                                                             std::move(peer), this->games_monitor));
-            this->reap();
             clients[this->client_id_counter]->start();
+            this->reap();       // cambie de lugar las llamadas  este era el lugar de crash
         }
     } catch (const std::runtime_error& e) {
         std::cerr << e.what() << '\n';

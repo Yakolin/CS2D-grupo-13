@@ -9,10 +9,10 @@ run-tests: compile-debug
 
 	./build/CS2D_tests
 
-run-client:  compile-debug
+run-client:  
 	cd "$(CURDIR)" && ./build/CS2D_client 127.0.0.1 7777
 
-run-server: compile-debug
+run-server: 
 
 	./build/CS2D_server 7777
 
@@ -24,3 +24,10 @@ all: clean valgrind-debug
 
 clean:
 	rm -Rf build/
+
+run-client-gdb:  
+	cd "$(CURDIR)" && gdb ./build/CS2D_client 127.0.0.1 7777
+
+run-server-gdb: 
+
+	gdb ./build/CS2D_server 7777

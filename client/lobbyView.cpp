@@ -124,7 +124,6 @@ void LobbyView::action_create() {
     section_player(tabPlayers,boton);
 
     connect(boton,  &QPushButton::clicked, [this, boton]() {
-        std::cout << "fin\n";
         close();
         QApplication::quit();
         imprimirPlayer(infoPlayer);
@@ -174,7 +173,6 @@ void LobbyView::action_join(const std::vector<std::string> list){
     layout->addWidget(formWidget); 
     layout->addWidget(button);
     connect(button,  &QPushButton::clicked, [this, button]() {
-        std::cout << "fin\n";
         close();
         QApplication::quit();
     });

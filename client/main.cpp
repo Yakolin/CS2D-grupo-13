@@ -2,7 +2,6 @@
 #include <iostream>
 #include "client.h"
 #include "lobbyView.h"
-#include "../common/lobby_types.h" // sacar
 
 const int ERROR_CLIENT =1;
 

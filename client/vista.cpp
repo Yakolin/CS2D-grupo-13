@@ -49,16 +49,14 @@ void Vista::run() {
     });
     menu.show();
     app.exec();
+    menu.close();
      /// ACA EMPIEZA EL JUEGO   
 
-    //GameView gameView(receiver, controller, 500, 500);
-    // MenuView menu;  //libpng warning: iCCP: known incorrect sRGB profile
-    // GameMenu num = menu.run(); // no es un problema peor la imagen esta corrupta //todo editarla
-    // ScoreBoard table; // funciona
-    // table.show_scores_game(); // funciona //todo agregar actualizacion , dejar de harcodear
-    //--------------------------------------------------------------------------------------------------
-    //gameView.draw_game();
+    GameView gameView(receiver, controller, 500, 500);
+    gameView.draw_game();
 
-    // app.exec();
+    //ScoreBoard table; // funciona
+    //table.show_scores_game(); // funciona //todo agregar actualizacion , dejar de harcodear
+    //app.exec();
 }
 Vista::~Vista() {}

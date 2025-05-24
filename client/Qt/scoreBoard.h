@@ -6,7 +6,7 @@
 #include <map>
 #include <string>
 
-#include "tipos.h"
+#include "../tipos.h"
 
 
 class ScoreBoard {

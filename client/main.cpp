@@ -1,7 +1,7 @@
 
 #include <iostream>
 #include "client.h"
-#include "lobbyView.h"
+
 
 const int ERROR_CLIENT =1;
 

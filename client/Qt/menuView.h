@@ -26,9 +26,9 @@
 #include <functional>
 #include <iostream>
 #include <map>
-#include "../common/lobby_types.h"
+#include "../../common/lobby_types.h"
 #include "lobbyView.h"
-#include "tipos.h"
+#include "../tipos.h"
 
 
 class MenuView : public QDialog{

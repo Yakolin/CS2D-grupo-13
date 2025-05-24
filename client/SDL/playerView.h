@@ -13,7 +13,7 @@
 
 #include "manageTexture.h"
 #include "renderizable.h"
-#include "tipos.h"
+#include "../tipos.h"
 
 class PlayerView: public Renderizable {
 public:

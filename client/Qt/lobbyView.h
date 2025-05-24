@@ -15,11 +15,11 @@
 #include <QLineEdit>
 #include <iostream>
 #include <map>
-#include "../common/lobby_types.h"
+#include "../../common/lobby_types.h"
 #include <QDebug>
 #include <QHBoxLayout>
 #include <QPixmap>
-#include "tipos.h"
+#include "../tipos.h"
 #include <QPushButton>
 #include <QMessageBox>
 

@@ -9,17 +9,17 @@
 
 #include <SDL2/SDL.h>
 
-#include "../common/game_image.h"
-#include "../common/queue.h"
-#include "model/client_action.h"
-#include "model/receiver.h"
+#include "../../common/game_image.h"
+#include "../../common/queue.h"
+#include "../model/client_action.h"
+#include "../model/receiver.h"
 
-#include "controller.h"
+#include "../controller.h"
 #include "manageTexture.h"
 #include "mapView.h"
 #include "playerView.h"
 #include "renderizable.h"
-#include "tipos.h"
+#include "../tipos.h"
 
 #define MAX_QUEUE_SIZE 100000
 

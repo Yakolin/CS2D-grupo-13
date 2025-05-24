@@ -12,7 +12,7 @@
 
 #include "playerView.h"
 #include "renderizable.h"
-#include "tipos.h"
+#include "../tipos.h"
 
 
 class MapView: public Renderizable {

@@ -15,10 +15,10 @@
 #include "model/receiver.h"  // necesario para recibir cosas
 
 #include "controller.h"
-#include "gameView.h"
-#include "mapView.h"
-#include "menuView.h"
-#include "scoreBoard.h"
+#include "SDL/gameView.h"
+#include "SDL/mapView.h"
+#include "Qt/menuView.h"
+#include "Qt/scoreBoard.h"
 
 class Vista {
 

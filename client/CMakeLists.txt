@@ -4,27 +4,26 @@ target_sources(CS2D_client
     client.cpp
     controller.cpp
     main.cpp
-    lobbyView.cpp
-    gameView.cpp
-    mapView.cpp
-    playerView.cpp
-    scoreBoard.cpp
-    manageTexture.cpp
-    menuView.cpp
+    Qt/lobbyView.cpp
+    SDL/gameView.cpp
+    SDL/mapView.cpp
+    SDL/playerView.cpp
+    Qt/scoreBoard.cpp
+    SDL/manageTexture.cpp
+    Qt/menuView.cpp
     vista.cpp
     PUBLIC
     
-    gameView.h
-    lobbyView.h
-    mapView.h
-    playerView.h
-    scoreBoard.h
+    SDL/gameView.h
+    SDL/mapView.h
+    SDL/playerView.h
+    Qt/scoreBoard.h
     client.h
     controller.h
-    lobbyView.h
-    manageTexture.h
-    menuView.h
-    renderizable.h
+    Qt/lobbyView.h
+    SDL/manageTexture.h
+    Qt/menuView.h
+    SDL/renderizable.h
     tipos.h
     vista.h
 

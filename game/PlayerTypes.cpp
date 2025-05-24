@@ -1,7 +1,7 @@
 #include "PlayersTypes.h"
 
 /* COUNTER_TERRORIST */
-PlayerImage CounterTerrorist::get_player_image() {
+PlayerImage CounterTerrorist::get_player_image(Vector2& position) {
     return PlayerImage(id, Position(position.x, position.y), health, points);
 }
 
@@ -13,6 +13,6 @@ PlayerImage CounterTerrorist::get_player_image() {
 void Terrorist::plant_bomb(Map& map) {
     // Si el arma actual es la bomba entonces si podes llamar a fire
 }
-PlayerImage Terrorist::get_player_image() {
+PlayerImage Terrorist::get_player_image(Vector2& position) {
     return PlayerImage(id, Position(position.x, position.y), health, points);
 }

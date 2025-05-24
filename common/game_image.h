@@ -9,7 +9,7 @@
 
 
 using length_players_images_t = std::uint16_t;
-
+enum class Team { CT, TT };
 class Position {  // Esto puede ser directamente un Vector2
 public:
     coordinate_t x;

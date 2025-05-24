@@ -30,11 +30,8 @@ bool Vector2::operator==(const Vector2& other) const {
     return this->x == other.x && this->y == other.y;
 }
 
-
-/* RECTANGLE */
-
-bool Rectangle::is_in(const Vector2& position) {
-    bool x_in = point_min.x <= position.x && position.x <= point_max.x;
-    bool y_in = point_min.y <= position.y && position.y <= point_max.y;
-    return x_in && y_in;
+float Vector2::distance(const Vector2& other) {
+    float dx = x - other.x;
+    float dy = y - other.y;
+    return std::sqrt(dx * dx + dy * dy);
 }

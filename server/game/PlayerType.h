@@ -10,7 +10,7 @@
 */
 class CounterTerrorist: public Player {
 public:
-    CounterTerrorist(player_id_t id, std::string&& _nick_name): Player(id, std::move(_nick_name)) {}
+    CounterTerrorist(player_id_t id): Player(id) {}
     ~CounterTerrorist() = default;
     virtual PlayerImage get_player_image(Position& position) override;
 };
@@ -18,7 +18,7 @@ class Terrorist: public Player {
 private:
     // Weapon Bomb
 public:
-    Terrorist(player_id_t id, std::string&& _nick_name): Player(id, std::move(_nick_name)) {}
+    Terrorist(player_id_t id): Player(id) {}
     ~Terrorist() = default;
     virtual PlayerImage get_player_image(Position& position) override;
     void plant_bomb(Map& map);

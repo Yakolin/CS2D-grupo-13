@@ -10,5 +10,7 @@ target_sources(CS2D_server
     server.h
     acceptor.h
     )
-add_subdirectory(interfaces/)
-add_subdirectory(protocol/)
+
+    add_subdirectory(interfaces/)
+    add_subdirectory(protocol/)
+    add_subdirectory(game/)

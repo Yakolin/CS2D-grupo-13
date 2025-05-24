@@ -9,9 +9,8 @@
 #include "../../common/queue.h"
 #include "../../common/thread.h"
 #include "../interfaces/interface_game.h"
-
+#include "../game/GameManager.h"
 #include "client_action.h"
-#include "game.h"
 
 
 #define QUEUE_MAX_SIZE 10000
@@ -19,7 +18,7 @@
 class GameLoop: public Thread {
 private:
     const std::string& game_name;
-    Game game;
+    GameManager game;
     std::vector<std::shared_ptr<Queue<GameImage>>> send_queues;
     std::shared_ptr<Queue<std::unique_ptr<ClientAction>>> recv_queue;
     ConstantRateLoop constant_rate_loop;

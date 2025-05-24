@@ -4,7 +4,7 @@
 #include <iostream>
 
 void Map::update_map_state() {}
-void Map::move_player(player_id_t id, const Vector2& direction) {
+void Map::move_player(player_id_t id, const Position& direction) {
     // Chekear con el colliderManager si esta posicion es valida
     auto it = players_positions.find(id);
     if (it != players_positions.end()) {
@@ -12,11 +12,11 @@ void Map::move_player(player_id_t id, const Vector2& direction) {
     }
     // Exception?
 }
-Vector2 Map::get_position(player_id_t id) {
+Position Map::get_position(player_id_t id) {
     auto it = players_positions.find(id);
     if (it != players_positions.end())
         return it->second;
-    return Vector2(0, 0);
+    return Position(0, 0);
     // Exception?
 }
 void Map::respawn_players(const std::map<player_id_t, Team>& players_teams) {

@@ -18,21 +18,21 @@ private:
     std::string map_name;
     Rectangle spawn_CT;
     Rectangle spawn_TT;
-    std::map<player_id_t, Vector2> players_positions;
+    std::map<player_id_t, Position> players_positions;
     CollisionManager collision_manager;
 
 public:
     std::map<player_id_t, std::unique_ptr<Collider>> damage_colliders;
     explicit Map(const std::string& _map_name):
             map_name(_map_name),
-            spawn_CT(5, 5, Vector2(3100, 3100)),
-            spawn_TT(5, 5, Vector2(3120, 3120)),
+            spawn_CT(5, 5, Position(3100, 3100)),
+            spawn_TT(5, 5, Position(3120, 3120)),
             collision_manager(players_positions, damage_colliders) {}
     void update_map_state();
-    void move_player(player_id_t id, const Vector2& direction);
-    Vector2 get_position(player_id_t player_id);
+    void move_player(player_id_t id, const Position& direction);
+    Position get_position(player_id_t player_id);
     void add_player(player_id_t id) {
-        players_positions.insert(std::make_pair(id, Vector2(3200, 3200)));
+        players_positions.insert(std::make_pair(id, Position(3200, 3200)));
     }
     void respawn_players(const std::map<player_id_t, Team>& players_teams);
 };

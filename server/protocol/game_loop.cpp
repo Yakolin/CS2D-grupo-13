@@ -2,7 +2,7 @@
 
 GameLoop::GameLoop(const std::string& game_name):
         game_name(game_name),
-        game(),
+        game(game_name, "pepito"),
         send_queues(),
         recv_queue(std::make_shared<Queue<std::unique_ptr<ClientAction>>>(QUEUE_MAX_SIZE)),
         constant_rate_loop([this]() { return this->should_keep_running(); },

@@ -38,25 +38,27 @@ public:
 
 /*
     WEAPON ACTIONS
-*/
-
+    
 class BuyWeapon: public ClientAction, public BuyWeaponCommon {
-
+    
 public:
-    BuyWeapon(player_id_t player_id,
-              WeaponCode weapon_code);  // considerando que el arma viene con
-    // municion por default
-    ~BuyWeapon();
-    void action_to(IPlayerAction& player) override;
+BuyWeapon(player_id_t player_id,
+WeaponCode weapon_code);  // considerando que el arma viene con
+// municion por default
+~BuyWeapon();
+void action_to(IPlayerAction& player) override;
 };
 
 class BuyAmmo: public ClientAction, public BuyAmmoCommon {
-
+    
 public:
-    BuyAmmo(player_id_t player_id, WeaponType weapon_type, ammo_t ammo_count);
-    ~BuyAmmo();
-    void action_to(IPlayerAction& player) override;
+BuyAmmo(player_id_t player_id, WeaponType weapon_type, ammo_t ammo_count);
+~BuyAmmo();
+void action_to(IPlayerAction& player) override;
 };
+
+*/
+
 
 class Reload: public ClientAction {
 
@@ -65,6 +67,7 @@ public:
     ~Reload();
     void action_to(IPlayerAction& player) override;
 };
+/*
 
 class Shoot: public ClientAction, public ShootCommon {
 
@@ -74,42 +77,41 @@ public:
     void action_to(IPlayerAction& player) override;
 };
 
-/*
     BOMB ACTIONS
+    
+    class PlantBomb: public ClientAction {
+        public:
+        PlantBomb(player_id_t player_id);
+        ~PlantBomb();
+        void action_to(IPlayerAction& player) override;
+    };
+    
+    
+    class DefuseBomb: public ClientAction {
+        public:
+        DefuseBomb(player_id_t player_id);
+        ~DefuseBomb();
+        void action_to(IPlayerAction& player) override;
+    };
+    
 */
-
-class PlantBomb: public ClientAction {
-public:
-    PlantBomb(player_id_t player_id);
-    ~PlantBomb();
-    void action_to(IPlayerAction& player) override;
-};
-
-
-class DefuseBomb: public ClientAction {
-public:
-    DefuseBomb(player_id_t player_id);
-    ~DefuseBomb();
-    void action_to(IPlayerAction& player) override;
-};
-
 /*
-GAME ACTIONS
-*/
-
-class Drop: public ClientAction {
-public:
-    Drop(player_id_t player_id);
-    ~Drop();
-    void action_to(IPlayerAction& player) override;
-};
-
-class Equip: public ClientAction, public EquipCommon {
-public:
-    Equip(player_id_t player_id, EquipType equip_type);
-    ~Equip();
-    void action_to(IPlayerAction& player) override;
-};
+    GAME ACTIONS
+    
+    class Drop: public ClientAction {
+        public:
+        Drop(player_id_t player_id);
+        ~Drop();
+        void action_to(IPlayerAction& player) override;
+    };
+    
+    class Equip: public ClientAction, public EquipCommon {
+        public:
+        Equip(player_id_t player_id, EquipType equip_type);
+        ~Equip();
+        void action_to(IPlayerAction& player) override;
+    };
+    */
 
 }  // namespace ServerSpace
 #endif  // !CLIENT_ACTION_H

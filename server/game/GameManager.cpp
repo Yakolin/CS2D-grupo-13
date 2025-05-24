@@ -2,8 +2,6 @@
 
 #include <iostream>
 
-#include "../../common/game_image.h"
-
 using std::shared_ptr;
 using std::string;
 
@@ -14,13 +12,20 @@ shared_ptr<Player> GameManager::find_player(player_id_t player_id) {
     else
         throw GameException("Player not found in the map structure");
 }
-void GameManager::add_player(string&& _nick_name, player_id_t id) {
+
+void GameManager::process(ClientAction& action) {
+    player_id_t player_id = action.get_player_id();
+    shared_ptr<Player> player = find_player(player_id);
+    //action_to(player);
+}
+
+void GameManager::add_player(player_id_t& id) {
     Team team = ((players.size() + 1) % 2 == 0) ? Team::CT : Team::TT;
     shared_ptr<Player> player;
     if (team == Team::CT)
-        player = std::make_shared<CounterTerrorist>(id, std::move(_nick_name));
+        player = std::make_shared<CounterTerrorist>(id);
     else
-        player = std::make_shared<Terrorist>(id, std::move(_nick_name));
+        player = std::make_shared<Terrorist>(id);
     players.insert(make_pair(id, player));
     players_team.insert(std::make_pair(id, team));
     map_game.add_player(id);
@@ -55,13 +60,12 @@ void GameManager::stop_game() {}
 bool GameManager::check_round_finished() { return false; }
 void GameManager::change_teams() {
     for (const auto& player: players_team) {
-        std::string nick_name = players[player.first]->get_nick_name();
         if (player.second == Team::CT) {
             players_team[player.first] = Team::TT;
-            players[player.first] = std::make_shared<Terrorist>(player.first, std::move(nick_name));
+            players[player.first] = std::make_shared<Terrorist>(player.first);
         } else {
             players_team[player.first] = Team::CT;
-            players[player.first] = std::make_shared<Terrorist>(player.first, std::move(nick_name));
+            players[player.first] = std::make_shared<CounterTerrorist>(player.first);
         }
     }
 }

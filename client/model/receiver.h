@@ -2,6 +2,7 @@
 #define RECEIVER_H
 
 #include <utility>
+#include <memory>
 
 #include "../../common/game_image.h"
 #include "../../common/queue.h"
@@ -14,10 +15,10 @@ class Receiver: public Thread {
 private:
     bool closed;
     ClientProtocol protocol;
-    Queue<GameImage>& recv_queue;
+    std::shared_ptr<Queue<GameImage>>& recv_queue;
 
 public:
-    explicit Receiver(Socket& socket, Queue<GameImage>& recv_queue);
+    explicit Receiver(Socket& socket, std::shared_ptr<Queue<GameImage>>& recv_queue);
     ~Receiver() override;
 
     void run() override;

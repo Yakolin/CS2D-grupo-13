@@ -1,6 +1,6 @@
 #include "sender.h"
 
-Sender::Sender(Socket& socket, Queue<std::unique_ptr<InterfaceClientAction>>& send_queue):
+Sender::Sender(Socket& socket, std::shared_ptr<Queue<std::unique_ptr<InterfaceClientAction>>>& send_queue):
         closed(false), protocol(socket), send_queue(send_queue) {}
 
 Sender::~Sender() {}

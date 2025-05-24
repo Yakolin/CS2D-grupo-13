@@ -17,10 +17,10 @@
 #include "tipos.h"
 class Controller {
 private:
-    Queue<std::unique_ptr<InterfaceClientAction>> send_queue;
-    Sender sender;
+    std::shared_ptr<Queue<std::unique_ptr<InterfaceClientAction>>> &send_queue;
+
 public:
-    explicit Controller(Socket& skt) ;
+    explicit Controller(std::shared_ptr<Queue<std::unique_ptr<InterfaceClientAction>>> &send_queue) ;
 
     /*
     pre:

@@ -18,7 +18,7 @@ void Vista::run() {
     MenuView menu(nullptr);
     LobbyCommandType resultado = LobbyCommandType::NONE;
 
-    QObject::connect(&menu, &MenuView::opcionElegida, [&menu,&resultado](LobbyCommandType opcion) {
+    QObject::connect(&menu, &MenuView::opcionElegida, [this, &menu,&resultado](LobbyCommandType opcion) {
         qDebug() << "Opción recibida:" << static_cast<int>(opcion);
 
         std::vector<std::string> nombres_de_partidas = {
@@ -28,7 +28,7 @@ void Vista::run() {
         "MisionExplosiva",
         "DueloFinal"
     };
-            protocolo.send_lobby_command(opcion);
+        protocolo.send_lobby_command(opcion);
         resultado = opcion;
         switch (opcion) {
             case LobbyCommandType::CREATE_GAME:
@@ -62,5 +62,6 @@ void Vista::run() {
     //ScoreBoard table; // funciona
     //table.show_scores_game(); // funciona //todo agregar actualizacion , dejar de harcodear
     //app.exec();
+    
 }
 Vista::~Vista() {}

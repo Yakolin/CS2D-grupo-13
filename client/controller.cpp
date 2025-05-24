@@ -1,9 +1,8 @@
 #include "controller.h"
 
 
-Controller::Controller(Socket& skt):
-    send_queue(100000),
-    sender(skt,send_queue)
+Controller::Controller(std::shared_ptr<Queue<std::unique_ptr<InterfaceClientAction>>> &send_queue):
+    send_queue(send_queue)
     {}
 
 void Controller::sender_pos_mouse(int x, int y) {

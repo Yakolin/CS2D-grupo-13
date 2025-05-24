@@ -1,6 +1,6 @@
 #include "receiver.h"
 
-Receiver::Receiver(Socket& socket, Queue<GameImage>& recv_queue):
+Receiver::Receiver(Socket& socket, std::shared_ptr<Queue<GameImage>>& recv_queue):
         closed(false), protocol(socket), recv_queue(recv_queue) {}
 
 Receiver::~Receiver() {}

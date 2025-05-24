@@ -12,18 +12,19 @@
 #include "../../common/lobby_types.h"
 #include "../../common/player_command_types.h"
 #include "../../common/socket.h"
-#include "../../common/utility.h"
 
 #include "client_action.h"
 
 namespace ServerSpace {
+    class Move;
+/*
 class CreateGame;
 class JoinGame;
-class Move;
 class BuyWeapon;
 class BuyAmmo;
 class Shoot;
 class Equip;
+*/
 }  // namespace ServerSpace
 
 
@@ -52,15 +53,15 @@ public:
     std::string read_join_game();
 
     std::unique_ptr<ServerSpace::Move> read_move(player_id_t player_id);
+/*
+std::unique_ptr<ServerSpace::BuyWeapon> read_buy_weapon(player_id_t player_id);
+std::unique_ptr<ServerSpace::BuyAmmo> read_buy_ammo(player_id_t player_id);
+std::unique_ptr<ServerSpace::Shoot> read_shoot(player_id_t player_id);
 
-    std::unique_ptr<ServerSpace::BuyWeapon> read_buy_weapon(player_id_t player_id);
-    std::unique_ptr<ServerSpace::BuyAmmo> read_buy_ammo(player_id_t player_id);
-    std::unique_ptr<ServerSpace::Shoot> read_shoot(player_id_t player_id);
-
-    std::unique_ptr<ServerSpace::Equip> read_equip(player_id_t player_id);
+std::unique_ptr<ServerSpace::Equip> read_equip(player_id_t player_id);
+*/
 
     void send_list_games(std::vector<std::string>& list_games);
-    void send_player_id(player_id_t& player_id);
 
     void send_game_image(GameImage& game_image);
 };

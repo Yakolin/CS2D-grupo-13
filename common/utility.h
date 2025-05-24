@@ -1,20 +1,29 @@
 #ifndef UTILITY_H
 #define UTILITY_H
 
-#include <cstdint>
+#include <cmath>
 
-using coordinate_t = std::uint16_t;
+#include "player_command_types.h"
 
 class Position {
 public:
     coordinate_t x;
     coordinate_t y;
-
-    Position(coordinate_t x, coordinate_t y): x(x), y(y) {}
-    ~Position() = default;
-
-    bool operator==(const Position& other) const { return x == other.x && y == other.y; }
-    bool operator!=(const Position& other) const { return !(*this == other); }
+    Position(): x(0), y(0) {}
+    Position(coordinate_t _x, coordinate_t _y): x(_x), y(_y) {}
+    Position(Position&& other) = default;
+    Position(const Position&) = default;
+    Position operator+(const Position& other) const;
+    Position& operator+=(const Position& other);
+    Position operator-(const Position& other) const;
+    Position& operator-=(const Position& other);
+    Position& operator=(Position&& other) = default;
+    Position& operator=(const Position& other) = default;
+    bool operator==(const Position& other) const;
+    coordinate_t get_norm() const;  // Falta implementar
+    Position& normalize();
+    float distance(const Position& other) const;
 };
 
-#endif  // UTILITY_H
+
+#endif  // !UTILITY_H

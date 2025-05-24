@@ -1,6 +1,8 @@
 #ifndef SENDER_H
 #define SENDER_H
 
+#include <memory>
+
 #include "../../common/connection_closed_exception.h"
 #include "../../common/queue.h"
 #include "../../common/socket.h"
@@ -14,10 +16,10 @@ class Sender: public Thread {
 private:
     bool closed;
     ClientProtocol protocol;
-    Queue<std::unique_ptr<InterfaceClientAction>>& send_queue;
+    std::shared_ptr<Queue<std::unique_ptr<InterfaceClientAction>>>& send_queue;
 
 public:
-    explicit Sender(Socket& socket, Queue<std::unique_ptr<InterfaceClientAction>>& send_queue);
+    explicit Sender(Socket& socket, std::shared_ptr<Queue<std::unique_ptr<InterfaceClientAction>>>& send_queue);
     ~Sender() override;
 
     void run() override;

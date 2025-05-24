@@ -2,7 +2,6 @@
 #define ACCEPTOR_H
 #include <algorithm>
 #include <iostream>
-
 #include <map>
 #include <utility>
 

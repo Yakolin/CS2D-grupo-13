@@ -25,9 +25,9 @@ void Receiver::run_lobby() {
             switch (command) {
                 case LobbyCommandType::CREATE_GAME: {
                     std::string game_name = protocol.read_create_game();
+                    std::cout << "recibido: " << static_cast<int>(command) << std::endl;
                     if (this->games_monitor.create_game(this->player_id, game_name,
                                                         this->recv_queue, this->send_queue)) {
-                        this->protocol.send_player_id(this->player_id);
                         in_lobby = false;
                     }
                     break;
@@ -36,7 +36,6 @@ void Receiver::run_lobby() {
                     const std::string game_name = this->protocol.read_join_game();
                     if (this->games_monitor.join_game(this->player_id, game_name, this->recv_queue,
                                                       this->send_queue)) {
-                        this->protocol.send_player_id(this->player_id);
                         in_lobby = false;
                     }
                     break;
@@ -58,7 +57,7 @@ void Receiver::run_game() {
     try {
         while (!this->closed && this->should_keep_running()) {
             PlayerCommandType command = this->protocol.read_player_command();
-            std::unique_ptr<InterfacePlayerAction> action;
+            std::unique_ptr<ClientAction> action;
             ParsePlayerAction parser(this->player_id, this->protocol, command, action);
             parser();
             if (!this->closed) {

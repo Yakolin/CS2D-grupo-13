@@ -1,10 +1,12 @@
 #include "protocol.h"
 
+using ServerSpace::Move;
+/*
 using ServerSpace::BuyAmmo;
 using ServerSpace::BuyWeapon;
 using ServerSpace::Equip;
-using ServerSpace::Move;
 using ServerSpace::Shoot;
+*/
 
 ServerProtocol::ServerProtocol(Socket& socket): socket(socket) {}
 
@@ -67,6 +69,8 @@ std::unique_ptr<Move> ServerProtocol::read_move(player_id_t player_id) {
     return std::make_unique<Move>(player_id, static_cast<MoveType>(move_type));
 }
 
+/*
+
 std::unique_ptr<BuyWeapon> ServerProtocol::read_buy_weapon(player_id_t player_id) {
     weapon_code_t weapon_code;
     this->read_byte_data(weapon_code);
@@ -84,11 +88,9 @@ std::unique_ptr<BuyAmmo> ServerProtocol::read_buy_ammo(player_id_t player_id) {
 std::unique_ptr<Shoot> ServerProtocol::read_shoot(player_id_t player_id) {
     coordinate_t x;
     coordinate_t y;
-    ammo_t ammo_count;
     this->read_two_byte_data(x);
     this->read_two_byte_data(y);
-    this->read_two_byte_data(ammo_count);
-    return std::make_unique<Shoot>(player_id, Position(x, y), ammo_count);
+    return std::make_unique<Shoot>(player_id, x, y);
 }
 
 std::unique_ptr<Equip> ServerProtocol::read_equip(player_id_t player_id) {
@@ -96,6 +98,7 @@ std::unique_ptr<Equip> ServerProtocol::read_equip(player_id_t player_id) {
     this->read_byte_data(equip_type);
     return std::make_unique<Equip>(player_id, static_cast<EquipType>(equip_type));
 }
+*/
 void ServerProtocol::send_byte_data(uint8_t& data) {
     this->socket.sendall(&data, sizeof(uint8_t));
     if (this->socket.is_stream_send_closed()) {
@@ -124,15 +127,11 @@ void ServerProtocol::send_list_games(std::vector<std::string>& list_games) {
             throw ConnectionClosedException("Error al intentar enviar datos al cliente");
         }
     }
-}
 
-void ServerProtocol::send_player_id(player_id_t& player_id) {
-    uint8_t handshake = static_cast<uint8_t>(HandshakeType::HANDSHAKE);
-    this->send_byte_data(handshake);
-    this->send_two_byte_data(player_id);
 }
 
 void ServerProtocol::send_player_image(GameImage& game_image) {
+
     std::vector<PlayerImage> players_images = game_image.players_images;
     length_players_images_t length_players = players_images.size();
     this->send_two_byte_data(length_players);
@@ -146,6 +145,12 @@ void ServerProtocol::send_player_image(GameImage& game_image) {
 
         coordinate_t y = player_image.position.y;
         this->send_two_byte_data(y);
+
+        health_t health = player_image.health;
+        this->send_byte_data(health);
+
+        points_t points = player_image.points;
+        this->send_byte_data(points);
     }
 }
 

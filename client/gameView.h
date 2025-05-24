@@ -2,22 +2,36 @@
 #define GAME_VIEW_H
 #include <fstream>
 #include <map>
+#include <memory>
 #include <string>
+#include <utility>
 #include <vector>
 
 #include <SDL2/SDL.h>
+
+#include "../common/game_image.h"
+#include "../common/queue.h"
+#include "model/client_action.h"
 #include "model/receiver.h"
+
 #include "controller.h"
 #include "manageTexture.h"
 #include "mapView.h"
 #include "playerView.h"
 #include "renderizable.h"
 #include "tipos.h"
+
+#define MAX_QUEUE_SIZE 100000
+
 class GameView {
 
 private:
-    Receiver& receiver;
-    Controller& controller;
+    Socket socket;
+    std::shared_ptr<Queue<std::unique_ptr<InterfaceClientAction>>> send_queue;
+    std::shared_ptr<Queue<GameImage>> recv_queue;
+    Receiver receiver;
+    Sender sender;
+    Controller controller;
     std::map<char, std::string> leyenda;
     std::map<char, Objet> ids;
     SDL_Window* ventana;
@@ -34,16 +48,13 @@ private:
 
     bool handle_events(const SDL_Event& evento);
 
-    SDL_Texture* add_tiles(const std::string& img);
-
     std::vector<std::vector<char>> cargar_mapa(const std::string& archivo);
 
     void load_textures();
 
 
 public:
-    explicit GameView(Receiver& receiver, Controller& controller, const int& width_reseiver,
-                      const int& height_reseiver);
+    explicit GameView(Socket&& skt, const int& width_reseiver, const int& height_reseiver);
 
     /*
     pre:  width y height deben ser mayores que 0.

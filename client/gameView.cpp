@@ -2,10 +2,14 @@
 
 
 #define MAPA_AZTECA "assets/pueblito_azteca.txt"
-GameView::GameView(Receiver& receiver, Controller& controller, const int& width_reseiver,
-                   const int& height_reseiver):
-        receiver(receiver),
-        controller(controller),
+
+GameView::GameView(Socket&& skt, const int& width_reseiver, const int& height_reseiver):
+        socket(std::move(skt)),
+        send_queue(std::make_shared<Queue<std::unique_ptr<InterfaceClientAction>>>(MAX_QUEUE_SIZE)),
+        recv_queue(std::make_shared<Queue<GameImage>>(MAX_QUEUE_SIZE)),
+        receiver(this->socket, this->recv_queue),
+        sender(this->socket, this->send_queue),
+        controller(send_queue),
         leyenda(),
         ids(),
         ventana(),
@@ -162,7 +166,7 @@ void GameView::draw_game() {
         camera.x = player.getCol() + player.getWidthImg() / 2 - camera.w / 2;
         camera.y = player.getFil() + player.getHeightImg() / 2 - camera.h / 2;
 
-        // Limita la cámara para que no se salga del mapa
+        // calcular la camara
         if (camera.x < 0)
             camera.x = 0;
         if (camera.y < 0)

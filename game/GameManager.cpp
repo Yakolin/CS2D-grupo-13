@@ -53,6 +53,18 @@ void GameManager::start_game() {
 }
 void GameManager::stop_game() {}
 bool GameManager::check_round_finished() { return false; }
+void GameManager::change_teams() {
+    for (const auto& player: players_team) {
+        std::string nick_name = players[player.first]->get_nick_name();
+        if (player.second == Team::CT) {
+            players_team[player.first] = Team::TT;
+            players[player.first] = std::make_shared<Terrorist>(player.first, std::move(nick_name));
+        } else {
+            players_team[player.first] = Team::CT;
+            players[player.first] = std::make_shared<Terrorist>(player.first, std::move(nick_name));
+        }
+    }
+}
 GameImage GameManager::get_frame() {
     if (!game_started)
         throw GameException("The game isn´t start yet to take a frame");
@@ -62,9 +74,13 @@ GameImage GameManager::get_frame() {
         3. Manejar esas colisiones como balas chocando, etc
     */
     if (check_round_finished()) {
-        round++;
         std::cout << "Ronda terminada\n";
+        round++;
         reset_players();
+    }
+    if (round == 5) {
+        std::cout << "A cambiar de equipos" << std::endl;
+        change_teams();
     }
     map_game.update_map_state();
     return generate_game_image();

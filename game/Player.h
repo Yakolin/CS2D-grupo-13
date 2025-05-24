@@ -21,7 +21,7 @@ public:
     void reset();
     void get_damage(uint8_t damage);
     virtual PlayerImage get_player_image(Vector2& position) = 0;
-    player_id_t get_id() { return id; }
+    std::string& get_nick_name() { return nick_name; }
 
 private:
     std::string nick_name;

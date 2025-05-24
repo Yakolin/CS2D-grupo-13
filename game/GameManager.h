@@ -31,6 +31,7 @@ private:
     GameImage generate_game_image();
     void reset_players();
     bool check_round_finished();
+    void change_teams();
 
 public:
     explicit GameManager(const string& _game_name, const string& map_name):

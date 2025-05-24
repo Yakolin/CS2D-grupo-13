@@ -1,6 +1,8 @@
 target_sources(CS2D_game
     PRIVATE
     # .cpp files
+    Colliders.cpp
+    CollisionManager.cpp
     Equipement.cpp
     FireableWeapon.cpp
     GameManager.cpp
@@ -10,7 +12,8 @@ target_sources(CS2D_game
     PlayerTypes.cpp
     PUBLIC
     # .h files
-    Bullet.h
+    CollisionManager.h
+    Colliders.h
     Equipement.h
     FireableWeapon.h
     GameException.h

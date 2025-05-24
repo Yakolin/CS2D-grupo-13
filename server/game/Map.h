@@ -7,14 +7,29 @@
 #include <utility>
 #include <vector>
 
+<<<<<<< HEAD:game/Map.h
 #include "../common/game_image.h"
 
 #include "CollisionManager.h"
 #include "Specials.h"
+        == == ==
+        =
+#include "Bullet.h"
+#include "Physics.h"
+#include "Player.h"
+#include "PlayerType.h"
+                >>>>>>> origin / Server - Branch:
+        server /
+        game /
+        Map.h
 #include "Weapon.h"
 
-class Map {
+        class Map {
 private:
+<<<<<<< HEAD:game/Map.h
+=======
+    std::map<player_id_t, std::shared_ptr<Player>>& players;  // pid - vector2
+>>>>>>> origin/Server-Branch:server/game/Map.h
     std::string map_name;
     Rectangle spawn_CT;
     Rectangle spawn_TT;

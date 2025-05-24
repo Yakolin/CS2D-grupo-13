@@ -1,13 +1,21 @@
 #ifndef WEAPON_H_
 #define WEAPON_H_
+<<<<<<< HEAD:game/Weapon.h
 #include <map>
 #include <memory>
 
 #include "../common/player_command_types.h"
+        == == ==
+        =
+#include "../../common/player_command_types.h"
+                >>>>>>> origin / Server - Branch:
+        server /
+        game /
+        Weapon.h
 
 #include "Colliders.h"
 #include "Physics.h"
-class Weapon {
+        class Weapon {
 public:
     WeaponType type;
     virtual ~Weapon() = default;

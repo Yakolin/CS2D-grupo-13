@@ -16,7 +16,6 @@ run-server:
 
 	./build/CS2D_server 7777
 
-
 valgrind-debug: compile-debug
 	valgrind ./build/CS2D_tests
 

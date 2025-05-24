@@ -1,4 +1,4 @@
-target_sources(CS2D_game
+target_sources(CS2D_server
     PRIVATE
     # .cpp files
     Colliders.cpp
@@ -9,7 +9,8 @@ target_sources(CS2D_game
     Map.cpp
     Physics.cpp
     Player.cpp
-    PlayerTypes.cpp
+    PlayerType.cpp
+
     PUBLIC
     # .h files
     CollisionManager.h
@@ -18,12 +19,11 @@ target_sources(CS2D_game
     FireableWeapon.h
     GameException.h
     GameManager.h
-    InterfaceGameManager.h
     Map.h
     MapTypes.h
     Physics.h
     Player.h
-    PlayerTypes.h
+    PlayerType.h
     Specials.h
     Weapon.h
     )

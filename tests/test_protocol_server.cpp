@@ -12,7 +12,7 @@
 #include "../common/socket.h"
 #include "../server/protocol/client_action.h"
 #include "../server/protocol/protocol.h"
-#include "mocks/mock_game.h"
+#include "mocks/mock_player.h"
 
 using ServerSpace::BuyAmmo;
 using ServerSpace::BuyWeapon;
@@ -177,7 +177,7 @@ TEST(ServerProtocolTest, SendHandshakeReturnCorrectObject) {
 
 TEST(ServerProtocolTest, ReadBuyWeapontReturnCorrectObject) {
     // Arrange
-    MockGame mock_game;
+    MockPlayer mock_player;
     Socket server_socket("9999");
     player_id_t player_id = 1;
     std::thread client_thread([]() {
@@ -195,21 +195,21 @@ TEST(ServerProtocolTest, ReadBuyWeapontReturnCorrectObject) {
     // Act
 
     PlayerCommandType command = protocol.read_player_command();
-    std::unique_ptr<InterfacePlayerAction> action = protocol.read_buy_weapon(player_id);
+    std::unique_ptr<ClientAction> action = protocol.read_buy_weapon(player_id);
 
     // Assert
     ASSERT_EQ(command, PlayerCommandType::BUY_WEAPON);
-    EXPECT_CALL(mock_game, buy_weapon(player_id, WeaponCode::AK47)).Times(1);
+    EXPECT_CALL(mock_player, buy_weapon(WeaponCode::AK47)).Times(1);
 
-    // Ejecutamos la acción “inyectando” nuestro mock
-    action->action(mock_game);
+    // Ejecutamos la acción inyectando nuestro mock de jugador
+    action->action_to(mock_player);
 
     client_thread.join();
 }
 
 TEST(ServerProtocolTest, ReadBuyAmmoReturnCorrectObject) {
     // Arrange
-    MockGame mock_game;
+    MockPlayer mock_player;
     Socket server_socket("9999");
     player_id_t player_id = 1;
     std::thread client_thread([]() {
@@ -230,15 +230,14 @@ TEST(ServerProtocolTest, ReadBuyAmmoReturnCorrectObject) {
     // Act
 
     PlayerCommandType command = protocol.read_player_command();
-    std::unique_ptr<InterfacePlayerAction> action = protocol.read_buy_ammo(player_id);
+    std::unique_ptr<ClientAction> action = protocol.read_buy_ammo(player_id);
 
     // Assert
     ASSERT_EQ(command, PlayerCommandType::BUY_AMMO);
-    EXPECT_CALL(mock_game, buy_ammo(player_id, WeaponType::PRIMARY, static_cast<ammo_t>(10)))
-            .Times(1);
+    EXPECT_CALL(mock_player, buy_ammo(WeaponType::PRIMARY, static_cast<ammo_t>(10))).Times(1);
 
-    // Ejecutamos la acción “inyectando” nuestro mock
-    action->action(mock_game);
+    // Ejecutamos la acción inyectando nuestro mock de jugador
+    action->action_to(mock_player);
 
     client_thread.join();
 }
@@ -268,7 +267,7 @@ TEST(ServerProtocolTest, ReadReloadReturnCorrectCommand) {
 
 TEST(ServerProtocolTest, ReadShootReturnCorrectObject) {
     // Arrange
-    MockGame mock_game;
+    MockPlayer mock_player;
     Socket server_socket("9999");
     player_id_t player_id = 1;
     std::thread client_thread([]() {
@@ -293,14 +292,14 @@ TEST(ServerProtocolTest, ReadShootReturnCorrectObject) {
     // Act
 
     PlayerCommandType command = protocol.read_player_command();
-    std::unique_ptr<InterfacePlayerAction> action = protocol.read_shoot(player_id);
+    std::unique_ptr<ClientAction> action = protocol.read_shoot(player_id);
 
     // Assert
     ASSERT_EQ(command, PlayerCommandType::SHOOT);
-    EXPECT_CALL(mock_game, shoot(player_id, Position(1, 1), 10)).Times(1);
+    EXPECT_CALL(mock_player, shoot(1, 1)).Times(1);
 
-    // Ejecutamos la acción “inyectando” nuestro mock
-    action->action(mock_game);
+    // Ejecutamos la acción inyectando nuestro mock de jugador
+    action->action_to(mock_player);
 
     client_thread.join();
 }
@@ -331,7 +330,6 @@ TEST(ServerProtocolTest, ReadPlantBombReturnCorrectCommand) {
 
 TEST(ServerProtocolTest, ReadDefuseBombReturnCorrectCommand) {
     // Arrange
-    MockGame mock_game;
     Socket server_socket("9999");
     std::thread client_thread([]() {
         Socket client_socket("localhost", "9999");
@@ -395,7 +393,7 @@ TEST(ServerProtocolTest, ReadDropReturnCorrectCommand) {
 
 TEST(ServerProtocolTest, ReadEquipReturnCorrectObject) {
     // Arrange
-    MockGame mock_game;
+    MockPlayer mock_player;
     Socket server_socket("9999");
     player_id_t player_id = 1;
     std::thread client_thread([]() {
@@ -412,14 +410,14 @@ TEST(ServerProtocolTest, ReadEquipReturnCorrectObject) {
 
     // Act
     PlayerCommandType command = protocol.read_player_command();
-    std::unique_ptr<InterfacePlayerAction> action = protocol.read_equip(player_id);
+    std::unique_ptr<ClientAction> action = protocol.read_equip(player_id);
 
     // Assert
     ASSERT_EQ(command, PlayerCommandType::EQUIP);
-    EXPECT_CALL(mock_game, equip(player_id, EquipType::ROLL_DOWN)).Times(1);
+    EXPECT_CALL(mock_player, equip(EquipType::ROLL_DOWN)).Times(1);
 
-    // Ejecutamos la acción “inyectando” nuestro mock
-    action->action(mock_game);
+    // Ejecutamos la acción inyectando nuestro mock de jugador
+    action->action_to(mock_player);
 
     client_thread.join();
 }

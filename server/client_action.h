@@ -4,9 +4,9 @@
 #include <cstdint>
 
 #include "../common/client_common_action.h"
+#include "../common/game_image.h"
 #include "../common/lobby_types.h"
 #include "../common/player_command_types.h"
-#include "../common/game_image.h"
 
 #include "game.h"
 #include "games_monitor.h"

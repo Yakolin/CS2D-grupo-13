@@ -14,11 +14,12 @@ void Acceptor::run() {
             Socket peer = socket_acceptor.accept();
             std::cout << "un client se conecto\n";
             this->client_id_counter++;
+            this->reap();
             clients.emplace(this->client_id_counter,
                             std::make_unique<ClientHandler>(this->client_id_counter,
                                                             std::move(peer), this->games_monitor));
             clients[this->client_id_counter]->start();
-            this->reap();       // cambie de lugar las llamadas  este era el lugar de crash
+            this->reap();  // cambie de lugar las llamadas  este era el lugar de crash
         }
     } catch (const std::runtime_error& e) {
         std::cerr << e.what() << '\n';

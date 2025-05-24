@@ -20,4 +20,5 @@ target_sources(CS2D_common
     resolvererror.h
     socket.h
     thread.h
+    utility.h
     )

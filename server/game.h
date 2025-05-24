@@ -4,8 +4,8 @@
 
 #include <string>
 
-#include "../common/player_command_types.h"
 #include "../common/game_image.h"
+#include "../common/player_command_types.h"
 #include "interfaces/interface_game.h"
 
 

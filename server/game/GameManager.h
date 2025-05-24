@@ -6,15 +6,25 @@
 #include <string>
 #include <utility>
 
+<<<<<<< HEAD:game/GameManager.h
 #include "../common/player_command_types.h"
 #include "../server/player_action.h"
+        == == ==
+        =
+#include "../../common/game_image.h"
+#include "../../common/player_command_types.h"
+#include "../interfaces/interface_game.h"
+#include "../protocol/client_action.h"
+                >>>>>>> origin / Server - Branch:
+        server /
+        game /
+        GameManager.h
 
 #include "GameException.h"
-#include "InterfaceGameManager.h"
 #include "Map.h"
 #include "Player.h"
 #include "PlayersTypes.h"
-using std::map;
+        using std::map;
 using std::shared_ptr;
 using std::string;
 

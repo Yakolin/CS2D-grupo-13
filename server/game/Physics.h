@@ -3,9 +3,17 @@
 #include <cmath>
 #include <utility>
 
+<<<<<<< HEAD:game/Physics.h
 #include "../common/player_command_types.h"
-//  "Copyright 2025 Yaco Santamarina"
-class Vector2 {
+        == == ==
+        =
+#include "../../common/player_command_types.h"
+                >>>>>>> origin / Server - Branch:
+        server /
+        game /
+        Physics.h
+        //  "Copyright 2025 Yaco Santamarina"
+        class Vector2 {
 public:
     coordinate_t x;
     coordinate_t y;

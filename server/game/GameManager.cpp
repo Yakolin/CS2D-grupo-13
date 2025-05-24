@@ -90,6 +90,10 @@ GameManager::~GameManager() { players.clear(); }
 /* InterfaceGameManager */
 
 void GameManager::move(player_id_t player_id, MoveType move_type) {
+<<<<<<< HEAD:game/GameManager.cpp
+=======
+    shared_ptr<Player> player = find_player(player_id);
+>>>>>>> origin/Server-Branch:server/game/GameManager.cpp
     switch (move_type) {
         case MoveType::UP:
             map_game.move_player(player_id, Vector2(0, 1));
@@ -122,10 +126,15 @@ void GameManager::reload(player_id_t player_id) {
     */
 }
 void GameManager::plant_bomb(player_id_t player_id) {
+<<<<<<< HEAD:game/GameManager.cpp
     /* shared_ptr<Player> terro = find_player(player_id);
     Vector2 player_position = map_game.get_position(player_id);
 
     if (map_game.bomb_A.is_in(player_position) || map_game.bomb_B.is_in(player_position)) {
+=======
+    shared_ptr<Player> terro = find_player(player_id);
+    if (map_game.bomb_A.is_in(terro->position) || map_game.bomb_B.is_in(terro->position)) {
+>>>>>>> origin/Server-Branch:server/game/GameManager.cpp
         std::cout << "El jugador SI esta en una zona de bomba\n";
     } else {
         std::cout << "El jugador NO esta en ninguna zona de bomba\n";

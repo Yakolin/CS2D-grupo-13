@@ -4,9 +4,9 @@
 #include <cstdint>
 #include <vector>
 
+#include "game_image.h"
 #include "player_command_types.h"
 //#include "game_image.h"
-
 
 using length_players_images_t = std::uint16_t;
 enum class Team { CT, TT };
@@ -15,9 +15,7 @@ public:
     coordinate_t x;
     coordinate_t y;
 
-    bool operator==(const Position& other) const {
-        return x == other.x && y == other.y;
-    }
+    bool operator==(const Position& other) const { return x == other.x && y == other.y; }
 
     Position(coordinate_t x, coordinate_t y): x(x), y(y) {}
     ~Position() = default;
@@ -27,9 +25,9 @@ class PlayerImage {
 public:
     player_id_t player_id;
     Position position;
-    int health;
-    int points;
-    // Aca falta manejar las armas
+    health_t health;
+    points_t points;
+    //  Aca falta manejar las armas
     PlayerImage(player_id_t player_id, Position position, int health, int points):
             player_id(player_id), position(position), health(health), points(points) {}
     ~PlayerImage() = default;

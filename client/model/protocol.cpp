@@ -129,9 +129,15 @@ void ClientProtocol::read_player_image(GameImage& game_image) {
         this->read_two_byte_data(x);
         coordinate_t y;
         this->read_two_byte_data(y);
-        uint8_t health =0; // les puse 0 de momento cambiar
-        uint8_t points =0; // <- agrege esto abajo porque no esta en el constructor de gameImage
-        game_image.players_images.emplace_back(PlayerImage(player_id, Position(x, y),health,points));
+
+        health_t health;
+        this->read_byte_data(health);
+
+        points_t points;
+        this->read_byte_data(points);
+
+        game_image.players_images.emplace_back(
+                PlayerImage(player_id, Position(x, y), health, points));
     }
 }
 

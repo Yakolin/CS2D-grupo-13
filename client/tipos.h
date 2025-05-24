@@ -3,7 +3,6 @@
 #include <string>
 
 enum class GameMenu { CREATE, JOIN, HELP, EXIT, NONE };
-enum class Team { TERRORISTS, COUNTER_TERRORISTS };
 
 // Pheonix, L337 Krew, Artic avenger o Guerrilla
 enum class ItemTerrorism { PHOENIX, L337_KREW, ARCTIC_AVENGER, GUERRILLA };

@@ -11,6 +11,7 @@ void ClientHandler::run()
         while (this->should_keep_running() && in_lobby)
         {
             LobbyAction action = this->protocol.read_lobby_action();
+            std::cout << "accion recibida: "<<static_cast<int>(action)<< std::endl;
             switch (action)
             {
             case LobbyAction::CREATE:

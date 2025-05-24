@@ -6,7 +6,8 @@ Vista::Vista(int& argc, char* argv[]) :
     skt(argv[1],argv[2]),
     deque(),
     receiver(skt, deque),
-    controller(skt)
+    controller(skt),
+    protocolo(skt)
 {}
 
 
@@ -15,8 +16,9 @@ void Vista::run() {
     QApplication app(argc,argv);
 
     MenuView menu(nullptr);
+    LobbyCommandType resultado = LobbyCommandType::NONE;
 
-    QObject::connect(&menu, &MenuView::opcionElegida, [&menu](LobbyCommandType opcion) {
+    QObject::connect(&menu, &MenuView::opcionElegida, [&menu,&resultado](LobbyCommandType opcion) {
         qDebug() << "Opción recibida:" << static_cast<int>(opcion);
 
         std::vector<std::string> nombres_de_partidas = {
@@ -26,7 +28,8 @@ void Vista::run() {
         "MisionExplosiva",
         "DueloFinal"
     };
-          // protocolo.send_lobby_command(opcion);
+            protocolo.send_lobby_command(opcion);
+        resultado = opcion;
         switch (opcion) {
             case LobbyCommandType::CREATE_GAME:
                 menu.action_create();
@@ -51,9 +54,10 @@ void Vista::run() {
     app.exec();
     menu.close();
      /// ACA EMPIEZA EL JUEGO   
-
-    GameView gameView(receiver, controller, 500, 500);
-    gameView.draw_game();
+    if(resultado == LobbyCommandType::CREATE_GAME || resultado == LobbyCommandType::JOIN_GAME){
+        GameView gameView(receiver, controller, 500, 500);
+        gameView.draw_game();
+    }
 
     //ScoreBoard table; // funciona
     //table.show_scores_game(); // funciona //todo agregar actualizacion , dejar de harcodear

@@ -45,7 +45,7 @@
         "system_error": "cpp",
         "tuple": "cpp",
         "type_traits": "cpp",
-        "utility": "cpp",
+        "game_image": "cpp",
         "initializer_list": "cpp",
         "iomanip": "cpp",
         "iosfwd": "cpp",
@@ -73,8 +73,8 @@
         "list": "cpp",
         "set": "cpp",
         "unordered_set": "cpp",
-        "future": "cpp",
         "mutex": "cpp",
-        "cfenv": "cpp"
+        "cfenv": "cpp",
+        "utility": "cpp"
     }
 }

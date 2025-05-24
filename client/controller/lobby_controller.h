@@ -18,6 +18,11 @@ public:
     LobbyController(const char* host, const char* port);
     ~LobbyController();
     void run();  // aca primero ejecutaria el lobby y luego llamaria al game
+
+    switch() {
+
+        game.run_game()
+    }
 };
 
 #endif  // !LOBBY_CONTROLLER_H

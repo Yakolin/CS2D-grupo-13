@@ -9,16 +9,11 @@
 class Equipement {
 
 public:
-    Equipement():
-            primary(nullptr),
-            secondary(std::make_unique<Glock>()),
-            knife(std::make_unique<Knife>()),
-            bomb(nullptr) {}
+    Equipement(): primary(nullptr), secondary(std::make_unique<Glock>()) {}
     std::unique_ptr<Weapon> primary;
     std::unique_ptr<Weapon> secondary;
-    std::unique_ptr<Weapon> knife;
-    std::unique_ptr<Weapon> bomb;
-    void put_bomb(std::unique_ptr<Weapon>& bomb);
+    // std::unique_ptr<Weapon> knife;
+    // std::unique_ptr<Weapon> bomb;
 
     /*
         change_weapon();

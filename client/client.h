@@ -1,21 +1,20 @@
 #ifndef CLIENT_H
 #define CLIENT_H
-#include "vista.h"
 #include <iostream>
+
+#include "vista.h"
 
 class Client {
 
 private:
     Vista vista;
+
 public:
-    explicit Client(int& argc, char *argv[]) ;
+    explicit Client(int& argc, char* argv[]);
 
 
-    int run( );
-
-
+    int run();
     ~Client();
-
 };
 
-#endif // CLIENT_H
+#endif  // CLIENT_H

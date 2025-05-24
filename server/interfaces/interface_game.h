@@ -7,6 +7,8 @@
 #include "../../common/player_command_types.h"
 #include "../protocol/client_action.h"
 
+#include "interface_player_action.h"
+
 
 class InterfaceGameManager {
 public:

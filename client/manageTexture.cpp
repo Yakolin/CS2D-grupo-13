@@ -6,18 +6,17 @@ clear() (opcional)	Elimina todas las texturas (por ejemplo, al cerrar el juego).
 */
 #include "manageTexture.h"
 
-
 #include <iostream>
 
 bool ManageTexture::load(const Objet& id, const std::string& filePath, SDL_Renderer* renderer) {
-    
+
     SDL_Surface* stoneSurface = IMG_Load(filePath.c_str());
     if (!stoneSurface) {
         std::cerr << "Error cargando imagen de piedra: " << IMG_GetError() << std::endl;
         return false;
     }
     SDL_Texture* tiles = SDL_CreateTextureFromSurface(renderer, stoneSurface);
-    if (!tiles){
+    if (!tiles) {
         std::cerr << "Error creando textura de piedra: " << SDL_GetError() << std::endl;
         return false;
     }
@@ -49,7 +48,7 @@ void ManageTexture::remove(const Objet& id) {
 }
 
 void ManageTexture::clear() {
-    for (auto& pair : textures) {
+    for (auto& pair: textures) {
         SDL_DestroyTexture(pair.second);
     }
     textures.clear();

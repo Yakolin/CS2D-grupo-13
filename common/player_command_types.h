@@ -25,12 +25,7 @@ enum class PlayerCommandType {
     EQUIP
 };
 
-enum class MoveType {
-    RIGHT,
-    LEFT,
-    UP,
-    DOWN,
-};
+enum class MoveType { RIGHT, LEFT, UP, DOWN };
 
 enum class WeaponType { PRIMARY, SECONDARY, KNIFE, BOMB };
 

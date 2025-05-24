@@ -1,35 +1,41 @@
 #ifndef GAME_PLAYER_H_
 #define GAME_PLAYER_H_
 
-// #include "Equipement.h"
 #include <string>
 #include <utility>
+#include <vector>
 
 #include "../../common/game_image.h"
 #include "../../common/player_command_types.h"
+#include "../../common/utility.h"
+#include "../interfaces/interface_player_action.h"
 
 #include "Equipement.h"
-#include "Physics.h"
+#include "Map.h"
 
-class Map;
-class Player {
+class Player: public IPlayerAction {
 public:
-    Vector2 position;
-    Player(player_id_t id, std::string&& _nick_name, Vector2&& _position):
-            position(std::move(_position)),
-            nick_name(std::move(_nick_name)),
-            id(id),
-            health(100),
-            points(0) {}
-    virtual ~Player() {}
-    void move(Vector2&& new_position);
-    void fire_weapon_equiped(Map& map, const Vector2& mouse_pointer);
+    Player(player_id_t id): id(id), health(100), points(0) {}
+    virtual ~Player() = default;
+    void reset();
     void get_damage(uint8_t damage);
-    virtual PlayerImage get_player_image() = 0;
-    player_id_t get_id() { return id; }
+    virtual PlayerImage get_player_image(Position& position) = 0;
+    virtual void move(const MoveType& move_type) override {
+        if (move_type == MoveType::UP) {
+            std::cout << "Arriba";
+        }
+    }
+    virtual void reload() override {}
 
-private:
-    std::string nick_name;
+    /*
+    virtual void shoot(const coordinate_t& mouse_x, const coordinate_t& mouse_y) override;
+    virtual void plant_bomb() override;
+    virtual void defuse_bomb() override;
+    virtual void drop() override;
+    virtual void buy_ammo(const WeaponType& weapon_type, const ammo_t& ammo_count) override;
+    virtual void buy_weapon(const WeaponCode& weapon_code) override;
+    virtual void equip(const EquipType& equip_type) override;
+    */
 
 protected:  // Por ahora lo dejamo asi
     player_id_t id;

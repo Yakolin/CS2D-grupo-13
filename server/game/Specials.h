@@ -2,18 +2,12 @@
 #define SPECIALS_H_
 #include "Weapon.h"
 
-class Bomb: public Weapon {
+class Bomb {
 public:
-    Bomb(): Weapon(WeaponType::BOMB) {}
-    virtual void reload() override;
-    virtual void fire(Map& map, player_id_t id, Vector2& position, Vector2& direction) override;
 };
 
-class Knife: public Weapon {
+class Knife {
 public:
-    virtual void fire(Map& map, player_id_t id, Vector2& position, Vector2& direction) override;
-    virtual void reload() override;
-    Knife(): Weapon(WeaponType::KNIFE) {}
 };
 
 #endif  // SPECIALS_H_

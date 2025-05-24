@@ -1,42 +1,56 @@
 #ifndef LOBBY_VIEW_H
 #define LOBBY_VIEW_H
-#include "tipos.h"
-
-#include <QWidget>
+#include <QLabel>
 #include <QLayout>
 #include <QListWidget>
+#include <QStringList>
 #include <QTabWidget>
 #include <QVBoxLayout>
-#include <QStringList>
-#include <map>
+#include <QWidget>
+#include <QComboBox>
+#include <QApplication>
 #include <functional>
-#include <QLabel>
+#include <QFormLayout>
+#include <string>
+#include <QLineEdit>
+#include <iostream>
+#include <map>
+#include "../common/lobby_types.h"
+#include <QDebug>
+#include <QHBoxLayout>
+#include <QPixmap>
+#include "tipos.h"
+#include <QPushButton>
+#include <QMessageBox>
 
-class LobbyView : public QWidget
-{
+class LobbyView: public QWidget {
     Q_OBJECT
 
 public:
-    explicit LobbyView();
-    
+    LobbyView();
+
     void action_create();
-    QListWidget *create_item(QWidget *parent, const QStringList &options, const QString &text);
-    void add_button(QVBoxLayout *layout, const QString &text, const std::function<void()> &action);
-    void add_tab(QTabWidget *tabs, const QString &text, QWidget *widget);
+
+    void action_join(const std::vector<std::string> list);
+    
+    void action_list(const std::vector<std::string>& list) ;
+
+    QListWidget* create_item(QWidget* parent, const QStringList& options);
 
     virtual ~LobbyView();
 
-private:
-    QTabWidget *tabs;
-    QStringList options_map ;
-    QStringList options_skins ;
-    QStringList options_unidad ;
-    std::map<QString,QString> img_maps;
-    std::map<QString,QString> img_skins_terrorist;
-    std::map<QString,QString> img_skins_counter_terrorist;
-    // Private members and methods
 
-    void section_maps(const QString &text, const std::map<QString,QString>& options, const QStringList &items_text);
+
+private:
+    QTabWidget* tabs;
+    Player infoPlayer;
+    QStringList options_map;
+    std::map<QString, QString> img_maps;
+
+    void section_maps(QWidget* tabMap,  const std::map<QString, QString>& options,const QStringList& items_text);
+
+    void section_dates(QWidget* section);
+    void section_player(QWidget* selection,QPushButton* boton);
 };
 
-#endif // LOBBY_VIEW_H
+#endif  // LOBBY_VIEW_H

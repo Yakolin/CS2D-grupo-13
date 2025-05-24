@@ -25,11 +25,13 @@ bool GamesMonitor::join_game(player_id_t player_id, const std::string& game_name
     std::lock_guard<std::mutex> lock(mutex);
     auto it = games.find(game_name);
     if (it != games.end()) {
-        it->second->add_player(player_id, recv_queue, send_queue);
-        if (it->second->is_full()) {
-            it->second->start();
+        if (!it->second->is_full()) {
+            it->second->add_player(player_id, recv_queue, send_queue);
+            if (it->second->is_full()) {
+                it->second->start();
+            }
+            return true;
         }
-        return true;
     }
     return false;
 }

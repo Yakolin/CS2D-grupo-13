@@ -4,14 +4,22 @@
 #include <gmock/gmock.h>
 
 #include "../../common/player_command_types.h"
-#include "../../server/games_monitor.h"
+#include "../../server/protocol/games_monitor.h"
 
 class MockGamesMonitor: public InterfaceGamesMonitor {
 public:
-    MOCK_METHOD(bool, create_game, (const uint16_t& player_id, const std::string& game_name),
+    MOCK_METHOD(bool, create_game,
+                (player_id_t player_id, const std::string& game_name,
+                 std::shared_ptr<Queue<std::unique_ptr<ClientAction>>>& recv_queue,
+                 std::shared_ptr<Queue<GameImage>>& send_queue),
                 (override));
-    MOCK_METHOD(bool, join_game, (const uint16_t& player_id, const std::string& game_name),
+
+    MOCK_METHOD(bool, join_game,
+                (player_id_t player_id, const std::string& game_name,
+                 std::shared_ptr<Queue<std::unique_ptr<ClientAction>>>& recv_queue,
+                 std::shared_ptr<Queue<GameImage>>& send_queue),
                 (override));
+
     MOCK_METHOD(std::vector<std::string>, list_games, (), (override));
 };
 

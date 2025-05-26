@@ -75,6 +75,7 @@
         "unordered_set": "cpp",
         "mutex": "cpp",
         "cfenv": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "future": "cpp"
     }
 }

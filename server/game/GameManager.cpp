@@ -47,7 +47,7 @@ GameImage GameManager::generate_game_image() {
     }
     return game_image;
 }
-
+/*
 void GameManager::start_game() {
     if (players.size() != 2) {
         std::cout << "El juego no tiene suficientes jugadores\n";
@@ -57,6 +57,7 @@ void GameManager::start_game() {
     game_started = true;
 }
 void GameManager::stop_game() {}
+*/
 bool GameManager::check_round_finished() { return false; }
 void GameManager::change_teams() {
     for (const auto& player: players_team) {
@@ -70,9 +71,9 @@ void GameManager::change_teams() {
     }
 }
 GameImage GameManager::get_frame() {
+    /*
     if (!game_started)
         throw GameException("The game isn´t start yet to take a frame");
-    /*
         1. Actualizar las cosas en el Mapa , como movimiento de las balas , armas q caen
         2. Chekear colisiones que no sean propias del jugador (colisiones de bala por ejemplo)
         3. Manejar esas colisiones como balas chocando, etc

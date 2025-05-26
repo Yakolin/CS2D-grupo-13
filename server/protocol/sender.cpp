@@ -8,6 +8,7 @@ Sender::~Sender() {}
 void Sender::run() {
     try {
         while (!this->closed && this->should_keep_running()) {
+            std::cout << "recibo la imagen"<< std::endl;
             GameImage game_image = this->send_queue->pop();
             this->protocol.send_game_image(game_image);
         }

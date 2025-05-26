@@ -8,11 +8,10 @@ void Vista::run() {
 
     QApplication app(argc, argv);
 
-    MenuView menu(nullptr);
+    MenuView menu(nullptr, protocolo);
     LobbyCommandType resultado = LobbyCommandType::NONE;
 
-    QObject::connect(
-            &menu, &MenuView::opcionElegida, [this, &menu, &resultado](LobbyCommandType opcion) {
+    QObject::connect(&menu, &MenuView::opcionElegida, [this, &menu, &resultado](LobbyCommandType opcion) {
                 qDebug() << "Opción recibida:" << static_cast<int>(opcion);
 
                 std::vector<std::string> nombres_de_partidas = {"Partida_01", "ZonaDeCombate",
@@ -34,6 +33,7 @@ void Vista::run() {
                         menu.action_exit();
                         break;
                     case LobbyCommandType::LIST_GAMES:
+                       // std::vector<std::string> games_names = protocolo.
                         menu.action_list(nombres_de_partidas);
                         break;
                     default:
@@ -44,9 +44,15 @@ void Vista::run() {
     app.exec();
     menu.close();
     /// ACA EMPIEZA EL JUEGO
+
     if (resultado == LobbyCommandType::CREATE_GAME || resultado == LobbyCommandType::JOIN_GAME) {
-        GameView gameView(std::move(skt), 500, 500);
-        gameView.draw_game();
+        try{          
+            GameView gameView(std::move(skt), 500, 500);
+            gameView.start();
+            gameView.draw_game();
+        }catch(const std::exception& e){
+            std::cerr << e.what() << '\n';
+        }
     }
 
     // ScoreBoard table; // funciona

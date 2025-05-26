@@ -1,6 +1,7 @@
 #include "lobbyView.h"
 
-LobbyView::LobbyView():
+LobbyView::LobbyView(ClientProtocol& protoccol):
+        protocol(protoccol),
         tabs(new QTabWidget(this)),
         infoPlayer(),
         options_map(),
@@ -127,6 +128,9 @@ void LobbyView::action_create() {
         close();
         QApplication::quit();
         imprimirPlayer(infoPlayer);
+        protocol.send_create_game(infoPlayer.info.name_game);
+        std::cout  << "envio nombre craet partida\n";
+
     });
 }
 
@@ -168,13 +172,15 @@ void LobbyView::action_join(const std::vector<std::string> list){
     connect(list_games, &QListWidget::itemClicked,[this,  options](QListWidgetItem* item) {
         qDebug() << item->text();
     });
-
+    
     layout->addWidget(list_games);
     layout->addWidget(formWidget); 
     layout->addWidget(button);
     connect(button,  &QPushButton::clicked, [this, button]() {
         close();
         QApplication::quit();
+        protocol.send_create_game(infoPlayer.info.name_game);
+        std::cout  << "envio nombre join partida\n";
     });
 
 }

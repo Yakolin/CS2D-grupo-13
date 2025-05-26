@@ -28,6 +28,7 @@ public:
 
     ~Acceptor();
 
+    bool has_clients();
     void run() override;
     void stop() override;
 };

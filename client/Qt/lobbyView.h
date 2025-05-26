@@ -16,6 +16,7 @@
 #include <iostream>
 #include <map>
 #include "../../common/lobby_types.h"
+#include "../model/protocol.h"
 #include <QDebug>
 #include <QHBoxLayout>
 #include <QPixmap>
@@ -27,7 +28,7 @@ class LobbyView: public QWidget {
     Q_OBJECT
 
 public:
-    LobbyView();
+    LobbyView(ClientProtocol& protoccol);
 
     void action_create();
 
@@ -42,6 +43,7 @@ public:
 
 
 private:
+    ClientProtocol& protocol;
     QTabWidget* tabs;
     Player infoPlayer;
     QStringList options_map;

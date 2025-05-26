@@ -27,6 +27,7 @@
 #include <iostream>
 #include <map>
 #include "../../common/lobby_types.h"
+#include "../model/protocol.h"
 #include "lobbyView.h"
 #include "../tipos.h"
 
@@ -40,6 +41,7 @@ private:
     QLabel* img_icono;
     QString clicked_text;
     std::map<QString,LobbyCommandType > botones;
+    ClientProtocol& protocolo;
 
     /*
     pre: recibe un QVBoxLayout y un ranking de los equipos cargados.
@@ -48,7 +50,7 @@ private:
     void add_button(QVBoxLayout* layout, const QString& text);
 
 public:
-    MenuView(QWidget* parent = nullptr);
+    MenuView(QWidget* parent,ClientProtocol& protoccol);
     /*
     pre:-
     post: muestra el menu de opciones al empezar el juego

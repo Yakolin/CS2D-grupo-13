@@ -25,7 +25,7 @@ private:
     bool game_started;
 
     void step();
-    void broadcast();
+    void broadcast(GameImage& game_image);
 
 public:
     GameLoop(const std::string& game_name);

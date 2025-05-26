@@ -19,9 +19,9 @@ void GameLoop::add_player(player_id_t& player_id,
     this->game.add_player(player_id);
 }
 
-bool GameLoop::is_full()  // hay que ver como se configura el YAML y chequearlo ahi
+bool GameLoop::is_full() 
 {
-    return false;
+    return true;
 }
 
 void GameLoop::run() { this->constant_rate_loop.execute(); }
@@ -29,10 +29,23 @@ void GameLoop::run() { this->constant_rate_loop.execute(); }
 
 void GameLoop::step() {
     try {
+        std::cout << "una cosa\n";
         std::unique_ptr<ClientAction> action = recv_queue->pop();
+        std::cout << "otra cosa\n";
+        GameImage game_image = this->game.get_frame();
+        std::cout << "recibio frame\n";
+        this->broadcast(game_image);
     } catch (const ClosedQueue& e) {
+        std::cerr << "Exception: " << e.what() << std::endl;
     } catch (const std::runtime_error& e) {
         std::cerr << "Exception: " << e.what() << std::endl;
+    }
+}
+
+void GameLoop::broadcast(GameImage &game_image) {
+    for (auto& send_queue: send_queues) {
+        std::cout<< "Pusheo la imagen"<<std::endl;
+        send_queue->push(game_image);
     }
 }
 

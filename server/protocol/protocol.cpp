@@ -7,6 +7,7 @@ using ServerSpace::BuyWeapon;
 using ServerSpace::Equip;
 using ServerSpace::Shoot;
 */
+#include <iostream>
 
 ServerProtocol::ServerProtocol(Socket& socket): socket(socket) {}
 
@@ -31,14 +32,17 @@ void ServerProtocol::read_two_byte_data(uint16_t& data) {
 }
 
 const std::string ServerProtocol::read_game_name() {
+
     std::string game_name;
     length_name_t name_length;
+
     this->socket.recvall(reinterpret_cast<char*>(&name_length), sizeof(name_length));
     if (this->socket.is_stream_recv_closed()) {
         throw ConnectionClosedException("Error al intentar leer datos del cliente");
     }
     length_name_t length = ntohs(name_length);
     std::vector<char> nameGameBuffer(length);
+
     this->socket.recvall(nameGameBuffer.data(), length);
     if (this->socket.is_stream_recv_closed()) {
         throw ConnectionClosedException("Error al intentar leer datos del cliente");

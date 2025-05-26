@@ -8,11 +8,12 @@ const int WIDTH_MENU = 500;
 #define OPCION_LIST "List Game"
 #define OPCION_HELP "Help Game"
 
-MenuView::MenuView(QWidget* parent)
+MenuView::MenuView(QWidget* parent, ClientProtocol& protocol)
     : QDialog(parent),
-      img_icono(new QLabel(this)),
-      clicked_text(),
-      botones()
+    img_icono(new QLabel(this)),
+    clicked_text(),
+    botones(),
+    protocolo(protocol)
 {
     botones[OPCION_CREATE] = LobbyCommandType::CREATE_GAME;
     botones[OPCION_JOIN] = LobbyCommandType::JOIN_GAME;
@@ -40,20 +41,20 @@ MenuView::MenuView(QWidget* parent)
 
 void MenuView::action_create() {
 
-    LobbyView* lobby = new LobbyView();
+    LobbyView* lobby = new LobbyView(protocolo);
     lobby->action_create();
     lobby->show();
 }
 
 void MenuView::action_join(std::vector<std::string>& list) {
 
-    LobbyView* lobby = new LobbyView();
+    LobbyView* lobby = new LobbyView(protocolo);
     lobby->action_join(list);
     lobby->show();
 }
 
 void MenuView::action_list(const std::vector<std::string>& list) {
-    LobbyView* lobby = new LobbyView();
+    LobbyView* lobby = new LobbyView(protocolo);
     lobby->action_list(list);
     lobby->show();
 }

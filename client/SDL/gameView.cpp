@@ -4,12 +4,7 @@
 #define MAPA_AZTECA "assets/pueblito_azteca.txt"
 
 GameView::GameView(Socket&& skt, const int& width_reseiver, const int& height_reseiver):
-        socket(std::move(skt)),
-        send_queue(std::make_shared<Queue<std::unique_ptr<InterfaceClientAction>>>(MAX_QUEUE_SIZE)),
-        recv_queue(std::make_shared<Queue<GameImage>>(MAX_QUEUE_SIZE)),
-        receiver(this->socket, this->recv_queue),
-        sender(this->socket, this->send_queue),
-        controller(send_queue),
+        controller(std::move(skt)),
         leyenda(),
         ids(),
         ventana(),
@@ -46,15 +41,17 @@ bool GameView::handle_events(const SDL_Event& evento) {
     if (evento.type == SDL_QUIT) {
         return false;  // Se cierra la ventana
     } else if (evento.type == SDL_KEYDOWN) {
+        
         SDL_Keycode tecla = evento.key.keysym.sym;  // Se presionó una tecla
-        player->add_speed(tecla);
         controller.sender_mov_player(tecla);
+        controller.recibir();
+        player->add_speed(tecla);
     } else if (evento.type == SDL_MOUSEMOTION) {
+
         int mouseX = evento.motion.x;
         int mouseY = evento.motion.y;
         player->update_view_angle(mouseX, mouseY);
         controller.sender_pos_mouse(mouseX, mouseY);
-        // std::cout << "Mouse en: " << mouseX << ", " << mouseY << std::endl;
     }
     return true;
 }
@@ -129,6 +126,10 @@ bool GameView::init_render_window() {
     return true;
 }
 
+
+void GameView::start(){
+    controller.start();
+}
 void GameView::draw_game() {
 
     if (!init_render_window()) {
@@ -150,7 +151,6 @@ void GameView::draw_game() {
     //------------juego----------------------------
 
     std::vector<std::vector<char>> mapa = cargar_mapa(MAPA_AZTECA);
-    // MapView map(mapa, 1216 , 544);
     MapView map(mapa, 500, 500, &camera, &manger_texture);
 
     bool corriendo = true;
@@ -193,4 +193,6 @@ GameView::~GameView() {
     if (ventana)
         SDL_DestroyWindow(ventana);  // Libera la ventana
     SDL_Quit();                      // Cierra SDL
+    IMG_Quit();
+
 }

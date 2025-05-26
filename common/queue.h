@@ -8,6 +8,7 @@
 #include <mutex>
 #include <queue>
 #include <stdexcept>
+#include <iostream>
 
 struct ClosedQueue: public std::runtime_error {
     ClosedQueue(): std::runtime_error("The queue is closed") {}
@@ -337,6 +338,7 @@ public:
     // pop para unique_ptr
     std::unique_ptr<T> pop() {
         T* raw_ptr = Queue<T*>::pop();
+        std::cout << "popeando"<< std::endl;
         return std::unique_ptr<T>(raw_ptr);
     }
 

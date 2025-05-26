@@ -26,6 +26,10 @@ void Acceptor::run() {
     } catch (const LibError& e) {}
 }
 
+bool Acceptor::has_clients() {
+    return !this->clients.empty();
+}
+
 void Acceptor::stop() {
     this->socket_acceptor.shutdown(2);
     this->socket_acceptor.close();

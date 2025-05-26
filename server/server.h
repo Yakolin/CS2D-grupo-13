@@ -15,6 +15,7 @@ private:
     Acceptor acceptor;
     bool open;
 
+
 public:
     explicit Server(const char* port);
 

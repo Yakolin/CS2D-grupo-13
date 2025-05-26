@@ -38,8 +38,8 @@ public:
             game_name(_game_name), map_game(map_name) {}
     ~GameManager();
     GameImage get_frame();
-    void start_game();
-    void stop_game();
+    //void start_game();
+    //void stop_game();
     virtual void process(ClientAction& action) override;
     virtual void add_player(player_id_t& player_id) override;
     

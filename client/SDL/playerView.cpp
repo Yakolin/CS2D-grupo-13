@@ -50,7 +50,8 @@ void PlayerView::draw(SDL_Renderer& renderer) {
 }
 
 void PlayerView::add_speed(const SDL_Keycode& tecla) {
-    if (tecla == SDLK_w || tecla == SDLK_UP) {  // arriba
+
+   if (tecla == SDLK_w || tecla == SDLK_UP) {  // arriba
         fil -= speed_player;
     } else if (tecla == SDLK_a || tecla == SDLK_LEFT) {  // izquierda
         col -= speed_player;
@@ -70,7 +71,7 @@ void PlayerView::update_view_angle(const int& mouse_x, const int& mouse_y) {
     int dy = mouse_y - jugador_centro_y;
 
     // Ángulo en radianes
-    float angulo = std::atan2(dy, dx);
+    float angulo = std::atan2(dx, -dy);
 
     // Convertir a grados
     anglePlayer = angulo * 180.0f / M_PI;

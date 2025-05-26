@@ -4,8 +4,7 @@
 #include <iostream>
 
 void Map::update_map_state() {}
-void Map::move_player(player_id_t id, const Position& direction) {
-    // Chekear con el colliderManager si esta posicion es valida
+void Map::move(player_id_t id, const Position& direction) {
     auto it = players_positions.find(id);
     if (it != players_positions.end()) {
         it->second += direction;

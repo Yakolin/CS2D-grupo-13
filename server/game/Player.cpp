@@ -14,3 +14,20 @@ void Player::reset() {
     }
     health = 100;
 }
+
+void Player::move(const MoveType& move_type) {
+    switch (move_type) {
+        case MoveType::RIGHT:
+            game_zone.move(id, Position(1, 0));
+            break;
+        case MoveType::LEFT:
+            game_zone.move(id, Position(-1, 0));
+            break;
+        case MoveType::UP:
+            game_zone.move(id, Position(0, 1));
+            break;
+        case MoveType::DOWN:
+            game_zone.move(id, Position(0, -1));
+            break;
+    }
+}

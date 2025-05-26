@@ -44,8 +44,10 @@ bool GameView::handle_events(const SDL_Event& evento) {
         
         SDL_Keycode tecla = evento.key.keysym.sym;  // Se presionó una tecla
         controller.sender_mov_player(tecla);
-        controller.recibir();
-        player->add_speed(tecla);
+        Position pos = controller.recibir();
+        player->setCol(pos.x);
+        player->setFil(pos.y);
+        // player->add_speed(tecla);
     } else if (evento.type == SDL_MOUSEMOTION) {
 
         int mouseX = evento.motion.x;
@@ -143,8 +145,8 @@ void GameView::draw_game() {
     }
     //--------------inicializo clases----------------
     const float speed = 2.5f;
-    float x = 5;
-    float y = 5;
+    float x = 0;
+    float y = 0;
     PlayerView player(x, y, "assets/gfx/terrorist/t1_1.png", speed, &camera, &manger_texture);
     add_player(player);
 
@@ -194,5 +196,4 @@ GameView::~GameView() {
         SDL_DestroyWindow(ventana);  // Libera la ventana
     SDL_Quit();                      // Cierra SDL
     IMG_Quit();
-
 }

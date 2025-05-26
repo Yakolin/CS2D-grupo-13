@@ -22,13 +22,13 @@ void Controller::sender_mov_player(SDL_Keycode key) {
 
     MoveType mov = MoveType::DOWN;
     if (key == SDLK_UP || key == SDLK_w) {
-        mov = MoveType::UP;
+        mov = MoveType::DOWN; //Polaridad YA cambiada!
     } else if (key == SDLK_LEFT || key == SDLK_a) {
         mov = MoveType::LEFT;
     } else if (key == SDLK_RIGHT || key == SDLK_d) {
         mov = MoveType::RIGHT;
     } else if (key == SDLK_DOWN || key == SDLK_s) {
-        mov = MoveType::DOWN;
+        mov = MoveType::UP;
     }
     
     std::unique_ptr<InterfaceClientAction> action = std::make_unique<ClientSpace::Move>(mov);
@@ -48,19 +48,19 @@ void Controller::stop(){
     this->skt.shutdown(2);
     this->skt.close();
 }
-void Controller::recibir(){
+Position Controller::recibir(){
     GameImage image = recv_queue->pop();
     std::cout << ">>> Estado actual del juego:\n";
-    for (const PlayerImage& p : image.players_images) {
-        std::cout << "Jugador ID: " << p.player_id
+    PlayerImage p = image.players_images[0];
+            std::cout << "Jugador ID: " << p.player_id
                   << " | Posición: (" << p.position.x << ", " << p.position.y << ")"
                   << " | Vida: " << static_cast<int>(p.health)
                   << " | Puntos: " << static_cast<int>(p.points)
                   << std::endl;
-    }
+    float x_relativo = p.position.x;
+    float y_relativo = p.position.y;
+    return Position(x_relativo, y_relativo);
 }
-
-
 void Controller::run() {}
 
 Controller::~Controller(){}

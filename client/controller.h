@@ -45,7 +45,7 @@ public:
     */
     void sender_mov_player(SDL_Keycode tecla);
 
-    void recibir();
+    Position recibir();
 
     void run();
 

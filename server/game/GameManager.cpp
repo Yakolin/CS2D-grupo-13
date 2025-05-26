@@ -16,16 +16,16 @@ shared_ptr<Player> GameManager::find_player(player_id_t player_id) {
 void GameManager::process(ClientAction& action) {
     player_id_t player_id = action.get_player_id();
     shared_ptr<Player> player = find_player(player_id);
-    //action_to(player);
+    action.action_to(*player);
 }
 
 void GameManager::add_player(player_id_t& id) {
     Team team = ((players.size() + 1) % 2 == 0) ? Team::CT : Team::TT;
     shared_ptr<Player> player;
     if (team == Team::CT)
-        player = std::make_shared<CounterTerrorist>(id);
+        player = std::make_shared<CounterTerrorist>(id, map_game);
     else
-        player = std::make_shared<Terrorist>(id);
+        player = std::make_shared<Terrorist>(id, map_game);
     players.insert(make_pair(id, player));
     players_team.insert(std::make_pair(id, team));
     map_game.add_player(id);
@@ -47,9 +47,8 @@ GameImage GameManager::generate_game_image() {
     }
     return game_image;
 }
-/*
 void GameManager::start_game() {
-    if (players.size() != 2) {
+    if (players.size() != 1) {
         std::cout << "El juego no tiene suficientes jugadores\n";
         return;
     }
@@ -57,16 +56,15 @@ void GameManager::start_game() {
     game_started = true;
 }
 void GameManager::stop_game() {}
-*/
 bool GameManager::check_round_finished() { return false; }
 void GameManager::change_teams() {
     for (const auto& player: players_team) {
         if (player.second == Team::CT) {
             players_team[player.first] = Team::TT;
-            players[player.first] = std::make_shared<Terrorist>(player.first);
+            players[player.first] = std::make_shared<Terrorist>(player.first, map_game);
         } else {
             players_team[player.first] = Team::CT;
-            players[player.first] = std::make_shared<CounterTerrorist>(player.first);
+            players[player.first] = std::make_shared<CounterTerrorist>(player.first, map_game);
         }
     }
 }

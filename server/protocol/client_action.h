@@ -63,7 +63,7 @@ void action_to(IPlayerAction& player) override;
 class Reload: public ClientAction {
 
 public:
-    Reload(player_id_t player_id);
+    explicit Reload(player_id_t player_id);
     ~Reload();
     void action_to(IPlayerAction& player) override;
 };

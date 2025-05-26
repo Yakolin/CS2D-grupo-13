@@ -10,7 +10,7 @@
 */
 class CounterTerrorist: public Player {
 public:
-    CounterTerrorist(player_id_t id): Player(id) {}
+    CounterTerrorist(player_id_t id , GameZone& game_zone): Player(id, game_zone) {}
     ~CounterTerrorist() = default;
     virtual PlayerImage get_player_image(Position& position) override;
 };
@@ -18,7 +18,7 @@ class Terrorist: public Player {
 private:
     // Weapon Bomb
 public:
-    Terrorist(player_id_t id): Player(id) {}
+    explicit Terrorist(player_id_t id , GameZone& game_zone): Player(id, game_zone) {}
     ~Terrorist() = default;
     virtual PlayerImage get_player_image(Position& position) override;
     void plant_bomb(Map& map);

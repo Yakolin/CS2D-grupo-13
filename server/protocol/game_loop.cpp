@@ -29,11 +29,9 @@ void GameLoop::run() { this->constant_rate_loop.execute(); }
 
 void GameLoop::step() {
     try {
-        std::cout << "una cosa\n";
         std::unique_ptr<ClientAction> action = recv_queue->pop();
-        std::cout << "otra cosa\n";
+        game.process(*action);
         GameImage game_image = this->game.get_frame();
-        std::cout << "recibio frame\n";
         this->broadcast(game_image);
     } catch (const ClosedQueue& e) {
         std::cerr << "Exception: " << e.what() << std::endl;

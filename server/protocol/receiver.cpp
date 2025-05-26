@@ -49,8 +49,9 @@ void Receiver::run_game() {
                 this->recv_queue->push(std::move(action));
             }
         }
-
     } catch (ClosedQueue& e) {
+        this->closed = true;
+    } catch (const ConnectionClosedException& e) {
         this->closed = true;
     } catch (...) {
         std::cerr << "Something went wrong and an unknown exception was caught." << std::endl;

@@ -9,7 +9,8 @@ using ServerSpace::Reload;
 ParseLobbyAction::ParseLobbyAction(
         player_id_t& player_id, ServerProtocol& protocol, LobbyCommandType& command,
         std::shared_ptr<Queue<std::unique_ptr<ClientAction>>>& recv_queue,
-        std::shared_ptr<Queue<GameImage>>& send_queue, GamesMonitor& games_monitor, bool& in_lobby):
+        std::shared_ptr<Queue<GameImage>>& send_queue, InterfaceGamesMonitor& games_monitor,
+        bool& in_lobby):
         ParseAction(player_id, protocol),
         command(command),
         recv_queue(recv_queue),

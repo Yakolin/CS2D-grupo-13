@@ -7,6 +7,7 @@
 #include <gtest/gtest.h>
 
 #include "../common/game_image.h"
+#include "../common/liberror.h"
 #include "../common/lobby_types.h"
 #include "../common/player_command_types.h"
 #include "../common/socket.h"
@@ -15,6 +16,9 @@
 #include "../server/protocol/receiver.h"
 #include "mocks/mock_games_monitor.h"
 #include "mocks/mock_player.h"
+
+using ::testing::_;
+using ::testing::Return;
 
 using ServerSpace::Move;
 /*
@@ -106,36 +110,45 @@ TEST(ServerProtocolTest, ReadCreateGameReturnCorrectObject) {
 }
 
 TEST(ServerProtocolTest, ReadCreateGameExecuteGamesMonitorCorrectly) {
-    Socket server_socket("9999");
-    MockGamesMonitor mock_games_monitor;
-    std::thread client_thread([]() {
-        Socket client_socket("localhost", "9999");
-        std::string game_name = "mateo game";
-        lobby_command_t command = static_cast<lobby_command_t>(LobbyCommandType::CREATE_GAME);
-        client_socket.sendall(&command, sizeof(command));
+    try {
+        Socket server_socket("9999");
+        MockGamesMonitor mock_games_monitor;
+        player_id_t expected_player_id = 1;
+        std::atomic<bool> command_processed = false;
 
-        length_name_t length_name = htons(static_cast<length_name_t>(game_name.size()));
-        client_socket.sendall(&length_name, sizeof(length_name_t));
-        client_socket.sendall(game_name.c_str(), game_name.size());
-    });
+        EXPECT_CALL(mock_games_monitor,
+                    create_game(expected_player_id, "mateo game", testing::_, testing::_))
+                .Times(1)
+                .WillOnce(testing::Invoke([&command_processed](auto, auto, auto, auto) {
+                    command_processed = true;
+                    return true;
+                }));
 
-    Socket server_client = server_socket.accept();
-    ServerProtocol protocol(server_client);
-    Receiver receiver(1, protocol, nullptr, mock_games_monitor, false);
-    bool in_lobby = true;
+        std::thread client_thread([]() {
+            Socket client_socket("localhost", "9999");
+            std::string game_name = "mateo game";
+            lobby_command_t command = static_cast<lobby_command_t>(LobbyCommandType::CREATE_GAME);
+            client_socket.sendall(&command, sizeof(command));
 
-    // Act
-    receiver.run_lobby();
+            length_name_t length_name = htons(static_cast<length_name_t>(game_name.size()));
+            client_socket.sendall(&length_name, sizeof(length_name_t));
+            client_socket.sendall(game_name.c_str(), game_name.size());
+        });
 
-    // Assert
-    EXPECT_CALL(mock_games_monitor, create_game(1, "mateo game", _, _))
-            .Times(1)
-            .WillOnce(Return(true));
-    EXPECT_FALSE(in_lobby);
+        Socket server_client = server_socket.accept();
 
-    client_thread.join();
-    receiver.stop();
-    receiver.join();
+        auto dummy_queue = std::make_shared<Queue<GameImage>>();
+        Receiver receiver(expected_player_id, server_client, dummy_queue, mock_games_monitor);
+
+        receiver.start();
+
+        while (!command_processed) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(10));
+        }
+        receiver.stop();
+        receiver.join();
+        client_thread.join();
+    } catch (const LibError& e) {}
 }
 
 TEST(ServerProtocolTest, ReadJoinGameReturnCorrectObject) {

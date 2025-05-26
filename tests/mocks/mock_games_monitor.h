@@ -4,7 +4,7 @@
 #include <gmock/gmock.h>
 
 #include "../../common/player_command_types.h"
-#include "../../server/games_monitor.h"
+#include "../../server/protocol/games_monitor.h"
 
 class MockGamesMonitor: public InterfaceGamesMonitor {
 public:

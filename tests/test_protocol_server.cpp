@@ -12,6 +12,8 @@
 #include "../common/socket.h"
 #include "../server/protocol/client_action.h"
 #include "../server/protocol/protocol.h"
+#include "../server/protocol/receiver.h"
+#include "mocks/mock_games_monitor.h"
 #include "mocks/mock_player.h"
 
 using ServerSpace::Move;
@@ -103,6 +105,39 @@ TEST(ServerProtocolTest, ReadCreateGameReturnCorrectObject) {
     client_thread.join();
 }
 
+TEST(ServerProtocolTest, ReadCreateGameExecuteGamesMonitorCorrectly) {
+    Socket server_socket("9999");
+    MockGamesMonitor mock_games_monitor;
+    std::thread client_thread([]() {
+        Socket client_socket("localhost", "9999");
+        std::string game_name = "mateo game";
+        lobby_command_t command = static_cast<lobby_command_t>(LobbyCommandType::CREATE_GAME);
+        client_socket.sendall(&command, sizeof(command));
+
+        length_name_t length_name = htons(static_cast<length_name_t>(game_name.size()));
+        client_socket.sendall(&length_name, sizeof(length_name_t));
+        client_socket.sendall(game_name.c_str(), game_name.size());
+    });
+
+    Socket server_client = server_socket.accept();
+    ServerProtocol protocol(server_client);
+    Receiver receiver(1, protocol, nullptr, mock_games_monitor, false);
+    bool in_lobby = true;
+
+    // Act
+    receiver.run_lobby();
+
+    // Assert
+    EXPECT_CALL(mock_games_monitor, create_game(1, "mateo game", _, _))
+            .Times(1)
+            .WillOnce(Return(true));
+    EXPECT_FALSE(in_lobby);
+
+    client_thread.join();
+    receiver.stop();
+    receiver.join();
+}
+
 TEST(ServerProtocolTest, ReadJoinGameReturnCorrectObject) {
     Socket server_socket("9999");
     std::thread client_thread([]() {
@@ -159,21 +194,21 @@ TEST(ServerProtocolTest, ReadBuyWeapontReturnCorrectObject) {
     player_id_t player_id = 1;
     std::thread client_thread([]() {
         Socket client_socket("localhost", "9999");
-        
+
         player_command_t command = static_cast<player_command_t>(PlayerCommandType::BUY_WEAPON);
         client_socket.sendall(&command, sizeof(player_command_t));
         weapon_code_t weapon_type = static_cast<weapon_code_t>(WeaponCode::AK47);
         client_socket.sendall(&weapon_type, sizeof(weapon_code_t));
     });
-    
+
     Socket server_client = server_socket.accept();
     ServerProtocol protocol(server_client);
-    
+
     // Act
-    
+
     PlayerCommandType command = protocol.read_player_command();
     std::unique_ptr<ClientAction> action = protocol.read_buy_weapon(player_id);
-    
+
     // Assert
     ASSERT_EQ(command, PlayerCommandType::BUY_WEAPON);
     EXPECT_CALL(mock_player, buy_weapon(WeaponCode::AK47)).Times(1);
@@ -191,7 +226,7 @@ TEST(ServerProtocolTest, ReadBuyAmmoReturnCorrectObject) {
     player_id_t player_id = 1;
     std::thread client_thread([]() {
         Socket client_socket("localhost", "9999");
-        
+
         player_command_t command = static_cast<player_command_t>(PlayerCommandType::BUY_AMMO);
         client_socket.sendall(&command, sizeof(player_command_t));
         weapon_type_t weapon_type = static_cast<weapon_type_t>(WeaponType::PRIMARY);
@@ -203,19 +238,19 @@ TEST(ServerProtocolTest, ReadBuyAmmoReturnCorrectObject) {
 
     Socket server_client = server_socket.accept();
     ServerProtocol protocol(server_client);
-    
+
     // Act
-    
+
     PlayerCommandType command = protocol.read_player_command();
     std::unique_ptr<ClientAction> action = protocol.read_buy_ammo(player_id);
-    
+
     // Assert
     ASSERT_EQ(command, PlayerCommandType::BUY_AMMO);
     EXPECT_CALL(mock_player, buy_ammo(WeaponType::PRIMARY, static_cast<ammo_t>(10))).Times(1);
-    
+
     // Ejecutamos la acción inyectando nuestro mock de jugador
     action->action_to(mock_player);
-    
+
     client_thread.join();
 }
 
@@ -224,21 +259,21 @@ TEST(ServerProtocolTest, ReadReloadReturnCorrectCommand) {
     Socket server_socket("9999");
     std::thread client_thread([]() {
         Socket client_socket("localhost", "9999");
-        
+
         player_command_t command = static_cast<player_command_t>(PlayerCommandType::RELOAD);
         client_socket.sendall(&command, sizeof(player_command_t));
     });
-    
+
     Socket server_client = server_socket.accept();
     ServerProtocol protocol(server_client);
-    
+
     // Act
-    
+
     PlayerCommandType command = protocol.read_player_command();
-    
+
     // Assert
     ASSERT_EQ(command, PlayerCommandType::RELOAD);
-    
+
     client_thread.join();
 }
 
@@ -249,7 +284,7 @@ TEST(ServerProtocolTest, ReadShootReturnCorrectObject) {
     player_id_t player_id = 1;
     std::thread client_thread([]() {
         Socket client_socket("localhost", "9999");
-        
+
         player_command_t command = static_cast<player_command_t>(PlayerCommandType::SHOOT);
         client_socket.sendall(reinterpret_cast<char*>(&command), sizeof(command));
         coordinate_t x = 1;
@@ -262,15 +297,15 @@ TEST(ServerProtocolTest, ReadShootReturnCorrectObject) {
         client_socket.sendall(&y, sizeof(coordinate_t));
         client_socket.sendall(&ammo_count, sizeof(ammo_t));
     });
-    
+
     Socket server_client = server_socket.accept();
     ServerProtocol protocol(server_client);
-    
+
     // Act
-    
+
     PlayerCommandType command = protocol.read_player_command();
     std::unique_ptr<ClientAction> action = protocol.read_shoot(player_id);
-    
+
     // Assert
     ASSERT_EQ(command, PlayerCommandType::SHOOT);
     EXPECT_CALL(mock_player, shoot(1, 1)).Times(1);
@@ -286,22 +321,22 @@ TEST(ServerProtocolTest, ReadPlantBombReturnCorrectCommand) {
     Socket server_socket("9999");
     std::thread client_thread([]() {
         Socket client_socket("localhost", "9999");
-        
+
         player_command_t command = static_cast<player_command_t>(PlayerCommandType::PLANT_BOMB);
         client_socket.sendall(&command, sizeof(player_command_t));
     });
-    
+
     Socket server_client = server_socket.accept();
     ServerProtocol protocol(server_client);
-    
+
     // Act
-    
+
     PlayerCommandType command = protocol.read_player_command();
-    
+
     // Assert
     ASSERT_EQ(command, PlayerCommandType::PLANT_BOMB);
-    
-    
+
+
     client_thread.join();
 }
 
@@ -310,21 +345,21 @@ TEST(ServerProtocolTest, ReadDefuseBombReturnCorrectCommand) {
     Socket server_socket("9999");
     std::thread client_thread([]() {
         Socket client_socket("localhost", "9999");
-        
+
         player_command_t command = static_cast<player_command_t>(PlayerCommandType::DEFUSE_BOMB);
         client_socket.sendall(&command, sizeof(player_command_t));
     });
-    
+
     Socket server_client = server_socket.accept();
     ServerProtocol protocol(server_client);
-    
+
     // Act
-    
+
     PlayerCommandType command = protocol.read_player_command();
-    
+
     // Assert
     ASSERT_EQ(command, PlayerCommandType::DEFUSE_BOMB);
-    
+
     client_thread.join();
 }
 */
@@ -342,7 +377,7 @@ TEST(ServerProtocolTest, ReadPlayerCommandReturnConnectionClosedException) {
 
     // Act & Assert
     EXPECT_THROW(protocol.read_player_command(), ConnectionClosedException);
-    
+
     client_thread.join();
 }
 
@@ -354,21 +389,21 @@ TEST(ServerProtocolTest, ReadDropReturnCorrectCommand) {
     Socket server_socket("9999");
     std::thread client_thread([]() {
         Socket client_socket("localhost", "9999");
-        
+
         player_command_t command = static_cast<player_command_t>(PlayerCommandType::DROP);
         client_socket.sendall(reinterpret_cast<char*>(&command), sizeof(command));
     });
-    
+
     Socket server_client = server_socket.accept();
     ServerProtocol protocol(server_client);
-    
+
     // Act
-    
+
     PlayerCommandType command = protocol.read_player_command();
-    
+
     // Assert
     ASSERT_EQ(command, PlayerCommandType::DROP);
-    
+
     client_thread.join();
 }
 
@@ -379,27 +414,27 @@ TEST(ServerProtocolTest, ReadEquipReturnCorrectObject) {
     player_id_t player_id = 1;
     std::thread client_thread([]() {
         Socket client_socket("localhost", "9999");
-        
+
         player_command_t command = static_cast<player_command_t>(PlayerCommandType::EQUIP);
         client_socket.sendall(&command, sizeof(player_command_t));
         equip_type_t equip_type = static_cast<equip_type_t>(EquipType::ROLL_DOWN);
         client_socket.sendall(&equip_type, sizeof(equip_type_t));
     });
-    
+
     Socket server_client = server_socket.accept();
     ServerProtocol protocol(server_client);
-    
+
     // Act
     PlayerCommandType command = protocol.read_player_command();
     std::unique_ptr<ClientAction> action = protocol.read_equip(player_id);
-    
+
     // Assert
     ASSERT_EQ(command, PlayerCommandType::EQUIP);
     EXPECT_CALL(mock_player, equip(EquipType::ROLL_DOWN)).Times(1);
 
     // Ejecutamos la acción inyectando nuestro mock de jugador
     action->action_to(mock_player);
-    
+
     client_thread.join();
 }
 */

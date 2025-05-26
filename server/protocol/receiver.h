@@ -6,14 +6,15 @@
 
 #include "../../common/connection_closed_exception.h"
 #include "../../common/game_image.h"
+#include "../../common/liberror.h"
 #include "../../common/player_command_types.h"
 #include "../../common/queue.h"
 #include "../../common/socket.h"
 #include "../../common/thread.h"
+#include "../interfaces/interface_games_monitor.h"
 
 #include "client_action.h"
 #include "functor_parse_client_action.h"
-#include "games_monitor.h"
 #include "protocol.h"
 
 
@@ -23,7 +24,7 @@ private:
     ServerProtocol protocol;
     std::shared_ptr<Queue<std::unique_ptr<ClientAction>>> recv_queue;
     std::shared_ptr<Queue<GameImage>>& send_queue;
-    GamesMonitor& games_monitor;
+    InterfaceGamesMonitor& games_monitor;
     bool closed;
 
     void run_lobby();
@@ -31,7 +32,7 @@ private:
 
 public:
     Receiver(player_id_t& player_id, Socket& socket, std::shared_ptr<Queue<GameImage>>& send_queue,
-             GamesMonitor& games_monitor);
+             InterfaceGamesMonitor& games_monitor);
     ~Receiver();
     void run() override;
 };

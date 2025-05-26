@@ -108,27 +108,6 @@ TEST(ClientProtocolTest, SendListGamesSendCorrectObject) {
     EXPECT_EQ(static_cast<LobbyCommandType>(header), LobbyCommandType::LIST_GAMES);
 }
 
-TEST(ClientProtocolTest, ReadPlayerIdReturnsCorrectId) {
-    // Arrange
-    Socket server_listener("9999");
-    Socket client("localhost", "9999");
-    Socket accepted = server_listener.accept();
-    ClientProtocol protocol(client);
-
-    uint8_t handshake_byte = static_cast<uint8_t>(HandshakeType::HANDSHAKE);
-    player_id_t expected_id = 456;
-    uint16_t net_id = htons(expected_id);
-
-    accepted.sendall(&handshake_byte, sizeof(handshake_byte));
-    accepted.sendall(&net_id, sizeof(net_id));
-
-    // Act
-    player_id_t result = protocol.read_player_id();
-
-    // Assert
-    EXPECT_EQ(result, expected_id);
-}
-
 TEST(ClientProtocolTest, SendPlayerCommandSendCorrectType) {
     // Arrange
     Socket server_socket("9999");

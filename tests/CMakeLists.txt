@@ -5,6 +5,9 @@ target_sources(CS2D_tests
     test_protocol_client.cpp
     ../server/protocol/protocol.cpp
     ../server/protocol/client_action.cpp
+    ../server/protocol/receiver.cpp
+    ../server/protocol/sender.cpp
+    ../server/protocol/functor_parse_client_action.cpp
     ../client/model/client_action.cpp
     ../client/model/protocol.cpp
 
@@ -12,6 +15,9 @@ target_sources(CS2D_tests
     # .h files
     ../server/protocol/protocol.h
     ../server/protocol/client_action.h
+    ../server/protocol/receiver.h
+    ../server/protocol/sender.h
+    ../server/protocol/functor_parse_client_action.h
     ../common/player_command_types.h
     ../common/client_common_action.h
     ../server/interfaces/interface_player_action.h

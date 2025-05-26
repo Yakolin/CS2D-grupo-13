@@ -1,7 +1,8 @@
 #include "receiver.h"
 
 Receiver::Receiver(player_id_t& player_id, Socket& socket,
-                   std::shared_ptr<Queue<GameImage>>& send_queue, GamesMonitor& games_monitor):
+                   std::shared_ptr<Queue<GameImage>>& send_queue,
+                   InterfaceGamesMonitor& games_monitor):
         player_id(player_id),
         protocol(socket),
         recv_queue(nullptr),
@@ -56,7 +57,6 @@ void Receiver::run_lobby() {
     } catch (const ConnectionClosedException& e) {}
 }
 
-
 void Receiver::run_game() {
     try {
         while (!this->closed && this->should_keep_running()) {
@@ -71,11 +71,12 @@ void Receiver::run_game() {
                 std::cout<< "accion pusheada ----------"<<std::endl;
             }
         }
-
     } catch (ClosedQueue& e) {
+        this->closed = true;
+    } catch (const ConnectionClosedException& e) {
         this->closed = true;
     } catch (...) {
         std::cerr << "Something went wrong and an unknown exception was caught." << std::endl;
-        closed = true;
+        this->closed = true;
     }
 }

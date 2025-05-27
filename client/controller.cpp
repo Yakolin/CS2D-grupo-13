@@ -7,7 +7,9 @@ Controller::Controller(Socket&& skt):
     send_queue(std::make_shared<Queue<std::unique_ptr<InterfaceClientAction>>>(MAX_QUEUE_SIZE)),
     recv_queue(std::make_shared<Queue<GameImage>>(MAX_QUEUE_SIZE)),
     sender(this->skt, this->send_queue),
-    receiver(this->skt, this->recv_queue) {}
+    receiver(this->skt, this->recv_queue) {
+        start();
+    }
     
 void Controller::sender_pos_mouse(int x, int y) {
     int tile_size = 32;  // tamaño en pixeles de cada bloque del mapa
@@ -51,14 +53,23 @@ void Controller::stop(){
 Position Controller::recibir(){
     GameImage image = recv_queue->pop();
     std::cout << ">>> Estado actual del juego:\n";
-    PlayerImage p = image.players_images[0];
-            std::cout << "Jugador ID: " << p.player_id
-                  << " | Posición: (" << p.position.x << ", " << p.position.y << ")"
-                  << " | Vida: " << static_cast<int>(p.health)
-                  << " | Puntos: " << static_cast<int>(p.points)
-                  << std::endl;
-    float x_relativo = p.position.x;
-    float y_relativo = p.position.y;
+    float x_relativo =0;
+    float y_relativo =0;
+
+
+    for (size_t i = 0; i < image.players_images.size(); i++){
+        PlayerImage p = image.players_images[i];
+        std::cout << "Jugador ID: " << p.player_id
+            << " | Posición: (" << p.position.x << ", " << p.position.y << ")"
+            << " | Vida: " << static_cast<int>(p.health)
+            << " | Puntos: " << static_cast<int>(p.points)
+            << std::endl;
+        x_relativo = p.position.x;
+        y_relativo = p.position.y;
+        std::cout << "------------------------------------------\n " ;
+
+        std::cout << "Posición relativa del jugador: (" << x_relativo << ", " << y_relativo << ")" << std::endl;
+    }
     return Position(x_relativo, y_relativo);
 }
 void Controller::run() {}

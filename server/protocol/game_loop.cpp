@@ -19,9 +19,8 @@ void GameLoop::add_player(player_id_t& player_id,
     this->game.add_player(player_id);
 }
 
-bool GameLoop::is_full() 
-{
-    return true;
+bool GameLoop::is_full() {
+    return (this->send_queues.size() == MAX_PLAYERS);   
 }
 
 void GameLoop::run() { this->constant_rate_loop.execute(); }

@@ -4,6 +4,31 @@ ClientProtocol::ClientProtocol(Socket& socket): socket(socket) {}
 
 ClientProtocol::~ClientProtocol() {}
 
+
+
+std::vector<std::string> ClientProtocol::read_list_games() {
+    length_games_list_t list_size;
+    this->read_two_byte_data(list_size);
+
+    std::vector<std::string> games_list;
+    games_list.reserve(list_size);
+
+    for (length_games_list_t i = 0; i < list_size; i++) {
+        length_name_t name_length;
+        this->read_two_byte_data(name_length);
+
+        std::vector<char> buffer(name_length);
+        this->socket.recvall(buffer.data(), name_length);
+
+        if (this->socket.is_stream_recv_closed()) {
+            throw ConnectionClosedException("Error al intentar recibir datos del servidor");
+        }
+        std::string game_name(buffer.data(), name_length);
+        games_list.push_back(std::move(game_name));
+    }
+    return games_list;
+}
+
 void ClientProtocol::send_byte_data(uint8_t& data) {
     this->socket.sendall(&data, sizeof(uint8_t));
     if (this->socket.is_stream_send_closed()) {
@@ -49,7 +74,7 @@ void ClientProtocol::send_join_game(const std::string& game_name) {
     this->send_two_byte_data(length);
     this->socket.sendall(game_name.c_str(), game_name.size());
     if (this->socket.is_stream_send_closed()) {
-        throw ConnectionClosedException("Error al intentar enviar datos del servidor");
+        throw ConnectionClosedException("Error al intentar enviar datos al servidor");
     }
 }
 

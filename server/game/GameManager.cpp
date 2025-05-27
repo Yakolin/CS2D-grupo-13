@@ -23,10 +23,11 @@ void GameManager::add_player(player_id_t& id) {
     Team team = ((players.size() + 1) % 2 == 0) ? Team::CT : Team::TT;
     shared_ptr<Player> player;
     if (team == Team::CT)
-        player = std::make_shared<CounterTerrorist>(id, map_game);
+    player = std::make_shared<CounterTerrorist>(id, map_game);
     else
         player = std::make_shared<Terrorist>(id, map_game);
     players.insert(make_pair(id, player));
+    std::cout<< "Añado un jugador a la partida" << id << std::endl;
     players_team.insert(std::make_pair(id, team));
     map_game.add_player(id);
 }

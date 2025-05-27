@@ -26,6 +26,8 @@ private:
     std::shared_ptr<Queue<GameImage>> recv_queue;
     Sender sender;
     Receiver receiver;
+
+    void start();
     
 public:
     explicit Controller(Socket&& skt);
@@ -36,7 +38,6 @@ public:
     */
     void sender_pos_mouse(int x, int y);
 
-    void start();
 
     void stop();
     /*

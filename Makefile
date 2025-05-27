@@ -12,6 +12,10 @@ run-tests: compile-debug
 run-client:  
 	cd "$(CURDIR)" && ./build/CS2D_client 127.0.0.1 7777
 
+
+run-client2:  
+	cd "$(CURDIR)" && ./build/CS2D_client 127.0.0.2 7777
+
 run-server: 
 
 	./build/CS2D_server 7777

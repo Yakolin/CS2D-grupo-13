@@ -25,6 +25,8 @@ public:
     ClientProtocol(Socket& socket);
     ~ClientProtocol();
 
+    std::vector<std::string> read_list_games();
+
     void send_lobby_command(LobbyCommandType command);
     void send_player_command(PlayerCommandType command);
 

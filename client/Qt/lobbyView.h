@@ -36,6 +36,8 @@ public:
     
     void action_list(const std::vector<std::string>& list) ;
 
+    void action_join2();
+
     QListWidget* create_item(QWidget* parent, const QStringList& options);
 
     virtual ~LobbyView();

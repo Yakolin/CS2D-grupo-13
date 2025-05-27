@@ -129,9 +129,6 @@ bool GameView::init_render_window() {
 }
 
 
-void GameView::start(){
-    controller.start();
-}
 void GameView::draw_game() {
 
     if (!init_render_window()) {

@@ -152,9 +152,13 @@ void LobbyView::action_join(const std::vector<std::string> list){
     QWidget* window_players = new QWidget();
     QStringList options;
     QVBoxLayout* layout = new QVBoxLayout(window);
+
     QPushButton* button = new QPushButton("Aceptar");
+
     QWidget* formWidget = new QWidget(window);
+
     QFormLayout *formLayout = new QFormLayout();
+    
     formWidget->setLayout(formLayout);
 
     QLineEdit* name = new QLineEdit(window);
@@ -179,9 +183,51 @@ void LobbyView::action_join(const std::vector<std::string> list){
     connect(button,  &QPushButton::clicked, [this, button]() {
         close();
         QApplication::quit();
-        protocol.send_create_game(infoPlayer.info.name_game);
-        std::cout  << "envio nombre join partida\n";
+        std::cout  << "envio nombre join partida: "<< infoPlayer.info.name_game << std::endl;
+        protocol.send_join_game(infoPlayer.info.name_game);
     });
+
+}
+void LobbyView::action_join2(){
+
+    QWidget* window = new QWidget();
+    QWidget* window_players = new QWidget();
+
+    QVBoxLayout* layout = new QVBoxLayout(window);
+
+    QPushButton* button = new QPushButton("Aceptar");
+
+    QWidget* formWidget = new QWidget(window);
+
+    QFormLayout *formLayout = new QFormLayout();
+    
+    formWidget->setLayout(formLayout);
+
+    QLineEdit* name = new QLineEdit(window);
+    QLineEdit* name_game = new QLineEdit(window);
+    formLayout->addRow("Name Player: ", name);
+    formLayout->addRow("Name Game: ", name_game);
+
+    tabs->addTab(window, "partida");
+    tabs->addTab(window_players, "Players");
+    section_player(window_players,button);
+
+    connect(name_game ,&QLineEdit::textChanged, this, [&](const QString &text){
+        this->infoPlayer.info.name_game = text.toStdString();
+        std::cout  << "nombre partida: "<< infoPlayer.info.name_game << std::endl;
+    });
+    connect(name,&QLineEdit::textChanged, this, [&](const QString &text){
+        this->infoPlayer.info.name_player = text.toStdString();
+    });
+    layout->addWidget(formWidget); 
+    layout->addWidget(button);
+    connect(button,  &QPushButton::clicked, [this, button]() {
+        close();
+        QApplication::quit();
+        std::cout  << "envio nombre join partida: "<< infoPlayer.info.name_game << std::endl;
+        protocol.send_join_game(infoPlayer.info.name_game);
+    });
+    
 
 }
 LobbyView::~LobbyView() {}

@@ -8,5 +8,7 @@ using length_games_list_t = std::uint16_t;
 
 enum class LobbyCommandType { CREATE_GAME, JOIN_GAME, LIST_GAMES, EXIT_GAME, HELP_GAME, NONE };
 
+enum class LobbyError { GAME_NAME_ALREADY_IN_USE, INEXISTENT_GAME };
+
 
 #endif  // !LOBBY_TYPES_H

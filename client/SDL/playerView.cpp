@@ -42,8 +42,7 @@ void PlayerView::draw(SDL_Renderer& renderer) {
     SDL_Texture* tiles_player = manejador->get(Objet::PLAYER);
     origin_rect = {item.col * width_img, item.fil * height_img, width_img / 2, height_img / 3};
     //                           col=x               fil =y       ancho, alto
-    destination_rect = {static_cast<int>(col) - camera->x, static_cast<int>(fil) - camera->y, 32,
-                        32};
+    destination_rect = {static_cast<int>(col) - camera->x, static_cast<int>(fil) - camera->y, 32,32};
     // SDL_RenderCopy(&renderer, tiles_player, &origin_rect ,&destination_rect);
     SDL_RenderCopyEx(&renderer, tiles_player, &origin_rect, &destination_rect, anglePlayer, nullptr,
                      SDL_FLIP_NONE);

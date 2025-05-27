@@ -3,7 +3,7 @@
 GamesMonitor::GamesMonitor() {}
 GamesMonitor::~GamesMonitor() {}
 
-bool GamesMonitor::create_game(player_id_t player_id, const std::string& game_name,
+bool GamesMonitor::create_game(player_id_t &player_id, const std::string& game_name,
                                std::shared_ptr<Queue<std::unique_ptr<ClientAction>>>& recv_queue,
                                std::shared_ptr<Queue<GameImage>>& send_queue) {
     std::lock_guard<std::mutex> lock(mutex);
@@ -19,15 +19,17 @@ bool GamesMonitor::create_game(player_id_t player_id, const std::string& game_na
     return false;
 }
 
-bool GamesMonitor::join_game(player_id_t player_id, const std::string& game_name,
+bool GamesMonitor::join_game(player_id_t &player_id, const std::string& game_name,
                              std::shared_ptr<Queue<std::unique_ptr<ClientAction>>>& recv_queue,
                              std::shared_ptr<Queue<GameImage>>& send_queue) {
     std::lock_guard<std::mutex> lock(mutex);
+    std::cout<<"Me uno a la partida" << player_id <<std::endl;
     auto it = games.find(game_name);
     if (it != games.end()) {
         if (!it->second->is_full()) {
             it->second->add_player(player_id, recv_queue, send_queue);
             if (it->second->is_full()) {
+                std::cout<<"Comienza la partida"<< player_id <<std::endl;
                 it->second->start();
             }
             return true;

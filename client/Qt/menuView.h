@@ -60,7 +60,7 @@ public:
     LobbyCommandType getCommantType() const;
     
     void action_create();
-    void action_join(std::vector<std::string>& list );
+    void action_join( );
     void action_help();
     void action_exit();
     void action_list(const std::vector<std::string>& list);

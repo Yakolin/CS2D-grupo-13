@@ -46,10 +46,10 @@ void MenuView::action_create() {
     lobby->show();
 }
 
-void MenuView::action_join(std::vector<std::string>& list) {
+void MenuView::action_join() {
 
     LobbyView* lobby = new LobbyView(protocolo);
-    lobby->action_join(list);
+    lobby->action_join2();
     lobby->show();
 }
 

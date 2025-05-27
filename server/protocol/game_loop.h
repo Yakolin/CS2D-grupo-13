@@ -8,13 +8,14 @@
 #include "../../common/game_image.h"
 #include "../../common/queue.h"
 #include "../../common/thread.h"
-#include "../interfaces/interface_game.h"
 #include "../game/GameManager.h"
+#include "../interfaces/interface_game.h"
+
 #include "client_action.h"
 
 
 #define QUEUE_MAX_SIZE 10000
-#define MAX_PLAYERS 2
+#define MAX_PLAYERS 1
 
 class GameLoop: public Thread {
 private:

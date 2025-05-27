@@ -14,7 +14,7 @@ run-client:
 
 
 run-client2:  
-	cd "$(CURDIR)" && ./build/CS2D_client 127.0.0.2 7777
+	cd "$(CURDIR)" && ./build/CS2D_client 127.0.0.1 8080
 
 run-server: 
 

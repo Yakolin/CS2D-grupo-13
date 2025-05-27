@@ -2,25 +2,26 @@
 #define CONTROLLER_H
 #include <fstream>
 #include <iostream>
+#include <memory>
 #include <sstream>
 #include <stdexcept>
 #include <string>
 #include <vector>
-#include "model/sender.h"
-#include "model/client_action.h"
+
+#include <SDL.h>
+
 #include "../common/queue.h"
 #include "../common/socket.h"
-#include <SDL.h>
-#include <iostream>
-#include <memory>
+#include "model/client_action.h"
+#include "model/sender.h"
 
 #include "tipos.h"
 class Controller {
 private:
-    std::shared_ptr<Queue<std::unique_ptr<InterfaceClientAction>>> &send_queue;
+    std::shared_ptr<Queue<std::unique_ptr<InterfaceClientAction>>>& send_queue;
 
 public:
-    explicit Controller(std::shared_ptr<Queue<std::unique_ptr<InterfaceClientAction>>> &send_queue) ;
+    explicit Controller(std::shared_ptr<Queue<std::unique_ptr<InterfaceClientAction>>>& send_queue);
 
     /*
     pre:

@@ -3,17 +3,13 @@
 const int FILAS_MAP = 17;
 const int COLUMNAS_MAP = 38;
 
-PlayerView::PlayerView(const float& x, 
-                        const float& y, 
-                        const std::string& rute, 
-                        const float& speed,
-                       SDL_Rect* camera_receiver, 
-                       ManageTexture* manejador):
+PlayerView::PlayerView(const float& x, const float& y, const std::string& rute, const float& speed,
+                       SDL_Rect* camera_receiver, ManageTexture* manejador):
         fil(pasar_pixeles(x)),
         col(pasar_pixeles(y)),
         rutaPlayer(rute),
         origin_rect({0, 0, 64, 96}),
-        destination_rect({static_cast<int>(col), static_cast<int>(fil) , 32, 32}),
+        destination_rect({static_cast<int>(col), static_cast<int>(fil), 32, 32}),
         speed_player(speed),
         width_img(),
         height_img(),

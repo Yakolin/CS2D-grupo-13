@@ -16,7 +16,7 @@
 #include "client_action.h"
 
 namespace ServerSpace {
-    class Move;
+class Move;
 /*
 class CreateGame;
 class JoinGame;
@@ -53,13 +53,13 @@ public:
     std::string read_join_game();
 
     std::unique_ptr<ServerSpace::Move> read_move(player_id_t player_id);
-/*
-std::unique_ptr<ServerSpace::BuyWeapon> read_buy_weapon(player_id_t player_id);
-std::unique_ptr<ServerSpace::BuyAmmo> read_buy_ammo(player_id_t player_id);
-std::unique_ptr<ServerSpace::Shoot> read_shoot(player_id_t player_id);
+    /*
+    std::unique_ptr<ServerSpace::BuyWeapon> read_buy_weapon(player_id_t player_id);
+    std::unique_ptr<ServerSpace::BuyAmmo> read_buy_ammo(player_id_t player_id);
+    std::unique_ptr<ServerSpace::Shoot> read_shoot(player_id_t player_id);
 
-std::unique_ptr<ServerSpace::Equip> read_equip(player_id_t player_id);
-*/
+    std::unique_ptr<ServerSpace::Equip> read_equip(player_id_t player_id);
+    */
 
     void send_list_games(std::vector<std::string>& list_games);
 

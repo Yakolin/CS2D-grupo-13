@@ -1,6 +1,9 @@
 #ifndef PROTOCOL_H
 #define PROTOCOL_H
 
+#include <string>
+#include <vector>
+
 #include <arpa/inet.h>
 
 #include "../../common/connection_closed_exception.h"
@@ -41,6 +44,7 @@ public:
     void send_defuse_bomb();
     void send_drop();
 
+    std::vector<std::string> read_list_games();
     GameImage read_game_image();
 };
 

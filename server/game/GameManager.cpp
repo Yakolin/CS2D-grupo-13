@@ -16,7 +16,7 @@ shared_ptr<Player> GameManager::find_player(player_id_t player_id) {
 void GameManager::process(ClientAction& action) {
     player_id_t player_id = action.get_player_id();
     shared_ptr<Player> player = find_player(player_id);
-    //action_to(player);
+    // action_to(player);
 }
 
 void GameManager::add_player(player_id_t& id) {

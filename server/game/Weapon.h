@@ -5,6 +5,7 @@
 #include <memory>
 
 #include "../../common/player_command_types.h"
+
 #include "Colliders.h"
 class Weapon {
 public:

@@ -7,9 +7,11 @@
 *****************************************************************************/
 
 #include <memory>
-#include "lobbyView.h"
+
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
+
+#include "lobbyView.h"
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'lobbyView.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
@@ -25,69 +27,60 @@ struct qt_meta_stringdata_LobbyView_t {
     QByteArrayData data[1];
     char stringdata0[10];
 };
-#define QT_MOC_LITERAL(idx, ofs, len) \
-    Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_LobbyView_t, stringdata0) + ofs \
-        - idx * sizeof(QByteArrayData)) \
-    )
+#define QT_MOC_LITERAL(idx, ofs, len)                                                   \
+    Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(                            \
+            len, qptrdiff(offsetof(qt_meta_stringdata_LobbyView_t, stringdata0) + ofs - \
+                          idx * sizeof(QByteArrayData)))
 static const qt_meta_stringdata_LobbyView_t qt_meta_stringdata_LobbyView = {
-    {
-QT_MOC_LITERAL(0, 0, 9) // "LobbyView"
+        {
+                QT_MOC_LITERAL(0, 0, 9)  // "LobbyView"
 
-    },
-    "LobbyView"
-};
+        },
+        "LobbyView"};
 #undef QT_MOC_LITERAL
 
 static const uint qt_meta_data_LobbyView[] = {
 
- // content:
-       8,       // revision
-       0,       // classname
-       0,    0, // classinfo
-       0,    0, // methods
-       0,    0, // properties
-       0,    0, // enums/sets
-       0,    0, // constructors
-       0,       // flags
-       0,       // signalCount
+        // content:
+        8,     // revision
+        0,     // classname
+        0, 0,  // classinfo
+        0, 0,  // methods
+        0, 0,  // properties
+        0, 0,  // enums/sets
+        0, 0,  // constructors
+        0,     // flags
+        0,     // signalCount
 
-       0        // eod
+        0  // eod
 };
 
-void LobbyView::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
-{
+void LobbyView::qt_static_metacall(QObject* _o, QMetaObject::Call _c, int _id, void** _a) {
     (void)_o;
     (void)_id;
     (void)_c;
     (void)_a;
 }
 
-QT_INIT_METAOBJECT const QMetaObject LobbyView::staticMetaObject = { {
-    QMetaObject::SuperData::link<QWidget::staticMetaObject>(),
-    qt_meta_stringdata_LobbyView.data,
-    qt_meta_data_LobbyView,
-    qt_static_metacall,
-    nullptr,
-    nullptr
-} };
+QT_INIT_METAOBJECT const QMetaObject LobbyView::staticMetaObject = {
+        {QMetaObject::SuperData::link<QWidget::staticMetaObject>(),
+         qt_meta_stringdata_LobbyView.data, qt_meta_data_LobbyView, qt_static_metacall, nullptr,
+         nullptr}};
 
 
-const QMetaObject *LobbyView::metaObject() const
-{
+const QMetaObject* LobbyView::metaObject() const {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *LobbyView::qt_metacast(const char *_clname)
-{
-    if (!_clname) return nullptr;
+void* LobbyView::qt_metacast(const char* _clname) {
+    if (!_clname)
+        return nullptr;
     if (!strcmp(_clname, qt_meta_stringdata_LobbyView.stringdata0))
         return static_cast<void*>(this);
     return QWidget::qt_metacast(_clname);
 }
 
-int LobbyView::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
-{
+int LobbyView::qt_metacall(QMetaObject::Call _c, int _id, void** _a) {
     _id = QWidget::qt_metacall(_c, _id, _a);
     return _id;
 }

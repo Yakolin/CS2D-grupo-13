@@ -32,7 +32,6 @@ public:
 private:
     std::map<std::string, PlayerSummary> scores;
     Rankings ranking_group;
-
 };
 
 #endif  // SCOREBOARD_H

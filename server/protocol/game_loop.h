@@ -8,8 +8,9 @@
 #include "../../common/game_image.h"
 #include "../../common/queue.h"
 #include "../../common/thread.h"
-#include "../interfaces/interface_game.h"
 #include "../game/GameManager.h"
+#include "../interfaces/interface_game.h"
+
 #include "client_action.h"
 
 

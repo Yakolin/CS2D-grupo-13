@@ -23,7 +23,6 @@ public:
 
 namespace ServerSpace {
 
-
 /*
     MOVEMENT ACTIONS
 */
@@ -38,9 +37,9 @@ public:
 
 /*
     WEAPON ACTIONS
-    
+
 class BuyWeapon: public ClientAction, public BuyWeaponCommon {
-    
+
 public:
 BuyWeapon(player_id_t player_id,
 WeaponCode weapon_code);  // considerando que el arma viene con
@@ -50,7 +49,7 @@ void action_to(IPlayerAction& player) override;
 };
 
 class BuyAmmo: public ClientAction, public BuyAmmoCommon {
-    
+
 public:
 BuyAmmo(player_id_t player_id, WeaponType weapon_type, ammo_t ammo_count);
 ~BuyAmmo();
@@ -78,33 +77,33 @@ public:
 };
 
     BOMB ACTIONS
-    
+
     class PlantBomb: public ClientAction {
         public:
         PlantBomb(player_id_t player_id);
         ~PlantBomb();
         void action_to(IPlayerAction& player) override;
     };
-    
-    
+
+
     class DefuseBomb: public ClientAction {
         public:
         DefuseBomb(player_id_t player_id);
         ~DefuseBomb();
         void action_to(IPlayerAction& player) override;
     };
-    
+
 */
 /*
     GAME ACTIONS
-    
+
     class Drop: public ClientAction {
         public:
         Drop(player_id_t player_id);
         ~Drop();
         void action_to(IPlayerAction& player) override;
     };
-    
+
     class Equip: public ClientAction, public EquipCommon {
         public:
         Equip(player_id_t player_id, EquipType equip_type);

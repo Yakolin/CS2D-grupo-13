@@ -2,8 +2,9 @@
 #define GAME_EXCEPTION_H_
 
 #include <stdexcept>
-class GameException : public std::runtime_error {
-    public: 
-    explicit GameException(const std::string& message) : std::runtime_error("Excepcion del game: " + message) {}
+class GameException: public std::runtime_error {
+public:
+    explicit GameException(const std::string& message):
+            std::runtime_error("Excepcion del game: " + message) {}
 };
-#endif // GAME_EXCEPTION_H_
+#endif  // GAME_EXCEPTION_H_

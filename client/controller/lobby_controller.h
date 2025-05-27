@@ -19,10 +19,7 @@ public:
     ~LobbyController();
     void run();  // aca primero ejecutaria el lobby y luego llamaria al game
 
-    switch() {
-
-        game.run_game()
-    }
+    switch () { game.run_game() }
 };
 
 #endif  // !LOBBY_CONTROLLER_H

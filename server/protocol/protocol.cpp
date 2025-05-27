@@ -127,7 +127,6 @@ void ServerProtocol::send_list_games(std::vector<std::string>& list_games) {
             throw ConnectionClosedException("Error al intentar enviar datos al cliente");
         }
     }
-
 }
 
 void ServerProtocol::send_player_image(GameImage& game_image) {

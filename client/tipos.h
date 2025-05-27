@@ -17,9 +17,9 @@ enum class Objet { STONE, WALL, GRASS, BOX, PLAYER, WATER };
 
 enum class Movement { UP, DOWN, LEFT, RIGHT, NONE };
 
-struct InfoGame{
+struct InfoGame {
     std::string name_player;
-    std::string name_game; 
+    std::string name_game;
 };
 
 struct Player {

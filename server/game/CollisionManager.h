@@ -5,8 +5,9 @@
 #include <memory>
 #include <vector>
 
-#include "Colliders.h"
 #include "../../common/utility.h"
+
+#include "Colliders.h"
 
 class CollisionManager {
     std::map<player_id_t, Position>& players;

@@ -8,12 +8,8 @@ const int WIDTH_MENU = 500;
 #define OPCION_LIST "List Game"
 #define OPCION_HELP "Help Game"
 
-MenuView::MenuView(QWidget* parent)
-    : QDialog(parent),
-      img_icono(new QLabel(this)),
-      clicked_text(),
-      botones()
-{
+MenuView::MenuView(QWidget* parent):
+        QDialog(parent), img_icono(new QLabel(this)), clicked_text(), botones() {
     botones[OPCION_CREATE] = LobbyCommandType::CREATE_GAME;
     botones[OPCION_JOIN] = LobbyCommandType::JOIN_GAME;
     botones[OPCION_LIST] = LobbyCommandType::LIST_GAMES;
@@ -81,8 +77,6 @@ void MenuView::action_help() {
 }
 
 
-
-
 void MenuView::add_button(QVBoxLayout* layout, const QString& text) {
     QPushButton* button = new QPushButton(text);
     button->setFixedSize(200, 50);
@@ -104,4 +98,3 @@ LobbyCommandType MenuView::getCommantType() const {
 }
 
 MenuView::~MenuView() {}
-

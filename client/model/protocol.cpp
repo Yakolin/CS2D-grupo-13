@@ -107,6 +107,29 @@ void ClientProtocol::read_two_byte_data(uint16_t& data) {
     data = ntohs(data_readed);
 }
 
+std::vector<std::string> ClientProtocol::read_list_games() {
+    length_games_list_t list_size;
+    this->read_two_byte_data(list_size);
+
+    std::vector<std::string> games_list;
+    games_list.reserve(list_size);
+
+    for (length_games_list_t i = 0; i < list_size; i++) {
+        length_name_t name_length;
+        this->read_two_byte_data(name_length);
+
+        std::vector<char> buffer(name_length);
+        this->socket.recvall(buffer.data(), name_length);
+
+        if (this->socket.is_stream_recv_closed()) {
+            throw ConnectionClosedException("Error al intentar recibir datos del servidor");
+        }
+        std::string game_name(buffer.data(), name_length);
+        games_list.push_back(std::move(game_name));
+    }
+    return games_list;
+}
+
 
 void ClientProtocol::read_player_image(GameImage& game_image) {
 

@@ -10,7 +10,7 @@ ClientHandler::ClientHandler(player_id_t player_id, Socket&& socket, GamesMonito
 ClientHandler::~ClientHandler() {}
 
 void ClientHandler::start() {
-    this->receiver.start(); // aca esta el problema
+    this->receiver.start();  // aca esta el problema
     this->sender.start();
 }
 

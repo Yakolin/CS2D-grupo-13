@@ -1,8 +1,8 @@
 #ifndef RECEIVER_H
 #define RECEIVER_H
 
-#include <utility>
 #include <memory>
+#include <utility>
 
 #include "../../common/game_image.h"
 #include "../../common/queue.h"

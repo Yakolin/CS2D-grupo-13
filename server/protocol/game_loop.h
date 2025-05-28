@@ -36,6 +36,7 @@ public:
                     std::shared_ptr<Queue<std::unique_ptr<ClientAction>>>& recv_queue,
                     std::shared_ptr<Queue<GameImage>>& send_queue);
     bool is_full();
+    bool waiting_for_players();
     void run() override;
     void stop() override;
 };

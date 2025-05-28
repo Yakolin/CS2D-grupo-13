@@ -18,7 +18,6 @@ void Vista::run() {
                 std::vector<std::string> nombres_de_partidas = {"Partida_01", "ZonaDeCombate",
                                                                 "SnipersOnly", "MisionExplosiva",
                                                                 "DueloFinal"};
-                protocolo.send_lobby_command(opcion);
                 resultado = opcion;
                 switch (opcion) {
                     case LobbyCommandType::CREATE_GAME:

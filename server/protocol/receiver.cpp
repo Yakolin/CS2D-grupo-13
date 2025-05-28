@@ -29,6 +29,8 @@ void Receiver::run_lobby() {
         }
 
     } catch (const ConnectionClosedException& e) {
+        in_lobby = false;
+        this->closed = true;
     } catch (const std::runtime_error& e) {
         std::cerr << "Error en el lobby: " << e.what() << std::endl;
         this->closed = true;
@@ -54,7 +56,8 @@ void Receiver::run_game() {
     } catch (const ConnectionClosedException& e) {
         this->closed = true;
     } catch (...) {
-        std::cerr << "Something went wrong and an unknown exception was caught." << std::endl;
+        std::cerr << "Something went wrong and an unknown exception was caught in receiver."
+                  << std::endl;
         this->closed = true;
     }
 }

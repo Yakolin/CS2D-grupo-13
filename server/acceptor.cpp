@@ -14,7 +14,11 @@ void Acceptor::run() {
             Socket peer = socket_acceptor.accept();
             std::cout << "un client se conecto\n";
             this->client_id_counter++;
-            this->reap();
+            try {
+                this->reap();
+            } catch (const std::runtime_error& e) {
+                std::cerr << "Error en el reap" << e.what() << '\n';
+            }
             std::cout << "client id: " << this->client_id_counter << '\n';
             clients.emplace(this->client_id_counter,
                             std::make_unique<ClientHandler>(this->client_id_counter,
@@ -23,7 +27,7 @@ void Acceptor::run() {
             std::cout << "client " << this->client_id_counter << " started\n";
         }
     } catch (const std::runtime_error& e) {
-        std::cerr << e.what() << '\n';
+        std::cerr << "Error en el acceptor" << e.what() << '\n';
     } catch (const LibError& e) {}
 }
 

@@ -9,7 +9,9 @@ GameLoop::GameLoop(const std::string& game_name):
                            [this]() { this->step(); }),
         game_started(false) {}
 
-GameLoop::~GameLoop() {}
+GameLoop::~GameLoop() {
+    if (Thread::is_alive()) {}
+}
 
 void GameLoop::add_player(player_id_t& player_id,
                           std::shared_ptr<Queue<std::unique_ptr<ClientAction>>>& recv_queue,
@@ -21,8 +23,12 @@ void GameLoop::add_player(player_id_t& player_id,
 
 bool GameLoop::is_full() { return (this->send_queues.size() == MAX_PLAYERS); }
 
-void GameLoop::run() { this->constant_rate_loop.execute(); }
+bool GameLoop::waiting_for_players() { return !this->game_started; }
 
+void GameLoop::run() {
+    this->game_started = true;
+    this->constant_rate_loop.execute();
+}
 
 void GameLoop::step() {
     try {
@@ -31,21 +37,30 @@ void GameLoop::step() {
         GameImage game_image = this->game.get_frame();
         this->broadcast(game_image);
     } catch (const ClosedQueue& e) {
+        this->stop();
         std::cerr << "Exception: " << e.what() << std::endl;
     } catch (const std::runtime_error& e) {
+        this->stop();
         std::cerr << "Exception: " << e.what() << std::endl;
+    } catch (...) {
+        std::cerr << "Something went wrong in game_loop, and an unknown exception was caught."
+                  << std::endl;
+        this->stop();
     }
 }
 
 void GameLoop::broadcast(GameImage& game_image) {
     for (auto& send_queue: send_queues) {
-        std::cout << "Pusheo la imagen" << std::endl;
-        send_queue->push(game_image);
+        if (send_queue) {
+            send_queue->push(game_image);
+        } else {
+            std::cerr << "Error: send_queue es nullptr" << std::endl;
+        }
     }
 }
 
-
 void GameLoop::stop() {
+    std::cout << "Termino el hilo de game" << std::endl;
     this->recv_queue->close();
     std::unique_ptr<ClientAction> action;
     while (this->recv_queue->try_pop(action)) {}

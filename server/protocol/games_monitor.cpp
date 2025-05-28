@@ -52,9 +52,11 @@ void GamesMonitor::reap() {
     std::lock_guard<std::mutex> lock(mutex);
     auto it = games.begin();
     while (it != games.end()) {
-        if (!it->second->is_alive()) {
-            it->second->join();
-            it = games.erase(it);
+        if (!it->second->waiting_for_players()) {
+            if (!it->second->is_alive()) {
+                it->second->join();
+                it = games.erase(it);
+            }
         } else {
             ++it;
         }
@@ -65,6 +67,7 @@ void GamesMonitor::reap() {
 void GamesMonitor::clear() {
     std::lock_guard<std::mutex> lock(mutex);
     for (auto& game: games) {
+        std::cout << "Stop game" << std::endl;
         game.second->stop();
         game.second->join();
     }

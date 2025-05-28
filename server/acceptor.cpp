@@ -21,16 +21,13 @@ void Acceptor::run() {
                                                             std::move(peer), this->games_monitor));
             clients[this->client_id_counter]->start();
             std::cout << "client " << this->client_id_counter << " started\n";
-            
         }
     } catch (const std::runtime_error& e) {
         std::cerr << e.what() << '\n';
     } catch (const LibError& e) {}
 }
 
-bool Acceptor::has_clients() {
-    return !this->clients.empty();
-}
+bool Acceptor::has_clients() { return !this->clients.empty(); }
 
 void Acceptor::stop() {
     this->socket_acceptor.shutdown(2);
@@ -49,6 +46,7 @@ void Acceptor::reap() {
             ++it;
         }
     }
+    std::cout << "client id: " << this->client_id_counter << '\n';
 }
 
 void Acceptor::clear() {

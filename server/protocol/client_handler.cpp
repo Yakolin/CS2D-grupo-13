@@ -10,8 +10,11 @@ ClientHandler::ClientHandler(player_id_t player_id, Socket&& socket, GamesMonito
 ClientHandler::~ClientHandler() {}
 
 void ClientHandler::start() {
-    this->receiver.start(); // aca esta el problema
+    std::cout << "Error 0" << std::endl;
+    this->receiver.start();  // aca esta el problema
+    std::cout << "Error 1" << std::endl;
     this->sender.start();
+    std::cout << "Error 0" << std::endl;
 }
 
 bool ClientHandler::is_alive() { return (this->receiver.is_alive() && this->sender.is_alive()); }

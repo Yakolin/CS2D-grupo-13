@@ -59,6 +59,7 @@ void GamesMonitor::reap() {
             ++it;
         }
     }
+    std::cout << "No hay problemas en el monitor" << std::endl;
 }
 
 void GamesMonitor::clear() {

@@ -9,13 +9,13 @@
 
 #include <SDL2/SDL.h>
 
-
 #include "../controller.h"
+#include "../tipos.h"
+
 #include "manageTexture.h"
 #include "mapView.h"
 #include "playerView.h"
 #include "renderizable.h"
-#include "../tipos.h"
 
 
 class GameView {
@@ -54,7 +54,7 @@ public:
     post:
     */
     void draw_game();
-    
+
     void add_player(PlayerView& player);
 
     void start();

@@ -3,20 +3,21 @@
 
 #include <fstream>
 #include <iostream>
+#include <memory>
 #include <sstream>
 #include <stdexcept>
 #include <string>
 #include <vector>
-#include <memory>
+
+#include <SDL2/SDL.h>
 
 #include "../common/game_image.h"
-
-#include "model/sender.h"
-#include "model/receiver.h"
-#include "model/client_action.h"
 #include "../common/queue.h"
 #include "../common/socket.h"
-#include <SDL2/SDL.h>  
+#include "model/client_action.h"
+#include "model/receiver.h"
+#include "model/sender.h"
+
 #include "tipos.h"
 
 class Controller {
@@ -28,7 +29,7 @@ private:
     Receiver receiver;
 
     void start();
-    
+
 public:
     explicit Controller(Socket&& skt);
 

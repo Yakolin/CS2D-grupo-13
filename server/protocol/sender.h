@@ -2,6 +2,7 @@
 #define SENDER_H
 
 #include <memory>
+#include <utility>
 
 #include "../../common/game_image.h"
 #include "../../common/queue.h"
@@ -14,14 +15,15 @@
 
 class Sender: public Thread {
 protected:
-    std::shared_ptr<Queue<GameImage>>& send_queue;
+    std::shared_ptr<Queue<GameImage>> send_queue;
     ServerProtocol protocol;
     bool closed;
 
 public:
-    explicit Sender(Socket& socket, std::shared_ptr<Queue<GameImage>>& send_queue);
+    explicit Sender(Socket& socket, std::shared_ptr<Queue<GameImage>>&& send_queue);
     ~Sender();
     void run() override;
+    void stop() override;
 };
 
 

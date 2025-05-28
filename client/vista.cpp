@@ -11,46 +11,46 @@ void Vista::run() {
     MenuView menu(nullptr, protocolo);
     LobbyCommandType resultado = LobbyCommandType::NONE;
 
-    QObject::connect(&menu, &MenuView::opcionElegida, [this, &menu, &resultado](LobbyCommandType opcion) {
-        qDebug() << "Opción recibida:" << static_cast<int>(opcion);
+    QObject::connect(
+            &menu, &MenuView::opcionElegida, [this, &menu, &resultado](LobbyCommandType opcion) {
+                qDebug() << "Opción recibida:" << static_cast<int>(opcion);
 
-        std::vector<std::string> nombres_de_partidas = {"Partida_01", "ZonaDeCombate",
-                                                        "SnipersOnly", "MisionExplosiva",
-                                                        "DueloFinal"};
-        protocolo.send_lobby_command(opcion);
-        resultado = opcion;
-        switch (opcion) {
-            case LobbyCommandType::CREATE_GAME:
-                menu.action_create();
-                break;
-            case LobbyCommandType::JOIN_GAME:
-                menu.action_join();
-                break;
-            case LobbyCommandType::HELP_GAME:
-                menu.action_help();
-                break;
-            case LobbyCommandType::EXIT_GAME:
-                menu.action_exit();
-                break;
-            case LobbyCommandType::LIST_GAMES: {
-                std::vector<std::string> games_names = protocolo.read_list_games();   
-                menu.action_list(games_names);
-            }
-                break;
-            default:
-                break;
-        }
-    });
+                std::vector<std::string> nombres_de_partidas = {"Partida_01", "ZonaDeCombate",
+                                                                "SnipersOnly", "MisionExplosiva",
+                                                                "DueloFinal"};
+                protocolo.send_lobby_command(opcion);
+                resultado = opcion;
+                switch (opcion) {
+                    case LobbyCommandType::CREATE_GAME:
+                        menu.action_create();
+                        break;
+                    case LobbyCommandType::JOIN_GAME:
+                        menu.action_join();
+                        break;
+                    case LobbyCommandType::HELP_GAME:
+                        menu.action_help();
+                        break;
+                    case LobbyCommandType::EXIT_GAME:
+                        menu.action_exit();
+                        break;
+                    case LobbyCommandType::LIST_GAMES: {
+                        std::vector<std::string> games_names = protocolo.read_list_games();
+                        menu.action_list(games_names);
+                    } break;
+                    default:
+                        break;
+                }
+            });
     menu.show();
     app.exec();
     menu.close();
     /// ACA EMPIEZA EL JUEGO
 
     if (resultado == LobbyCommandType::CREATE_GAME || resultado == LobbyCommandType::JOIN_GAME) {
-        try{          
+        try {
             GameView gameView(std::move(skt), 500, 500);
             gameView.draw_game();
-        }catch(const std::exception& e){
+        } catch (const std::exception& e) {
             std::cerr << e.what() << '\n';
         }
     }

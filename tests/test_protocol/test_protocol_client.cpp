@@ -5,11 +5,11 @@
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
-#include "../client/model/client_action.h"
-#include "../client/model/protocol.h"
-#include "../common/lobby_types.h"
-#include "../common/player_command_types.h"
-#include "../common/socket.h"
+#include "../../client/model/client_action.h"
+#include "../../client/model/protocol.h"
+#include "../../common/lobby_types.h"
+#include "../../common/player_command_types.h"
+#include "../../common/socket.h"
 
 using ClientSpace::BuyAmmo;
 using ClientSpace::BuyWeapon;

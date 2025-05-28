@@ -23,52 +23,30 @@ void Receiver::run_lobby() {
     try {
         while (in_lobby && this->should_keep_running()) {
             LobbyCommandType command = this->protocol.read_lobby_command();
-            std::cout << "recibido comand : " << static_cast<int>(command) << std::endl;
-            switch (command) {
-                case LobbyCommandType::CREATE_GAME: {
-                    std::string game_name = protocol.read_create_game();
-                    std::cout << "nombre recibido create : "<< game_name << std::endl;
-
-                    if (this->games_monitor.create_game(this->player_id, game_name,
-                                                        this->recv_queue, this->send_queue)) {
-                        in_lobby = false;
-                    }
-                    break;
-                }
-                case LobbyCommandType::JOIN_GAME: {
-                    const std::string game_name = this->protocol.read_join_game();
-                    std::cout << "nombre recibido join : "<< game_name << std::endl;
-
-                    if (this->games_monitor.join_game(this->player_id, game_name, this->recv_queue,
-                                                      this->send_queue)) {
-                        in_lobby = false;
-                    }
-                    break;
-                }
-                case LobbyCommandType::LIST_GAMES: {
-                    std::vector<std::string> games_names = games_monitor.list_games();
-                    this->protocol.send_list_games(games_names);
-                    break;
-                }
-                default:
-                    throw std::runtime_error("Comando invalido");
-            }
+            ParseLobbyAction parser(this->player_id, this->protocol, command, this->recv_queue,
+                                    this->send_queue, this->games_monitor, in_lobby);
+            parser();
         }
-    } catch (const ConnectionClosedException& e) {}
+
+    } catch (const ConnectionClosedException& e) {
+    } catch (const std::runtime_error& e) {
+        std::cerr << "Error en el lobby: " << e.what() << std::endl;
+        this->closed = true;
+    } catch (...) {
+        std::cerr << "Something went wrong and an unknown exception was caught." << std::endl;
+        this->closed = true;
+    }
 }
 
 void Receiver::run_game() {
     try {
         while (!this->closed && this->should_keep_running()) {
             PlayerCommandType command = this->protocol.read_player_command();
-            std::cout << "comando recibido: " << static_cast<int>(command) << std::endl;
             std::unique_ptr<ClientAction> action;
             ParsePlayerAction parser(this->player_id, this->protocol, command, action);
             parser();
             if (!this->closed) {
-                std::cout<< "pusheo la accion"<<std::endl;
                 this->recv_queue->push(std::move(action));
-                std::cout<< "accion pusheada ----------"<<std::endl;
             }
         }
     } catch (ClosedQueue& e) {

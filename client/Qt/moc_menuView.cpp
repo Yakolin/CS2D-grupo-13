@@ -7,9 +7,11 @@
 *****************************************************************************/
 
 #include <memory>
-#include "menuView.h"
+
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
+
+#include "menuView.h"
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'menuView.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
@@ -25,61 +27,60 @@ struct qt_meta_stringdata_MenuView_t {
     QByteArrayData data[5];
     char stringdata0[48];
 };
-#define QT_MOC_LITERAL(idx, ofs, len) \
-    Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_MenuView_t, stringdata0) + ofs \
-        - idx * sizeof(QByteArrayData)) \
-    )
+#define QT_MOC_LITERAL(idx, ofs, len)                                                  \
+    Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(                           \
+            len, qptrdiff(offsetof(qt_meta_stringdata_MenuView_t, stringdata0) + ofs - \
+                          idx * sizeof(QByteArrayData)))
 static const qt_meta_stringdata_MenuView_t qt_meta_stringdata_MenuView = {
-    {
-QT_MOC_LITERAL(0, 0, 8), // "MenuView"
-QT_MOC_LITERAL(1, 9, 13), // "opcionElegida"
-QT_MOC_LITERAL(2, 23, 0), // ""
-QT_MOC_LITERAL(3, 24, 16), // "LobbyCommandType"
-QT_MOC_LITERAL(4, 41, 6) // "opcion"
+        {
+                QT_MOC_LITERAL(0, 0, 8),    // "MenuView"
+                QT_MOC_LITERAL(1, 9, 13),   // "opcionElegida"
+                QT_MOC_LITERAL(2, 23, 0),   // ""
+                QT_MOC_LITERAL(3, 24, 16),  // "LobbyCommandType"
+                QT_MOC_LITERAL(4, 41, 6)    // "opcion"
 
-    },
-    "MenuView\0opcionElegida\0\0LobbyCommandType\0"
-    "opcion"
-};
+        },
+        "MenuView\0opcionElegida\0\0LobbyCommandType\0"
+        "opcion"};
 #undef QT_MOC_LITERAL
 
 static const uint qt_meta_data_MenuView[] = {
 
- // content:
-       8,       // revision
-       0,       // classname
-       0,    0, // classinfo
-       1,   14, // methods
-       0,    0, // properties
-       0,    0, // enums/sets
-       0,    0, // constructors
-       0,       // flags
-       1,       // signalCount
+        // content:
+        8,      // revision
+        0,      // classname
+        0, 0,   // classinfo
+        1, 14,  // methods
+        0, 0,   // properties
+        0, 0,   // enums/sets
+        0, 0,   // constructors
+        0,      // flags
+        1,      // signalCount
 
- // signals: name, argc, parameters, tag, flags
-       1,    1,   19,    2, 0x06 /* Public */,
+        // signals: name, argc, parameters, tag, flags
+        1, 1, 19, 2, 0x06 /* Public */,
 
- // signals: parameters
-    QMetaType::Void, 0x80000000 | 3,    4,
+        // signals: parameters
+        QMetaType::Void, 0x80000000 | 3, 4,
 
-       0        // eod
+        0  // eod
 };
 
-void MenuView::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
-{
+void MenuView::qt_static_metacall(QObject* _o, QMetaObject::Call _c, int _id, void** _a) {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        auto *_t = static_cast<MenuView *>(_o);
+        auto* _t = static_cast<MenuView*>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->opcionElegida((*reinterpret_cast< LobbyCommandType(*)>(_a[1]))); break;
-        default: ;
+            case 0:
+                _t->opcionElegida((*reinterpret_cast<LobbyCommandType(*)>(_a[1])));
+                break;
+            default:;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
-        int *result = reinterpret_cast<int *>(_a[0]);
+        int* result = reinterpret_cast<int*>(_a[0]);
         {
-            using _t = void (MenuView::*)(LobbyCommandType );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&MenuView::opcionElegida)) {
+            using _t = void (MenuView::*)(LobbyCommandType);
+            if (*reinterpret_cast<_t*>(_a[1]) == static_cast<_t>(&MenuView::opcionElegida)) {
                 *result = 0;
                 return;
             }
@@ -87,31 +88,25 @@ void MenuView::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
     }
 }
 
-QT_INIT_METAOBJECT const QMetaObject MenuView::staticMetaObject = { {
-    QMetaObject::SuperData::link<QDialog::staticMetaObject>(),
-    qt_meta_stringdata_MenuView.data,
-    qt_meta_data_MenuView,
-    qt_static_metacall,
-    nullptr,
-    nullptr
-} };
+QT_INIT_METAOBJECT const QMetaObject MenuView::staticMetaObject = {
+        {QMetaObject::SuperData::link<QDialog::staticMetaObject>(),
+         qt_meta_stringdata_MenuView.data, qt_meta_data_MenuView, qt_static_metacall, nullptr,
+         nullptr}};
 
 
-const QMetaObject *MenuView::metaObject() const
-{
+const QMetaObject* MenuView::metaObject() const {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *MenuView::qt_metacast(const char *_clname)
-{
-    if (!_clname) return nullptr;
+void* MenuView::qt_metacast(const char* _clname) {
+    if (!_clname)
+        return nullptr;
     if (!strcmp(_clname, qt_meta_stringdata_MenuView.stringdata0))
         return static_cast<void*>(this);
     return QDialog::qt_metacast(_clname);
 }
 
-int MenuView::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
-{
+int MenuView::qt_metacall(QMetaObject::Call _c, int _id, void** _a) {
     _id = QDialog::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
@@ -128,9 +123,8 @@ int MenuView::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void MenuView::opcionElegida(LobbyCommandType _t1)
-{
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+void MenuView::opcionElegida(LobbyCommandType _t1) {
+    void* _a[] = {nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1)))};
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 QT_WARNING_POP

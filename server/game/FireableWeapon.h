@@ -33,7 +33,8 @@ public:
             magazine(current_b) {}
     // void reload_basic();
     virtual void set_on_action(std::map<player_id_t, std::unique_ptr<Collider>>& damage_colliders,
-                               player_id_t id, Position& position, Position& direction) override = 0;
+                               player_id_t id, Position& position,
+                               Position& direction) override = 0;
     virtual void reload() override;
 };
 class Ak47: public FireableWeapon {

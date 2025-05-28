@@ -1,0 +1,40 @@
+target_sources(CS2D_tests
+    PRIVATE
+    test_server.cpp
+    ../../server/server.cpp
+    ../../server/acceptor.cpp
+    ../../server/protocol/games_monitor.cpp
+    ../../server/protocol/client_handler.cpp
+    ../../server/protocol/receiver.cpp
+    ../../server/protocol/sender.cpp
+    ../../server/protocol/game_loop.cpp
+    ../../server/game/Colliders.cpp
+    ../../server/game/CollisionManager.cpp
+    ../../server/game/Equipement.cpp
+    ../../server/game/FireableWeapon.cpp
+    ../../server/game/GameManager.cpp
+    ../../server/game/Map.cpp
+    ../../server/game/Player.cpp
+    ../../server/game/PlayerType.cpp
+
+    PUBLIC
+    ../../server/server.h
+    ../../server/acceptor.h
+    ../../server/protocol/games_monitor.h
+    ../../server/protocol/client_handler.h
+    ../../server/protocol/receiver.h
+    ../../server/protocol/sender.h
+    ../../server/protocol/game_loop.h
+    ../../server/game/CollisionManager.h
+    ../../server/game/Colliders.h
+    ../../server/game/Equipement.h
+    ../../server/game/FireableWeapon.h
+    ../../server/game/GameException.h
+    ../../server/game/GameManager.h
+    ../../server/game/Map.h
+    ../../server/game/MapTypes.h
+    ../../server/game/Player.h
+    ../../server/game/PlayerType.h
+    ../../server/game/Specials.h
+    ../../server/game/Weapon.h
+)

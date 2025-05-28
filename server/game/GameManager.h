@@ -10,6 +10,7 @@
 #include "../../common/player_command_types.h"
 #include "../interfaces/interface_game.h"
 #include "../protocol/client_action.h"
+
 #include "GameException.h"
 #include "Map.h"
 #include "Player.h"
@@ -35,14 +36,14 @@ private:
 
 public:
     explicit GameManager(const string& _game_name, const string& map_name):
-        game_name(_game_name), map_game(map_name) {}
+            game_name(_game_name), map_game(map_name) {}
     ~GameManager();
     GameImage get_frame();
     void start_game();
     void stop_game();
     virtual void process(ClientAction& action) override;
     virtual void add_player(player_id_t& player_id) override;
-    
+
     /*
         void move(player_id_t player_id, MoveType move_type) override;
         void shoot(player_id_t player_id, coordinate_t mouse_x, coordinate_t mouse_y) override;

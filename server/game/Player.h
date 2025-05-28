@@ -9,13 +9,15 @@
 #include "../../common/player_command_types.h"
 #include "../../common/utility.h"
 #include "../interfaces/interface_player_action.h"
-#include "GameZone.h"
+
 #include "Equipement.h"
+#include "GameZone.h"
 #include "Map.h"
 
 class Player: public IPlayerAction {
 public:
-    Player(player_id_t id, GameZone& game_zone): id(id),health(100), points(0), game_zone(game_zone) {}
+    Player(player_id_t id, GameZone& game_zone):
+            id(id), health(100), points(0), game_zone(game_zone) {}
     virtual ~Player() = default;
     void reset();
     void get_damage(uint8_t damage);
@@ -38,7 +40,8 @@ protected:  // Por ahora lo dejamo asi
     Equipement equipement;
     uint8_t health;
     uint8_t points;
-private: 
+
+private:
     GameZone& game_zone;
 };
 

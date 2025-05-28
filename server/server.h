@@ -1,20 +1,17 @@
 #ifndef SERVER_H
 #define SERVER_H
 
+#include <atomic>
 #include <iostream>
 #include <string>
 
 #include "acceptor.h"
 
-#define QUIT "q"  // es la forma en la que paramos el acceptor, esta en el enunciado
-
-
 class Server {
 private:
     const char* port;
     Acceptor acceptor;
-    bool open;
-
+    std::atomic<bool> open;
 
 public:
     explicit Server(const char* port);
@@ -22,6 +19,7 @@ public:
     ~Server();
 
     void run();
-};  // namespace class Server
+    void stop();
+};
 
 #endif  // !SERVER_H

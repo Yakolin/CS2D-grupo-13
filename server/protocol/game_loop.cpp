@@ -19,9 +19,7 @@ void GameLoop::add_player(player_id_t& player_id,
     this->game.add_player(player_id);
 }
 
-bool GameLoop::is_full() {
-    return (this->send_queues.size() == MAX_PLAYERS);   
-}
+bool GameLoop::is_full() { return (this->send_queues.size() == MAX_PLAYERS); }
 
 void GameLoop::run() { this->constant_rate_loop.execute(); }
 
@@ -39,17 +37,16 @@ void GameLoop::step() {
     }
 }
 
-void GameLoop::broadcast(GameImage &game_image) {
+void GameLoop::broadcast(GameImage& game_image) {
     for (auto& send_queue: send_queues) {
-        std::cout<< "Pusheo la imagen"<<std::endl;
+        std::cout << "Pusheo la imagen" << std::endl;
         send_queue->push(game_image);
     }
 }
 
 
 void GameLoop::stop() {
-    for (auto& send_queue: send_queues) {
-        send_queue->close();
-    }
     this->recv_queue->close();
+    std::unique_ptr<ClientAction> action;
+    while (this->recv_queue->try_pop(action)) {}
 }

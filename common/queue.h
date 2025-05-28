@@ -4,11 +4,11 @@
 #include <climits>
 #include <condition_variable>
 #include <deque>
+#include <iostream>
 #include <memory>  // Para std::unique_ptr
 #include <mutex>
 #include <queue>
 #include <stdexcept>
-#include <iostream>
 
 struct ClosedQueue: public std::runtime_error {
     ClosedQueue(): std::runtime_error("The queue is closed") {}
@@ -28,7 +28,7 @@ struct ClosedQueue: public std::runtime_error {
  * */
 template <typename T, class C = std::deque<T>>
 class Queue {
-private:
+protected:
     std::queue<T, C> q;
     const unsigned int max_size;
 
@@ -157,6 +157,11 @@ public:
         return val;
     }
 
+    bool empty() {
+        std::unique_lock<std::mutex> lck(mtx);
+        return q.empty();
+    }
+
     void close() {
         std::unique_lock<std::mutex> lck(mtx);
 
@@ -176,7 +181,7 @@ private:
 // Especialización para punteros sin modificar
 template <>
 class Queue<void*> {
-private:
+protected:
     std::queue<void*> q;
     const unsigned int max_size;
 
@@ -188,6 +193,8 @@ private:
 
 public:
     explicit Queue(const unsigned int max_size): max_size(max_size), closed(false) {}
+
+    virtual ~Queue() = default;
 
     bool try_push(void* const& val) {
         std::unique_lock<std::mutex> lck(mtx);
@@ -265,6 +272,11 @@ public:
         return val;
     }
 
+    bool empty() {
+        std::unique_lock<std::mutex> lck(mtx);
+        return q.empty();
+    }
+
     void close() {
         std::unique_lock<std::mutex> lck(mtx);
 
@@ -282,7 +294,7 @@ private:
 };
 
 template <typename T>
-class Queue<T*>: private Queue<void*> {
+class Queue<T*>: public Queue<void*> {
 public:
     explicit Queue(const unsigned int max_size): Queue<void*>(max_size) {}
 
@@ -338,7 +350,7 @@ public:
     // pop para unique_ptr
     std::unique_ptr<T> pop() {
         T* raw_ptr = Queue<T*>::pop();
-        std::cout << "popeando"<< std::endl;
+        std::cout << "popeando" << std::endl;
         return std::unique_ptr<T>(raw_ptr);
     }
 

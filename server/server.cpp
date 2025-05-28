@@ -8,10 +8,11 @@ void Server::run() {
 
     this->acceptor.start();
 
-    while (true) {
+    while (this->open) {
         continue;
     }
-
     this->acceptor.stop();
     this->acceptor.join();
 }
+
+void Server::stop() { this->open = false; }

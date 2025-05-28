@@ -6,16 +6,16 @@
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
-#include "../common/game_image.h"
-#include "../common/liberror.h"
-#include "../common/lobby_types.h"
-#include "../common/player_command_types.h"
-#include "../common/socket.h"
-#include "../server/protocol/client_action.h"
-#include "../server/protocol/protocol.h"
-#include "../server/protocol/receiver.h"
-#include "mocks/mock_games_monitor.h"
-#include "mocks/mock_player.h"
+#include "../../common/game_image.h"
+#include "../../common/liberror.h"
+#include "../../common/lobby_types.h"
+#include "../../common/player_command_types.h"
+#include "../../common/socket.h"
+#include "../../server/protocol/client_action.h"
+#include "../../server/protocol/protocol.h"
+#include "../../server/protocol/receiver.h"
+#include "../mocks/mock_games_monitor.h"
+#include "../mocks/mock_player.h"
 
 using ServerSpace::Move;
 /*

@@ -16,7 +16,8 @@ int main() {
     int y_logico = 49152;  // tres cuartos del rango lógico
 
     // Convertir a píxeles
-    auto [x_pixel, y_pixel] = convertir_a_pixeles(x_logico, y_logico, ancho_pantalla, alto_pantalla);
+    auto [x_pixel, y_pixel] =
+            convertir_a_pixeles(x_logico, y_logico, ancho_pantalla, alto_pantalla);
     std::cout << "Coordenadas en píxeles: (" << x_pixel << ", " << y_pixel << ")" << std::endl;
 
     return 0;

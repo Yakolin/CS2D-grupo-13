@@ -55,8 +55,8 @@ void ClientProtocol::send_player_command(PlayerCommandType command) {
 }
 
 void ClientProtocol::send_create_game(const std::string& game_name) {
-    // uint8_t header = static_cast<uint8_t>(LobbyCommandType::CREATE_GAME);
-    // this->send_byte_data(header);
+    uint8_t header = static_cast<uint8_t>(LobbyCommandType::CREATE_GAME);
+    this->send_byte_data(header);
 
     uint16_t length = static_cast<uint16_t>(game_name.size());
     this->send_two_byte_data(length);
@@ -67,8 +67,8 @@ void ClientProtocol::send_create_game(const std::string& game_name) {
 }
 
 void ClientProtocol::send_join_game(const std::string& game_name) {
-    // uint8_t header = static_cast<uint8_t>(LobbyCommandType::JOIN_GAME);
-    // this->send_byte_data(header);
+    uint8_t header = static_cast<uint8_t>(LobbyCommandType::JOIN_GAME);
+    this->send_byte_data(header);
 
     uint16_t length = static_cast<uint16_t>(game_name.size());
     this->send_two_byte_data(length);

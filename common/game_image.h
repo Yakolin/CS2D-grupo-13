@@ -3,6 +3,7 @@
 
 #include <cstdint>
 #include <vector>
+
 #include "player_command_types.h"
 #include "utility.h"
 
@@ -12,7 +13,6 @@ using points_t = std::uint8_t;
 using length_players_images_t = std::uint16_t;
 
 enum class Team { CT, TT };
-
 
 
 class PlayerImage {

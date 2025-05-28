@@ -1,12 +1,7 @@
 #include "lobbyView.h"
 
 LobbyView::LobbyView(ClientProtocol& protoccol):
-        protocol(protoccol),
-        tabs(new QTabWidget(this)),
-        infoPlayer(),
-        options_map(),
-        img_maps()
-{            
+        protocol(protoccol), tabs(new QTabWidget(this)), infoPlayer(), options_map(), img_maps() {
     tabs->setWindowTitle("Create Game");
     tabs->setStyleSheet("background-color:rgb(213, 207, 207);");
     tabs->resize(500, 500);
@@ -14,7 +9,9 @@ LobbyView::LobbyView(ClientProtocol& protoccol):
     tabs->setTabsClosable(false);
     tabs->setMovable(true);
 
-    options_map << "Desierto"<< "Pueblito Azteca"<< "Zona de Entrenamiento";
+    options_map << "Desierto"
+                << "Pueblito Azteca"
+                << "Zona de Entrenamiento";
     img_maps["Desierto"] = "assets/gfx/tiles/default_inferno.png";
     img_maps["Pueblito Azteca"] = "assets/gfx/tiles/default_aztec.png";
     img_maps["Zona de Entrenamiento"] = "assets/gfx/tiles/default_dust.png";
@@ -27,7 +24,7 @@ QListWidget* LobbyView::create_item(QWidget* parent, const QStringList& options)
     list_map->setStyleSheet("QListWidget::item { margin-bottom: 5px; }");
 
     QFont fuente;
-    list_map->setFont(fuente); 
+    list_map->setFont(fuente);
 
     for (const QString& text: options) {
         list_map->addItem(text);
@@ -35,7 +32,8 @@ QListWidget* LobbyView::create_item(QWidget* parent, const QStringList& options)
     return list_map;
 }
 
-void LobbyView::section_maps(QWidget* tabMap , const std::map<QString, QString>& options,const QStringList& items_text) {
+void LobbyView::section_maps(QWidget* tabMap, const std::map<QString, QString>& options,
+                             const QStringList& items_text) {
 
     QLabel* labelMap = new QLabel();
 
@@ -44,58 +42,55 @@ void LobbyView::section_maps(QWidget* tabMap , const std::map<QString, QString>&
     layoutMap->addWidget(list_map);
     layoutMap->addWidget(labelMap);
 
-    connect(list_map, &QListWidget::itemClicked,
-            [this, labelMap,  options](QListWidgetItem* item) {
-                QString nombre = item->text();
-                infoPlayer.map = nombre.toStdString();
-                labelMap->setPixmap(QPixmap(options.at(nombre)));
-            });
+    connect(list_map, &QListWidget::itemClicked, [this, labelMap, options](QListWidgetItem* item) {
+        QString nombre = item->text();
+        infoPlayer.map = nombre.toStdString();
+        labelMap->setPixmap(QPixmap(options.at(nombre)));
+    });
 }
 
-void LobbyView::section_dates(QWidget* selection){
-    
+void LobbyView::section_dates(QWidget* selection) {
+
     QLineEdit* name = new QLineEdit(selection);
     QLineEdit* name_game = new QLineEdit(selection);
 
-    QFormLayout *formLayout = new QFormLayout(selection);
+    QFormLayout* formLayout = new QFormLayout(selection);
     formLayout->addRow("Name Player: ", name);
     formLayout->addRow("Name Game: ", name_game);
-    
-    connect(name, &QLineEdit::textChanged, this, [&](const QString &text){
-        this->infoPlayer.info.name_player = text.toStdString();
-    });
-    connect(name_game, &QLineEdit::textChanged, this, [&](const QString &text){
-        this->infoPlayer.info.name_game = text.toStdString();
-    });
-    
+
+    connect(name, &QLineEdit::textChanged, this,
+            [&](const QString& text) { this->infoPlayer.info.name_player = text.toStdString(); });
+    connect(name_game, &QLineEdit::textChanged, this,
+            [&](const QString& text) { this->infoPlayer.info.name_game = text.toStdString(); });
 }
 
-void LobbyView::section_player(QWidget* selection, QPushButton* boton){
+void LobbyView::section_player(QWidget* selection, QPushButton* boton) {
 
     QFormLayout* layout = new QFormLayout(selection);
     QComboBox* unidadCombo = new QComboBox(selection);
     unidadCombo->addItems({"Counter Terrorist", "Terrorist"});
 
     QComboBox* skinCombo = new QComboBox(selection);
-    
+
     layout->addRow("Unidad:", unidadCombo);
     layout->addRow("Skin:", skinCombo);
     layout->addRow(boton);
 
     QMap<QString, QStringList> skinsPorUnidad;
-    skinsPorUnidad["Counter Terrorist"] = QStringList{"Seal Force", "German GSG-9", "UK SAS", "French GIGN"};
-    skinsPorUnidad["Terrorist"] = QStringList{"Phoenix", "L337 Krew", "Arctic Avenger", "Guerrilla"};
+    skinsPorUnidad["Counter Terrorist"] =
+            QStringList{"Seal Force", "German GSG-9", "UK SAS", "French GIGN"};
+    skinsPorUnidad["Terrorist"] =
+            QStringList{"Phoenix", "L337 Krew", "Arctic Avenger", "Guerrilla"};
 
 
-    connect(unidadCombo, &QComboBox::currentTextChanged, [this, skinCombo, skinsPorUnidad](const QString& unidad) {
-        skinCombo->clear();
-        skinCombo->addItems(skinsPorUnidad[unidad]);
-        infoPlayer.team = unidad.toStdString();
-
-    });
-    connect(skinCombo, &QComboBox::currentTextChanged, [this, skinCombo](const QString& skin) {
-        infoPlayer.skin = skin.toStdString();
-    });
+    connect(unidadCombo, &QComboBox::currentTextChanged,
+            [this, skinCombo, skinsPorUnidad](const QString& unidad) {
+                skinCombo->clear();
+                skinCombo->addItems(skinsPorUnidad[unidad]);
+                infoPlayer.team = unidad.toStdString();
+            });
+    connect(skinCombo, &QComboBox::currentTextChanged,
+            [this, skinCombo](const QString& skin) { infoPlayer.skin = skin.toStdString(); });
 }
 
 void imprimirPlayer(const Player& p) {
@@ -108,7 +103,7 @@ void imprimirPlayer(const Player& p) {
 
 
 void LobbyView::action_create() {
-    
+
     QWidget* tabMap = new QWidget();
 
     QWidget* tabDatos = new QWidget();
@@ -122,22 +117,21 @@ void LobbyView::action_create() {
 
     section_maps(tabMap, img_maps, options_map);
     section_dates(tabDatos);
-    section_player(tabPlayers,boton);
+    section_player(tabPlayers, boton);
 
-    connect(boton,  &QPushButton::clicked, [this, boton]() {
+    connect(boton, &QPushButton::clicked, [this, boton]() {
         close();
         QApplication::quit();
         imprimirPlayer(infoPlayer);
         protocol.send_create_game(infoPlayer.info.name_game);
-        std::cout  << "envio nombre craet partida\n";
-
+        std::cout << "envio nombre craet partida\n";
     });
 }
 
 void LobbyView::action_list(const std::vector<std::string>& list) {
-    
+
     QStringList options;
-    for (const std::string& name_game : list) {
+    for (const std::string& name_game: list) {
         options << QString::fromStdString(name_game);
     }
     QWidget* window = new QWidget();
@@ -146,7 +140,7 @@ void LobbyView::action_list(const std::vector<std::string>& list) {
     create_item(window, options);
 }
 
-void LobbyView::action_join(const std::vector<std::string> list){
+void LobbyView::action_join(const std::vector<std::string> list) {
 
     QWidget* window = new QWidget();
     QWidget* window_players = new QWidget();
@@ -157,38 +151,36 @@ void LobbyView::action_join(const std::vector<std::string> list){
 
     QWidget* formWidget = new QWidget(window);
 
-    QFormLayout *formLayout = new QFormLayout();
-    
+    QFormLayout* formLayout = new QFormLayout();
+
     formWidget->setLayout(formLayout);
 
     QLineEdit* name = new QLineEdit(window);
     formLayout->addRow("Name Player: ", name);
 
-    for (const std::string& name_game : list) {
+    for (const std::string& name_game: list) {
         options << QString::fromStdString(name_game);
     }
     tabs->addTab(window, "partidas");
     tabs->addTab(window_players, "Players");
-    section_player(window_players,button);
+    section_player(window_players, button);
 
     QListWidget* list_games = create_item(window, options);
 
-    connect(list_games, &QListWidget::itemClicked,[this,  options](QListWidgetItem* item) {
-        qDebug() << item->text();
-    });
-    
+    connect(list_games, &QListWidget::itemClicked,
+            [this, options](QListWidgetItem* item) { qDebug() << item->text(); });
+
     layout->addWidget(list_games);
-    layout->addWidget(formWidget); 
+    layout->addWidget(formWidget);
     layout->addWidget(button);
-    connect(button,  &QPushButton::clicked, [this, button]() {
+    connect(button, &QPushButton::clicked, [this, button]() {
         close();
         QApplication::quit();
-        std::cout  << "envio nombre join partida: "<< infoPlayer.info.name_game << std::endl;
+        std::cout << "envio nombre join partida: " << infoPlayer.info.name_game << std::endl;
         protocol.send_join_game(infoPlayer.info.name_game);
     });
-
 }
-void LobbyView::action_join2(){
+void LobbyView::action_join2() {
 
     QWidget* window = new QWidget();
     QWidget* window_players = new QWidget();
@@ -199,8 +191,8 @@ void LobbyView::action_join2(){
 
     QWidget* formWidget = new QWidget(window);
 
-    QFormLayout *formLayout = new QFormLayout();
-    
+    QFormLayout* formLayout = new QFormLayout();
+
     formWidget->setLayout(formLayout);
 
     QLineEdit* name = new QLineEdit(window);
@@ -210,30 +202,27 @@ void LobbyView::action_join2(){
 
     tabs->addTab(window, "partida");
     tabs->addTab(window_players, "Players");
-    section_player(window_players,button);
+    section_player(window_players, button);
 
-    connect(name_game ,&QLineEdit::textChanged, this, [&](const QString &text){
+    connect(name_game, &QLineEdit::textChanged, this, [&](const QString& text) {
         this->infoPlayer.info.name_game = text.toStdString();
-        std::cout  << "nombre partida: "<< infoPlayer.info.name_game << std::endl;
+        std::cout << "nombre partida: " << infoPlayer.info.name_game << std::endl;
     });
-    connect(name,&QLineEdit::textChanged, this, [&](const QString &text){
-        this->infoPlayer.info.name_player = text.toStdString();
-    });
-    layout->addWidget(formWidget); 
+    connect(name, &QLineEdit::textChanged, this,
+            [&](const QString& text) { this->infoPlayer.info.name_player = text.toStdString(); });
+    layout->addWidget(formWidget);
     layout->addWidget(button);
-    connect(button,  &QPushButton::clicked, [this, button]() {
+    connect(button, &QPushButton::clicked, [this, button]() {
         close();
         QApplication::quit();
-        std::cout  << "envio nombre join partida: "<< infoPlayer.info.name_game << std::endl;
+        std::cout << "envio nombre join partida: " << infoPlayer.info.name_game << std::endl;
         protocol.send_join_game(infoPlayer.info.name_game);
     });
-    
-
 }
 LobbyView::~LobbyView() {}
 
 
-/*  
+/*
     QObject::connect(botonAceptar, &QPushButton::clicked, [=]() mutable{
         info.name_player = name->text().toStdString();
         info.name_game = name_game->text().toStdString();
@@ -241,7 +230,7 @@ LobbyView::~LobbyView() {}
         qDebug() << "Jugador:" << QString::fromStdString(info.name_player);
         qDebug() << "Juego:" << QString::fromStdString(info.name_game);
     });
-    
+
     //  (Seal force, German GSG-9, UK SAS o French GIGN
     img_skins_counter_terrorist["Seal Force"] = "assets/gfx/player/ct3.bmp";
     img_skins_counter_terrorist["German GSG-9"] = "assets/gfx/player/ct1.bmp";

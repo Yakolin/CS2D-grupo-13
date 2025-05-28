@@ -10,11 +10,11 @@
 #include "../../common/game_image.h"
 
 #include "CollisionManager.h"
+#include "GameZone.h"
 #include "Specials.h"
 #include "Weapon.h"
-#include "GameZone.h"
 
-class Map : public GameZone {
+class Map: public GameZone {
 private:
     std::string map_name;
     Rectangle spawn_CT;
@@ -25,7 +25,7 @@ private:
 public:
     std::map<player_id_t, std::unique_ptr<Collider>> damage_colliders;
     explicit Map(const std::string& _map_name):
-            GameZone() , 
+            GameZone(),
             map_name(_map_name),
             spawn_CT(5, 5, Position(3100, 3100)),
             spawn_TT(5, 5, Position(3120, 3120)),

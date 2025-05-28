@@ -26,21 +26,24 @@
 #include <functional>
 #include <iostream>
 #include <map>
+
 #include "../../common/lobby_types.h"
 #include "../model/protocol.h"
-#include "lobbyView.h"
 #include "../tipos.h"
 
+#include "lobbyView.h"
 
-class MenuView : public QDialog{
+
+class MenuView: public QDialog {
     Q_OBJECT
 
 signals:
     void opcionElegida(LobbyCommandType opcion);
+
 private:
     QLabel* img_icono;
     QString clicked_text;
-    std::map<QString,LobbyCommandType > botones;
+    std::map<QString, LobbyCommandType> botones;
     ClientProtocol& protocolo;
 
     /*
@@ -50,7 +53,7 @@ private:
     void add_button(QVBoxLayout* layout, const QString& text);
 
 public:
-    MenuView(QWidget* parent,ClientProtocol& protoccol);
+    MenuView(QWidget* parent, ClientProtocol& protoccol);
     /*
     pre:-
     post: muestra el menu de opciones al empezar el juego
@@ -58,9 +61,9 @@ public:
     void run();
 
     LobbyCommandType getCommantType() const;
-    
+
     void action_create();
-    void action_join( );
+    void action_join();
     void action_help();
     void action_exit();
     void action_list(const std::vector<std::string>& list);

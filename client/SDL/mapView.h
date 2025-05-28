@@ -10,9 +10,10 @@
 #include <SDL_surface.h>
 #include <SDL_video.h>
 
+#include "../tipos.h"
+
 #include "playerView.h"
 #include "renderizable.h"
-#include "../tipos.h"
 
 
 class MapView: public Renderizable {

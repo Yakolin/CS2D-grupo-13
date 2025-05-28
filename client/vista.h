@@ -11,14 +11,14 @@
 #include "../common/game_image.h"
 #include "../common/queue.h"
 #include "../common/socket.h"
+#include "Qt/menuView.h"
+#include "Qt/scoreBoard.h"
+#include "SDL/gameView.h"
+#include "SDL/mapView.h"
 #include "model/protocol.h"
 #include "model/receiver.h"  // necesario para recibir cosas
 
 #include "controller.h"
-#include "SDL/gameView.h"
-#include "SDL/mapView.h"
-#include "Qt/menuView.h"
-#include "Qt/scoreBoard.h"
 
 class Vista {
 

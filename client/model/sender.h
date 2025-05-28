@@ -19,7 +19,8 @@ private:
     std::shared_ptr<Queue<std::unique_ptr<InterfaceClientAction>>>& send_queue;
 
 public:
-    explicit Sender(Socket& socket, std::shared_ptr<Queue<std::unique_ptr<InterfaceClientAction>>>& send_queue);
+    explicit Sender(Socket& socket,
+                    std::shared_ptr<Queue<std::unique_ptr<InterfaceClientAction>>>& send_queue);
     ~Sender() override;
 
     void run() override;

@@ -41,7 +41,7 @@ bool GameView::handle_events(const SDL_Event& evento) {
     if (evento.type == SDL_QUIT) {
         return false;  // Se cierra la ventana
     } else if (evento.type == SDL_KEYDOWN) {
-        
+
         SDL_Keycode tecla = evento.key.keysym.sym;  // Se presionó una tecla
         controller.sender_mov_player(tecla);
         Position pos = controller.recibir();
@@ -182,6 +182,7 @@ void GameView::draw_game() {
 
         SDL_Delay(16);  // Espera aprox. 16ms para lograr ~60 FPS
     }
+    this->controller.stop();
 }
 
 GameView::~GameView() {

@@ -106,7 +106,7 @@ public:
     void action(ClientProtocol& protocol) override;
 };
 
-}  // namespace Client
+}  // namespace ClientSpace
 
 
 #endif

@@ -26,8 +26,7 @@ private:
 
 public:
     ClientHandler(player_id_t player_id, Socket&& socket, GamesMonitor& games_monitor);
-    ClientHandler(player_id_t player_id, Socket&& socket,
-                  GamesMonitor& games_monitor) ~ClientHandler();
+    ~ClientHandler();
     void start();
     void stop();
     bool is_alive();

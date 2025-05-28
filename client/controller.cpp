@@ -75,4 +75,7 @@ Position Controller::recibir() {
 }
 void Controller::run() {}
 
-Controller::~Controller() {}
+Controller::~Controller() {
+    std::unique_ptr<InterfaceClientAction> action;
+    while (this->send_queue->try_pop(action)) {}
+}

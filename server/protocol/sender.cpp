@@ -12,6 +12,7 @@ void Sender::run() {
             GameImage game_image = this->send_queue->pop();
             this->protocol.send_game_image(game_image);
         }
+    } catch (const ConnectionClosedException& e) {
     } catch (ClosedQueue& e) {
         this->closed = true;
     } catch (...) {

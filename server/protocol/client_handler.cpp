@@ -1,6 +1,7 @@
 #include "client_handler.h"
 
-ClientHandler::ClientHandler(player_id_t player_id, Socket&& socket, GamesMonitor& games_monitor):
+ClientHandler::ClientHandler(player_id_t player_id, Socket&& socket,
+                             InterfaceGamesMonitor& games_monitor):
         player_id(player_id),
         socket(std::move(socket)),
         send_queue(std::make_shared<Queue<GameImage>>(QUEUE_MAX_SIZE)),
@@ -10,7 +11,7 @@ ClientHandler::ClientHandler(player_id_t player_id, Socket&& socket, GamesMonito
 ClientHandler::~ClientHandler() {}
 
 void ClientHandler::start() {
-    this->receiver.start();  // aca esta el problema
+    this->receiver.start();
     this->sender.start();
 }
 

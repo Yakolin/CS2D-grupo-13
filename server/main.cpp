@@ -4,7 +4,6 @@
 
 #include "server.h"
 
-#define QUIT 'q'
 
 #define PORT_INDEX 1
 #define N_ARGS 2
@@ -20,10 +19,6 @@ int main(int argc, const char** argv) {
         } else {
             Server server(argv[PORT_INDEX]);
             server.run();
-            char c = getchar();
-            if (c == QUIT) {
-                server.stop();
-            }
         }
     } catch (const std::runtime_error& e) {
         std::cerr << "Exception: " << e.what() << std::endl;

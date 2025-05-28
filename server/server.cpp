@@ -9,10 +9,11 @@ void Server::run() {
     this->acceptor.start();
 
     while (this->open) {
-        continue;
+        char c = getchar();
+        if (c == QUIT) {
+            this->open = false;
+            this->acceptor.stop();
+            this->acceptor.join();
+        }
     }
-    this->acceptor.stop();
-    this->acceptor.join();
 }
-
-void Server::stop() { this->open = false; }

@@ -7,6 +7,8 @@
 
 #include "acceptor.h"
 
+#define QUIT 'q'
+
 class Server {
 private:
     const char* port;
@@ -19,7 +21,6 @@ public:
     ~Server();
 
     void run();
-    void stop();
 };
 
 #endif  // !SERVER_H

@@ -26,8 +26,7 @@ private:
 
 public:
     ClientHandler(player_id_t player_id, Socket&& socket, InterfaceGamesMonitor& games_monitor);
-    // ClientHandler(player_id_t player_id, Socket&& socket, InterfaceGamesMonitor& games_monitor,
-    //               std::shared_ptr<Queue<GameImage>>& send_queue) ~ClientHandler();
+    ~ClientHandler();
     void start();
     void stop();
     bool is_alive();

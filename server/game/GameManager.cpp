@@ -40,6 +40,8 @@ void GameManager::reset_players() {
 // Decidi que esto se cree cada vez que se pide para evitar datos copiados
 GameImage GameManager::generate_game_image() {
     GameImage game_image;
+    game_image.round = round;
+    game_image.time = 10;
     // Aca posiblemente deba de tambien pedirle al mapa que me de su imagen
     for (const auto& par: players) {
         shared_ptr<Player> player = par.second;

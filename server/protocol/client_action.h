@@ -12,7 +12,7 @@
 class ClientAction {
 protected:
     player_id_t player_id;
-    ClientAction(player_id_t player_id): player_id(player_id) {}
+    explicit ClientAction(player_id_t player_id): player_id(player_id) {}
 
 public:
     player_id_t get_player_id() { return this->player_id; }
@@ -62,7 +62,7 @@ void action_to(IPlayerAction& player) override;
 class Reload: public ClientAction {
 
 public:
-    Reload(player_id_t player_id);
+    explicit Reload(player_id_t player_id);
     ~Reload();
     void action_to(IPlayerAction& player) override;
 };

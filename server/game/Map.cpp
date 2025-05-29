@@ -9,15 +9,15 @@ void Map::move(player_id_t id, const Position& direction) {
     if (it != players_in_map.end()) {
         if (collision_manager.valid_movement(it->second.position, direction))
             it->second.position += direction;
+        return;
     }
-    // Exception?
+    throw MapException("Can´t found players in the map to move");
 }
 Position Map::get_position(player_id_t id) {
     auto it = players_in_map.find(id);
     if (it != players_in_map.end())
         return it->second.position;
-    return Position(0, 0);
-    // Exception?
+    throw MapException("Can´t found player in the map to get the position");
 }
 void Map::respawn_players(const std::map<player_id_t, Team>& players_teams) {
     for (const auto& player: players_teams) {
@@ -28,9 +28,8 @@ void Map::respawn_players(const std::map<player_id_t, Team>& players_teams) {
             } else {
                 it->second.position = spawn_TT.get_random_position();
             }
-        } else {
-            // Exception?
         }
+        throw MapException("Can´t found players in the map to respawn");
     }
 }
 
@@ -43,7 +42,7 @@ void Map::charge_zone(Rectangle& zone, const Position& position) {
 void Map::charge_map(const std::string& map_name) {
     std::ifstream path(map_name);
     if (!path.is_open()) {
-        throw std::runtime_error("Can´t open the file of the game" + map_name);
+        throw MapException("Can´t open the file of the game " + map_name);
     }
     std::string line;
     bool spawn_tt = false, spawn_ct = false;
@@ -67,5 +66,5 @@ void Map::charge_map(const std::string& map_name) {
         walls.push_back(fila);
     }
     if (!spawn_ct or !spawn_tt)
-        throw std::runtime_error("El mapa necesita tener las zonas correctamente");
+        throw MapException("The map doesn´t have all the zones of Spawns and Plant");
 }

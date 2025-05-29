@@ -11,21 +11,20 @@
 #include "../interfaces/interface_player_action.h"
 
 #include "Equipement.h"
-#include "Map.h"
+#include "GameZone.h"
+#include "ICanInteract.h"
 
-class Player: public IPlayerAction {
+class Player: public IPlayerAction, public CanInteract {
 public:
-    Player(player_id_t id): id(id), health(100), points(0) {}
+    Player(player_id_t id, GameZone& game_zone):
+            id(id), health(100), points(0), game_zone(game_zone) {}
     virtual ~Player() = default;
     void reset();
-    void get_damage(uint8_t damage);
     virtual PlayerImage get_player_image(Position& position) = 0;
-    virtual void move(const MoveType& move_type) override {
-        if (move_type == MoveType::UP) {
-            std::cout << "Arriba";
-        }
-    }
+    virtual void move(const MoveType& move_type) override;
     virtual void reload() override {}
+    void damage(uint8_t damage) override;
+    // void equip(Weapon& weapon) override { equipement.primary = weapon;}
 
     /*
     virtual void shoot(const coordinate_t& mouse_x, const coordinate_t& mouse_y) override;
@@ -42,6 +41,9 @@ protected:  // Por ahora lo dejamo asi
     Equipement equipement;
     uint8_t health;
     uint8_t points;
+
+private:
+    GameZone& game_zone;
 };
 
 #endif  // GAME_PLAYER_H_

@@ -4,32 +4,68 @@
 #include <iostream>
 
 void Map::update_map_state() {}
-void Map::move_player(player_id_t id, const Position& direction) {
-    // Chekear con el colliderManager si esta posicion es valida
-    auto it = players_positions.find(id);
-    if (it != players_positions.end()) {
-        it->second += direction;
+void Map::move(player_id_t id, const Position& direction) {
+    auto it = players_in_map.find(id);
+    if (it != players_in_map.end()) {
+        if (collision_manager.valid_movement(it->second.position, direction))
+            it->second.position += direction;
     }
     // Exception?
 }
 Position Map::get_position(player_id_t id) {
-    auto it = players_positions.find(id);
-    if (it != players_positions.end())
-        return it->second;
+    auto it = players_in_map.find(id);
+    if (it != players_in_map.end())
+        return it->second.position;
     return Position(0, 0);
     // Exception?
 }
 void Map::respawn_players(const std::map<player_id_t, Team>& players_teams) {
     for (const auto& player: players_teams) {
-        auto it = players_positions.find(player.first);
-        if (it != players_positions.end()) {
+        auto it = players_in_map.find(player.first);
+        if (it != players_in_map.end()) {
             if (player.second == Team::CT) {
-                it->second = spawn_CT.get_random_position();
+                it->second.position = spawn_CT.get_random_position();
             } else {
-                it->second = spawn_TT.get_random_position();
+                it->second.position = spawn_TT.get_random_position();
             }
         } else {
             // Exception?
         }
     }
+}
+
+void Map::add_player(player_id_t id, std::shared_ptr<CanInteract>& player) {
+    players_in_map.insert(std::make_pair(id, PlayerEntity{player, Position(5, 5)}));
+}
+void Map::charge_zone(Rectangle& zone, const Position& position) {
+    zone = Rectangle(WidthSpawn, HeightSpawn, position);
+}
+void Map::charge_map(const std::string& map_name) {
+    std::ifstream path(map_name);
+    if (!path.is_open()) {
+        throw std::runtime_error("Can´t open the file of the game" + map_name);
+    }
+    std::string line;
+    bool spawn_tt = false, spawn_ct = false;
+    while (getline(path, line)) {
+        std::vector<char> fila;
+        for (int i = 0; i < line.size(); i++) {
+            char c = line[i];
+            if (c == 'C') {
+                Position pos(i, walls.size());
+                charge_zone(spawn_CT, pos);
+                spawn_ct = true;
+                c = ' ';
+            } else if (c == 'T') {
+                Position pos(i, walls.size());
+                charge_zone(spawn_TT, pos);
+                spawn_tt = true;
+                c = ' ';
+            }
+            fila.push_back(c);
+        }
+        walls.push_back(fila);
+    }
+    if (!spawn_ct or !spawn_tt)
+        throw std::runtime_error("El mapa necesita tener las zonas correctamente");
 }

@@ -49,7 +49,7 @@ void Map::charge_map(const std::string& map_name) {
     bool spawn_tt = false, spawn_ct = false;
     while (getline(path, line)) {
         std::vector<char> fila;
-        for (int i = 0; i < line.size(); i++) {
+        for (size_t i = 0; i < line.size(); i++) {
             char c = line[i];
             if (c == 'C') {
                 Position pos(i, walls.size());

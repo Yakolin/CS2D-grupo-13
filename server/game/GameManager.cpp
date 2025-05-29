@@ -16,19 +16,20 @@ shared_ptr<Player> GameManager::find_player(player_id_t player_id) {
 void GameManager::process(ClientAction& action) {
     player_id_t player_id = action.get_player_id();
     shared_ptr<Player> player = find_player(player_id);
-    // action_to(player);
+    action.action_to(*player);
 }
 
 void GameManager::add_player(player_id_t& id) {
     Team team = ((players.size() + 1) % 2 == 0) ? Team::CT : Team::TT;
     shared_ptr<Player> player;
     if (team == Team::CT)
-        player = std::make_shared<CounterTerrorist>(id);
+        player = std::make_shared<CounterTerrorist>(id, map_game);
     else
-        player = std::make_shared<Terrorist>(id);
+        player = std::make_shared<Terrorist>(id, map_game);
     players.insert(make_pair(id, player));
     players_team.insert(std::make_pair(id, team));
-    map_game.add_player(id);
+    std::shared_ptr<CanInteract> can_interact_ptr = std::static_pointer_cast<CanInteract>(player);
+    map_game.add_player(id, can_interact_ptr);  // Player es un CanInteract
 }
 void GameManager::reset_players() {
     for (const auto& player: players) {
@@ -47,9 +48,8 @@ GameImage GameManager::generate_game_image() {
     }
     return game_image;
 }
-
 void GameManager::start_game() {
-    if (players.size() != 2) {
+    if (players.size() < 1) {
         std::cout << "El juego no tiene suficientes jugadores\n";
         return;
     }
@@ -62,17 +62,17 @@ void GameManager::change_teams() {
     for (const auto& player: players_team) {
         if (player.second == Team::CT) {
             players_team[player.first] = Team::TT;
-            players[player.first] = std::make_shared<Terrorist>(player.first);
+            players[player.first] = std::make_shared<Terrorist>(player.first, map_game);
         } else {
             players_team[player.first] = Team::CT;
-            players[player.first] = std::make_shared<CounterTerrorist>(player.first);
+            players[player.first] = std::make_shared<CounterTerrorist>(player.first, map_game);
         }
     }
 }
 GameImage GameManager::get_frame() {
+    /*
     if (!game_started)
         throw GameException("The game isn´t start yet to take a frame");
-    /*
         1. Actualizar las cosas en el Mapa , como movimiento de las balas , armas q caen
         2. Chekear colisiones que no sean propias del jugador (colisiones de bala por ejemplo)
         3. Manejar esas colisiones como balas chocando, etc
@@ -91,27 +91,7 @@ GameImage GameManager::get_frame() {
 }
 GameManager::~GameManager() { players.clear(); }
 
-/* InterfaceGameManager */
 /*
-void GameManager::move(player_id_t player_id, MoveType move_type) {
-    switch (move_type) {
-        case MoveType::UP:
-            map_game.move_player(player_id, Vector2(0, 1));
-            break;
-        case MoveType::DOWN:
-            map_game.move_player(player_id, Vector2(0, -1));
-            break;
-        case MoveType::RIGHT:
-            map_game.move_player(player_id, Vector2(1, 0));
-            break;
-        case MoveType::LEFT:
-            map_game.move_player(player_id, Vector2(-1, 0));
-            break;
-        default:
-            throw GameException("MoveType corrupted");
-    }
-}
-
 void GameManager::shoot(player_id_t player_id, coordinate_t mouse_x, coordinate_t mouse_y) {
     shared_ptr<Player> player = find_player(player_id);
     Vector2 position = map_game.get_position(player_id);

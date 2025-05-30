@@ -67,9 +67,20 @@ void GamesMonitor::reap() {
 void GamesMonitor::clear() {
     std::lock_guard<std::mutex> lock(mutex);
     for (auto& game: games) {
-        std::cout << "Stop game" << std::endl;
-        game.second->stop();
-        game.second->join();
+        if (game.second->is_alive()) {
+            std::cout << "Shutdown game..." << std::endl;
+            game.second->stop();
+        }
+        // es un hilo aun no inicializado si devuelve true, si devuelve false es una partida que
+        // empezo, no puedo joinear hilos no inicializados
+        if (!game.second->waiting_for_players()) {
+            game.second->join();
+        }
     }
     games.clear();
+}
+
+bool GamesMonitor::has_active_games() {
+    std::lock_guard<std::mutex> lock(mutex);
+    return !this->games.empty();
 }

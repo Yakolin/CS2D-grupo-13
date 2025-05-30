@@ -60,7 +60,7 @@ void GameLoop::broadcast(GameImage& game_image) {
 }
 
 void GameLoop::stop() {
-    std::cout << "Termino el hilo de game" << std::endl;
+    Thread::stop();
     this->recv_queue->close();
     std::unique_ptr<ClientAction> action;
     while (this->recv_queue->try_pop(action)) {}

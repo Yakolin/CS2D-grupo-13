@@ -29,7 +29,7 @@ void Receiver::run_lobby() {
         }
 
     } catch (const ConnectionClosedException& e) {
-        in_lobby = false;
+        std::cout << "The client closed the connection" << std::endl;
         this->closed = true;
     } catch (const std::runtime_error& e) {
         std::cerr << "Error en el lobby: " << e.what() << std::endl;
@@ -47,7 +47,7 @@ void Receiver::run_game() {
             std::unique_ptr<ClientAction> action;
             ParsePlayerAction parser(this->player_id, this->protocol, command, action);
             parser();
-            if (!this->closed) {
+            if (!this->closed && this->recv_queue) {
                 this->recv_queue->push(std::move(action));
             }
         }
@@ -60,4 +60,9 @@ void Receiver::run_game() {
                   << std::endl;
         this->closed = true;
     }
+}
+
+void Receiver::stop() {
+    Thread::stop();
+    this->closed = true;
 }

@@ -33,6 +33,8 @@ public:
     void reap();
 
     void clear();
+
+    bool has_active_games();
 };
 
 #endif  // !GAMES_MONITOR_H

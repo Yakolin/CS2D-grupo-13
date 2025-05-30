@@ -13,6 +13,7 @@ void Sender::run() {
             this->protocol.send_game_image(game_image);
         }
     } catch (const ConnectionClosedException& e) {
+        std::cout << "The client closed the connection" << std::endl;
         this->closed = true;
     } catch (ClosedQueue& e) {
         this->closed = true;
@@ -23,4 +24,7 @@ void Sender::run() {
     }
 }
 
-void Sender::stop() { this->send_queue->close(); }
+void Sender::stop() {
+    Thread::stop();
+    this->send_queue->close();
+}

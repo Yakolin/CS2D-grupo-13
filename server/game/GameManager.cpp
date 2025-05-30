@@ -14,6 +14,9 @@ shared_ptr<Player> GameManager::find_player(player_id_t player_id) {
 }
 
 void GameManager::process(ClientAction& action) {
+    if (timer.is_time_buy()) {  // Aca hay que mejorar la logica de compra y demas
+        return;
+    }
     player_id_t player_id = action.get_player_id();
     shared_ptr<Player> player = find_player(player_id);
     action.action_to(*player);
@@ -41,7 +44,7 @@ void GameManager::reset_players() {
 GameImage GameManager::generate_game_image() {
     GameImage game_image;
     game_image.round = round;
-    game_image.time = 10;
+    game_image.time = timer.get_time_round();
     // Aca posiblemente deba de tambien pedirle al mapa que me de su imagen
     for (const auto& par: players) {
         shared_ptr<Player> player = par.second;
@@ -57,9 +60,10 @@ void GameManager::start_game() {
     }
     reset_players();
     game_started = true;
+    timer.round_start();
 }
 void GameManager::stop_game() {}
-bool GameManager::check_round_finished() { return false; }
+bool GameManager::check_round_finished() { return timer.is_round_over(); }  // Faltan cosas aca
 void GameManager::change_teams() {
     for (const auto& player: players_team) {
         if (player.second == Team::CT) {
@@ -82,11 +86,13 @@ GameImage GameManager::get_frame() {
     if (check_round_finished()) {
         std::cout << "Ronda terminada\n";
         round++;
+        timer.round_start();
         reset_players();
     }
     if (round == 5) {
         std::cout << "A cambiar de equipos" << std::endl;
         change_teams();
+        timer.round_start();
     }
     map_game.update_map_state();
     return generate_game_image();

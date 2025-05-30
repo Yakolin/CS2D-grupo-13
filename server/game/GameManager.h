@@ -15,6 +15,7 @@
 #include "Map.h"
 #include "Player.h"
 #include "PlayerType.h"
+#include "Timer.h"
 using std::map;
 using std::shared_ptr;
 using std::string;
@@ -26,6 +27,7 @@ private:
     map<player_id_t, shared_ptr<Player>> players;
     map<player_id_t, Team> players_team;
     int round = 0;
+    Timer timer;
     Map map_game;
     bool game_started = false;
     shared_ptr<Player> find_player(player_id_t player_id);

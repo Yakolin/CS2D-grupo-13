@@ -19,11 +19,12 @@ target_sources(CS2D_server
     GameException.h
     GameManager.h
     ICanInteract.h
-    GameZone.h
+    IGameZone.h
     Map.h
     MapTypes.h
     Player.h
     PlayerType.h
     Specials.h
     Weapon.h
+    Timer.h
     )

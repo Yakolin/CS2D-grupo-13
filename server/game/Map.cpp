@@ -34,7 +34,7 @@ void Map::respawn_players(const std::map<player_id_t, Team>& players_teams) {
     }
 }
 
-void Map::add_player(player_id_t id, std::shared_ptr<CanInteract>& player) {
+void Map::add_player(player_id_t id, std::shared_ptr<ICanInteract>& player) {
     players_in_map.insert(std::make_pair(id, PlayerEntity{player, Position(5, 5)}));
 }
 void Map::charge_zone(Rectangle& zone, const Position& position) {

@@ -11,12 +11,12 @@
 #include "../interfaces/interface_player_action.h"
 
 #include "Equipement.h"
-#include "GameZone.h"
 #include "ICanInteract.h"
+#include "IGameZone.h"
 
-class Player: public IPlayerAction, public CanInteract {
+class Player: public IPlayerAction, public ICanInteract {
 public:
-    Player(player_id_t id, GameZone& game_zone):
+    Player(player_id_t id, IGameZone& game_zone):
             id(id), health(100), points(0), game_zone(game_zone) {}
     virtual ~Player() = default;
     void reset();
@@ -43,7 +43,7 @@ protected:  // Por ahora lo dejamo asi
     uint8_t points;
 
 private:
-    GameZone& game_zone;
+    IGameZone& game_zone;
 };
 
 #endif  // GAME_PLAYER_H_

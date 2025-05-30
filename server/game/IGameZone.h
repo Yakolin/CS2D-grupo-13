@@ -1,13 +1,13 @@
-#ifndef GAME_ZONE_H_
-#define GAME_ZONE_H_
+#ifndef I_GAME_ZONE_H_
+#define I_GAME_ZONE_H_
 
 #include <utility>
 
 #include "../../common/game_image.h"
 #include "../../common/utility.h"
-class GameZone {
+class IGameZone {
 public:
     virtual void move(player_id_t id, const Position& direction) = 0;
-    virtual ~GameZone() = default;
+    virtual ~IGameZone() = default;
 };
 #endif  // GAME_ZONE_H_

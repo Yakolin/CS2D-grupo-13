@@ -12,7 +12,7 @@
 #define Wall '#'
 #define Floor ' '
 typedef struct PlayerEntity {
-    std::shared_ptr<CanInteract>& player;
+    std::shared_ptr<ICanInteract>& player;
     Position position;
 } player_entity_t;
 

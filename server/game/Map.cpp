@@ -28,8 +28,9 @@ void Map::respawn_players(const std::map<player_id_t, Team>& players_teams) {
             } else {
                 it->second.position = spawn_TT.get_random_position();
             }
+        } else {
+            throw MapException("Can´t found players in the map to respawn");
         }
-        throw MapException("Can´t found players in the map to respawn");
     }
 }
 

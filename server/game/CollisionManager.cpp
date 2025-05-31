@@ -23,9 +23,9 @@ void CollisionManager::check_damage_collider(player_id_t caster,
     }
     if (players_affected.empty())
         return;
-    Vector2f pos_caster(players_in_map[caster].position.x, players_in_map[caster].position.x);
+    Vector2f pos_caster(players_in_map[caster].position.x, players_in_map[caster].position.y);
     PlayerEntity nearest = players_affected[0];
-    Vector2f pos_nearest(nearest.position.x, nearest.position.x);
+    Vector2f pos_nearest(nearest.position.x, nearest.position.y);
     float min_distance = pos_caster.distance(pos_nearest);
     for (auto& player: players_affected) {
         if (!player.player.lock())

@@ -7,9 +7,11 @@ void Map::update_map_state() {}
 void Map::move(player_id_t id, const Position& direction) {
     auto it = players_in_map.find(id);
     if (it != players_in_map.end()) {
-        if (collision_manager.valid_movement(it->second.position, direction))
-            it->second.position += direction;
-        return;
+        if (auto p = it->second.player.lock()) {
+            if (collision_manager.valid_movement(it->second.position, direction))
+                it->second.position += direction;
+            return;
+        }
     }
     throw MapException("Can´t found players in the map to move");
 }
@@ -20,6 +22,7 @@ Position Map::get_position(player_id_t id) {
     throw MapException("Can´t found player in the map to get the position");
 }
 void Map::respawn_players(const std::map<player_id_t, Team>& players_teams) {
+    std::cout << "Respawning players\n";
     for (const auto& player: players_teams) {
         auto it = players_in_map.find(player.first);
         if (it != players_in_map.end()) {

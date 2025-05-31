@@ -57,9 +57,9 @@ void GameManager::start_game() {
         std::cout << "El juego no tiene suficientes jugadores\n";
         return;
     }
+    timer.round_start();
     reset_players();
     game_started = true;
-    timer.round_start();
 }
 void GameManager::stop_game() {}
 bool GameManager::check_round_finished() { return timer.is_round_over(); }  // Faltan cosas aca

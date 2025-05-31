@@ -4,17 +4,6 @@
 #include <iostream>
 
 void Map::update_map_state() {}
-void Map::move(player_id_t id, const Position& direction) {
-    auto it = players_in_map.find(id);
-    if (it != players_in_map.end()) {
-        if (auto p = it->second.player.lock()) {
-            if (collision_manager.valid_movement(it->second.position, direction))
-                it->second.position += direction;
-            return;
-        }
-    }
-    throw MapException("Can´t found players in the map to move");
-}
 Position Map::get_position(player_id_t id) {
     auto it = players_in_map.find(id);
     if (it != players_in_map.end())
@@ -71,4 +60,25 @@ void Map::charge_map(const std::string& map_name) {
     }
     if (!spawn_ct or !spawn_tt)
         throw MapException("The map doesn´t have all the zones of Spawns and Plant");
+}
+
+void Map::move(player_id_t id, const Position& direction) {
+    auto it = players_in_map.find(id);
+    if (it != players_in_map.end()) {
+        if (auto p = it->second.player.lock()) {
+            if (collision_manager.valid_movement(it->second.position, direction))
+                it->second.position += direction;
+            return;
+        }
+    }
+    throw MapException("Can´t found players in the map to move");
+}
+
+void Map::spawn_collider(player_id_t id_spawn, damage_collider_t& wanted) {
+    std::cout << "Invocando collider\n";
+    Position player_pos = get_position(id_spawn);
+    Position end(wanted.direction.x * wanted.distance, wanted.direction.y * wanted.distance);
+    std::unique_ptr<Collider> line =
+            std::make_unique<Line>(std::move(player_pos), std::move(end), wanted.width);
+    damage_colliders.insert(std::make_pair(id_spawn, std::move(line)));
 }

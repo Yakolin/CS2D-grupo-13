@@ -12,6 +12,7 @@
 
 #include "CollisionManager.h"
 #include "IGameZone.h"
+#include "ISpawneableZone.h"
 #include "MapExeption.h"
 #include "Specials.h"
 #include "Weapon.h"
@@ -19,7 +20,7 @@
 #define WidthSpawn 3
 #define HeightSpawn 3
 
-class Map: public IGameZone {
+class Map: public IGameZone, public ISpawneableZone {
 private:
     std::string map_name;
     std::vector<std::vector<char>> walls;
@@ -39,10 +40,12 @@ public:
         charge_map(map_name);
     }
     void update_map_state();
-    void move(player_id_t id, const Position& direction) override;
     Position get_position(player_id_t player_id);
     void add_player(player_id_t id, std::weak_ptr<ICanInteract> player);
     void respawn_players(const std::map<player_id_t, Team>& players_teams);
+
+    void move(player_id_t id, const Position& direction) override;
+    void spawn_collider(player_id_t id_spawn, damage_collider_t& wanted) override;
 };
 
 #endif  // MAP_H_

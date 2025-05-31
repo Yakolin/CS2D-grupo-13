@@ -16,21 +16,6 @@ Position& Position::operator-=(const Position& other) {
     this->y -= other.y;
     return *this;
 }
-/*
-Position& Position::normalize() {
-    float norm = get_norm();
-    this->x = x / norm;
-    this->y = y / norm;
-    return *this;
-}
-*/
-
 bool Position::operator==(const Position& other) const {
     return this->x == other.x && this->y == other.y;
-}
-
-float Position::distance(const Position& other) const {
-    float dx = x - other.x;
-    float dy = y - other.y;
-    return std::sqrt(dx * dx + dy * dy);
 }

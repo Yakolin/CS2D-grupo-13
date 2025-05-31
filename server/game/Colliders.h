@@ -10,14 +10,25 @@ public:
     virtual bool is_in(const Position& position) = 0;
     virtual ~Collider() = 0;
 };
+class Vector2f {
+public:
+    float x;
+    float y;
+    float distance(const Vector2f& other) const;
+    float norm();
+    void normalize();
+    Vector2f(float x, float y): x(x), y(y) {}
+    ~Vector2f() = default;
+};
 class Line: public Collider {
-    Position start;
-    Position end;
+    Vector2f start;
+    Vector2f end;
     uint8_t width;
 
 public:
-    Line(const Position& start, const Position& end, uint8_t width):
+    Line(const Vector2f& start, const Vector2f& end, uint8_t width):
             start(std::move(start)), end(std::move(end)), width(width) {}
+    float distance(Vector2f& other);
     virtual ~Line() override = default;
     virtual bool is_in(const Position& position) override;
 };

@@ -22,3 +22,9 @@ void Sender::run() {
         closed = true;
     }
 }
+
+void Sender::stop() {
+    this->send_queue->close();
+    std::unique_ptr<InterfaceClientAction> action;
+    while (this->send_queue->try_pop(action)) {}
+}

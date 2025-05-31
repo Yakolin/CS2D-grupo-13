@@ -31,7 +31,7 @@ void Controller::sender_mov_player(SDL_Keycode key) {
     } else if (key == SDLK_RIGHT || key == SDLK_d) {
         mov = MoveType::RIGHT;
     } else if (key == SDLK_DOWN || key == SDLK_s) {
-        mov = MoveType::UP;           // Polaridad YA cambiada!
+        mov = MoveType::UP;  // Polaridad YA cambiada!
     }
 
     std::unique_ptr<InterfaceClientAction> action = std::make_unique<ClientSpace::Move>(mov);
@@ -53,7 +53,7 @@ void Controller::stop() {
     this->skt.shutdown(2);
     this->skt.close();
 }
-void  Controller::recibir(GameImage& snapshot) {
+void Controller::recibir(GameImage& snapshot) {
     std::cout << ">>> popeando de la cola:\n";
     snapshot = recv_queue->pop();
     std::cout << ">>> Estado actual del juego:\n";
@@ -65,13 +65,9 @@ void  Controller::recibir(GameImage& snapshot) {
                   << " | Vida: " << static_cast<int>(p.health)
                   << " | Puntos: " << static_cast<int>(p.points) << std::endl;
         std::cout << "------------------------------------------\n ";
-
     }
 }
 
 void Controller::run() {}
 
-Controller::~Controller() {
-    std::unique_ptr<InterfaceClientAction> action;
-    while (this->send_queue->try_pop(action)) {}
-}
+Controller::~Controller() {}

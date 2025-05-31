@@ -20,3 +20,5 @@ void Receiver::run() {
         closed = true;
     }
 }
+
+void Receiver::stop() { this->recv_queue->close(); }

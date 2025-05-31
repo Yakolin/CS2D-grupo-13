@@ -11,7 +11,7 @@ Controller::Controller(Socket&& skt):
     start();
 }
 
-void Controller::sender_pos_mouse(int x, int y) {
+/*void Controller::sender_pos_mouse(int x, int y) {
     int tile_size = 32;  // tamaño en pixeles de cada bloque del mapa
 
     int col = x / tile_size;  // columna en la matriz
@@ -19,16 +19,19 @@ void Controller::sender_pos_mouse(int x, int y) {
     ///... resto de codigo
     std::cout << "Fila: " << fil << ", Columna: " << col << std::endl;
 }
+*/
+
 void Controller::sender_mov_player(SDL_Keycode key) {
 
     MoveType mov = MoveType::DOWN;
     if (key == SDLK_UP || key == SDLK_w) {
-        mov = MoveType::DOWN;  // Polaridad YA cambiada!
+        mov = MoveType::DOWN;           // Polaridad YA cambiada!
     } else if (key == SDLK_LEFT || key == SDLK_a) {
         mov = MoveType::LEFT;
     } else if (key == SDLK_RIGHT || key == SDLK_d) {
         mov = MoveType::RIGHT;
     } else if (key == SDLK_DOWN || key == SDLK_s) {
+
         mov = MoveType::UP;
     }
 
@@ -52,6 +55,7 @@ void Controller::stop() {
     this->skt.close();
 }
 Position Controller::recibir() {
+    std::cout << ">>> popeando de la cola:\n";
     GameImage image = recv_queue->pop();
     std::cout << ">>> Estado actual del juego:\n";
     float x_relativo = 0;
@@ -64,13 +68,13 @@ Position Controller::recibir() {
                   << p.position.y << ")"
                   << " | Vida: " << static_cast<int>(p.health)
                   << " | Puntos: " << static_cast<int>(p.points) << std::endl;
-        x_relativo = p.position.x;
-        y_relativo = p.position.y;
         std::cout << "------------------------------------------\n ";
 
         std::cout << "Posición relativa del jugador: (" << x_relativo << ", " << y_relativo << ")"
                   << std::endl;
     }
+    x_relativo = image.players_images[0].position.x;
+    y_relativo = image.players_images[0].position.y;
     return Position(x_relativo, y_relativo);
 }
 void Controller::run() {}

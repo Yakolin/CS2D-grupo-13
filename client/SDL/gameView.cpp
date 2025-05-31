@@ -28,6 +28,32 @@ GameView::GameView(Socket&& skt, const int& width_reseiver, const int& height_re
     ids['.'] = Objet::GRASS;
 }
 
+bool GameView::init_game() {
+    if (SDL_Init(SDL_INIT_VIDEO) != 0) { 
+        throw std::runtime_error(std::string("Error al inicializar SDL: ") + SDL_GetError());
+        return false;
+    }
+
+    ventana = SDL_CreateWindow("Mapa", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width,height, SDL_WINDOW_SHOWN);
+    if (!ventana) {
+        throw std::runtime_error(std::string("Error al crear la ventana: ") + SDL_GetError());
+        return false;
+    }
+
+    renderer = SDL_CreateRenderer(ventana, -1, SDL_RENDERER_ACCELERATED);
+    if (!renderer) {
+        throw std::runtime_error(std::string("Error al crear el renderer: ") + SDL_GetError());
+        return false;
+    }
+
+    if (!(IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG) & (IMG_INIT_PNG | IMG_INIT_JPG))) {
+        throw std::runtime_error(std::string("Error inicializando SDL_image: ") + IMG_GetError());
+        return false;
+    }
+
+    load_textures();
+    return true;
+}
 
 void GameView::load_textures() {
     for (const auto& par: leyenda) {
@@ -45,15 +71,19 @@ bool GameView::handle_events(const SDL_Event& evento) {
         SDL_Keycode tecla = evento.key.keysym.sym;  // Se presionó una tecla
         controller.sender_mov_player(tecla);
         Position pos = controller.recibir();
+        std::cout << "-fil: "<< pos.x << "-col: " << pos.y << std::endl;
         player->setCol(pos.x);
         player->setFil(pos.y);
-        // player->add_speed(tecla);
+        std::cout << "nuw fil: "<< player->getFil() << "new col: " << player->getCol() << std::endl;
+        //player->add_speed(tecla);
+        return true;
     } else if (evento.type == SDL_MOUSEMOTION) {
 
         int mouseX = evento.motion.x;
         int mouseY = evento.motion.y;
         player->update_view_angle(mouseX, mouseY);
-        controller.sender_pos_mouse(mouseX, mouseY);
+        //controller.sender_pos_mouse(mouseX, mouseY);
+        return true;
     }
     return true;
 }
@@ -105,28 +135,6 @@ std::vector<std::vector<char>> GameView::cargar_mapa(const std::string& archivo)
     }
     return mapa;
 }
-bool GameView::init_game() {
-    if (SDL_Init(SDL_INIT_VIDEO) != 0) { 
-        throw std::runtime_error(std::string("Error al inicializar SDL: ") + SDL_GetError());
-    }
-
-    ventana = SDL_CreateWindow("Mapa", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width,height, SDL_WINDOW_SHOWN);
-    if (!ventana) {
-        throw std::runtime_error(std::string("Error al crear la ventana: ") + SDL_GetError());
-    }
-
-    renderer = SDL_CreateRenderer(ventana, -1, SDL_RENDERER_ACCELERATED);
-    if (!renderer) {
-        throw std::runtime_error(std::string("Error al crear el renderer: ") + SDL_GetError());
-    }
-
-    if (!(IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG) & (IMG_INIT_PNG | IMG_INIT_JPG))) {
-        throw std::runtime_error(std::string("Error inicializando SDL_image: ") + IMG_GetError());
-    }
-
-    load_textures();
-    return true;
-}
 
 
 void GameView::draw_game() {
@@ -134,7 +142,7 @@ void GameView::draw_game() {
 
     std::vector<std::vector<char>> mapa = cargar_mapa(MAPA_AZTECA);
     MapView map(mapa, 500, 500, &camera, &manger_texture);
-
+   // controller.recibir();
     bool corriendo = true;
     SDL_Event evento;
     while (corriendo) {

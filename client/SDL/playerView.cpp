@@ -82,9 +82,16 @@ std::string PlayerView::getRutaPlayer() const { return rutaPlayer; }
 
 float PlayerView::getSpeed() const { return speed_player; }
 
-void PlayerView::setFil(float x) { fil = x; }
+void PlayerView::setFil(float x) { 
+    std::cout << x << std::endl;
+    
+    fil = x; 
+    }
 
-void PlayerView::setCol(float y) { col = y; }
+void PlayerView::setCol(float y) { 
+    std::cout << y << std::endl;
+    col = y; 
+    }
 
 void PlayerView::setRutaPlayer(const std::string& ruta) { rutaPlayer = ruta; }
 

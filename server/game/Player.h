@@ -16,18 +16,22 @@
 
 class Player: public IPlayerAction, public ICanInteract {
 public:
-    Player(player_id_t id, IGameZone& game_zone):
-            id(id), health(100), points(0), game_zone(game_zone) {}
+    Player(player_id_t id, IGameZone& game_zone, ISpawneableZone& spawneable_zone):
+            id(id),
+            health(100),
+            points(0),
+            game_zone(game_zone),
+            spawneable_zone(spawneable_zone) {}
     virtual ~Player() = default;
     void reset();
     virtual PlayerImage get_player_image(Position& position) = 0;
-    virtual void move(const MoveType& move_type) override;
-    virtual void reload() override {}
     void damage(uint8_t damage) override;
+    virtual void move(const MoveType& move_type) override;
+    virtual void reload() override;
     // void equip(Weapon& weapon) override { equipement.primary = weapon;}
+    virtual void shoot(const coordinate_t& mouse_x, const coordinate_t& mouse_y) override;
 
     /*
-    virtual void shoot(const coordinate_t& mouse_x, const coordinate_t& mouse_y) override;
     virtual void plant_bomb() override;
     virtual void defuse_bomb() override;
     virtual void drop() override;
@@ -44,6 +48,7 @@ protected:  // Por ahora lo dejamo asi
 
 private:
     IGameZone& game_zone;
+    ISpawneableZone& spawneable_zone;
 };
 
 #endif  // GAME_PLAYER_H_

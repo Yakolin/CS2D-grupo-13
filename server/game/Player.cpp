@@ -30,3 +30,11 @@ void Player::move(const MoveType& move_type) {
             break;
     }
 }
+void Player::reload() {
+    // Aca no es la secondary igual
+    equipement.secondary->reload();
+}
+void Player::shoot(const coordinate_t& mouse_x, const coordinate_t& mouse_y) {
+    Position direction(mouse_x, mouse_y);
+    equipement.secondary->set_on_action(spawneable_zone, id, direction);
+}

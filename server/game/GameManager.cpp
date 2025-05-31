@@ -26,9 +26,9 @@ void GameManager::add_player(player_id_t& id) {
     Team team = ((players.size() + 1) % 2 == 0) ? Team::CT : Team::TT;
     shared_ptr<Player> player;
     if (team == Team::CT)
-        player = std::make_shared<CounterTerrorist>(id, map_game);
+        player = std::make_shared<CounterTerrorist>(id, map_game, map_game);
     else
-        player = std::make_shared<Terrorist>(id, map_game);
+        player = std::make_shared<Terrorist>(id, map_game, map_game);
     players.insert(make_pair(id, player));
     players_team.insert(std::make_pair(id, team));
     map_game.add_player(id, player);  // Player es un ICanInteract
@@ -67,10 +67,11 @@ void GameManager::change_teams() {
     for (const auto& player: players_team) {
         if (player.second == Team::CT) {
             players_team[player.first] = Team::TT;
-            players[player.first] = std::make_shared<Terrorist>(player.first, map_game);
+            players[player.first] = std::make_shared<Terrorist>(player.first, map_game, map_game);
         } else {
             players_team[player.first] = Team::CT;
-            players[player.first] = std::make_shared<CounterTerrorist>(player.first, map_game);
+            players[player.first] =
+                    std::make_shared<CounterTerrorist>(player.first, map_game, map_game);
         }
     }
 }
@@ -99,13 +100,6 @@ GameImage GameManager::get_frame() {
 GameManager::~GameManager() { players.clear(); }
 
 /*
-void GameManager::shoot(player_id_t player_id, coordinate_t mouse_x, coordinate_t mouse_y) {
-    shared_ptr<Player> player = find_player(player_id);
-    Vector2 position = map_game.get_position(player_id);
-    Vector2 direction = position - Vector2(mouse_x, mouse_y);
-    // direction.normalize(); Aca entra el tema de como calcular el movimiento de las balas
-    player->fire_weapon_equiped(map_game, position, direction);
-}
 void GameManager::reload(player_id_t player_id) {
         shared_ptr<Player> player = find_player(player_id);
         player.reload_current_weapon();

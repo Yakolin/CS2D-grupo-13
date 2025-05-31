@@ -16,7 +16,8 @@ class Line: public Collider {
     uint8_t width;
 
 public:
-    Line(Position start, Position end, uint8_t width): start(start), end(end), width(width) {}
+    Line(const Position& start, const Position& end, uint8_t width):
+            start(std::move(start)), end(std::move(end)), width(width) {}
     virtual ~Line() override = default;
     virtual bool is_in(const Position& position) override;
 };

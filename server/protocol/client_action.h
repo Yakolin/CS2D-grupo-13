@@ -66,8 +66,6 @@ public:
     ~Reload();
     void action_to(IPlayerAction& player) override;
 };
-/*
-
 class Shoot: public ClientAction, public ShootCommon {
 
 public:
@@ -75,6 +73,8 @@ public:
     ~Shoot();
     void action_to(IPlayerAction& player) override;
 };
+/*
+
 
     BOMB ACTIONS
 

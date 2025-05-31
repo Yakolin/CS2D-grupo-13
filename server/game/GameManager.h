@@ -30,6 +30,7 @@ private:
     Timer timer;
     Map map_game;
     bool game_started = false;
+    std::shared_ptr<Player> create_player(player_id_t id, Team team);
     shared_ptr<Player> find_player(player_id_t player_id);
     GameImage generate_game_image();
     void reset_players();

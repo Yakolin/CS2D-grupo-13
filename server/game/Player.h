@@ -16,8 +16,10 @@
 
 class Player: public IPlayerAction, public ICanInteract {
 public:
-    Player(player_id_t id, IGameZone& game_zone, ISpawneableZone& spawneable_zone):
+    Player(player_id_t id, Equipement&& equipement, IGameZone& game_zone,
+           ISpawneableZone& spawneable_zone):
             id(id),
+            equipement(std::move(equipement)),
             health(100),
             points(0),
             game_zone(game_zone),

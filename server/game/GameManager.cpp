@@ -22,13 +22,18 @@ void GameManager::process(ClientAction& action) {
     action.action_to(*player);
 }
 
-void GameManager::add_player(player_id_t& id) {
-    Team team = ((players.size() + 1) % 2 == 0) ? Team::CT : Team::TT;
+std::shared_ptr<Player> GameManager::create_player(player_id_t id, Team team) {
+    Equipement equipement;
     shared_ptr<Player> player;
     if (team == Team::CT)
-        player = std::make_shared<CounterTerrorist>(id, map_game, map_game);
+        player = std::make_shared<CounterTerrorist>(id, std::move(equipement), map_game, map_game);
     else
-        player = std::make_shared<Terrorist>(id, map_game, map_game);
+        player = std::make_shared<Terrorist>(id, std::move(equipement), map_game, map_game);
+    return player;
+}
+void GameManager::add_player(player_id_t& id) {
+    Team team = ((players.size() + 1) % 2 == 0) ? Team::CT : Team::TT;
+    shared_ptr<Player> player = create_player(id, team);
     players.insert(make_pair(id, player));
     players_team.insert(std::make_pair(id, team));
     map_game.add_player(id, player);  // Player es un ICanInteract
@@ -67,11 +72,10 @@ void GameManager::change_teams() {
     for (const auto& player: players_team) {
         if (player.second == Team::CT) {
             players_team[player.first] = Team::TT;
-            players[player.first] = std::make_shared<Terrorist>(player.first, map_game, map_game);
+            players[player.first] = create_player(player.first, players_team[player.first]);
         } else {
             players_team[player.first] = Team::CT;
-            players[player.first] =
-                    std::make_shared<CounterTerrorist>(player.first, map_game, map_game);
+            players[player.first] = create_player(player.first, players_team[player.first]);
         }
     }
 }

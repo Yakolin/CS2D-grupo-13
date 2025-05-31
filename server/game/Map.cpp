@@ -76,9 +76,15 @@ void Map::move(player_id_t id, const Position& direction) {
 
 void Map::spawn_collider(player_id_t id_spawn, damage_collider_t& wanted) {
     std::cout << "Invocando collider\n";
-    Position player_pos = get_position(id_spawn);
-    Position end(wanted.direction.x * wanted.distance, wanted.direction.y * wanted.distance);
-    std::unique_ptr<Collider> line =
-            std::make_unique<Line>(std::move(player_pos), std::move(end), wanted.width);
+    Position aux = get_position(id_spawn);
+    Vector2f player_pos(aux.x, aux.y);
+    float dir_x = wanted.mouse_position.x - player_pos.x;
+    float dir_y = wanted.mouse_position.y - player_pos.y;
+    Vector2f relative_direction(dir_x, dir_y);
+    relative_direction.normalize();
+    relative_direction.x *= wanted.distance;
+    relative_direction.y *= wanted.distance;
+    std::unique_ptr<Collider> line = std::make_unique<Line>(
+            std::move(player_pos), std::move(relative_direction), wanted.width);
     damage_colliders.insert(std::make_pair(id_spawn, std::move(line)));
 }

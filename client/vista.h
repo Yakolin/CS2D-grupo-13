@@ -27,11 +27,15 @@ public:
     char** argv;
     Socket skt;  // enviar referencia al controller
     ClientProtocol protocolo;
+    LobbyCommandType opcionElegida;
 
 
     explicit Vista(int& argc, char* argv[]);
     void run();
     ~Vista();
+private:
+
+    void manejarOpcionElegida(const LobbyCommandType& tipo) ;
 };
 
 #endif  // VISTA_H

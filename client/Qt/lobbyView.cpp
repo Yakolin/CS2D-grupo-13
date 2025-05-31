@@ -1,13 +1,9 @@
 #include "lobbyView.h"
+#define BUTTON_CREATE "Create"
+#define BUTTON_JOIN "Join"
 
 LobbyView::LobbyView(ClientProtocol& protoccol):
-        protocol(protoccol), tabs(new QTabWidget(this)), infoPlayer(), options_map(), img_maps() {
-    tabs->setWindowTitle("Create Game");
-    tabs->setStyleSheet("background-color:rgb(213, 207, 207);");
-    tabs->resize(500, 500);
-    tabs->setTabShape(QTabWidget::Rounded);
-    tabs->setTabsClosable(false);
-    tabs->setMovable(true);
+        protocol(protoccol), infoPlayer(), options_map(), img_maps(),list_games(new QListWidget(this)) {
 
     options_map << "Desierto"
                 << "Pueblito Azteca"
@@ -15,6 +11,7 @@ LobbyView::LobbyView(ClientProtocol& protoccol):
     img_maps["Desierto"] = "assets/gfx/tiles/default_inferno.png";
     img_maps["Pueblito Azteca"] = "assets/gfx/tiles/default_aztec.png";
     img_maps["Zona de Entrenamiento"] = "assets/gfx/tiles/default_dust.png";
+
 }
 
 
@@ -45,7 +42,8 @@ void LobbyView::section_maps(QWidget* tabMap, const std::map<QString, QString>& 
     connect(list_map, &QListWidget::itemClicked, [this, labelMap, options](QListWidgetItem* item) {
         QString nombre = item->text();
         infoPlayer.map = nombre.toStdString();
-        labelMap->setPixmap(QPixmap(options.at(nombre)));
+        labelMap->setPixmap(QPixmap(options.at(nombre)).scaled(300, 300, Qt::KeepAspectRatio));
+
     });
 }
 
@@ -64,7 +62,7 @@ void LobbyView::section_dates(QWidget* selection) {
             [&](const QString& text) { this->infoPlayer.info.name_game = text.toStdString(); });
 }
 
-void LobbyView::section_player(QWidget* selection, QPushButton* boton) {
+void LobbyView::section_player(QWidget* selection) {
 
     QFormLayout* layout = new QFormLayout(selection);
     QComboBox* unidadCombo = new QComboBox(selection);
@@ -74,7 +72,7 @@ void LobbyView::section_player(QWidget* selection, QPushButton* boton) {
 
     layout->addRow("Unidad:", unidadCombo);
     layout->addRow("Skin:", skinCombo);
-    layout->addRow(boton);
+
 
     QMap<QString, QStringList> skinsPorUnidad;
     skinsPorUnidad["Counter Terrorist"] =
@@ -101,53 +99,63 @@ void imprimirPlayer(const Player& p) {
     std::cout << "Mapa: " << p.map << std::endl;
 }
 
+void LobbyView::function_join(){
 
-void LobbyView::action_create() {
+    std::cout << "envio nombre join partida: " << infoPlayer.info.name_game << std::endl;
+    protocol.send_join_game(infoPlayer.info.name_game);
+    emit opcionElegida(LobbyCommandType::JOIN_GAME);
+}
+void LobbyView::function_create(){ 
+
+    std::cout << "envio nombre create partida: " << infoPlayer.info.name_game << std::endl;
+    protocol.send_create_game(infoPlayer.info.name_game);
+    emit opcionElegida( LobbyCommandType::CREATE_GAME);
+}
+
+void LobbyView::action_button(QVBoxLayout* layout, const QString& text, std::function<void()> callback){
+    
+    QPushButton* button = new QPushButton(text);
+    QObject::connect(button, &QPushButton::clicked, [callback,this]() { callback();});
+    layout->addWidget(button, 0, Qt::AlignHCenter);
+
+}
+void LobbyView::action_create(QWidget *page, QPushButton* button_menu) {
+    QVBoxLayout* layout = new QVBoxLayout(page);
+    QTabWidget *page_create = new QTabWidget();
 
     QWidget* tabMap = new QWidget();
-
     QWidget* tabDatos = new QWidget();
     QWidget* tabPlayers = new QWidget();
 
-    tabs->addTab(tabDatos, "Datos");
-    tabs->addTab(tabMap, "Maps");
-    tabs->addTab(tabPlayers, "personaje");
+    page_create->addTab(tabDatos, "Datos");
+    page_create->addTab(tabMap, "Maps");
+    page_create->addTab(tabPlayers, "personaje");
 
-    QPushButton* boton = new QPushButton("Aceptar");
+    layout->addWidget(page_create);  
 
     section_maps(tabMap, img_maps, options_map);
     section_dates(tabDatos);
-    section_player(tabPlayers, boton);
+    section_player(tabPlayers);
 
-    connect(boton, &QPushButton::clicked, [this, boton]() {
-        close();
-        QApplication::quit();
-        imprimirPlayer(infoPlayer);
-        protocol.send_create_game(infoPlayer.info.name_game);
-        std::cout << "envio nombre craet partida\n";
-    });
+    action_button(layout,BUTTON_CREATE,[this]() { this->function_create();});      
+    layout->addWidget(button_menu);   
+
 }
 
-void LobbyView::action_list(const std::vector<std::string>& list) {
+void LobbyView::update_join_list(const std::vector<std::string>& nuevas_partidas) {
+    list_games->clear();
+    for (const std::string& partida : nuevas_partidas) {
+        list_games->addItem(QString::fromStdString(partida));
 
-    QStringList options;
-    for (const std::string& name_game: list) {
-        options << QString::fromStdString(name_game);
     }
-    QWidget* window = new QWidget();
-    tabs->addTab(window, "partidas");
-
-    create_item(window, options);
 }
 
-void LobbyView::action_join(const std::vector<std::string> list) {
+void LobbyView::action_join(QTabWidget *page_join,QPushButton* button_menu) {
 
     QWidget* window = new QWidget();
     QWidget* window_players = new QWidget();
     QStringList options;
     QVBoxLayout* layout = new QVBoxLayout(window);
-
-    QPushButton* button = new QPushButton("Aceptar");
 
     QWidget* formWidget = new QWidget(window);
 
@@ -158,67 +166,39 @@ void LobbyView::action_join(const std::vector<std::string> list) {
     QLineEdit* name = new QLineEdit(window);
     formLayout->addRow("Name Player: ", name);
 
-    for (const std::string& name_game: list) {
-        options << QString::fromStdString(name_game);
-    }
-    tabs->addTab(window, "partidas");
-    tabs->addTab(window_players, "Players");
-    section_player(window_players, button);
+    page_join->addTab(window, "partidas");
+    page_join->addTab(window_players, "Players");
+    section_player(window_players);
 
-    QListWidget* list_games = create_item(window, options);
+    this->list_games = create_item(window, options);
 
-    connect(list_games, &QListWidget::itemClicked,
-            [this, options](QListWidgetItem* item) { qDebug() << item->text(); });
+    connect(this->list_games, &QListWidget::itemClicked,[this, options](QListWidgetItem* item) { 
+        qDebug() << item->text(); 
+        infoPlayer.info.name_game = item->text().toStdString();
+    });
 
     layout->addWidget(list_games);
     layout->addWidget(formWidget);
-    layout->addWidget(button);
-    connect(button, &QPushButton::clicked, [this, button]() {
-        close();
-        QApplication::quit();
-        std::cout << "envio nombre join partida: " << infoPlayer.info.name_game << std::endl;
-        protocol.send_join_game(infoPlayer.info.name_game);
-    });
+    action_button(layout,BUTTON_JOIN,[this]() { this->function_join();});
+    layout->addWidget(button_menu);
 }
-void LobbyView::action_join2() {
 
-    QWidget* window = new QWidget();
-    QWidget* window_players = new QWidget();
+void LobbyView::action_help(QWidget *page_help, QPushButton* button_menu){
 
-    QVBoxLayout* layout = new QVBoxLayout(window);
+    QVBoxLayout* layout = new QVBoxLayout(page_help);
 
-    QPushButton* button = new QPushButton("Aceptar");
-
-    QWidget* formWidget = new QWidget(window);
-
-    QFormLayout* formLayout = new QFormLayout();
-
-    formWidget->setLayout(formLayout);
-
-    QLineEdit* name = new QLineEdit(window);
-    QLineEdit* name_game = new QLineEdit(window);
-    formLayout->addRow("Name Player: ", name);
-    formLayout->addRow("Name Game: ", name_game);
-
-    tabs->addTab(window, "partida");
-    tabs->addTab(window_players, "Players");
-    section_player(window_players, button);
-
-    connect(name_game, &QLineEdit::textChanged, this, [&](const QString& text) {
-        this->infoPlayer.info.name_game = text.toStdString();
-        std::cout << "nombre partida: " << infoPlayer.info.name_game << std::endl;
-    });
-    connect(name, &QLineEdit::textChanged, this,
-            [&](const QString& text) { this->infoPlayer.info.name_player = text.toStdString(); });
-    layout->addWidget(formWidget);
-    layout->addWidget(button);
-    connect(button, &QPushButton::clicked, [this, button]() {
-        close();
-        QApplication::quit();
-        std::cout << "envio nombre join partida: " << infoPlayer.info.name_game << std::endl;
-        protocol.send_join_game(infoPlayer.info.name_game);
-    });
+    QTextEdit* helpText = new QTextEdit(page_help);
+    helpText->setReadOnly(true);
+    helpText->setHtml(
+        "<h2>Ayuda</h2>"
+        "<p><b>Create Game:</b> Para crear una partida nueva.</p>"
+        "<p><b>Join Game:</b> Para unirse a una partida existente.</p>"
+        "<p><b>Exit:</b> Para salir de la aplicación.</p>"
+    );
+    layout->addWidget(helpText);
+    layout->addWidget(button_menu);
 }
+
 LobbyView::~LobbyView() {}
 
 

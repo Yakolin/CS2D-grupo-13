@@ -26,7 +26,7 @@
 #include <functional>
 #include <iostream>
 #include <map>
-
+#include <QStackedWidget>
 #include "../../common/lobby_types.h"
 #include "../model/protocol.h"
 #include "../tipos.h"
@@ -34,26 +34,35 @@
 #include "lobbyView.h"
 
 
-class MenuView: public QDialog {
+class MenuView: public QWidget {
     Q_OBJECT
 
 signals:
-    void opcionElegida(LobbyCommandType opcion);
+    void opcionElegida(LobbyCommandType tipo);  
+
+
+
+public slots:
+    void manejar_opcion(LobbyCommandType opcion) {
+        emit opcionElegida(opcion);
+    }
 
 private:
-    QLabel* img_icono;
-    QString clicked_text;
-    std::map<QString, LobbyCommandType> botones;
+    QStackedWidget stack;
+    QWidget menu;
+    LobbyView lobby;
     ClientProtocol& protocolo;
+    
 
     /*
-    pre: recibe un QVBoxLayout y un ranking de los equipos cargados.
-    post: apila los rankings de los equipos en el QVBoxLayout.
+    pre: 
+    post: 
     */
-    void add_button(QVBoxLayout* layout, const QString& text);
+    void add_button(QVBoxLayout* layout, const QString& text, std::function<void()> callback);
 
 public:
-    MenuView(QWidget* parent, ClientProtocol& protoccol);
+
+    MenuView(QWidget* parent, ClientProtocol& protocol);
     /*
     pre:-
     post: muestra el menu de opciones al empezar el juego
@@ -61,12 +70,11 @@ public:
     void run();
 
     LobbyCommandType getCommantType() const;
-
+    void action_menu();
     void action_create();
     void action_join();
     void action_help();
     void action_exit();
-    void action_list(const std::vector<std::string>& list);
     ~MenuView();
 };
 

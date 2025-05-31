@@ -1,61 +1,50 @@
 #include "vista.h"
+#include <QApplication>
+#include <QStackedWidget>
+#include <QLabel>
+#include <QVBoxLayout>
+#include <QPushButton>
+#include <QTabWidget>
 
-Vista::Vista(int& argc, char* argv[]):
-        argc(argc), argv(argv), skt(argv[1], argv[2]), protocolo(skt) {}
+Vista::Vista(int& argc, char* argv[])
+    : argc(argc), argv(argv), skt(argv[1], argv[2]), protocolo(skt),opcionElegida(LobbyCommandType::NONE
+    ) {}
+
+
+void Vista::manejarOpcionElegida(const LobbyCommandType& tipo) {
+    if (tipo == LobbyCommandType::CREATE_GAME) {
+        // Crear vista de juego
+    } else if (tipo == LobbyCommandType::JOIN_GAME) {
+        // Entrar al juego
+    }
+}
+
 
 
 void Vista::run() {
 
-    QApplication app(argc, argv);
-
-    MenuView menu(nullptr, protocolo);
-    LobbyCommandType resultado = LobbyCommandType::NONE;
-
-    QObject::connect(
-            &menu, &MenuView::opcionElegida, [this, &menu, &resultado](LobbyCommandType opcion) {
-                qDebug() << "Opción recibida:" << static_cast<int>(opcion);
-
-                std::vector<std::string> nombres_de_partidas = {"Partida_01", "ZonaDeCombate",
-                                                                "SnipersOnly", "MisionExplosiva",
-                                                                "DueloFinal"};
-                resultado = opcion;
-                switch (opcion) {
-                    case LobbyCommandType::CREATE_GAME:
-                        menu.action_create();
-                        break;
-                    case LobbyCommandType::JOIN_GAME:
-                        menu.action_join();
-                        break;
-                    case LobbyCommandType::HELP_GAME:
-                        menu.action_help();
-                        break;
-                    case LobbyCommandType::EXIT_GAME:
-                        menu.action_exit();
-                        break;
-                    case LobbyCommandType::LIST_GAMES: {
-                        std::vector<std::string> games_names = protocolo.read_list_games();
-                        menu.action_list(games_names);
-                    } break;
-                    default:
-                        break;
-                }
-            });
+    QApplication app(argc, argv);  
+    MenuView menu(nullptr,protocolo);
     menu.show();
+
+    QObject::connect(&menu, &MenuView::opcionElegida, [this,&menu](LobbyCommandType tipo){
+        this->opcionElegida = tipo;
+        qDebug() << "Opción recibida:" << static_cast<int>(tipo);
+        menu.close();
+    });
     app.exec();
-    menu.close();
-    /// ACA EMPIEZA EL JUEGO
-
-    if (resultado == LobbyCommandType::CREATE_GAME || resultado == LobbyCommandType::JOIN_GAME) {
-        try {
-            GameView gameView(std::move(skt), 500, 500);
-            gameView.draw_game();
-        } catch (const std::exception& e) {
-            std::cerr << e.what() << '\n';
-        }
+    
+    
+    if(opcionElegida != LobbyCommandType::CREATE_GAME && opcionElegida != LobbyCommandType::JOIN_GAME){
+        return;
     }
-
-    // ScoreBoard table; // funciona
-    // table.show_scores_game(); // funciona //todo agregar actualizacion , dejar de harcodear
-    // app.exec();
+    
+    try {
+        GameView gameView(std::move(skt), 500, 500);
+        gameView.draw_game();
+    } catch (const std::exception& e) {
+        std::cerr << e.what() << '\n';
+    }
 }
+
 Vista::~Vista() {}

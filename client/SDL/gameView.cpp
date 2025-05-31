@@ -182,7 +182,6 @@ void GameView::draw_game() {
 
         SDL_Delay(16);  // Espera aprox. 16ms para lograr ~60 FPS
     }
-    this->controller.stop();
 }
 
 GameView::~GameView() {
@@ -194,4 +193,5 @@ GameView::~GameView() {
         SDL_DestroyWindow(ventana);  // Libera la ventana
     SDL_Quit();                      // Cierra SDL
     IMG_Quit();
+    this->controller.stop();
 }

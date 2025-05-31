@@ -39,6 +39,7 @@ private:
     void send_byte_data(uint8_t& data);
     void send_two_byte_data(uint16_t& data);
 
+    void send_client_id(GameImage& game_image);
     void send_player_image(GameImage& game_image);
 
 public:

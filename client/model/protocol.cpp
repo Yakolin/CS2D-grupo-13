@@ -132,6 +132,11 @@ void ClientProtocol::read_two_byte_data(uint16_t& data) {
     data = ntohs(data_readed);
 }
 
+void ClientProtocol::read_client_id(GameImage& game_image) {
+    player_id_t client_id;
+    this->read_two_byte_data(client_id);
+    game_image.client_id = client_id;
+}
 
 void ClientProtocol::read_player_image(GameImage& game_image) {
 
@@ -161,6 +166,7 @@ void ClientProtocol::read_player_image(GameImage& game_image) {
 GameImage ClientProtocol::read_game_image() {
     GameImage game_image;
 
+    this->read_client_id(game_image);
     this->read_player_image(game_image);
 
     return game_image;

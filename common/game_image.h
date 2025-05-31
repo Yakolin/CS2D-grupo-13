@@ -31,6 +31,8 @@ class GameImage {
 public:
     GameImage() = default;
     ~GameImage() = default;
+
+    player_id_t client_id;
     std::vector<PlayerImage> players_images;
     // Balas en el aire
     // Bomba

@@ -1,6 +1,9 @@
 #ifndef PROTOCOL_H
 #define PROTOCOL_H
 
+#include <string>
+#include <vector>
+
 #include <arpa/inet.h>
 
 #include "../../common/connection_closed_exception.h"
@@ -16,16 +19,16 @@ private:
 
     void read_byte_data(uint8_t& data);
     void read_two_byte_data(uint16_t& data);
+
+    void read_client_id(GameImage& game_image);
     void read_player_image(GameImage& game_image);
 
     void send_byte_data(uint8_t& data);
     void send_two_byte_data(uint16_t& data);
 
 public:
-    ClientProtocol(Socket& socket);
+    explicit ClientProtocol(Socket& socket);
     ~ClientProtocol();
-
-    std::vector<std::string> read_list_games();
 
     void send_lobby_command(LobbyCommandType command);
     void send_player_command(PlayerCommandType command);
@@ -43,6 +46,7 @@ public:
     void send_defuse_bomb();
     void send_drop();
 
+    std::vector<std::string> read_list_games();
     GameImage read_game_image();
 };
 

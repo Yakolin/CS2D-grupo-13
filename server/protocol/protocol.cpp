@@ -133,6 +133,11 @@ void ServerProtocol::send_list_games(std::vector<std::string>& list_games) {
     }
 }
 
+void ServerProtocol::send_client_id(GameImage& game_image) {
+    player_id_t client_id = game_image.client_id;
+    this->send_two_byte_data(client_id);
+}
+
 void ServerProtocol::send_player_image(GameImage& game_image) {
 
     std::vector<PlayerImage> players_images = game_image.players_images;
@@ -157,4 +162,7 @@ void ServerProtocol::send_player_image(GameImage& game_image) {
     }
 }
 
-void ServerProtocol::send_game_image(GameImage& game_image) { this->send_player_image(game_image); }
+void ServerProtocol::send_game_image(GameImage& game_image) {
+    this->send_client_id(game_image);
+    this->send_player_image(game_image);
+}

@@ -16,7 +16,7 @@
 #include "mapView.h"
 #include "playerView.h"
 #include "renderizable.h"
-
+#include <stdexcept> 
 
 class GameView {
 
@@ -48,14 +48,14 @@ public:
     pre:  width y height deben ser mayores que 0.
     post: devuelve true si la unicializacion salio bien de ventana y renderer.
     */
-    bool init_render_window();
+    bool init_game();
     /*
     pre:
     post:
     */
     void draw_game();
 
-    void add_player(PlayerView& player);
+    bool add_player(float x, float y ,int speed, const std::string& img );
 
     void start();
 

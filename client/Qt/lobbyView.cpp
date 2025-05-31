@@ -101,7 +101,6 @@ void imprimirPlayer(const Player& p) {
 
 void LobbyView::function_join(){
 
-    std::cout << "envio nombre join partida: " << infoPlayer.info.name_game << std::endl;
     protocol.send_join_game(infoPlayer.info.name_game);
     emit opcionElegida(LobbyCommandType::JOIN_GAME);
 }
@@ -189,14 +188,32 @@ void LobbyView::action_help(QWidget *page_help, QPushButton* button_menu){
 
     QTextEdit* helpText = new QTextEdit(page_help);
     helpText->setReadOnly(true);
+
+
+    QFont fuente("Segoe UI", 11);  
+    helpText->setFont(fuente);
+
     helpText->setHtml(
+        "<style>"
+        "body { color: #2E2E2E; font-family: 'Segoe UI'; background-color: #f5f5f5; padding: 10px; }"
+        "h2 { color: #007acc; margin-bottom: 15px; }"
+        "p { margin: 8px 0; font-size: 13px; }"
+        "b { color: #444; }"
+        "</style>"
+        "<body>"
         "<h2>Ayuda</h2>"
         "<p><b>Create Game:</b> Para crear una partida nueva.</p>"
         "<p><b>Join Game:</b> Para unirse a una partida existente.</p>"
-        "<p><b>Exit:</b> Para salir de la aplicación.</p>"
+        "</body>"
     );
+
+
+    helpText->setStyleSheet("QTextEdit { border: none; background-color: #f5f5f5; }"
+    );
+
     layout->addWidget(helpText);
     layout->addWidget(button_menu);
+
 }
 
 LobbyView::~LobbyView() {}

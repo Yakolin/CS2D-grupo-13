@@ -29,11 +29,9 @@ void Vista::run() {
 
     QObject::connect(&menu, &MenuView::opcionElegida, [this,&menu](LobbyCommandType tipo){
         this->opcionElegida = tipo;
-        qDebug() << "Opción recibida:" << static_cast<int>(tipo);
         menu.close();
     });
     app.exec();
-    
     
     if(opcionElegida != LobbyCommandType::CREATE_GAME && opcionElegida != LobbyCommandType::JOIN_GAME){
         return;
@@ -41,6 +39,15 @@ void Vista::run() {
     
     try {
         GameView gameView(std::move(skt), 500, 500);
+        if(!gameView.init_game())
+            throw std::runtime_error(std::string("Error a inicializar game") );
+
+        const float speed = 2.5f;
+        float x = 0;
+        float y = 0;
+        if(!gameView.add_player(x,y,speed, "assets/gfx/terrorist/t1_1.png")){
+            return;
+        }
         gameView.draw_game();
     } catch (const std::exception& e) {
         std::cerr << e.what() << '\n';

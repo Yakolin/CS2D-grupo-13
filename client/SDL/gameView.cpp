@@ -75,8 +75,15 @@ a una textura que se puede usar para renderizar SDL_FreeSurface(surface);
 }
 */
 
-void GameView::add_player(PlayerView& player_aux) { player = &player_aux; }
+bool GameView::add_player(float x, float y ,int speed, const std::string& img ) { 
 
+    if (!manger_texture.load(Objet::PLAYER, img, renderer)) {
+        std::cerr << "Error: No se pudo cargar la textura del jugador." << std::endl;
+        return false;
+    }
+    this->player = new PlayerView(x, y, img, speed, &camera, &manger_texture);
+    return true;
+}
 
 std::vector<std::vector<char>> GameView::cargar_mapa(const std::string& archivo) {
 
@@ -98,56 +105,32 @@ std::vector<std::vector<char>> GameView::cargar_mapa(const std::string& archivo)
     }
     return mapa;
 }
+bool GameView::init_game() {
+    if (SDL_Init(SDL_INIT_VIDEO) != 0) { 
+        throw std::runtime_error(std::string("Error al inicializar SDL: ") + SDL_GetError());
+    }
 
-bool GameView::init_render_window() {
-    if (SDL_Init(SDL_INIT_VIDEO) != 0) {  // Inicializa SDL con soporte para video
-        std::cerr << "Error al inicializar SDL: " << SDL_GetError() << std::endl;
-        return false;
-    }
-    ventana = SDL_CreateWindow("Mapa", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width,
-                               height, SDL_WINDOW_SHOWN);
+    ventana = SDL_CreateWindow("Mapa", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width,height, SDL_WINDOW_SHOWN);
     if (!ventana) {
-        std::cerr << "Error al crear la ventana: " << SDL_GetError() << std::endl;
-        return false;
+        throw std::runtime_error(std::string("Error al crear la ventana: ") + SDL_GetError());
     }
-    // Crea el renderer asociado a la ventana (con aceleración por hardware)
+
     renderer = SDL_CreateRenderer(ventana, -1, SDL_RENDERER_ACCELERATED);
     if (!renderer) {
-        std::cerr << "Error al crear el renderer: " << SDL_GetError() << std::endl;
-        return false;
+        throw std::runtime_error(std::string("Error al crear el renderer: ") + SDL_GetError());
     }
 
-    // Intenta cargar la textura de fondo
-    // if (!cargarTexturaFondo(renderer)) {
-    //   return false;
-    //}
     if (!(IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG) & (IMG_INIT_PNG | IMG_INIT_JPG))) {
-        std::cerr << "Error inicializando SDL_image: " << IMG_GetError() << std::endl;
-        return false;
+        throw std::runtime_error(std::string("Error inicializando SDL_image: ") + IMG_GetError());
     }
+
+    load_textures();
     return true;
 }
 
 
 void GameView::draw_game() {
 
-    if (!init_render_window()) {
-        throw std::runtime_error("No se pudo inicializar el juego visual");
-        return;
-    }
-    //------------------cargo texturas------------
-    load_textures();
-    if (!manger_texture.load(Objet::PLAYER, "assets/gfx/terrorist/t1_1.png", renderer)) {
-        std::cerr << "Error: No se pudo cargar la textura del jugador." << std::endl;
-    }
-    //--------------inicializo clases----------------
-    const float speed = 2.5f;
-    float x = 0;
-    float y = 0;
-    PlayerView player(x, y, "assets/gfx/terrorist/t1_1.png", speed, &camera, &manger_texture);
-    add_player(player);
-
-    //------------juego----------------------------
 
     std::vector<std::vector<char>> mapa = cargar_mapa(MAPA_AZTECA);
     MapView map(mapa, 500, 500, &camera, &manger_texture);
@@ -162,8 +145,8 @@ void GameView::draw_game() {
 
         //---------------------------------------------------------------------------
         //  Actualiza la cámara para que siga al jugador
-        camera.x = player.getCol() + player.getWidthImg() / 2 - camera.w / 2;
-        camera.y = player.getFil() + player.getHeightImg() / 2 - camera.h / 2;
+        camera.x = player->getCol() + player->getWidthImg() / 2 - camera.w / 2;
+        camera.y = player->getFil() + player->getHeightImg() / 2 - camera.h / 2;
 
         // calcular la camara
         if (camera.x < 0)
@@ -177,7 +160,7 @@ void GameView::draw_game() {
         //------------------------------------------------------------------------------------
         // ... dibujá cosas ...-----------------------
         map.draw(*renderer);  // completar mapa
-        player.draw(*renderer);
+        player->draw(*renderer);
         SDL_RenderPresent(renderer);
 
         SDL_Delay(16);  // Espera aprox. 16ms para lograr ~60 FPS

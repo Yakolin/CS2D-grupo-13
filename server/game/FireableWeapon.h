@@ -31,23 +31,21 @@ public:
             max_bullets(max_b),
             current_bullets(current_b),
             magazine(current_b) {}
-    // void reload_basic();
-    virtual void set_on_action(std::map<player_id_t, std::unique_ptr<Collider>>& damage_colliders,
-                               player_id_t id, Position& position,
+    virtual void set_on_action(ISpawneableZone& spawn, player_id_t id,
                                Position& direction) override = 0;
     virtual void reload() override;
 };
 class Ak47: public FireableWeapon {
 public:
     Ak47(): FireableWeapon(WeaponType::PRIMARY, 2700, 25, 3, 90, 30) {}
-    virtual void set_on_action(std::map<player_id_t, std::unique_ptr<Collider>>& damage_colliders,
-                               player_id_t id, Position& position, Position& direction) override;
+    virtual void set_on_action(ISpawneableZone& spawn, player_id_t id,
+                               Position& direction) override;
 };
 class Glock: public FireableWeapon {
 public:
     Glock(): FireableWeapon(WeaponType::SECONDARY, 500, 15, 1, 120, 30) {}
-    virtual void set_on_action(std::map<player_id_t, std::unique_ptr<Collider>>& damage_colliders,
-                               player_id_t id, Position& position, Position& direction) override;
+    virtual void set_on_action(ISpawneableZone& spawn, player_id_t id,
+                               Position& direction) override;
 };
 
 #endif  // FIREABLE_WEAPON_H_

@@ -1,14 +1,9 @@
-/*Función	Descripción
-load(filePath, id)	Carga una textura desde disco y la guarda con un ID.
-get(id)	Devuelve la textura previamente cargada con ese ID.
-unload(id) (opcional)	Libera memoria de una textura si ya no se necesita.
-clear() (opcional)	Elimina todas las texturas (por ejemplo, al cerrar el juego).
-*/
+
 #include "manageTexture.h"
 
 #include <iostream>
 
-bool ManageTexture::load(const Objet& id, const std::string& filePath, SDL_Renderer* renderer) {
+bool ManageTexture::load(const Object& id, const std::string& filePath, SDL_Renderer* renderer) {
 
     SDL_Surface* stoneSurface = IMG_Load(filePath.c_str());
     if (!stoneSurface) {
@@ -31,7 +26,7 @@ bool ManageTexture::load(const Objet& id, const std::string& filePath, SDL_Rende
     return true;
 }
 
-SDL_Texture* ManageTexture::get(const Objet& id) const {
+SDL_Texture* ManageTexture::get(const Object& id) const {
     auto it = textures.find(id);
     if (it != textures.end()) {
         return it->second;
@@ -39,7 +34,7 @@ SDL_Texture* ManageTexture::get(const Objet& id) const {
     return nullptr;
 }
 
-void ManageTexture::remove(const Objet& id) {
+void ManageTexture::remove(const Object& id) {
     auto it = textures.find(id);
     if (it != textures.end()) {
         SDL_DestroyTexture(it->second);

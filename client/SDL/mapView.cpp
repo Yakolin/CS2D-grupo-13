@@ -9,11 +9,11 @@ MapView::MapView(const std::vector<std::vector<char>>& mapa_recibido, const int&
         camera(camera_reseiver),
         manejador(manejador),
         ids() {
-    ids['#'] = Objet::WALL;
-    ids[' '] = Objet::STONE;
-    ids['~'] = Objet::WATER;
-    ids['='] = Objet::BOX;
-    ids['.'] = Objet::GRASS;
+    ids['#'] = Object::WALL;
+    ids[' '] = Object::STONE;
+    ids['~'] = Object::WATER;
+    ids['='] = Object::BOX;
+    ids['.'] = Object::GRASS;
 }
 
 

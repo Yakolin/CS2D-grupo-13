@@ -7,7 +7,7 @@
 #include <stdexcept>
 #include <string>
 #include <vector>
-
+#include "tipos.h"
 #include "../common/game_image.h"
 #include "../common/queue.h"
 #include "../common/socket.h"
@@ -28,6 +28,7 @@ public:
     Socket skt;  // enviar referencia al controller
     ClientProtocol protocolo;
     LobbyCommandType opcionElegida;
+    std::map<Object, std::string > rutas_skins;
 
 
     explicit Vista(int& argc, char* argv[]);
@@ -35,7 +36,7 @@ public:
     ~Vista();
 private:
 
-    void manejarOpcionElegida(const LobbyCommandType& tipo) ;
+    void add_player_game(const LobbyCommandType& tipo) ;
 };
 
 #endif  // VISTA_H

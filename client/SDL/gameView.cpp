@@ -11,7 +11,6 @@ GameView::GameView(Socket&& skt, const int& width_reseiver, const int& height_re
         renderer(),
         backgroundTexture(),
         player(nullptr),
-        //camera({0, 0, width_reseiver, height_reseiver}),
         camera(width_reseiver,height_reseiver),
         manger_texture(),
         width(width_reseiver),
@@ -25,11 +24,23 @@ GameView::GameView(Socket&& skt, const int& width_reseiver, const int& height_re
     leyenda['='] = "assets/gfx/box.PNG";
     leyenda['.'] = "assets/gfx/backgrounds/gras1.jpg";
 
-    ids['#'] = Objet::WALL;
-    ids[' '] = Objet::STONE;
-    ids['~'] = Objet::WATER;
-    ids['='] = Objet::BOX;
-    ids['.'] = Objet::GRASS;
+    ids['#'] = Object::WALL;
+    ids[' '] = Object::STONE;
+    ids['~'] = Object::WATER;
+    ids['='] = Object::BOX;
+    ids['.'] = Object::GRASS;
+    
+}
+bool GameView::cargar_skins(const std::map<Object, std::string >& rutas_skins) {
+    
+    for (const auto& par : rutas_skins) {
+        
+        if (!this->manger_texture.load(par.first, par.second, renderer)) {
+            std::cerr << "Fallo al cargar la textura para skin: " << std::endl;
+            return false;
+        }
+    }
+    return true;
 }
 
 bool GameView::init_game() {
@@ -93,8 +104,8 @@ void GameView::update_status_game() {
     std::cout << "Actualizando jugador cliente:\n";
     std::cout << "Col anterior: " << player->getCol() << " Fil anterior: " << player->getFil() << "\n";
 
-    player->setCol(actual.position.x * 32); //
-    player->setFil(actual.position.y * 32);
+    player->setCol(actual.position.x); //
+    player->setFil(actual.position.y);
 
 
     std::cout << "Col nueva: " << player->getCol() << " Fil nueva: " << player->getFil() << "\n";
@@ -155,7 +166,7 @@ a una textura que se puede usar para renderizar SDL_FreeSurface(surface);
 
 bool GameView::add_player(float x, float y ,int speed, const std::string& img ) { 
 
-    if (!manger_texture.load(Objet::PLAYER, img, renderer)) {
+    if (!manger_texture.load(Object::PLAYER, img, renderer)) {
         std::cerr << "Error: No se pudo cargar la textura del jugador." << std::endl;
         return false;
     }
@@ -210,6 +221,7 @@ void GameView::draw_game() {
 }
 
 GameView::~GameView() {
+    this->manger_texture.clear();
     if (backgroundTexture)
         SDL_DestroyTexture(backgroundTexture);  // Libera la textura
     if (renderer)

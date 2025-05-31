@@ -9,11 +9,27 @@ enum class ItemTerrorism { PHOENIX, L337_KREW, ARCTIC_AVENGER, GUERRILLA };
 // (Seal force, German GSG-9, UK SAS o French GIGN
 enum class ItemCounterTerrorism { SEAL, GSG9, SAS, GIGN };
 
-enum class Skin { PHOENIX, L337_KREW, ARCTIC_AVENGER, GUERRILLA, SEAL, GSG9, SAS, GIGN };
+enum class Object {
+    STONE,
+    WALL,
+    GRASS,
+    BOX,
+    PLAYER,
+    WATER,
+
+    PHOENIX,
+    L337_KREW,
+    ARCTIC_AVENGER,
+    GUERRILLA,
+    SEAL,
+    GSG9,
+    SAS,
+    GIGN
+};
+
 // campo en el desierto, un pueblito azteca o una zona de entrenamiento
 enum class Map { DESIERTO, PUEBLITO_AZTECA, ZONA_ENTRENAMIENTO };
 
-enum class Objet { STONE, WALL, GRASS, BOX, PLAYER, WATER };
 
 enum class Movement { UP, DOWN, LEFT, RIGHT, NONE };
 

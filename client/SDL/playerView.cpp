@@ -26,7 +26,7 @@ int PlayerView::pasar_pixeles(const float& pos) { return pos * 32; }
 
 void PlayerView::calcular() {
 
-    SDL_Texture* tiles_player = manejador->get(Objet::PLAYER);
+    SDL_Texture* tiles_player = manejador->get(Object::PLAYER);
     if (!tiles_player) {
         std::cerr << "Error: No se pudo cargar la textura del jugador." << std::endl;
         return;
@@ -37,7 +37,7 @@ void PlayerView::calcular() {
 
 void PlayerView::draw(SDL_Renderer& renderer) {
 
-    SDL_Texture* tiles_player = manejador->get(Objet::PLAYER);
+    SDL_Texture* tiles_player = manejador->get(Object::PLAYER);
     origin_rect = {item.col * width_img, item.fil * height_img, width_img / 2, height_img / 3};
     //                           col=x               fil =y       ancho, alto
     destination_rect = {static_cast<int>(col) - camera->getx(),static_cast<int>(fil) - camera->gety(),32, 32};

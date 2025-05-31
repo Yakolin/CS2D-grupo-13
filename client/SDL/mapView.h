@@ -41,7 +41,7 @@ private:
     //SDL_Rect* camera;
     Camera* camera;
     ManageTexture* manejador;
-    std::map<char, Objet> ids;
+    std::map<char, Object> ids;
 };
 
 #endif  // MAPVIEW_H

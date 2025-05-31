@@ -25,14 +25,13 @@ void Controller::sender_mov_player(SDL_Keycode key) {
 
     MoveType mov = MoveType::DOWN;
     if (key == SDLK_UP || key == SDLK_w) {
-        mov = MoveType::DOWN;           // Polaridad YA cambiada!
+        mov = MoveType::DOWN;
     } else if (key == SDLK_LEFT || key == SDLK_a) {
         mov = MoveType::LEFT;
     } else if (key == SDLK_RIGHT || key == SDLK_d) {
         mov = MoveType::RIGHT;
     } else if (key == SDLK_DOWN || key == SDLK_s) {
-
-        mov = MoveType::UP;
+        mov = MoveType::UP;           // Polaridad YA cambiada!
     }
 
     std::unique_ptr<InterfaceClientAction> action = std::make_unique<ClientSpace::Move>(mov);
@@ -58,9 +57,6 @@ void  Controller::recibir(GameImage& snapshot) {
     std::cout << ">>> popeando de la cola:\n";
     snapshot = recv_queue->pop();
     std::cout << ">>> Estado actual del juego:\n";
-    float x_relativo = 0;
-    float y_relativo = 0;
-
 
     for (size_t i = 0; i < snapshot.players_images.size(); i++) {
         PlayerImage p = snapshot.players_images[i];
@@ -70,13 +66,9 @@ void  Controller::recibir(GameImage& snapshot) {
                   << " | Puntos: " << static_cast<int>(p.points) << std::endl;
         std::cout << "------------------------------------------\n ";
 
-        std::cout << "Posición relativa del jugador: (" << x_relativo << ", " << y_relativo << ")"
-                  << std::endl;
     }
-    x_relativo = snapshot.players_images[0].position.x;
-    y_relativo = snapshot.players_images[0].position.y;
-
 }
+
 void Controller::run() {}
 
 Controller::~Controller() {

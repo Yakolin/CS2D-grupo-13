@@ -23,7 +23,7 @@ class GameView {
 private:
     Controller controller;
     std::map<char, std::string> leyenda;
-    std::map<char, Objet> ids;
+    std::map<char, Object> ids;
     SDL_Window* ventana;
     SDL_Renderer* renderer;
     SDL_Texture* backgroundTexture;
@@ -49,6 +49,8 @@ private:
 
 public:
     explicit GameView(Socket&& skt, const int& width_reseiver, const int& height_reseiver);
+
+    bool cargar_skins(const std::map<Object, std::string >& rutas_skins);
 
     /*
     pre:  width y height deben ser mayores que 0.

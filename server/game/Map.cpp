@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <iostream>
 
-void Map::update_map_state() {}
+void Map::update_map_state() { collision_manager.check_damage(); }
 Position Map::get_position(player_id_t id) {
     auto it = players_in_map.find(id);
     if (it != players_in_map.end())
@@ -75,7 +75,6 @@ void Map::move(player_id_t id, const Position& direction) {
 }
 
 void Map::spawn_collider(player_id_t id_spawn, damage_collider_t& wanted) {
-    std::cout << "Invocando collider\n";
     Position aux = get_position(id_spawn);
     Vector2f player_pos(aux.x, aux.y);
     float dir_x = wanted.mouse_position.x - player_pos.x;

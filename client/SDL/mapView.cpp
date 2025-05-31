@@ -1,6 +1,6 @@
 #include "mapView.h"
 MapView::MapView(const std::vector<std::vector<char>>& mapa_recibido, const int& width_reseiver,
-                 const int& height_reseiver, SDL_Rect* camera_reseiver, ManageTexture* manejador):
+                 const int& height_reseiver, Camera* camera_reseiver, ManageTexture* manejador):
         width(width_reseiver),    // medidas de la ventana
         height(height_reseiver),  // ¿medidas de la ventana
         mapa(mapa_recibido),
@@ -21,8 +21,11 @@ void MapView::draw(SDL_Renderer& renderer) {
 
     for (size_t i = 0; i < mapa.size(); i++) {
         for (size_t j = 0; j < mapa[i].size(); j++) {
-            SDL_Rect destRect = {static_cast<int>(j * 32) - camera->x,
-                                 static_cast<int>(i * 32) - camera->y, 32, 32};
+            SDL_Rect destRect = {
+            static_cast<int>(j * 32) - camera->getx(),
+            static_cast<int>(i * 32) - camera->gety(),
+            32, 32
+        };
 
             char item = mapa[i][j];
 

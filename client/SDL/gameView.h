@@ -8,10 +8,10 @@
 #include <vector>
 
 #include <SDL2/SDL.h>
-
+#include "../../common/game_image.h"
 #include "../controller.h"
 #include "../tipos.h"
-
+#include "camera.h"
 #include "manageTexture.h"
 #include "mapView.h"
 #include "playerView.h"
@@ -28,10 +28,12 @@ private:
     SDL_Renderer* renderer;
     SDL_Texture* backgroundTexture;
     PlayerView* player;
-    SDL_Rect camera;
+    Camera camera;
     ManageTexture manger_texture;
     int width;
     int height;
+    std::map<player_id_t, PlayerView*> players; 
+    GameImage snapshot;
 
 
     bool handle_events(const SDL_Event& evento);
@@ -39,6 +41,10 @@ private:
     std::vector<std::vector<char>> cargar_mapa(const std::string& archivo);
 
     void load_textures();
+
+    void update_status_game();
+
+    void draw_players();
 
 
 public:

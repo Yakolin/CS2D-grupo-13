@@ -4,9 +4,9 @@ const int FILAS_MAP = 17;
 const int COLUMNAS_MAP = 38;
 
 PlayerView::PlayerView(const float& x, const float& y, const std::string& rute, const float& speed,
-                       SDL_Rect* camera_receiver, ManageTexture* manejador):
-        fil(pasar_pixeles(x)),
-        col(pasar_pixeles(y)),
+                       Camera* camera_receiver, ManageTexture* manejador):
+        fil(pasar_pixeles(y)),
+        col(pasar_pixeles(x)),
         rutaPlayer(rute),
         origin_rect({0, 0, 64, 96}),
         destination_rect({static_cast<int>(col), static_cast<int>(fil), 32, 32}),
@@ -16,7 +16,9 @@ PlayerView::PlayerView(const float& x, const float& y, const std::string& rute, 
         item({0, 0}),
         anglePlayer(),
         camera(camera_receiver),
-        manejador(manejador) {
+        manejador(manejador) ,
+        player_id() //!cambiar 
+        {
     calcular();
 }
 
@@ -38,8 +40,8 @@ void PlayerView::draw(SDL_Renderer& renderer) {
     SDL_Texture* tiles_player = manejador->get(Objet::PLAYER);
     origin_rect = {item.col * width_img, item.fil * height_img, width_img / 2, height_img / 3};
     //                           col=x               fil =y       ancho, alto
-    destination_rect = {static_cast<int>(col) - camera->x, static_cast<int>(fil) - camera->y, 32,
-                        32};
+    destination_rect = {static_cast<int>(col) - camera->getx(),static_cast<int>(fil) - camera->gety(),32, 32};
+
     // SDL_RenderCopy(&renderer, tiles_player, &origin_rect ,&destination_rect);
     SDL_RenderCopyEx(&renderer, tiles_player, &origin_rect, &destination_rect, anglePlayer, nullptr,
                      SDL_FLIP_NONE);

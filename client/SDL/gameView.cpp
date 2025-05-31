@@ -11,10 +11,14 @@ GameView::GameView(Socket&& skt, const int& width_reseiver, const int& height_re
         renderer(),
         backgroundTexture(),
         player(nullptr),
-        camera({0, 0, width_reseiver, height_reseiver}),
+        //camera({0, 0, width_reseiver, height_reseiver}),
+        camera(width_reseiver,height_reseiver),
         manger_texture(),
         width(width_reseiver),
-        height(height_reseiver) {
+        height(height_reseiver) ,
+        players(),
+        snapshot()
+        {
     leyenda['#'] = "assets/gfx/backgrounds/nuke.png";
     leyenda[' '] = "assets/gfx/backgrounds/stone1.jpg";
     leyenda['~'] = "assets/gfx/backgrounds/water4.jpg";
@@ -61,20 +65,64 @@ void GameView::load_textures() {
     }
 }
 
+void GameView::update_status_game() {
+    PlayerImage actual(0, Position{0, 0}, 0, 0); 
+
+    for (PlayerImage& player_img : this->snapshot.players_images) {
+        player_id_t id = player_img.player_id;
+
+        std::cout << "Procesando jugador ID: " << id << "\n";
+        std::cout << "Posición actual del jugador: (" << player_img.position.x << ", " << player_img.position.y << ")\n";
+
+        if (id == snapshot.client_id) {
+            actual = player_img;
+            std::cout << "Este es el jugador cliente. Guardando posición.\n";
+
+        }else if (players.find(id) == players.end()) {
+            float x = player_img.position.x;
+            float y = player_img.position.y;
+
+            std::cout << "Nuevo jugador detectado. Creando PlayerView en (" << x << ", " << y << ")\n";
+
+            PlayerView* nuevo_jugador = new PlayerView(x, y, "assets/gfx/terrorist/t1_1.png", 5.0f, &camera, &manger_texture);
+            players[id] = nuevo_jugador;
+        }
+    }
+
+    // Antes de actualizar el jugador, imprimir valores que vas a asignar
+    std::cout << "Actualizando jugador cliente:\n";
+    std::cout << "Col anterior: " << player->getCol() << " Fil anterior: " << player->getFil() << "\n";
+
+    player->setCol(actual.position.x * 32); //
+    player->setFil(actual.position.y * 32);
+
+
+    std::cout << "Col nueva: " << player->getCol() << " Fil nueva: " << player->getFil() << "\n";
+
+}
+
+
+void GameView::draw_players(){
+
+    for (auto& pair : this->players) {
+        PlayerView* player = pair.second;
+        if (player) {
+            player->draw(*renderer);
+        }
+    }
+}
+
 
 bool GameView::handle_events(const SDL_Event& evento) {
 
     if (evento.type == SDL_QUIT) {
-        return false;  // Se cierra la ventana
+        return false;  
     } else if (evento.type == SDL_KEYDOWN) {
 
         SDL_Keycode tecla = evento.key.keysym.sym;  // Se presionó una tecla
         controller.sender_mov_player(tecla);
-        Position pos = controller.recibir();
-        std::cout << "-fil: "<< pos.x << "-col: " << pos.y << std::endl;
-        player->setCol(pos.x);
-        player->setFil(pos.y);
-        std::cout << "nuw fil: "<< player->getFil() << "new col: " << player->getCol() << std::endl;
+        controller.recibir(this->snapshot);
+        update_status_game();
         //player->add_speed(tecla);
         return true;
     } else if (evento.type == SDL_MOUSEMOTION) {
@@ -142,7 +190,7 @@ void GameView::draw_game() {
 
     std::vector<std::vector<char>> mapa = cargar_mapa(MAPA_AZTECA);
     MapView map(mapa, 500, 500, &camera, &manger_texture);
-   // controller.recibir();
+
     bool corriendo = true;
     SDL_Event evento;
     while (corriendo) {
@@ -150,25 +198,11 @@ void GameView::draw_game() {
             corriendo = handle_events(evento);
         }
         SDL_RenderClear(renderer);
+        camera.update(player->getFil(),player->getCol(),player->getWidthImg(),player->getHeightImg(),map.getMapWidth(),map.getMapHeight());
 
-        //---------------------------------------------------------------------------
-        //  Actualiza la cámara para que siga al jugador
-        camera.x = player->getCol() + player->getWidthImg() / 2 - camera.w / 2;
-        camera.y = player->getFil() + player->getHeightImg() / 2 - camera.h / 2;
-
-        // calcular la camara
-        if (camera.x < 0)
-            camera.x = 0;
-        if (camera.y < 0)
-            camera.y = 0;
-        if (camera.x > map.getMapWidth() - camera.w)
-            camera.x = map.getMapWidth() - camera.w;
-        if (camera.y > map.getMapHeight() - camera.h)
-            camera.y = map.getMapHeight() - camera.h;
-        //------------------------------------------------------------------------------------
-        // ... dibujá cosas ...-----------------------
-        map.draw(*renderer);  // completar mapa
+        map.draw(*renderer); 
         player->draw(*renderer);
+        draw_players();
         SDL_RenderPresent(renderer);
 
         SDL_Delay(16);  // Espera aprox. 16ms para lograr ~60 FPS

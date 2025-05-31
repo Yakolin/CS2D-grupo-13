@@ -3,7 +3,7 @@
 #include <iostream>
 #include <map>
 #include <vector>
-
+#include "camera.h"
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_render.h>
@@ -20,7 +20,7 @@ class MapView: public Renderizable {
 
 public:
     explicit MapView(const std::vector<std::vector<char>>& mapa, const int& width,
-                     const int& height, SDL_Rect* camera_reseiver, ManageTexture* manejador);
+                     const int& height, Camera* camera_reseiver, ManageTexture* manejador);
     ~MapView();
 
     /*
@@ -38,7 +38,8 @@ private:
     std::vector<std::vector<char>> mapa;
     int width_map;
     int height_map;
-    SDL_Rect* camera;
+    //SDL_Rect* camera;
+    Camera* camera;
     ManageTexture* manejador;
     std::map<char, Objet> ids;
 };

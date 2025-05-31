@@ -54,16 +54,16 @@ void Controller::stop() {
     this->skt.shutdown(2);
     this->skt.close();
 }
-Position Controller::recibir() {
+void  Controller::recibir(GameImage& snapshot) {
     std::cout << ">>> popeando de la cola:\n";
-    GameImage image = recv_queue->pop();
+    snapshot = recv_queue->pop();
     std::cout << ">>> Estado actual del juego:\n";
     float x_relativo = 0;
     float y_relativo = 0;
 
 
-    for (size_t i = 0; i < image.players_images.size(); i++) {
-        PlayerImage p = image.players_images[i];
+    for (size_t i = 0; i < snapshot.players_images.size(); i++) {
+        PlayerImage p = snapshot.players_images[i];
         std::cout << "Jugador ID: " << p.player_id << " | Posición: (" << p.position.x << ", "
                   << p.position.y << ")"
                   << " | Vida: " << static_cast<int>(p.health)
@@ -73,9 +73,9 @@ Position Controller::recibir() {
         std::cout << "Posición relativa del jugador: (" << x_relativo << ", " << y_relativo << ")"
                   << std::endl;
     }
-    x_relativo = image.players_images[0].position.x;
-    y_relativo = image.players_images[0].position.y;
-    return Position(x_relativo, y_relativo);
+    x_relativo = snapshot.players_images[0].position.x;
+    y_relativo = snapshot.players_images[0].position.y;
+
 }
 void Controller::run() {}
 

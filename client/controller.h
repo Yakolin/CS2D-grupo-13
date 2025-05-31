@@ -47,7 +47,7 @@ public:
     */
     void sender_mov_player(SDL_Keycode tecla);
 
-    Position recibir();
+    void  recibir(GameImage& snapshot);
 
     void run();
 

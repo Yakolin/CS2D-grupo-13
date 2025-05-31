@@ -8,6 +8,7 @@ target_sources(CS2D_client
     SDL/gameView.cpp
     SDL/mapView.cpp
     SDL/playerView.cpp
+    SDL/camera.cpp
     Qt/scoreBoard.cpp
     SDL/manageTexture.cpp
     Qt/menuView.cpp
@@ -17,6 +18,7 @@ target_sources(CS2D_client
     SDL/gameView.h
     SDL/mapView.h
     SDL/playerView.h
+    SDL/camera.h
     Qt/scoreBoard.h
     client.h
     controller.h

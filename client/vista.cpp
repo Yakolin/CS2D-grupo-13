@@ -11,14 +11,6 @@ Vista::Vista(int& argc, char* argv[])
     ) {}
 
 
-void Vista::manejarOpcionElegida(const LobbyCommandType& tipo) {
-    if (tipo == LobbyCommandType::CREATE_GAME) {
-        // Crear vista de juego
-    } else if (tipo == LobbyCommandType::JOIN_GAME) {
-        // Entrar al juego
-    }
-}
-
 
 
 void Vista::run() {
@@ -43,10 +35,13 @@ void Vista::run() {
             throw std::runtime_error(std::string("Error a inicializar game") );
 
         const float speed = 2.5f;
-        float x = 0;
-        float y = 0;
+        float x = 1;
+        float y = 1;
         if(!gameView.add_player(x,y,speed, "assets/gfx/terrorist/t1_1.png")){
             return;
+        }
+        if(opcionElegida == LobbyCommandType::CREATE_GAME){
+            
         }
         gameView.draw_game();
     } catch (const std::exception& e) {

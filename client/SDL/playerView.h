@@ -10,7 +10,7 @@
 #include <SDL_render.h>
 #include <SDL_surface.h>
 #include <SDL_video.h>
-
+#include "camera.h"
 #include "../tipos.h"
 
 #include "manageTexture.h"
@@ -19,7 +19,7 @@
 class PlayerView: public Renderizable {
 public:
     PlayerView(const float& x, const float& y, const std::string& rute, const float& speed,
-               SDL_Rect* camera_reseiver, ManageTexture* manger_texture);
+               Camera* camera_reseiver, ManageTexture* manger_texture);
     ~PlayerView();
 
     void draw(SDL_Renderer& renderer) override;
@@ -55,8 +55,11 @@ private:
     ItemSprite spritePlayer;
     ItemSprite item;
     float anglePlayer;
-    SDL_Rect* camera;
+    //SDL_Rect* camera;
+    Camera* camera;
+
     ManageTexture* manejador;
+    int player_id;
 
     // SDL_Texture texture_player;
     void calcular();

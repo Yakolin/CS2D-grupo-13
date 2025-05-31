@@ -54,9 +54,8 @@ void Controller::stop() {
     this->skt.close();
 }
 void Controller::recibir(GameImage& snapshot) {
-    std::cout << ">>> popeando de la cola:\n";
+
     snapshot = recv_queue->pop();
-    std::cout << ">>> Estado actual del juego:\n";
 
     for (size_t i = 0; i < snapshot.players_images.size(); i++) {
         PlayerImage p = snapshot.players_images[i];

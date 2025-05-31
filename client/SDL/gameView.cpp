@@ -95,19 +95,20 @@ void GameView::update_status_game() {
 
             std::cout << "Nuevo jugador detectado. Creando PlayerView en (" << x << ", " << y << ")\n";
 
-            PlayerView* nuevo_jugador = new PlayerView(x, y, "assets/gfx/terrorist/t1_1.png", 5.0f, &camera, &manger_texture);
+            PlayerView* nuevo_jugador = new PlayerView(x, y, "assets/gfx/terrorist/t2.png", 2.5f, &camera, &manger_texture);
             players[id] = nuevo_jugador;
+        }else{
+            std::cout << "actualizo pos de otro jugador\n";
+            PlayerView* player_aux = players.at(id);  
+            player_aux->setCol(player_img.position.x);
+            player_aux->setFil(player_img.position.y);
         }
     }
 
-    // Antes de actualizar el jugador, imprimir valores que vas a asignar
     std::cout << "Actualizando jugador cliente:\n";
     std::cout << "Col anterior: " << player->getCol() << " Fil anterior: " << player->getFil() << "\n";
-
     player->setCol(actual.position.x); //
     player->setFil(actual.position.y);
-
-
     std::cout << "Col nueva: " << player->getCol() << " Fil nueva: " << player->getFil() << "\n";
 
 }
@@ -218,6 +219,7 @@ void GameView::draw_game() {
 
         SDL_Delay(16);  // Espera aprox. 16ms para lograr ~60 FPS
     }
+    this->controller.stop();
 }
 
 GameView::~GameView() {
@@ -230,5 +232,5 @@ GameView::~GameView() {
         SDL_DestroyWindow(ventana);  // Libera la ventana
     SDL_Quit();                      // Cierra SDL
     IMG_Quit();
-    this->controller.stop();
+
 }

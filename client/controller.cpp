@@ -53,7 +53,10 @@ void Controller::stop() {
     this->skt.shutdown(2);
     this->skt.close();
 }
-void Controller::recibir(GameImage& snapshot) {
+bool Controller::has_game_image(GameImage& snapshot) {
+    if(recv_queue->empty()){
+        return false ;
+    }
 
     snapshot = recv_queue->pop();
 
@@ -65,6 +68,7 @@ void Controller::recibir(GameImage& snapshot) {
                   << " | Puntos: " << static_cast<int>(p.points) << std::endl;
         std::cout << "------------------------------------------\n ";
     }
+    return true;
 }
 
 void Controller::run() {}

@@ -133,8 +133,6 @@ bool GameView::handle_events(const SDL_Event& evento) {
 
         SDL_Keycode tecla = evento.key.keysym.sym;  // Se presionó una tecla
         controller.sender_mov_player(tecla);
-        controller.recibir(this->snapshot);
-        update_status_game();
         //player->add_speed(tecla);
         return true;
     } else if (evento.type == SDL_MOUSEMOTION) {
@@ -209,7 +207,9 @@ void GameView::draw_game() {
         while (SDL_PollEvent(&evento)) {
             corriendo = handle_events(evento);
         }
-        SDL_RenderClear(renderer);
+        if(controller.has_game_image(this->snapshot)){
+            update_status_game();
+        }
         camera.update(player->getFil(),player->getCol(),player->getWidthImg(),player->getHeightImg(),map.getMapWidth(),map.getMapHeight());
 
         map.draw(*renderer); 
@@ -218,6 +218,8 @@ void GameView::draw_game() {
         SDL_RenderPresent(renderer);
 
         SDL_Delay(16);  // Espera aprox. 16ms para lograr ~60 FPS
+        SDL_RenderClear(renderer);
+        
     }
     this->controller.stop();
 }

@@ -31,8 +31,7 @@ void GameManager::add_player(player_id_t& id) {
         player = std::make_shared<Terrorist>(id, map_game);
     players.insert(make_pair(id, player));
     players_team.insert(std::make_pair(id, team));
-    std::shared_ptr<ICanInteract> can_interact_ptr = std::static_pointer_cast<ICanInteract>(player);
-    map_game.add_player(id, can_interact_ptr);  // Player es un ICanInteract
+    map_game.add_player(id, player);  // Player es un ICanInteract
 }
 void GameManager::reset_players() {
     for (const auto& player: players) {

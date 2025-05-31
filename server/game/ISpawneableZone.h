@@ -9,7 +9,7 @@ public:
     typedef struct DamageCollider {
         uint8_t width;
         uint8_t distance;
-        Position& direction;
+        Position& mouse_position;
     } damage_collider_t;
     virtual void spawn_collider(player_id_t id_spawn, damage_collider_t& wanted) = 0;
     virtual ~ISpawneableZone() = default;

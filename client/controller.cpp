@@ -54,8 +54,8 @@ void Controller::stop() {
     this->skt.close();
 }
 bool Controller::has_game_image(GameImage& snapshot) {
-    if (recv_queue->empty()) {
-        return false;
+    if(recv_queue->empty()){
+        return false ;
     }
 
     snapshot = recv_queue->pop();

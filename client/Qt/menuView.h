@@ -16,7 +16,6 @@
 #include <QObject>
 #include <QPixmap>
 #include <QPushButton>
-#include <QStackedWidget>
 #include <QString>
 #include <QTableWidget>
 #include <QTableWidgetItem>
@@ -27,7 +26,7 @@
 #include <functional>
 #include <iostream>
 #include <map>
-
+#include <QStackedWidget>
 #include "../../common/lobby_types.h"
 #include "../model/protocol.h"
 #include "../tipos.h"
@@ -39,26 +38,30 @@ class MenuView: public QWidget {
     Q_OBJECT
 
 signals:
-    void opcionElegida(LobbyCommandType tipo);
+    void opcionElegida(LobbyCommandType tipo);  
+
 
 
 public slots:
-    void manejar_opcion(LobbyCommandType opcion) { emit opcionElegida(opcion); }
+    void manejar_opcion(LobbyCommandType opcion) {
+        emit opcionElegida(opcion);
+    }
 
 private:
     QStackedWidget stack;
     QWidget menu;
     LobbyView lobby;
     ClientProtocol& protocolo;
-
+    
 
     /*
-    pre:
-    post:
+    pre: 
+    post: 
     */
     void add_button(QVBoxLayout* layout, const QString& text, std::function<void()> callback);
 
 public:
+
     MenuView(QWidget* parent, ClientProtocol& protocol);
     /*
     pre:-

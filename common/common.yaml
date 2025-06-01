@@ -1,0 +1,7 @@
+timer_games:
+  round_time: 120
+  buy_time: 15
+  bomb_time: 30
+
+players_in_game: 
+  health: 100

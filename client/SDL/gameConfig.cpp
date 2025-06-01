@@ -1,6 +1,5 @@
 #include "gameConfig.h"
 
-
 GameConfig::GameConfig():
     window_width(0),
     window_height(0),

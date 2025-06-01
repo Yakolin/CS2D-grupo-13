@@ -24,8 +24,7 @@ class Map: public IGameZone, public ISpawneableZone {
 private:
     std::string map_name;
     std::vector<std::vector<char>> walls;
-    Rectangle spawn_CT;
-    Rectangle spawn_TT;
+    Rectangle spawn_CT , spawn_TT;
     std::map<player_id_t, player_entity_t> players_in_map;
     CollisionManager collision_manager;
     std::map<player_id_t, std::unique_ptr<Collider>> damage_colliders;

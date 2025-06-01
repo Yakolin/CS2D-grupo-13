@@ -32,6 +32,8 @@ void Map::add_player(player_id_t id, std::weak_ptr<ICanInteract> player) {
 void Map::charge_zone(Rectangle& zone, const Position& position) {
     zone = Rectangle(WidthSpawn, HeightSpawn, position);
 }
+
+//Charge map debe recibir el tipo o en todo caso el path del mapa, que game manager se encargue de eso.
 void Map::charge_map(const std::string& map_name) {
     std::ifstream path(map_name);
     if (!path.is_open()) {

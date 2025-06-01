@@ -1,4 +1,7 @@
 cmake_minimum_required(VERSION 3.16.3)
+list(APPEND CMAKE_PREFIX_PATH "/usr/lib/x86_64-linux-gnu/cmake/yaml-cpp")
+find_package(yaml-cpp REQUIRED)
+
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
@@ -111,6 +114,7 @@ endif()
 # Program section
 # ---------------
 if(CS2D_CLIENT)
+
     # HEY!! TODO XXX: Change the name of the executable to the one you like!
     add_executable(CS2D_client)
     # para que me deje compilar las rutas correctamente
@@ -140,6 +144,7 @@ if(CS2D_CLIENT)
         SDL2pp::SDL2pp
         Qt5::Widgets
         SDL2_image
+        yaml-cpp
     )
 
 endif()

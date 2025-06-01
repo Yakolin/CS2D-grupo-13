@@ -17,10 +17,11 @@
 #include "playerView.h"
 #include "renderizable.h"
 #include <stdexcept> 
-
+#include "gameConfig.h"
 class GameView {
 
 private:
+    GameConfig config;
     Controller controller;
     std::map<char, std::string> leyenda;
     std::map<char, Object> ids;
@@ -30,15 +31,12 @@ private:
     PlayerView* player;
     Camera camera;
     ManageTexture manger_texture;
-    int width;
-    int height;
     std::map<player_id_t, PlayerView*> players; 
     GameImage snapshot;
 
 
-    bool handle_events(const SDL_Event& evento);
 
-    std::vector<std::vector<char>> cargar_mapa(const std::string& archivo);
+    bool handle_events(const SDL_Event& evento);
 
     void load_textures();
 
@@ -48,7 +46,7 @@ private:
 
 
 public:
-    explicit GameView(Socket&& skt, const int& width_reseiver, const int& height_reseiver);
+    explicit GameView(Socket&& skt);
 
     bool cargar_skins(const std::map<Object, std::string >& rutas_skins);
 

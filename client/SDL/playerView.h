@@ -12,14 +12,14 @@
 #include <SDL_video.h>
 #include "camera.h"
 #include "../tipos.h"
-
+#include "gameConfig.h"
 #include "manageTexture.h"
 #include "renderizable.h"
 
 class PlayerView: public Renderizable {
 public:
     PlayerView(const float& x, const float& y, const std::string& rute, const float& speed,
-               Camera* camera_reseiver, ManageTexture* manger_texture);
+               Camera* camera_reseiver, ManageTexture* manger_texture, GameConfig& config);
     ~PlayerView();
 
     void draw(SDL_Renderer& renderer) override;
@@ -44,6 +44,7 @@ public:
     // void setTexturePlayer(SDL_Texture texture);
 
 private:
+    GameConfig config;
     float fil;
     float col;
     std::string rutaPlayer;

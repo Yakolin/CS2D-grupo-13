@@ -1,11 +1,9 @@
 #include "mapView.h"
-MapView::MapView(const std::vector<std::vector<char>>& mapa_recibido, const int& width_reseiver,
-                 const int& height_reseiver, Camera* camera_reseiver, ManageTexture* manejador):
-        width(width_reseiver),    // medidas de la ventana
-        height(height_reseiver),  // ¿medidas de la ventana
-        mapa(mapa_recibido),
-        width_map(mapa_recibido[0].size() * 32),  // camara
-        height_map(mapa_recibido.size() * 32),    // camara
+MapView::MapView(const std::string& rute, Camera* camera_reseiver, ManageTexture* manejador,GameConfig& config):
+        config(config),
+        mapa(config.load_map(rute)),
+        width_map(mapa[0].size() * config.get_tile_width()),  // camara
+        height_map(mapa.size() * config.get_tile_height()),    // camara
         camera(camera_reseiver),
         manejador(manejador),
         ids() {
@@ -21,11 +19,9 @@ void MapView::draw(SDL_Renderer& renderer) {
 
     for (size_t i = 0; i < mapa.size(); i++) {
         for (size_t j = 0; j < mapa[i].size(); j++) {
-            SDL_Rect destRect = {
-            static_cast<int>(j * 32) - camera->getx(),
-            static_cast<int>(i * 32) - camera->gety(),
-            32, 32
-        };
+            SDL_Rect destRect = { static_cast<int>(j * config.get_tile_width()) - camera->getx(),
+                                static_cast<int>(i * config.get_tile_height()) - camera->gety(),
+                                config.get_tile_width(), config.get_tile_height()};
 
             char item = mapa[i][j];
 

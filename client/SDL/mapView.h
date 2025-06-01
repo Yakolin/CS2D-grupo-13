@@ -11,7 +11,7 @@
 #include <SDL_video.h>
 
 #include "../tipos.h"
-
+#include "gameConfig.h"
 #include "playerView.h"
 #include "renderizable.h"
 
@@ -19,8 +19,7 @@
 class MapView: public Renderizable {
 
 public:
-    explicit MapView(const std::vector<std::vector<char>>& mapa, const int& width,
-                     const int& height, Camera* camera_reseiver, ManageTexture* manejador);
+    explicit MapView(const std::string& rute, Camera* camera_reseiver, ManageTexture* manejador,GameConfig& config);
     ~MapView();
 
     /*
@@ -33,12 +32,11 @@ public:
 
 
 private:
-    int width;
-    int height;
+    GameConfig config;
+
     std::vector<std::vector<char>> mapa;
     int width_map;
     int height_map;
-    //SDL_Rect* camera;
     Camera* camera;
     ManageTexture* manejador;
     std::map<char, Object> ids;

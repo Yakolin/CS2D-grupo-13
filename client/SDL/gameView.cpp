@@ -1,9 +1,7 @@
 #include "gameView.h"
 
-
-#define MAPA_AZTECA "assets/pueblito_azteca.txt"
-
-GameView::GameView(Socket&& skt, const int& width_reseiver, const int& height_reseiver):
+GameView::GameView(Socket&& skt):
+        config(),
         controller(std::move(skt)),
         leyenda(),
         ids(),
@@ -11,10 +9,8 @@ GameView::GameView(Socket&& skt, const int& width_reseiver, const int& height_re
         renderer(),
         backgroundTexture(),
         player(nullptr),
-        camera(width_reseiver,height_reseiver),
+        camera(config.get_window_width() ,config.get_window_height()),
         manger_texture(),
-        width(width_reseiver),
-        height(height_reseiver) ,
         players(),
         snapshot()
         {
@@ -49,7 +45,7 @@ bool GameView::init_game() {
         return false;
     }
 
-    ventana = SDL_CreateWindow("Mapa", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width,height, SDL_WINDOW_SHOWN);
+    ventana = SDL_CreateWindow("Mapa", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,config.get_window_width() ,config.get_window_height(), SDL_WINDOW_SHOWN);
     if (!ventana) {
         throw std::runtime_error(std::string("Error al crear la ventana: ") + SDL_GetError());
         return false;
@@ -77,17 +73,16 @@ void GameView::load_textures() {
 }
 
 void GameView::update_status_game() {
-    PlayerImage actual(0, Position{0, 0}, 0, 0); 
+
 
     for (PlayerImage& player_img : this->snapshot.players_images) {
         player_id_t id = player_img.player_id;
 
-        std::cout << "Procesando jugador ID: " << id << "\n";
-        std::cout << "Posición actual del jugador: (" << player_img.position.x << ", " << player_img.position.y << ")\n";
-
         if (id == snapshot.client_id) {
-            actual = player_img;
+
             std::cout << "Este es el jugador cliente. Guardando posición.\n";
+            player->setCol(player_img.position.x); //
+            player->setFil(player_img.position.y);
 
         }else if (players.find(id) == players.end()) {
             float x = player_img.position.x;
@@ -95,7 +90,7 @@ void GameView::update_status_game() {
 
             std::cout << "Nuevo jugador detectado. Creando PlayerView en (" << x << ", " << y << ")\n";
 
-            PlayerView* nuevo_jugador = new PlayerView(x, y, "assets/gfx/terrorist/t2.png", 2.5f, &camera, &manger_texture);
+            PlayerView* nuevo_jugador = new PlayerView(x, y, "assets/gfx/terrorist/t2.png", 2.5f, &camera, &manger_texture,config);
             players[id] = nuevo_jugador;
         }else{
             std::cout << "actualizo pos de otro jugador\n";
@@ -104,12 +99,6 @@ void GameView::update_status_game() {
             player_aux->setFil(player_img.position.y);
         }
     }
-
-    std::cout << "Actualizando jugador cliente:\n";
-    std::cout << "Col anterior: " << player->getCol() << " Fil anterior: " << player->getFil() << "\n";
-    player->setCol(actual.position.x); //
-    player->setFil(actual.position.y);
-    std::cout << "Col nueva: " << player->getCol() << " Fil nueva: " << player->getFil() << "\n";
 
 }
 
@@ -169,37 +158,15 @@ bool GameView::add_player(float x, float y ,int speed, const std::string& img ) 
         std::cerr << "Error: No se pudo cargar la textura del jugador." << std::endl;
         return false;
     }
-    this->player = new PlayerView(x, y, img, speed, &camera, &manger_texture);
+    this->player = new PlayerView(x, y, img, speed, &camera, &manger_texture,config);
     return true;
-}
-
-std::vector<std::vector<char>> GameView::cargar_mapa(const std::string& archivo) {
-
-    std::vector<std::vector<char>> mapa;
-    if (archivo.empty()) {
-        throw std::runtime_error("Error cargando archivo mapa");
-        return mapa;
-    }
-
-    std::ifstream entrada(archivo);
-    std::string linea;
-
-    while (getline(entrada, linea)) {
-        std::vector<char> fila;
-        for (char c: linea) {
-            fila.push_back(c);
-        }
-        mapa.push_back(fila);
-    }
-    return mapa;
 }
 
 
 void GameView::draw_game() {
 
 
-    std::vector<std::vector<char>> mapa = cargar_mapa(MAPA_AZTECA);
-    MapView map(mapa, 500, 500, &camera, &manger_texture);
+    MapView map( "assets/pueblito_azteca.txt", &camera, &manger_texture,config);
 
     bool corriendo = true;
     SDL_Event evento;

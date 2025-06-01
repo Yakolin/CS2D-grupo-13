@@ -4,7 +4,8 @@ const int FILAS_MAP = 17;
 const int COLUMNAS_MAP = 38;
 
 PlayerView::PlayerView(const float& x, const float& y, const std::string& rute, const float& speed,
-                       Camera* camera_receiver, ManageTexture* manejador):
+                       Camera* camera_receiver, ManageTexture* manejador,GameConfig& config):
+        config(config),
         fil(pasar_pixeles(y)),
         col(pasar_pixeles(x)),
         rutaPlayer(rute),
@@ -40,11 +41,10 @@ void PlayerView::draw(SDL_Renderer& renderer) {
     SDL_Texture* tiles_player = manejador->get(Object::PLAYER);
     origin_rect = {item.col * width_img, item.fil * height_img, width_img / 2, height_img / 3};
     //                           col=x               fil =y       ancho, alto
-    destination_rect = {static_cast<int>(col) - camera->getx(),static_cast<int>(fil) - camera->gety(),32, 32};
+    destination_rect = {static_cast<int>(col) - camera->getx(),static_cast<int>(fil) - camera->gety(),config.get_tile_width(), config.get_tile_height()};
 
-    // SDL_RenderCopy(&renderer, tiles_player, &origin_rect ,&destination_rect);
-    SDL_RenderCopyEx(&renderer, tiles_player, &origin_rect, &destination_rect, anglePlayer, nullptr,
-                     SDL_FLIP_NONE);
+
+    SDL_RenderCopyEx(&renderer, tiles_player, &origin_rect, &destination_rect, anglePlayer, nullptr,SDL_FLIP_NONE);
 }
 
 void PlayerView::add_speed(const SDL_Keycode& tecla) {

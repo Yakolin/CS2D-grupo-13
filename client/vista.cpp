@@ -39,7 +39,7 @@ void Vista::run() {
     }
     
     try {
-        GameView gameView(std::move(skt), 500, 500);
+        GameView gameView(std::move(skt));
         if(!gameView.init_game() || !gameView.cargar_skins(rutas_skins))
             throw std::runtime_error(std::string("Error a inicializar game") );
 

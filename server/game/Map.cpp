@@ -35,9 +35,11 @@ void Map::charge_zone(Rectangle& zone, const Position& position) {
 
 //Charge map debe recibir el tipo o en todo caso el path del mapa, que game manager se encargue de eso.
 void Map::charge_map(const std::string& map_name) {
-    std::ifstream path(map_name);
+    if(map_name.empty()) std::cout << "ola, esto es para evitar flags" << std::endl;
+    std::string aux("assets/pueblito_azteca.txt");
+    std::ifstream path(aux);
     if (!path.is_open()) {
-        throw MapException("Can´t open the file of the game " + map_name);
+        throw MapException("Can´t open the file of the game " + aux);
     }
     std::string line;
     bool spawn_tt = false, spawn_ct = false;

@@ -4,8 +4,8 @@
 #include <chrono>
 class Timer {
     using clock = std::chrono::steady_clock;
-    int buy_duration = 5;
-    int round_duration = 16 + buy_duration;  // En segundos
+    int buy_duration = 15;
+    int round_duration = 120 + buy_duration;  // En segundos
 
     int bomb_duration = 15;  // ??? deberia ir aca?
     bool round_started = false;

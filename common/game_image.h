@@ -32,7 +32,7 @@ public:
     GameImage() = default;
     ~GameImage() = default;
 
-    player_id_t client_id;
+    player_id_t client_id = 0;
     std::vector<PlayerImage> players_images;
     uint8_t time = 0;
     uint8_t round = 0;

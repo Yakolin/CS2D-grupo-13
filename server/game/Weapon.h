@@ -7,13 +7,13 @@
 #include "../../common/player_command_types.h"
 
 #include "Colliders.h"
+#include "ISpawneableZone.h"
 class Weapon {
 public:
     WeaponType type;
     virtual ~Weapon() = default;
     virtual void set_on_action(
-            std::map<player_id_t, std::unique_ptr<Collider>>& damage_colliders, player_id_t id,
-            Position& position,
+            ISpawneableZone& spawn, player_id_t id,
             Position& direction) = 0;  // Recordatorio de este = 0. Significa que es puro
     virtual void reload() = 0;
 

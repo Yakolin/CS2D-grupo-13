@@ -6,10 +6,10 @@ using ServerSpace::DefuseBomb;
 using ServerSpace::Drop;
 using ServerSpace::Equip;
 using ServerSpace::PlantBomb;
-using ServerSpace::Shoot;
 */
 using ServerSpace::Move;
 using ServerSpace::Reload;
+using ServerSpace::Shoot;
 
 
 /*
@@ -52,13 +52,14 @@ Reload::~Reload() {}
 void Reload::action_to(IPlayerAction& player) { player.reload(); }
 
 
-/*
 Shoot::Shoot(player_id_t player_id, coordinate_t mouse_x, coordinate_t mouse_y):
-
-void Shoot::action_to(IPlayerAction& player) { player.shoot(this->mouse_x, this->mouse_y); }
         ClientAction(player_id), ShootCommon(mouse_x, mouse_y) {}
 
+void Shoot::action_to(IPlayerAction& player) { player.shoot(this->mouse_x, this->mouse_y); }
+
 Shoot::~Shoot() {}
+
+/*
 
 
     BOMB ACTIONS

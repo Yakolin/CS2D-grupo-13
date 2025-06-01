@@ -17,7 +17,7 @@ protected:
     const std::string game_name;
 
 public:
-    CreateGameCommon(const std::string& game_name): game_name(game_name) {}
+    explicit CreateGameCommon(const std::string& game_name): game_name(game_name) {}
     virtual ~CreateGameCommon() = default;
 };
 
@@ -26,7 +26,7 @@ protected:
     const std::string game_name;
 
 public:
-    JoinGameCommon(const std::string& game_name): game_name(game_name) {}
+    explicit JoinGameCommon(const std::string& game_name): game_name(game_name) {}
     virtual ~JoinGameCommon() = default;
 };
 
@@ -40,7 +40,7 @@ protected:
     const MoveType move_type;
 
 public:
-    MoveCommon(MoveType move_type): move_type(move_type) {}
+    explicit MoveCommon(MoveType move_type): move_type(move_type) {}
     virtual ~MoveCommon() = default;
 };
 
@@ -49,7 +49,7 @@ protected:
     const WeaponCode weapon_code;
 
 public:
-    BuyWeaponCommon(WeaponCode weapon_code): weapon_code(weapon_code) {}
+    explicit BuyWeaponCommon(WeaponCode weapon_code): weapon_code(weapon_code) {}
     virtual ~BuyWeaponCommon() = default;
 };
 
@@ -59,7 +59,7 @@ protected:
     const ammo_t ammo_count;
 
 public:
-    BuyAmmoCommon(WeaponType weapon_type, ammo_t ammo_count):
+    explicit BuyAmmoCommon(WeaponType weapon_type, ammo_t ammo_count):
             weapon_type(weapon_type), ammo_count(ammo_count) {}
     virtual ~BuyAmmoCommon() = default;
 };
@@ -70,7 +70,8 @@ protected:
     const coordinate_t mouse_y;
 
 public:
-    ShootCommon(coordinate_t mouse_x, coordinate_t mouse_y): mouse_x(mouse_x), mouse_y(mouse_y) {}
+    explicit ShootCommon(coordinate_t mouse_x, coordinate_t mouse_y):
+            mouse_x(mouse_x), mouse_y(mouse_y) {}
     virtual ~ShootCommon() = default;
 };
 
@@ -79,7 +80,7 @@ protected:
     const EquipType equip_type;
 
 public:
-    EquipCommon(EquipType equip_type): equip_type(equip_type) {}
+    explicit EquipCommon(EquipType equip_type): equip_type(equip_type) {}
     virtual ~EquipCommon() = default;
 };
 

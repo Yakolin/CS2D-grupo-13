@@ -1,18 +1,15 @@
 #include "FireableWeapon.h"
 
-void Glock::set_on_action(std::map<player_id_t, std::unique_ptr<Collider>>& damage_colliders,
-                          player_id_t id, Position& position, Position& direction) {
+void Glock::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& direction) {
     if (current_bullets > 0) {
         uint8_t bullets_fired = std::min(current_bullets, fire_rate);
         current_bullets -= bullets_fired;
-        std::cout << "Disparaste " << bullets_fired
-                  << " balas. Balas restantes: " << current_bullets << std::endl;
-        damage_colliders.insert(std::make_pair(id, std::make_unique<Line>(position, direction, 2)));
+        ISpawneableZone::damage_collider_t wanted = {2, 5, direction};
+        spawn.spawn_collider(id, wanted);
     } else {
         std::cout << "No pudiste disparar balas \n";
     }
 }
-
 void FireableWeapon::reload() {
     if (max_bullets > 0 && current_bullets < magazine) {  // Si en el inventario tengo >= 0 balas
         uint8_t needed_bullets = magazine - current_bullets;

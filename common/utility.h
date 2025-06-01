@@ -20,9 +20,6 @@ public:
     Position& operator=(Position&& other) = default;
     Position& operator=(const Position& other) = default;
     bool operator==(const Position& other) const;
-    coordinate_t get_norm() const;  // Falta implementar
-    Position& normalize();
-    float distance(const Position& other) const;
 };
 
 

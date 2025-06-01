@@ -10,13 +10,25 @@ public:
     virtual bool is_in(const Position& position) = 0;
     virtual ~Collider() = 0;
 };
+class Vector2f {
+public:
+    float x;
+    float y;
+    float distance(const Vector2f& other) const;
+    float norm();
+    void normalize();
+    Vector2f(float x, float y): x(x), y(y) {}
+    ~Vector2f() = default;
+};
 class Line: public Collider {
-    Position start;
-    Position end;
+    Vector2f start;
+    Vector2f end;
     uint8_t width;
 
 public:
-    Line(Position start, Position end, uint8_t width): start(start), end(end), width(width) {}
+    Line(const Vector2f& start, const Vector2f& end, uint8_t width):
+            start(std::move(start)), end(std::move(end)), width(width) {}
+    float distance(Vector2f& other);
     virtual ~Line() override = default;
     virtual bool is_in(const Position& position) override;
 };
@@ -27,9 +39,11 @@ private:
     Position point_max;
 
 public:
+    Rectangle() = default;
     Rectangle(coordinate_t width, coordinate_t height, const Position& point):
             point_min(std::move(point)),
             point_max(std::move(Position(point.x + width, point.y + height))) {}
+    Rectangle(Position& point_min, Position& point_max);
     virtual bool is_in(const Position& position) override;
     Position get_random_position();
     virtual ~Rectangle() override = default;

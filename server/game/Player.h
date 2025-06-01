@@ -11,22 +11,29 @@
 #include "../interfaces/interface_player_action.h"
 
 #include "Equipement.h"
-#include "GameZone.h"
-#include "Map.h"
+#include "ICanInteract.h"
+#include "IGameZone.h"
 
-class Player: public IPlayerAction {
+class Player: public IPlayerAction, public ICanInteract {
 public:
-    Player(player_id_t id, GameZone& game_zone):
-            id(id), health(100), points(0), game_zone(game_zone) {}
+    Player(player_id_t id, Equipement&& equipement, IGameZone& game_zone,
+           ISpawneableZone& spawneable_zone):
+            id(id),
+            equipement(std::move(equipement)),
+            health(100),
+            points(0),
+            game_zone(game_zone),
+            spawneable_zone(spawneable_zone) {}
     virtual ~Player() = default;
     void reset();
-    void get_damage(uint8_t damage);
     virtual PlayerImage get_player_image(Position& position) = 0;
+    void damage(uint8_t damage) override;
     virtual void move(const MoveType& move_type) override;
-    virtual void reload() override {}
+    virtual void reload() override;
+    // void equip(Weapon& weapon) override { equipement.primary = weapon;}
+    virtual void shoot(const coordinate_t& mouse_x, const coordinate_t& mouse_y) override;
 
     /*
-    virtual void shoot(const coordinate_t& mouse_x, const coordinate_t& mouse_y) override;
     virtual void plant_bomb() override;
     virtual void defuse_bomb() override;
     virtual void drop() override;
@@ -42,7 +49,8 @@ protected:  // Por ahora lo dejamo asi
     uint8_t points;
 
 private:
-    GameZone& game_zone;
+    IGameZone& game_zone;
+    ISpawneableZone& spawneable_zone;
 };
 
 #endif  // GAME_PLAYER_H_

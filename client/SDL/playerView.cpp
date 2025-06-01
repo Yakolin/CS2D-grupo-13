@@ -4,12 +4,13 @@ const int FILAS_MAP = 17;
 const int COLUMNAS_MAP = 38;
 
 PlayerView::PlayerView(const float& x, const float& y, const std::string& rute, const float& speed,
-                       Camera* camera_receiver, ManageTexture* manejador,GameConfig& config):
+                       Camera* camera_receiver, ManageTexture* manejador, GameConfig& config):
         config(config),
         fil(pasar_pixeles(y)),
         col(pasar_pixeles(x)),
         rutaPlayer(rute),
         origin_rect({0, 0, 64, 96}),
+        destination_rect({static_cast<int>(col), static_cast<int>(fil), 32, 32}),
         destination_rect({static_cast<int>(col), static_cast<int>(fil), 32, 32}),
         speed_player(speed),
         width_img(),
@@ -17,9 +18,9 @@ PlayerView::PlayerView(const float& x, const float& y, const std::string& rute, 
         item({0, 0}),
         anglePlayer(),
         camera(camera_receiver),
-        manejador(manejador) ,
-        player_id() //!cambiar 
-        {
+        manejador(manejador),
+        player_id()  //! cambiar
+{
     calcular();
 }
 
@@ -41,10 +42,13 @@ void PlayerView::draw(SDL_Renderer& renderer) {
     SDL_Texture* tiles_player = manejador->get(Object::PLAYER);
     origin_rect = {item.col * width_img, item.fil * height_img, width_img / 2, height_img / 3};
     //                           col=x               fil =y       ancho, alto
-    destination_rect = {static_cast<int>(col) - camera->getx(),static_cast<int>(fil) - camera->gety(),config.get_tile_width(), config.get_tile_height()};
+    destination_rect = {static_cast<int>(col) - camera->getx(),
+                        static_cast<int>(fil) - camera->gety(), config.get_tile_width(),
+                        config.get_tile_height()};
 
 
-    SDL_RenderCopyEx(&renderer, tiles_player, &origin_rect, &destination_rect, anglePlayer, nullptr,SDL_FLIP_NONE);
+    SDL_RenderCopyEx(&renderer, tiles_player, &origin_rect, &destination_rect, anglePlayer, nullptr,
+                     SDL_FLIP_NONE);
 }
 
 void PlayerView::add_speed(const SDL_Keycode& tecla) {
@@ -84,16 +88,16 @@ std::string PlayerView::getRutaPlayer() const { return rutaPlayer; }
 
 float PlayerView::getSpeed() const { return speed_player; }
 
-void PlayerView::setFil(float x) { 
+void PlayerView::setFil(float x) {
     std::cout << x << std::endl;
-    
-    fil = x; 
-    }
 
-void PlayerView::setCol(float y) { 
+    fil = x;
+}
+
+void PlayerView::setCol(float y) {
     std::cout << y << std::endl;
-    col = y; 
-    }
+    col = y;
+}
 
 void PlayerView::setRutaPlayer(const std::string& ruta) { rutaPlayer = ruta; }
 

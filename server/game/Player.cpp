@@ -3,7 +3,7 @@
 #include <memory>
 //  "Copyright 2025 Yaco Santamarina"
 // void Player::move(Position&& direction) { position += direction; }
-void Player::get_damage(uint8_t damage) { health -= damage; }
+void Player::damage(uint8_t damage) { health -= damage; }
 // void Player::change_weapon_equiped() {}
 
 void Player::reset() {
@@ -14,7 +14,6 @@ void Player::reset() {
     }
     health = 100;
 }
-
 void Player::move(const MoveType& move_type) {
     switch (move_type) {
         case MoveType::RIGHT:
@@ -30,4 +29,12 @@ void Player::move(const MoveType& move_type) {
             game_zone.move(id, Position(0, -1));
             break;
     }
+}
+void Player::reload() {
+    // Aca no es la secondary igual
+    equipement.secondary->reload();
+}
+void Player::shoot(const coordinate_t& mouse_x, const coordinate_t& mouse_y) {
+    Position direction(mouse_x, mouse_y);
+    equipement.secondary->set_on_action(spawneable_zone, id, direction);
 }

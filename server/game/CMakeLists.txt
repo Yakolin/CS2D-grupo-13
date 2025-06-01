@@ -18,10 +18,13 @@ target_sources(CS2D_server
     FireableWeapon.h
     GameException.h
     GameManager.h
+    ICanInteract.h
+    IGameZone.h
     Map.h
     MapTypes.h
     Player.h
     PlayerType.h
     Specials.h
     Weapon.h
+    Timer.h
     )

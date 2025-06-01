@@ -1,11 +1,24 @@
 #include "Colliders.h"
 
 Collider::~Collider() {}
-
+float Vector2f::distance(const Vector2f& other) const {
+    float dx = x - other.x;
+    float dy = y - other.y;
+    return std::sqrt(dx * dx + dy * dy);
+}
+float Vector2f::norm() { return sqrt(x * x + y * y); }
+void Vector2f::normalize() {
+    float norm_f = norm();
+    if (norm_f == 0)
+        return;
+    x = x / norm_f;
+    y = y / norm_f;
+}
 bool Line::is_in(const Position& position) {
+    Vector2f aux(position.x, position.y);
     float ab = start.distance(end);
-    float ac = start.distance(position);
-    float bc = end.distance(position);
+    float ac = start.distance(aux);
+    float bc = end.distance(aux);
     float diference = std::abs(ab - (ac + bc));
     return diference <= width;
 }

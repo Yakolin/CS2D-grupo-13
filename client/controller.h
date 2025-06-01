@@ -37,7 +37,7 @@ public:
     pre:
     post: envía las coordenadas del mouse en píxeles, puedes castearlas con las dimensiones del mapa
     */
-   // void sender_pos_mouse(int x, int y);
+    // void sender_pos_mouse(int x, int y);
 
 
     void stop();
@@ -47,7 +47,7 @@ public:
     */
     void sender_mov_player(SDL_Keycode tecla);
 
-    bool  has_game_image(GameImage& snapshot);
+    bool has_game_image(GameImage& snapshot);
 
     void run();
 

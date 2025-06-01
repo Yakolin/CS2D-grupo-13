@@ -10,7 +10,9 @@
 */
 class CounterTerrorist: public Player {
 public:
-    CounterTerrorist(player_id_t id, GameZone& game_zone): Player(id, game_zone) {}
+    CounterTerrorist(player_id_t id, Equipement&& equipement, IGameZone& game_zone,
+                     ISpawneableZone& spawneable_zone):
+            Player(id, std::move(equipement), game_zone, spawneable_zone) {}
     ~CounterTerrorist() = default;
     virtual PlayerImage get_player_image(Position& position) override;
 };
@@ -18,10 +20,12 @@ class Terrorist: public Player {
 private:
     // Weapon Bomb
 public:
-    explicit Terrorist(player_id_t id, GameZone& game_zone): Player(id, game_zone) {}
+    explicit Terrorist(player_id_t id, Equipement&& equipement, IGameZone& game_zone,
+                       ISpawneableZone& spawneable_zone):
+            Player(id, std::move(equipement), game_zone, spawneable_zone) {}
     ~Terrorist() = default;
     virtual PlayerImage get_player_image(Position& position) override;
-    void plant_bomb(Map& map);
+    // void plant_bomb(spawnablezone& map);
 };
 
 #endif  // !PLAYER_TYPE_H

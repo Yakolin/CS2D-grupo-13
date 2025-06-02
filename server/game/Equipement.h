@@ -19,6 +19,7 @@ public:
         change_weapon();
         drop_weapon();
     */
+    std::vector<WeaponImage> get_weapons_image();
 };
 
 #endif  // EQUIPEMENT_H_

@@ -34,8 +34,8 @@ public:
     points_t points;
     std::vector<WeaponImage> weapons;
     // Aca falta el tema del equipement y las armas
-    PlayerImage(player_id_t player_id, Position position, int health, int points):
-            player_id(player_id), position(position), health(health), points(points) {}
+    PlayerImage(player_id_t player_id, Position position, int health, int points, std::vector<WeaponImage>&& weapons):
+            player_id(player_id), position(position), health(health), points(points), weapons(std::move(weapons)) {}
     ~PlayerImage() = default;
 };
 

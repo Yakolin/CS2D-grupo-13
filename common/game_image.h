@@ -15,12 +15,20 @@ using length_players_images_t = std::uint16_t;
 
 enum class Team { CT, TT };
 
+
+class WeaponImage {
+    WeaponCode weapon_code;
+    uint8_t bullets;
+    uint8_t magazine;
+    uint8_t current_bullets;
+};
 class PlayerImage {
 public:
     player_id_t player_id;
     Position position;
     health_t health;
     points_t points;
+    std::vector<WeaponImage> weapons;
     // Aca falta el tema del equipement y las armas
     PlayerImage(player_id_t player_id, Position position, int health, int points):
             player_id(player_id), position(position), health(health), points(points) {}

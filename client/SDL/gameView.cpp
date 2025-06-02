@@ -111,33 +111,34 @@ void GameView::load_textures() {
 }
 
 void GameView::update_status_game() {
+    int tile_width = config.get_tile_width();
+    int tile_height = config.get_tile_height();
 
     for (PlayerImage& player_img : this->snapshot.players_images) {
         player_id_t id = player_img.player_id;
 
+        // Convertimos coordenadas lógicas a píxeles
+        float x_pixeles = player_img.position.x * tile_width;
+        float y_pixeles = player_img.position.y * tile_height;
+
         if (id == snapshot.client_id) {
-            //std::cout << "Este es el jugador cliente. Guardando posición.\n";
-            player->setCol(player_img.position.x); //
-            player->setFil(player_img.position.y);
-
-        }else if (players.find(id) == players.end()) {
-            float x = player_img.position.x;
-            float y = player_img.position.y;
-
-           // std::cout << "Nuevo jugador detectado. Creando PlayerView en (" << x << ", " << y << ")\n";
-
-            PlayerView* nuevo_jugador = new PlayerView(x, y, "assets/gfx/terrorist/t2.png", 2.5f, &camera, &manger_texture,config);
+            player->setCol(x_pixeles);
+            player->setFil(y_pixeles);
+        } else if (players.find(id) == players.end()) {
+            PlayerView* nuevo_jugador = new PlayerView(
+                x_pixeles, y_pixeles,
+                "assets/gfx/terrorist/t2.png", 
+                2.5f, &camera, &manger_texture, config
+            );
             players[id] = nuevo_jugador;
         } else {
-           // std::cout << "actualizo pos de otro jugador\n";
-            PlayerView* player_aux = players.at(id);  
-            player_aux->setCol(player_img.position.x);
-            player_aux->setFil(player_img.position.y);
+            PlayerView* player_aux = players.at(id);
+            player_aux->setCol(x_pixeles);
+            player_aux->setFil(y_pixeles);
         }
     }
-
-
 }
+
 
 
 void GameView::draw_players(){
@@ -210,29 +211,40 @@ void GameView::draw_game() {
         return;
     }
     text = new Text(&manger_texture,Object::PLAYER,10,10);
-    bool corriendo = true;
     SDL_Event event;
-    while (corriendo) {
+
+    auto keep_running = [&]() -> bool {
         while (SDL_PollEvent(&event)) {
-            corriendo = handle_events(event);
+            if (!handle_events(event)) {
+                return false;
+            }
         }
-        if(controller.has_game_image(this->snapshot)){
+        return true;
+    };
+
+    auto game_step = [&]() {
+        if (controller.has_game_image(this->snapshot)) {
             update_status_game();
         }
-        camera.update(player->getFil(),player->getCol(),player->getWidthImg(),player->getHeightImg(),this->map->getMapWidth(),this->map->getMapHeight());
 
-        this->map->draw(*renderer); 
+        // Actualizar cámara
+        camera.update(
+            player->getFil(), player->getCol(),
+            player->getWidthImg(), player->getHeightImg(),
+            map->getMapWidth(), map->getMapHeight()
+        );
+
+        // Render
+        SDL_RenderClear(renderer);
+        map->draw(*renderer);
         player->draw(*renderer);
         draw_players();
         text->draw(*renderer);
-
-
         SDL_RenderPresent(renderer);
-
-        SDL_Delay(16);  // Espera aprox. 16ms para lograr ~60 FPS
-        SDL_RenderClear(renderer);
-        
-    }
+    };
+    ConstantRateLoop loop(keep_running, game_step);
+    loop.execute();
+    //-----------------------------------------------------------
     try {
         this->controller.stop();
     } catch (const std::exception& e) {
@@ -242,6 +254,13 @@ void GameView::draw_game() {
     }
 
 }
+/*void PlayerView::updatePosition(float newPixelX, float newPixelY) {
+    // Lerp simple para suavizar movimiento
+    float smoothing = 0.1f;
+    this->pixelX += (newPixelX - this->pixelX) * smoothing;
+    this->pixelY += (newPixelY - this->pixelY) * smoothing;
+}
+*/
 
 GameView::~GameView() {
     for (auto& p : players) {

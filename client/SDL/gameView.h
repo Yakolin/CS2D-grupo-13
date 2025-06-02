@@ -20,6 +20,7 @@
 #include <stdexcept> 
 #include <SDL_ttf.h>
 #include "gameConfig.h"
+#include "../../common/constant_rate_loop.h"
 class GameView {
 
 private:

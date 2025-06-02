@@ -18,13 +18,17 @@
 
 class PlayerView: public Renderizable {
 public:
-    PlayerView(const float& x, const float& y, const std::string& rute, const float& speed,
+    explicit PlayerView(const float& x, const float& y, const std::string& rute, const float& speed,
                Camera* camera_reseiver, ManageTexture* manger_texture, GameConfig& config);
     ~PlayerView();
 
+    void add_speed(const SDL_Keycode& tecla);
+
+    void stop_speed(const SDL_Keycode& tecla);
+
     void draw(SDL_Renderer& renderer) override;
 
-    void update() ;
+    void update(const float& delta_time) ;
     void update_view_angle(const int& mause_x, const int& mause_y);
 
     float getFil() const;
@@ -34,16 +38,21 @@ public:
     int getWidthImg() const;   // todo no inicializadas
     int getHeightImg() const;  // todo no incializadas no usar
     float getAnglePlayer() const;
+    void setVelX(float vx);
+    void setVelY(float vy);
+    float getVelX() const;
+    float getVelY() const;
     int pasar_pixeles_x(const float& tile_x);
     int pasar_pixeles_y(const float& tile_y) ;
+
+    void updatePosition(float deltaX, float deltaY);
+
+    void updateAnimation(int fila_animacion, int columna_animacion);
 
     void setFil(float newFil);
     void setCol(float newCol);
     void setSpeed(float newSpeed);
     void setRutaPlayer(const std::string& nuevaRuta);
-    void setObjetivoTiles(const float& tile_x, const float& tile_y);
-    void add_speed(const SDL_Keycode& tecla);
-    // void setTexturePlayer(SDL_Texture texture);
 
 private:
     GameConfig config;
@@ -61,8 +70,11 @@ private:
     Camera* camera;
     ManageTexture* manejador;
     int player_id;
-    float filObjetivo;
-    float colObjetivo;
+    float x_actual;
+    float y_actual;
+    float velocity_x;  // Velocity horizontal (píxeles/segundo)
+    float velocity_y;  // Velocity vertical
+
 
     void calcular();
 

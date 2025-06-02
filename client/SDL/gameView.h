@@ -27,6 +27,7 @@ private:
     GameConfig config;
     Controller controller;
     std::map<char, std::string> leyenda;
+    std::map<TextView, std::string> texts;
     std::map<char, Object> ids;
     SDL_Window* ventana;
     SDL_Renderer* renderer;
@@ -38,8 +39,7 @@ private:
     GameImage snapshot;
     MapView* map;
     Text* text;
-
-
+    Uint32 lastTime ;
 
 
     bool handle_events(const SDL_Event& evento);
@@ -57,6 +57,8 @@ public:
     explicit GameView(Socket&& skt);
 
     bool cargar_skins(const std::map<Object, std::string >& rutas_skins);
+
+    bool cargar_text();
 
     /*
     pre:  width y height deben ser mayores que 0.

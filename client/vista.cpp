@@ -45,11 +45,11 @@ void Vista::run() {
 
 
         if(opcionElegida == LobbyCommandType::CREATE_GAME){
-            if(!gameView.add_player(1,1,5.5f, rutas_skins.at(Object::GUERRILLA))){
+            if(!gameView.add_player(1,1,200.0f, rutas_skins.at(Object::GUERRILLA))){
                 return;
             }
         }else{
-            if(!gameView.add_player(0,0,2.5f, rutas_skins.at(Object::PHOENIX))){
+            if(!gameView.add_player(0,0,200.0f, rutas_skins.at(Object::PHOENIX))){
                 return;
             }
         }

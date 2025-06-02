@@ -20,7 +20,7 @@ bool ManageTexture::load(const Object& id, const std::string& filePath, SDL_Rend
     return true;
 }
 
-bool ManageTexture::load_texture_text(const Object& id, TTF_Font* fuente, SDL_Color& color, const std::string& text, SDL_Renderer* renderer) {
+bool ManageTexture::load_texture_text(const TextView& id, TTF_Font* fuente, SDL_Color& color, const std::string& text, SDL_Renderer* renderer) {
     
     
     SDL_Surface* surface = TTF_RenderText_Blended(fuente, text.c_str(), color);
@@ -49,7 +49,7 @@ bool ManageTexture::load_texture_text(const Object& id, TTF_Font* fuente, SDL_Co
     return true;
 }
 
-SDL_Texture* ManageTexture::get_texture_text(const Object& id) const {
+SDL_Texture* ManageTexture::get_texture_text(const TextView& id) const {
 
     auto it = textures_text.find(id);
     if (it != textures_text.end()) {
@@ -58,20 +58,11 @@ SDL_Texture* ManageTexture::get_texture_text(const Object& id) const {
     return nullptr;
 }
 
-SDL_Rect ManageTexture::get_rect(const Object& id) const {
+SDL_Rect ManageTexture::get_rect(const TextView& id) const {
 
     auto it_text = textures_text.find(id);
     if (it_text != textures_text.end()) {
         return SDL_Rect{0, 0, it_text->second.width, it_text->second.height};
-    }
-
-    auto it_tex = textures.find(id);
-    if (it_tex != textures.end()) {
-        // Para texturas normales, no tenemos tamaño almacenado, así que consultamos al sistema SDL
-        int w, h;
-        if (SDL_QueryTexture(it_tex->second, nullptr, nullptr, &w, &h) == 0) {
-            return SDL_Rect{0, 0, w, h};
-        }
     }
     return SDL_Rect{0, 0, 0, 0};
 }
@@ -85,17 +76,11 @@ SDL_Texture* ManageTexture::get(const Object& id) const {
     return nullptr;
 }
 
-void ManageTexture::remove(const Object& id) {
-    auto it_tex = textures.find(id);
-    if (it_tex != textures.end()) {
-        SDL_DestroyTexture(it_tex->second);
-        textures.erase(it_tex);
-    }
-
-    auto it_text = textures_text.find(id);
-    if (it_text != textures_text.end()) {
-        SDL_DestroyTexture(it_text->second.texture);
-        textures_text.erase(it_text);
+void ManageTexture::remove(const TextView& id) {
+    auto it_tex = textures_text.find(id);
+    if (it_tex != textures_text.end()) {
+        SDL_DestroyTexture(it_tex->second.texture);
+        textures_text.erase(it_tex);
     }
 }
 

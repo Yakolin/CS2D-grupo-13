@@ -1,21 +1,30 @@
 #include "gameView.h"
 
-GameView::GameView(Socket&& skt):
-        config(),
-        controller(std::move(skt)),
-        leyenda(),
-        ids(),
-        ventana(),
-        renderer(),
-        backgroundTexture(),
-        player(nullptr),
-        camera(config.get_window_width() ,config.get_window_height()),
-        manger_texture(),
-        players(),
-        snapshot(),
-        map(nullptr),
-        text(nullptr)
-        {
+GameView::GameView(Socket&& skt) :
+    config(),
+    controller(std::move(skt)),
+    leyenda(),
+    texts(),
+    ids(),
+    ventana(nullptr),
+    renderer(nullptr),
+    backgroundTexture(nullptr),
+    player(nullptr),
+    camera(config.get_window_width(), config.get_window_height()),
+    manger_texture(),
+    players(),
+    snapshot(),
+    map(nullptr),
+    text(nullptr),
+    lastTime(SDL_GetTicks())  // inicialización directa aquí
+{
+    texts = {
+        {TextView::VIDA, "Vida : 0 "},
+        {TextView::PUNTOS, "Puntos : 0"},
+        {TextView::MUERTES, "Muertes: 0"},
+        {TextView::RONDA, "Ronda n°: 1"}
+    };
+
     leyenda['#'] = "assets/gfx/backgrounds/nuke.png";
     leyenda[' '] = "assets/gfx/backgrounds/stone1.jpg";
     leyenda['~'] = "assets/gfx/backgrounds/water4.jpg";
@@ -35,12 +44,10 @@ GameView::GameView(Socket&& skt):
     ids['B'] = Object::ZONE_BOMBA1;
     ids['T'] = Object::ZONE_TERRORIST;
     ids['C'] = Object::ZONE_COUNTERTERROSIT;
-    
 }
-bool GameView::cargar_skins(const std::map<Object, std::string >& rutas_skins) {
-    
+
+bool GameView::cargar_skins(const std::map<Object, std::string>& rutas_skins) {
     for (const auto& par : rutas_skins) {
-        
         if (!this->manger_texture.load(par.first, par.second, renderer)) {
             std::cerr << "Fallo al cargar la textura para skin: " << std::endl;
             return false;
@@ -51,33 +58,43 @@ bool GameView::cargar_skins(const std::map<Object, std::string >& rutas_skins) {
 
 bool GameView::load_text() {
     TTF_Font* fuente = TTF_OpenFont(config.get_font().c_str(), 23);
-    SDL_Color color = config.get_blanco();
-    if (!this->manger_texture.load_texture_text(Object::PLAYER,fuente,color,"Nombre: mari",renderer)) {
-        std::cerr << "Fallo al cargar la textura de texto : " << std::endl;
+    if (!fuente) {
+        std::cerr << "Error al abrir fuente: " << TTF_GetError() << std::endl;
         return false;
     }
+
+    SDL_Color color = config.get_blanco();
+
+    for (const auto& par : texts) {
+        if (!this->manger_texture.load_texture_text(par.first, fuente, color, par.second, renderer)) {
+            std::cerr << "Fallo al cargar la textura de texto : " << std::endl;
+            TTF_CloseFont(fuente);
+            return false;
+        }
+    }
+
+    TTF_CloseFont(fuente);
     return true;
 }
 
 bool GameView::init_game() {
-
-    if (SDL_Init(SDL_INIT_VIDEO) != 0) { 
+    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
         throw std::runtime_error(std::string("Error al inicializar SDL: ") + SDL_GetError());
         return false;
     }
 
-    ventana = SDL_CreateWindow("Mapa", SDL_WINDOWPOS_CENTERED, 
-                                        SDL_WINDOWPOS_CENTERED,
-                                        config.get_window_width() ,
-                                        config.get_window_height(), 
-                                        SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+    ventana = SDL_CreateWindow("Mapa", SDL_WINDOWPOS_CENTERED,
+                              SDL_WINDOWPOS_CENTERED,
+                              config.get_window_width(),
+                              config.get_window_height(),
+                              SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
     if (!ventana) {
         throw std::runtime_error(std::string("Error al crear la ventana: ") + SDL_GetError());
         return false;
     }
 
     renderer = SDL_CreateRenderer(ventana, -1, SDL_RENDERER_ACCELERATED);
-    SDL_RenderSetLogicalSize(renderer,config.get_viewpost_width(), config.get_viewpost_height());
+    SDL_RenderSetLogicalSize(renderer, config.get_viewpost_width(), config.get_viewpost_height());
     if (!renderer) {
         throw std::runtime_error(std::string("Error al crear el renderer: ") + SDL_GetError());
         return false;
@@ -92,25 +109,29 @@ bool GameView::init_game() {
         SDL_Log("Error al inicializar SDL_ttf: %s", TTF_GetError());
         return false;
     }
-    try{
+
+    try {
         load_textures();
         load_text();
-    }catch(const std::exception& e){
+    } catch (const std::exception& e) {
         std::cerr << e.what() << '\n';
-    }catch (...) {
-        std::cerr << "Excepción desconocida en text" << std::endl;
+        return false;
+    } catch (...) {
+        std::cerr << "Excepción desconocida en load_text o load_textures" << std::endl;
+        return false;
     }
 
     return true;
 }
 
 void GameView::load_textures() {
-    for (const auto& par: leyenda) {
+    for (const auto& par : leyenda) {
         manger_texture.load(ids.at(par.first), par.second, renderer);
     }
 }
 
 void GameView::update_status_game() {
+    
     int tile_width = config.get_tile_width();
     int tile_height = config.get_tile_height();
 
@@ -125,11 +146,7 @@ void GameView::update_status_game() {
             player->setCol(x_pixeles);
             player->setFil(y_pixeles);
         } else if (players.find(id) == players.end()) {
-            PlayerView* nuevo_jugador = new PlayerView(
-                x_pixeles, y_pixeles,
-                "assets/gfx/terrorist/t2.png", 
-                2.5f, &camera, &manger_texture, config
-            );
+            PlayerView* nuevo_jugador = new PlayerView(x_pixeles, y_pixeles,"assets/gfx/terrorist/t2.png",2.5f, &camera, &manger_texture, config);
             players[id] = nuevo_jugador;
         } else {
             PlayerView* player_aux = players.at(id);
@@ -139,47 +156,40 @@ void GameView::update_status_game() {
     }
 }
 
-
-
-void GameView::draw_players(){
-
+void GameView::draw_players() {
     for (auto& pair : this->players) {
         PlayerView* player = pair.second;
         if (player) {
+            
             player->draw(*renderer);
         }
     }
 }
-
 bool GameView::handle_events(const SDL_Event& event) {
-    
-
-
     if (event.type == SDL_QUIT) {
-        return false;  
+        return false;
+    
     } else if (event.type == SDL_KEYDOWN) {
+        SDL_Keycode tecla = event.key.keysym.sym;
+        player->add_speed(tecla);              // Empieza movimiento
+        controller.sender_mov_player(tecla);   // Notifica al controller (si querés)
 
-        SDL_Keycode tecla = event.key.keysym.sym;  // Se presionó una tecla
-        controller.sender_mov_player(tecla);
-        //player->add_speed(tecla);
         return true;
-    } else if (event.type == SDL_MOUSEMOTION) {
 
+    } else if (event.type == SDL_KEYUP) {
+        SDL_Keycode tecla = event.key.keysym.sym;
+        player->stop_speed(tecla);             // Detiene movimiento
+        return true;
+
+    } else if (event.type == SDL_MOUSEMOTION) {
         int mouseX = event.motion.x;
         int mouseY = event.motion.y;
         player->update_view_angle(mouseX, mouseY);
-        //controller.sender_pos_mouse(mouseX, mouseY);
+        // controller.sender_pos_mouse(mouseX, mouseY);
         return true;
 
-    }else if (event.type == SDL_WINDOWEVENT) {
+    } else if (event.type == SDL_WINDOWEVENT) {
         if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
-            int nuevo_ancho = event.window.data1;
-            int nuevo_alto = event.window.data2;
-
-            printf("Resize event: nuevo_ancho=%d, nuevo_alto=%d\n", nuevo_ancho, nuevo_alto);
-
-            // Asumamos que config tiene un método para obtener tamaño tile
-            printf("Nuevo tile width: %d, height: %d\n", config.get_tile_width(), config.get_tile_height());
 
             this->map->update_map_dimensions();
             printf("Nuevo mapa width: %d, height: %d\n", map->getMapWidth(), map->getMapHeight());
@@ -190,27 +200,25 @@ bool GameView::handle_events(const SDL_Event& event) {
 }
 
 
-bool GameView::add_player(float x, float y ,int speed, const std::string& img ) { 
-
+bool GameView::add_player(float x, float y, int speed, const std::string& img) {
     if (!manger_texture.load(Object::PLAYER, img, renderer)) {
         std::cerr << "Error: No se pudo cargar la textura del jugador." << std::endl;
         return false;
     }
-    this->player = new PlayerView(x, y, img, speed, &camera, &manger_texture,config);
+    this->player = new PlayerView(x, y, img, speed, &camera, &manger_texture, config);
     return true;
 }
 
-
 void GameView::draw_game() {
-
     this->manger_texture.objectToString();
 
     this->map = new MapView("assets/pueblito_azteca.txt", &camera, &manger_texture, config);
-    if(!map){
-        throw std::runtime_error(std::string("Error al carga mapa"));
+    if (!map) {
+        throw std::runtime_error("Error al cargar mapa");
         return;
     }
-    text = new Text(&manger_texture,Object::PLAYER,10,10);
+
+    text = new Text(&manger_texture, TextView::VIDA, 10, 10);
     SDL_Event event;
 
     auto keep_running = [&]() -> bool {
@@ -223,10 +231,14 @@ void GameView::draw_game() {
     };
 
     auto game_step = [&]() {
+        Uint32 currentTime = SDL_GetTicks();  // Milisegundos desde que se inició SDL
+        float deltaTime = (currentTime - lastTime) / 1000.0f;
+        lastTime = currentTime;
+
         if (controller.has_game_image(this->snapshot)) {
             update_status_game();
         }
-
+        player->update(deltaTime);
         // Actualizar cámara
         camera.update(
             player->getFil(), player->getCol(),
@@ -242,8 +254,10 @@ void GameView::draw_game() {
         text->draw(*renderer);
         SDL_RenderPresent(renderer);
     };
+
     ConstantRateLoop loop(keep_running, game_step);
     loop.execute();
+
     //-----------------------------------------------------------
     try {
         this->controller.stop();
@@ -252,15 +266,7 @@ void GameView::draw_game() {
     } catch (...) {
         std::cerr << "Excepción desconocida en stop" << std::endl;
     }
-
 }
-/*void PlayerView::updatePosition(float newPixelX, float newPixelY) {
-    // Lerp simple para suavizar movimiento
-    float smoothing = 0.1f;
-    this->pixelX += (newPixelX - this->pixelX) * smoothing;
-    this->pixelY += (newPixelY - this->pixelY) * smoothing;
-}
-*/
 
 GameView::~GameView() {
     for (auto& p : players) {
@@ -270,19 +276,25 @@ GameView::~GameView() {
 
     delete player;
     player = nullptr;
-    if(map)
+
+    if (map)
         delete map;
 
+    if (text)
+        delete text;
+
     this->manger_texture.clear();
+
     if (backgroundTexture)
-        SDL_DestroyTexture(backgroundTexture);  // Libera la textura
+        SDL_DestroyTexture(backgroundTexture);
+
     if (renderer)
-        SDL_DestroyRenderer(renderer);  // Libera el renderer
+        SDL_DestroyRenderer(renderer);
+
     if (ventana)
-        SDL_DestroyWindow(ventana);  // Libera la ventana
-    SDL_Quit();                      // Cierra SDL
-    IMG_Quit();
+        SDL_DestroyWindow(ventana);
+
     TTF_Quit();
-
-
+    IMG_Quit();
+    SDL_Quit();
 }

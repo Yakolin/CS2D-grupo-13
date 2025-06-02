@@ -9,6 +9,8 @@ enum class ItemTerrorism { PHOENIX, L337_KREW, ARCTIC_AVENGER, GUERRILLA };
 
 enum class ItemCounterTerrorism { SEAL, GSG9, SAS, GIGN };
 
+enum class TextView {VIDA, PUNTOS,MUERTES,RONDA};
+
 enum class Object {
     STONE,
     WALL,

@@ -10,12 +10,16 @@
 class Text : public Renderizable {
 private:
     ManageTexture* manager;
-    Object id;
+    TextView id;
+    std::string current_text;
     int x;
     int y;
 
 public:
-    explicit Text(ManageTexture* manager, const Object& id,const  int& x,const int& y);
+    explicit Text(ManageTexture* manager, const TextView& id,const  int& x,const int& y);
+
+    void updateText(const std::string& new_text, TTF_Font* font, SDL_Color color,
+                    SDL_Renderer* renderer);
 
     void draw(SDL_Renderer& renderer) override;
 

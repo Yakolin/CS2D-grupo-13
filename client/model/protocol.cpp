@@ -156,9 +156,9 @@ void ClientProtocol::read_player_image(GameImage& game_image) {
 
         points_t points;
         this->read_byte_data(points);
-
+        std::vector<WeaponImage> weapons;
         game_image.players_images.emplace_back(
-                PlayerImage(player_id, Position(x, y), health, points));
+                PlayerImage(player_id, Position(x, y), health, points, std::move(weapons)));
     }
 }
 

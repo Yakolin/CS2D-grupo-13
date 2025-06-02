@@ -15,7 +15,6 @@ target_sources(CS2D_tests
     ../../server/game/GameManager.cpp
     ../../server/game/Map.cpp
     ../../server/game/Player.cpp
-    ../../server/game/PlayerType.cpp
     ../../common/socket.cpp
 
     PUBLIC
@@ -35,7 +34,6 @@ target_sources(CS2D_tests
     ../../server/game/Map.h
     ../../server/game/MapTypes.h
     ../../server/game/Player.h
-    ../../server/game/PlayerType.h
     ../../server/game/Specials.h
     ../../server/game/Weapon.h
     ../../common/socket.h

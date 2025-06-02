@@ -1,12 +1,12 @@
 #ifndef TIPOS_H
 #define TIPOS_H
 #include <string>
+#include <SDL2/SDL.h>
 
 enum class GameMenu { CREATE, JOIN, HELP, EXIT, NONE };
 
-// Pheonix, L337 Krew, Artic avenger o Guerrilla
 enum class ItemTerrorism { PHOENIX, L337_KREW, ARCTIC_AVENGER, GUERRILLA };
-// (Seal force, German GSG-9, UK SAS o French GIGN
+
 enum class ItemCounterTerrorism { SEAL, GSG9, SAS, GIGN };
 
 enum class Object {
@@ -24,7 +24,18 @@ enum class Object {
     SEAL,
     GSG9,
     SAS,
-    GIGN
+    GIGN,
+    VIDA,
+    MUERTES,
+    PUNTOS,
+    NOMBRE,
+    BANDO,
+
+    ZONE_TERRORIST,
+    ZONE_COUNTERTERROSIT,
+    ZONE_BOMBA1,
+    ZONE_BOMBA2
+
 };
 
 // campo en el desierto, un pueblito azteca o una zona de entrenamiento
@@ -49,6 +60,18 @@ struct MedidasSprites {
     int width;
     int height;
 };
+struct infoPlayer{
+    std::string name_game;
+    std::string team;
+    int puntos;
+    int vida ;
+    int muertes;
+};
+struct TextureData {
+    SDL_Texture* texture;
+    int width;
+    int height;
+};
 
 struct ItemSprite {
     int fil;
@@ -56,7 +79,6 @@ struct ItemSprite {
 };
 
 struct PlayerSummary {
-    // std::string name;
     int kills;
     int deaths;
     int collected_money;

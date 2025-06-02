@@ -24,8 +24,7 @@ public:
 
     void draw(SDL_Renderer& renderer) override;
 
-    void add_speed(const SDL_Keycode& tecla);
-
+    void update() ;
     void update_view_angle(const int& mause_x, const int& mause_y);
 
     float getFil() const;
@@ -35,12 +34,15 @@ public:
     int getWidthImg() const;   // todo no inicializadas
     int getHeightImg() const;  // todo no incializadas no usar
     float getAnglePlayer() const;
-    // MedidasSprites getItem() const;
+    int pasar_pixeles_x(const float& tile_x);
+    int pasar_pixeles_y(const float& tile_y) ;
 
     void setFil(float newFil);
     void setCol(float newCol);
     void setSpeed(float newSpeed);
     void setRutaPlayer(const std::string& nuevaRuta);
+    void setObjetivoTiles(const float& tile_x, const float& tile_y);
+    void add_speed(const SDL_Keycode& tecla);
     // void setTexturePlayer(SDL_Texture texture);
 
 private:
@@ -56,18 +58,14 @@ private:
     ItemSprite spritePlayer;
     ItemSprite item;
     float anglePlayer;
-    //SDL_Rect* camera;
     Camera* camera;
-
     ManageTexture* manejador;
     int player_id;
+    float filObjetivo;
+    float colObjetivo;
 
-    // SDL_Texture texture_player;
     void calcular();
 
-    int pasar_pixeles(const float& pos);
-
-    SDL_Texture* add_tiles(const std::string& img);
 };
 
 #endif  // PLAYERVIEW_H

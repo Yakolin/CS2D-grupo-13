@@ -12,6 +12,15 @@ MapView::MapView(const std::string& rute, Camera* camera_reseiver, ManageTexture
     ids['~'] = Object::WATER;
     ids['='] = Object::BOX;
     ids['.'] = Object::GRASS;
+    ids['A'] = Object::ZONE_BOMBA2;
+    ids['B'] = Object::ZONE_BOMBA1;
+    ids['T'] = Object::ZONE_TERRORIST;
+    ids['C'] = Object::ZONE_COUNTERTERROSIT;
+}
+
+void MapView::update_map_dimensions() {
+    this->width_map = (mapa[0].size() * config.get_tile_width());
+    this->height_map = (mapa.size() * config.get_tile_height());
 }
 
 
@@ -19,8 +28,8 @@ void MapView::draw(SDL_Renderer& renderer) {
 
     for (size_t i = 0; i < mapa.size(); i++) {
         for (size_t j = 0; j < mapa[i].size(); j++) {
-            SDL_Rect destRect = { static_cast<int>(j * config.get_tile_width()) - camera->getx(),
-                                static_cast<int>(i * config.get_tile_height()) - camera->gety(),
+            SDL_Rect destRect = { static_cast<int>(j * config.get_tile_width()) - camera->getX(),
+                                static_cast<int>(i * config.get_tile_height()) - camera->getY(),
                                 config.get_tile_width(), config.get_tile_height()};
 
             char item = mapa[i][j];
@@ -34,8 +43,9 @@ void MapView::draw(SDL_Renderer& renderer) {
     }
 }
 
+
 int MapView::getMapWidth() { return width_map; }
 int MapView::getMapHeight() { return height_map; }
 
-MapView::~MapView() {  // Cierra SDL
+MapView::~MapView() { 
 }

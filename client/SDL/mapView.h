@@ -27,13 +27,14 @@ public:
     post:recorre el mapa y dibuja texturas de 32x32 pixeles
     */
     void draw(SDL_Renderer& renderer) override;
+
+    void update_map_dimensions();
     int getMapWidth();
     int getMapHeight();
 
 
 private:
-    GameConfig config;
-
+    GameConfig& config;
     std::vector<std::vector<char>> mapa;
     int width_map;
     int height_map;

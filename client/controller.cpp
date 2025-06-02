@@ -45,12 +45,11 @@ void Controller::start() {
     this->sender.start();
 }
 void Controller::stop() {
-
+    this->skt.shutdown(2);
     this->receiver.stop();
     this->sender.stop();
     this->receiver.join();
     this->sender.join();
-    this->skt.shutdown(2);
     this->skt.close();
 }
 bool Controller::has_game_image(GameImage& snapshot) {

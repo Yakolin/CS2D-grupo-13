@@ -6,7 +6,8 @@
 #include <string>
 #include <utility>
 #include <vector>
-
+#include <SDL2/SDL_ttf.h>
+#include "text.h"
 #include <SDL2/SDL.h>
 #include "../../common/game_image.h"
 #include "../controller.h"
@@ -17,6 +18,7 @@
 #include "playerView.h"
 #include "renderizable.h"
 #include <stdexcept> 
+#include <SDL_ttf.h>
 #include "gameConfig.h"
 class GameView {
 
@@ -33,12 +35,17 @@ private:
     ManageTexture manger_texture;
     std::map<player_id_t, PlayerView*> players; 
     GameImage snapshot;
+    MapView* map;
+    Text* text;
+
 
 
 
     bool handle_events(const SDL_Event& evento);
 
     void load_textures();
+
+    bool load_text();
 
     void update_status_game();
 

@@ -4,7 +4,14 @@ Client::Client(int& argc, char* argv[]): vista(argc, argv) {}
 
 
 int Client::run() {
-    vista.run();
+    
+    try {
+        vista.run();
+    } catch (const std::exception& e) {
+        std::cerr << "Excepción atrapada: " << e.what() << std::endl;
+    } catch (...) {
+        std::cerr << "Excepción desconocida atrapada." << std::endl;
+    }
 
     return 0;
 }

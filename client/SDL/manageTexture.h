@@ -5,18 +5,32 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 
 #include "../tipos.h"
 
 class ManageTexture {
 public:
     bool load(const Object& id, const std::string& filePath, SDL_Renderer* renderer);
+
+    bool load_texture_text(const Object& id,TTF_Font* fuente, SDL_Color& color,const std::string& text, SDL_Renderer* renderer);
+
+    SDL_Texture * get_texture_text(const Object & id) const;
+
+    SDL_Rect get_rect(const Object& id) const;
+
     SDL_Texture* get(const Object& id) const;
+    
     void remove(const Object& id);
+    
     void clear();
+
+    void  objectToString() ;
 
 private:
     std::unordered_map<Object, SDL_Texture*> textures;
+    std::unordered_map<Object, TextureData> textures_text;
+
 };
 
 #endif

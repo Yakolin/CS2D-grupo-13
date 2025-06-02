@@ -1,3 +1,17 @@
 window:
-  width: 500
-  height: 500
+  width: 640
+  height: 480
+
+camera:
+  viewport_logical_width: 640
+  viewport_logical_height: 480
+
+fuente:
+  rute_fuente: "assets/gfx/fonts/sourcesans.ttf"
+  size_fuente: 10
+
+blanco:
+  r: 255
+  g: 255
+  b: 255
+  a: 255

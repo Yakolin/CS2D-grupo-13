@@ -4,10 +4,10 @@ const int FILAS_MAP = 17;
 const int COLUMNAS_MAP = 38;
 
 PlayerView::PlayerView(const float& x, const float& y, const std::string& rute, const float& speed,
-                       Camera* camera_receiver, ManageTexture* manejador,GameConfig& config):
+               Camera* camera_receiver, ManageTexture* manager_texture, GameConfig& config):
         config(config),
-        fil(pasar_pixeles(y)),
-        col(pasar_pixeles(x)),
+        fil(y),
+        col(x),
         rutaPlayer(rute),
         origin_rect({0, 0, 64, 96}),
         destination_rect({static_cast<int>(col), static_cast<int>(fil), 32, 32}),
@@ -17,13 +17,25 @@ PlayerView::PlayerView(const float& x, const float& y, const std::string& rute, 
         item({0, 0}),
         anglePlayer(),
         camera(camera_receiver),
-        manejador(manejador) ,
-        player_id() //!cambiar 
+        manejador(manager_texture) ,
+        player_id() ,//!cambiar 
+        filObjetivo(y),
+        colObjetivo(x)
         {
     calcular();
 }
+void PlayerView::setObjetivoTiles(const float& tile_x,const  float& tile_y) {
+        filObjetivo = tile_y * config.get_tile_height();
+        colObjetivo = tile_x * config.get_tile_width();
+    }
+int PlayerView::pasar_pixeles_x(const float& tile_x) {
+    return tile_x * config.get_tile_width();
+}
 
-int PlayerView::pasar_pixeles(const float& pos) { return pos * 32; }
+int PlayerView::pasar_pixeles_y(const float& tile_y) {
+    return tile_y * config.get_tile_height();
+}
+
 
 void PlayerView::calcular() {
 
@@ -33,20 +45,7 @@ void PlayerView::calcular() {
         return;
     }
     SDL_QueryTexture(tiles_player, nullptr, nullptr, &width_img, &height_img);
-    // std::cout << "Ancho: " << width_img << ", Alto: " << height_img << std::endl;
 }
-
-void PlayerView::draw(SDL_Renderer& renderer) {
-
-    SDL_Texture* tiles_player = manejador->get(Object::PLAYER);
-    origin_rect = {item.col * width_img, item.fil * height_img, width_img / 2, height_img / 3};
-    //                           col=x               fil =y       ancho, alto
-    destination_rect = {static_cast<int>(col) - camera->getx(),static_cast<int>(fil) - camera->gety(),config.get_tile_width(), config.get_tile_height()};
-
-
-    SDL_RenderCopyEx(&renderer, tiles_player, &origin_rect, &destination_rect, anglePlayer, nullptr,SDL_FLIP_NONE);
-}
-
 void PlayerView::add_speed(const SDL_Keycode& tecla) {
 
     if (tecla == SDLK_w || tecla == SDLK_UP) {  // arriba
@@ -59,6 +58,21 @@ void PlayerView::add_speed(const SDL_Keycode& tecla) {
         fil += speed_player;
     }
 }
+
+void PlayerView::draw(SDL_Renderer& renderer) {
+
+    SDL_Texture* tiles_player = manejador->get(Object::PLAYER);
+    origin_rect = {item.col * width_img, item.fil * height_img, width_img / 2, height_img / 3};
+
+    destination_rect = {
+        static_cast<int>(col) - camera->getX(), // col=x
+        static_cast<int>(fil) - camera->getY(), //fil =y
+        config.get_tile_width(),  //ancho
+        config.get_tile_height()}; //alto
+    SDL_RenderCopyEx(&renderer, tiles_player, &origin_rect, &destination_rect, anglePlayer, nullptr,SDL_FLIP_NONE);
+}
+
+
 
 void PlayerView::update_view_angle(const int& mouse_x, const int& mouse_y) {
 
@@ -84,16 +98,15 @@ std::string PlayerView::getRutaPlayer() const { return rutaPlayer; }
 
 float PlayerView::getSpeed() const { return speed_player; }
 
-void PlayerView::setFil(float x) { 
-    std::cout << x << std::endl;
-    
-    fil = x; 
-    }
+void PlayerView::setFil(float y_world) {
+    fil = y_world;
+}
 
-void PlayerView::setCol(float y) { 
-    std::cout << y << std::endl;
-    col = y; 
-    }
+void PlayerView::setCol(float x_world) {
+    col = x_world;
+}
+
+
 
 void PlayerView::setRutaPlayer(const std::string& ruta) { rutaPlayer = ruta; }
 

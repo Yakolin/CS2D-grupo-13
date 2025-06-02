@@ -27,7 +27,7 @@ bool GameLoop::waiting_for_players() { return !this->game_started; }
 
 void GameLoop::run() {
     this->game_started = true;
-    // game.start_game(); esto debe de llamarse posiblemente
+    game.start_game(); //esto debe de llamarse posiblemente
     this->constant_rate_loop.execute();
 }
 void GameLoop::step() {

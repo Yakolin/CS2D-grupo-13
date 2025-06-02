@@ -1,10 +1,16 @@
 #include "gameConfig.h"
 
+
 GameConfig::GameConfig():
     window_width(0),
     window_height(0),
     tile_width(32),
-    tile_height(32)
+    tile_height(32),
+    viewport_width(0),
+    viewport_height(0),
+    font(),
+    size_font(),
+    blanco()
     {
         load("assets/configView.yaml");
     }
@@ -16,12 +22,22 @@ void GameConfig::load(const std::string& file_path){
 
         this->window_width = config["window"]["width"].as<int>();
         this->window_height = config["window"]["height"].as<int>();
+        this->viewport_width = config["camera"]["viewport_logical_width"].as<int>();
+        this->viewport_height = config["camera"]["viewport_logical_height"].as<int>();
+        this->font = config["fuente"]["rute_fuente"].as<std::string>();
+        this->size_font = config["fuente"]["size_fuente"].as<int>();
+        this->blanco.r = config["blanco"]["r"].as<Uint8>();
+        this->blanco.g = config["blanco"]["g"].as<Uint8>();
+        this->blanco.b = config["blanco"]["b"].as<Uint8>();
+        this->blanco.a = config["blanco"]["a"].as<Uint8>();
+
 
     } catch (const YAML::Exception& e) {
         throw std::runtime_error("Error al leer archivo YAML: " + std::string(e.what()));
     }
 
 }
+
 
 std::vector<std::vector<char>> GameConfig::load_map(const std::string& archivo) {
 
@@ -44,30 +60,20 @@ std::vector<std::vector<char>> GameConfig::load_map(const std::string& archivo) 
     entrada.close(); 
     return mapa;
 }
+SDL_Color GameConfig::get_blanco() const {return blanco; }
 
-void GameConfig::calculate_tile_size( const int& cols,const  int& rows) {
-    if (cols <= 0 || rows <= 0) {
-        throw std::invalid_argument("La cantidad de columnas y filas debe ser positiva");
-    }
+int GameConfig::get_window_width() const {return window_width;}
 
-    tile_width = window_width / cols;
-    tile_height = window_height / rows;
-}
-int GameConfig::get_window_width() const {
-    return window_width;
-}
+int GameConfig::get_window_height() const {return window_height;}
 
-int GameConfig::get_window_height() const {
-    return window_height;
-}
+int GameConfig::get_tile_width() const {return tile_width;}
 
-int GameConfig::get_tile_width() const {
-    return tile_width;
-}
+int GameConfig::get_tile_height() const {return tile_height;}
 
-int GameConfig::get_tile_height() const {
-    return tile_height;
-}
+int GameConfig::get_viewpost_height()const {return viewport_height;}
 
+int GameConfig::get_viewpost_width()const {return viewport_width;}
 
+int GameConfig::get_size_font() const {return size_font;}
 
+std::string GameConfig::get_font() const {return font;}

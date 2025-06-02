@@ -25,8 +25,9 @@ public:
             game_zone(game_zone),
             spawneable_zone(spawneable_zone) {}
     virtual ~Player() = default;
-    void reset();
-    virtual PlayerImage get_player_image(Position& position) = 0;
+    void reset(bool full_reset);
+    PlayerImage get_player_image(const Position& position);
+    // Interface
     void damage(uint8_t damage) override;
     virtual void move(const MoveType& move_type) override;
     virtual void reload() override;

@@ -14,7 +14,6 @@
 #include "GameException.h"
 #include "Map.h"
 #include "Player.h"
-#include "PlayerType.h"
 #include "Timer.h"
 using std::map;
 using std::shared_ptr;
@@ -30,17 +29,17 @@ private:
     Timer timer;
     Map map_game;
     bool game_started = false;
-    std::shared_ptr<Player> create_player(player_id_t id, Team team);
+    std::shared_ptr<Player> create_player(player_id_t id);
     shared_ptr<Player> find_player(player_id_t player_id);
     GameImage generate_game_image();
-    void reset_players();
+    void reset_players(bool full_reset);
     bool check_round_finished();
     void change_teams();
 
-    // void charge_map(MapName nombre_enum); Esta funcion deberia de mandarle al mapa , crearlo con 
+    // void charge_map(MapName nombre_enum); Esta funcion deberia de mandarle al mapa , crearlo con
     // el path ya buscado desde el yaml
 public:
-    //Aca el nombre del mapa es inutil, deberia de ser un enum de mapas para saber cuaaal cargar
+    // Aca el nombre del mapa es inutil, deberia de ser un enum de mapas para saber cuaaal cargar
     explicit GameManager(const string& _game_name, const string& map_name):
             game_name(_game_name), map_game(map_name) {}
     ~GameManager();

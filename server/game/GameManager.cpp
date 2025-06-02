@@ -22,26 +22,24 @@ void GameManager::process(ClientAction& action) {
     action.action_to(*player);
 }
 
-std::shared_ptr<Player> GameManager::create_player(player_id_t id, Team team) {
+std::shared_ptr<Player> GameManager::create_player(player_id_t id) {
     Equipement equipement;
     shared_ptr<Player> player;
-    if (team == Team::CT)
-        player = std::make_shared<CounterTerrorist>(id, std::move(equipement), map_game, map_game);
-    else
-        player = std::make_shared<Terrorist>(id, std::move(equipement), map_game, map_game);
+    // Equipement le agrega la bomba solo si es TT podemos hacer al arrancar la ronda!
+    player = std::make_shared<Player>(id, std::move(equipement), map_game, map_game);
     return player;
 }
 void GameManager::add_player(player_id_t& id) {
     Team team = ((players.size() + 1) % 2 == 0) ? Team::CT : Team::TT;
-    shared_ptr<Player> player = create_player(id, team);
+    shared_ptr<Player> player = create_player(id);
     players.insert(make_pair(id, player));
     std::cout << "Añado un jugador a la partida" << id << std::endl;
     players_team.insert(std::make_pair(id, team));
     map_game.add_player(id, player);  // Player es un ICanInteract
 }
-void GameManager::reset_players() {
+void GameManager::reset_players(bool full_reset) {
     for (const auto& player: players) {
-        player.second->reset();
+        player.second->reset(full_reset);
     }
     map_game.respawn_players(players_team);
 }
@@ -64,20 +62,14 @@ void GameManager::start_game() {
         return;
     }
     timer.round_start();
-    reset_players();
+    reset_players(true);
     game_started = true;
 }
 void GameManager::stop_game() {}
 bool GameManager::check_round_finished() { return timer.is_round_over(); }  // Faltan cosas aca
 void GameManager::change_teams() {
     for (const auto& player: players_team) {
-        if (player.second == Team::CT) {
-            players_team[player.first] = Team::TT;
-            players[player.first] = create_player(player.first, players_team[player.first]);
-        } else {
-            players_team[player.first] = Team::CT;
-            players[player.first] = create_player(player.first, players_team[player.first]);
-        }
+        players_team[player.first] = (player.second == Team::CT) ? Team::TT : Team::CT;
     }
 }
 GameImage GameManager::get_frame() {
@@ -89,15 +81,17 @@ GameImage GameManager::get_frame() {
         3. Manejar esas colisiones como balas chocando, etc
     */
     if (check_round_finished()) {
-        std::cout << "Ronda terminada\n";
         round++;
+        bool full_reset = false;
+        std::cout << "Ronda terminada\n";
+        if (round == 5) {
+            // Aca si deberia de resetearse de forma forzada
+            std::cout << "A cambiar de equipos" << std::endl;
+            change_teams();
+            full_reset = true;
+        }
         timer.round_start();
-        reset_players();
-    }
-    if (round == 5) {
-        std::cout << "A cambiar de equipos" << std::endl;
-        change_teams();
-        timer.round_start();
+        reset_players(full_reset);
     }
     map_game.update_map_state();
     return generate_game_image();

@@ -8,7 +8,6 @@ target_sources(CS2D_server
     GameManager.cpp
     Map.cpp
     Player.cpp
-    PlayerType.cpp
 
     PUBLIC
     # .h files
@@ -23,7 +22,6 @@ target_sources(CS2D_server
     Map.h
     MapTypes.h
     Player.h
-    PlayerType.h
     Specials.h
     Weapon.h
     Timer.h

@@ -17,5 +17,6 @@ public:
     virtual void reload() = 0;
     virtual WeaponImage get_weapon_image() = 0;
     explicit Weapon(WeaponCode code): code(code) {}
+    virtual ~Weapon() = default;
 };
 #endif  //  WEAPON_H_

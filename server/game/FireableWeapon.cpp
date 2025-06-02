@@ -25,5 +25,5 @@ void FireableWeapon::reload() {
 }
 WeaponImage FireableWeapon::get_weapon_image() {
     /* Aca deberia de encargarse cada arma de esto...*/
-    return WeaponImage(WeaponCode::GLOCK, current_bullets, magazine, inventory_bullets);
+    return WeaponImage(code, current_bullets, magazine, inventory_bullets);
 }

@@ -92,6 +92,7 @@ GameImage GameManager::get_frame() {
         }
         timer.round_start();
         reset_players(full_reset);
+        // give_bomb() , deberia estar aca posiblemente
     }
     map_game.update_map_state();
     return generate_game_image();

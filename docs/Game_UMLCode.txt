@@ -1,40 +1,62 @@
 @startuml
 
-package Game {
-class GameManager {
+skinparam linetype ortho
+skinparam nodesep 60
+skinparam ranksep 60
+skinparam classFontSize 14
+skinparam classFontStyle bold
+skinparam classAttributeIconSize 0
+skinparam ArrowColor #333333
+
+interface Weapon
+
+interface SpawnableZone{
+virtual void spawn_collider(Collide& collider)
 }
 
-abstract Player {
-    Vector2 position
-    int health
-    void move(Vector2 new_position)
-    virtual PlayerImage info_player() = 0
+interface GameZone{
+virtual void move(player_id_t id,Position& position) = 0;
 }
+
+interface CanInteract {
+ virtual void damage(uint8_t damage) = 0;
+ virtual void equip(Weapon& weapon) = 0;
+}
+
+interface DropeableZone {
+virtual void drop(Weapon& dropeable)
+}
+
+
+class GameManager {
+//POSIBLE STRUCT
+map <player_id_t, Player> players
+map <player_id_t, Team> players_team
+map <player_id_t, Weapon> weapons
+}
+
 class Equipement{
   //Unique pointers a Weapons
 }
-
-class CounterTerrorist {
- PlayerImage info_player() override
-}
-class Terrorist { 
- PlayerImage info_player() override
-}
-
 class Map{
-  std::vector<Bullet> bullets_in_air
-  std::vector<std::unique_ptr<Weapon>> dropped_weapons;
+  std::vector<player_id_t ,player_entity_t> players_positions
+  std::vector<Weapon, Position> weapons_dropped
 }
-class Vector2{
-    float x;
-    float y;
+class CollisionManager
+
+abstract Player {
+    int health
+    virtual PlayerImage info_player() = 0
 }
-class Rectangle {
-Vector2 point_min
-Vector2 point_max
+
+class Bomb { 
+//Posiblemente esta sea conocida por Map y Player,
 }
-class Bullet
-interface Weapon
+
+interface Weapon { 
+    virtual void set_on_action(ISpawneableZone& spawn, player_id_t id, Position& direction) = 0; 
+    virtual void reload() = 0;
+}
 
 abstract FireableWeapon
 
@@ -52,28 +74,20 @@ FireableWeapon <|-- Ak47
 FireableWeapon <|-- Glock
 Weapon <|.. Bomb
 Weapon <|.. Knife
-}
 
-package common {
- class GameImage
- class PlayerImage
-}
 
 GameManager "1"*--"10" Player
-GameManager -- Map
-GameManager --> GameImage
-GameManager --> PlayerImage
-Player --> PlayerImage
-Map --> Vector2
-Map --> Rectangle
-Map --> "*" Player : reference
-Map "1" *--"n" Bullet
-Rectangle *-- Vector2
-Player --> Vector2
-Player <|-- CounterTerrorist 
-Player <|-- Terrorist 
-Player *-- Equipement
-
-Equipement "1" *-- "4" Weapon
-Map "1" *-- "n" Weapon
+GameManager "1" *-- "n" Weapon
+GameManager *--> Map
+SpawnableZone <|.. Map
+Weapon ..> SpawnableZone : conoce a 
+GameZone <|.. Map
+Map *--> CollisionManager
+DropeableZone <|.. Map
+Player ..> GameZone  : conoce
+Player ..> DropeableZone : conoce
+CanInteract <|.. Player
+Player *--> Equipement
+Equipement "1" o--> "4" Weapon
+CollisionManager ..> CanInteract : tiene referencia a 
 @enduml

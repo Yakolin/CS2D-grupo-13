@@ -1,4 +1,4 @@
-#include "Specials.h"
+#include "SpecialWeapons.h"
 
 void Knife::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& direction) {
     ISpawneableZone::damage_collider_t wanted = {

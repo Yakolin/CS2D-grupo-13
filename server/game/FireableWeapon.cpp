@@ -11,15 +11,19 @@ void Glock::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& dire
     }
 }
 void FireableWeapon::reload() {
-    if (max_bullets > 0 && current_bullets < magazine) {  // Si en el inventario tengo >= 0 balas
+    if (inventory_bullets > 0 && current_bullets < magazine) {  // Si en el inventario tengo >= 0 balas
         uint8_t needed_bullets = magazine - current_bullets;
-        uint8_t avalible_bullets = std::min(needed_bullets, max_bullets);
+        uint8_t avalible_bullets = std::min(needed_bullets, inventory_bullets);
         current_bullets += avalible_bullets;
-        max_bullets -= avalible_bullets;
+        inventory_bullets -= avalible_bullets;
         std::cout << "Recargas : " << avalible_bullets
-                  << " balas. Balas restantes en almacenamiento: " << max_bullets << std::endl;
+                  << " balas. Balas restantes en almacenamiento: " << inventory_bullets << std::endl;
     } else {
         std::cout << "No tenes mas balas en el almacenamiento\no no habia porque recargar, ya "
                      "estas lleno\n";
     }
+}
+WeaponImage FireableWeapon::get_weapon_image() {
+    /* Aca deberia de encargarse cada arma de esto...*/
+    return WeaponImage(WeaponCode::GLOCK, current_bullets, magazine, inventory_bullets);
 }

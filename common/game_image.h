@@ -17,10 +17,14 @@ enum class Team { CT, TT };
 
 
 class WeaponImage {
+    public:
+    WeaponImage(WeaponCode weapon_code, uint8_t current_bullets, uint8_t magazine, uint8_t inventory_bullets) : 
+    weapon_code(weapon_code), current_bullets(current_bullets) , magazine(magazine), inventory_bullets(inventory_bullets) {}
     WeaponCode weapon_code;
-    uint8_t bullets;
-    uint8_t magazine;
     uint8_t current_bullets;
+    uint8_t magazine;
+    uint8_t inventory_bullets;
+
 };
 class PlayerImage {
 public:

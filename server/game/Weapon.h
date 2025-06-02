@@ -5,19 +5,17 @@
 #include <memory>
 
 #include "../../common/player_command_types.h"
-
+#include "../../common/game_image.h"
 #include "Colliders.h"
 #include "ISpawneableZone.h"
 class Weapon {
 public:
-    WeaponType type;
-    virtual ~Weapon() = default;
+    WeaponCode code;
     virtual void set_on_action(
             ISpawneableZone& spawn, player_id_t id,
             Position& direction) = 0;  // Recordatorio de este = 0. Significa que es puro
     virtual void reload() = 0;
-
-protected:
-    explicit Weapon(WeaponType type): type(type) {}
+    virtual WeaponImage get_weapon_image() = 0;
+    explicit Weapon(WeaponCode code): code(code) {}
 };
 #endif  //  WEAPON_H_

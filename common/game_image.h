@@ -48,7 +48,7 @@ public:
     // Balas en el aire
     // Bomba
     // Drops
-    // Sonidos)?
+    // Sonidos)? no , eso es mio
 };
 
 #endif  // !GAME_IMAGE_H

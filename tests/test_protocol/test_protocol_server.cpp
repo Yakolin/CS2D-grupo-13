@@ -155,6 +155,7 @@ TEST(ServerProtocolTest, ReadListGamesReturnCorrectCommand) {
     client_thread.join();
 }
 
+
 /*
 TEST(ServerProtocolTest, ReadBuyWeapontReturnCorrectObject) {
     // Arrange
@@ -408,6 +409,7 @@ TEST(ServerProtocolTest, ReadDropReturnCorrectCommand) {
                 client_thread.join();
                 }
                 */
+
 
 TEST(ServerProtocolIntegralTest, ReadCreateGameExecuteGamesMonitorCorrectly) {
 

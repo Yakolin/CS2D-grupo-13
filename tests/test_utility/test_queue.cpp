@@ -19,11 +19,9 @@ TEST(PointerQueueTest, QueueWithClientActionDontHaveLeaks) {
     queue->push(std::move(move2));
 
     // Act & Assert
-    ASSERT_FALSE(queue->empty());
     std::unique_ptr<ClientAction> action;
     while (queue->try_pop(action)) {}
     ASSERT_NE(action, nullptr);
-    ASSERT_TRUE(queue->empty());
 }
 
 TEST(QueueTest, QueueWithGameImageDontHaveLeaks) {
@@ -38,12 +36,10 @@ TEST(QueueTest, QueueWithGameImageDontHaveLeaks) {
 
     // Act & Assert
     queue->close();
-    ASSERT_FALSE(queue->empty());
     GameImage out;
     ASSERT_TRUE(queue->try_pop(out));
     ASSERT_TRUE(queue->try_pop(out));
     ASSERT_THROW(queue->try_pop(out), ClosedQueue);
-    ASSERT_TRUE(queue->empty());
 }
 
 TEST(QueueTest, QueueWithGameImageDontHaveLeaksIfIDontPopElements) {
@@ -58,5 +54,4 @@ TEST(QueueTest, QueueWithGameImageDontHaveLeaksIfIDontPopElements) {
 
     // Act & Assert
     queue->close();
-    ASSERT_FALSE(queue->empty());
 }

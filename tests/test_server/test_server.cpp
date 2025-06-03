@@ -27,6 +27,7 @@ TEST(ServerTest, ClientHandlerStopRunningCorrectly) {
     // Act
     client->start();
     client->stop();
+    client->join();
 
     // Assert
     EXPECT_FALSE(client->is_alive());
@@ -66,10 +67,11 @@ TEST(ServerTest, GameWithOnePlayerCreatesCorrectly) {
     EXPECT_FALSE(games_monitor.has_active_games());
 
     client->stop();
+    client->join();
     client_thread.join();
 }
 
-TEST(ServerTest, GameWithOnePlayerAndOneActionCreateAndDestroyCorrectly) {
+TEST(ServerTest, GameWithOnePlayerAndAFewActionInQueueCreateAndDestroyCorrectly) {
     Socket server_socket("9999");
 
     std::thread client_thread([]() {
@@ -106,5 +108,6 @@ TEST(ServerTest, GameWithOnePlayerAndOneActionCreateAndDestroyCorrectly) {
     EXPECT_FALSE(games_monitor.has_active_games());
 
     client->stop();
+    client->join();
     client_thread.join();
 }

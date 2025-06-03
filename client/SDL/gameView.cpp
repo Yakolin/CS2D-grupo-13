@@ -1,29 +1,27 @@
 #include "gameView.h"
 
-GameView::GameView(Socket&& skt) :
-    config(),
-    controller(std::move(skt)),
-    leyenda(),
-    texts(),
-    ids(),
-    ventana(nullptr),
-    renderer(nullptr),
-    backgroundTexture(nullptr),
-    player(nullptr),
-    camera(config.get_window_width(), config.get_window_height()),
-    manger_texture(),
-    players(),
-    snapshot(),
-    map(nullptr),
-    text(nullptr),
-    lastTime(SDL_GetTicks())  // inicialización directa aquí
+GameView::GameView(Socket&& skt):
+        config(),
+        controller(std::move(skt)),
+        leyenda(),
+        texts(),
+        ids(),
+        ventana(nullptr),
+        renderer(nullptr),
+        backgroundTexture(nullptr),
+        player(nullptr),
+        camera(config.get_window_width(), config.get_window_height()),
+        manger_texture(),
+        players(),
+        snapshot(),
+        map(nullptr),
+        text(nullptr),
+        lastTime(SDL_GetTicks())  // inicialización directa aquí
 {
-    texts = {
-        {TextView::VIDA, "Vida : 0 "},
-        {TextView::PUNTOS, "Puntos : 0"},
-        {TextView::MUERTES, "Muertes: 0"},
-        {TextView::RONDA, "Ronda n°: 1"}
-    };
+    texts = {{TextView::VIDA, "Vida : 0 "},
+             {TextView::PUNTOS, "Puntos : 0"},
+             {TextView::MUERTES, "Muertes: 0"},
+             {TextView::RONDA, "Ronda n°: 1"}};
 
     leyenda['#'] = "assets/gfx/backgrounds/nuke.png";
     leyenda[' '] = "assets/gfx/backgrounds/stone1.jpg";
@@ -47,7 +45,7 @@ GameView::GameView(Socket&& skt) :
 }
 
 bool GameView::cargar_skins(const std::map<Object, std::string>& rutas_skins) {
-    for (const auto& par : rutas_skins) {
+    for (const auto& par: rutas_skins) {
         if (!this->manger_texture.load(par.first, par.second, renderer)) {
             std::cerr << "Fallo al cargar la textura para skin: " << std::endl;
             return false;
@@ -65,8 +63,9 @@ bool GameView::load_text() {
 
     SDL_Color color = config.get_blanco();
 
-    for (const auto& par : texts) {
-        if (!this->manger_texture.load_texture_text(par.first, fuente, color, par.second, renderer)) {
+    for (const auto& par: texts) {
+        if (!this->manger_texture.load_texture_text(par.first, fuente, color, par.second,
+                                                    renderer)) {
             std::cerr << "Fallo al cargar la textura de texto : " << std::endl;
             TTF_CloseFont(fuente);
             return false;
@@ -83,11 +82,9 @@ bool GameView::init_game() {
         return false;
     }
 
-    ventana = SDL_CreateWindow("Mapa", SDL_WINDOWPOS_CENTERED,
-                              SDL_WINDOWPOS_CENTERED,
-                              config.get_window_width(),
-                              config.get_window_height(),
-                              SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+    ventana = SDL_CreateWindow("Mapa", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+                               config.get_window_width(), config.get_window_height(),
+                               SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
     if (!ventana) {
         throw std::runtime_error(std::string("Error al crear la ventana: ") + SDL_GetError());
         return false;
@@ -125,14 +122,14 @@ bool GameView::init_game() {
 }
 
 void GameView::load_textures() {
-    for (const auto& par : leyenda) {
+    for (const auto& par: leyenda) {
         manger_texture.load(ids.at(par.first), par.second, renderer);
     }
 }
 
-bool GameView::load_weapon(const  std::map<Weapon, std::string >& route_weapons){
-    
-    for (const auto& par : route_weapons) {
+bool GameView::load_weapon(const std::map<Weapon, std::string>& route_weapons) {
+
+    for (const auto& par: route_weapons) {
         if (!this->manger_texture.load_weapons(par.first, par.second, renderer)) {
             std::cerr << "Fallo al cargar la textura del arma: " << std::endl;
             return false;
@@ -140,8 +137,8 @@ bool GameView::load_weapon(const  std::map<Weapon, std::string >& route_weapons)
     }
     return true;
 }
-void GameView::reset_values(PlayerView* player, const float& x_pixeles,const float& y_pixeles) {
-    
+void GameView::reset_values(PlayerView* player, const float& x_pixeles, const float& y_pixeles) {
+
     player->setPrevPos(player->getXActual(), player->getYActual());
     player->setTargetPos(x_pixeles, y_pixeles);
     player->setInterpTime(0.0f);
@@ -151,34 +148,36 @@ void GameView::reset_values(PlayerView* player, const float& x_pixeles,const flo
     player->setFil(y_pixeles);
 }
 void GameView::update_status_game() {
-    
+
     int tile_width = config.get_tile_width();
     int tile_height = config.get_tile_height();
 
-    for (PlayerImage& player_img : this->snapshot.players_images) {
+    for (PlayerImage& player_img: this->snapshot.players_images) {
         player_id_t id = player_img.player_id;
 
         float x_pixeles = player_img.position.x * tile_width;
         float y_pixeles = player_img.position.y * tile_height;
 
         if (id == snapshot.client_id) {
-            reset_values(player, x_pixeles, y_pixeles); 
+            reset_values(player, x_pixeles, y_pixeles);
 
         } else if (players.find(id) == players.end()) {
-            PlayerView* nuevo_jugador = new PlayerView(x_pixeles, y_pixeles,"assets/gfx/terrorist/t2.png",200f, &camera, &manger_texture, config);
+            PlayerView* nuevo_jugador =
+                    new PlayerView(x_pixeles, y_pixeles, "assets/gfx/terrorist/t2.png", 200.0f,
+                                   &camera, &manger_texture, config);
             players[id] = nuevo_jugador;
         } else {
             PlayerView* player_aux = players.at(id);
-            reset_values(player_aux, x_pixeles,y_pixeles);
+            reset_values(player_aux, x_pixeles, y_pixeles);
         }
     }
 }
 
 void GameView::draw_players() {
-    for (auto& pair : this->players) {
+    for (auto& pair: this->players) {
         PlayerView* player = pair.second;
         if (player) {
-            
+
             player->draw(*renderer);
         }
     }
@@ -186,17 +185,17 @@ void GameView::draw_players() {
 bool GameView::handle_events(const SDL_Event& event) {
     if (event.type == SDL_QUIT) {
         return false;
-    
+
     } else if (event.type == SDL_KEYDOWN) {
         SDL_Keycode tecla = event.key.keysym.sym;
-        player->add_speed(tecla);  
-        controller.sender_mov_player(tecla);   // Notifica al controller (si querés)
+        player->add_speed(tecla);
+        controller.sender_mov_player(tecla);  // Notifica al controller (si querés)
 
         return true;
 
     } else if (event.type == SDL_KEYUP) {
         SDL_Keycode tecla = event.key.keysym.sym;
-        player->stop_speed(tecla);             // Detiene movimiento
+        player->stop_speed(tecla);  // Detiene movimiento
         return true;
 
     } else if (event.type == SDL_MOUSEMOTION) {
@@ -249,8 +248,7 @@ void GameView::draw_game() {
     };
 
     auto game_step = [&]() {
-
-        Uint32 currentTime = SDL_GetTicks(); 
+        Uint32 currentTime = SDL_GetTicks();
         float deltaTime = (currentTime - lastTime) / 1000.0f;
         lastTime = currentTime;
 
@@ -259,12 +257,13 @@ void GameView::draw_game() {
         }
         player->update(deltaTime);
 
-        for (auto& pair : players) {
+        for (auto& pair: players) {
             if (pair.second != nullptr && pair.second != player) {
                 pair.second->update(deltaTime);
             }
         }
-        camera.update(player->getYActual(), player->getXActual(),player->getWidthImg(), player->getHeightImg(),map->getMapWidth(), map->getMapHeight());
+        camera.update(player->getYActual(), player->getXActual(), player->getWidthImg(),
+                      player->getHeightImg(), map->getMapWidth(), map->getMapHeight());
 
         // Render
         SDL_RenderClear(renderer);
@@ -289,7 +288,7 @@ void GameView::draw_game() {
 }
 
 GameView::~GameView() {
-    for (auto& p : players) {
+    for (auto& p: players) {
         delete p.second;
     }
     players.clear();

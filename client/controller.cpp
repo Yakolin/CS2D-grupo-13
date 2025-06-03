@@ -45,12 +45,12 @@ void Controller::start() {
     this->sender.start();
 }
 void Controller::stop() {
-    this->skt.shutdown(2);
     this->receiver.stop();
     this->sender.stop();
+    this->skt.shutdown(2);
+    this->skt.close();
     this->receiver.join();
     this->sender.join();
-    this->skt.close();
 }
 
 

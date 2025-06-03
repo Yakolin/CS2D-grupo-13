@@ -25,9 +25,10 @@ private:
     std::string map_name;
     std::vector<std::vector<char>> walls;
     Rectangle spawn_CT, spawn_TT;
-    std::map<player_id_t, player_entity_t> players_in_map;
     CollisionManager collision_manager;
+    std::map<player_id_t, player_entity_t> players_in_map;
     std::map<player_id_t, std::unique_ptr<Collider>> damage_colliders;
+    std::vector<std::unique_ptr<Weapon>> dropped_weapons;
     void charge_zone(Rectangle& zone, const Position& position);
     void charge_map(const std::string& archivo);
 

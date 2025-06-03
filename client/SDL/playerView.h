@@ -51,7 +51,11 @@ public:
 
     void setFil(float newFil);
     void setCol(float newCol);
+    void setXActual(float x);
+    void setYActual(float y);
     void setSpeed(float newSpeed);
+    float getXActual();
+    float getYActual();
     void setRutaPlayer(const std::string& nuevaRuta);
 
 private:
@@ -72,8 +76,8 @@ private:
     int player_id;
     float x_actual;
     float y_actual;
-    float velocity_x;  // Velocity horizontal (píxeles/segundo)
-    float velocity_y;  // Velocity vertical
+    float velocity_x;  
+    float velocity_y; 
 
 
     void calcular();

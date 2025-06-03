@@ -138,13 +138,14 @@ void GameView::update_status_game() {
     for (PlayerImage& player_img : this->snapshot.players_images) {
         player_id_t id = player_img.player_id;
 
-        // Convertimos coordenadas lógicas a píxeles
         float x_pixeles = player_img.position.x * tile_width;
         float y_pixeles = player_img.position.y * tile_height;
 
         if (id == snapshot.client_id) {
             player->setCol(x_pixeles);
             player->setFil(y_pixeles);
+            player->setXActual(x_pixeles);
+            player->setYActual(y_pixeles);
         } else if (players.find(id) == players.end()) {
             PlayerView* nuevo_jugador = new PlayerView(x_pixeles, y_pixeles,"assets/gfx/terrorist/t2.png",2.5f, &camera, &manger_texture, config);
             players[id] = nuevo_jugador;
@@ -152,6 +153,8 @@ void GameView::update_status_game() {
             PlayerView* player_aux = players.at(id);
             player_aux->setCol(x_pixeles);
             player_aux->setFil(y_pixeles);
+            player_aux->setXActual(x_pixeles);
+            player_aux->setYActual(y_pixeles);
         }
     }
 }
@@ -171,7 +174,7 @@ bool GameView::handle_events(const SDL_Event& event) {
     
     } else if (event.type == SDL_KEYDOWN) {
         SDL_Keycode tecla = event.key.keysym.sym;
-        player->add_speed(tecla);              // Empieza movimiento
+        player->add_speed(tecla);  
         controller.sender_mov_player(tecla);   // Notifica al controller (si querés)
 
         return true;
@@ -239,12 +242,7 @@ void GameView::draw_game() {
             update_status_game();
         }
         player->update(deltaTime);
-        // Actualizar cámara
-        camera.update(
-            player->getFil(), player->getCol(),
-            player->getWidthImg(), player->getHeightImg(),
-            map->getMapWidth(), map->getMapHeight()
-        );
+        camera.update(player->getYActual(), player->getXActual(),player->getWidthImg(), player->getHeightImg(),map->getMapWidth(), map->getMapHeight());
 
         // Render
         SDL_RenderClear(renderer);

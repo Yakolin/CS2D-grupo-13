@@ -33,7 +33,7 @@ void Controller::sender_mov_player(SDL_Keycode key) {
     } else if (key == SDLK_DOWN || key == SDLK_s) {
         mov = MoveType::UP;  // Polaridad YA cambiada!
     }
-
+    std::cout << "----------------enviando mov --------------------------\n ";
     std::unique_ptr<InterfaceClientAction> action = std::make_unique<ClientSpace::Move>(mov);
     send_queue->push(std::move(action));
     std::cout << static_cast<int>(mov) << std::endl;
@@ -52,12 +52,15 @@ void Controller::stop() {
     this->sender.join();
     this->skt.close();
 }
+
+
 bool Controller::has_game_image(GameImage& snapshot) {
     if(recv_queue->empty()){
         return false ;
     }
 
     snapshot = recv_queue->pop();
+    std::cout << "------------------recibiendo de la cola ------------------------\n ";
 
     for (size_t i = 0; i < snapshot.players_images.size(); i++) {
         PlayerImage p = snapshot.players_images[i];

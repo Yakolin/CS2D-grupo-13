@@ -143,6 +143,13 @@ void PlayerView::setCol(float x_world) {
 }
 
 
+void PlayerView::setXActual(float x) { x_actual = x; }
+void PlayerView::setYActual(float y) { y_actual = y; }
+
+
+
+float PlayerView::getXActual() {return  x_actual; }
+float PlayerView::getYActual() { return y_actual; }
 
 void PlayerView::setRutaPlayer(const std::string& ruta) { rutaPlayer = ruta; }
 

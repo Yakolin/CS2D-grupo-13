@@ -27,9 +27,13 @@ PlayerView::PlayerView(const float& x, const float& y, const std::string& rute, 
         prev_pos({x, y}),
         target_pos({x, y}),
         interp_duration(0.1f), // Duración de la interpolación en segundos
-        interp_time(1.0f) 
+        interp_time(1.0f) ,
+        weapons(),
+        activar_weapon(false)
         {
     calcular();
+    WeaponView* ak47 = new WeaponView(*camera, *manejador, Weapon::AK47, x, y, anglePlayer);
+    weapons[Weapon::AK47] = ak47;
 }
 
 void PlayerView::setPrevPos(const float& new_x, const float& new_y) {
@@ -55,15 +59,7 @@ int PlayerView::pasar_pixeles_y(const float& tile_y) {
     return tile_y * config.get_tile_height();
 }
 
-/*void PlayerView::update(const float& delta_time) {
 
-    x_actual += velocity_x * delta_time;
-    y_actual += velocity_y * delta_time;
-
-    // actualizar tiles (fil y col) según posición actual
-    col = x_actual / config.get_tile_width();
-    fil = y_actual / config.get_tile_height();
-}*/
 void PlayerView::update(const float& deltaTime) {
 
     if (interp_time < interp_duration) {
@@ -111,7 +107,16 @@ void PlayerView::stop_speed(const SDL_Keycode& tecla) {
     }
 }
 
+void PlayerView::activate_weapon(const Weapon& weapon) {
 
+    if (weapons.find(weapon) != weapons.end()) {
+        activar_weapon = true;
+        weapons[weapon]->setUsed(true);
+    } else {
+        std::cerr << "Error: Arma no encontrada." << std::endl;
+    }
+
+}
 void PlayerView::draw(SDL_Renderer& renderer) {
 
     SDL_Texture* tiles_player = manejador->get(Object::PLAYER);
@@ -123,6 +128,14 @@ void PlayerView::draw(SDL_Renderer& renderer) {
         config.get_tile_width(),  //ancho
         config.get_tile_height()}; //alto
     SDL_RenderCopyEx(&renderer, tiles_player, &origin_rect, &destination_rect, anglePlayer, nullptr,SDL_FLIP_NONE);
+
+    if(activar_weapon) {
+
+        WeaponView* weapon_view = weapons[Weapon::AK47];
+        weapon_view->update(static_cast<int>(x_actual), static_cast<int>(y_actual), anglePlayer);
+        weapon_view->draw(renderer);
+    
+    }
 }
 
 

@@ -4,7 +4,7 @@
 #include <map>
 #include <string>
 #include <vector>
-
+#include "weaponView.h"
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_render.h>
@@ -27,6 +27,8 @@ public:
     void add_speed(const SDL_Keycode& tecla);
 
     void stop_speed(const SDL_Keycode& tecla);
+
+    void activate_weapon(const Weapon& weapon);
 
     void draw(SDL_Renderer& renderer) override;
 
@@ -81,6 +83,8 @@ private:
     Coordenada target_pos;
     float interp_duration;
     float interp_time;
+    std::map<Weapon,WeaponView* > weapons;
+    bool activar_weapon;
 
 
     void calcular();

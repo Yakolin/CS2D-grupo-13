@@ -211,6 +211,11 @@ bool GameView::handle_events(const SDL_Event& event) {
             this->map->update_map_dimensions();
             printf("Nuevo mapa width: %d, height: %d\n", map->getMapWidth(), map->getMapHeight());
         }
+    } if (event.type == SDL_MOUSEBUTTONDOWN) {
+        if (event.button.button == SDL_BUTTON_LEFT) {
+            player->activate_weapon(Weapon::AK47);  
+            printf("Clic izquierdo detectado en (%d, %d)\n",event.button.x, event.button.y);
+        }
     }
 
     return true;

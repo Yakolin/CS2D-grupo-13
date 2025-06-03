@@ -36,6 +36,13 @@ bool ManageTexture::load_weapons(const Weapon& id, const std::string& filePath, 
     textures_weapons[id] = texture;
     return true;
 }
+SDL_Texture* ManageTexture::get_weapon(const Weapon& id) const {
+    auto it = textures_weapons.find(id);
+    if (it != textures_weapons.end()) {
+        return it->second;
+    }
+    return nullptr;
+}
 
 bool ManageTexture::load_texture_text(const TextView& id, TTF_Font* fuente, SDL_Color& color, const std::string& text, SDL_Renderer* renderer) {
     

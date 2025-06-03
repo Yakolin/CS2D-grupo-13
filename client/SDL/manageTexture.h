@@ -15,6 +15,8 @@ public:
 
     bool load_weapons(const Weapon& id, const std::string& filePath, SDL_Renderer* renderer);
 
+    SDL_Texture* get_weapon(const Weapon& id) const;
+
     bool load_texture_text(const TextView& id,TTF_Font* fuente, SDL_Color& color,const std::string& text, SDL_Renderer* renderer);
 
     SDL_Texture * get_texture_text(const TextView & id) const;

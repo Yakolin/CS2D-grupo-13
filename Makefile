@@ -32,11 +32,11 @@ run-server:
 	./build/CS2D_server 7777
 
 valgrind-server:
-	valgrind ./build/CS2D_server 7777
+	valgrind --leak-check=full --show-leak-kinds=all ./build/CS2D_server 7777
 
 
 valgrind-debug: compile-debug
-	valgrind ./build/CS2D_tests
+	valgrind --leak-check=full --show-leak-kinds=all ./build/CS2D_tests
 
 all: clean valgrind-debug
 

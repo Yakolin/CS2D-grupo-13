@@ -15,8 +15,25 @@ bool ManageTexture::load(const Object& id, const std::string& filePath, SDL_Rend
         return false;
     }
 
-    // Guardamos solo la textura para imágenes normales
     textures[id] = texture;
+    return true;
+}
+
+bool ManageTexture::load_weapons(const Weapon& id, const std::string& filePath, SDL_Renderer* renderer) {
+    
+    SDL_Surface* surface = IMG_Load(filePath.c_str());
+    if (!surface) {
+        std::cerr << "Error cargando imagen: " << IMG_GetError() << std::endl;
+        return false;
+    }
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
+    SDL_FreeSurface(surface);
+    if (!texture) {
+        std::cerr << "Error creando textura de weapon: " << SDL_GetError() << std::endl;
+        return false;
+    }
+
+    textures_weapons[id] = texture;
     return true;
 }
 

@@ -8,7 +8,7 @@
 #include <stdexcept>
 #include <string>
 #include <vector>
-
+#include <utility>
 #include <SDL2/SDL.h>
 
 #include "../common/game_image.h"

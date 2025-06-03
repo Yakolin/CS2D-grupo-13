@@ -130,6 +130,26 @@ void GameView::load_textures() {
     }
 }
 
+bool GameView::load_weapon(const  std::map<Weapon, std::string >& route_weapons){
+    
+    for (const auto& par : route_weapons) {
+        if (!this->manger_texture.load_weapons(par.first, par.second, renderer)) {
+            std::cerr << "Fallo al cargar la textura del arma: " << std::endl;
+            return false;
+        }
+    }
+    return true;
+}
+void GameView::reset_values(PlayerView* player, const float& x_pixeles,const float& y_pixeles) {
+    
+    player->setPrevPos(player->getXActual(), player->getYActual());
+    player->setTargetPos(x_pixeles, y_pixeles);
+    player->setInterpTime(0.0f);
+    player->setInterpDuration(0.1f);
+
+    player->setCol(x_pixeles);
+    player->setFil(y_pixeles);
+}
 void GameView::update_status_game() {
     
     int tile_width = config.get_tile_width();
@@ -142,19 +162,14 @@ void GameView::update_status_game() {
         float y_pixeles = player_img.position.y * tile_height;
 
         if (id == snapshot.client_id) {
-            player->setCol(x_pixeles);
-            player->setFil(y_pixeles);
-            player->setXActual(x_pixeles);
-            player->setYActual(y_pixeles);
+            reset_values(player, x_pixeles, y_pixeles); 
+
         } else if (players.find(id) == players.end()) {
-            PlayerView* nuevo_jugador = new PlayerView(x_pixeles, y_pixeles,"assets/gfx/terrorist/t2.png",2.5f, &camera, &manger_texture, config);
+            PlayerView* nuevo_jugador = new PlayerView(x_pixeles, y_pixeles,"assets/gfx/terrorist/t2.png",200f, &camera, &manger_texture, config);
             players[id] = nuevo_jugador;
         } else {
             PlayerView* player_aux = players.at(id);
-            player_aux->setCol(x_pixeles);
-            player_aux->setFil(y_pixeles);
-            player_aux->setXActual(x_pixeles);
-            player_aux->setYActual(y_pixeles);
+            reset_values(player_aux, x_pixeles,y_pixeles);
         }
     }
 }
@@ -234,7 +249,8 @@ void GameView::draw_game() {
     };
 
     auto game_step = [&]() {
-        Uint32 currentTime = SDL_GetTicks();  // Milisegundos desde que se inició SDL
+
+        Uint32 currentTime = SDL_GetTicks(); 
         float deltaTime = (currentTime - lastTime) / 1000.0f;
         lastTime = currentTime;
 
@@ -242,6 +258,12 @@ void GameView::draw_game() {
             update_status_game();
         }
         player->update(deltaTime);
+
+        for (auto& pair : players) {
+            if (pair.second != nullptr && pair.second != player) {
+                pair.second->update(deltaTime);
+            }
+        }
         camera.update(player->getYActual(), player->getXActual(),player->getWidthImg(), player->getHeightImg(),map->getMapWidth(), map->getMapHeight());
 
         // Render

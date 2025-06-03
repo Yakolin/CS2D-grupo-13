@@ -7,7 +7,24 @@
 #include <QTabWidget>
 
 Vista::Vista(int& argc, char* argv[])
-    : argc(argc), argv(argv), skt(argv[1], argv[2]), protocolo(skt),opcionElegida(LobbyCommandType::NONE), rutas_skins() {
+    : argc(argc), 
+    argv(argv), 
+    skt(argv[1],argv[2]), 
+    protocolo(skt),
+    opcionElegida(LobbyCommandType::NONE), 
+    rutas_skins(),
+    route_weapons() 
+    {
+        
+        route_weapons = {
+        {Weapon::AK47, "assets/gfx/weapons/ak47.png"},
+        {Weapon::AWP, "assets/gfx/weapons/awp.png"},
+        {Weapon::SNIKE , "assets/gfx/weapons/knife.png"}, 
+        {Weapon::AK47, "assets/gfx/weapons/m3.png"},
+        {Weapon::GLOCK , "assets/gfx/weapons/glock.png"},
+        {Weapon::BOMB, "assets/gfx/weapons/bomb.png"},
+        };
+        
         rutas_skins = {
         {Object::PHOENIX, "assets/gfx/terrorist/t2.png"},
         {Object::L337_KREW, "assets/gfx/terrorist/t4.png"},
@@ -40,16 +57,16 @@ void Vista::run() {
     
     try {
         GameView gameView(std::move(skt));
-        if(!gameView.init_game() || !gameView.cargar_skins(rutas_skins))
+        if(!gameView.init_game() || !gameView.cargar_skins(rutas_skins) || !gameView.load_weapon(route_weapons))
             throw std::runtime_error(std::string("Error a inicializar game") );
 
 
         if(opcionElegida == LobbyCommandType::CREATE_GAME){
-            if(!gameView.add_player(1,1,200.0f, rutas_skins.at(Object::GUERRILLA))){
+            if(!gameView.add_player(11,4,200.0f, rutas_skins.at(Object::GUERRILLA))){
                 return;
             }
         }else{
-            if(!gameView.add_player(0,0,200.0f, rutas_skins.at(Object::PHOENIX))){
+            if(!gameView.add_player(23,9,200.0f, rutas_skins.at(Object::PHOENIX))){
                 return;
             }
         }

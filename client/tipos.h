@@ -11,6 +11,25 @@ enum class ItemCounterTerrorism { SEAL, GSG9, SAS, GIGN };
 
 enum class TextView {VIDA, PUNTOS,MUERTES,RONDA};
 
+enum class Weapon {
+    AK47,
+    M4A1,
+    AUG,
+    FAMAS,
+    GALIL,
+    SCAR20,
+    AWP,
+    SSG08,
+    P90,
+    MP5,
+    UMP45,
+    MAC10,
+    P250,
+    DEAGLE,
+    GLOCK,
+    SNIKE,
+    BOMB
+};   
 enum class Object {
     STONE,
     WALL,
@@ -74,7 +93,10 @@ struct TextureData {
     int width;
     int height;
 };
-
+struct Coordenada{
+    float x;
+    float y;
+};
 struct ItemSprite {
     int fil;
     int col;

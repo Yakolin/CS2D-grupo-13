@@ -28,4 +28,7 @@ repos:
             "--language=c++",
             "--std=c++20",
             "--error-exitcode=1",
+            "-Dslots=", 
+            "-Dsignals=", 
+            "-DQ_OBJECT=",
           ]

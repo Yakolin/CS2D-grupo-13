@@ -20,8 +20,10 @@ class PlayerView: public Renderizable {
 public:
     explicit PlayerView(const float& x, const float& y, const std::string& rute, const float& speed,
                Camera* camera_reseiver, ManageTexture* manger_texture, GameConfig& config);
+    void setPrevPos(const float& new_x, const float& new_y);
+    void setTargetPos(const float& new_x, const float& new_y);
     ~PlayerView();
-
+    void setInterpDuration(const float& duration);
     void add_speed(const SDL_Keycode& tecla);
 
     void stop_speed(const SDL_Keycode& tecla);
@@ -42,12 +44,9 @@ public:
     void setVelY(float vy);
     float getVelX() const;
     float getVelY() const;
+    void setInterpTime(const float& time);
     int pasar_pixeles_x(const float& tile_x);
     int pasar_pixeles_y(const float& tile_y) ;
-
-    void updatePosition(float deltaX, float deltaY);
-
-    void updateAnimation(int fila_animacion, int columna_animacion);
 
     void setFil(float newFil);
     void setCol(float newCol);
@@ -78,6 +77,10 @@ private:
     float y_actual;
     float velocity_x;  
     float velocity_y; 
+    Coordenada prev_pos;
+    Coordenada target_pos;
+    float interp_duration;
+    float interp_time;
 
 
     void calcular();

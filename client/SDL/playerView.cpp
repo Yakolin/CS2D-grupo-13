@@ -20,14 +20,33 @@ PlayerView::PlayerView(const float& x, const float& y, const std::string& rute, 
         manejador(manager_texture) ,
         player_id() ,//!cambiar 
 
-        x_actual(0),
-        y_actual(0),
+        x_actual(x),
+        y_actual(y),
         velocity_x(0),
-        velocity_y( 0)
+        velocity_y( 0),
+        prev_pos({x, y}),
+        target_pos({x, y}),
+        interp_duration(0.1f), // Duración de la interpolación en segundos
+        interp_time(1.0f) 
         {
     calcular();
 }
 
+void PlayerView::setPrevPos(const float& new_x, const float& new_y) {
+    prev_pos.x = new_x;
+    prev_pos.y = new_y;
+}
+void PlayerView::setTargetPos(const float& new_x, const float& new_y) {
+    target_pos.x = new_x; 
+    target_pos.y = new_y;
+}
+
+void PlayerView::setInterpDuration(const float& duration) {
+    interp_duration = duration;
+}
+void PlayerView::setInterpTime(const float& time) {
+    interp_time = time;
+}
 int PlayerView::pasar_pixeles_x(const float& tile_x) {
     return tile_x * config.get_tile_width();
 }
@@ -36,7 +55,7 @@ int PlayerView::pasar_pixeles_y(const float& tile_y) {
     return tile_y * config.get_tile_height();
 }
 
-void PlayerView::update(const float& delta_time) {
+/*void PlayerView::update(const float& delta_time) {
 
     x_actual += velocity_x * delta_time;
     y_actual += velocity_y * delta_time;
@@ -44,20 +63,18 @@ void PlayerView::update(const float& delta_time) {
     // actualizar tiles (fil y col) según posición actual
     col = x_actual / config.get_tile_width();
     fil = y_actual / config.get_tile_height();
-}
+}*/
+void PlayerView::update(const float& deltaTime) {
 
-void PlayerView::updatePosition(float deltaX, float deltaY) {
-    x_actual += deltaX * speed_player;
-    y_actual += deltaY * speed_player;
-
-    // Actualiza fil y col en función de x_actual y y_actual (en tiles)
-    col = x_actual / config.get_tile_width();
-    fil = y_actual / config.get_tile_height();
-}
-
-void PlayerView::updateAnimation(int fila_animacion, int columna_animacion) {
-    item.fil = fila_animacion;
-    item.col = columna_animacion;
+    if (interp_time < interp_duration) {
+        interp_time += deltaTime;
+        float t = std::min(interp_time / interp_duration, 1.0f);
+        x_actual = prev_pos.x + (target_pos.x - prev_pos.x) * t;
+        y_actual = prev_pos.y + (target_pos.y - prev_pos.y) * t;
+    } else {
+        x_actual = target_pos.x;
+        y_actual = target_pos.y;
+    }
 }
 
 void PlayerView::calcular() {

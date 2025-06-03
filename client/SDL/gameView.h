@@ -75,6 +75,10 @@ public:
 
     void start();
 
+    bool load_weapon(const  std::map<Weapon, std::string >& route_weapons);
+
+    void reset_values(PlayerView* player, const float& x_pixeles,const float& y_pixeles);
+
 
     ~GameView();
 };

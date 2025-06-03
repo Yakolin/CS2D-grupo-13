@@ -17,7 +17,7 @@
 #include "SDL/mapView.h"
 #include "model/protocol.h"
 #include "model/receiver.h"  // necesario para recibir cosas
-
+#include <map>
 #include "controller.h"
 
 class Vista {
@@ -29,14 +29,13 @@ public:
     ClientProtocol protocolo;
     LobbyCommandType opcionElegida;
     std::map<Object, std::string > rutas_skins;
+    std::map<Weapon, std::string > route_weapons;
 
 
     explicit Vista(int& argc, char* argv[]);
     void run();
     ~Vista();
 private:
-
-    void add_player_game(const LobbyCommandType& tipo) ;
 };
 
 #endif  // VISTA_H

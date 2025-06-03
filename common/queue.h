@@ -14,6 +14,10 @@ struct ClosedQueue: public std::runtime_error {
     ClosedQueue(): std::runtime_error("The queue is closed") {}
 };
 
+struct QueueAlreadyClosed: public std::runtime_error {
+    QueueAlreadyClosed(): std::runtime_error("The queue is already closed.") {};
+};
+
 /*
  * Multiproducer/Multiconsumer Blocking Queue (MPMC)
  *
@@ -166,7 +170,7 @@ public:
         std::unique_lock<std::mutex> lck(mtx);
 
         if (closed) {
-            throw std::runtime_error("The queue is already closed.");
+            throw QueueAlreadyClosed();
         }
 
         closed = true;
@@ -281,7 +285,7 @@ public:
         std::unique_lock<std::mutex> lck(mtx);
 
         if (closed) {
-            throw std::runtime_error("The queue is already closed.");
+            throw QueueAlreadyClosed();
         }
 
         closed = true;
@@ -314,51 +318,112 @@ private:
 };
 
 // Especialización parcial para std::unique_ptr
-template <typename T>
-class Queue<std::unique_ptr<T>>: public Queue<T*> {
+template <typename T, class C>
+class Queue<std::unique_ptr<T>, C> {
+private:
+    std::queue<std::unique_ptr<T>, C> q;
+    const unsigned int max_size;
+    bool closed = false;
+    std::mutex mtx;
+    std::condition_variable is_not_full;
+    std::condition_variable is_not_empty;
+
 public:
-    explicit Queue(const unsigned int max_size): Queue<T*>(max_size) {}
+    Queue(): max_size(UINT_MAX - 1), closed(false) {}
+    explicit Queue(const unsigned int max_size): max_size(max_size), closed(false) {}
 
-    // try_push para unique_ptr
-    bool try_push(std::unique_ptr<T> const& val) { return Queue<T*>::try_push(val.get()); }
+    bool try_push(std::unique_ptr<T> val) {
+        std::unique_lock<std::mutex> lck(mtx);
 
-    // try_push para mover unique_ptr
-    bool try_push(std::unique_ptr<T>&& val) {
-        T* raw_ptr = val.release();
-        return Queue<T*>::try_push(raw_ptr);
-    }
-
-    // try_pop para unique_ptr
-    bool try_pop(std::unique_ptr<T>& val) {
-        T* raw_ptr = nullptr;
-        bool result = Queue<T*>::try_pop(raw_ptr);
-        if (result) {
-            val.reset(raw_ptr);
+        if (closed) {
+            throw ClosedQueue();
         }
-        return result;
+
+        if (q.size() == this->max_size) {
+            return false;
+        }
+
+        if (q.empty()) {
+            is_not_empty.notify_all();
+        }
+
+        q.push(std::move(val));
+        return true;
     }
 
-    // push para unique_ptr
-    void push(std::unique_ptr<T> const& val) { Queue<T*>::push(val.get()); }
+    bool try_pop(std::unique_ptr<T>& val) {
+        std::unique_lock<std::mutex> lck(mtx);
 
-    // push para mover unique_ptr
-    void push(std::unique_ptr<T>&& val) {
-        T* raw_ptr = val.release();
-        Queue<T*>::push(raw_ptr);
+        if (q.empty()) {
+            if (closed) {
+                throw ClosedQueue();
+            }
+            return false;
+        }
+
+        if (q.size() == this->max_size) {
+            is_not_full.notify_all();
+        }
+
+        val = std::move(q.front());
+        q.pop();
+        return true;
     }
 
-    // pop para unique_ptr
+    void push(std::unique_ptr<T> val) {
+        std::unique_lock<std::mutex> lck(mtx);
+
+        if (closed) {
+            throw ClosedQueue();
+        }
+
+        while (q.size() == this->max_size) {
+            is_not_full.wait(lck);
+        }
+
+        if (q.empty()) {
+            is_not_empty.notify_all();
+        }
+
+        q.push(std::move(val));
+    }
+
     std::unique_ptr<T> pop() {
-        T* raw_ptr = Queue<T*>::pop();
-        std::cout << "popeando" << std::endl;
-        return std::unique_ptr<T>(raw_ptr);
+        std::unique_lock<std::mutex> lck(mtx);
+
+        while (q.empty()) {
+            if (closed) {
+                throw ClosedQueue();
+            }
+            is_not_empty.wait(lck);
+        }
+
+        if (q.size() == this->max_size) {
+            is_not_full.notify_all();
+        }
+
+        std::unique_ptr<T> val = std::move(q.front());
+        q.pop();
+
+        return val;
     }
 
-    void close() { Queue<T*>::close(); }
+    void close() {
+        std::unique_lock<std::mutex> lck(mtx);
+        /*
+        if (closed) {
+            throw QueueAlreadyClosed();
+        }
+        */
+
+        closed = true;
+        is_not_empty.notify_all();
+    }
 
 private:
     Queue(const Queue&) = delete;
     Queue& operator=(const Queue&) = delete;
 };
+
 
 #endif

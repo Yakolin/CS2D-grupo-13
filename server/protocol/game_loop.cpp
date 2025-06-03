@@ -36,7 +36,6 @@ void GameLoop::step() {
         this->broadcast(game_image);
     } catch (const ClosedQueue& e) {
         this->stop();
-        std::cerr << "Exception: " << e.what() << std::endl;
     } catch (const std::runtime_error& e) {
         this->stop();
         std::cerr << "Exception: " << e.what() << std::endl;
@@ -61,4 +60,5 @@ void GameLoop::stop() {
     try {
         this->recv_queue->close();
     } catch (const QueueAlreadyClosed& e) {}
+    Thread::stop();
 }

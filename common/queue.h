@@ -292,6 +292,7 @@ public:
         is_not_empty.notify_all();
     }
 
+
 private:
     Queue(const Queue&) = delete;
     Queue& operator=(const Queue&) = delete;
@@ -410,14 +411,19 @@ public:
 
     void close() {
         std::unique_lock<std::mutex> lck(mtx);
-        /*
+
         if (closed) {
             throw QueueAlreadyClosed();
         }
-        */
+
 
         closed = true;
         is_not_empty.notify_all();
+    }
+
+    bool empty() {
+        std::unique_lock<std::mutex> lck(mtx);
+        return q.empty();
     }
 
 private:

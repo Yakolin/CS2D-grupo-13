@@ -55,21 +55,22 @@ void Controller::stop() {
 
 
 bool Controller::has_game_image(GameImage& snapshot) {
-    try {
-        snapshot = recv_queue->pop();
-
-        for (size_t i = 0; i < snapshot.players_images.size(); i++) {
-            PlayerImage p = snapshot.players_images[i];
-            std::cout << "Jugador ID: " << p.player_id << " | Posición: (" << p.position.x << ", "
-                      << p.position.y << ")"
-                      << " | Vida: " << static_cast<int>(p.health)
-                      << " | Puntos: " << static_cast<int>(p.points) << std::endl;
-            std::cout << "------------------------------------------\n ";
-        }
-        return true;
-    } catch (ClosedQueue& e) {
+    if (recv_queue->empty()) {
         return false;
     }
+
+    snapshot = recv_queue->pop();
+    std::cout << "------------------recibiendo de la cola ------------------------\n ";
+
+    for (size_t i = 0; i < snapshot.players_images.size(); i++) {
+        PlayerImage p = snapshot.players_images[i];
+        std::cout << "Jugador ID: " << p.player_id << " | Posición: (" << p.position.x << ", "
+                  << p.position.y << ")"
+                  << " | Vida: " << static_cast<int>(p.health)
+                  << " | Puntos: " << static_cast<int>(p.points) << std::endl;
+        std::cout << "------------------------------------------\n ";
+    }
+    return true;
 }
 
 void Controller::run() {}

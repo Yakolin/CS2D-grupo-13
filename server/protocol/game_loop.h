@@ -15,7 +15,7 @@
 
 
 #define QUEUE_MAX_SIZE 10000
-#define MAX_PLAYERS 2
+#define MAX_PLAYERS 1
 
 class GameLoop: public Thread {
 private:

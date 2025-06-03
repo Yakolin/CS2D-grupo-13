@@ -12,6 +12,7 @@ target_sources(CS2D_tests
     ../../server/game/CollisionManager.cpp
     ../../server/game/Equipement.cpp
     ../../server/game/FireableWeapon.cpp
+    ../../server/game/SpecialWeapons.cpp
     ../../server/game/GameManager.cpp
     ../../server/game/Map.cpp
     ../../server/game/Player.cpp
@@ -34,7 +35,7 @@ target_sources(CS2D_tests
     ../../server/game/Map.h
     ../../server/game/MapTypes.h
     ../../server/game/Player.h
-    ../../server/game/Specials.h
+    ../../server/game/SpecialWeapons.h
     ../../server/game/Weapon.h
     ../../common/socket.h
 )

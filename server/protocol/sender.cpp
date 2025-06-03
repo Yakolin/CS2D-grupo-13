@@ -12,7 +12,9 @@ void Sender::run() {
             std::cout << "recibo la imagen" << std::endl;
             GameImage game_image = this->send_queue->pop();
             game_image.client_id = this->client_id;
-            this->protocol.send_game_image(game_image);
+            if (this->should_keep_running()) {
+                this->protocol.send_game_image(game_image);
+            }
         }
     } catch (const ConnectionClosedException& e) {
         std::cout << "The client closed the connection" << std::endl;
@@ -24,9 +26,4 @@ void Sender::run() {
                   << std::endl;
         this->closed = true;
     }
-}
-
-void Sender::stop() {
-    Thread::stop();
-    this->send_queue->close();
 }

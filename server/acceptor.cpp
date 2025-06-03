@@ -44,6 +44,7 @@ void Acceptor::reap() {
     for (auto it = clients.begin(); it != clients.end();) {
         auto client = it->second.get();
         if (!client->is_alive()) {
+            client->join();
             it = clients.erase(it);
         } else {
 
@@ -56,9 +57,8 @@ void Acceptor::reap() {
 void Acceptor::clear() {
     this->games_monitor.clear();
     for (auto& [id, client]: clients) {
-        if (client->is_alive()) {
-            client->stop();
-        }
+        client->stop();
+        client->join();
     }
     clients.clear();
 }

@@ -29,6 +29,7 @@ public:
     ~ClientHandler();
     void start();
     void stop();
+    void join();
     bool is_alive();
 };
 

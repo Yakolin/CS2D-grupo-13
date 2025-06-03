@@ -9,9 +9,7 @@ GameLoop::GameLoop(const std::string& game_name):
                            [this]() { this->step(); }),
         game_started(false) {}
 
-GameLoop::~GameLoop() {
-    if (Thread::is_alive()) {}
-}
+GameLoop::~GameLoop() {}
 
 void GameLoop::add_player(player_id_t& player_id,
                           std::shared_ptr<Queue<std::unique_ptr<ClientAction>>>& recv_queue,
@@ -27,7 +25,7 @@ bool GameLoop::waiting_for_players() { return !this->game_started; }
 
 void GameLoop::run() {
     this->game_started = true;
-    game.start_game(); //esto debe de llamarse posiblemente
+    game.start_game();  // esto debe de llamarse posiblemente
     this->constant_rate_loop.execute();
 }
 void GameLoop::step() {
@@ -60,8 +58,7 @@ void GameLoop::broadcast(GameImage& game_image) {
 }
 
 void GameLoop::stop() {
-    Thread::stop();
-    this->recv_queue->close();
-    std::unique_ptr<ClientAction> action;
-    while (this->recv_queue->try_pop(action)) {}
+    try {
+        this->recv_queue->close();
+    } catch (const QueueAlreadyClosed& e) {}
 }

@@ -15,13 +15,18 @@ void ClientHandler::start() {
     this->sender.start();
 }
 
-bool ClientHandler::is_alive() { return (this->receiver.is_alive() && this->sender.is_alive()); }
+bool ClientHandler::is_alive() { return (this->receiver.is_alive() || this->sender.is_alive()); }
 
 void ClientHandler::stop() {
     this->receiver.stop();
     this->sender.stop();
+    try {
+        this->socket.shutdown(2);
+        this->socket.close();
+    } catch (LibError& e) {}
+}
+
+void ClientHandler::join() {
     this->receiver.join();
     this->sender.join();
-    this->socket.shutdown(2);
-    this->socket.close();
 }

@@ -26,7 +26,6 @@ public:
                     std::shared_ptr<Queue<GameImage>>& send_queue);
     ~Sender();
     void run() override;
-    void stop() override;
 };
 
 

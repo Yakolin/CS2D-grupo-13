@@ -15,7 +15,7 @@ public:
     virtual ~InterfaceGameManager() = default;
 
     virtual void process(ClientAction& action) = 0;
-    virtual void add_player(player_id_t& player_id) = 0;
+    virtual void add_player(const player_id_t& player_id) = 0;
 };
 
 #endif  // !INTERFACE_GAME_H

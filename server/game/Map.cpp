@@ -88,7 +88,14 @@ void Map::charge_map(const std::string& map_name) {
     if (!spawn_ct || !spawn_tt || !bomb_a || !bomb_b)
         throw MapException("The map doesn´t have all the zones of Spawns and Plant");
 }
-
+std::vector<Position> Map::get_walls() {
+    std::vector<Position> walls_pos;
+    for (size_t i = 0; i < walls.size(); i++)
+        for (size_t j = 0; j < walls[i].size(); j++)
+            if (walls[i][j] == Wall)
+                walls_pos.push_back(Position(i, j));
+    return walls_pos;
+}
 void Map::move(player_id_t id, const Position& direction) {
     auto it = players_in_map.find(id);
     if (it != players_in_map.end()) {

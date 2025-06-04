@@ -10,20 +10,22 @@
 #include "../../common/utility.h"
 #include "../interfaces/interface_player_action.h"
 
-#include "Equipement.h"
+#include "Equipment.h"
 #include "ICanInteract.h"
+#include "IDropeableZone.h"
 #include "IGameZone.h"
 
 class Player: public IPlayerAction, public ICanInteract {
 public:
-    Player(player_id_t id, Equipement&& equipement, IGameZone& game_zone,
-           ISpawneableZone& spawneable_zone):
+    Player(player_id_t id, Equipment&& equipment, IGameZone& game_zone,
+           ISpawneableZone& spawneable_zone, IDroppableZone& droppable_zone):
             id(id),
-            equipement(std::move(equipement)),
+            equipment(std::move(equipment)),
             health(100),
             points(0),
             game_zone(game_zone),
-            spawneable_zone(spawneable_zone) {}
+            spawneable_zone(spawneable_zone),
+            droppable_zone(droppable_zone) {}
     virtual ~Player() = default;
     bool dead();
     void reset(bool full_reset);
@@ -34,15 +36,15 @@ public:
     virtual void reload() override;
     virtual void shoot(const coordinate_t& mouse_x, const coordinate_t& mouse_y) override;
     virtual void buy_weapon(const WeaponCode& weapon_code) override;
+    virtual void drop() override;
 
     /*
     virtual void defuse_bomb() override;
-    virtual void drop() override;
     */
 
 protected:  // Por ahora lo dejamo asi
     player_id_t id;
-    Equipement equipement;
+    Equipment equipment;
     uint8_t health;
     uint8_t points;
     uint16_t money = 500;
@@ -50,6 +52,7 @@ protected:  // Por ahora lo dejamo asi
 private:
     IGameZone& game_zone;
     ISpawneableZone& spawneable_zone;
+    IDroppableZone& droppable_zone;
 };
 
 #endif  // GAME_PLAYER_H_

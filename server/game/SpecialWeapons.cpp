@@ -14,3 +14,5 @@ void Knife::reload() { return; }
 WeaponImage Knife::get_weapon_image() {
     return WeaponImage(code, 0, 0, 0);  // Aca evidentemente no maneja balas el cuchillo
 }
+
+bool Knife::is_droppable() { return false; }

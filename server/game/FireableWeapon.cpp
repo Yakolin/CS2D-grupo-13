@@ -8,6 +8,8 @@ void Glock::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& dire
         spawn.spawn_collider(id, wanted);
     }
 }
+bool Glock::is_droppable() { return false; }
+
 void Ak47::set_on_action(ISpawneableZone& spawn, player_id_t id,
                          Position& direction) {  // Es un calco por ahora
     if (current_bullets > 0) {
@@ -17,6 +19,9 @@ void Ak47::set_on_action(ISpawneableZone& spawn, player_id_t id,
         spawn.spawn_collider(id, wanted);
     }
 }
+
+bool Ak47::is_droppable() { return true; }
+
 void FireableWeapon::reload() {
     if (inventory_bullets > 0 &&
         current_bullets < magazine) {  // Si en el inventario tengo >= 0 balas
@@ -24,6 +29,12 @@ void FireableWeapon::reload() {
         uint8_t avalible_bullets = std::min(needed_bullets, inventory_bullets);
         current_bullets += avalible_bullets;
         inventory_bullets -= avalible_bullets;
+        std::cout << "Recargas : " << avalible_bullets
+                  << " balas. Balas restantes en almacenamiento: " << inventory_bullets
+                  << std::endl;
+    } else {
+        std::cout << "No tenes mas balas en el almacenamiento\no no habia porque recargar, ya "
+                     "estas lleno\n";
     }
 }
 WeaponImage FireableWeapon::get_weapon_image() {

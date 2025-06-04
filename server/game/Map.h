@@ -11,6 +11,7 @@
 #include "../../common/game_image.h"
 
 #include "CollisionManager.h"
+#include "IDropeableZone.h"
 #include "IGameZone.h"
 #include "ISpawneableZone.h"
 #include "MapExeption.h"
@@ -20,7 +21,7 @@
 #define WidthSpawn 3
 #define HeightSpawn 3
 
-class Map: public IGameZone, public ISpawneableZone {
+class Map: public IGameZone, public ISpawneableZone, public IDroppableZone {
 private:
     std::string map_name;
     std::vector<std::vector<char>> walls;
@@ -28,13 +29,14 @@ private:
     CollisionManager collision_manager;
     std::map<player_id_t, player_entity_t> players_in_map;
     std::map<player_id_t, std::unique_ptr<Collider>> damage_colliders;
-    std::vector<std::unique_ptr<Weapon>> dropped_weapons;
     void charge_zone(Rectangle& zone, const Position& position);
     void charge_map(const std::string& archivo);
 
 public:
     explicit Map(const std::string& _map_name):
             IGameZone(),
+            ISpawneableZone(),
+            IDroppableZone(),
             map_name(_map_name),
             collision_manager(walls, players_in_map, damage_colliders) {
         charge_map(map_name);
@@ -46,6 +48,7 @@ public:
     void respawn_players();
     void move(player_id_t id, const Position& direction) override;
     void spawn_collider(player_id_t id_spawn, damage_collider_t& wanted) override;
+    void drop(const player_id_t& player_id, std::unique_ptr<Weapon>& droppable) override;
 };
 
 #endif  // MAP_H_

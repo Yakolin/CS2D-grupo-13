@@ -22,7 +22,7 @@ class CollisionManager {
     std::vector<std::vector<char>>& walls;
     std::map<player_id_t, player_entity_t>& players_in_map;
     std::map<player_id_t, std::unique_ptr<Collider>>& damage_colliders;
-    // std::vector<Dropped> dropped
+    std::map<std::unique_ptr<Weapon>, Position> dropped_weapons;
     void check_damage_collider(player_id_t caster, const std::unique_ptr<Collider>& collider);
 
 public:
@@ -32,6 +32,7 @@ public:
             walls(walls), players_in_map(players_in_map), damage_colliders(damage_colliders) {}
     bool valid_movement(const Position& actual_position, const Position& next_position);
     void check_damage();
+    void drop(const player_id_t& player_id, std::unique_ptr<Weapon>& dropable);
 };
 
 #endif  // COLLISION_MANAGER_H_

@@ -41,9 +41,18 @@ void CollisionManager::check_damage_collider(player_id_t caster,
         return;
     nearest.player.lock()->damage(5);  // Esto en realidad debe de calcularlo una funcion
 }
+
 void CollisionManager::check_damage() {
     // A lo sumo hay 10 colliders creo, no deberia haber problema con complejidad)?
     for (const auto& collider: damage_colliders)
         check_damage_collider(collider.first, collider.second);
     damage_colliders.clear();
+}
+
+void CollisionManager::drop(const player_id_t& player_id, std::unique_ptr<Weapon>& dropable) {
+    auto it = this->players_in_map.find(player_id);
+    if (it != players_in_map.end()) {
+        Position& player_position = it->second.position;
+        this->dropped_weapons.insert(std::make_pair(std::move(dropable), player_position));
+    }
 }

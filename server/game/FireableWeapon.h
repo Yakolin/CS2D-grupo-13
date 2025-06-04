@@ -36,12 +36,14 @@ public:
     Ak47(): FireableWeapon(WeaponCode::AK47, 3, 90, 30) {}
     virtual void set_on_action(ISpawneableZone& spawn, player_id_t id,
                                Position& direction) override;
+    virtual bool is_droppable() override;
 };
 class Glock: public FireableWeapon {
 public:
     Glock(): FireableWeapon(WeaponCode::GLOCK, 1, 120, 30) {}
     virtual void set_on_action(ISpawneableZone& spawn, player_id_t id,
                                Position& direction) override;
+    virtual bool is_droppable() override;
 };
 
 #endif  // FIREABLE_WEAPON_H_

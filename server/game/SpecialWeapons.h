@@ -20,6 +20,7 @@ public:
                                Position& direction) override;
     virtual void reload() override;
     virtual WeaponImage get_weapon_image() override;
+    virtual bool is_droppable() override;
 };
 
 #endif  // SpecialWeapons_H_

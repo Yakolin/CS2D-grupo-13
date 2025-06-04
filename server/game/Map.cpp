@@ -36,10 +36,12 @@ void Map::charge_zone(Rectangle& zone, const Position& position) {
 
 // Charge map debe recibir el tipo o en todo caso el path del mapa, que game manager se encargue de
 // eso.
+// Charge map debe recibir el tipo o en todo caso el path del mapa, que game manager se encargue de
+// eso.
 void Map::charge_map(const std::string& map_name) {
     if (map_name.empty())
         std::cout << "ola, esto es para evitar flags" << std::endl;
-    std::string aux("../../assets/pueblito_azteca.txt");
+    std::string aux("assets/pueblito_azteca.txt");
     std::ifstream path(aux);
     if (!path.is_open()) {
         throw MapException("Can´t open the file of the game " + aux);
@@ -93,4 +95,8 @@ void Map::spawn_collider(player_id_t id_spawn, damage_collider_t& wanted) {
     std::unique_ptr<Collider> line = std::make_unique<Line>(
             std::move(player_pos), std::move(relative_direction), wanted.width);
     damage_colliders.insert(std::make_pair(id_spawn, std::move(line)));
+}
+
+void Map::drop(const player_id_t& player_id, std::unique_ptr<Weapon>& droppable) {
+    this->collision_manager.drop(player_id, droppable);
 }

@@ -3,8 +3,9 @@
 
 #include <cstdint>
 #include <string>
-#include <vector>
 #include <utility>
+#include <vector>
+
 #include "player_command_types.h"
 #include "utility.h"
 

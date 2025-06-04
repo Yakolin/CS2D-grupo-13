@@ -4,7 +4,7 @@
 #include <cstdint>
 #include <string>
 #include <vector>
-
+#include <utility>
 #include "player_command_types.h"
 #include "utility.h"
 
@@ -17,14 +17,17 @@ enum class Team { CT, TT };
 
 
 class WeaponImage {
-    public:
-    WeaponImage(WeaponCode weapon_code, uint8_t current_bullets, uint8_t magazine, uint8_t inventory_bullets) : 
-    weapon_code(weapon_code), current_bullets(current_bullets) , magazine(magazine), inventory_bullets(inventory_bullets) {}
+public:
+    WeaponImage(WeaponCode weapon_code, uint8_t current_bullets, uint8_t magazine,
+                uint8_t inventory_bullets):
+            weapon_code(weapon_code),
+            current_bullets(current_bullets),
+            magazine(magazine),
+            inventory_bullets(inventory_bullets) {}
     WeaponCode weapon_code;
     uint8_t current_bullets;
     uint8_t magazine;
     uint8_t inventory_bullets;
-
 };
 class PlayerImage {
 public:
@@ -33,9 +36,16 @@ public:
     health_t health;
     points_t points;
     std::vector<WeaponImage> weapons;
+    Team team;
     // Aca falta el tema del equipement y las armas
-    PlayerImage(player_id_t player_id, Position position, int health, int points, std::vector<WeaponImage>&& weapons):
-            player_id(player_id), position(position), health(health), points(points), weapons(std::move(weapons)) {}
+    PlayerImage(player_id_t player_id, Position position, int health, int points,
+                std::vector<WeaponImage>&& weapons, Team team):
+            player_id(player_id),
+            position(position),
+            health(health),
+            points(points),
+            weapons(std::move(weapons)),
+            team(team) {}
     ~PlayerImage() = default;
 };
 

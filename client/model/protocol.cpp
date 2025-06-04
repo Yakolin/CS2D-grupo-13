@@ -156,9 +156,10 @@ void ClientProtocol::read_player_image(GameImage& game_image) {
 
         points_t points;
         this->read_byte_data(points);
-        std::vector<WeaponImage> weapons;
+        std::vector<WeaponImage> weapons;  // Falta implementar
+        Team team = Team::CT;              // Falta implementar
         game_image.players_images.emplace_back(
-                PlayerImage(player_id, Position(x, y), health, points, std::move(weapons)));
+                PlayerImage(player_id, Position(x, y), health, points, std::move(weapons), team));
     }
 }
 

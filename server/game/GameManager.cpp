@@ -52,7 +52,8 @@ GameImage GameManager::generate_game_image() {
     for (const auto& par: players) {
         shared_ptr<Player> player = par.second;
         Position player_position = map_game.get_position(par.first);
-        game_image.players_images.push_back(std::move(player->get_player_image(player_position)));
+        game_image.players_images.push_back(
+                std::move(player->get_player_image(player_position, players_team[par.first])));
     }
     return game_image;
 }

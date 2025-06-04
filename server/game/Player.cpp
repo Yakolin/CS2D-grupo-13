@@ -1,10 +1,14 @@
 #include "Player.h"
 
 #include <memory>
-//  "Copyright 2025 Yaco Santamarina"
-// void Player::move(Position&& direction) { position += direction; }
-void Player::damage(uint8_t damage) { health -= damage; }
-// void Player::change_weapon_equiped() {}
+
+void Player::damage(uint8_t damage) {
+    if (damage > health)
+        health = 0;
+    health -= damage;
+}
+
+bool Player::dead() { return health == 0; }
 
 void Player::reset(bool full_reset) {
     if (full_reset || health == 0) {
@@ -37,9 +41,9 @@ void Player::shoot(const coordinate_t& mouse_x, const coordinate_t& mouse_y) {
     equipement.secondary->set_on_action(spawneable_zone, id, direction);
 }
 
-PlayerImage Player::get_player_image(const Position& position) {
+PlayerImage Player::get_player_image(const Position& position, Team team) {
     return PlayerImage(id, Position(position.x, position.y), health, points,
-                       std::move(equipement.get_weapons_image()));
+                       std::move(equipement.get_weapons_image()), team);
 }
 void Player::buy_weapon(const WeaponCode& weapon_code) {
     equipement.buy_weapon_by_code(weapon_code, money);

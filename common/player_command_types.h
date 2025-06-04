@@ -30,7 +30,7 @@ enum class MoveType { RIGHT, LEFT, UP, DOWN };
 
 enum class WeaponType { PRIMARY, SECONDARY };
 
-enum class WeaponCode { GLOCK, AK47, M3, AWP, KNIFE, BOMB };
+enum class WeaponCode { GLOCK, AK47, M3, AWP, KNIFE, BOMB, NONE };
 
 enum class EquipType {
     ROLL_DOWN,  // podria usar la ruedita

@@ -168,10 +168,11 @@ public:
 
     void close() {
         std::unique_lock<std::mutex> lck(mtx);
-
+        /*
         if (closed) {
             throw QueueAlreadyClosed();
         }
+        */
 
         closed = true;
         is_not_empty.notify_all();
@@ -283,10 +284,11 @@ public:
 
     void close() {
         std::unique_lock<std::mutex> lck(mtx);
-
+        /*
         if (closed) {
             throw QueueAlreadyClosed();
         }
+        */
 
         closed = true;
         is_not_empty.notify_all();
@@ -411,10 +413,11 @@ public:
 
     void close() {
         std::unique_lock<std::mutex> lck(mtx);
-
+        /*
         if (closed) {
             throw QueueAlreadyClosed();
         }
+        */
 
 
         closed = true;

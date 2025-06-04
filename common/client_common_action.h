@@ -84,4 +84,15 @@ public:
     virtual ~EquipCommon() = default;
 };
 
+class MousePositionCommon {
+protected:
+    const coordinate_t mouse_x;
+    const coordinate_t mouse_y;
+
+public:
+    explicit MousePositionCommon(const coordinate_t mouse_x, const coordinate_t mouse_y):
+            mouse_x(mouse_x), mouse_y(mouse_y) {}
+    virtual ~MousePositionCommon() = default;
+};
+
 #endif  // !CLIENT_COMMON_ACTION_H

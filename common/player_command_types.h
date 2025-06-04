@@ -22,7 +22,8 @@ enum class PlayerCommandType {
     PLANT_BOMB,
     DEFUSE_BOMB,
     DROP,
-    EQUIP
+    EQUIP,
+    WATCH
 };
 
 enum class MoveType { RIGHT, LEFT, UP, DOWN };

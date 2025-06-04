@@ -76,6 +76,7 @@
         "mutex": "cpp",
         "cfenv": "cpp",
         "utility": "cpp",
-        "future": "cpp"
+        "future": "cpp",
+        "valarray": "cpp"
     }
 }

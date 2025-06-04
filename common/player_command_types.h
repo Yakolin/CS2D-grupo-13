@@ -33,8 +33,6 @@ enum class WeaponType { PRIMARY, SECONDARY };
 enum class WeaponCode { GLOCK, AK47, M3, AWP, KNIFE, BOMB, NONE };
 
 enum class EquipType {
-    ROLL_DOWN,  // podria usar la ruedita
-    ROLL_UP,
     PRIMARY,  // podria usar los numeros para cambiar armas
     SECONDARY,
     KNIFE

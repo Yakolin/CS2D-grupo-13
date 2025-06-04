@@ -1,5 +1,7 @@
 #include "GameManager.h"
 
+#include <cstdlib>
+#include <ctime>
 #include <iostream>
 
 using std::shared_ptr;
@@ -59,6 +61,20 @@ GameImage GameManager::generate_game_image() {
     }
     return game_image;
 }
+void GameManager::give_bomb() {
+    std::vector<player_id_t> players_tt;
+    for (auto& player: players_team) {
+        if (player.second == Team::CT)
+            continue;
+        players_tt.push_back(player.first);
+    }
+    if (players_tt.empty())
+        throw GameException("Can´t find any TT to give the bomb");
+
+    player_id_t id = rand() % players_tt.size();
+    std::cout << "El random es: " << id << std::endl;
+    // Aca falta darle la bomba, necesito acceder al equipment
+}
 void GameManager::start_game() {
     if (players.size() < 1) {
         std::cout << "El juego no tiene suficientes jugadores\n";
@@ -66,6 +82,7 @@ void GameManager::start_game() {
     }
     timer.round_start();
     reset_players(true);
+    give_bomb();
     game_started = true;
 }
 void GameManager::stop_game() {}
@@ -130,7 +147,7 @@ GameImage GameManager::get_frame() {
         }
         timer.round_start();
         reset_players(full_reset);
-        // give_bomb() , deberia estar aca posiblemente
+        give_bomb();
     }
     map_game.update_map_state();
     return generate_game_image();

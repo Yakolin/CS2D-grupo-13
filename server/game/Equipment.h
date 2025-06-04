@@ -19,6 +19,7 @@ private:
     std::unique_ptr<Weapon> primary;
     std::unique_ptr<Weapon> secondary;
     std::unique_ptr<Weapon> knife;
+    std::weak_ptr<Bomb> bomb;
     std::unique_ptr<Weapon>* weapon_in_hand;
 
     ISpawneableZone& spawneable_zone;
@@ -42,6 +43,7 @@ public:
     void drop_weapon();
     void reload();
     void shoot(Position& position);
+    void equip_bomb(std::weak_ptr<Bomb> new_bomb) { bomb = new_bomb; }
     std::vector<WeaponImage> get_weapons_image();
 };
 

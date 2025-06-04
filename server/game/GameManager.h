@@ -34,11 +34,13 @@ private:
     map<player_id_t, Team> players_team;
     int round = 0;
     Timer timer;
+    std::shared_ptr<Bomb> bomb;
     Map map_game;
     bool game_started = false;
     std::shared_ptr<Player> create_player(const player_id_t& id);
     shared_ptr<Player> find_player(const player_id_t& player_id);
     GameImage generate_game_image();
+    void give_bomb();
     void reset_players(bool full_reset);
     bool check_round_finished();
     void change_teams();
@@ -48,7 +50,9 @@ private:
 public:
     // Aca el nombre del mapa es inutil, deberia de ser un enum de mapas para saber cuaaal cargar
     explicit GameManager(const string& _game_name, const string& map_name):
-            game_name(_game_name), map_game(map_name) {}
+            game_name(_game_name), map_game(map_name) {
+        bomb = std::make_shared<Bomb>(timer);
+    }
     ~GameManager();
     GameImage get_frame();
     std::vector<Position> get_game_map() { return map_game.get_walls(); }

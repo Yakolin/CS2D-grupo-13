@@ -15,7 +15,7 @@ void GameLoop::add_player(player_id_t& player_id,
                           std::shared_ptr<Queue<std::unique_ptr<ClientAction>>>& recv_queue,
                           std::shared_ptr<Queue<GameImage>>& send_queue) {
     recv_queue = this->recv_queue;
-    send_queues.emplace_back(send_queue);
+    send_queues[player_id] = send_queue;
     this->game.add_player(player_id);
 }
 
@@ -47,26 +47,28 @@ void GameLoop::step() {
 }
 
 void GameLoop::broadcast(GameImage& game_image) {
-    std::vector<std::shared_ptr<Queue<GameImage>>> colas_activas;
+    std::vector<player_id_t> to_remove;
 
-    for (auto& send_queue: send_queues) {
+    for (auto& [player_id, send_queue]: send_queues) {
         if (!send_queue) {
-            std::cerr << "Advertencia: se encontró una send_queue nula, se descarta.\n";
+            to_remove.push_back(player_id);
             continue;
         }
-
         try {
             send_queue->push(game_image);
-            colas_activas.push_back(send_queue);
         } catch (const ClosedQueue& e) {
             std::cerr << "Info: una send_queue está cerrada, se eliminará del juego.\n";
+            to_remove.push_back(player_id);
+            this->game.remove_player(player_id);
         } catch (const std::exception& e) {
             std::cerr << "Error inesperado al enviar por send_queue: " << e.what() << "\n";
         }
     }
 
-    // Reemplazo la lista de colas actuales con las que estan activas
-    send_queues = std::move(colas_activas);
+    for (const auto& player_id: to_remove) {
+        this->game.remove_player(player_id);
+        send_queues.erase(player_id);
+    }
 }
 
 void GameLoop::stop() {

@@ -1,8 +1,8 @@
 #ifndef GAME_LOOP_H
 #define GAME_LOOP_H
 
+#include <map>
 #include <memory>
-#include <vector>
 
 #include "../../common/constant_rate_loop.h"
 #include "../../common/game_image.h"
@@ -21,7 +21,7 @@ class GameLoop: public Thread {
 private:
     const std::string& game_name;
     GameManager game;
-    std::vector<std::shared_ptr<Queue<GameImage>>> send_queues;
+    std::map<player_id_t, std::shared_ptr<Queue<GameImage>>> send_queues;
     std::shared_ptr<Queue<std::unique_ptr<ClientAction>>> recv_queue;
     ConstantRateLoop constant_rate_loop;
     bool game_started;

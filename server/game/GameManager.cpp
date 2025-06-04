@@ -67,7 +67,34 @@ void GameManager::start_game() {
     game_started = true;
 }
 void GameManager::stop_game() {}
-bool GameManager::check_round_finished() { return timer.is_round_over(); }  // Faltan cosas aca
+bool GameManager::check_round_finished() {
+    bool all_ct_dead = true;
+    bool all_tt_dead = true;
+    for (auto& par: players) {
+        if (!par.second->dead()) {
+            if (players_team[par.first] == Team::CT)
+                all_ct_dead = false;
+            else
+                all_tt_dead = false;
+        }
+    }
+    if (all_ct_dead) {
+        game_state.rounds_TT++;
+        return true;
+    } else if (all_tt_dead) {
+        game_state.rounds_CT++;
+        return true;
+    }
+    bool time_end = timer.is_round_over();
+    if (time_end /*&& bomba no exploto*/) {
+        game_state.rounds_CT++;
+        return true;
+    } else if (time_end /*&& bomba exploto */) {
+        game_state.rounds_TT++;
+        return true;
+    }
+    return false;
+}  // Faltan cosas aca
 void GameManager::change_teams() {
     for (auto& player: players_team) {
         player.second = (player.second == Team::CT) ? Team::TT : Team::CT;
@@ -75,6 +102,10 @@ void GameManager::change_teams() {
     map_game.update_teams(players_team);
 }
 GameImage GameManager::get_frame() {
+    if (round == 10) {
+        std::cout << "Juego terminado, rondas: CT: " << game_state.rounds_CT
+                  << " TT: " << game_state.rounds_TT << std::endl;
+    }
     /*
     if (!game_started)
         throw GameException("The game isn´t start yet to take a frame");

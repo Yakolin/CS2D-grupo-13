@@ -21,8 +21,14 @@ using std::string;
 
 class GameManager: public InterfaceGameManager {
 
+    typedef struct GameState {
+        uint8_t rounds_TT;
+        uint8_t rounds_CT;
+    } game_state_t;
+
 private:
     string game_name;
+    game_state_t game_state = {0};
     map<player_id_t, shared_ptr<Player>> players;
     map<player_id_t, Team> players_team;
     int round = 0;

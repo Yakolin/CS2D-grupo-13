@@ -67,4 +67,5 @@ void Receiver::stop() {
     try {
         this->send_queue->close();
     } catch (const QueueAlreadyClosed& e) {}
+    Thread::stop();
 }

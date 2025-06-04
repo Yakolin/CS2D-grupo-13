@@ -52,16 +52,16 @@ void GamesMonitor::reap() {
     std::lock_guard<std::mutex> lock(mutex);
     auto it = games.begin();
     while (it != games.end()) {
+        // si no estoy esperando por jugadores significa que la partida comenzo
         if (!it->second->waiting_for_players()) {
             if (!it->second->is_alive()) {
                 it->second->join();
                 it = games.erase(it);
+                continue;
             }
-        } else {
-            ++it;
         }
+        ++it;
     }
-    std::cout << "No hay problemas en el monitor" << std::endl;
 }
 
 void GamesMonitor::clear() {

@@ -60,6 +60,7 @@ public:
     std::unique_ptr<ServerSpace::Shoot> read_shoot(player_id_t player_id);
 
     std::unique_ptr<ServerSpace::Equip> read_equip(player_id_t player_id);
+    std::unique_ptr<ServerSpace::
     */
 
     void send_list_games(std::vector<std::string>& list_games);

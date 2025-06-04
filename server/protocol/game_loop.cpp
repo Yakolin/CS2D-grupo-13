@@ -47,13 +47,26 @@ void GameLoop::step() {
 }
 
 void GameLoop::broadcast(GameImage& game_image) {
+    std::vector<std::shared_ptr<Queue<GameImage>>> colas_activas;
+
     for (auto& send_queue: send_queues) {
-        if (send_queue) {
+        if (!send_queue) {
+            std::cerr << "Advertencia: se encontró una send_queue nula, se descarta.\n";
+            continue;
+        }
+
+        try {
             send_queue->push(game_image);
-        } else {
-            std::cerr << "Error: send_queue es nullptr" << std::endl;
+            colas_activas.push_back(send_queue);
+        } catch (const ClosedQueue& e) {
+            std::cerr << "Info: una send_queue está cerrada, se eliminará del juego.\n";
+        } catch (const std::exception& e) {
+            std::cerr << "Error inesperado al enviar por send_queue: " << e.what() << "\n";
         }
     }
+
+    // Reemplazo la lista de colas actuales con las que estan activas
+    send_queues = std::move(colas_activas);
 }
 
 void GameLoop::stop() {

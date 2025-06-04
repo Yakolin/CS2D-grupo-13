@@ -27,6 +27,7 @@ void ParseLobbyAction::run() {
             GameInfo game_info;
             if (this->games_monitor.create_game(this->player_id, game_name, this->recv_queue,
                                                 this->send_queue, game_info)) {
+                protocol.send_game_info(game_info);
                 this->in_lobby = false;
             }
             break;
@@ -36,6 +37,7 @@ void ParseLobbyAction::run() {
             GameInfo game_info;
             if (this->games_monitor.join_game(this->player_id, game_name, this->recv_queue,
                                               this->send_queue, game_info)) {
+                protocol.send_game_info(game_info);
                 this->in_lobby = false;
             }
             break;

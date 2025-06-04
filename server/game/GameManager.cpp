@@ -5,7 +5,7 @@
 using std::shared_ptr;
 using std::string;
 
-shared_ptr<Player> GameManager::find_player(player_id_t player_id) {
+shared_ptr<Player> GameManager::find_player(const player_id_t& player_id) {
     auto it = players.find(player_id);
     if (it != players.end())
         return it->second;
@@ -22,14 +22,14 @@ void GameManager::process(ClientAction& action) {
     action.action_to(*player);
 }
 
-std::shared_ptr<Player> GameManager::create_player(player_id_t id) {
+std::shared_ptr<Player> GameManager::create_player(const player_id_t& id) {
     Equipment equipment(map_game, map_game);
     shared_ptr<Player> player;
     // Equipment le agrega la bomba solo si es TT podemos hacer al arrancar la ronda!
     player = std::make_shared<Player>(id, std::move(equipment), map_game);
     return player;
 }
-void GameManager::add_player(player_id_t& id) {
+void GameManager::add_player(const player_id_t& id) {
     Team team = ((players.size() + 1) % 2 == 0) ? Team::CT : Team::TT;
     shared_ptr<Player> player = create_player(id);
     players.insert(make_pair(id, player));
@@ -133,6 +133,11 @@ GameImage GameManager::get_frame() {
     map_game.update_map_state();
     return generate_game_image();
 }
+
+void GameManager::remove_player(
+        [[maybe_unused]] const player_id_t&  // habria que eliminarlo de todos los lugares
+                player_id) {}
+
 GameManager::~GameManager() { players.clear(); }
 
 /*

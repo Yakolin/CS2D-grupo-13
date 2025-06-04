@@ -35,8 +35,8 @@ private:
     Timer timer;
     Map map_game;
     bool game_started = false;
-    std::shared_ptr<Player> create_player(player_id_t id);
-    shared_ptr<Player> find_player(player_id_t player_id);
+    std::shared_ptr<Player> create_player(const player_id_t& id);
+    shared_ptr<Player> find_player(const player_id_t& player_id);
     GameImage generate_game_image();
     void reset_players(bool full_reset);
     bool check_round_finished();
@@ -53,7 +53,7 @@ public:
     void start_game();
     void stop_game();
     virtual void process(ClientAction& action) override;
-    virtual void add_player(player_id_t& player_id) override;
+    virtual void add_player(const player_id_t& player_id) override;
 
     /*
         void move(player_id_t player_id, MoveType move_type) override;
@@ -61,6 +61,8 @@ public:
         void reload(player_id_t player_id) override;
         void plant_bomb(player_id_t player_id) override;
     */
+    void remove_player([[maybe_unused]] const player_id_t&
+                               player_id);  // en el caso de que se desconecte hay que implementarlo
 };
 
 #endif  // GAME_MANAGER_H_

@@ -13,10 +13,11 @@ GameLoop::~GameLoop() {}
 
 void GameLoop::add_player(player_id_t& player_id,
                           std::shared_ptr<Queue<std::unique_ptr<ClientAction>>>& recv_queue,
-                          std::shared_ptr<Queue<GameImage>>& send_queue) {
+                          std::shared_ptr<Queue<GameImage>>& send_queue, GameInfo& game_info) {
     recv_queue = this->recv_queue;
     send_queues[player_id] = send_queue;
     this->game.add_player(player_id);
+    this->game_info =
 }
 
 bool GameLoop::is_full() { return (this->send_queues.size() == MAX_PLAYERS); }

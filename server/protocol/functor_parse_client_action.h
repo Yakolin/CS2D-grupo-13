@@ -4,12 +4,14 @@
 #include <memory>
 
 #include "../../common/client_common_action.h"
+#include "../../common/game_info.h"
 #include "../../common/lobby_types.h"
 #include "../interfaces/interface_games_monitor.h"
 
 #include "client_action.h"
 #include "games_monitor.h"
 #include "protocol.h"
+
 
 class ParseAction {
 protected:

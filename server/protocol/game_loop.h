@@ -6,6 +6,7 @@
 
 #include "../../common/constant_rate_loop.h"
 #include "../../common/game_image.h"
+#include "../../common/game_info.h"
 #include "../../common/queue.h"
 #include "../../common/thread.h"
 #include "../game/GameManager.h"
@@ -34,7 +35,7 @@ public:
     ~GameLoop();
     void add_player(player_id_t& player_id,
                     std::shared_ptr<Queue<std::unique_ptr<ClientAction>>>& recv_queue,
-                    std::shared_ptr<Queue<GameImage>>& send_queue);
+                    std::shared_ptr<Queue<GameImage>>& send_queue, GameInfo& game_info);
     bool is_full();
     bool waiting_for_players();
     void run() override;

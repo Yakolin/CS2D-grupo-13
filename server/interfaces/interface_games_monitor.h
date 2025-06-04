@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "../../common/game_image.h"
+#include "../../common/game_info.h"
 #include "../../common/player_command_types.h"
 #include "../../common/queue.h"
 
@@ -17,10 +18,11 @@ public:
     virtual ~InterfaceGamesMonitor() = default;
     virtual bool create_game(player_id_t& player_id, const std::string& game_name,
                              std::shared_ptr<Queue<std::unique_ptr<ClientAction>>>& recv_queue,
-                             std::shared_ptr<Queue<GameImage>>& send_queue) = 0;
+                             std::shared_ptr<Queue<GameImage>>& send_queue,
+                             GameInfo& game_info) = 0;
     virtual bool join_game(player_id_t& player_id, const std::string& game_name,
                            std::shared_ptr<Queue<std::unique_ptr<ClientAction>>>& recv_queue,
-                           std::shared_ptr<Queue<GameImage>>& send_queue) = 0;
+                           std::shared_ptr<Queue<GameImage>>& send_queue, GameInfo& game_info) = 0;
     virtual std::vector<std::string> list_games() = 0;
 };
 

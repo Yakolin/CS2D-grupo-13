@@ -36,7 +36,7 @@ void Player::reload() { this->equipment.reload(); }
 
 void Player::shoot(const coordinate_t& mouse_x, const coordinate_t& mouse_y) {
     Position position(mouse_x, mouse_y);
-    this->equipment.shoot(this->id, position);
+    this->equipment.shoot(position);
 }
 
 PlayerImage Player::get_player_image(const Position& position, Team team) {
@@ -47,6 +47,6 @@ void Player::buy_weapon(const WeaponCode& weapon_code) {
     equipment.buy_weapon_by_code(weapon_code, money);
 }
 
-void Player::drop() { this->equipment.drop_weapon(this->id); }
+void Player::drop() { this->equipment.drop_weapon(); }
 
 void Player::equip(const EquipType& equip_type) { this->equipment.change_weapon(equip_type); }

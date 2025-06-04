@@ -8,9 +8,7 @@ void Player::damage(uint8_t damage) { health -= damage; }
 
 void Player::reset(bool full_reset) {
     if (full_reset || health == 0) {
-        equipement.primary = nullptr;
-        equipement.secondary = nullptr;
-        equipement.secondary = std::make_unique<Glock>();
+        equipement.reset_equipement();
     }
     health = 100;
 }
@@ -42,4 +40,7 @@ void Player::shoot(const coordinate_t& mouse_x, const coordinate_t& mouse_y) {
 PlayerImage Player::get_player_image(const Position& position) {
     return PlayerImage(id, Position(position.x, position.y), health, points,
                        std::move(equipement.get_weapons_image()));
+}
+void Player::buy_weapon(const WeaponCode& weapon_code) {
+    equipement.buy_weapon_by_code(weapon_code, money);
 }

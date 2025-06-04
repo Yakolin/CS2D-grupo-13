@@ -18,11 +18,12 @@ public:
     std::unique_ptr<Weapon> secondary;
     std::unique_ptr<Weapon> knife;
     // std::unique_ptr<Weapon> bomb;
-
     /*
         change_weapon();
         drop_weapon();
     */
+    void buy_weapon_by_code(const WeaponCode& weapon_code, uint16_t money);
+    void reset_equipement();
     std::vector<WeaponImage> get_weapons_image();
 };
 

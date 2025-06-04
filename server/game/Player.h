@@ -31,16 +31,12 @@ public:
     void damage(uint8_t damage) override;
     virtual void move(const MoveType& move_type) override;
     virtual void reload() override;
-    // void equip(Weapon& weapon) override { equipement.primary = weapon;}
     virtual void shoot(const coordinate_t& mouse_x, const coordinate_t& mouse_y) override;
+    virtual void buy_weapon(const WeaponCode& weapon_code) override;
 
     /*
-    virtual void plant_bomb() override;
     virtual void defuse_bomb() override;
     virtual void drop() override;
-    virtual void buy_ammo(const WeaponType& weapon_type, const ammo_t& ammo_count) override;
-    virtual void buy_weapon(const WeaponCode& weapon_code) override;
-    virtual void equip(const EquipType& equip_type) override;
     */
 
 protected:  // Por ahora lo dejamo asi
@@ -48,6 +44,7 @@ protected:  // Por ahora lo dejamo asi
     Equipement equipement;
     uint8_t health;
     uint8_t points;
+    uint16_t money = 500;
 
 private:
     IGameZone& game_zone;

@@ -14,16 +14,14 @@
 class FireableWeapon: public Weapon {
 
 protected:
-    uint16_t price;
     uint8_t fire_rate;
     uint8_t inventory_bullets;
     uint8_t current_bullets;
     uint8_t magazine;
 
 public:
-    FireableWeapon(WeaponCode code, uint16_t price, uint8_t rate, uint8_t max_b, uint8_t current_b):
+    FireableWeapon(WeaponCode code, uint8_t rate, uint8_t max_b, uint8_t current_b):
             Weapon(code),
-            price(price),
             fire_rate(rate),
             inventory_bullets(max_b),
             current_bullets(current_b),
@@ -35,13 +33,13 @@ public:
 };
 class Ak47: public FireableWeapon {
 public:
-    Ak47(): FireableWeapon(WeaponCode::AK47, 2700, 3, 90, 30) {}
+    Ak47(): FireableWeapon(WeaponCode::AK47, 3, 90, 30) {}
     virtual void set_on_action(ISpawneableZone& spawn, player_id_t id,
                                Position& direction) override;
 };
 class Glock: public FireableWeapon {
 public:
-    Glock(): FireableWeapon(WeaponCode::GLOCK, 500, 1, 120, 30) {}
+    Glock(): FireableWeapon(WeaponCode::GLOCK, 1, 120, 30) {}
     virtual void set_on_action(ISpawneableZone& spawn, player_id_t id,
                                Position& direction) override;
 };

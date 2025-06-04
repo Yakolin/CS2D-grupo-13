@@ -1,5 +1,17 @@
 #include "Equipment.h"
 
+Equipment::Equipment(const player_id_t& player_id, ISpawneableZone& spawneable_zone,
+                     IDroppableZone& droppable_zone):
+        player_id(player_id),
+        primary(nullptr),
+        secondary(std::make_unique<Glock>()),
+        knife(std::make_unique<Knife>()),
+        weapon_in_hand(&this->secondary),
+        spawneable_zone(spawneable_zone),
+        droppable_zone(droppable_zone) {}
+
+Equipment::~Equipment() {}
+
 void Equipment::new_weapon_in_hand(std::unique_ptr<Weapon>& weapon) {
     this->weapon_in_hand = &weapon;
 }
@@ -29,6 +41,8 @@ void Equipment::buy_weapon_by_code(const WeaponCode& weapon_code, uint16_t money
             if (money < price)
                 break;
             primary = std::make_unique<Ak47>();
+            this->droppable_zone.drop(this->player_id, *this->weapon_in_hand);
+            this->new_weapon_in_hand(this->primary);
             break;
         default:
             return;
@@ -41,10 +55,10 @@ void Equipment::reset_equipment() {
     secondary = std::make_unique<Glock>();
 }
 
-void Equipment::drop_weapon(const player_id_t& player_id) {
+void Equipment::drop_weapon() {
     if (this->weapon_in_hand && *this->weapon_in_hand) {
         if (this->weapon_in_hand->get()->is_droppable()) {
-            this->droppable_zone.drop(player_id, *this->weapon_in_hand);
+            this->droppable_zone.drop(this->player_id, *this->weapon_in_hand);
             this->new_weapon_in_hand(this->secondary);
             this->primary = std::make_unique<NullWeapon>();
         }
@@ -53,8 +67,8 @@ void Equipment::drop_weapon(const player_id_t& player_id) {
 
 void Equipment::reload() { this->weapon_in_hand->get()->reload(); }
 
-void Equipment::shoot(const player_id_t& player_id, Position& position) {
-    this->weapon_in_hand->get()->set_on_action(this->spawneable_zone, player_id, position);
+void Equipment::shoot(Position& position) {
+    this->weapon_in_hand->get()->set_on_action(this->spawneable_zone, this->player_id, position);
 }
 
 std::vector<WeaponImage> Equipment::get_weapons_image() {

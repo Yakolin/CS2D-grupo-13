@@ -15,6 +15,7 @@
 typedef struct PlayerEntity {
     std::weak_ptr<ICanInteract> player;
     Position position;
+    // Position mouse_position;
     Team team;
 } player_entity_t;
 

@@ -6,6 +6,8 @@
 
 #include "utility.h"
 
+using length_game_info_t = std::uint16_t;
+
 class GameInfo {
 public:
     std::vector<Position> walls;

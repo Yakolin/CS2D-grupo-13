@@ -5,6 +5,19 @@ ClientProtocol::ClientProtocol(Socket& socket): socket(socket) {}
 
 ClientProtocol::~ClientProtocol() {}
 
+GameInfo ClientProtocol::read_game_info() {
+    GameInfo game_info;
+    length_game_info_t info_size;
+    this->read_two_byte_data(info_size);
+
+    for (length_game_info_t i = 0; i < info_size; ++i) {
+        coordinate_t x, y;
+        this->read_two_byte_data(x);
+        this->read_two_byte_data(y);
+        game_info.walls.emplace_back(Position(x, y));
+    }
+    return game_info;
+}
 
 std::vector<std::string> ClientProtocol::read_list_games() {
     length_games_list_t list_size;

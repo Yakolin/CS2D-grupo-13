@@ -8,6 +8,7 @@
 
 #include "../../common/connection_closed_exception.h"
 #include "../../common/game_image.h"
+#include "../../common/game_info.h"
 #include "../../common/lobby_types.h"
 #include "../../common/player_command_types.h"
 #include "../../common/socket.h"
@@ -46,6 +47,7 @@ public:
     void send_defuse_bomb();
     void send_drop();
 
+    GameInfo read_game_info();
     std::vector<std::string> read_list_games();
     GameImage read_game_image();
 };

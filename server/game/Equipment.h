@@ -12,6 +12,9 @@
 #include "SpecialWeapons.h"
 
 class Equipment {
+private:
+    void new_weapon_in_hand(std::unique_ptr<Weapon>& weapon);
+
 public:
     Equipment():
             primary(nullptr),
@@ -24,7 +27,7 @@ public:
     std::unique_ptr<Weapon>* weapon_in_hand;
 
 
-    // void change_weapon(EquipType& equip_type);
+    void change_weapon(const EquipType& equip_type);
     void buy_weapon_by_code(const WeaponCode& weapon_code, uint16_t money);
     void reset_equipment();
     void drop_weapon(const player_id_t& player_id, IDroppableZone& droppeable_zone);

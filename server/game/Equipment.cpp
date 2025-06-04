@@ -1,6 +1,24 @@
 #include "Equipment.h"
 
-// void Equipment::change_weapon() {}
+void Equipment::new_weapon_in_hand(std::unique_ptr<Weapon>& weapon) {
+    this->weapon_in_hand = &weapon;
+}
+
+void Equipment::change_weapon(const EquipType& equip) {
+    switch (equip) {
+        case EquipType::KNIFE:
+            this->new_weapon_in_hand(this->knife);
+            break;
+        case EquipType::SECONDARY:
+            this->new_weapon_in_hand(this->secondary);
+            break;
+        case EquipType::PRIMARY:
+            this->new_weapon_in_hand(this->primary);
+            break;
+        default:
+            break;
+    }
+}
 
 
 void Equipment::buy_weapon_by_code(const WeaponCode& weapon_code, uint16_t money) {
@@ -25,9 +43,11 @@ void Equipment::reset_equipment() {
 
 void Equipment::drop_weapon(const player_id_t& player_id, IDroppableZone& droppeable_zone) {
     if (this->weapon_in_hand && *this->weapon_in_hand) {
-        droppeable_zone.drop(player_id, *this->weapon_in_hand);
-        this->weapon_in_hand =
-                &this->secondary;  // esto deberia ser un metodo privado que me diga que arma sigue
+        if (this->weapon_in_hand->get()->is_droppable()) {
+            droppeable_zone.drop(player_id, *this->weapon_in_hand);
+            this->new_weapon_in_hand(this->secondary);
+            this->primary = std::make_unique<NullWeapon>();
+        }
     }
 }
 

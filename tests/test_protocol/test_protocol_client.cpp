@@ -143,3 +143,41 @@ TEST(ClientProtocolTest, SendMoveSendCorrectObject) {
     accepted.recvall(&move_type, sizeof(move_type));
     EXPECT_EQ(static_cast<MoveType>(move_type), MoveType::RIGHT);
 }
+
+TEST(ClientProtocolTest, ReadGameInfoReadsCorrectData) {
+    Socket server_socket("9999");
+
+    GameInfo expected_game_info;
+    expected_game_info.walls.push_back(Position(1, 2));
+    expected_game_info.walls.push_back(Position(3, 4));
+
+    std::thread server_thread([&]() {
+        Socket client_socket = server_socket.accept();
+
+        length_game_info_t size_to_send =
+                htons(static_cast<length_game_info_t>(expected_game_info.walls.size()));
+        client_socket.sendall(&size_to_send, sizeof(size_to_send));
+
+        for (const Position& pos: expected_game_info.walls) {
+            // Enviar coordenada x
+            coordinate_t x_to_send = htons(pos.x);
+            client_socket.sendall(&x_to_send, sizeof(coordinate_t));
+
+            coordinate_t y_to_send = htons(pos.y);
+            client_socket.sendall(&y_to_send, sizeof(coordinate_t));
+        }
+    });
+
+    Socket client_socket("localhost", "9999");
+    ClientProtocol protocol(client_socket);
+
+    GameInfo received_game_info = protocol.read_game_info();
+
+    ASSERT_EQ(received_game_info.walls.size(), expected_game_info.walls.size());
+
+    for (size_t i = 0; i < expected_game_info.walls.size(); ++i) {
+        ASSERT_EQ(received_game_info.walls[i].x, expected_game_info.walls[i].x);
+        ASSERT_EQ(received_game_info.walls[i].y, expected_game_info.walls[i].y);
+    }
+    server_thread.join();
+}

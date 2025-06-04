@@ -23,12 +23,13 @@ void GameManager::process(ClientAction& action) {
 }
 
 std::shared_ptr<Player> GameManager::create_player(const player_id_t& id) {
-    Equipment equipment(map_game, map_game);
+    Equipment equipment(id, map_game, map_game);
     shared_ptr<Player> player;
     // Equipment le agrega la bomba solo si es TT podemos hacer al arrancar la ronda!
     player = std::make_shared<Player>(id, std::move(equipment), map_game);
     return player;
 }
+
 void GameManager::add_player(const player_id_t& id) {
     Team team = ((players.size() + 1) % 2 == 0) ? Team::CT : Team::TT;
     shared_ptr<Player> player = create_player(id);
@@ -37,6 +38,7 @@ void GameManager::add_player(const player_id_t& id) {
     players_team.insert(std::make_pair(id, team));
     map_game.add_player(id, player, team);  // Player es un ICanInteract
 }
+
 void GameManager::reset_players(bool full_reset) {
     for (const auto& player: players) {
         player.second->reset(full_reset);

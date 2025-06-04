@@ -3,6 +3,7 @@
 #include <gtest/gtest.h>
 
 #include "../../common/socket.h"
+#include "../../server/acceptor.h"
 #include "../../server/protocol/client_handler.h"
 #include "../../server/protocol/games_monitor.h"
 #include "../mocks/mock_games_monitor.h"

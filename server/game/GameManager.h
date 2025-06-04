@@ -28,7 +28,7 @@ class GameManager: public InterfaceGameManager {
 
 private:
     string game_name;
-    game_state_t game_state = {0};
+    game_state_t game_state = {0, 0};
     map<player_id_t, shared_ptr<Player>> players;
     map<player_id_t, Team> players_team;
     int round = 0;

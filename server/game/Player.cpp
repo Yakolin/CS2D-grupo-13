@@ -12,9 +12,7 @@ bool Player::dead() { return health == 0; }
 
 void Player::reset(bool full_reset) {
     if (full_reset || health == 0) {
-        equipment.primary = nullptr;
-        equipment.secondary = nullptr;
-        equipment.secondary = std::make_unique<Glock>();
+        equipment.reset_equipment();
     }
     health = 100;
 }
@@ -45,7 +43,10 @@ void Player::shoot(const coordinate_t& mouse_x, const coordinate_t& mouse_y) {
 
 PlayerImage Player::get_player_image(const Position& position, Team team) {
     return PlayerImage(id, Position(position.x, position.y), health, points,
-                       std::move(equipment.get_weapons_image()));
+                       std::move(equipment.get_weapons_image()), team);
+}
+void Player::buy_weapon(const WeaponCode& weapon_code) {
+    equipment.buy_weapon_by_code(weapon_code, money);
 }
 
 void Player::drop() { this->equipment.drop_weapon(this->id, this->droppable_zone); }

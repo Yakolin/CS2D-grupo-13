@@ -47,6 +47,8 @@ public:
     void add_player(player_id_t id, std::weak_ptr<ICanInteract> player, Team team);
     void update_teams(const std::map<player_id_t, Team>& players_teams);
     void respawn_players();
+    std::vector<std::vector<char>> get_walls() { return walls; }
+
     void move(player_id_t id, const Position& direction) override;
     void spawn_collider(player_id_t id_spawn, damage_collider_t& wanted) override;
     void drop(const player_id_t& player_id, std::unique_ptr<Weapon>& droppable) override;

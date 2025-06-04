@@ -5,6 +5,7 @@
 #include <memory>
 #include <string>
 #include <utility>
+#include <vector>
 
 #include "../../common/game_image.h"
 #include "../../common/player_command_types.h"
@@ -50,6 +51,7 @@ public:
             game_name(_game_name), map_game(map_name) {}
     ~GameManager();
     GameImage get_frame();
+    std::vector<std::vector<char>> get_game_map() { return map_game.get_walls(); }
     void start_game();
     void stop_game();
     virtual void process(ClientAction& action) override;

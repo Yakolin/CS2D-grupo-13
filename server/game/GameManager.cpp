@@ -89,10 +89,13 @@ bool GameManager::check_round_finished() {
     if (time_end /*&& bomba no exploto*/) {
         game_state.rounds_CT++;
         return true;
-    } else if (time_end /*&& bomba exploto */) {
-        game_state.rounds_TT++;
-        return true;
     }
+    /*
+        } else if (time_end && bomba exploto ) {
+            game_state.rounds_TT++;
+            return true;
+        }
+    */
     return false;
 }  // Faltan cosas aca
 void GameManager::change_teams() {

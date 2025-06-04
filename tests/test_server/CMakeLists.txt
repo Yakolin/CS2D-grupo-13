@@ -10,7 +10,7 @@ target_sources(CS2D_tests
     ../../server/protocol/game_loop.cpp
     ../../server/game/Colliders.cpp
     ../../server/game/CollisionManager.cpp
-    ../../server/game/Equipement.cpp
+    ../../server/game/Equipment.cpp
     ../../server/game/FireableWeapon.cpp
     ../../server/game/SpecialWeapons.cpp
     ../../server/game/GameManager.cpp
@@ -28,7 +28,7 @@ target_sources(CS2D_tests
     ../../server/protocol/game_loop.h
     ../../server/game/CollisionManager.h
     ../../server/game/Colliders.h
-    ../../server/game/Equipement.h
+    ../../server/game/Equipment.h
     ../../server/game/FireableWeapon.h
     ../../server/game/GameException.h
     ../../server/game/GameManager.h

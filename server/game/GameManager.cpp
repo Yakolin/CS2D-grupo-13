@@ -23,10 +23,10 @@ void GameManager::process(ClientAction& action) {
 }
 
 std::shared_ptr<Player> GameManager::create_player(player_id_t id) {
-    Equipement equipement;
+    Equipment equipment;
     shared_ptr<Player> player;
-    // Equipement le agrega la bomba solo si es TT podemos hacer al arrancar la ronda!
-    player = std::make_shared<Player>(id, std::move(equipement), map_game, map_game);
+    // Equipment le agrega la bomba solo si es TT podemos hacer al arrancar la ronda!
+    player = std::make_shared<Player>(id, std::move(equipment), map_game, map_game, map_game);
     return player;
 }
 void GameManager::add_player(player_id_t& id) {

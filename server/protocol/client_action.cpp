@@ -6,6 +6,7 @@ using ServerSpace::DefuseBomb;
 using ServerSpace::Drop;
 using ServerSpace::Equip;
 using ServerSpace::PlantBomb;
+using ServerSpace::MousePosition;
 */
 using ServerSpace::Move;
 using ServerSpace::Reload;
@@ -94,4 +95,11 @@ Shoot::~Shoot() {}
     Equip::~Equip() {}
 
     void Equip::action_to(IPlayerAction& player) { player.equip(this->equip_type); }
+
+    MousePosition::MousePosition(player_id_t player_id, const coordinate_t mouse_x,
+                                 const coordinate_t mouse_y):
+            ClientAction(player_id), MousePositionCommon(mouse_x, mouse_y) {}
+    MousePosition::~MousePosition() {}
+    void MousePosition::action_to(IPlayerAction& player) { player.watch(this->mouse_x,
+   this->mouse_y); }
 */

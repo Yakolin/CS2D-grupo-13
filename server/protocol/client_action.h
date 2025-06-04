@@ -110,7 +110,14 @@ public:
         ~Equip();
         void action_to(IPlayerAction& player) override;
     };
+
+    class MousePosition: public ClientAction, public MousePositionCommon {
+    public:
+        MousePosition(player_id_t player_id, const coordinate_t mouse_x, const coordinate_t
+   mouse_y); ~MousePosition(); void action_to(IPlayerAction& player) override;
+    };
     */
+
 
 }  // namespace ServerSpace
 #endif  // !CLIENT_ACTION_H

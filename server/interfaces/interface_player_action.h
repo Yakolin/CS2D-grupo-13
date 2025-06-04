@@ -19,6 +19,7 @@ public:
     virtual void buy_ammo(const WeaponType& weapon_type, const ammo_t& ammo_count) = 0;
     virtual void buy_weapon(const WeaponCode& weapon_code) = 0;
     virtual void equip(const EquipType& equip_type) = 0;
+    virtual void watch(const coordinate_t& mouse_x, const coordinate_t& mouse_y) = 0;
     */
 };
 

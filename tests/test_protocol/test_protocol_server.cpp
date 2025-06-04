@@ -135,6 +135,44 @@ TEST(ServerProtocolTest, ReadJoinGameReturnCorrectObject) {
     client_thread.join();
 }
 
+TEST(ServerProtocolTest, SendGameInfoSendsCorrectData) {
+    Socket server_socket("9999");
+    GameInfo game_info;
+    game_info.walls.push_back(Position(1, 2));
+    game_info.walls.push_back(Position(3, 4));
+
+    std::thread client_thread([&]() {
+        Socket client_socket("localhost", "9999");
+
+        length_game_info_t received_size;
+        client_socket.recvall(&received_size, sizeof(received_size));
+        received_size = ntohs(received_size);
+        ASSERT_EQ(received_size, game_info.walls.size());
+
+        for (const Position& expected_pos: game_info.walls) {
+            coordinate_t received_x;
+            client_socket.recvall(&received_x, sizeof(coordinate_t));
+            received_x = ntohs(received_x);
+
+            coordinate_t received_y;
+            client_socket.recvall(&received_y, sizeof(coordinate_t));
+            received_y = ntohs(received_y);
+
+            ASSERT_EQ(received_x, expected_pos.x);
+            ASSERT_EQ(received_y, expected_pos.y);
+        }
+    });
+
+    Socket server_client = server_socket.accept();
+    ServerProtocol protocol(server_client);
+
+    // Act
+    protocol.send_game_info(game_info);
+
+    client_thread.join();
+}
+
+
 TEST(ServerProtocolTest, ReadListGamesReturnCorrectCommand) {
     Socket server_socket("9999");
     std::thread client_thread([]() {

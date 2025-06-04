@@ -21,7 +21,6 @@ target_sources(CS2D_server
     ICanInteract.h
     IGameZone.h
     Map.h
-    MapTypes.h
     Player.h
     SpecialWeapons.h
     Weapon.h

@@ -33,7 +33,6 @@ target_sources(CS2D_tests
     ../../server/game/GameException.h
     ../../server/game/GameManager.h
     ../../server/game/Map.h
-    ../../server/game/MapTypes.h
     ../../server/game/Player.h
     ../../server/game/SpecialWeapons.h
     ../../server/game/Weapon.h

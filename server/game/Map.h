@@ -41,9 +41,9 @@ public:
     }
     void update_map_state();
     Position get_position(player_id_t player_id);
-    void add_player(player_id_t id, std::weak_ptr<ICanInteract> player);
-    void respawn_players(const std::map<player_id_t, Team>& players_teams);
-
+    void add_player(player_id_t id, std::weak_ptr<ICanInteract> player, Team team);
+    void update_teams(const std::map<player_id_t, Team>& players_teams);
+    void respawn_players();
     void move(player_id_t id, const Position& direction) override;
     void spawn_collider(player_id_t id_spawn, damage_collider_t& wanted) override;
 };

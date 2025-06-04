@@ -35,13 +35,13 @@ void GameManager::add_player(player_id_t& id) {
     players.insert(make_pair(id, player));
     std::cout << "Añado un jugador a la partida" << id << std::endl;
     players_team.insert(std::make_pair(id, team));
-    map_game.add_player(id, player);  // Player es un ICanInteract
+    map_game.add_player(id, player, team);  // Player es un ICanInteract
 }
 void GameManager::reset_players(bool full_reset) {
     for (const auto& player: players) {
         player.second->reset(full_reset);
     }
-    map_game.respawn_players(players_team);
+    map_game.respawn_players();
 }
 // Decidi que esto se cree cada vez que se pide para evitar datos copiados
 GameImage GameManager::generate_game_image() {
@@ -68,9 +68,10 @@ void GameManager::start_game() {
 void GameManager::stop_game() {}
 bool GameManager::check_round_finished() { return timer.is_round_over(); }  // Faltan cosas aca
 void GameManager::change_teams() {
-    for (const auto& player: players_team) {
-        players_team[player.first] = (player.second == Team::CT) ? Team::TT : Team::CT;
+    for (auto& player: players_team) {
+        player.second = (player.second == Team::CT) ? Team::TT : Team::CT;
     }
+    map_game.update_teams(players_team);
 }
 GameImage GameManager::get_frame() {
     /*

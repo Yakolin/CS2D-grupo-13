@@ -10,33 +10,36 @@ Position Map::get_position(player_id_t id) {
         return it->second.position;
     throw MapException("Can´t found player in the map to get the position");
 }
-void Map::respawn_players(const std::map<player_id_t, Team>& players_teams) {
-    std::cout << "Respawning players\n";
-    for (const auto& player: players_teams) {
+void Map::update_teams(const std::map<player_id_t, Team>& players_teams) {
+    for (auto& player: players_teams) {
         auto it = players_in_map.find(player.first);
         if (it != players_in_map.end()) {
-            if (player.second == Team::CT) {
-                it->second.position = spawn_CT.get_random_position();
-            } else {
-                it->second.position = spawn_TT.get_random_position();
-            }
+            players_in_map[it->first].team = (it->second.team == Team::CT) ? Team::TT : Team::CT;
         } else {
-            throw MapException("Can´t found players in the map to respawn");
+            throw MapException("Can´t found player in the map to update the team");
         }
     }
 }
-
-void Map::add_player(player_id_t id, std::weak_ptr<ICanInteract> player) {
-    players_in_map.insert(std::make_pair(id, PlayerEntity{player, Position(5, 5)}));
+void Map::respawn_players() {
+    std::cout << "Respawning players\n";
+    for (auto& player: players_in_map) {
+        player.second.position = (player.second.team == Team::CT) ? spawn_CT.get_random_position() :
+                                                                    spawn_TT.get_random_position();
+    }
+}
+void Map::add_player(player_id_t id, std::weak_ptr<ICanInteract> player, Team team) {
+    players_in_map.insert(std::make_pair(id, PlayerEntity{player, Position(5, 5), team}));
 }
 void Map::charge_zone(Rectangle& zone, const Position& position) {
     zone = Rectangle(WidthSpawn, HeightSpawn, position);
 }
 
-//Charge map debe recibir el tipo o en todo caso el path del mapa, que game manager se encargue de eso.
+// Charge map debe recibir el tipo o en todo caso el path del mapa, que game manager se encargue de
+// eso.
 void Map::charge_map(const std::string& map_name) {
-    if(map_name.empty()) std::cout << "ola, esto es para evitar flags" << std::endl;
-    std::string aux("assets/pueblito_azteca.txt");
+    if (map_name.empty())
+        std::cout << "ola, esto es para evitar flags" << std::endl;
+    std::string aux("../../assets/pueblito_azteca.txt");
     std::ifstream path(aux);
     if (!path.is_open()) {
         throw MapException("Can´t open the file of the game " + aux);

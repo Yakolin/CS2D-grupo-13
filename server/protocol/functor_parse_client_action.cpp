@@ -24,16 +24,18 @@ void ParseLobbyAction::run() {
     switch (this->command) {
         case LobbyCommandType::CREATE_GAME: {
             std::string game_name = this->protocol.read_create_game();
+            GameInfo game_info;
             if (this->games_monitor.create_game(this->player_id, game_name, this->recv_queue,
-                                                this->send_queue)) {
+                                                this->send_queue, game_info)) {
                 this->in_lobby = false;
             }
             break;
         }
         case LobbyCommandType::JOIN_GAME: {
             std::string game_name = this->protocol.read_join_game();
+            GameInfo game_info;
             if (this->games_monitor.join_game(this->player_id, game_name, this->recv_queue,
-                                              this->send_queue)) {
+                                              this->send_queue, game_info)) {
                 this->in_lobby = false;
             }
             break;

@@ -9,7 +9,7 @@
 class GameInfo {
 public:
     std::vector<Position> walls;
-    GameInfo(std::vector<Position>&& walls): walls(std::move(walls)) {}
+    GameInfo() {}
     ~GameInfo() {}
 };
 

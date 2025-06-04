@@ -9,9 +9,11 @@
 
 #include "../../common/connection_closed_exception.h"
 #include "../../common/game_image.h"
+#include "../../common/game_info.h"
 #include "../../common/lobby_types.h"
 #include "../../common/player_command_types.h"
 #include "../../common/socket.h"
+#include "../../common/utility.h"
 
 #include "client_action.h"
 
@@ -39,6 +41,8 @@ private:
     void send_byte_data(uint8_t& data);
     void send_two_byte_data(uint16_t& data);
 
+    void send_position(const Position& position);
+
     void send_client_id(GameImage& game_image);
     void send_player_image(GameImage& game_image);
 
@@ -64,6 +68,8 @@ public:
     */
 
     void send_list_games(std::vector<std::string>& list_games);
+
+    void send_game_info(GameInfo& game_info);
 
     void send_game_image(GameImage& game_image);
 };

@@ -9,7 +9,7 @@ bool GamesMonitor::create_game(player_id_t& player_id, const std::string& game_n
     std::lock_guard<std::mutex> lock(mutex);
     if (games.find(game_name) == games.end()) {
         std::unique_ptr<GameLoop> game_loop = std::make_unique<GameLoop>(game_name);
-        game_loop->add_player(player_id, recv_queue, send_queue);
+        game_loop->add_player(player_id, recv_queue, send_queue, game_info);
         if (game_loop->is_full()) {
             game_loop->start();
         }
@@ -28,7 +28,7 @@ bool GamesMonitor::join_game(player_id_t& player_id, const std::string& game_nam
     auto it = games.find(game_name);
     if (it != games.end()) {
         if (!it->second->is_full()) {
-            it->second->add_player(player_id, recv_queue, send_queue);
+            it->second->add_player(player_id, recv_queue, send_queue, game_info);
             if (it->second->is_full()) {
                 std::cout << "Comienza la partida" << player_id << std::endl;
                 it->second->start();

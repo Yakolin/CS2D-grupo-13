@@ -118,6 +118,14 @@ void ServerProtocol::send_two_byte_data(uint16_t& data) {
     }
 }
 
+void ServerProtocol::send_position(const Position& position) {
+    coordinate_t x = position.x;
+    this->send_two_byte_data(x);
+
+    coordinate_t y = position.y;
+    this->send_two_byte_data(y);
+}
+
 void ServerProtocol::send_list_games(std::vector<std::string>& list_games) {
     length_games_list_t list_size = list_games.size();
     this->send_two_byte_data(list_size);
@@ -130,6 +138,16 @@ void ServerProtocol::send_list_games(std::vector<std::string>& list_games) {
         if (this->socket.is_stream_send_closed()) {
             throw ConnectionClosedException("Error al intentar enviar datos al cliente");
         }
+    }
+}
+
+void ServerProtocol::send_game_info(GameInfo& game_info) {
+    std::vector<Position> walls = game_info.walls;
+    length_game_info_t info_size = walls.size();
+    this->send_two_byte_data(info_size);
+
+    for (const Position& wall_position: walls) {
+        this->send_position(wall_position);
     }
 }
 
@@ -148,11 +166,7 @@ void ServerProtocol::send_player_image(GameImage& game_image) {
         player_id_t player_id = player_image.player_id;
         this->send_two_byte_data(player_id);
 
-        coordinate_t x = player_image.position.x;
-        this->send_two_byte_data(x);
-
-        coordinate_t y = player_image.position.y;
-        this->send_two_byte_data(y);
+        this->send_position(player_image.position);
 
         health_t health = player_image.health;
         this->send_byte_data(health);

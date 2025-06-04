@@ -419,9 +419,9 @@ TEST(ServerProtocolIntegralTest, ReadCreateGameExecuteGamesMonitorCorrectly) {
     std::atomic<bool> command_processed = false;
 
     EXPECT_CALL(mock_games_monitor,
-                create_game(expected_player_id, "mateo game", testing::_, testing::_))
+                create_game(expected_player_id, "mateo game", testing::_, testing::_, testing::_))
             .Times(1)
-            .WillOnce(testing::Invoke([&command_processed](auto, auto, auto, auto) {
+            .WillOnce(testing::Invoke([&command_processed](auto, auto, auto, auto, auto) {
                 command_processed = true;
                 return true;
             }));
@@ -460,9 +460,9 @@ TEST(ServerProtocolIntegralTest, ReadJoinGameExecuteGamesMonitorCorrectly) {
     std::atomic<bool> command_processed = false;
 
     EXPECT_CALL(mock_games_monitor,
-                join_game(expected_player_id, "mateo game", testing::_, testing::_))
+                join_game(expected_player_id, "mateo game", testing::_, testing::_, testing::_))
             .Times(1)
-            .WillOnce(testing::Invoke([&command_processed](auto, auto, auto, auto) {
+            .WillOnce(testing::Invoke([&command_processed](auto, auto, auto, auto, auto) {
                 command_processed = true;
                 return true;
             }));

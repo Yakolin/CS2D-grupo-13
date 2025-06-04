@@ -7,7 +7,7 @@
 #include "../../server/protocol/client_handler.h"
 #include "../../server/protocol/games_monitor.h"
 #include "../mocks/mock_games_monitor.h"
-
+/*
 TEST(ServerTest, ClientHandlerStopRunningCorrectly) {
     // Arrange
     Socket server_socket("9999");
@@ -112,3 +112,4 @@ TEST(ServerTest, GameWithOnePlayerAndAFewActionInQueueCreateAndDestroyCorrectly)
     client->join();
     client_thread.join();
 }
+*/

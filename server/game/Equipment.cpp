@@ -41,14 +41,20 @@ void Equipment::reset_equipment() {
     secondary = std::make_unique<Glock>();
 }
 
-void Equipment::drop_weapon(const player_id_t& player_id, IDroppableZone& droppeable_zone) {
+void Equipment::drop_weapon(const player_id_t& player_id) {
     if (this->weapon_in_hand && *this->weapon_in_hand) {
         if (this->weapon_in_hand->get()->is_droppable()) {
-            droppeable_zone.drop(player_id, *this->weapon_in_hand);
+            this->droppable_zone.drop(player_id, *this->weapon_in_hand);
             this->new_weapon_in_hand(this->secondary);
             this->primary = std::make_unique<NullWeapon>();
         }
     }
+}
+
+void Equipment::reload() { this->weapon_in_hand->get()->reload(); }
+
+void Equipment::shoot(const player_id_t& player_id, Position& position) {
+    this->weapon_in_hand->get()->set_on_action(this->spawneable_zone, player_id, position);
 }
 
 std::vector<WeaponImage> Equipment::get_weapons_image() {

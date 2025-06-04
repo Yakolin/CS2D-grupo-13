@@ -32,13 +32,11 @@ void Player::move(const MoveType& move_type) {
             break;
     }
 }
-void Player::reload() {
-    // Aca no es la secondary igual
-    equipment.secondary->reload();
-}
+void Player::reload() { this->equipment.reload(); }
+
 void Player::shoot(const coordinate_t& mouse_x, const coordinate_t& mouse_y) {
-    Position direction(mouse_x, mouse_y);
-    equipment.secondary->set_on_action(spawneable_zone, id, direction);
+    Position position(mouse_x, mouse_y);
+    this->equipment.shoot(this->id, position);
 }
 
 PlayerImage Player::get_player_image(const Position& position, Team team) {
@@ -49,6 +47,6 @@ void Player::buy_weapon(const WeaponCode& weapon_code) {
     equipment.buy_weapon_by_code(weapon_code, money);
 }
 
-void Player::drop() { this->equipment.drop_weapon(this->id, this->droppable_zone); }
+void Player::drop() { this->equipment.drop_weapon(this->id); }
 
 void Player::equip(const EquipType& equip_type) { this->equipment.change_weapon(equip_type); }

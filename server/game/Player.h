@@ -17,15 +17,8 @@
 
 class Player: public IPlayerAction, public ICanInteract {
 public:
-    Player(player_id_t id, Equipment&& equipment, IGameZone& game_zone,
-           ISpawneableZone& spawneable_zone, IDroppableZone& droppable_zone):
-            id(id),
-            equipment(std::move(equipment)),
-            health(100),
-            points(0),
-            game_zone(game_zone),
-            spawneable_zone(spawneable_zone),
-            droppable_zone(droppable_zone) {}
+    Player(player_id_t id, Equipment&& equipment, IGameZone& game_zone):
+            id(id), equipment(std::move(equipment)), health(100), points(0), game_zone(game_zone) {}
     virtual ~Player() = default;
     bool dead();
     void reset(bool full_reset);
@@ -52,8 +45,6 @@ protected:  // Por ahora lo dejamo asi
 
 private:
     IGameZone& game_zone;
-    ISpawneableZone& spawneable_zone;
-    IDroppableZone& droppable_zone;
 };
 
 #endif  // GAME_PLAYER_H_

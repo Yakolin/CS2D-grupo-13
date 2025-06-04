@@ -41,3 +41,11 @@ Move::Move(MoveType move_type): MoveCommon(move_type), InterfaceClientAction() {
 Move::~Move() {}
 
 void Move::action(ClientProtocol& protocol) { protocol.send_move(this->move_type); }
+
+
+BuyWeapon::BuyWeapon(WeaponCode weapon_code):
+        BuyWeaponCommon(weapon_code), InterfaceClientAction() {}
+
+BuyWeapon::~BuyWeapon() {}
+
+void BuyWeapon::action(ClientProtocol& protocol) { protocol.send_buy_weapon(this->weapon_code); }

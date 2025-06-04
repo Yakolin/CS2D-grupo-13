@@ -43,9 +43,9 @@ public:
     ~BuyWeapon();
     void action_to(IPlayerAction& player) override;
 };
-
 /*
-    WEAPON ACTIONS
+
+WEAPON ACTIONS
 
 
 class BuyAmmo: public ClientAction, public BuyAmmoCommon {
@@ -93,23 +93,24 @@ public:
         void action_to(IPlayerAction& player) override;
     };
 
-*/
+    */
+
 class Drop: public ClientAction {
 public:
-    explicit Drop(player_id_t player_id);
+    Drop(player_id_t player_id);
     ~Drop();
     void action_to(IPlayerAction& player) override;
 };
+
+class Equip: public ClientAction, public EquipCommon {
+public:
+    Equip(player_id_t player_id, EquipType equip_type);
+    ~Equip();
+    void action_to(IPlayerAction& player) override;
+};
+
 /*
     GAME ACTIONS
-
-
-    class Equip: public ClientAction, public EquipCommon {
-        public:
-        Equip(player_id_t player_id, EquipType equip_type);
-        ~Equip();
-        void action_to(IPlayerAction& player) override;
-    };
 
     class MousePosition: public ClientAction, public MousePositionCommon {
     public:

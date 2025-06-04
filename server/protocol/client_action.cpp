@@ -2,11 +2,12 @@
 /*
 using ServerSpace::BuyAmmo;
 using ServerSpace::DefuseBomb;
-using ServerSpace::Equip;
+using ServerSpace::PlantBomb;
 using ServerSpace::MousePosition;
 */
 using ServerSpace::BuyWeapon;
 using ServerSpace::Drop;
+using ServerSpace::Equip;
 using ServerSpace::Move;
 using ServerSpace::Reload;
 using ServerSpace::Shoot;
@@ -23,18 +24,25 @@ Move::~Move() {}
 
 void Move::action_to(IPlayerAction& player) { player.move(this->move_type); }
 
+
+BuyWeapon::BuyWeapon(player_id_t player_id, WeaponCode weapon_code):
+        ClientAction(player_id), BuyWeaponCommon(weapon_code) {}
 BuyWeapon::BuyWeapon(player_id_t player_id, WeaponCode weapon_code):
         ClientAction(player_id), BuyWeaponCommon(weapon_code) {}
 
 BuyWeapon::~BuyWeapon() {}
+BuyWeapon::~BuyWeapon() {}
 
+void BuyWeapon::action_to(IPlayerAction& player) { player.buy_weapon(this->weapon_code); }
 void BuyWeapon::action_to(IPlayerAction& player) { player.buy_weapon(this->weapon_code); }
 
 
 /*
 
-WEAPON ACTIONS
-BuyAmmo::BuyAmmo(player_id_t player_id, WeaponType weapon_type, ammo_t ammo_count):
+    WEAPON ACTIONS
+
+
+    BuyAmmo::BuyAmmo(player_id_t player_id, WeaponType weapon_type, ammo_t ammo_count):
     ClientAction(player_id), BuyAmmoCommon(weapon_type, ammo_count) {}
 
 BuyAmmo::~BuyAmmo() {}
@@ -60,6 +68,22 @@ void Shoot::action_to(IPlayerAction& player) { player.shoot(this->mouse_x, this-
 
 Shoot::~Shoot() {}
 
+
+Drop::Drop(player_id_t player_id): ClientAction(player_id) {}
+
+Drop::~Drop() {}
+
+void Drop::action_to(IPlayerAction& player) { player.drop(); }
+
+
+Equip::Equip(player_id_t player_id, EquipType equip_type):
+        ClientAction(player_id), EquipCommon(equip_type) {}
+
+Equip::~Equip() {}
+
+void Equip::action_to(IPlayerAction& player) { player.equip(this->equip_type); }
+
+
 /*
 
 
@@ -79,22 +103,9 @@ Shoot::~Shoot() {}
     void DefuseBomb::action_to(IPlayerAction& player) { player.defuse_bomb(); }
 
 */
-Drop::Drop(player_id_t player_id): ClientAction(player_id) {}
-
-Drop::~Drop() {}
-
-void Drop::action_to(IPlayerAction& player) { player.drop(); }
 /*
     GAME ACTIONS
 
-
-
-    Equip::Equip(player_id_t player_id, EquipType equip_type):
-    ClientAction(player_id), EquipCommon(equip_type) {}
-
-    Equip::~Equip() {}
-
-    void Equip::action_to(IPlayerAction& player) { player.equip(this->equip_type); }
 
     MousePosition::MousePosition(player_id_t player_id, const coordinate_t mouse_x,
                                  const coordinate_t mouse_y):

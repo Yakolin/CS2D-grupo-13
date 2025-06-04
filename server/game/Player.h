@@ -37,6 +37,7 @@ public:
     virtual void shoot(const coordinate_t& mouse_x, const coordinate_t& mouse_y) override;
     virtual void buy_weapon(const WeaponCode& weapon_code) override;
     virtual void drop() override;
+    virtual void equip(const EquipType& equip_type) override;
 
     /*
     virtual void defuse_bomb() override;

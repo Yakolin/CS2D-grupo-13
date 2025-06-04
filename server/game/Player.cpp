@@ -50,3 +50,5 @@ void Player::buy_weapon(const WeaponCode& weapon_code) {
 }
 
 void Player::drop() { this->equipment.drop_weapon(this->id, this->droppable_zone); }
+
+void Player::equip(const EquipType& equip_type) { this->equipment.change_weapon(equip_type); }

@@ -52,6 +52,7 @@ void Equipment::buy_weapon_by_code(const WeaponCode& weapon_code, uint16_t money
 void Equipment::reset_equipment() {
     primary = nullptr;
     secondary = nullptr;
+    bomb = nullptr;
     secondary = std::make_unique<Glock>();
 }
 

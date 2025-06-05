@@ -53,6 +53,7 @@ void Equipment::reset_equipment() {
     primary = nullptr;
     secondary = nullptr;
     secondary = std::make_unique<Glock>();
+    bomb.reset();
 }
 
 void Equipment::drop_weapon() {
@@ -68,7 +69,9 @@ void Equipment::drop_weapon() {
 void Equipment::reload() { this->weapon_in_hand->get()->reload(); }
 
 void Equipment::shoot(Position& position) {
-    this->weapon_in_hand->get()->set_on_action(this->spawneable_zone, this->player_id, position);
+    if (/*Weapon in hand es bomba*/ bomb.lock())
+        bomb.lock()->set_on_bomb();  // Quedaria tirarla nada mas
+    this->secondary->set_on_action(this->spawneable_zone, this->player_id, position);
 }
 
 std::vector<WeaponImage> Equipment::get_weapons_image() {

@@ -28,7 +28,6 @@ private:
     Rectangle spawn_CT, spawn_TT, bomb_A, bomb_B;
     CollisionManager collision_manager;
     std::map<player_id_t, player_entity_t> players_in_map;
-    std::map<player_id_t, std::unique_ptr<Collider>> damage_colliders;
     bool check_zones(char c, int i);
     void charge_zone(Rectangle& zone, const Position& position);
     void charge_map(const std::string& archivo);
@@ -39,7 +38,7 @@ public:
             ISpawneableZone(),
             IDroppableZone(),
             map_name(_map_name),
-            collision_manager(walls, players_in_map, damage_colliders) {
+            collision_manager(walls, players_in_map) {
         charge_map(map_name);
     }
     void update_map_state();
@@ -50,7 +49,7 @@ public:
     std::vector<Position> get_walls();
 
     void move(player_id_t id, const Position& direction) override;
-    void spawn_collider(player_id_t id_spawn, damage_collider_t& wanted) override;
+    void spawn_collider(player_id_t id_spawn, collider_solicitude_t& wanted) override;
     void drop(const player_id_t& player_id, std::unique_ptr<Weapon>& droppable) override;
 };
 

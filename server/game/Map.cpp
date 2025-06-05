@@ -108,7 +108,7 @@ void Map::move(player_id_t id, const Position& direction) {
     throw MapException("Can´t found players in the map to move");
 }
 
-void Map::spawn_collider(player_id_t id_spawn, damage_collider_t& wanted) {
+void Map::spawn_collider(player_id_t id_spawn, collider_solicitude_t& wanted) {
     Position aux = get_position(id_spawn);
     Vector2f player_pos(aux.x, aux.y);
     float dir_x = wanted.mouse_position.x - player_pos.x;
@@ -119,7 +119,8 @@ void Map::spawn_collider(player_id_t id_spawn, damage_collider_t& wanted) {
     relative_direction.y *= wanted.distance;
     std::unique_ptr<Collider> line = std::make_unique<Line>(
             std::move(player_pos), std::move(relative_direction), wanted.width);
-    damage_colliders.insert(std::make_pair(id_spawn, std::move(line)));
+    collider_damage_t collider_damage = {std::move(line), wanted.damage_function};
+    collision_manager.add_damage_collider(id_spawn, collider_damage);
 }
 
 void Map::drop(const player_id_t& player_id, std::unique_ptr<Weapon>& droppable) {

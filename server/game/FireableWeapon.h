@@ -32,6 +32,9 @@ public:
     virtual WeaponImage get_weapon_image() override;
 };
 class Ak47: public FireableWeapon {
+private:
+    uint8_t calculate_damage(float distance);
+
 public:
     Ak47(): FireableWeapon(WeaponCode::AK47, 3, 90, 30) {}
     virtual void set_on_action(ISpawneableZone& spawn, player_id_t id,
@@ -39,6 +42,9 @@ public:
     virtual bool is_droppable() override;
 };
 class Glock: public FireableWeapon {
+private:
+    uint8_t calculate_damage(float distance);
+
 public:
     Glock(): FireableWeapon(WeaponCode::GLOCK, 1, 120, 30) {}
     virtual void set_on_action(ISpawneableZone& spawn, player_id_t id,

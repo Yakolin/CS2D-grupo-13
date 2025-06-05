@@ -1,21 +1,30 @@
 #include "FireableWeapon.h"
-
 void Glock::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& direction) {
+    std::cout << "Rompiste\n";
     if (current_bullets > 0) {
         uint8_t bullets_fired = std::min(current_bullets, fire_rate);
         current_bullets -= bullets_fired;
-        ISpawneableZone::damage_collider_t wanted = {2, 5, direction};
+        auto calculate_damage_func = [this](float distance) {
+            return this->calculate_damage(distance);
+        };
+        ISpawneableZone::collider_solicitude_t wanted = {2, 5, direction, calculate_damage_func};
         spawn.spawn_collider(id, wanted);
     }
 }
 bool Glock::is_droppable() { return false; }
 
+uint8_t Glock::calculate_damage(float distance) { return 8 * distance; }
+
+uint8_t Ak47::calculate_damage(float distance) { return 1 * distance; }
 void Ak47::set_on_action(ISpawneableZone& spawn, player_id_t id,
                          Position& direction) {  // Es un calco por ahora
     if (current_bullets > 0) {
         uint8_t bullets_fired = std::min(current_bullets, fire_rate);
         current_bullets -= bullets_fired;
-        ISpawneableZone::damage_collider_t wanted = {2, 5, direction};
+        auto calculate_damage_func = [this](float distance) {
+            return this->calculate_damage(distance);
+        };
+        ISpawneableZone::collider_solicitude_t wanted = {2, 25, direction, calculate_damage_func};
         spawn.spawn_collider(id, wanted);
     }
 }

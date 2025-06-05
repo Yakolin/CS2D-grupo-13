@@ -81,7 +81,7 @@ void GameManager::start_game() {
         return;
     }
     timer.round_start();
-    reset_players(true);
+    reset_players(false);
     give_bomb();
     game_started = true;
 }
@@ -129,8 +129,6 @@ GameImage GameManager::get_frame() {
                   << " TT: " << game_state.rounds_TT << std::endl;
     }
     /*
-    if (!game_started)
-        throw GameException("The game isn´t start yet to take a frame");
         1. Actualizar las cosas en el Mapa , como movimiento de las balas , armas q caen
         2. Chekear colisiones que no sean propias del jugador (colisiones de bala por ejemplo)
         3. Manejar esas colisiones como balas chocando, etc

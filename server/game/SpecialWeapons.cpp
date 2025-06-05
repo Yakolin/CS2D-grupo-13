@@ -1,7 +1,8 @@
 #include "SpecialWeapons.h"
 
-void set_on_bomb() {
+void Bomb::set_on_bomb() {
     // Le aviso al timer que tiene que empezar a correr por ser yo la bomba
+    timer.bomb_start();
 }
 WeaponImage Bomb::get_weapon_image() { return WeaponImage(WeaponCode::BOMB, 0, 0, 0); }
 

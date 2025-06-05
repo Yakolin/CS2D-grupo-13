@@ -50,9 +50,7 @@ private:
 public:
     // Aca el nombre del mapa es inutil, deberia de ser un enum de mapas para saber cuaaal cargar
     explicit GameManager(const string& _game_name, const string& map_name):
-            game_name(_game_name), map_game(map_name) {
-        bomb = std::make_shared<Bomb>(timer);
-    }
+            game_name(_game_name), bomb(std::make_shared<Bomb>(timer)), map_game(map_name, bomb) {}
     ~GameManager();
     GameImage get_frame();
     std::vector<Position> get_game_map() { return map_game.get_walls(); }

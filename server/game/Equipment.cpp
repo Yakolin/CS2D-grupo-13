@@ -69,8 +69,10 @@ void Equipment::drop_weapon() {
 void Equipment::reload() { this->weapon_in_hand->get()->reload(); }
 
 void Equipment::shoot(Position& position) {
-    if (/*Weapon in hand es bomba*/ bomb.lock())
-        bomb.lock()->set_on_bomb();  // Quedaria tirarla nada mas
+    if (/*Weapon in hand es bomba*/ bomb.lock()) {
+        bomb.lock()->set_on_bomb();
+        droppable_zone.drop_bomb(player_id);
+    }
     this->secondary->set_on_action(this->spawneable_zone, this->player_id, position);
 }
 

@@ -7,6 +7,7 @@ void Player::damage(uint8_t damage) {
         health = 0;
     health -= damage;
 }
+void Player::equip_bomb(std::weak_ptr<Bomb> bomb) { equipment.equip_bomb(bomb); }
 
 bool Player::dead() { return health == 0; }
 

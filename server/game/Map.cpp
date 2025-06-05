@@ -28,7 +28,7 @@ void Map::respawn_players() {
     }
 }
 void Map::add_player(player_id_t id, std::weak_ptr<ICanInteract> player, Team team) {
-    players_in_map.insert(std::make_pair(id, PlayerEntity{player, Position(5, 5), team}));
+    players_in_map.insert(std::make_pair(id, PlayerEntity{player, Position(15, 15), team}));
 }
 void Map::charge_zone(Rectangle& zone, const Position& position) {
     zone = Rectangle(WidthSpawn, HeightSpawn, position);
@@ -97,14 +97,8 @@ std::vector<Position> Map::get_walls() {
     return walls_pos;
 }
 void Map::move(player_id_t id, const Position& direction) {
-    auto it = players_in_map.find(id);
-    if (it != players_in_map.end()) {
-        if (auto p = it->second.player.lock()) {
-            if (collision_manager.valid_movement(it->second.position, direction))
-                it->second.position += direction;
-            return;
-        }
-    }
+    if (collision_manager.check_movement(id, direction))
+        return;
     throw MapException("Can´t found players in the map to move");
 }
 
@@ -125,4 +119,8 @@ void Map::spawn_collider(player_id_t id_spawn, collider_solicitude_t& wanted) {
 
 void Map::drop(const player_id_t& player_id, std::unique_ptr<Weapon>& droppable) {
     this->collision_manager.drop(player_id, droppable);
+}
+void Map::drop_bomb(const player_id_t& player_id) {
+    Position new_pos = get_position(player_id);
+    bomb.first = new_pos;
 }

@@ -10,6 +10,7 @@
 
 #include "Colliders.h"
 #include "ICanInteract.h"
+#include "SpecialWeapons.h"
 #define Wall '#'
 #define Floor ' '
 
@@ -29,14 +30,17 @@ class CollisionManager {
     std::vector<std::vector<char>>& walls;
     std::map<player_id_t, player_entity_t>& players_in_map;
     std::map<player_id_t, ColliderDamage> damage_colliders;
+    std::pair<Position, std::shared_ptr<Bomb>>& bomb;
     std::map<std::unique_ptr<Weapon>, Position> dropped_weapons;
     void check_damage_collider(player_id_t caster, ColliderDamage& collider);
+    void check_bomb_stepped(PlayerEntity& player);
 
 public:
     explicit CollisionManager(std::vector<std::vector<char>>& walls,
-                              std::map<player_id_t, player_entity_t>& players_in_map):
-            walls(walls), players_in_map(players_in_map) {}
-    bool valid_movement(const Position& actual_position, const Position& next_position);
+                              std::map<player_id_t, player_entity_t>& players_in_map,
+                              std::pair<Position, std::shared_ptr<Bomb>>& bomb):
+            walls(walls), players_in_map(players_in_map), bomb(bomb) {}
+    bool check_movement(player_id_t id, const Position& next_position);
     void check_damage();
     void drop(const player_id_t& player_id, std::unique_ptr<Weapon>& dropable);
     void add_damage_collider(player_id_t id, ColliderDamage& collider_damage);

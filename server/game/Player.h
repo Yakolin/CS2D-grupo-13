@@ -1,6 +1,7 @@
 #ifndef GAME_PLAYER_H_
 #define GAME_PLAYER_H_
 
+#include <memory>
 #include <string>
 #include <utility>
 #include <vector>
@@ -23,8 +24,10 @@ public:
     bool dead();
     void reset(bool full_reset);
     PlayerImage get_player_image(const Position& position, Team team);
+
     // Interface
     void damage(uint8_t damage) override;
+    virtual void equip_bomb(std::weak_ptr<Bomb> bomb) override;
     virtual void move(const MoveType& move_type) override;
     virtual void reload() override;
     virtual void shoot(const coordinate_t& mouse_x, const coordinate_t& mouse_y) override;

@@ -2,13 +2,30 @@
 
 #include <iostream>
 
-bool CollisionManager::valid_movement(const Position& actual_position,
-                                      const Position& next_position) {
-    Position destino = actual_position + next_position;
+bool CollisionManager::check_movement(player_id_t id, const Position& next_position) {
+    auto it = players_in_map.find(id);
+    if (it == players_in_map.end())
+        return false;
+    Position destino = it->second.position + next_position;
     // Aca los destinos son distintos porque la matriz esta "invertida" con respecto a los vectores
     int x = destino.x;
     int y = destino.y;
-    return walls[y][x] != Wall;
+    if (walls[y][x] != Wall)
+        it->second.position += next_position;
+    if (it->second.team == Team::TT)
+        check_bomb_stepped(it->second);
+    return true;
+}
+void CollisionManager::check_bomb_stepped(PlayerEntity& player) {
+    if (!(player.position == bomb.first))
+        return;
+    if (player.player.lock() && !bomb.second->is_activate()) {
+        player.player.lock()->equip_bomb(bomb.second);
+        bomb.second->set_equiped();
+        std::cout << "Bomba equipada\n";
+    } else {
+        std::cout << "La bomba esta activada, perdon\n";
+    }
 }
 void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage& collider_damage) {
     std::vector<PlayerEntity> players_affected;

@@ -62,6 +62,7 @@ GameImage GameManager::generate_game_image() {
     return game_image;
 }
 void GameManager::give_bomb() {
+    std::srand(time(NULL));
     std::vector<player_id_t> players_tt;
     for (auto& player: players_team) {
         if (player.second == Team::CT)
@@ -71,9 +72,9 @@ void GameManager::give_bomb() {
     if (players_tt.empty())
         throw GameException("Can´t find any TT to give the bomb");
 
-    player_id_t id = rand() % players_tt.size();
-    std::cout << "El random es: " << id << std::endl;
-    // Aca falta darle la bomba, necesito acceder al equipment
+    player_id_t id = players_tt[rand() % players_tt.size()];
+    std::shared_ptr<Player> player_selected = find_player(id);
+    player_selected->equip_bomb(bomb);
 }
 void GameManager::start_game() {
     if (players.size() < 1) {

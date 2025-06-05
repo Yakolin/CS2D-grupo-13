@@ -1,6 +1,5 @@
 #include "FireableWeapon.h"
 void Glock::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& direction) {
-    std::cout << "Rompiste\n";
     if (current_bullets > 0) {
         uint8_t bullets_fired = std::min(current_bullets, fire_rate);
         current_bullets -= bullets_fired;

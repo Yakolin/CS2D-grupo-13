@@ -26,6 +26,7 @@ private:
     std::string map_name;
     std::vector<std::vector<char>> walls;
     Rectangle spawn_CT, spawn_TT, bomb_A, bomb_B;
+    std::pair<Position, std::shared_ptr<Bomb>> bomb;
     CollisionManager collision_manager;
     std::map<player_id_t, player_entity_t> players_in_map;
     bool check_zones(char c, int i);
@@ -33,12 +34,13 @@ private:
     void charge_map(const std::string& archivo);
 
 public:
-    explicit Map(const std::string& _map_name):
+    explicit Map(const std::string& _map_name, std::shared_ptr<Bomb> bomb_ptr):
             IGameZone(),
             ISpawneableZone(),
             IDroppableZone(),
             map_name(_map_name),
-            collision_manager(walls, players_in_map) {
+            bomb(std::make_pair(Position(10, 10), bomb_ptr)),
+            collision_manager(walls, players_in_map, bomb) {
         charge_map(map_name);
     }
     void update_map_state();
@@ -51,6 +53,7 @@ public:
     void move(player_id_t id, const Position& direction) override;
     void spawn_collider(player_id_t id_spawn, collider_solicitude_t& wanted) override;
     void drop(const player_id_t& player_id, std::unique_ptr<Weapon>& droppable) override;
+    void drop_bomb(const player_id_t& player_id) override;
 };
 
 #endif  // MAP_H_

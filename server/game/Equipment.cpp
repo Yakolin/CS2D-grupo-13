@@ -41,7 +41,7 @@ void Equipment::buy_weapon_by_code(const WeaponCode& weapon_code, uint16_t money
             if (money < price)
                 break;
             primary = std::make_unique<Ak47>();
-            this->droppable_zone.drop(this->player_id, *this->weapon_in_hand);
+            this->droppable_zone.drop(this->player_id, this->primary);
             this->new_weapon_in_hand(this->primary);
             break;
         default:
@@ -52,7 +52,6 @@ void Equipment::buy_weapon_by_code(const WeaponCode& weapon_code, uint16_t money
 void Equipment::reset_equipment() {
     primary = nullptr;
     secondary = nullptr;
-    bomb = nullptr;
     secondary = std::make_unique<Glock>();
 }
 

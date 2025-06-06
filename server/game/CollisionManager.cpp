@@ -81,3 +81,11 @@ void CollisionManager::drop(Position& player_position, std::unique_ptr<Weapon>& 
 void CollisionManager::add_damage_collider(player_id_t id, ColliderDamage& collider_damage) {
     damage_colliders.insert(std::make_pair(id, std::move(collider_damage)));
 }
+std::vector<WeaponDropped> CollisionManager::get_dropped_weapons_images() {
+    std::vector<WeaponDropped> weapon_images;
+    std::transform(dropped_weapons.begin(), dropped_weapons.end(), back_inserter(weapon_images),
+                   [](const auto& weapon) {
+                       return WeaponDropped(weapon.second->get_weapon_code(), weapon.first);
+                   });
+    return weapon_images;
+}

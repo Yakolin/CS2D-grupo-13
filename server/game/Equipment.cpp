@@ -95,3 +95,8 @@ bool Equipment::equip_weapon(std::unique_ptr<Weapon>& weapon) {
     }
     return false;
 }
+void Equipment::equip_bomb(std::weak_ptr<Bomb> new_bomb) {
+    bomb = new_bomb;
+    if (bomb.lock())
+        bomb.lock()->set_equiped();
+}

@@ -15,8 +15,22 @@ using points_t = std::uint8_t;
 using length_players_images_t = std::uint16_t;
 
 enum class Team { CT, TT };
-
-
+class BombImage {
+public:
+    BombImage() = default;
+    BombImage(Position pos, bool activate, bool dropped):
+            position(pos), activate(activate), dropped(dropped) {}
+    WeaponCode weapon_code = WeaponCode::BOMB;
+    Position position = Position();
+    bool activate = false;
+    bool dropped = false;
+};
+class WeaponDropped {
+public:
+    WeaponDropped(WeaponCode weapon_code, Position pos): weapon_code(weapon_code), position(pos) {}
+    WeaponCode weapon_code;
+    Position position;
+};
 class WeaponImage {
 public:
     WeaponImage(WeaponCode weapon_code, uint8_t current_bullets, uint8_t magazine,
@@ -59,11 +73,10 @@ public:
     std::vector<PlayerImage> players_images;
     uint8_t time = 0;
     uint8_t round = 0;
-    std::string pathname_walls;  // Este deberia de enviarse UNICAMENTE una vez!
+
     // Balas en el aire
-    // Bomba
-    // Drops
-    // Sonidos)? no , eso es mio
+    BombImage bomb;
+    std::vector<WeaponDropped> dropped_weapons;
 };
 
 #endif  // !GAME_IMAGE_H

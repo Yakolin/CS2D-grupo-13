@@ -45,6 +45,7 @@ public:
     void check_damage();
     void drop(Position& player_position, std::unique_ptr<Weapon>& dropable);
     void add_damage_collider(player_id_t id, ColliderDamage& collider_damage);
+    std::vector<WeaponDropped> get_dropped_weapons_images();
 };
 
 #endif  // COLLISION_MANAGER_H_

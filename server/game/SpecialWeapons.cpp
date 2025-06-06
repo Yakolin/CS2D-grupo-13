@@ -8,7 +8,6 @@ void Bomb::set_on_bomb() {
     activate = true;
     std::cout << "Bomba activada" << std::endl;
 }
-WeaponImage Bomb::get_weapon_image() { return WeaponImage(WeaponCode::BOMB, 0, 0, 0); }
 void Bomb::set_equiped() { equiped = true; }
 void Bomb::set_unequiped() { equiped = false; }
 bool Bomb::is_equiped() { return equiped; }

@@ -46,9 +46,16 @@ public:
     void update_map_state();
     Position get_position(player_id_t player_id);
     void add_player(player_id_t id, std::weak_ptr<ICanInteract> player, Team team);
+    void remove_player(player_id_t id);
     void update_teams(const std::map<player_id_t, Team>& players_teams);
     void respawn_players();
     std::vector<Position> get_walls();
+    std::vector<WeaponDropped> get_dropped_weapons_images() {
+        return collision_manager.get_dropped_weapons_images();
+    }
+    BombImage get_bomb_image() {
+        return BombImage(bomb.first, bomb.second->is_activate(), !bomb.second->is_equiped());
+    }
 
     void move(player_id_t id, const Position& direction) override;
     void spawn_collider(player_id_t id_spawn, collider_solicitude_t& wanted) override;

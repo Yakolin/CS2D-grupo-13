@@ -59,6 +59,8 @@ GameImage GameManager::generate_game_image() {
         game_image.players_images.push_back(
                 std::move(player->get_player_image(player_position, players_team[par.first])));
     }
+    game_image.dropped_weapons = map_game.get_dropped_weapons_images();
+    game_image.bomb = map_game.get_bomb_image();
     return game_image;
 }
 void GameManager::give_bomb() {
@@ -106,16 +108,13 @@ bool GameManager::check_round_finished() {
         return true;
     }
     bool time_end = timer.is_round_over();
-    if (time_end /*&& bomba no exploto*/) {
+    if (time_end && !bomb->is_activate()) {
         game_state.rounds_CT++;
         return true;
+    } else if (time_end && bomb->is_activate()) {
+        game_state.rounds_TT++;
+        return true;
     }
-    /*
-        } else if (time_end && bomba exploto ) {
-            game_state.rounds_TT++;
-            return true;
-        }
-    */
     return false;
 }
 void GameManager::change_teams() {
@@ -154,7 +153,10 @@ GameImage GameManager::get_frame() {
 
 void GameManager::remove_player(
         [[maybe_unused]] const player_id_t&  // habria que eliminarlo de todos los lugares
-                player_id) {}
+                player_id) {
+    map_game.remove_player(player_id);
+    // Falta eliminarlo de aca
+}
 
 GameManager::~GameManager() { players.clear(); }
 

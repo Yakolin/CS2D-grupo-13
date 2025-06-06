@@ -21,12 +21,13 @@ public:
             Position& direction) = 0;  // Recordatorio de este = 0. Significa que es puro
     virtual void reload() = 0;
     virtual WeaponImage get_weapon_image() = 0;
+    WeaponCode get_weapon_code() { return code; }
     virtual bool is_droppable() = 0;
 };
 
 class NullWeapon: public Weapon {
 public:
-    explicit NullWeapon(): Weapon(WeaponCode::NONE) {}
+    NullWeapon(): Weapon(WeaponCode::NONE) {}
     ~NullWeapon() = default;
 
     virtual void set_on_action([[maybe_unused]] ISpawneableZone& spawn,

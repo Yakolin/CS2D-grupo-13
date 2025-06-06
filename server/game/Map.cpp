@@ -125,3 +125,4 @@ void Map::drop_bomb(const player_id_t& player_id) {
     Position new_pos = get_position(player_id);
     bomb.first = new_pos;
 }
+void Map::remove_player(player_id_t id) {}

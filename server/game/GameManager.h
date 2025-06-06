@@ -12,6 +12,7 @@
 #include "../interfaces/interface_game.h"
 #include "../protocol/client_action.h"
 
+#include "GameConfig.h"
 #include "GameException.h"
 #include "Map.h"
 #include "Player.h"
@@ -29,6 +30,7 @@ class GameManager: public InterfaceGameManager {
 
 private:
     string game_name;
+    GameConfig game_config;
     game_state_t game_state = {0, 0};
     map<player_id_t, shared_ptr<Player>> players;
     map<player_id_t, Team> players_team;
@@ -50,7 +52,10 @@ private:
 public:
     // Aca el nombre del mapa es inutil, deberia de ser un enum de mapas para saber cuaaal cargar
     explicit GameManager(const string& _game_name, const string& map_name):
-            game_name(_game_name), bomb(std::make_shared<Bomb>(timer)), map_game(map_name, bomb) {}
+            game_name(_game_name),
+            timer(game_config.get_timer_config()),
+            bomb(std::make_shared<Bomb>(timer)),
+            map_game(map_name, bomb) {}
     ~GameManager();
     GameImage get_frame();
     std::vector<Position> get_game_map() { return map_game.get_walls(); }

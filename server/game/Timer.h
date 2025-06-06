@@ -2,19 +2,25 @@
 #define TIMER_H_
 #include <algorithm>
 #include <chrono>
+
+#include "GameConfig.h"
 class Timer {
     using clock = std::chrono::steady_clock;
-    int buy_duration = 0;
-    int round_duration = 120 + buy_duration;  // En segundos
-
-    int bomb_duration = 15;  // ??? deberia ir aca?
+    int buy_duration;
+    int round_duration;
+    int bomb_duration;
     bool round_started = false;
     bool bomb_activate = false;
     clock::time_point round_start_time;
     clock::time_point bomb_start_time;
+    GameConfig::TimerConfig timer_config;
 
 public:
-    Timer() = default;
+    explicit Timer(GameConfig::TimerConfig& timer_config): timer_config(timer_config) {
+        buy_duration = timer_config.time_buy;
+        bomb_duration = timer_config.time_bomb;
+        round_duration = timer_config.time_round + buy_duration;
+    }
     ~Timer() = default;
     void round_start() {
         round_start_time = clock::now();

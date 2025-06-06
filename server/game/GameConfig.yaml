@@ -1,0 +1,25 @@
+Weapons: 
+  Ak47: 
+    price: 2700
+    damage: 5
+    fire_rate: 3
+    max_bullets: 90
+    magazine: 30
+  Glock: 
+    price: 500
+    damage: 10
+    fire_rate: 1 
+    max_bullets: 120
+    magazine: 30
+  Knife: 
+    price: 0
+    damage: 25
+    fire_rate: 1
+    max_bullets: 0
+    magazine: 0
+
+Timer: 
+  time_buy: 10
+  time_round: 24
+  time_after_round: 10
+  time_bomb: 20

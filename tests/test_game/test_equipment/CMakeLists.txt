@@ -1,6 +1,7 @@
 target_sources(CS2D_tests
     PRIVATE
     ../../../server/game/Equipment.cpp
+    test_equipment.cpp
     
     PUBLIC
     ../../../common/player_command_types.h

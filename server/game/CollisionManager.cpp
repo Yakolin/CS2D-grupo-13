@@ -10,10 +10,13 @@ bool CollisionManager::check_movement(player_id_t id, const Position& next_posit
     // Aca los destinos son distintos porque la matriz esta "invertida" con respecto a los vectores
     int x = destino.x;
     int y = destino.y;
-    if (walls[y][x] != Wall)
+    if (walls[y][x] != Wall) {
         it->second.position += next_position;
-    if (it->second.team == Team::TT)
-        check_bomb_stepped(it->second);
+
+        if (it->second.team == Team::TT)
+            check_bomb_stepped(it->second);
+        check_weapon_stepped(it->second);
+    }
     return true;
 }
 void CollisionManager::check_bomb_stepped(PlayerEntity& player) {
@@ -27,11 +30,14 @@ void CollisionManager::check_bomb_stepped(PlayerEntity& player) {
         std::cout << "La bomba esta activada, perdon\n";
     }
 }
-/*
-void CollisionManager::check_weapon_stepped(PlayerEntity& player){
 
+void CollisionManager::check_weapon_stepped(PlayerEntity& player) {
+    auto it = dropped_weapons.find(player.position);
+    if (it == dropped_weapons.end())
+        return;
+    if (player.player.lock() && player.player.lock()->equip_weapon(it->second))
+        dropped_weapons.erase(it);
 }
-*/
 void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage& collider_damage) {
     std::vector<PlayerEntity> players_affected;
     // A lo sumo 10 players, no es algo costoso
@@ -69,12 +75,8 @@ void CollisionManager::check_damage() {
     damage_colliders.clear();
 }
 
-void CollisionManager::drop(const player_id_t& player_id, std::unique_ptr<Weapon>& dropable) {
-    auto it = this->players_in_map.find(player_id);
-    if (it != players_in_map.end()) {
-        Position& player_position = it->second.position;
-        this->dropped_weapons.insert(std::make_pair(std::move(dropable), player_position));
-    }
+void CollisionManager::drop(Position& player_position, std::unique_ptr<Weapon>& dropable) {
+    this->dropped_weapons.insert(std::make_pair(player_position, std::move(dropable)));
 }
 void CollisionManager::add_damage_collider(player_id_t id, ColliderDamage& collider_damage) {
     damage_colliders.insert(std::make_pair(id, std::move(collider_damage)));

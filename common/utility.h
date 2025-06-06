@@ -19,6 +19,7 @@ public:
     Position& operator-=(const Position& other);
     Position& operator=(Position&& other) = default;
     Position& operator=(const Position& other) = default;
+    bool operator<(const Position& other) const;
     bool operator==(const Position& other) const;
 };
 

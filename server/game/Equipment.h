@@ -44,7 +44,7 @@ public:
     void reload();
     void shoot(Position& position);
     void equip_bomb(std::weak_ptr<Bomb> new_bomb) { bomb = new_bomb; }
-    void equip_weapon(std::unique_ptr<Weapon>& weapon);
+    bool equip_weapon(std::unique_ptr<Weapon>& weapon);
     std::vector<WeaponImage> get_weapons_image();
 };
 

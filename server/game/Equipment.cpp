@@ -88,7 +88,10 @@ std::vector<WeaponImage> Equipment::get_weapons_image() {
     weapons.push_back(knife->get_weapon_image());
     return weapons;
 }
-void Equipment::equip_weapon(std::unique_ptr<Weapon>& weapon) {
-    if (!primary)
+bool Equipment::equip_weapon(std::unique_ptr<Weapon>& weapon) {
+    if (!primary) {
         primary = std::move(weapon);
+        return true;
+    }
+    return false;
 }

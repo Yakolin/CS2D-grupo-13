@@ -45,7 +45,7 @@ void GameManager::reset_players(bool full_reset) {
     for (const auto& player: players) {
         player.second->reset(full_reset);
     }
-    map_game.respawn_players();
+    // map_game.respawn_players();
 }
 // Decidi que esto se cree cada vez que se pide para evitar datos copiados
 GameImage GameManager::generate_game_image() {
@@ -117,7 +117,7 @@ bool GameManager::check_round_finished() {
         }
     */
     return false;
-}  // Faltan cosas aca
+}
 void GameManager::change_teams() {
     for (auto& player: players_team) {
         player.second = (player.second == Team::CT) ? Team::TT : Team::CT;

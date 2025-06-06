@@ -51,4 +51,6 @@ void Player::buy_weapon(const WeaponCode& weapon_code) {
 void Player::drop() { this->equipment.drop_weapon(); }
 
 void Player::equip(const EquipType& equip_type) { this->equipment.change_weapon(equip_type); }
-void Player::equip_weapon(std::unique_ptr<Weapon>& weapon) { equipment.equip_weapon(weapon); }
+bool Player::equip_weapon(std::unique_ptr<Weapon>& weapon) {
+    return equipment.equip_weapon(weapon);
+}

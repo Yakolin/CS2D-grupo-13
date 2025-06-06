@@ -94,15 +94,15 @@ public:
     };
 
 */
+class Drop: public ClientAction {
+public:
+    explicit Drop(player_id_t player_id);
+    ~Drop();
+    void action_to(IPlayerAction& player) override;
+};
 /*
     GAME ACTIONS
 
-    class Drop: public ClientAction {
-        public:
-        Drop(player_id_t player_id);
-        ~Drop();
-        void action_to(IPlayerAction& player) override;
-    };
 
     class Equip: public ClientAction, public EquipCommon {
         public:

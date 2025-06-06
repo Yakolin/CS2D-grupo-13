@@ -19,3 +19,8 @@ Position& Position::operator-=(const Position& other) {
 bool Position::operator==(const Position& other) const {
     return this->x == other.x && this->y == other.y;
 }
+bool Position::operator<(const Position& other) const {
+    if (this->x == other.x)
+        return this->y < other.y;
+    return this->x < other.x;
+}

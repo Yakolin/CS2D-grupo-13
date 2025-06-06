@@ -118,7 +118,8 @@ void Map::spawn_collider(player_id_t id_spawn, collider_solicitude_t& wanted) {
 }
 
 void Map::drop(const player_id_t& player_id, std::unique_ptr<Weapon>& droppable) {
-    this->collision_manager.drop(player_id, droppable);
+    Position new_pos = get_position(player_id);
+    this->collision_manager.drop(new_pos, droppable);
 }
 void Map::drop_bomb(const player_id_t& player_id) {
     Position new_pos = get_position(player_id);

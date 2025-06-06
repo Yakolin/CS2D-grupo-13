@@ -4,9 +4,9 @@ using ServerSpace::BuyAmmo;
 using ServerSpace::DefuseBomb;
 using ServerSpace::Equip;
 using ServerSpace::MousePosition;
-using ServerSpace::Drop;
 */
 using ServerSpace::BuyWeapon;
+using ServerSpace::Drop;
 using ServerSpace::Move;
 using ServerSpace::Reload;
 using ServerSpace::Shoot;
@@ -79,14 +79,14 @@ Shoot::~Shoot() {}
     void DefuseBomb::action_to(IPlayerAction& player) { player.defuse_bomb(); }
 
 */
+Drop::Drop(player_id_t player_id): ClientAction(player_id) {}
+
+Drop::~Drop() {}
+
+void Drop::action_to(IPlayerAction& player) { player.drop(); }
 /*
     GAME ACTIONS
 
-    Drop::Drop(player_id_t player_id): ClientAction(player_id) {}
-
-    Drop::~Drop() {}
-
-    void Drop::action_to(IPlayerAction& player) { player.drop(); }
 
 
     Equip::Equip(player_id_t player_id, EquipType equip_type):

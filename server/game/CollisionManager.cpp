@@ -27,6 +27,11 @@ void CollisionManager::check_bomb_stepped(PlayerEntity& player) {
         std::cout << "La bomba esta activada, perdon\n";
     }
 }
+/*
+void CollisionManager::check_weapon_stepped(PlayerEntity& player){
+
+}
+*/
 void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage& collider_damage) {
     std::vector<PlayerEntity> players_affected;
     // A lo sumo 10 players, no es algo costoso

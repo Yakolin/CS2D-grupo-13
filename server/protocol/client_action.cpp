@@ -1,13 +1,12 @@
 #include "client_action.h"
 /*
 using ServerSpace::BuyAmmo;
-using ServerSpace::BuyWeapon;
 using ServerSpace::DefuseBomb;
-using ServerSpace::Drop;
 using ServerSpace::Equip;
-using ServerSpace::PlantBomb;
 using ServerSpace::MousePosition;
+using ServerSpace::Drop;
 */
+using ServerSpace::BuyWeapon;
 using ServerSpace::Move;
 using ServerSpace::Reload;
 using ServerSpace::Shoot;
@@ -23,26 +22,27 @@ Move::Move(player_id_t player_id, MoveType move_type):
 Move::~Move() {}
 
 void Move::action_to(IPlayerAction& player) { player.move(this->move_type); }
+
+BuyWeapon::BuyWeapon(player_id_t player_id, WeaponCode weapon_code):
+        ClientAction(player_id), BuyWeaponCommon(weapon_code) {}
+
+BuyWeapon::~BuyWeapon() {}
+
+void BuyWeapon::action_to(IPlayerAction& player) { player.buy_weapon(this->weapon_code); }
+
+
 /*
 
-    WEAPON ACTIONS
-
-    BuyWeapon::BuyWeapon(player_id_t player_id, WeaponCode weapon_code):
-    ClientAction(player_id), BuyWeaponCommon(weapon_code) {}
-
-    BuyWeapon::~BuyWeapon() {}
-
-    void BuyWeapon::action_to(IPlayerAction& player) { player.buy_weapon(this->weapon_code); }
-
-
-    BuyAmmo::BuyAmmo(player_id_t player_id, WeaponType weapon_type, ammo_t ammo_count):
+WEAPON ACTIONS
+BuyAmmo::BuyAmmo(player_id_t player_id, WeaponType weapon_type, ammo_t ammo_count):
     ClientAction(player_id), BuyAmmoCommon(weapon_type, ammo_count) {}
 
-    BuyAmmo::~BuyAmmo() {}
+BuyAmmo::~BuyAmmo() {}
 
-    void BuyAmmo::action_to(IPlayerAction& player) {
-        player.buy_ammo(this->weapon_type, this-ammo_count);
+void BuyAmmo::action_to(IPlayerAction& player) {
+    player.buy_ammo(this->weapon_type, this-ammo_count);
 }
+
 */
 
 

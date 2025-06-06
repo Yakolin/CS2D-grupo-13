@@ -35,18 +35,18 @@ public:
     void action_to(IPlayerAction& player) override;
 };
 
+class BuyWeapon: public ClientAction, public BuyWeaponCommon {
+public:
+    BuyWeapon(player_id_t player_id,
+              WeaponCode weapon_code);  // considerando que el arma viene con
+    // municion por default
+    ~BuyWeapon();
+    void action_to(IPlayerAction& player) override;
+};
+
 /*
     WEAPON ACTIONS
 
-class BuyWeapon: public ClientAction, public BuyWeaponCommon {
-
-public:
-BuyWeapon(player_id_t player_id,
-WeaponCode weapon_code);  // considerando que el arma viene con
-// municion por default
-~BuyWeapon();
-void action_to(IPlayerAction& player) override;
-};
 
 class BuyAmmo: public ClientAction, public BuyAmmoCommon {
 

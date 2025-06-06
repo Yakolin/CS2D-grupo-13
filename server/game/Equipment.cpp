@@ -41,8 +41,8 @@ void Equipment::buy_weapon_by_code(const WeaponCode& weapon_code, uint16_t money
             if (money < price)
                 break;
             primary = std::make_unique<Ak47>();
-            this->droppable_zone.drop(this->player_id, this->primary);
-            this->new_weapon_in_hand(this->primary);
+            // this->droppable_zone.drop(this->player_id, this->primary);
+            // this->new_weapon_in_hand(this->primary);
             break;
         default:
             return;
@@ -57,6 +57,9 @@ void Equipment::reset_equipment() {
 }
 
 void Equipment::drop_weapon() {
+    if (primary)
+        droppable_zone.drop(this->player_id, primary);
+    /*
     if (this->weapon_in_hand && *this->weapon_in_hand) {
         if (this->weapon_in_hand->get()->is_droppable()) {
             this->droppable_zone.drop(this->player_id, *this->weapon_in_hand);
@@ -64,6 +67,7 @@ void Equipment::drop_weapon() {
             this->primary = std::make_unique<NullWeapon>();
         }
     }
+    */
 }
 
 void Equipment::reload() { this->weapon_in_hand->get()->reload(); }
@@ -83,4 +87,8 @@ std::vector<WeaponImage> Equipment::get_weapons_image() {
     weapons.push_back(secondary->get_weapon_image());
     weapons.push_back(knife->get_weapon_image());
     return weapons;
+}
+void Equipment::equip_weapon(std::unique_ptr<Weapon>& weapon) {
+    if (!primary)
+        primary = std::move(weapon);
 }

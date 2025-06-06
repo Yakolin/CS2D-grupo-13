@@ -121,8 +121,11 @@ void Map::drop(const player_id_t& player_id, std::unique_ptr<Weapon>& droppable)
     Position new_pos = get_position(player_id);
     this->collision_manager.drop(new_pos, droppable);
 }
-void Map::drop_bomb(const player_id_t& player_id) {
-    Position new_pos = get_position(player_id);
-    bomb.first = new_pos;
+void Map::plant_bomb(const player_id_t& player_id) {
+    Position player_pos = get_position(player_id);
+    if (!bomb_A.is_in(player_pos) && !bomb_B.is_in(player_pos))
+        return;
+    bomb.first = player_pos;
+    bomb.second->set_on_bomb();
 }
 void Map::remove_player(player_id_t id) {}

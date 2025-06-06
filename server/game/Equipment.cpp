@@ -74,10 +74,10 @@ void Equipment::reload() { this->weapon_in_hand->get()->reload(); }
 
 void Equipment::shoot(Position& position) {
     if (/*Weapon in hand es bomba*/ bomb.lock()) {
-        bomb.lock()->set_on_bomb();
-        droppable_zone.drop_bomb(player_id);
+        droppable_zone.plant_bomb(player_id);
+    } else {
+        this->secondary->set_on_action(this->spawneable_zone, this->player_id, position);
     }
-    this->secondary->set_on_action(this->spawneable_zone, this->player_id, position);
 }
 
 std::vector<WeaponImage> Equipment::get_weapons_image() {

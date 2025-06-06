@@ -60,7 +60,7 @@ public:
     void move(player_id_t id, const Position& direction) override;
     void spawn_collider(player_id_t id_spawn, collider_solicitude_t& wanted) override;
     void drop(const player_id_t& player_id, std::unique_ptr<Weapon>& droppable) override;
-    void drop_bomb(const player_id_t& player_id) override;
+    void plant_bomb(const player_id_t& player_id) override;
 };
 
 #endif  // MAP_H_

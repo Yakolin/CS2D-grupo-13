@@ -5,8 +5,8 @@ Weapon::weapon_specs_t WeaponFactory::find_weapon_specs(WeaponCode code) {
     if (it == weapon_configs.end())
         throw std::runtime_error("Error while reading a weapon config");
     GameConfig::WeaponConfig& config = it->second;
-    Weapon::weapon_specs_t specs = {config.damage, config.fire_rate, config.max_b, config.current_b,
-                                    config.current_b};
+    Weapon::weapon_specs_t specs = {config.price, config.damage,    config.fire_rate,
+                                    config.max_b, config.current_b, config.current_b};
     return specs;
 }
 std::unique_ptr<Weapon> WeaponFactory::weapon_create(WeaponCode code) {

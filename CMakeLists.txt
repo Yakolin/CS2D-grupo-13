@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.16.3)
 list(APPEND CMAKE_PREFIX_PATH "/usr/lib/x86_64-linux-gnu/cmake/yaml-cpp")
 find_package(yaml-cpp REQUIRED)
 
-
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
@@ -172,6 +171,7 @@ if(CS2D_SERVER)
     target_link_libraries(CS2D_server 
         CS2D_common
         Threads::Threads
+        yaml-cpp
     )
 
 endif()
@@ -229,5 +229,6 @@ if(CS2D_TESTS)
     target_link_libraries(CS2D_tests
         CS2D_common
         GTest::gmock_main
+        yaml-cpp
     )
 endif()

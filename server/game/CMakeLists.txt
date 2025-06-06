@@ -9,7 +9,8 @@ target_sources(CS2D_server
     Map.cpp
     Player.cpp
     SpecialWeapons.cpp
-    
+    GameConfig.cpp
+    WeaponFactory.cpp
     PUBLIC
     # .h files
     CollisionManager.h
@@ -25,4 +26,6 @@ target_sources(CS2D_server
     SpecialWeapons.h
     Weapon.h
     Timer.h
+    GameConfig.h
+    WeaponFactory.h
     )

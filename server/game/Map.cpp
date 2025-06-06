@@ -128,4 +128,4 @@ void Map::plant_bomb(const player_id_t& player_id) {
     bomb.first = player_pos;
     bomb.second->set_on_bomb();
 }
-void Map::remove_player(player_id_t id) {}
+void Map::remove_player([[maybe_unused]] player_id_t id) {}  // Esto no es asi, acordate de fixearlo

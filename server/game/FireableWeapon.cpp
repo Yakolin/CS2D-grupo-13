@@ -46,8 +46,9 @@ WeaponImage FireableWeapon::get_weapon_image() {
 
 /* KNIFE */
 void Knife::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& direction) {
+    auto function_damage = [this]([[maybe_unused]] float distance) { return specs.damage; };
     ISpawneableZone::collider_solicitude_t wanted = {
-            2, 2, direction};  // Es muy cercano, asi que 2 esta bien)?
+            2, 2, direction, function_damage};  // Es muy cercano, asi que 2 esta bien)?
     spawn.spawn_collider(id, wanted);
 }
 void Knife::reload() { return; }

@@ -16,6 +16,8 @@ target_sources(CS2D_tests
     ../../server/game/GameManager.cpp
     ../../server/game/Map.cpp
     ../../server/game/Player.cpp
+    ../../server/game/GameConfig.cpp
+    ../../server/game/WeaponFactory.cpp
     ../../common/socket.cpp
 
     PUBLIC
@@ -37,4 +39,6 @@ target_sources(CS2D_tests
     ../../server/game/SpecialWeapons.h
     ../../server/game/Weapon.h
     ../../common/socket.h
+    ../../server/game/GameConfig.h
+    ../../server/game/WeaponFactory.h
 )

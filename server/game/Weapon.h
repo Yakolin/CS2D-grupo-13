@@ -36,7 +36,7 @@ public:
 
 class NullWeapon: public Weapon {
 public:
-    NullWeapon(): Weapon(WeaponCode::NONE, {0}) {}
+    NullWeapon(): Weapon(WeaponCode::NONE, {0, 0, 0, 0, 0, 0}) {}
     ~NullWeapon() = default;
 
     virtual void set_on_action([[maybe_unused]] ISpawneableZone& spawn,

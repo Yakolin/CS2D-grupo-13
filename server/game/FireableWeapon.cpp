@@ -1,8 +1,8 @@
 #include "FireableWeapon.h"
 void Glock::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& direction) {
-    if (current_bullets > 0) {
-        uint8_t bullets_fired = std::min(current_bullets, fire_rate);
-        current_bullets -= bullets_fired;
+    if (specs.current_bullets > 0) {
+        uint8_t bullets_fired = std::min(specs.current_bullets, specs.fire_rate);
+        specs.current_bullets -= bullets_fired;
         auto calculate_damage_func = [this](float distance) {
             return this->calculate_damage(distance);
         };
@@ -12,14 +12,13 @@ void Glock::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& dire
 }
 bool Glock::is_droppable() { return false; }
 
-uint8_t Glock::calculate_damage(float distance) { return 8 * distance; }
+uint8_t Glock::calculate_damage(float distance) { return specs.damage * distance; }
 
-uint8_t Ak47::calculate_damage(float distance) { return 1 * distance; }
-void Ak47::set_on_action(ISpawneableZone& spawn, player_id_t id,
-                         Position& direction) {  // Es un calco por ahora
-    if (current_bullets > 0) {
-        uint8_t bullets_fired = std::min(current_bullets, fire_rate);
-        current_bullets -= bullets_fired;
+uint8_t Ak47::calculate_damage(float distance) { return specs.damage * distance; }
+void Ak47::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& direction) {
+    if (specs.current_bullets > 0) {
+        uint8_t bullets_fired = std::min(specs.current_bullets, specs.fire_rate);
+        specs.current_bullets -= bullets_fired;
         auto calculate_damage_func = [this](float distance) {
             return this->calculate_damage(distance);
         };
@@ -31,21 +30,29 @@ void Ak47::set_on_action(ISpawneableZone& spawn, player_id_t id,
 bool Ak47::is_droppable() { return true; }
 
 void FireableWeapon::reload() {
-    if (inventory_bullets > 0 &&
-        current_bullets < magazine) {  // Si en el inventario tengo >= 0 balas
-        uint8_t needed_bullets = magazine - current_bullets;
-        uint8_t avalible_bullets = std::min(needed_bullets, inventory_bullets);
-        current_bullets += avalible_bullets;
-        inventory_bullets -= avalible_bullets;
-        std::cout << "Recargas : " << avalible_bullets
-                  << " balas. Balas restantes en almacenamiento: " << inventory_bullets
-                  << std::endl;
-    } else {
-        std::cout << "No tenes mas balas en el almacenamiento\no no habia porque recargar, ya "
-                     "estas lleno\n";
+    if (specs.inventory_bullets > 0 &&
+        specs.current_bullets < specs.magazine) {  // Si en el inventario tengo >= 0 balas
+        uint8_t needed_bullets = specs.magazine - specs.current_bullets;
+        uint8_t avalible_bullets = std::min(needed_bullets, specs.inventory_bullets);
+        specs.current_bullets += avalible_bullets;
+        specs.inventory_bullets -= avalible_bullets;
     }
 }
 WeaponImage FireableWeapon::get_weapon_image() {
     /* Aca deberia de encargarse cada arma de esto...*/
-    return WeaponImage(code, current_bullets, magazine, inventory_bullets);
+    return WeaponImage(code, specs.current_bullets, specs.magazine, specs.inventory_bullets);
 }
+
+
+/* KNIFE */
+void Knife::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& direction) {
+    ISpawneableZone::collider_solicitude_t wanted = {
+            2, 2, direction};  // Es muy cercano, asi que 2 esta bien)?
+    spawn.spawn_collider(id, wanted);
+}
+void Knife::reload() { return; }
+WeaponImage Knife::get_weapon_image() {
+    return WeaponImage(code, 0, 0, 0);  // Aca evidentemente no maneja balas el cuchillo
+}
+
+bool Knife::is_droppable() { return false; }

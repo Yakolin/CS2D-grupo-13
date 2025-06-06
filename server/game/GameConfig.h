@@ -20,6 +20,7 @@ public:
         uint8_t max_b;
         uint8_t current_b;
     } weapon_config_t;
+
     std::map<WeaponCode, WeaponConfig> weapon_configs;
     typedef struct TimerConfig {
         int time_buy;
@@ -30,6 +31,8 @@ public:
     TimerConfig timer_config;
 
 private:
+    WeaponCode weapon_name_to_code(const std::string& name);
+    void load_weapons(const YAML::Node& config);
     void load_timers(const YAML::Node& config);
     void load(const std::string& file_path);
 

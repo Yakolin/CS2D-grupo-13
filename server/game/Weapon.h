@@ -13,7 +13,16 @@
 class Weapon {
 public:
     WeaponCode code;
-    explicit Weapon(WeaponCode code): code(code) {}
+    typedef struct WeaponSpecs {
+        uint16_t price;
+        uint16_t damage;
+        uint8_t fire_rate;
+        uint8_t inventory_bullets;
+        uint8_t current_bullets;
+        uint8_t magazine;
+    } weapon_specs_t;
+    weapon_specs_t specs;
+    explicit Weapon(WeaponCode code, weapon_specs_t specs): code(code), specs(specs) {}
     virtual ~Weapon() = default;
 
     virtual void set_on_action(
@@ -27,7 +36,7 @@ public:
 
 class NullWeapon: public Weapon {
 public:
-    NullWeapon(): Weapon(WeaponCode::NONE) {}
+    NullWeapon(): Weapon(WeaponCode::NONE, {0}) {}
     ~NullWeapon() = default;
 
     virtual void set_on_action([[maybe_unused]] ISpawneableZone& spawn,

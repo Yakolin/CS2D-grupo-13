@@ -19,7 +19,7 @@ Weapons:
     magazine: 0
 
 Timer: 
-  time_buy: 10
+  time_buy: 0
   time_round: 24
   time_after_round: 10
   time_bomb: 20

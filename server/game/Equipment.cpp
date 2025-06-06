@@ -1,14 +1,15 @@
 #include "Equipment.h"
 
 Equipment::Equipment(const player_id_t& player_id, ISpawneableZone& spawneable_zone,
-                     IDroppableZone& droppable_zone):
+                     IDroppableZone& droppable_zone, WeaponFactory& weapon_factory):
         player_id(player_id),
-        primary(nullptr),
-        secondary(std::make_unique<Glock>()),
-        knife(std::make_unique<Knife>()),
-        weapon_in_hand(&this->secondary),
         spawneable_zone(spawneable_zone),
-        droppable_zone(droppable_zone) {}
+        droppable_zone(droppable_zone),
+        weapon_factory(weapon_factory),
+        primary(nullptr),
+        secondary(weapon_factory.weapon_create(WeaponCode::GLOCK)),
+        knife(weapon_factory.weapon_create(WeaponCode::KNIFE)),
+        weapon_in_hand(&this->secondary) {}
 
 Equipment::~Equipment() {}
 
@@ -34,25 +35,14 @@ void Equipment::change_weapon(const EquipType& equip) {
 
 
 void Equipment::buy_weapon_by_code(const WeaponCode& weapon_code, uint16_t money) {
-    uint16_t price = 0;
-    switch (weapon_code) {
-        case WeaponCode::AK47:
-            price = 500;  // Aca es mejor manejar precios asociados al YAML y no al arma en si
-            if (money < price)
-                break;
-            primary = std::make_unique<Ak47>();
-            // this->droppable_zone.drop(this->player_id, this->primary);
-            // this->new_weapon_in_hand(this->primary);
-            break;
-        default:
-            return;
-    }
-    std::cout << "Arma comprada con éxito.\n";
+    if (weapon_factory.price_weapon(weapon_code) > money)
+        return;
+    primary = weapon_factory.weapon_create(weapon_code);
 }
 void Equipment::reset_equipment() {
     primary = nullptr;
     secondary = nullptr;
-    secondary = std::make_unique<Glock>();
+    secondary = weapon_factory.weapon_create(WeaponCode::GLOCK);
     bomb.reset();
 }
 

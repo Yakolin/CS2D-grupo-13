@@ -45,7 +45,7 @@ protected:  // Por ahora lo dejamo asi
     Equipment equipment;
     uint8_t health;
     uint8_t points;
-    uint16_t money = 500;
+    uint16_t money = 5000;
 
 private:
     IGameZone& game_zone;

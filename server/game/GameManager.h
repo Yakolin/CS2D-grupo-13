@@ -17,6 +17,7 @@
 #include "Map.h"
 #include "Player.h"
 #include "Timer.h"
+#include "WeaponFactory.h"
 using std::map;
 using std::shared_ptr;
 using std::string;
@@ -29,18 +30,25 @@ class GameManager: public InterfaceGameManager {
     } game_state_t;
 
 private:
+    // Configs
     string game_name;
     GameConfig game_config;
     game_state_t game_state = {0, 0};
+    int round = 0;
+    bool game_started = false;
+
+    // Players
     map<player_id_t, shared_ptr<Player>> players;
     map<player_id_t, Team> players_team;
-    int round = 0;
     Timer timer;
+    WeaponFactory weapon_factory;
     std::shared_ptr<Bomb> bomb;
+    // Map
     Map map_game;
-    bool game_started = false;
+
     std::shared_ptr<Player> create_player(const player_id_t& id);
     shared_ptr<Player> find_player(const player_id_t& player_id);
+
     GameImage generate_game_image();
     void give_bomb();
     void reset_players(bool full_reset);
@@ -54,6 +62,7 @@ public:
     explicit GameManager(const string& _game_name, const string& map_name):
             game_name(_game_name),
             timer(game_config.get_timer_config()),
+            weapon_factory(game_config.get_weapon_config()),
             bomb(std::make_shared<Bomb>(timer)),
             map_game(map_name, bomb) {}
     ~GameManager();
@@ -63,15 +72,7 @@ public:
     void stop_game();
     virtual void process(ClientAction& action) override;
     virtual void add_player(const player_id_t& player_id) override;
-
-    /*
-        void move(player_id_t player_id, MoveType move_type) override;
-        void shoot(player_id_t player_id, coordinate_t mouse_x, coordinate_t mouse_y) override;
-        void reload(player_id_t player_id) override;
-        void plant_bomb(player_id_t player_id) override;
-    */
-    void remove_player([[maybe_unused]] const player_id_t&
-                               player_id);  // en el caso de que se desconecte hay que implementarlo
+    void remove_player([[maybe_unused]] const player_id_t& player_id);
 };
 
 #endif  // GAME_MANAGER_H_

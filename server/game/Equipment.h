@@ -11,25 +11,26 @@
 #include "IDropeableZone.h"
 #include "ISpawneableZone.h"
 #include "SpecialWeapons.h"
+#include "WeaponFactory.h"
 
 class Equipment {
 private:
     const player_id_t& player_id;
+
+    ISpawneableZone& spawneable_zone;
+    IDroppableZone& droppable_zone;
+    WeaponFactory& weapon_factory;
 
     std::unique_ptr<Weapon> primary;
     std::unique_ptr<Weapon> secondary;
     std::unique_ptr<Weapon> knife;
     std::weak_ptr<Bomb> bomb;
     std::unique_ptr<Weapon>* weapon_in_hand;
-
-    ISpawneableZone& spawneable_zone;
-    IDroppableZone& droppable_zone;
-
     void new_weapon_in_hand(std::unique_ptr<Weapon>& weapon);
 
 public:
     Equipment(const player_id_t& player_id, ISpawneableZone& spawneable_zone,
-              IDroppableZone& droppable_zone);
+              IDroppableZone& droppable_zone, WeaponFactory& weapon_factory);
     ~Equipment();
 
     Equipment(Equipment&&) = default;

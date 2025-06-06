@@ -12,20 +12,8 @@
 
 #include "Weapon.h"
 class FireableWeapon: public Weapon {
-
-protected:
-    uint8_t fire_rate;
-    uint8_t inventory_bullets;
-    uint8_t current_bullets;
-    uint8_t magazine;
-
 public:
-    FireableWeapon(WeaponCode code, uint8_t rate, uint8_t max_b, uint8_t current_b):
-            Weapon(code),
-            fire_rate(rate),
-            inventory_bullets(max_b),
-            current_bullets(current_b),
-            magazine(current_b) {}
+    FireableWeapon(WeaponCode code, weapon_specs_t specs): Weapon(code, specs) {}
     virtual void set_on_action(ISpawneableZone& spawn, player_id_t id,
                                Position& direction) override = 0;
     virtual void reload() override;
@@ -36,7 +24,7 @@ private:
     uint8_t calculate_damage(float distance);
 
 public:
-    Ak47(): FireableWeapon(WeaponCode::AK47, 3, 90, 30) {}
+    explicit Ak47(weapon_specs_t specs): FireableWeapon(WeaponCode::AK47, specs) {}
     virtual void set_on_action(ISpawneableZone& spawn, player_id_t id,
                                Position& direction) override;
     virtual bool is_droppable() override;
@@ -46,9 +34,19 @@ private:
     uint8_t calculate_damage(float distance);
 
 public:
-    Glock(): FireableWeapon(WeaponCode::GLOCK, 1, 120, 30) {}
+    explicit Glock(weapon_specs_t specs): FireableWeapon(WeaponCode::GLOCK, specs) {}
     virtual void set_on_action(ISpawneableZone& spawn, player_id_t id,
                                Position& direction) override;
+    virtual bool is_droppable() override;
+};
+
+class Knife: public Weapon {
+public:
+    explicit Knife(weapon_specs_t specs): Weapon(WeaponCode::KNIFE, specs) {}
+    virtual void set_on_action(ISpawneableZone& spawn, player_id_t id,
+                               Position& direction) override;
+    virtual void reload() override;
+    virtual WeaponImage get_weapon_image() override;
     virtual bool is_droppable() override;
 };
 

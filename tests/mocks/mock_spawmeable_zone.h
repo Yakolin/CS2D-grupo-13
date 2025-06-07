@@ -7,7 +7,7 @@
 
 class MockISpawneableZone: public ISpawneableZone {
 public:
-    MOCK_METHOD(void, spawn_collider, (player_id_t id_spawn, damage_collider_t& wanted),
+    MOCK_METHOD(void, spawn_collider, (player_id_t id_spawn, collider_solicitude_t& wanted),
                 (override));
 };
 

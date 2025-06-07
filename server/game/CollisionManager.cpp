@@ -75,7 +75,7 @@ void CollisionManager::check_damage() {
     damage_colliders.clear();
 }
 
-void CollisionManager::drop(Position& player_position, std::unique_ptr<Weapon>& dropable) {
+void CollisionManager::drop(Position& player_position, std::shared_ptr<Weapon>& dropable) {
     this->dropped_weapons.insert(std::make_pair(player_position, std::move(dropable)));
 }
 void CollisionManager::add_damage_collider(player_id_t id, ColliderDamage& collider_damage) {

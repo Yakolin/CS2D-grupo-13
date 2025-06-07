@@ -7,7 +7,7 @@
 class ICanInteract {
 public:
     virtual void damage(uint8_t damage) = 0;
-    virtual bool equip_weapon(std::unique_ptr<Weapon>& weapon) = 0;
+    virtual bool equip_weapon(std::shared_ptr<Weapon>& weapon) = 0;
     virtual void equip_bomb(std::weak_ptr<Bomb> bomb) = 0;
     virtual ~ICanInteract() = default;
 };

@@ -117,7 +117,7 @@ void Map::spawn_collider(player_id_t id_spawn, collider_solicitude_t& wanted) {
     collision_manager.add_damage_collider(id_spawn, collider_damage);
 }
 
-void Map::drop(const player_id_t& player_id, std::unique_ptr<Weapon>& droppable) {
+void Map::drop(const player_id_t& player_id, std::shared_ptr<Weapon>& droppable) {
     Position new_pos = get_position(player_id);
     this->collision_manager.drop(new_pos, droppable);
 }

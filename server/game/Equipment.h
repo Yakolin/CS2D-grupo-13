@@ -21,12 +21,12 @@ private:
     IDroppableZone& droppable_zone;
     WeaponFactory& weapon_factory;
 
-    std::unique_ptr<Weapon> primary;
-    std::unique_ptr<Weapon> secondary;
-    std::unique_ptr<Weapon> knife;
+    std::shared_ptr<Weapon> primary;
+    std::shared_ptr<Weapon> secondary;
+    std::shared_ptr<Weapon> knife;
     std::weak_ptr<Bomb> bomb;
-    std::unique_ptr<Weapon>* weapon_in_hand;
-    void new_weapon_in_hand(std::unique_ptr<Weapon>& weapon);
+    std::shared_ptr<Weapon> weapon_in_hand;
+    void new_weapon_in_hand(std::shared_ptr<Weapon>& weapon);
 
 public:
     Equipment(const player_id_t& player_id, ISpawneableZone& spawneable_zone,
@@ -45,7 +45,7 @@ public:
     void reload();
     void shoot(Position& position);
     void equip_bomb(std::weak_ptr<Bomb> new_bomb);
-    bool equip_weapon(std::unique_ptr<Weapon>& weapon);
+    bool equip_weapon(std::shared_ptr<Weapon>& weapon);
     std::vector<WeaponImage> get_weapons_image();
 };
 

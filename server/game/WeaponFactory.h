@@ -15,7 +15,7 @@ private:
 public:
     explicit WeaponFactory(std::map<WeaponCode, GameConfig::WeaponConfig>& weapon_configs):
             weapon_configs(weapon_configs) {}
-    std::unique_ptr<Weapon> weapon_create(WeaponCode code);
+    std::shared_ptr<Weapon> weapon_create(WeaponCode code);
     uint16_t price_weapon(WeaponCode code);
 };
 #endif  // WEAPON_FACTORY_H_

@@ -7,7 +7,7 @@
 #include "Weapon.h"
 class IDroppableZone {
 public:
-    virtual void drop(const player_id_t& player_id, std::unique_ptr<Weapon>& dropeable) = 0;
+    virtual void drop(const player_id_t& player_id, std::shared_ptr<Weapon>& dropeable) = 0;
     virtual void plant_bomb(const player_id_t& player_id) = 0;
     virtual ~IDroppableZone() = default;
 };

@@ -34,7 +34,7 @@ public:
     virtual void buy_weapon(const WeaponCode& weapon_code) override;
     virtual void drop() override;
     virtual void equip(const EquipType& equip_type) override;
-    virtual bool equip_weapon(std::unique_ptr<Weapon>& weapon) override;
+    virtual bool equip_weapon(std::shared_ptr<Weapon>& weapon) override;
 
     /*
     virtual void defuse_bomb() override;

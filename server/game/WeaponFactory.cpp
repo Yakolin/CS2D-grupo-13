@@ -9,7 +9,7 @@ Weapon::weapon_specs_t WeaponFactory::find_weapon_specs(WeaponCode code) {
                                     config.max_b, config.current_b, config.current_b};
     return specs;
 }
-std::unique_ptr<Weapon> WeaponFactory::weapon_create(WeaponCode code) {
+std::shared_ptr<Weapon> WeaponFactory::weapon_create(WeaponCode code) {
     Weapon::weapon_specs_t config = find_weapon_specs(code);
     switch (code) {
         case WeaponCode::GLOCK:

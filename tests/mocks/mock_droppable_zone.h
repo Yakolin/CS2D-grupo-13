@@ -7,7 +7,7 @@
 
 class MockIDroppableZone: public IDroppableZone {
 public:
-    MOCK_METHOD(void, drop, (const player_id_t& player_id, std::unique_ptr<Weapon>& dropeable),
+    MOCK_METHOD(void, drop, (const player_id_t& player_id, std::shared_ptr<Weapon>& dropeable),
                 (override));
 };
 

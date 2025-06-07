@@ -9,12 +9,12 @@ Equipment::Equipment(const player_id_t& player_id, ISpawneableZone& spawneable_z
         primary(nullptr),
         secondary(weapon_factory.weapon_create(WeaponCode::GLOCK)),
         knife(weapon_factory.weapon_create(WeaponCode::KNIFE)),
-        weapon_in_hand(&this->secondary) {}
+        weapon_in_hand(this->secondary) {}
 
 Equipment::~Equipment() {}
 
-void Equipment::new_weapon_in_hand(std::unique_ptr<Weapon>& weapon) {
-    this->weapon_in_hand = &weapon;
+void Equipment::new_weapon_in_hand(std::shared_ptr<Weapon>& weapon) {
+    this->weapon_in_hand = weapon;
 }
 
 void Equipment::change_weapon(const EquipType& equip) {
@@ -47,20 +47,17 @@ void Equipment::reset_equipment() {
 }
 
 void Equipment::drop_weapon() {
-    if (primary)
-        droppable_zone.drop(this->player_id, primary);
-    /*
-    if (this->weapon_in_hand && *this->weapon_in_hand) {
-        if (this->weapon_in_hand->get()->is_droppable()) {
-            this->droppable_zone.drop(this->player_id, *this->weapon_in_hand);
+
+    if (this->weapon_in_hand) {
+        if (this->weapon_in_hand->is_droppable()) {
+            this->droppable_zone.drop(this->player_id, this->weapon_in_hand);
             this->new_weapon_in_hand(this->secondary);
             this->primary = std::make_unique<NullWeapon>();
         }
     }
-    */
 }
 
-void Equipment::reload() { this->weapon_in_hand->get()->reload(); }
+void Equipment::reload() { this->weapon_in_hand->reload(); }
 
 void Equipment::shoot(Position& position) {
     if (/*Weapon in hand es bomba*/ bomb.lock()) {
@@ -78,7 +75,7 @@ std::vector<WeaponImage> Equipment::get_weapons_image() {
     weapons.push_back(knife->get_weapon_image());
     return weapons;
 }
-bool Equipment::equip_weapon(std::unique_ptr<Weapon>& weapon) {
+bool Equipment::equip_weapon(std::shared_ptr<Weapon>& weapon) {
     if (!primary) {
         primary = std::move(weapon);
         return true;

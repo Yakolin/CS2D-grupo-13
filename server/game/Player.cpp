@@ -40,7 +40,7 @@ void Player::shoot(const coordinate_t& mouse_x, const coordinate_t& mouse_y) {
     this->equipment.shoot(position);
 }
 
-PlayerImage Player::get_player_image(const Position& position, Team team) {
+PlayerImage Player::get_player_image(const Position& position) {
     return PlayerImage(id, Position(position.x, position.y), health, points,
                        std::move(equipment.get_weapons_image()), team);
 }

@@ -10,25 +10,16 @@ Position Map::get_position(player_id_t id) {
         return it->second.position;
     throw MapException("Can´t found player in the map to get the position");
 }
-void Map::update_teams(const std::map<player_id_t, Team>& players_teams) {
-    for (auto& player: players_teams) {
-        auto it = players_in_map.find(player.first);
-        if (it != players_in_map.end()) {
-            players_in_map[it->first].team = (it->second.team == Team::CT) ? Team::TT : Team::CT;
-        } else {
-            throw MapException("Can´t found player in the map to update the team");
-        }
-    }
-}
 void Map::respawn_players() {
     std::cout << "Respawning players\n";
     for (auto& player: players_in_map) {
-        player.second.position = (player.second.team == Team::CT) ? spawn_CT.get_random_position() :
-                                                                    spawn_TT.get_random_position();
+        player.second.position = (player.second.player.lock()->get_team() == Team::CT) ?
+                                         spawn_CT.get_random_position() :
+                                         spawn_TT.get_random_position();
     }
 }
-void Map::add_player(player_id_t id, std::weak_ptr<ICanInteract> player, Team team) {
-    players_in_map.insert(std::make_pair(id, PlayerEntity{player, Position(15, 15), team}));
+void Map::add_player(player_id_t id, std::weak_ptr<ICanInteract> player) {
+    players_in_map.insert(std::make_pair(id, PlayerEntity{player, Position(15, 15)}));
 }
 void Map::charge_zone(Rectangle& zone, const Position& position) {
     zone = Rectangle(WidthSpawn, HeightSpawn, position);

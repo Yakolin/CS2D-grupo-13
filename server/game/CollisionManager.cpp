@@ -13,7 +13,7 @@ bool CollisionManager::check_movement(player_id_t id, const Position& next_posit
     if (walls[y][x] != Wall) {
         it->second.position += next_position;
 
-        if (it->second.team == Team::TT)
+        if (it->second.player.lock()->get_team() == Team::TT)
             check_bomb_stepped(it->second);
         check_weapon_stepped(it->second);
     }

@@ -97,7 +97,7 @@ public:
 
 class Drop: public ClientAction {
 public:
-    Drop(player_id_t player_id);
+    explicit Drop(player_id_t player_id);
     ~Drop();
     void action_to(IPlayerAction& player) override;
 };

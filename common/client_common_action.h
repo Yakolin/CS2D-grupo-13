@@ -36,7 +36,7 @@ protected:
     ammo_t ammo_count;
 
 public:
-    explicit BuyAmmoCommon(WeaponType& weapon_type, ammo_t& ammo_count):
+    explicit BuyAmmoCommon(WeaponType& weapon_type, const ammo_t& ammo_count):
             weapon_type(weapon_type), ammo_count(ammo_count) {}
     virtual ~BuyAmmoCommon() = default;
 };
@@ -47,7 +47,7 @@ protected:
     coordinate_t mouse_y;
 
 public:
-    explicit ShootCommon(coordinate_t& mouse_x, coordinate_t& mouse_y):
+    explicit ShootCommon(const coordinate_t& mouse_x, const coordinate_t& mouse_y):
             mouse_x(mouse_x), mouse_y(mouse_y) {}
     virtual ~ShootCommon() = default;
 };
@@ -67,7 +67,7 @@ protected:
     coordinate_t mouse_y;
 
 public:
-    explicit MousePositionCommon(coordinate_t& mouse_x, coordinate_t& mouse_y):
+    explicit MousePositionCommon(const coordinate_t& mouse_x, const coordinate_t& mouse_y):
             mouse_x(mouse_x), mouse_y(mouse_y) {}
     virtual ~MousePositionCommon() = default;
 };

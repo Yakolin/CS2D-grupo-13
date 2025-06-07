@@ -39,14 +39,13 @@ private:
 
     // Players
     map<player_id_t, shared_ptr<Player>> players;
-    map<player_id_t, Team> players_team;
     Timer timer;
     WeaponFactory weapon_factory;
     std::shared_ptr<Bomb> bomb;
     // Map
     Map map_game;
 
-    std::shared_ptr<Player> create_player(const player_id_t& id);
+    std::shared_ptr<Player> create_player(const player_id_t& id, Team team);
     shared_ptr<Player> find_player(const player_id_t& player_id);
 
     GameImage generate_game_image();

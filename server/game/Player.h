@@ -18,12 +18,20 @@
 
 class Player: public IPlayerAction, public ICanInteract {
 public:
-    Player(player_id_t id, Equipment&& equipment, IGameZone& game_zone):
-            id(id), equipment(std::move(equipment)), health(100), points(0), game_zone(game_zone) {}
+    Player(player_id_t id, Team team, Equipment&& equipment, IGameZone& game_zone):
+            id(id),
+            team(team),
+            equipment(std::move(equipment)),
+            health(100),
+            points(0),
+            game_zone(game_zone) {}
+
     virtual ~Player() = default;
     bool dead();
     void reset(bool full_reset);
-    PlayerImage get_player_image(const Position& position, Team team);
+    void change_team(Team new_team) { team = new_team; }
+    virtual Team get_team() override { return team; }
+    PlayerImage get_player_image(const Position& position);
 
     // Interface
     void damage(uint8_t damage) override;
@@ -39,15 +47,13 @@ public:
     /*
     virtual void defuse_bomb() override;
     */
-
-protected:  // Por ahora lo dejamo asi
+private:
     player_id_t id;
+    Team team;
     Equipment equipment;
     uint8_t health;
     uint8_t points;
     uint16_t money = 5000;
-
-private:
     IGameZone& game_zone;
 };
 

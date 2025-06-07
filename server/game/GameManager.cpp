@@ -24,21 +24,19 @@ void GameManager::process(ClientAction& action) {
     action.action_to(*player);
 }
 
-std::shared_ptr<Player> GameManager::create_player(const player_id_t& id) {
+std::shared_ptr<Player> GameManager::create_player(const player_id_t& id, Team team) {
     Equipment equipment(id, map_game, map_game, weapon_factory);
     shared_ptr<Player> player;
     // Equipment le agrega la bomba solo si es TT podemos hacer al arrancar la ronda!
-    player = std::make_shared<Player>(id, std::move(equipment), map_game);
+    player = std::make_shared<Player>(id, team, std::move(equipment), map_game);
     return player;
 }
 
 void GameManager::add_player(const player_id_t& id) {
     Team team = ((players.size() + 1) % 2 == 0) ? Team::CT : Team::TT;
-    shared_ptr<Player> player = create_player(id);
+    shared_ptr<Player> player = create_player(id, team);
     players.insert(make_pair(id, player));
-    std::cout << "Añado un jugador a la partida" << id << std::endl;
-    players_team.insert(std::make_pair(id, team));
-    map_game.add_player(id, player, team);  // Player es un ICanInteract
+    map_game.add_player(id, player);  // Player es un ICanInteract
 }
 
 void GameManager::reset_players(bool full_reset) {
@@ -56,8 +54,7 @@ GameImage GameManager::generate_game_image() {
     for (const auto& par: players) {
         shared_ptr<Player> player = par.second;
         Position player_position = map_game.get_position(par.first);
-        game_image.players_images.push_back(
-                std::move(player->get_player_image(player_position, players_team[par.first])));
+        game_image.players_images.push_back(std::move(player->get_player_image(player_position)));
     }
     game_image.dropped_weapons = map_game.get_dropped_weapons_images();
     game_image.bomb = map_game.get_bomb_image();
@@ -66,8 +63,8 @@ GameImage GameManager::generate_game_image() {
 void GameManager::give_bomb() {
     std::srand(time(NULL));
     std::vector<player_id_t> players_tt;
-    for (auto& player: players_team) {
-        if (player.second == Team::CT)
+    for (auto& player: players) {
+        if (player.second->get_team() == Team::CT)
             continue;
         players_tt.push_back(player.first);
     }
@@ -94,7 +91,7 @@ bool GameManager::check_round_finished() {
     bool all_tt_dead = true;
     for (auto& par: players) {
         if (!par.second->dead()) {
-            if (players_team[par.first] == Team::CT)
+            if (par.second->get_team() == Team::CT)
                 all_ct_dead = false;
             else
                 all_tt_dead = false;
@@ -118,10 +115,10 @@ bool GameManager::check_round_finished() {
     return false;
 }
 void GameManager::change_teams() {
-    for (auto& player: players_team) {
-        player.second = (player.second == Team::CT) ? Team::TT : Team::CT;
+    for (auto& player: players) {
+        Team team = (player.second->get_team() == Team::CT) ? Team::TT : Team::CT;
+        player.second->change_team(team);
     }
-    map_game.update_teams(players_team);
 }
 GameImage GameManager::get_frame() {
     if (round == 10) {

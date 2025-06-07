@@ -1,8 +1,8 @@
 #ifndef LOBBY_ACTION_H
 #define LOBBY_ACTION_H
 
+#include <string>
 #include <vector>
-
 enum class LobbyAction { CREATE, JOIN, LIST };
 
 /*
@@ -13,7 +13,7 @@ class CreateGame {
 public:
     std::string game_name;
     std::string map_name;
-    explicit CreateGame(std::string& game_name, std::string map_name):
+    explicit CreateGame(std::string& game_name, const std::string& map_name):
             game_name(game_name), map_name(map_name) {}
     ~CreateGame() = default;
 };
@@ -28,7 +28,7 @@ public:
 class ListGame {
 public:
     std::vector<std::string> list_games;
-    explicit ListGame(std::vector<std::string> list_games): list_games(list_games) {}
+    explicit ListGame(const std::vector<std::string>& list_games): list_games(list_games) {}
     ~ListGame() {}
 };
 

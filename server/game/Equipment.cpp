@@ -13,7 +13,7 @@ Equipment::Equipment(const player_id_t& player_id, ISpawneableZone& spawneable_z
 
 Equipment::~Equipment() {}
 
-void Equipment::new_weapon_in_hand(std::shared_ptr<Weapon>& weapon) {
+void Equipment::new_weapon_in_hand(const std::shared_ptr<Weapon>& weapon) {
     this->weapon_in_hand = weapon;
 }
 
@@ -47,7 +47,7 @@ void Equipment::reset_equipment() {
 }
 
 void Equipment::drop_weapon() {
-
+    change_weapon(EquipType::PRIMARY);
     if (this->weapon_in_hand) {
         if (this->weapon_in_hand->is_droppable()) {
             this->droppable_zone.drop(this->player_id, this->weapon_in_hand);
@@ -75,7 +75,7 @@ std::vector<WeaponImage> Equipment::get_weapons_image() {
     weapons.push_back(knife->get_weapon_image());
     return weapons;
 }
-bool Equipment::equip_weapon(std::shared_ptr<Weapon>& weapon) {
+bool Equipment::equip_weapon(const std::shared_ptr<Weapon>& weapon) {
     if (!primary) {
         primary = weapon;
         return true;

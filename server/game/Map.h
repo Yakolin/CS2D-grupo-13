@@ -45,7 +45,7 @@ public:
     }
     void update_map_state();
     Position get_position(player_id_t player_id);
-    void add_player(player_id_t id, std::weak_ptr<ICanInteract> player, Team team);
+    void add_player(player_id_t id, std::weak_ptr<ICanInteract> player);
     void remove_player(player_id_t id);
     void update_teams(const std::map<player_id_t, Team>& players_teams);
     void respawn_players();

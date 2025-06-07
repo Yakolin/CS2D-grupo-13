@@ -7,18 +7,16 @@
 
 #include "../../client/model/client_action.h"
 #include "../../client/model/protocol.h"
+#include "../../common/lobby_action.h"
 #include "../../common/lobby_types.h"
 #include "../../common/player_command_types.h"
 #include "../../common/socket.h"
 
 using ClientSpace::BuyAmmo;
 using ClientSpace::BuyWeapon;
-using ClientSpace::CreateGame;
 using ClientSpace::DefuseBomb;
 using ClientSpace::Drop;
 using ClientSpace::Equip;
-using ClientSpace::JoinGame;
-using ClientSpace::ListGames;
 using ClientSpace::MousePosition;
 using ClientSpace::Move;
 using ClientSpace::PlantBomb;
@@ -47,10 +45,12 @@ TEST(ClientProtocolTest, SendCreateGameSendCorrectObject) {
     Socket client("localhost", "9999");
     Socket accepted = server_listener.accept();
     ClientProtocol protocol(client);
-    std::string game_name = "test_game";
+    std::string game_name = "mateo game";
+    std::string map_name = "pepito";
+    CreateGame create_game(game_name, map_name);
 
     // Act
-    protocol.send_create_game(game_name);
+    protocol.send_create_game(create_game);
 
     // Assert
     uint8_t header;
@@ -65,6 +65,15 @@ TEST(ClientProtocolTest, SendCreateGameSendCorrectObject) {
     std::string buf(len, '\0');
     accepted.recvall(&buf[0], len);
     EXPECT_EQ(buf, game_name);
+
+    uint16_t net_map_len;
+    accepted.recvall(&net_map_len, sizeof(net_map_len));
+    uint16_t map_len = ntohs(net_map_len);
+    EXPECT_EQ(map_len, map_name.size());
+
+    std::string map_buf(map_len, '\0');
+    accepted.recvall(&map_buf[0], map_len);
+    EXPECT_EQ(map_buf, map_name);
 }
 
 TEST(ClientProtocolTest, SendJoinGameSendCorrectObject) {
@@ -74,9 +83,10 @@ TEST(ClientProtocolTest, SendJoinGameSendCorrectObject) {
     Socket accepted = server_listener.accept();
     ClientProtocol protocol(client);
     std::string game_name = "join_test";
+    JoinGame join_game(game_name);
 
     // Act
-    protocol.send_join_game(game_name);
+    protocol.send_join_game(join_game);
 
     // Assert
     uint8_t header;

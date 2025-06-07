@@ -14,13 +14,15 @@
 #include <QPushButton>
 #include <QStringList>
 #include <QTabWidget>
+#include <QTextEdit>
 #include <QVBoxLayout>
 #include <QWidget>
 #include <functional>
 #include <iostream>
 #include <map>
 #include <string>
-#include <QTextEdit>
+
+#include "../../common/lobby_action.h"
 #include "../../common/lobby_types.h"
 #include "../model/protocol.h"
 #include "../tipos.h"
@@ -33,15 +35,15 @@ signals:
 public:
     LobbyView(ClientProtocol& protoccol);
 
-    void action_create(QWidget *page_create, QPushButton* button_menu);
+    void action_create(QWidget* page_create, QPushButton* button_menu);
 
-    void action_join(QTabWidget *page_join,QPushButton* button_menu);
+    void action_join(QTabWidget* page_join, QPushButton* button_menu);
 
-    void action_help(QWidget *page_help, QPushButton* button_menu);
+    void action_help(QWidget* page_help, QPushButton* button_menu);
 
     QListWidget* create_item(QWidget* parent, const QStringList& options);
 
-    void update_join_list(const std::vector<std::string>& nuevas_partidas) ;
+    void update_join_list(const std::vector<std::string>& nuevas_partidas);
 
     virtual ~LobbyView();
 

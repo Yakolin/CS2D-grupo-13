@@ -27,7 +27,7 @@ std::vector<std::string> ClientProtocol::read_list_games() {
     games_list.reserve(list_size);
 
     for (length_games_list_t i = 0; i < list_size; i++) {
-        length_name_t name_length;
+        length_string_t name_length;
         this->read_two_byte_data(name_length);
 
         std::vector<char> buffer(name_length);
@@ -57,6 +57,16 @@ void ClientProtocol::send_two_byte_data(uint16_t& data) {
     }
 }
 
+void ClientProtocol::send_string(std::string& string) {
+    uint16_t length = static_cast<uint16_t>(string.size());
+    this->send_two_byte_data(length);
+    this->socket.sendall(string.c_str(), string.size());
+
+    if (this->socket.is_stream_send_closed()) {
+        throw ConnectionClosedException("Error al intentar enviar string al servidor");
+    }
+}
+
 void ClientProtocol::send_lobby_command(LobbyCommandType command) {
     uint8_t command_byte = static_cast<uint8_t>(command);
     this->send_byte_data(command_byte);
@@ -67,28 +77,20 @@ void ClientProtocol::send_player_command(PlayerCommandType command) {
     this->send_byte_data(command_byte);
 }
 
-void ClientProtocol::send_create_game(const std::string& game_name) {
+void ClientProtocol::send_create_game(const CreateGame& create_game) {
     uint8_t header = static_cast<uint8_t>(LobbyCommandType::CREATE_GAME);
     this->send_byte_data(header);
-
-    uint16_t length = static_cast<uint16_t>(game_name.size());
-    this->send_two_byte_data(length);
-    this->socket.sendall(game_name.c_str(), game_name.size());
-    if (this->socket.is_stream_send_closed()) {
-        throw ConnectionClosedException("Error al intentar enviar datos al servidor");
-    }
+    std::string game_name = create_game.game_name;
+    std::string map_name = create_game.map_name;
+    this->send_string(game_name);
+    this->send_string(map_name);
 }
 
-void ClientProtocol::send_join_game(const std::string& game_name) {
+void ClientProtocol::send_join_game(const JoinGame& join_game) {
     uint8_t header = static_cast<uint8_t>(LobbyCommandType::JOIN_GAME);
     this->send_byte_data(header);
-
-    uint16_t length = static_cast<uint16_t>(game_name.size());
-    this->send_two_byte_data(length);
-    this->socket.sendall(game_name.c_str(), game_name.size());
-    if (this->socket.is_stream_send_closed()) {
-        throw ConnectionClosedException("Error al intentar enviar datos al servidor");
-    }
+    std::string game_name = join_game.game_name;
+    this->send_string(game_name);
 }
 
 void ClientProtocol::send_list_games() {

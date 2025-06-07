@@ -3,7 +3,11 @@
 #define BUTTON_JOIN "Join"
 
 LobbyView::LobbyView(ClientProtocol& protoccol):
-        protocol(protoccol), infoPlayer(), options_map(), img_maps(),list_games(new QListWidget(this)) {
+        protocol(protoccol),
+        infoPlayer(),
+        options_map(),
+        img_maps(),
+        list_games(new QListWidget(this)) {
 
     options_map << "Desierto"
                 << "Pueblito Azteca"
@@ -11,7 +15,6 @@ LobbyView::LobbyView(ClientProtocol& protoccol):
     img_maps["Desierto"] = "assets/gfx/tiles/default_inferno.png";
     img_maps["Pueblito Azteca"] = "assets/gfx/tiles/default_aztec.png";
     img_maps["Zona de Entrenamiento"] = "assets/gfx/tiles/default_dust.png";
-
 }
 
 
@@ -43,7 +46,6 @@ void LobbyView::section_maps(QWidget* tabMap, const std::map<QString, QString>& 
         QString nombre = item->text();
         infoPlayer.map = nombre.toStdString();
         labelMap->setPixmap(QPixmap(options.at(nombre)).scaled(300, 300, Qt::KeepAspectRatio));
-
     });
 }
 
@@ -99,28 +101,28 @@ void imprimirPlayer(const Player& p) {
     std::cout << "Mapa: " << p.map << std::endl;
 }
 
-void LobbyView::function_join(){
+void LobbyView::function_join() {
 
-    protocol.send_join_game(infoPlayer.info.name_game);
+    protocol.send_join_game(JoinGame(infoPlayer.info.name_game));
     emit opcionElegida(LobbyCommandType::JOIN_GAME);
 }
-void LobbyView::function_create(){ 
+void LobbyView::function_create() {
 
     std::cout << "envio nombre create partida: " << infoPlayer.info.name_game << std::endl;
-    protocol.send_create_game(infoPlayer.info.name_game);
-    emit opcionElegida( LobbyCommandType::CREATE_GAME);
+    protocol.send_create_game(CreateGame(infoPlayer.info.name_game, "pepito"));
+    emit opcionElegida(LobbyCommandType::CREATE_GAME);
 }
 
-void LobbyView::action_button(QVBoxLayout* layout, const QString& text, std::function<void()> callback){
-    
+void LobbyView::action_button(QVBoxLayout* layout, const QString& text,
+                              std::function<void()> callback) {
+
     QPushButton* button = new QPushButton(text);
-    QObject::connect(button, &QPushButton::clicked, [callback,this]() { callback();});
+    QObject::connect(button, &QPushButton::clicked, [callback, this]() { callback(); });
     layout->addWidget(button, 0, Qt::AlignHCenter);
-
 }
-void LobbyView::action_create(QWidget *page, QPushButton* button_menu) {
+void LobbyView::action_create(QWidget* page, QPushButton* button_menu) {
     QVBoxLayout* layout = new QVBoxLayout(page);
-    QTabWidget *page_create = new QTabWidget();
+    QTabWidget* page_create = new QTabWidget();
 
     QWidget* tabMap = new QWidget();
     QWidget* tabDatos = new QWidget();
@@ -130,26 +132,24 @@ void LobbyView::action_create(QWidget *page, QPushButton* button_menu) {
     page_create->addTab(tabMap, "Maps");
     page_create->addTab(tabPlayers, "personaje");
 
-    layout->addWidget(page_create);  
+    layout->addWidget(page_create);
 
     section_maps(tabMap, img_maps, options_map);
     section_dates(tabDatos);
     section_player(tabPlayers);
 
-    action_button(layout,BUTTON_CREATE,[this]() { this->function_create();});      
-    layout->addWidget(button_menu);   
-
+    action_button(layout, BUTTON_CREATE, [this]() { this->function_create(); });
+    layout->addWidget(button_menu);
 }
 
 void LobbyView::update_join_list(const std::vector<std::string>& nuevas_partidas) {
     list_games->clear();
-    for (const std::string& partida : nuevas_partidas) {
+    for (const std::string& partida: nuevas_partidas) {
         list_games->addItem(QString::fromStdString(partida));
-
     }
 }
 
-void LobbyView::action_join(QTabWidget *page_join,QPushButton* button_menu) {
+void LobbyView::action_join(QTabWidget* page_join, QPushButton* button_menu) {
 
     QWidget* window = new QWidget();
     QWidget* window_players = new QWidget();
@@ -171,18 +171,18 @@ void LobbyView::action_join(QTabWidget *page_join,QPushButton* button_menu) {
 
     this->list_games = create_item(window, options);
 
-    connect(this->list_games, &QListWidget::itemClicked,[this, options](QListWidgetItem* item) { 
-        qDebug() << item->text(); 
+    connect(this->list_games, &QListWidget::itemClicked, [this, options](QListWidgetItem* item) {
+        qDebug() << item->text();
         infoPlayer.info.name_game = item->text().toStdString();
     });
 
     layout->addWidget(list_games);
     layout->addWidget(formWidget);
-    action_button(layout,BUTTON_JOIN,[this]() { this->function_join();});
+    action_button(layout, BUTTON_JOIN, [this]() { this->function_join(); });
     layout->addWidget(button_menu);
 }
 
-void LobbyView::action_help(QWidget *page_help, QPushButton* button_menu){
+void LobbyView::action_help(QWidget* page_help, QPushButton* button_menu) {
 
     QVBoxLayout* layout = new QVBoxLayout(page_help);
 
@@ -190,30 +190,27 @@ void LobbyView::action_help(QWidget *page_help, QPushButton* button_menu){
     helpText->setReadOnly(true);
 
 
-    QFont fuente("Segoe UI", 11);  
+    QFont fuente("Segoe UI", 11);
     helpText->setFont(fuente);
 
-    helpText->setHtml(
-        "<style>"
-        "body { color: #2E2E2E; font-family: 'Segoe UI'; background-color: #f5f5f5; padding: 10px; }"
-        "h2 { color: #007acc; margin-bottom: 15px; }"
-        "p { margin: 8px 0; font-size: 13px; }"
-        "b { color: #444; }"
-        "</style>"
-        "<body>"
-        "<h2>Ayuda</h2>"
-        "<p><b>Create Game:</b> Para crear una partida nueva.</p>"
-        "<p><b>Join Game:</b> Para unirse a una partida existente.</p>"
-        "</body>"
-    );
+    helpText->setHtml("<style>"
+                      "body { color: #2E2E2E; font-family: 'Segoe UI'; background-color: #f5f5f5; "
+                      "padding: 10px; }"
+                      "h2 { color: #007acc; margin-bottom: 15px; }"
+                      "p { margin: 8px 0; font-size: 13px; }"
+                      "b { color: #444; }"
+                      "</style>"
+                      "<body>"
+                      "<h2>Ayuda</h2>"
+                      "<p><b>Create Game:</b> Para crear una partida nueva.</p>"
+                      "<p><b>Join Game:</b> Para unirse a una partida existente.</p>"
+                      "</body>");
 
 
-    helpText->setStyleSheet("QTextEdit { border: none; background-color: #f5f5f5; }"
-    );
+    helpText->setStyleSheet("QTextEdit { border: none; background-color: #f5f5f5; }");
 
     layout->addWidget(helpText);
     layout->addWidget(button_menu);
-
 }
 
 LobbyView::~LobbyView() {}

@@ -9,29 +9,6 @@
 
 
 /*
-    LOBBY ACTIONS
-*/
-
-class CreateGameCommon {
-protected:
-    const std::string game_name;
-
-public:
-    explicit CreateGameCommon(const std::string& game_name): game_name(game_name) {}
-    virtual ~CreateGameCommon() = default;
-};
-
-class JoinGameCommon {
-protected:
-    const std::string game_name;
-
-public:
-    explicit JoinGameCommon(const std::string& game_name): game_name(game_name) {}
-    virtual ~JoinGameCommon() = default;
-};
-
-
-/*
     PLAYER ACTIONS
 */
 

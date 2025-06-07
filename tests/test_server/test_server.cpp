@@ -46,8 +46,8 @@ TEST(ServerTest, GameWithOnePlayerCreatesCorrectly) {
         lobby_command_t command = static_cast<lobby_command_t>(LobbyCommandType::CREATE_GAME);
         client_socket.sendall(&command, sizeof(command));
 
-        length_name_t length_name = htons(static_cast<length_name_t>(game_name.size()));
-        client_socket.sendall(&length_name, sizeof(length_name_t));
+        length_string_t length_name = htons(static_cast<length_string_t>(game_name.size()));
+        client_socket.sendall(&length_name, sizeof(length_string_t));
         client_socket.sendall(game_name.c_str(), game_name.size());
     });
 
@@ -81,8 +81,8 @@ TEST(ServerTest, GameWithOnePlayerAndAFewActionInQueueCreateAndDestroyCorrectly)
         lobby_command_t command = static_cast<lobby_command_t>(LobbyCommandType::CREATE_GAME);
         client_socket.sendall(&command, sizeof(command));
 
-        length_name_t length_name = htons(static_cast<length_name_t>(game_name.size()));
-        client_socket.sendall(&length_name, sizeof(length_name_t));
+        length_string_t length_name = htons(static_cast<length_string_t>(game_name.size()));
+        client_socket.sendall(&length_name, sizeof(length_string_t));
         client_socket.sendall(game_name.c_str(), game_name.size());
 
         player_command_t player_command = static_cast<player_command_t>(PlayerCommandType::MOVE);

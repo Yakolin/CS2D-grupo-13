@@ -31,25 +31,24 @@ void ServerProtocol::read_two_byte_data(uint16_t& data) {
     data = ntohs(data_readed);
 }
 
-const std::string ServerProtocol::read_game_name() {
-
-    std::string game_name;
-    length_name_t name_length;
-
-    this->socket.recvall(reinterpret_cast<char*>(&name_length), sizeof(name_length));
+const std::string ServerProtocol::read_string() {
+    length_string_t raw_length;
+    this->socket.recvall(reinterpret_cast<char*>(&raw_length), sizeof(raw_length));
     if (this->socket.is_stream_recv_closed()) {
-        throw ConnectionClosedException("Error al intentar leer datos del cliente");
+        throw ConnectionClosedException("Error al intentar leer longitud del cliente");
     }
-    length_name_t length = ntohs(name_length);
-    std::vector<char> nameGameBuffer(length);
 
-    this->socket.recvall(nameGameBuffer.data(), length);
+    length_string_t length = ntohs(raw_length);
+    std::vector<char> buffer(length);
+
+    this->socket.recvall(buffer.data(), length);
     if (this->socket.is_stream_recv_closed()) {
-        throw ConnectionClosedException("Error al intentar leer datos del cliente");
+        throw ConnectionClosedException("Error al intentar leer datos del client");
     }
-    game_name.assign(nameGameBuffer.begin(), nameGameBuffer.end());
-    return game_name;
+
+    return std::string(buffer.begin(), buffer.end());
 }
+
 
 LobbyCommandType ServerProtocol::read_lobby_command() {
     lobby_command_t command;
@@ -57,9 +56,16 @@ LobbyCommandType ServerProtocol::read_lobby_command() {
     return static_cast<LobbyCommandType>(command);
 }
 
-std::string ServerProtocol::read_create_game() { return this->read_game_name(); }
+CreateGame ServerProtocol::read_create_game() {
+    std::string game_name = this->read_string();
+    std::string map_name = this->read_string();
+    return CreateGame(game_name, map_name);
+}
 
-std::string ServerProtocol::read_join_game() { return this->read_game_name(); }
+JoinGame ServerProtocol::read_join_game() {
+    std::string game_name = this->read_string();
+    return JoinGame(game_name);
+}
 
 PlayerCommandType ServerProtocol::read_player_command() {
     player_command_t command;
@@ -126,12 +132,13 @@ void ServerProtocol::send_position(const Position& position) {
     this->send_two_byte_data(y);
 }
 
-void ServerProtocol::send_list_games(std::vector<std::string>& list_games) {
+void ServerProtocol::send_list_games(ListGame& games) {
+    std::vector<std::string> list_games = games.list_games;
     length_games_list_t list_size = list_games.size();
     this->send_two_byte_data(list_size);
 
     for (const std::string& game_name: list_games) {
-        length_name_t name_length = game_name.size();
+        length_string_t name_length = game_name.size();
         this->send_two_byte_data(name_length);
 
         this->socket.sendall(game_name.data(), name_length);

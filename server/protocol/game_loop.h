@@ -7,6 +7,7 @@
 #include "../../common/constant_rate_loop.h"
 #include "../../common/game_image.h"
 #include "../../common/game_info.h"
+#include "../../common/lobby_action.h"
 #include "../../common/queue.h"
 #include "../../common/thread.h"
 #include "../game/GameManager.h"
@@ -31,7 +32,7 @@ private:
     void broadcast(GameImage& game_image);
 
 public:
-    GameLoop(const std::string& game_name);
+    GameLoop(const CreateGame& create_game);
     ~GameLoop();
     void add_player(player_id_t& player_id,
                     std::shared_ptr<Queue<std::unique_ptr<ClientAction>>>& recv_queue,

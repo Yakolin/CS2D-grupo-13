@@ -12,36 +12,12 @@ public:
     virtual void action(ClientProtocol& protocol) = 0;
 };
 
-/*
-    LOBBY ACTIONS
-*/
-
-namespace ClientSpace {
-
-class CreateGame: public CreateGameCommon, public InterfaceClientAction {
-public:
-    CreateGame(const std::string& game_name);
-    ~CreateGame();
-    void action(ClientProtocol& protocol) override;
-};
-
-class JoinGame: public JoinGameCommon, public InterfaceClientAction {
-public:
-    JoinGame(const std::string& game_name);
-    ~JoinGame();
-    void action(ClientProtocol& protocol) override;
-};
-
-class ListGames: public InterfaceClientAction {
-public:
-    ListGames();
-    ~ListGames();
-    void action(ClientProtocol& protocol) override;
-};
 
 /*
     PLAYER ACTIONS
 */
+
+namespace ClientSpace {
 
 class Move: public MoveCommon, public InterfaceClientAction {
 public:

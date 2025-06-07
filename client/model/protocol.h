@@ -9,6 +9,7 @@
 #include "../../common/connection_closed_exception.h"
 #include "../../common/game_image.h"
 #include "../../common/game_info.h"
+#include "../../common/lobby_action.h"
 #include "../../common/lobby_types.h"
 #include "../../common/player_command_types.h"
 #include "../../common/socket.h"
@@ -27,6 +28,8 @@ private:
     void send_byte_data(uint8_t& data);
     void send_two_byte_data(uint16_t& data);
 
+    void send_string(std::string& string);
+
 public:
     explicit ClientProtocol(Socket& socket);
     ~ClientProtocol();
@@ -34,8 +37,8 @@ public:
     void send_lobby_command(LobbyCommandType command);
     void send_player_command(PlayerCommandType command);
 
-    void send_create_game(const std::string& game_name);
-    void send_join_game(const std::string& game_name);
+    void send_create_game(const CreateGame& create_game);
+    void send_join_game(const JoinGame& join_game);
     void send_list_games();
 
     void send_move(MoveType& move_type);

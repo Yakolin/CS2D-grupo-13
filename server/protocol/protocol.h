@@ -10,6 +10,7 @@
 #include "../../common/connection_closed_exception.h"
 #include "../../common/game_image.h"
 #include "../../common/game_info.h"
+#include "../../common/lobby_action.h"
 #include "../../common/lobby_types.h"
 #include "../../common/player_command_types.h"
 #include "../../common/socket.h"
@@ -20,8 +21,6 @@
 namespace ServerSpace {
 class Move;
 /*
-class CreateGame;
-class JoinGame;
 class BuyWeapon;
 class BuyAmmo;
 class Shoot;
@@ -36,7 +35,7 @@ private:
     void read_byte_data(uint8_t& data);
     void read_two_byte_data(uint16_t& data);
 
-    const std::string read_game_name();
+    const std::string read_string();
 
     void send_byte_data(uint8_t& data);
     void send_two_byte_data(uint16_t& data);
@@ -54,8 +53,9 @@ public:
 
     PlayerCommandType read_player_command();
 
-    std::string read_create_game();
-    std::string read_join_game();
+    CreateGame read_create_game();
+
+    JoinGame read_join_game();
 
     std::unique_ptr<ServerSpace::Move> read_move(player_id_t player_id);
     /*
@@ -67,7 +67,7 @@ public:
     std::unique_ptr<ServerSpace::
     */
 
-    void send_list_games(std::vector<std::string>& list_games);
+    void send_list_games(ListGame& games);
 
     void send_game_info(GameInfo& game_info);
 

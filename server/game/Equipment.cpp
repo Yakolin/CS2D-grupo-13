@@ -77,7 +77,7 @@ std::vector<WeaponImage> Equipment::get_weapons_image() {
 }
 bool Equipment::equip_weapon(std::shared_ptr<Weapon>& weapon) {
     if (!primary) {
-        primary = std::move(weapon);
+        primary = weapon;
         return true;
     }
     return false;

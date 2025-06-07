@@ -27,13 +27,9 @@ void Move::action_to(IPlayerAction& player) { player.move(this->move_type); }
 
 BuyWeapon::BuyWeapon(player_id_t player_id, WeaponCode weapon_code):
         ClientAction(player_id), BuyWeaponCommon(weapon_code) {}
-BuyWeapon::BuyWeapon(player_id_t player_id, WeaponCode weapon_code):
-        ClientAction(player_id), BuyWeaponCommon(weapon_code) {}
 
 BuyWeapon::~BuyWeapon() {}
-BuyWeapon::~BuyWeapon() {}
 
-void BuyWeapon::action_to(IPlayerAction& player) { player.buy_weapon(this->weapon_code); }
 void BuyWeapon::action_to(IPlayerAction& player) { player.buy_weapon(this->weapon_code); }
 
 

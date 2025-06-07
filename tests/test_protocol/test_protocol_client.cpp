@@ -19,6 +19,7 @@ using ClientSpace::Drop;
 using ClientSpace::Equip;
 using ClientSpace::JoinGame;
 using ClientSpace::ListGames;
+using ClientSpace::MousePosition;
 using ClientSpace::Move;
 using ClientSpace::PlantBomb;
 using ClientSpace::Reload;
@@ -132,7 +133,8 @@ TEST(ClientProtocolTest, SendMoveSendCorrectObject) {
     ClientProtocol protocol(skt);
     player_command_t command;
     move_t move_type;
-    std::unique_ptr<InterfaceClientAction> action = std::make_unique<Move>(MoveType::RIGHT);
+    MoveType move = MoveType::RIGHT;
+    std::unique_ptr<InterfaceClientAction> action = std::make_unique<Move>(move);
 
     // Act
     action->action(protocol);

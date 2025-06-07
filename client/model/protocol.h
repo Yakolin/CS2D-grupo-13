@@ -38,14 +38,16 @@ public:
     void send_join_game(const std::string& game_name);
     void send_list_games();
 
-    void send_move(MoveType move_type);
-    void send_buy_weapon(WeaponCode weapon_code);
-    void send_buy_ammo(WeaponType weapon_type, ammo_t ammo_count);
-    void send_reload(WeaponType weapon_type);
-    void send_shoot(WeaponType weapon_type, ammo_t ammo_count);
+    void send_move(MoveType& move_type);
+    void send_buy_weapon(WeaponCode& weapon_code);
+    void send_buy_ammo(WeaponType& weapon_type, ammo_t& ammo_count);
+    void send_reload();
+    void send_shoot(coordinate_t& mouse_x, coordinate_t& mouse_y);
     void send_plant_bomb();
     void send_defuse_bomb();
     void send_drop();
+    void send_equip(EquipType& equip_type);
+    void send_mouse_position(coordinate_t& mouse_x, coordinate_t& mouse_y);
 
     GameInfo read_game_info();
     std::vector<std::string> read_list_games();

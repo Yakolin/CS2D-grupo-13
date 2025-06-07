@@ -37,60 +37,60 @@ public:
 
 class MoveCommon {
 protected:
-    const MoveType move_type;
+    MoveType move_type;
 
 public:
-    explicit MoveCommon(MoveType move_type): move_type(move_type) {}
+    explicit MoveCommon(MoveType& move_type): move_type(move_type) {}
     virtual ~MoveCommon() = default;
 };
 
 class BuyWeaponCommon {
 protected:
-    const WeaponCode weapon_code;
+    WeaponCode weapon_code;
 
 public:
-    explicit BuyWeaponCommon(WeaponCode weapon_code): weapon_code(weapon_code) {}
+    explicit BuyWeaponCommon(WeaponCode& weapon_code): weapon_code(weapon_code) {}
     virtual ~BuyWeaponCommon() = default;
 };
 
 class BuyAmmoCommon {
 protected:
-    const WeaponType weapon_type;
-    const ammo_t ammo_count;
+    WeaponType weapon_type;
+    ammo_t ammo_count;
 
 public:
-    explicit BuyAmmoCommon(WeaponType weapon_type, ammo_t ammo_count):
+    explicit BuyAmmoCommon(WeaponType& weapon_type, ammo_t& ammo_count):
             weapon_type(weapon_type), ammo_count(ammo_count) {}
     virtual ~BuyAmmoCommon() = default;
 };
 
 class ShootCommon {
 protected:
-    const coordinate_t mouse_x;
-    const coordinate_t mouse_y;
+    coordinate_t mouse_x;
+    coordinate_t mouse_y;
 
 public:
-    explicit ShootCommon(coordinate_t mouse_x, coordinate_t mouse_y):
+    explicit ShootCommon(coordinate_t& mouse_x, coordinate_t& mouse_y):
             mouse_x(mouse_x), mouse_y(mouse_y) {}
     virtual ~ShootCommon() = default;
 };
 
 class EquipCommon {
 protected:
-    const EquipType equip_type;
+    EquipType equip_type;
 
 public:
-    explicit EquipCommon(EquipType equip_type): equip_type(equip_type) {}
+    explicit EquipCommon(EquipType& equip_type): equip_type(equip_type) {}
     virtual ~EquipCommon() = default;
 };
 
 class MousePositionCommon {
 protected:
-    const coordinate_t mouse_x;
-    const coordinate_t mouse_y;
+    coordinate_t mouse_x;
+    coordinate_t mouse_y;
 
 public:
-    explicit MousePositionCommon(const coordinate_t mouse_x, const coordinate_t mouse_y):
+    explicit MousePositionCommon(coordinate_t& mouse_x, coordinate_t& mouse_y):
             mouse_x(mouse_x), mouse_y(mouse_y) {}
     virtual ~MousePositionCommon() = default;
 };

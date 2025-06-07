@@ -96,36 +96,74 @@ void ClientProtocol::send_list_games() {
     this->send_byte_data(header);
 }
 
-void ClientProtocol::send_move(MoveType move_type) {
+void ClientProtocol::send_move(MoveType& move_type) {
     uint8_t move_command = static_cast<uint8_t>(PlayerCommandType::MOVE);
     uint8_t move_type_byte = static_cast<uint8_t>(move_type);
     this->send_byte_data(move_command);
     this->send_byte_data(move_type_byte);
 }
 
-void ClientProtocol::send_buy_weapon(WeaponCode weapon_code) {
-    socket.sendall(reinterpret_cast<const char*>(&weapon_code), sizeof(weapon_code));
+void ClientProtocol::send_buy_weapon(WeaponCode& weapon_code) {
+    player_command_t buy_weapon_header =
+            static_cast<player_command_t>(PlayerCommandType::BUY_WEAPON);
+    weapon_code_t weapon_code_command = static_cast<weapon_code_t>(weapon_code);
+    this->send_byte_data(buy_weapon_header);
+    this->send_byte_data(weapon_code_command);
 }
 
-void ClientProtocol::send_buy_ammo(WeaponType weapon_type, ammo_t ammo_count) {
-    socket.sendall(reinterpret_cast<const char*>(&weapon_type), sizeof(weapon_type));
-    socket.sendall(reinterpret_cast<const char*>(&ammo_count), sizeof(ammo_count));
+void ClientProtocol::send_buy_ammo(WeaponType& weapon_type, ammo_t& ammo_count) {
+    player_command_t buy_ammo_header = static_cast<player_command_t>(PlayerCommandType::BUY_AMMO);
+    weapon_code_t weapon_code_command = static_cast<weapon_code_t>(weapon_type);
+    ammo_t ammo_command = static_cast<ammo_t>(ammo_count);
+    this->send_byte_data(buy_ammo_header);
+    this->send_byte_data(weapon_code_command);
+    this->send_two_byte_data(ammo_command);
 }
 
-void ClientProtocol::send_reload(WeaponType weapon_type) {
-    socket.sendall(reinterpret_cast<const char*>(&weapon_type), sizeof(weapon_type));
+void ClientProtocol::send_reload() {
+    player_command_t reload_header = static_cast<player_command_t>(PlayerCommandType::RELOAD);
+    this->send_byte_data(reload_header);
 }
 
-void ClientProtocol::send_shoot(WeaponType weapon_type, ammo_t ammo_count) {
-    socket.sendall(reinterpret_cast<const char*>(&weapon_type), sizeof(weapon_type));
-    socket.sendall(reinterpret_cast<const char*>(&ammo_count), sizeof(ammo_count));
+void ClientProtocol::send_shoot(coordinate_t& mouse_x, coordinate_t& mouse_y) {
+    player_command_t shoot_header = static_cast<player_command_t>(PlayerCommandType::SHOOT);
+    this->send_byte_data(shoot_header);
+    this->send_two_byte_data(mouse_x);
+    this->send_two_byte_data(mouse_y);
 }
 
-void ClientProtocol::send_drop() {}
 
-void ClientProtocol::send_plant_bomb() {}
+void ClientProtocol::send_plant_bomb() {
+    player_command_t plant_bomb_header =
+            static_cast<player_command_t>(PlayerCommandType::PLANT_BOMB);
+    this->send_byte_data(plant_bomb_header);
+}
 
-void ClientProtocol::send_defuse_bomb() {}
+void ClientProtocol::send_defuse_bomb() {
+    player_command_t defuse_bomb_header =
+            static_cast<player_command_t>(PlayerCommandType::DEFUSE_BOMB);
+    this->send_byte_data(defuse_bomb_header);
+}
+
+void ClientProtocol::send_drop() {
+    player_command_t drop_header = static_cast<player_command_t>(PlayerCommandType::DROP);
+    this->send_byte_data(drop_header);
+}
+
+void ClientProtocol::send_equip(EquipType& equip_type) {
+    player_command_t equip_header = static_cast<player_command_t>(PlayerCommandType::EQUIP);
+    equip_type_t equip_type_command = static_cast<equip_type_t>(equip_type);
+    this->send_byte_data(equip_header);
+    this->send_byte_data(equip_type_command);
+}
+
+
+void ClientProtocol::send_mouse_position(coordinate_t& mouse_x, coordinate_t& mouse_y) {
+    player_command_t watch_header = static_cast<player_command_t>(PlayerCommandType::WATCH);
+    this->send_byte_data(watch_header);
+    this->send_two_byte_data(mouse_x);
+    this->send_two_byte_data(mouse_y);
+}
 
 void ClientProtocol::read_byte_data(uint8_t& data) {
     uint8_t data_readed;
@@ -175,7 +213,6 @@ void ClientProtocol::read_player_image(GameImage& game_image) {
                 PlayerImage(player_id, Position(x, y), health, points, std::move(weapons), team));
     }
 }
-
 
 GameImage ClientProtocol::read_game_image() {
     GameImage game_image;

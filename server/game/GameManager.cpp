@@ -90,7 +90,7 @@ bool GameManager::check_round_finished() {
     bool all_ct_dead = true;
     bool all_tt_dead = true;
     for (auto& par: players) {
-        if (!par.second->dead()) {
+        if (!par.second->is_dead()) {
             if (par.second->get_team() == Team::CT)
                 all_ct_dead = false;
             else

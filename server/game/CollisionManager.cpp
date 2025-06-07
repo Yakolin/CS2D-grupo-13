@@ -40,6 +40,7 @@ void CollisionManager::check_weapon_stepped(PlayerEntity& player) {
 }
 void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage& collider_damage) {
     std::vector<PlayerEntity> players_affected;
+    PlayerEntity player_caster = players_in_map[caster];
     // A lo sumo 10 players, no es algo costoso
     for (auto& player: players_in_map) {
         if (player.first == caster)
@@ -50,7 +51,7 @@ void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage&
     }
     if (players_affected.empty())
         return;
-    Vector2f pos_caster(players_in_map[caster].position.x, players_in_map[caster].position.y);
+    Vector2f pos_caster(player_caster.position.x, player_caster.position.y);
     PlayerEntity nearest = players_affected[0];
     Vector2f pos_nearest(nearest.position.x, nearest.position.y);
     float min_distance = pos_caster.distance(pos_nearest);
@@ -64,9 +65,12 @@ void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage&
             nearest = player;
         }
     }
-    if (!nearest.player.lock())
-        return;
-    nearest.player.lock()->damage(collider_damage.damage_calculator(min_distance));
+    if (nearest.player.lock()) {
+        uint8_t damage = collider_damage.damage_calculator(min_distance);
+        nearest.player.lock()->damage(damage);
+        if (nearest.player.lock()->is_dead())
+            player_caster.player.lock()->get_points(damage);
+    }
 }
 
 void CollisionManager::check_damage() {

@@ -22,12 +22,11 @@ public:
             id(id),
             team(team),
             equipment(std::move(equipment)),
-            health(100),
+            health(5),
             points(0),
             game_zone(game_zone) {}
 
-    virtual ~Player() = default;
-    bool dead();
+    ~Player() = default;
     void reset(bool full_reset);
     void change_team(Team new_team) { team = new_team; }
     virtual Team get_team() override { return team; }
@@ -35,15 +34,19 @@ public:
 
     // Interface
     void damage(uint8_t damage) override;
+    virtual bool is_dead() override;
+
     virtual void equip_bomb(std::weak_ptr<Bomb> bomb) override;
+    virtual bool equip_weapon(std::shared_ptr<Weapon>& weapon) override;
+
     virtual void move(const MoveType& move_type) override;
     virtual void reload() override;
     virtual void shoot(const coordinate_t& mouse_x, const coordinate_t& mouse_y) override;
+    // Buy
     virtual void buy_weapon(const WeaponCode& weapon_code) override;
     virtual void drop() override;
     virtual void equip(const EquipType& equip_type) override;
-    virtual bool equip_weapon(std::shared_ptr<Weapon>& weapon) override;
-
+    virtual void get_points(uint8_t new_points) override;
     /*
     virtual void defuse_bomb() override;
     */

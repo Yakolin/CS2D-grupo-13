@@ -3,19 +3,21 @@
 #include <memory>
 
 void Player::damage(uint8_t damage) {
+    std::cout << "AAA ME DIERON!\n";
     if (damage > health)
         health = 0;
-    health -= damage;
+    else
+        health -= damage;
 }
 void Player::equip_bomb(std::weak_ptr<Bomb> bomb) { equipment.equip_bomb(bomb); }
 
-bool Player::dead() { return health == 0; }
+bool Player::is_dead() { return health == 0; }
 
 void Player::reset(bool full_reset) {
     if (full_reset || health == 0) {
         equipment.reset_equipment();
     }
-    health = 100;
+    health = 5;
 }
 void Player::move(const MoveType& move_type) {
     switch (move_type) {
@@ -53,4 +55,8 @@ void Player::drop() { this->equipment.drop_weapon(); }
 void Player::equip(const EquipType& equip_type) { this->equipment.change_weapon(equip_type); }
 bool Player::equip_weapon(std::shared_ptr<Weapon>& weapon) {
     return equipment.equip_weapon(weapon);
+}
+void Player::get_points(uint8_t new_points) {
+    this->money += new_points * 2;
+    this->points += new_points;
 }

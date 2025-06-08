@@ -11,8 +11,6 @@
 #include "../Player/ICanInteract.h"
 #include "../Weapons/IInteractuable.h"
 #include "../Weapons/SpecialWeapons.h"
-#define Wall '#'
-#define Floor ' '
 
 typedef struct PlayerEntity {
     std::weak_ptr<ICanInteract> player;

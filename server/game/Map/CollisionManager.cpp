@@ -1,5 +1,6 @@
 #include "CollisionManager.h"
-
+#define Wall '#'
+#define Floor ' '
 #include <iostream>
 
 bool CollisionManager::check_movement(player_id_t id, const Position& next_position) {
@@ -61,6 +62,8 @@ void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage&
             nearest = player;
         }
     }
+    // Si golpeaste un muro, cambia tu direccion a eso.
+    // Add BulletImage
     if (nearest.player.lock()) {
         uint8_t damage = collider_damage.damage_calculator(min_distance);
         nearest.player.lock()->damage(damage);
@@ -89,3 +92,4 @@ std::vector<WeaponDropped> CollisionManager::get_dropped_things_images() {
                    });
     return weapon_images;
 }
+// Llamad pidiendo las balas, => clear

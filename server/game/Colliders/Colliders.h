@@ -40,10 +40,14 @@ private:
 
 public:
     Rectangle() = default;
+
     Rectangle(coordinate_t width, coordinate_t height, const Position& point):
             point_min(std::move(point)),
             point_max(std::move(Position(point.x + width, point.y + height))) {}
-    Rectangle(Position& point_min, Position& point_max);
+
+    Rectangle(Position& point_min, Position& point_max):
+            point_min(std::move(point_min)), point_max(std::move(point_max)) {}
+
     virtual bool is_in(const Position& position) override;
     Position get_random_position();
     virtual ~Rectangle() override = default;

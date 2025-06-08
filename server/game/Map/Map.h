@@ -17,22 +17,18 @@
 #include "IDroppableZone.h"
 #include "IGameZone.h"
 #include "ISpawneableZone.h"
+#include "MapConfig.h"
 #include "MapExeption.h"
-
-#define WidthSpawn 10
-#define HeightSpawn 10
-
 class Map: public IGameZone, public ISpawneableZone, public IDroppableZone {
 private:
     MapName map_name;
+    MapConfig map_config;
     std::vector<std::vector<char>> walls;
     Rectangle spawn_CT, spawn_TT, bomb_A, bomb_B;
     std::pair<Position, std::shared_ptr<Bomb>> bomb;
     CollisionManager collision_manager;
     std::map<player_id_t, player_entity_t> players_in_map;
-    bool check_zones(char c, int i);
-    void charge_zone(Rectangle& zone, const Position& position);
-    void charge_map(const MapName& archivo);
+    void charge_map();
 
 public:
     explicit Map(const MapName& _map_name, std::shared_ptr<Bomb> bomb_ptr):
@@ -40,9 +36,10 @@ public:
             ISpawneableZone(),
             IDroppableZone(),
             map_name(_map_name),
+            map_config(map_name),
             bomb(std::make_pair(Position(10, 10), bomb_ptr)),
             collision_manager(walls, players_in_map, bomb) {
-        charge_map(map_name);
+        charge_map();
     }
     void update_map_state();
     Position get_position(player_id_t player_id);

@@ -15,6 +15,7 @@ target_sources(CS2D_tests
     ../../server/game/Weapons/SpecialWeapons.cpp
     ../../server/game/GameManager.cpp
     ../../server/game/Map/Map.cpp
+    ../../server/game/Map/MapConfig.cpp
     ../../server/game/Player/Player.cpp
     ../../server/game/Config/GameConfig.cpp
     ../../server/game/Weapons/WeaponFactory.cpp
@@ -35,6 +36,7 @@ target_sources(CS2D_tests
     ../../server/game/GameException.h
     ../../server/game/GameManager.h
     ../../server/game/Map/Map.h
+    ../../server/game/Map/MapConfig.h
     ../../server/game/Player/Player.h
     ../../server/game/Weapons/SpecialWeapons.h
     ../../server/game/Weapons/Weapon.h

@@ -80,12 +80,6 @@ Equip::~Equip() {}
 
 void Equip::action_to(IPlayerAction& player) { player.change_weapon(this->equip_type); }
 
-DefuseBomb::DefuseBomb(player_id_t player_id): ClientAction(player_id) {}
-
-DefuseBomb::~DefuseBomb() {}
-
-void DefuseBomb::action_to(IPlayerAction& player) { player.defuse_bomb(); }
-
 /*
 
 

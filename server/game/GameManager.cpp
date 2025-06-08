@@ -105,7 +105,7 @@ bool GameManager::check_round_finished() {
         return true;
     }
     bool time_end = timer.is_round_over();
-    if (bomb->is_defused() || time_end && !bomb->is_activate()) {
+    if (bomb->is_defused() || (time_end && !bomb->is_activate())) {
         game_state.rounds_CT++;
         return true;
     } else if (time_end && !bomb->is_defused()) {

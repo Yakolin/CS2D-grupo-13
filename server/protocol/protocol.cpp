@@ -236,11 +236,7 @@ void ServerProtocol::send_player_image(GameImage& game_image) {
         team_t team = static_cast<team_t>(player_image.team);
         this->send_byte_data(team);
 
-        coordinate_t mouse_x = player_image.position.x;
-        this->send_two_byte_data(mouse_x);
-
-        coordinate_t mouse_y = player_image.position.y;
-        this->send_two_byte_data(mouse_y);
+        this->send_position(player_image.mouse_position);
 
         skin_t ct_skin = static_cast<skin_t>(player_image.skin.ct_skin);
         this->send_byte_data(ct_skin);

@@ -29,7 +29,7 @@ public:
             equipment(std::move(equipment)),
             health(player_config.health),
             points(player_config.points),
-            mouse_position(),
+            mouse_position(0, 0),
             game_zone(game_zone) {}
     virtual ~Player() = default;
     bool dead();

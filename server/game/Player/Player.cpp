@@ -33,6 +33,7 @@ void Player::move(const MoveType& move_type) {
             break;
     }
 }
+
 void Player::reload() { this->equipment.reload(); }
 
 void Player::shoot(const coordinate_t& mouse_x, const coordinate_t& mouse_y) {
@@ -42,8 +43,10 @@ void Player::shoot(const coordinate_t& mouse_x, const coordinate_t& mouse_y) {
 
 PlayerImage Player::get_player_image(const Position& position) {
     return PlayerImage(id, Position(position.x, position.y), health, points,
-                       std::move(equipment.get_weapons_image()), team);
+                       std::move(equipment.get_weapons_image()), team, this->mouse_position,
+                       this->skins);
 }
+
 void Player::buy_weapon(const WeaponCode& weapon_code) {
     equipment.buy_weapon_by_code(weapon_code, money);
 }
@@ -59,4 +62,11 @@ bool Player::equip(std::shared_ptr<IInteractuable>& droppable) {
 void Player::get_points() {
     this->money += config.points * config.multiplier_points;
     this->points += config.points;
+}
+
+void Player::defuse_bomb() {}
+
+void Player::watch(const coordinate_t& mouse_x, const coordinate_t& mouse_y) {
+    this->mouse_position.x = mouse_x;
+    this->mouse_position.y = mouse_y;
 }

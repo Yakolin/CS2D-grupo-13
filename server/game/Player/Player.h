@@ -29,6 +29,7 @@ public:
             equipment(std::move(equipment)),
             health(player_config.health),
             points(player_config.points),
+            mouse_position(),
             game_zone(game_zone) {}
     virtual ~Player() = default;
     bool dead();
@@ -50,6 +51,8 @@ public:
     virtual void drop() override;
     virtual void change_weapon(const EquipType& equip_type) override;
     virtual void get_points() override;
+    virtual void defuse_bomb() override;
+    virtual void watch(const coordinate_t& mouse_x, const coordinate_t& mouse_y) override;
     /*
     virtual void defuse_bomb() override;
     */
@@ -62,7 +65,9 @@ private:
     uint8_t health;
     uint8_t points;
     uint16_t money = 5000;
+    Position mouse_position;
     IGameZone& game_zone;
+
     void drop_on_dead();
 };
 

@@ -19,6 +19,7 @@ target_sources(CS2D_tests
     ../../common/player_command_types.h
     ../../common/client_common_action.h
     ../../common/lobby_action.h
+    ../../common/game_info.h
     ../../server/interfaces/interface_player_action.h
     ../../server/interfaces/interface_game.h
 )

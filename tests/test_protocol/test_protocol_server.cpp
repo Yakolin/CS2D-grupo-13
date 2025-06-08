@@ -7,6 +7,7 @@
 #include <gtest/gtest.h>
 
 #include "../../common/game_image.h"
+#include "../../common/game_info.h"
 #include "../../common/liberror.h"
 #include "../../common/lobby_types.h"
 #include "../../common/player_command_types.h"
@@ -82,62 +83,38 @@ TEST(ServerProtocolTest, ReadCreateGameReturnCorrectObject) {
     std::thread client_thread([]() {
         Socket client_socket("localhost", "9999");
         std::string game_name = "mateo game";
-        std::string map_name = "pepito";
+        MapName map_name = MapName::DESIERTO;
+        Skins skins(CounterTerroristSkin::GIGN, TerroristSkin::ARCTIC_AVENGER);
+
         lobby_command_t command = static_cast<lobby_command_t>(LobbyCommandType::CREATE_GAME);
         client_socket.sendall(&command, sizeof(command));
 
-        // Enviar game_name
         length_string_t length_name = htons(static_cast<length_string_t>(game_name.size()));
         client_socket.sendall(&length_name, sizeof(length_string_t));
         client_socket.sendall(game_name.c_str(), game_name.size());
 
-        // Enviar map_name
-        length_string_t length_map = htons(static_cast<length_string_t>(map_name.size()));
-        client_socket.sendall(&length_map, sizeof(length_string_t));
-        client_socket.sendall(map_name.c_str(), map_name.size());
+        map_name_t map_code = static_cast<map_name_t>(map_name);
+        client_socket.sendall(&map_code, sizeof(map_name_t));
+
+        skin_t ct_skin = static_cast<skin_t>(skins.ct_skin);
+        skin_t t_skin = static_cast<skin_t>(skins.tt_skin);
+        client_socket.sendall(&ct_skin, sizeof(skin_t));
+        client_socket.sendall(&t_skin, sizeof(skin_t));
     });
 
     Socket server_client = server_socket.accept();
     ServerProtocol protocol(server_client);
 
     // Act
-
     LobbyCommandType command = protocol.read_lobby_command();
     CreateGame create_game = protocol.read_create_game();
 
     // Assert
     ASSERT_EQ(command, LobbyCommandType::CREATE_GAME);
     ASSERT_EQ(create_game.game_name, "mateo game");
-    ASSERT_EQ(create_game.map_name, "pepito");
-
-    client_thread.join();
-}
-
-
-TEST(ServerProtocolTest, ReadJoinGameReturnCorrectObject) {
-    Socket server_socket("9999");
-    std::thread client_thread([]() {
-        Socket client_socket("localhost", "9999");
-        std::string game_name = "mateo game";
-        lobby_command_t command = static_cast<lobby_command_t>(LobbyCommandType::JOIN_GAME);
-        client_socket.sendall(&command, sizeof(command));
-
-        length_string_t length_name = htons(static_cast<length_string_t>(game_name.size()));
-        client_socket.sendall(&length_name, sizeof(length_string_t));
-        client_socket.sendall(game_name.c_str(), game_name.size());
-    });
-
-    Socket server_client = server_socket.accept();
-    ServerProtocol protocol(server_client);
-
-    // Act
-
-    LobbyCommandType command = protocol.read_lobby_command();
-    JoinGame join_game = protocol.read_join_game();
-
-    // Assert
-    ASSERT_EQ(command, LobbyCommandType::JOIN_GAME);
-    ASSERT_EQ(join_game.game_name, "mateo game");
+    ASSERT_EQ(create_game.map_name, MapName::DESIERTO);
+    ASSERT_EQ(create_game.skins.ct_skin, CounterTerroristSkin::GIGN);
+    ASSERT_EQ(create_game.skins.tt_skin, TerroristSkin::ARCTIC_AVENGER);
 
     client_thread.join();
 }

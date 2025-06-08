@@ -45,9 +45,12 @@ TEST(ClientProtocolTest, SendCreateGameSendCorrectObject) {
     Socket client("localhost", "9999");
     Socket accepted = server_listener.accept();
     ClientProtocol protocol(client);
+
     std::string game_name = "mateo game";
-    std::string map_name = "pepito";
-    CreateGame create_game(game_name, map_name);
+    MapName map_name = MapName::DESIERTO;
+    Skins skins(CounterTerroristSkin::GIGN, TerroristSkin::ARCTIC_AVENGER);
+
+    CreateGame create_game(game_name, map_name, skins);
 
     // Act
     protocol.send_create_game(create_game);
@@ -66,14 +69,16 @@ TEST(ClientProtocolTest, SendCreateGameSendCorrectObject) {
     accepted.recvall(&buf[0], len);
     EXPECT_EQ(buf, game_name);
 
-    uint16_t net_map_len;
-    accepted.recvall(&net_map_len, sizeof(net_map_len));
-    uint16_t map_len = ntohs(net_map_len);
-    EXPECT_EQ(map_len, map_name.size());
+    map_name_t map_code;
+    accepted.recvall(&map_code, sizeof(map_code));
+    EXPECT_EQ(static_cast<MapName>(map_code), map_name);
 
-    std::string map_buf(map_len, '\0');
-    accepted.recvall(&map_buf[0], map_len);
-    EXPECT_EQ(map_buf, map_name);
+    skin_t ct_skin;
+    skin_t t_skin;
+    accepted.recvall(&ct_skin, sizeof(ct_skin));
+    accepted.recvall(&t_skin, sizeof(t_skin));
+    EXPECT_EQ(static_cast<CounterTerroristSkin>(ct_skin), skins.ct_skin);
+    EXPECT_EQ(static_cast<TerroristSkin>(t_skin), skins.tt_skin);
 }
 
 TEST(ClientProtocolTest, SendJoinGameSendCorrectObject) {
@@ -82,8 +87,10 @@ TEST(ClientProtocolTest, SendJoinGameSendCorrectObject) {
     Socket client("localhost", "9999");
     Socket accepted = server_listener.accept();
     ClientProtocol protocol(client);
+
     std::string game_name = "join_test";
-    JoinGame join_game(game_name);
+    Skins skins(CounterTerroristSkin::GSG9, TerroristSkin::GUERRILLA);
+    JoinGame join_game(game_name, skins);
 
     // Act
     protocol.send_join_game(join_game);
@@ -101,6 +108,13 @@ TEST(ClientProtocolTest, SendJoinGameSendCorrectObject) {
     std::string buf(len, '\0');
     accepted.recvall(&buf[0], len);
     EXPECT_EQ(buf, game_name);
+
+    skin_t ct_skin;
+    skin_t t_skin;
+    accepted.recvall(&ct_skin, sizeof(ct_skin));
+    accepted.recvall(&t_skin, sizeof(t_skin));
+    EXPECT_EQ(static_cast<CounterTerroristSkin>(ct_skin), skins.ct_skin);
+    EXPECT_EQ(static_cast<TerroristSkin>(t_skin), skins.tt_skin);
 }
 
 TEST(ClientProtocolTest, SendListGamesSendCorrectObject) {

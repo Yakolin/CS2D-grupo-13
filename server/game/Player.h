@@ -22,7 +22,8 @@ public:
     Player(player_id_t id, Team team, Skins skins, Equipment&& equipment, IGameZone& game_zone):
             id(id),
             team(team),
-            skins(skins) equipment(std::move(equipment)),
+            skins(skins),
+            equipment(std::move(equipment)),
             health(100),
             points(0),
             game_zone(game_zone) {}

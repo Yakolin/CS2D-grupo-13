@@ -26,9 +26,8 @@ void GameManager::process(ClientAction& action) {
 
 std::shared_ptr<Player> GameManager::create_player(const player_id_t& id, Team team, Skins& skins) {
     Equipment equipment(id, map_game, map_game, weapon_factory);
-    shared_ptr<Player> player = std::make_shared<Player>(id, skins, std::move(equipment), map_game);
-    // Equipment le agrega la bomba solo si es TT podemos hacer al arrancar la ronda!
-    player = std::make_shared<Player>(id, team, skins, std::move(equipment), map_game);
+    shared_ptr<Player> player =
+            std::make_shared<Player>(id, team, skins, std::move(equipment), map_game);
     return player;
 }
 

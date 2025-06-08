@@ -38,13 +38,13 @@ class MenuView: public QWidget {
     Q_OBJECT
 
 signals:
-    void opcionElegida(LobbyCommandType tipo);  
+    void opcionElegida(LobbyCommandType tipo, Player infoPlayer);  
 
 
 
 public slots:
-    void manejar_opcion(LobbyCommandType opcion) {
-        emit opcionElegida(opcion);
+    void manejar_opcion(LobbyCommandType opcion, Player infoPlayer) {
+        emit opcionElegida(opcion, infoPlayer);
     }
 
 private:

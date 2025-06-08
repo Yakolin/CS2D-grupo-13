@@ -9,6 +9,7 @@
 #include <vector>
 #include "tipos.h"
 #include "../common/game_image.h"
+#include "../common/game_info.h"
 #include "../common/queue.h"
 #include "../common/socket.h"
 #include "Qt/menuView.h"
@@ -30,6 +31,7 @@ public:
     LobbyCommandType opcionElegida;
     std::map<Object, std::string > rutas_skins;
     std::map<Weapon, std::string > route_weapons;
+    Player info_game;
 
 
     explicit Vista(int& argc, char* argv[]);

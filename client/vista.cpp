@@ -13,7 +13,8 @@ Vista::Vista(int& argc, char* argv[])
     protocolo(skt),
     opcionElegida(LobbyCommandType::NONE), 
     rutas_skins(),
-    route_weapons() 
+    route_weapons() ,
+    info_game()
     {
         
         route_weapons = {
@@ -45,15 +46,29 @@ void Vista::run() {
     MenuView menu(nullptr,protocolo);
     menu.show();
 
-    QObject::connect(&menu, &MenuView::opcionElegida, [this,&menu](LobbyCommandType tipo){
+    QObject::connect(&menu, &MenuView::opcionElegida, [this,&menu](LobbyCommandType tipo, Player info){
         this->opcionElegida = tipo;
+        this->info_game = info;
         menu.close();
     });
     app.exec();
+    std::cout << "Nombre del jugador: " << info_game.info.name_player << std::endl;
+    std::cout << "Nombre del juego: " << info_game.info.name_game << std::endl;
+    std::cout << "Equipo: " << info_game.team << std::endl;
+    std::cout << "Skin: " << info_game.skin << std::endl;
+    std::cout << "Mapa: " << info_game.map << std::endl;
     
     if(opcionElegida != LobbyCommandType::CREATE_GAME && opcionElegida != LobbyCommandType::JOIN_GAME){
         return;
     }
+    GameInfo info_game = protocolo.read_game_info();
+    std::vector<Position> walls = info_game.walls;
+    std::cout << "walls ===================== " << std::endl;
+    std::cout << "cant walls ====== "<< walls.size() << std::endl;
+    /*for (size_t i = 0; i < walls.size(); i++)
+    {
+        std::cout << "("<<walls[i].x<< "," << walls[i].y << ")" << std::endl;
+    }*/
     
     try {
         GameView gameView(std::move(skt));

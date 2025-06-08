@@ -67,30 +67,23 @@ void LobbyView::section_dates(QWidget* selection) {
 void LobbyView::section_player(QWidget* selection) {
 
     QFormLayout* layout = new QFormLayout(selection);
-    QComboBox* unidadCombo = new QComboBox(selection);
-    unidadCombo->addItems({"Counter Terrorist", "Terrorist"});
 
-    QComboBox* skinCombo = new QComboBox(selection);
+    QComboBox* combo_terrorist = new QComboBox(selection);
+    QComboBox* combo_counter_terrorist = new QComboBox(selection);
 
-    layout->addRow("Unidad:", unidadCombo);
-    layout->addRow("Skin:", skinCombo);
+    QStringList list_terrorist = {"Seal Force", "German GSG-9", "UK SAS", "French GIGN"};
+    QStringList list_counter = {"Phoenix", "L337 Krew", "Arctic Avenger", "Guerrilla"};
 
+    combo_terrorist->addItems(list_terrorist);
+    combo_counter_terrorist->addItems(list_counter);
+    layout->addRow("Counter Terrorist:", combo_terrorist);
+    layout->addRow("Terrorist :", combo_counter_terrorist);
 
-    QMap<QString, QStringList> skinsPorUnidad;
-    skinsPorUnidad["Counter Terrorist"] =
-            QStringList{"Seal Force", "German GSG-9", "UK SAS", "French GIGN"};
-    skinsPorUnidad["Terrorist"] =
-            QStringList{"Phoenix", "L337 Krew", "Arctic Avenger", "Guerrilla"};
+    connect(combo_terrorist, &QComboBox::currentTextChanged,
+            [this, combo_terrorist](const QString& skin) { infoPlayer.skin = skin.toStdString(); });
 
-
-    connect(unidadCombo, &QComboBox::currentTextChanged,
-            [this, skinCombo, skinsPorUnidad](const QString& unidad) {
-                skinCombo->clear();
-                skinCombo->addItems(skinsPorUnidad[unidad]);
-                infoPlayer.team = unidad.toStdString();
-            });
-    connect(skinCombo, &QComboBox::currentTextChanged,
-            [this, skinCombo](const QString& skin) { infoPlayer.skin = skin.toStdString(); });
+    connect(combo_counter_terrorist, &QComboBox::currentTextChanged,
+            [this, combo_counter_terrorist](const QString& skin) { infoPlayer.skin2 = skin.toStdString(); });
 }
 
 void imprimirPlayer(const Player& p) {
@@ -101,17 +94,41 @@ void imprimirPlayer(const Player& p) {
     std::cout << "Mapa: " << p.map << std::endl;
 }
 
-void LobbyView::function_join() {
-    Skins skins(CounterTerroristSkin::GIGN, TerroristSkin::ARCTIC_AVENGER);
-    protocol.send_join_game(JoinGame(infoPlayer.info.name_game, skins));
-    emit opcionElegida(LobbyCommandType::JOIN_GAME);
+MapName LobbyView::get_map(const std::string map) {
+    if (map == "Desierto") return MapName::DESIERTO;
+    if (map == "Pueblito Azteca") return MapName::PUEBLITO_AZTECA;
+    return MapName::ZONA_ENTRENAMIENTO;
 }
+
+CounterTerroristSkin LobbyView::get_skin_counter(const std::string skin_counter) {
+    if (skin_counter == "Seal Force") return CounterTerroristSkin::SEAL;
+    if (skin_counter == "German GSG-9") return CounterTerroristSkin::GSG9;
+    if (skin_counter == "UK SAS") return CounterTerroristSkin::SAS;
+    return CounterTerroristSkin::GIGN;
+}
+
+TerroristSkin LobbyView::get_skin_terrorist(const std::string skin_terrorist) {
+    if (skin_terrorist == "Phoenix") return TerroristSkin::PHOENIX;
+    if (skin_terrorist == "L337 Krew") return TerroristSkin::L337_KREW;
+    if (skin_terrorist == "Arctic Avenger") return TerroristSkin::ARCTIC_AVENGER;
+    return TerroristSkin::GUERRILLA;
+}
+
+void LobbyView::function_join() {
+
+    Skins skins(get_skin_counter(infoPlayer.skin2), get_skin_terrorist(infoPlayer.skin));
+    protocol.send_join_game(JoinGame(infoPlayer.info.name_game, skins));
+    emit opcionElegida(LobbyCommandType::JOIN_GAME, infoPlayer);
+}
+
 void LobbyView::function_create() {
     std::cout << "envio nombre create partida: " << infoPlayer.info.name_game << std::endl;
-    MapName map_name(MapName::DESIERTO);
-    Skins skins(CounterTerroristSkin::GIGN, TerroristSkin::ARCTIC_AVENGER);
+    MapName map_name(get_map(infoPlayer.map));
+    Skins skins(get_skin_counter(infoPlayer.skin2), get_skin_terrorist(infoPlayer.skin));
+
+
     protocol.send_create_game(CreateGame(infoPlayer.info.name_game, map_name, skins));
-    emit opcionElegida(LobbyCommandType::CREATE_GAME);
+    emit opcionElegida(LobbyCommandType::CREATE_GAME, infoPlayer);
 }
 
 void LobbyView::action_button(QVBoxLayout* layout, const QString& text,
@@ -144,9 +161,12 @@ void LobbyView::action_create(QWidget* page, QPushButton* button_menu) {
 }
 
 void LobbyView::update_join_list(const std::vector<std::string>& nuevas_partidas) {
+
     list_games->clear();
     for (const std::string& partida: nuevas_partidas) {
+        QString qpartida = QString::fromStdString(partida);
         list_games->addItem(QString::fromStdString(partida));
+        qDebug() << "Partida añadida:" << QString::fromStdString(partida);
     }
 }
 
@@ -215,25 +235,3 @@ void LobbyView::action_help(QWidget* page_help, QPushButton* button_menu) {
 }
 
 LobbyView::~LobbyView() {}
-
-
-/*
-    QObject::connect(botonAceptar, &QPushButton::clicked, [=]() mutable{
-        info.name_player = name->text().toStdString();
-        info.name_game = name_game->text().toStdString();
-
-        qDebug() << "Jugador:" << QString::fromStdString(info.name_player);
-        qDebug() << "Juego:" << QString::fromStdString(info.name_game);
-    });
-
-    //  (Seal force, German GSG-9, UK SAS o French GIGN
-    img_skins_counter_terrorist["Seal Force"] = "assets/gfx/player/ct3.bmp";
-    img_skins_counter_terrorist["German GSG-9"] = "assets/gfx/player/ct1.bmp";
-    img_skins_counter_terrorist["UK SAS"] = "assets/gfx/player/ct4.bmp";
-    img_skins_counter_terrorist["French GIGN"] = "assets/gfx/player/ct2_bmp";
-
-    // Skins Terrorist
-    img_skins_terrorist["Phoenix"] = "assets/gfx/player/t4.bmp";  //
-    img_skins_terrorist["L337 Krew"] = "assets/gfx/player/t1.bmp";
-    img_skins_terrorist["Arctic Avenger"] = "assets/gfx/player/t3.bmp";  //
-    img_skins_terrorist["Guerrilla"] = "assets/gfx/player/t2.bmp";       //*/

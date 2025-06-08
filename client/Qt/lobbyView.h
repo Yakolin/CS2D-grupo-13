@@ -21,7 +21,7 @@
 #include <iostream>
 #include <map>
 #include <string>
-
+#include <QDebug>
 #include "../../common/lobby_action.h"
 #include "../../common/lobby_types.h"
 #include "../model/protocol.h"
@@ -30,7 +30,7 @@
 class LobbyView: public QWidget {
     Q_OBJECT
 signals:
-    void opcionElegida(LobbyCommandType opcion);
+    void opcionElegida(LobbyCommandType opcion, Player infoPlayer);
 
 public:
     LobbyView(ClientProtocol& protoccol);
@@ -61,6 +61,9 @@ private:
     void function_create();
     void section_dates(QWidget* section);
     void section_player(QWidget* selection);
+    MapName get_map(const std::string map);
+    CounterTerroristSkin get_skin_counter(const std::string skin_counter);
+    TerroristSkin get_skin_terrorist(const std::string skin_terrorist);
     void action_button(QVBoxLayout* layout, const QString& text, std::function<void()> callback);
 };
 

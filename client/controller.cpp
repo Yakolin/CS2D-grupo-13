@@ -11,15 +11,16 @@ Controller::Controller(Socket&& skt):
     start();
 }
 
-/*void Controller::sender_pos_mouse(int x, int y) {
-    int tile_size = 32;  // tamaño en pixeles de cada bloque del mapa
+void Controller::sender_pos_mouse(int x, int y) {
 
-    int col = x / tile_size;  // columna en la matriz
-    int fil = y / tile_size;  // fila en la matriz
-    ///... resto de codigo
-    std::cout << "Fila: " << fil << ", Columna: " << col << std::endl;
+    int tile_size = 32;  
+    Uint16 col = static_cast<Uint16>(x / tile_size);  
+    Uint16 fil = static_cast<Uint16>(y / tile_size);  
+
+    std::unique_ptr<InterfaceClientAction> action = std::make_unique<ClientSpace::MousePosition>(col,fil);
+    send_queue->push(std::move(action));
 }
-*/
+
 
 void Controller::sender_mov_player(SDL_Keycode key) {
 

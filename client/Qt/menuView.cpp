@@ -72,6 +72,13 @@ void MenuView::action_join() {
 
     protocolo.send_list_games();
     std::vector<std::string> list = protocolo.read_list_games();
+    std::cout << "listta entrante \n";
+    for (size_t i = 0; i < list.size(); i++)
+    {
+        std::cout << list[i] << std::endl;
+    }
+    std::cout << "listta saliente \n";
+    
     lobby.update_join_list(list); 
     stack.setCurrentIndex(2);
 }

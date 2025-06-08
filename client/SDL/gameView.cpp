@@ -202,7 +202,7 @@ bool GameView::handle_events(const SDL_Event& event) {
         int mouseX = event.motion.x;
         int mouseY = event.motion.y;
         player->update_view_angle(mouseX, mouseY);
-        // controller.sender_pos_mouse(mouseX, mouseY);
+        controller.sender_pos_mouse(mouseX, mouseY);
         return true;
 
     } else if (event.type == SDL_WINDOWEVENT) {

@@ -73,6 +73,7 @@ struct InfoGame {
 struct Player {
     std::string team;
     std::string skin;
+    std::string skin2;
     InfoGame info;
     std::string map;
 };

@@ -23,6 +23,7 @@ private:
     void read_two_byte_data(uint16_t& data);
 
     void read_client_id(GameImage& game_image);
+    void read_position(Position& position);
     void read_weapons(std::vector<WeaponImage>& weapons);
     void read_player_image(GameImage& game_image);
 

@@ -200,6 +200,14 @@ void ClientProtocol::read_client_id(GameImage& game_image) {
     game_image.client_id = client_id;
 }
 
+void ClientProtocol::read_position(Position& position) {
+    coordinate_t x, y;
+    this->read_two_byte_data(x);
+    this->read_two_byte_data(y);
+    position.x = x;
+    position.y = y;
+}
+
 void ClientProtocol::read_weapons(std::vector<WeaponImage>& weapons) {
     length_weapons_images_t length_weapons;
     this->read_byte_data(length_weapons);
@@ -230,9 +238,8 @@ void ClientProtocol::read_player_image(GameImage& game_image) {
         player_id_t player_id;
         this->read_two_byte_data(player_id);
 
-        coordinate_t x, y;
-        this->read_two_byte_data(x);
-        this->read_two_byte_data(y);
+        Position position_player;
+        this->read_position(position_player);
 
         health_t health;
         this->read_byte_data(health);
@@ -247,9 +254,8 @@ void ClientProtocol::read_player_image(GameImage& game_image) {
         this->read_byte_data(team_raw);
         Team team = static_cast<Team>(team_raw);
 
-        coordinate_t mouse_x, mouse_y;
-        this->read_two_byte_data(mouse_x);
-        this->read_two_byte_data(mouse_y);
+        Position position_mouse;
+        this->read_position(position_mouse);
 
         skin_t ct_skin, tt_skin;
         this->read_byte_data(ct_skin);
@@ -257,11 +263,11 @@ void ClientProtocol::read_player_image(GameImage& game_image) {
 
         CounterTerroristSkin ct = static_cast<CounterTerroristSkin>(ct_skin);
         TerroristSkin tt = static_cast<TerroristSkin>(tt_skin);
-        Skins skin(ct, tt);
+        Skins skins(ct, tt);
 
-        game_image.players_images.emplace_back(PlayerImage(player_id, Position(x, y), health,
+        game_image.players_images.emplace_back(PlayerImage(player_id, position_player, health,
                                                            points, std::move(weapons), team,
-                                                           Position(mouse_x, mouse_y), skin));
+                                                           position_mouse, skins));
     }
 }
 

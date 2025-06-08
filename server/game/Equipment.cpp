@@ -6,7 +6,7 @@ Equipment::Equipment(const player_id_t& player_id, ISpawneableZone& spawneable_z
         spawneable_zone(spawneable_zone),
         droppable_zone(droppable_zone),
         weapon_factory(weapon_factory),
-        primary(nullptr),
+        primary(std::make_shared<NullWeapon>()),
         secondary(weapon_factory.weapon_create(WeaponCode::GLOCK)),
         knife(weapon_factory.weapon_create(WeaponCode::KNIFE)),
         weapon_in_hand(this->secondary) {}
@@ -50,9 +50,10 @@ void Equipment::drop_weapon() {
     change_weapon(EquipType::PRIMARY);
     if (this->weapon_in_hand) {
         if (this->weapon_in_hand->is_droppable()) {
-            this->droppable_zone.drop(this->player_id, this->weapon_in_hand);
+            std::shared_ptr<IDroppable> dropped = this->weapon_in_hand;
+            this->droppable_zone.drop(this->player_id, dropped);
             this->new_weapon_in_hand(this->secondary);
-            this->primary = std::make_unique<NullWeapon>();
+            this->primary = std::make_shared<NullWeapon>();
         }
     }
 }
@@ -60,8 +61,12 @@ void Equipment::drop_weapon() {
 void Equipment::reload() { this->weapon_in_hand->reload(); }
 
 void Equipment::shoot(Position& position) {
-    if (/*Weapon in hand es bomba*/ bomb.lock()) {
-        droppable_zone.plant_bomb(player_id);
+    if (bomb.lock()) {
+        if (droppable_zone.plant_bomb(player_id)) {
+            std::shared_ptr<IDroppable> dropped = bomb.lock();
+            droppable_zone.drop(player_id, dropped);
+            bomb.reset();
+        }
     } else {
         this->secondary->set_on_action(this->spawneable_zone, this->player_id, position);
     }
@@ -69,21 +74,40 @@ void Equipment::shoot(Position& position) {
 
 std::vector<WeaponImage> Equipment::get_weapons_image() {
     std::vector<WeaponImage> weapons;
-    if (primary)
-        weapons.push_back(primary->get_weapon_image());
+    weapons.push_back(primary->get_weapon_image());
     weapons.push_back(secondary->get_weapon_image());
     weapons.push_back(knife->get_weapon_image());
+    if (bomb.lock())
+        weapons.push_back(bomb.lock()->get_weapon_image());
     return weapons;
-}
-bool Equipment::equip_weapon(const std::shared_ptr<Weapon>& weapon) {
-    if (!primary) {
-        primary = weapon;
-        return true;
-    }
-    return false;
 }
 void Equipment::equip_bomb(std::weak_ptr<Bomb> new_bomb) {
     bomb = new_bomb;
     if (bomb.lock())
         bomb.lock()->set_equiped();
+}
+bool Equipment::equip_droppable(const std::shared_ptr<IDroppable>& droppable) {
+    if (droppable->get_weapon_code() == WeaponCode::BOMB) {
+        std::weak_ptr<Bomb> casted_bomb = std::static_pointer_cast<Bomb>(droppable);
+        equip_bomb(casted_bomb);
+        return true;
+    }
+    if (!primary->is_droppable()) {
+        primary = std::static_pointer_cast<Weapon>(droppable);
+        return true;
+    }
+    return false;
+}
+
+void Equipment::drop_all() {
+    if (primary->is_droppable()) {
+        std::shared_ptr<IDroppable> dropped = this->primary;
+        droppable_zone.drop(player_id, dropped);
+        this->primary = std::make_shared<NullWeapon>();
+    }
+    if (bomb.lock()) {
+        std::shared_ptr<IDroppable> dropped = bomb.lock();
+        droppable_zone.drop(player_id, dropped);
+        bomb.reset();
+    }
 }

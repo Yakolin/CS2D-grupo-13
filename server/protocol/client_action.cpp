@@ -77,8 +77,7 @@ Equip::Equip(player_id_t player_id, EquipType equip_type):
 
 Equip::~Equip() {}
 
-void Equip::action_to(IPlayerAction& player) { player.equip(this->equip_type); }
-
+void Equip::action_to(IPlayerAction& player) { player.change_weapon(this->equip_type); }
 
 /*
 

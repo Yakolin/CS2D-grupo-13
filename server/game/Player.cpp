@@ -1,16 +1,14 @@
 #include "Player.h"
 
 #include <memory>
-
 void Player::damage(uint8_t damage) {
-    std::cout << "AAA ME DIERON!\n";
     if (damage > health)
         health = 0;
     else
         health -= damage;
+    if (is_dead())
+        equipment.drop_all();
 }
-void Player::equip_bomb(std::weak_ptr<Bomb> bomb) { equipment.equip_bomb(bomb); }
-
 bool Player::is_dead() { return health == 0; }
 
 void Player::reset(bool full_reset) {
@@ -52,9 +50,11 @@ void Player::buy_weapon(const WeaponCode& weapon_code) {
 
 void Player::drop() { this->equipment.drop_weapon(); }
 
-void Player::equip(const EquipType& equip_type) { this->equipment.change_weapon(equip_type); }
-bool Player::equip_weapon(std::shared_ptr<Weapon>& weapon) {
-    return equipment.equip_weapon(weapon);
+void Player::change_weapon(const EquipType& equip_type) {
+    this->equipment.change_weapon(equip_type);
+}
+bool Player::equip(std::shared_ptr<IDroppable>& droppable) {
+    return equipment.equip_droppable(droppable);
 }
 void Player::get_points(uint8_t new_points) {
     this->money += new_points * 2;

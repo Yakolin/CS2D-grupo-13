@@ -27,6 +27,7 @@ private:
     std::weak_ptr<Bomb> bomb;
     std::shared_ptr<Weapon> weapon_in_hand;
     void new_weapon_in_hand(const std::shared_ptr<Weapon>& weapon);
+    void equip_bomb(std::weak_ptr<Bomb> new_bomb);
 
 public:
     Equipment(const player_id_t& player_id, ISpawneableZone& spawneable_zone,
@@ -44,8 +45,8 @@ public:
     void drop_weapon();
     void reload();
     void shoot(Position& position);
-    void equip_bomb(std::weak_ptr<Bomb> new_bomb);
-    bool equip_weapon(const std::shared_ptr<Weapon>& weapon);
+    bool equip_droppable(const std::shared_ptr<IDroppable>& droppable);
+    void drop_all();
     std::vector<WeaponImage> get_weapons_image();
 };
 

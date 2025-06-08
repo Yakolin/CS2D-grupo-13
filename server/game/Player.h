@@ -36,16 +36,14 @@ public:
     void damage(uint8_t damage) override;
     virtual bool is_dead() override;
 
-    virtual void equip_bomb(std::weak_ptr<Bomb> bomb) override;
-    virtual bool equip_weapon(std::shared_ptr<Weapon>& weapon) override;
-
+    virtual bool equip(std::shared_ptr<IDroppable>& droppable) override;
     virtual void move(const MoveType& move_type) override;
     virtual void reload() override;
     virtual void shoot(const coordinate_t& mouse_x, const coordinate_t& mouse_y) override;
     // Buy
     virtual void buy_weapon(const WeaponCode& weapon_code) override;
     virtual void drop() override;
-    virtual void equip(const EquipType& equip_type) override;
+    virtual void change_weapon(const EquipType& equip_type) override;
     virtual void get_points(uint8_t new_points) override;
     /*
     virtual void defuse_bomb() override;
@@ -58,6 +56,7 @@ private:
     uint8_t points;
     uint16_t money = 5000;
     IGameZone& game_zone;
+    void drop_on_dead();
 };
 
 #endif  // GAME_PLAYER_H_

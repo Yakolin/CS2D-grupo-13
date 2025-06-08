@@ -12,7 +12,6 @@ bool CollisionManager::check_movement(player_id_t id, const Position& next_posit
     int y = destino.y;
     if (walls[y][x] != Wall) {
         it->second.position += next_position;
-
         if (it->second.player.lock()->get_team() == Team::TT)
             check_bomb_stepped(it->second);
         check_weapon_stepped(it->second);
@@ -23,20 +22,20 @@ void CollisionManager::check_bomb_stepped(PlayerEntity& player) {
     if (!(player.position == bomb.first))
         return;
     if (player.player.lock() && !bomb.second->is_activate()) {
-        player.player.lock()->equip_bomb(bomb.second);
+        std::shared_ptr<IDroppable> casted_bomb = bomb.second;
+        player.player.lock()->equip(casted_bomb);
         bomb.second->set_equiped();
         std::cout << "Bomba equipada\n";
     } else {
         std::cout << "La bomba esta activada, perdon\n";
     }
 }
-
 void CollisionManager::check_weapon_stepped(PlayerEntity& player) {
-    auto it = dropped_weapons.find(player.position);
-    if (it == dropped_weapons.end())
+    auto it = dropped_things.find(player.position);
+    if (it == dropped_things.end())
         return;
-    if (player.player.lock() && player.player.lock()->equip_weapon(it->second))
-        dropped_weapons.erase(it);
+    if (player.player.lock() && player.player.lock()->equip(it->second))
+        dropped_things.erase(it);
 }
 void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage& collider_damage) {
     std::vector<PlayerEntity> players_affected;
@@ -79,15 +78,15 @@ void CollisionManager::check_damage() {
     damage_colliders.clear();
 }
 
-void CollisionManager::drop(Position& player_position, std::shared_ptr<Weapon>& dropable) {
-    this->dropped_weapons.insert(std::make_pair(player_position, std::move(dropable)));
+void CollisionManager::drop(Position& player_position, std::shared_ptr<IDroppable>& dropable) {
+    this->dropped_things.insert(std::make_pair(player_position, std::move(dropable)));
 }
 void CollisionManager::add_damage_collider(player_id_t id, ColliderDamage& collider_damage) {
     damage_colliders.insert(std::make_pair(id, std::move(collider_damage)));
 }
-std::vector<WeaponDropped> CollisionManager::get_dropped_weapons_images() {
+std::vector<WeaponDropped> CollisionManager::get_dropped_things_images() {
     std::vector<WeaponDropped> weapon_images;
-    std::transform(dropped_weapons.begin(), dropped_weapons.end(), back_inserter(weapon_images),
+    std::transform(dropped_things.begin(), dropped_things.end(), back_inserter(weapon_images),
                    [](const auto& weapon) {
                        return WeaponDropped(weapon.second->get_weapon_code(), weapon.first);
                    });

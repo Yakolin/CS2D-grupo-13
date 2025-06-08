@@ -1,16 +1,16 @@
 #ifndef SpecialWeapons_H_
 #define SpecialWeapons_H_
+#include "IDroppable.h"
 #include "Timer.h"
 #include "Weapon.h"
-
-class Bomb {
+class Bomb: public IDroppable {
 private:
     Timer& timer;
     bool equiped = false;
     bool activate = false;
 
 public:
-    explicit Bomb(Timer& timer): timer(timer) {}
+    explicit Bomb(Timer& timer): IDroppable(WeaponCode::BOMB), timer(timer) {}
     void set_on_bomb();
     void set_equiped();
     void set_unequiped();

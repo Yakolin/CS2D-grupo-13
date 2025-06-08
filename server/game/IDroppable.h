@@ -7,7 +7,7 @@ public:
     WeaponCode code;
     explicit IDroppable(WeaponCode code): code(code) {}
     WeaponCode get_weapon_code() { return code; }
-    virtual ~IDroppable() = 0;
+    virtual ~IDroppable() = default;
 };
 
 #endif  // DROPPABLE_H_

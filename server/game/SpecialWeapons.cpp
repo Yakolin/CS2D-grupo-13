@@ -12,3 +12,4 @@ void Bomb::set_equiped() { equiped = true; }
 void Bomb::set_unequiped() { equiped = false; }
 bool Bomb::is_equiped() { return equiped; }
 bool Bomb::is_activate() { return activate; }
+WeaponImage Bomb::get_weapon_image() { return WeaponImage(code, 0, 0, 0); }

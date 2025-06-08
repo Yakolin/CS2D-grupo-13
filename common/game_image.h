@@ -76,7 +76,7 @@ public:
 
     // Balas en el aire
     BombImage bomb;
-    std::vector<WeaponDropped> dropped_weapons;
+    std::vector<WeaponDropped> dropped_things;
 };
 
 #endif  // !GAME_IMAGE_H

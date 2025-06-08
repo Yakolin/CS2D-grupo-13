@@ -35,7 +35,8 @@ enum class WeaponCode { GLOCK, AK47, M3, AWP, KNIFE, BOMB, NONE };
 enum class EquipType {
     PRIMARY,  // podria usar los numeros para cambiar armas
     SECONDARY,
-    KNIFE
+    KNIFE,
+    BOMB,
 };
 
 #endif  // !PLAYER_COMMAND_TYPES_H

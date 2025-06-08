@@ -56,7 +56,7 @@ GameImage GameManager::generate_game_image() {
         Position player_position = map_game.get_position(par.first);
         game_image.players_images.push_back(std::move(player->get_player_image(player_position)));
     }
-    game_image.dropped_weapons = map_game.get_dropped_weapons_images();
+    game_image.dropped_things = map_game.get_dropped_things_images();
     game_image.bomb = map_game.get_bomb_image();
     return game_image;
 }
@@ -73,7 +73,8 @@ void GameManager::give_bomb() {
 
     player_id_t id = players_tt[rand() % players_tt.size()];
     std::shared_ptr<Player> player_selected = find_player(id);
-    player_selected->equip_bomb(bomb);
+    std::shared_ptr<IDroppable> casted_bomb = bomb;
+    player_selected->equip(casted_bomb);
 }
 void GameManager::start_game() {
     if (players.size() < 1) {

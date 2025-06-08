@@ -108,15 +108,20 @@ void Map::spawn_collider(player_id_t id_spawn, collider_solicitude_t& wanted) {
     collision_manager.add_damage_collider(id_spawn, collider_damage);
 }
 
-void Map::drop(const player_id_t& player_id, std::shared_ptr<Weapon>& droppable) {
+void Map::drop(const player_id_t& player_id, std::shared_ptr<IDroppable>& droppable) {
     Position new_pos = get_position(player_id);
-    this->collision_manager.drop(new_pos, droppable);
+    if (droppable->get_weapon_code() == WeaponCode::BOMB) {
+        bomb.second->set_unequiped();
+        bomb.first = new_pos;
+    } else {
+        this->collision_manager.drop(new_pos, droppable);
+    }
 }
-void Map::plant_bomb(const player_id_t& player_id) {
+bool Map::plant_bomb(const player_id_t& player_id) {
     Position player_pos = get_position(player_id);
     if (!bomb_A.is_in(player_pos) && !bomb_B.is_in(player_pos))
-        return;
-    bomb.first = player_pos;
+        return false;
     bomb.second->set_on_bomb();
+    return true;
 }
 void Map::remove_player([[maybe_unused]] player_id_t id) {}  // Esto no es asi, acordate de fixearlo

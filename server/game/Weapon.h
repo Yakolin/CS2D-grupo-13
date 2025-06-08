@@ -8,11 +8,11 @@
 #include "../../common/player_command_types.h"
 
 #include "Colliders.h"
+#include "IDroppable.h"
 #include "ISpawneableZone.h"
 
-class Weapon {
+class Weapon: public IDroppable {
 public:
-    WeaponCode code;
     typedef struct WeaponSpecs {
         uint16_t price;
         uint16_t damage;
@@ -22,7 +22,7 @@ public:
         uint8_t magazine;
     } weapon_specs_t;
     weapon_specs_t specs;
-    explicit Weapon(WeaponCode code, weapon_specs_t specs): code(code), specs(specs) {}
+    explicit Weapon(WeaponCode code, weapon_specs_t specs): IDroppable(code), specs(specs) {}
     virtual ~Weapon() = default;
 
     virtual void set_on_action(
@@ -30,7 +30,6 @@ public:
             Position& direction) = 0;  // Recordatorio de este = 0. Significa que es puro
     virtual void reload() = 0;
     virtual WeaponImage get_weapon_image() = 0;
-    WeaponCode get_weapon_code() { return code; }
     virtual bool is_droppable() = 0;
 };
 

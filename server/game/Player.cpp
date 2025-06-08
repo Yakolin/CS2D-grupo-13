@@ -15,7 +15,7 @@ void Player::reset(bool full_reset) {
     if (full_reset || health == 0) {
         equipment.reset_equipment();
     }
-    health = 5;
+    health = config.health;
 }
 void Player::move(const MoveType& move_type) {
     switch (move_type) {
@@ -56,7 +56,7 @@ void Player::change_weapon(const EquipType& equip_type) {
 bool Player::equip(std::shared_ptr<IDroppable>& droppable) {
     return equipment.equip_droppable(droppable);
 }
-void Player::get_points(uint8_t new_points) {
-    this->money += new_points * 2;
-    this->points += new_points;
+void Player::get_points() {
+    this->money += config.points * config.multiplier_points;
+    this->points += config.points;
 }

@@ -68,7 +68,7 @@ void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage&
         uint8_t damage = collider_damage.damage_calculator(min_distance);
         nearest.player.lock()->damage(damage);
         if (nearest.player.lock()->is_dead())
-            player_caster.player.lock()->get_points(damage);
+            player_caster.player.lock()->get_points();
     }
 }
 

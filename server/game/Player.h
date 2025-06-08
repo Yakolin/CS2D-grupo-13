@@ -13,19 +13,22 @@
 #include "../interfaces/interface_player_action.h"
 
 #include "Equipment.h"
+#include "GameConfig.h"
 #include "ICanInteract.h"
 #include "IDropeableZone.h"
 #include "IGameZone.h"
-
 class Player: public IPlayerAction, public ICanInteract {
+
 public:
-    Player(player_id_t id, Team team, Skins skins, Equipment&& equipment, IGameZone& game_zone):
+    Player(player_id_t id, Team team, Skins skins, GameConfig::player_config_t& player_config,
+           Equipment&& equipment, IGameZone& game_zone):
             id(id),
             team(team),
             skins(skins),
+            config(player_config),
             equipment(std::move(equipment)),
-            health(100),
-            points(0),
+            health(player_config.health),
+            points(player_config.points),
             game_zone(game_zone) {}
     virtual ~Player() = default;
     bool dead();
@@ -46,7 +49,7 @@ public:
     virtual void buy_weapon(const WeaponCode& weapon_code) override;
     virtual void drop() override;
     virtual void change_weapon(const EquipType& equip_type) override;
-    virtual void get_points(uint8_t new_points) override;
+    virtual void get_points() override;
     /*
     virtual void defuse_bomb() override;
     */
@@ -54,6 +57,7 @@ private:
     player_id_t id;
     Team team;
     Skins skins;
+    GameConfig::player_config_t& config;
     Equipment equipment;
     uint8_t health;
     uint8_t points;

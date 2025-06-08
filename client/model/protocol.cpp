@@ -80,17 +80,26 @@ void ClientProtocol::send_player_command(PlayerCommandType command) {
 void ClientProtocol::send_create_game(const CreateGame& create_game) {
     uint8_t header = static_cast<uint8_t>(LobbyCommandType::CREATE_GAME);
     this->send_byte_data(header);
+
     std::string game_name = create_game.game_name;
-    std::string map_name = create_game.map_name;
+    map_name_t map_name = static_cast<map_name_t>(create_game.map_name);
+    TerroristSkin tt_skin = static_cast<skin_t>(create_game.skins.terrorist_skin);
+    CounterTerroristSkin ct_skin = static_cast<skin_t>(create_game.skins.counter_terrorist_skin);
     this->send_string(game_name);
-    this->send_string(map_name);
+    this->send_byte_data(map_name);
+    this->send_byte_data(tt_skin);
+    this->send_byte_data(ct_skin);
 }
 
 void ClientProtocol::send_join_game(const JoinGame& join_game) {
     uint8_t header = static_cast<uint8_t>(LobbyCommandType::JOIN_GAME);
     this->send_byte_data(header);
     std::string game_name = join_game.game_name;
+    TerroristSkin tt_skin = static_cast<skin_t>(create_game.skins.terrorist_skin);
+    CounterTerroristSkin ct_skin = static_cast<skin_t>(create_game.skins.counter_terrorist_skin);
     this->send_string(game_name);
+    this->send_byte_data(tt_skin);
+    this->send_byte_data(ct_skin);
 }
 
 void ClientProtocol::send_list_games() {

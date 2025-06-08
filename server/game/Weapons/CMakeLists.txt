@@ -8,6 +8,6 @@ target_sources(CS2D_server
     SpecialWeapons.h
     WeaponFactory.h
     Weapon.h
-    IDroppable.h
+    IInteractuable.h
     # .h files
     )

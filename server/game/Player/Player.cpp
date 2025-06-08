@@ -53,7 +53,7 @@ void Player::drop() { this->equipment.drop_weapon(); }
 void Player::change_weapon(const EquipType& equip_type) {
     this->equipment.change_weapon(equip_type);
 }
-bool Player::equip(std::shared_ptr<IDroppable>& droppable) {
+bool Player::equip(std::shared_ptr<IInteractuable>& droppable) {
     return equipment.equip_droppable(droppable);
 }
 void Player::get_points() {

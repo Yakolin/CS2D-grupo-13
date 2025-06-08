@@ -72,7 +72,7 @@ void GameManager::give_bomb() {
 
     player_id_t id = players_tt[rand() % players_tt.size()];
     std::shared_ptr<Player> player_selected = find_player(id);
-    std::shared_ptr<IDroppable> casted_bomb = bomb;
+    std::shared_ptr<IInteractuable> casted_bomb = bomb;
     player_selected->equip(casted_bomb);
 }
 void GameManager::start_game() {

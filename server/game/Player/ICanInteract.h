@@ -8,7 +8,7 @@ class ICanInteract {
 public:
     virtual void damage(uint8_t damage) = 0;
     virtual bool is_dead() = 0;
-    virtual bool equip(std::shared_ptr<IDroppable>& droppable) = 0;
+    virtual bool equip(std::shared_ptr<IInteractuable>& droppable) = 0;
     virtual Team get_team() = 0;
     virtual void get_points() = 0;
     virtual ~ICanInteract() = default;

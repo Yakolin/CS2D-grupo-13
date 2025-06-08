@@ -22,12 +22,9 @@ void CollisionManager::check_bomb_stepped(PlayerEntity& player) {
     if (!(player.position == bomb.first))
         return;
     if (player.player.lock() && !bomb.second->is_activate()) {
-        std::shared_ptr<IDroppable> casted_bomb = bomb.second;
+        std::shared_ptr<IInteractuable> casted_bomb = bomb.second;
         player.player.lock()->equip(casted_bomb);
         bomb.second->set_equiped();
-        std::cout << "Bomba equipada\n";
-    } else {
-        std::cout << "La bomba esta activada, perdon\n";
     }
 }
 void CollisionManager::check_weapon_stepped(PlayerEntity& player) {
@@ -78,7 +75,7 @@ void CollisionManager::check_damage() {
     damage_colliders.clear();
 }
 
-void CollisionManager::drop(Position& player_position, std::shared_ptr<IDroppable>& dropable) {
+void CollisionManager::drop(Position& player_position, std::shared_ptr<IInteractuable>& dropable) {
     this->dropped_things.insert(std::make_pair(player_position, std::move(dropable)));
 }
 void CollisionManager::add_damage_collider(player_id_t id, ColliderDamage& collider_damage) {

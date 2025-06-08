@@ -200,17 +200,38 @@ void ClientProtocol::read_client_id(GameImage& game_image) {
     game_image.client_id = client_id;
 }
 
-void ClientProtocol::read_player_image(GameImage& game_image) {
+void ClientProtocol::read_weapons(std::vector<WeaponImage>& weapons) {
+    length_weapons_images_t length_weapons;
+    this->read_byte_data(length_weapons);
 
+    for (length_weapons_images_t i = 0; i < length_weapons; ++i) {
+        weapon_code_t weapon_code;
+        this->read_byte_data(weapon_code);
+
+        uint8_t current_bullets;
+        this->read_byte_data(current_bullets);
+
+        uint8_t magazine;
+        this->read_byte_data(magazine);
+
+        uint8_t inventory_bullets;
+        this->read_byte_data(inventory_bullets);
+
+        weapons.emplace_back(WeaponImage(static_cast<WeaponCode>(weapon_code), current_bullets,
+                                         magazine, inventory_bullets));
+    }
+}
+
+void ClientProtocol::read_player_image(GameImage& game_image) {
     length_players_images_t length_players_images;
     this->read_two_byte_data(length_players_images);
+
     for (auto i = 0; i < length_players_images; ++i) {
         player_id_t player_id;
         this->read_two_byte_data(player_id);
 
-        coordinate_t x;
+        coordinate_t x, y;
         this->read_two_byte_data(x);
-        coordinate_t y;
         this->read_two_byte_data(y);
 
         health_t health;
@@ -218,10 +239,29 @@ void ClientProtocol::read_player_image(GameImage& game_image) {
 
         points_t points;
         this->read_byte_data(points);
-        std::vector<WeaponImage> weapons;  // Falta implementar
-        Team team = Team::CT;              // Falta implementar
-        game_image.players_images.emplace_back(
-                PlayerImage(player_id, Position(x, y), health, points, std::move(weapons), team));
+
+        std::vector<WeaponImage> weapons;
+        this->read_weapons(weapons);
+
+        team_t team_raw;
+        this->read_byte_data(team_raw);
+        Team team = static_cast<Team>(team_raw);
+
+        coordinate_t mouse_x, mouse_y;
+        this->read_two_byte_data(mouse_x);
+        this->read_two_byte_data(mouse_y);
+
+        skin_t ct_skin, tt_skin;
+        this->read_byte_data(ct_skin);
+        this->read_byte_data(tt_skin);
+
+        CounterTerroristSkin ct = static_cast<CounterTerroristSkin>(ct_skin);
+        TerroristSkin tt = static_cast<TerroristSkin>(tt_skin);
+        Skins skin(ct, tt);
+
+        game_image.players_images.emplace_back(PlayerImage(player_id, Position(x, y), health,
+                                                           points, std::move(weapons), team,
+                                                           Position(mouse_x, mouse_y), skin));
     }
 }
 

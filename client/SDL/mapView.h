@@ -41,6 +41,7 @@ private:
     Camera* camera;
     ManageTexture* manejador;
     std::map<char, Object> ids;
+    void update_limites(Coordenada& pos_start, Coordenada& pos_end);
 };
 
 #endif  // MAPVIEW_H

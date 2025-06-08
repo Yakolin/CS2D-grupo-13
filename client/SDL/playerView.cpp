@@ -1,4 +1,5 @@
 #include "playerView.h"
+#include "mapView.h"
 
 const int FILAS_MAP = 17;
 const int COLUMNAS_MAP = 38;
@@ -58,6 +59,38 @@ int PlayerView::pasar_pixeles_x(const float& tile_x) {
 int PlayerView::pasar_pixeles_y(const float& tile_y) {
     return tile_y * config.get_tile_height();
 }
+/*
+/
+*pre:
+*post: calcula los limites para recorer solo el area visible en la camara.
+/
+
+void MapView::draw(SDL_Renderer& renderer) {
+    
+    Coordenada start;
+    Coordenada end;
+    Coordenada cam;
+    const int tileWidth = 32;
+    const int tileHeight = 32;
+    
+    update_limites(start,end,cam);
+
+    for (int row = start.y; row < end.y; ++row) {
+        for (int col = start.x; col < end.x; ++col) {
+            SDL_Rect destRect = { (col * tileWidth) - static_cast<int>(cam.x), (row * tileHeight) - static_cast<int>(cam.y),tileWidth,tileHeight};
+
+            char item = mapa[row][col];
+
+            auto it = ids.find(item);
+            if (it != ids.end()) {
+                SDL_Texture* tex = manejador->get(it->second);
+                SDL_RenderCopy(&renderer, tex, nullptr, &destRect);
+            }
+        }
+    }
+
+}
+*/
 
 
 void PlayerView::update(const float& deltaTime) {

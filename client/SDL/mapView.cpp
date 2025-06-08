@@ -23,16 +23,41 @@ void MapView::update_map_dimensions() {
     this->height_map = (mapa.size() * config.get_tile_height());
 }
 
+void MapView::update_limites(Coordenada& pos_start,Coordenada& pos_end){
+
+    const int tileWidth = 32;
+    const int tileHeight = 32;
+    Coordenada cam;
+
+    cam.x = camera->getX();
+    cam.y = camera->getY();
+    int camWidth = camera->getW();  
+    int camHeight = camera->getH(); 
+
+    pos_start.x = cam.x / tileWidth;
+    pos_start.y = cam.y / tileHeight;
+
+    pos_end.x = (cam.x + camWidth) / tileWidth + 1;  
+    pos_end.y = (cam.y + camHeight) / tileHeight + 1;
+
+    // Asegurarse de no pasarse del tamaño del mapa
+    pos_end.x = std::min(static_cast<int>(pos_end.x), (int)mapa[0].size());
+    pos_end.y = std::min(static_cast<int>(pos_end.y), (int)mapa.size());
+}
 
 void MapView::draw(SDL_Renderer& renderer) {
 
-    for (size_t i = 0; i < mapa.size(); i++) {
-        for (size_t j = 0; j < mapa[i].size(); j++) {
-            SDL_Rect destRect = { static_cast<int>(j * config.get_tile_width()) - camera->getX(),
-                                static_cast<int>(i * config.get_tile_height()) - camera->getY(),
+    Coordenada start;
+    Coordenada end;
+    update_limites(start,end);
+
+    for (int row = start.y; row < end.y; ++row) {
+        for (int col = start.x; col < end.x; ++col) {
+            SDL_Rect destRect = { (col * config.get_tile_width()) - static_cast<int>(camera->getX()), 
+                                (row * config.get_tile_width()) - static_cast<int>(camera->getY()), 
                                 config.get_tile_width(), config.get_tile_height()};
 
-            char item = mapa[i][j];
+            char item = mapa[row][col];
 
             auto it = ids.find(item);
             if (it != ids.end()) {
@@ -41,6 +66,7 @@ void MapView::draw(SDL_Renderer& renderer) {
             }
         }
     }
+
 }
 
 

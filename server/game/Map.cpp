@@ -48,13 +48,13 @@ bool Map::check_zones(char c, int i) {
     return false;
 }
 void Map::charge_map(const MapName& map_name) {
-    std::string aux("../../assets/pueblito_azteca.txt");
+    std::string aux("assets/pueblito_azteca.txt");
+    if (map_name == MapName::PUEBLITO_AZTECA) {
+        aux = "../../assets/pueblito_azteca.txt";
+    }
     std::ifstream path(aux);
     if (!path.is_open()) {
         throw MapException("Can´t open the file of the game " + aux);
-    }
-    if (map_name == MapName::DESIERTO) {
-        std::cout << "p" << std::endl;
     }
     std::string line;
     bool spawn_tt = false, spawn_ct = false, bomb_a, bomb_b;

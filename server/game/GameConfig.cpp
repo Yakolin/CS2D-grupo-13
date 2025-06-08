@@ -31,11 +31,18 @@ void GameConfig::load_timers(const YAML::Node& config) {
     timer_config = {timer["time_buy"].as<int>(), timer["time_round"].as<int>(),
                     timer["time_after_round"].as<int>(), timer["time_bomb"].as<int>()};
 }
+void GameConfig::load_player(const YAML::Node& config) {
+    YAML::Node player = config["Player"];
+    player_config = {player["health"].as<uint8_t>(), player["money"].as<uint16_t>(),
+                     player["points"].as<uint16_t>(), player["earned_points"].as<uint16_t>(),
+                     player["multiplier_points"].as<uint8_t>()};
+}
 void GameConfig::load(const std::string& file_path) {
     try {
         YAML::Node config = YAML::LoadFile(file_path);
         load_weapons(config);
         load_timers(config);
+        load_player(config);
     } catch (const YAML::Exception& e) {
         throw std::runtime_error("Error al leer archivo YAML: " + std::string(e.what()));
     }

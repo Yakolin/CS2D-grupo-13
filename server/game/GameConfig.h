@@ -30,18 +30,27 @@ public:
     } timer_config_t;
     TimerConfig timer_config;
 
+    typedef struct PlayerConfig {
+        uint8_t health;
+        uint16_t money;
+        uint16_t points;
+        uint16_t earned_points;
+        uint8_t multiplier_points;
+    } player_config_t;
+    PlayerConfig player_config;
+
 private:
     WeaponCode weapon_name_to_code(const std::string& name);
     void load_weapons(const YAML::Node& config);
     void load_timers(const YAML::Node& config);
+    void load_player(const YAML::Node& config);
     void load(const std::string& file_path);
-
-    void calculate_tile_size(const int& cols, const int& rows);
 
 public:
     GameConfig();
     std::map<WeaponCode, WeaponConfig>& get_weapon_config() { return weapon_configs; }
     TimerConfig& get_timer_config() { return timer_config; }
+    PlayerConfig& get_player_config() { return player_config; }
 };
 
 #endif  // GAME_CONFIG_H_

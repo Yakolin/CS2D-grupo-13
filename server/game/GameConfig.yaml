@@ -18,6 +18,12 @@ Weapons:
     max_bullets: 0
     magazine: 0
 
+Player:
+  health: 100
+  money: 500
+  points: 0
+  earned_points: 100
+  multiplier_points: 3
 Timer: 
   time_buy: 0
   time_round: 24

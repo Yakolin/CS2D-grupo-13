@@ -1,7 +1,7 @@
 #include "GameConfig.h"
 
 // Quiza el hardcodeo este este mal)?
-GameConfig::GameConfig() { load("server/game/Config/GameConfig.yaml"); }
+GameConfig::GameConfig() { load("server/game/GameConfig.yaml"); }
 
 WeaponCode GameConfig::weapon_name_to_code(const std::string& name) {
     if (name == "Glock")

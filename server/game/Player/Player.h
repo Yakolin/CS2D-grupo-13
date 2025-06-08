@@ -46,6 +46,7 @@ public:
     virtual void move(const MoveType& move_type) override;
     virtual void reload() override;
     virtual void shoot(const coordinate_t& mouse_x, const coordinate_t& mouse_y) override;
+    virtual void defuse_bomb() override;
     // Buy
     virtual void buy_weapon(const WeaponCode& weapon_code) override;
     virtual void drop() override;
@@ -54,8 +55,7 @@ public:
     virtual void defuse_bomb() override;
     virtual void watch(const coordinate_t& mouse_x, const coordinate_t& mouse_y) override;
     /*
-    virtual void defuse_bomb() override;
-    */
+     */
 private:
     player_id_t id;
     Team team;

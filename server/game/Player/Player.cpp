@@ -63,8 +63,7 @@ void Player::get_points() {
     this->money += config.points * config.multiplier_points;
     this->points += config.points;
 }
-
-void Player::defuse_bomb() {}
+void Player::defuse_bomb() { game_zone.defuse_bomb(id); }
 
 void Player::watch(const coordinate_t& mouse_x, const coordinate_t& mouse_y) {
     this->mouse_position.x = mouse_x;

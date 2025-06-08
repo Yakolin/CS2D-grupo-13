@@ -22,6 +22,7 @@ void CollisionManager::check_bomb_stepped(PlayerEntity& player) {
     if (!(player.position == bomb.first))
         return;
     if (player.player.lock() && !bomb.second->is_activate()) {
+        std::cout << "Agarrando la bomba\n";
         std::shared_ptr<IInteractuable> casted_bomb = bomb.second;
         player.player.lock()->equip(casted_bomb);
         bomb.second->set_equiped();

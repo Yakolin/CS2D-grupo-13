@@ -10,6 +10,8 @@ Weapon::weapon_specs_t WeaponFactory::find_weapon_specs(WeaponCode code) {
     return specs;
 }
 std::shared_ptr<Weapon> WeaponFactory::weapon_create(WeaponCode code) {
+    if (code == WeaponCode::NONE)
+        return std::make_unique<NullWeapon>();
     Weapon::weapon_specs_t config = find_weapon_specs(code);
     switch (code) {
         case WeaponCode::GLOCK:

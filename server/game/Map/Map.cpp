@@ -11,7 +11,6 @@ Position Map::get_position(player_id_t id) {
     throw MapException("Can´t found player in the map to get the position");
 }
 void Map::respawn_players() {
-    std::cout << "Respawning players\n";
     for (auto& player: players_in_map) {
         player.second.position = (player.second.player.lock()->get_team() == Team::CT) ?
                                          spawn_CT.get_random_position() :
@@ -125,4 +124,15 @@ bool Map::plant_bomb(const player_id_t& player_id) {
     bomb.first = player_pos;
     return true;
 }
+void Map::defuse_bomb(const player_id_t& player_id) {
+    auto it = players_in_map.find(player_id);
+    if (it == players_in_map.end())
+        return;
+    player_entity_t player_entity = it->second;
+    if (!(player_entity.position == bomb.first) ||
+        player_entity.player.lock()->get_team() == Team::TT)
+        return;
+    bomb.second->defuse();
+}
+
 void Map::remove_player([[maybe_unused]] player_id_t id) {}  // Esto no es asi, acordate de fixearlo

@@ -6,7 +6,7 @@ Equipment::Equipment(const player_id_t& player_id, ISpawneableZone& spawneable_z
         spawneable_zone(spawneable_zone),
         droppable_zone(droppable_zone),
         weapon_factory(weapon_factory),
-        primary(std::make_shared<NullWeapon>()),
+        primary(weapon_factory.weapon_create(WeaponCode::NONE)),
         secondary(weapon_factory.weapon_create(WeaponCode::GLOCK)),
         knife(weapon_factory.weapon_create(WeaponCode::KNIFE)),
         weapon_in_hand(this->secondary) {}
@@ -42,8 +42,8 @@ void Equipment::buy_weapon_by_code(const WeaponCode& weapon_code, uint16_t money
     primary = weapon_factory.weapon_create(weapon_code);
 }
 void Equipment::reset_equipment() {
-    primary = nullptr;
-    secondary = nullptr;
+    primary = weapon_factory.weapon_create(WeaponCode::NONE);
+    secondary = weapon_factory.weapon_create(WeaponCode::NONE);
     secondary = weapon_factory.weapon_create(WeaponCode::GLOCK);
     bomb.reset();
 }

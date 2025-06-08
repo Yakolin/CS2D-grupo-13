@@ -19,8 +19,8 @@
 #include "ISpawneableZone.h"
 #include "MapExeption.h"
 
-#define WidthSpawn 5
-#define HeightSpawn 5
+#define WidthSpawn 10
+#define HeightSpawn 10
 
 class Map: public IGameZone, public ISpawneableZone, public IDroppableZone {
 private:
@@ -57,7 +57,7 @@ public:
     BombImage get_bomb_image() {
         return BombImage(bomb.first, bomb.second->is_activate(), !bomb.second->is_equiped());
     }
-
+    virtual void defuse_bomb(const player_id_t& player_id) override;
     void move(player_id_t id, const Position& direction) override;
     void spawn_collider(player_id_t id_spawn, collider_solicitude_t& wanted) override;
     void drop(const player_id_t& player_id, std::shared_ptr<IInteractuable>& droppable) override;

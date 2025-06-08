@@ -105,10 +105,10 @@ bool GameManager::check_round_finished() {
         return true;
     }
     bool time_end = timer.is_round_over();
-    if (time_end && !bomb->is_activate()) {
+    if (bomb->is_defused() || time_end && !bomb->is_activate()) {
         game_state.rounds_CT++;
         return true;
-    } else if (time_end && bomb->is_activate()) {
+    } else if (time_end && !bomb->is_defused()) {
         game_state.rounds_TT++;
         return true;
     }
@@ -122,8 +122,9 @@ void GameManager::change_teams() {
 }
 GameImage GameManager::get_frame() {
     if (round == 10) {
-        std::cout << "Juego terminado, rondas: CT: " << game_state.rounds_CT
-                  << " TT: " << game_state.rounds_TT << std::endl;
+        std::cout << "Juego terminado, rondas: CT: " << static_cast<int>(game_state.rounds_CT)
+                  << " TT: " << static_cast<int>(game_state.rounds_TT) << std::endl;
+        return generate_game_image();
     }
     /*
         1. Actualizar las cosas en el Mapa , como movimiento de las balas , armas q caen

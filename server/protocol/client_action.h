@@ -73,27 +73,14 @@ public:
     ~Shoot();
     void action_to(IPlayerAction& player) override;
 };
-/*
 
-
-    BOMB ACTIONS
-
-    class PlantBomb: public ClientAction {
-        public:
-        PlantBomb(player_id_t player_id);
-        ~PlantBomb();
-        void action_to(IPlayerAction& player) override;
-    };
-
-
-
-    */
 class DefuseBomb: public ClientAction {
 public:
-    DefuseBomb(const player_id_t& player_id);
+    explicit DefuseBomb(const player_id_t& player_id);
     ~DefuseBomb();
     void action_to(IPlayerAction& player) override;
 };
+
 
 class Drop: public ClientAction {
 public:

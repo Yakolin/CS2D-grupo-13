@@ -1,5 +1,5 @@
-#ifndef MOCK_DROPPABLE_ZONE_H
-#define MOCK_DROPPABLE_ZONE_H
+#ifndef MOCK_Droppable_ZONE_H
+#define MOCK_Droppable_ZONE_H
 
 #include <memory>
 
@@ -9,7 +9,8 @@
 
 class MockIDroppableZone: public IDroppableZone {
 public:
-    MOCK_METHOD(void, drop, (const player_id_t& player_id, std::shared_ptr<IDroppable>& dropeable),
+    MOCK_METHOD(void, drop,
+                (const player_id_t& player_id, std::shared_ptr<IInteractuable>& dropeable),
                 (override));
     MOCK_METHOD(bool, plant_bomb, (const player_id_t& player_id), (override));
 };

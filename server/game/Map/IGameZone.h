@@ -8,6 +8,7 @@
 class IGameZone {
 public:
     virtual void move(player_id_t id, const Position& direction) = 0;
+    virtual void defuse_bomb(const player_id_t& player_id) = 0;
     virtual ~IGameZone() = default;
 };
 #endif  // GAME_ZONE_H_

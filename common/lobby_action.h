@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 enum class LobbyAction { CREATE, JOIN, LIST };
+#include "game_info.h"
 
 /*
     LOBBY ACTIONS
@@ -12,16 +13,18 @@ enum class LobbyAction { CREATE, JOIN, LIST };
 class CreateGame {
 public:
     std::string game_name;
-    std::string map_name;
-    explicit CreateGame(std::string& game_name, const std::string& map_name):
-            game_name(game_name), map_name(map_name) {}
+    MapName map_name;
+    Skins skins;
+    explicit CreateGame(std::string& game_name, MapName map_name, Skins skins):
+            game_name(game_name), map_name(map_name), skins(skins) {}
     ~CreateGame() = default;
 };
 
 class JoinGame {
 public:
     std::string game_name;
-    explicit JoinGame(std::string& game_name): game_name(game_name) {}
+    Skins skins;
+    explicit JoinGame(std::string& game_name, Skins skins): game_name(game_name), skins(skins) {}
     ~JoinGame() = default;
 };
 

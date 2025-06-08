@@ -1,8 +1,8 @@
 #include "game_loop.h"
 
-GameLoop::GameLoop(const CreateGame& create_game):
-        game_name(create_game.game_name),
-        game(game_name, create_game.map_name),
+GameLoop::GameLoop(const std::string& game_name, const MapName& map_name):
+        game_name(game_name),
+        game(game_name, map_name),
         send_queues(),
         recv_queue(std::make_shared<Queue<std::unique_ptr<ClientAction>>>(QUEUE_MAX_SIZE)),
         constant_rate_loop([this]() { return this->should_keep_running(); },
@@ -11,12 +11,12 @@ GameLoop::GameLoop(const CreateGame& create_game):
 
 GameLoop::~GameLoop() {}
 
-void GameLoop::add_player(player_id_t& player_id,
+void GameLoop::add_player(player_id_t& player_id, Skins& skins,
                           std::shared_ptr<Queue<std::unique_ptr<ClientAction>>>& recv_queue,
                           std::shared_ptr<Queue<GameImage>>& send_queue, GameInfo& game_info) {
     recv_queue = this->recv_queue;
     send_queues[player_id] = send_queue;
-    this->game.add_player(player_id);
+    this->game.add_player(player_id, skins);
     game_info.walls = this->game.get_game_map();
 }
 

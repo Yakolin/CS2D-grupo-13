@@ -9,6 +9,7 @@
 #include <vector>
 
 #include "../../common/game_image.h"
+#include "../../common/game_info.h"
 
 #include "CollisionManager.h"
 #include "IDropeableZone.h"
@@ -23,7 +24,7 @@
 
 class Map: public IGameZone, public ISpawneableZone, public IDroppableZone {
 private:
-    std::string map_name;
+    MapName map_name;
     std::vector<std::vector<char>> walls;
     Rectangle spawn_CT, spawn_TT, bomb_A, bomb_B;
     std::pair<Position, std::shared_ptr<Bomb>> bomb;
@@ -31,10 +32,10 @@ private:
     std::map<player_id_t, player_entity_t> players_in_map;
     bool check_zones(char c, int i);
     void charge_zone(Rectangle& zone, const Position& position);
-    void charge_map(const std::string& archivo);
+    void charge_map(const MapName& archivo);
 
 public:
-    explicit Map(const std::string& _map_name, std::shared_ptr<Bomb> bomb_ptr):
+    explicit Map(const MapName& _map_name, std::shared_ptr<Bomb> bomb_ptr):
             IGameZone(),
             ISpawneableZone(),
             IDroppableZone(),

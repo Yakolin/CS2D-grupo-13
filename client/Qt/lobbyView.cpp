@@ -102,14 +102,15 @@ void imprimirPlayer(const Player& p) {
 }
 
 void LobbyView::function_join() {
-
-    protocol.send_join_game(JoinGame(infoPlayer.info.name_game));
+    Skins skins(CounterTerroristSkin::GIGN, TerroristSkin::ARCTIC_AVENGER);
+    protocol.send_join_game(JoinGame(infoPlayer.info.name_game, skins));
     emit opcionElegida(LobbyCommandType::JOIN_GAME);
 }
 void LobbyView::function_create() {
-
     std::cout << "envio nombre create partida: " << infoPlayer.info.name_game << std::endl;
-    protocol.send_create_game(CreateGame(infoPlayer.info.name_game, "pepito"));
+    MapName map_name(MapName::DESIERTO);
+    Skins skins(CounterTerroristSkin::GIGN, TerroristSkin::ARCTIC_AVENGER);
+    protocol.send_create_game(CreateGame(infoPlayer.info.name_game, map_name, skins));
     emit opcionElegida(LobbyCommandType::CREATE_GAME);
 }
 

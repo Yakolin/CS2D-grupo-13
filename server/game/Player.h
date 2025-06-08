@@ -7,6 +7,7 @@
 #include <vector>
 
 #include "../../common/game_image.h"
+#include "../../common/game_info.h"
 #include "../../common/player_command_types.h"
 #include "../../common/utility.h"
 #include "../interfaces/interface_player_action.h"
@@ -18,15 +19,15 @@
 
 class Player: public IPlayerAction, public ICanInteract {
 public:
-    Player(player_id_t id, Team team, Equipment&& equipment, IGameZone& game_zone):
+    Player(player_id_t id, Team team, Skins skins, Equipment&& equipment, IGameZone& game_zone):
             id(id),
             team(team),
-            equipment(std::move(equipment)),
-            health(5),
+            skins(skins) equipment(std::move(equipment)),
+            health(100),
             points(0),
             game_zone(game_zone) {}
-
-    ~Player() = default;
+    virtual ~Player() = default;
+    bool dead();
     void reset(bool full_reset);
     void change_team(Team new_team) { team = new_team; }
     virtual Team get_team() override { return team; }
@@ -51,6 +52,7 @@ public:
 private:
     player_id_t id;
     Team team;
+    Skins skins;
     Equipment equipment;
     uint8_t health;
     uint8_t points;

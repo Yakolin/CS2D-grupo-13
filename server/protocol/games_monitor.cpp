@@ -8,9 +8,12 @@ bool GamesMonitor::create_game(player_id_t& player_id, const CreateGame& create_
                                std::shared_ptr<Queue<GameImage>>& send_queue, GameInfo& game_info) {
     std::lock_guard<std::mutex> lock(mutex);
     std::string game_name = create_game.game_name;
+    MapName map_name = create_game.map_name;
+    Skins skins = create_game.skins;
     if (games.find(game_name) == games.end()) {
-        std::unique_ptr<GameLoop> game_loop = std::make_unique<GameLoop>(create_game);
-        game_loop->add_player(player_id, recv_queue, send_queue, game_info);
+        std::unique_ptr<GameLoop> game_loop =
+                std::make_unique<GameLoop>(create_game.game_name, map_name);
+        game_loop->add_player(player_id, skins, recv_queue, send_queue, game_info);
         if (game_loop->is_full()) {
             game_loop->start();
         }
@@ -29,7 +32,8 @@ bool GamesMonitor::join_game(player_id_t& player_id, const JoinGame& join_game,
     auto it = games.find(join_game.game_name);
     if (it != games.end()) {
         if (!it->second->is_full()) {
-            it->second->add_player(player_id, recv_queue, send_queue, game_info);
+            Skins skins = join_game.skins;
+            it->second->add_player(player_id, skins, recv_queue, send_queue, game_info);
             if (it->second->is_full()) {
                 std::cout << "Comienza la partida" << player_id << std::endl;
                 it->second->start();

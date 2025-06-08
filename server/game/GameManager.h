@@ -45,7 +45,7 @@ private:
     // Map
     Map map_game;
 
-    std::shared_ptr<Player> create_player(const player_id_t& id, Team team);
+    std::shared_ptr<Player> create_player(const player_id_t& id, Team team, Skins& skins);
     shared_ptr<Player> find_player(const player_id_t& player_id);
 
     GameImage generate_game_image();
@@ -58,7 +58,7 @@ private:
     // el path ya buscado desde el yaml
 public:
     // Aca el nombre del mapa es inutil, deberia de ser un enum de mapas para saber cuaaal cargar
-    explicit GameManager(const string& _game_name, const string& map_name):
+    explicit GameManager(const string& _game_name, const MapName& map_name):
             game_name(_game_name),
             timer(game_config.get_timer_config()),
             weapon_factory(game_config.get_weapon_config()),
@@ -70,7 +70,7 @@ public:
     void start_game();
     void stop_game();
     virtual void process(ClientAction& action) override;
-    virtual void add_player(const player_id_t& player_id) override;
+    virtual void add_player(const player_id_t& player_id, Skins& skins) override;
     void remove_player([[maybe_unused]] const player_id_t& player_id);
 };
 

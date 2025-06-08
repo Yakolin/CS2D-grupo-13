@@ -21,7 +21,8 @@ public:
     CounterTerroristSkin ct_skin;
     TerroristSkin tt_skin;
 
-    Skins(CounterTerroristSkin& ct_skin, TerroristSkin& tt_skin): ct_skin(), tt_skin() {}
+    Skins(CounterTerroristSkin ct_skin, TerroristSkin tt_skin):
+            ct_skin(ct_skin), tt_skin(tt_skin) {}
     ~Skins() = default;
 };
 

@@ -32,9 +32,9 @@ private:
     void broadcast(GameImage& game_image);
 
 public:
-    GameLoop(const CreateGame& create_game);
+    GameLoop(const std::string& game_name, const MapName& map_name);
     ~GameLoop();
-    void add_player(player_id_t& player_id,
+    void add_player(player_id_t& player_id, Skins& skins,
                     std::shared_ptr<Queue<std::unique_ptr<ClientAction>>>& recv_queue,
                     std::shared_ptr<Queue<GameImage>>& send_queue, GameInfo& game_info);
     bool is_full();

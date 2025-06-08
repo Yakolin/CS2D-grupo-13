@@ -58,13 +58,32 @@ LobbyCommandType ServerProtocol::read_lobby_command() {
 
 CreateGame ServerProtocol::read_create_game() {
     std::string game_name = this->read_string();
-    std::string map_name = this->read_string();
-    return CreateGame(game_name, map_name);
+
+    map_name_t map_name;
+    this->read_byte_data(map_name);
+
+    skin_t ct_skin;
+    this->read_byte_data(ct_skin);
+
+    skin_t tt_skin;
+    this->read_byte_data(tt_skin);
+
+    return CreateGame(
+            game_name, static_cast<MapName>(map_name),
+            Skins(static_cast<CounterTerroristSkin>(ct_skin), static_cast<TerroristSkin>(tt_skin)));
 }
 
 JoinGame ServerProtocol::read_join_game() {
     std::string game_name = this->read_string();
-    return JoinGame(game_name);
+
+    skin_t ct_skin;
+    this->read_byte_data(ct_skin);
+
+    skin_t tt_skin;
+    this->read_byte_data(tt_skin);
+
+    return JoinGame(game_name, Skins(static_cast<CounterTerroristSkin>(ct_skin),
+                                     static_cast<TerroristSkin>(tt_skin)));
 }
 
 PlayerCommandType ServerProtocol::read_player_command() {

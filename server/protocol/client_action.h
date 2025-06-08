@@ -12,7 +12,7 @@
 class ClientAction {
 protected:
     player_id_t player_id;
-    explicit ClientAction(player_id_t player_id): player_id(player_id) {}
+    explicit ClientAction(const player_id_t& player_id): player_id(player_id) {}
 
 public:
     player_id_t get_player_id() { return this->player_id; }
@@ -30,15 +30,15 @@ namespace ServerSpace {
 class Move: public ClientAction, public MoveCommon {
 
 public:
-    Move(player_id_t player_id, MoveType move_type);
+    Move(const player_id_t& player_id, const MoveType& move_type);
     ~Move();
     void action_to(IPlayerAction& player) override;
 };
 
 class BuyWeapon: public ClientAction, public BuyWeaponCommon {
 public:
-    BuyWeapon(player_id_t player_id,
-              WeaponCode weapon_code);  // considerando que el arma viene con
+    BuyWeapon(const player_id_t& player_id,
+              const WeaponCode& weapon_code);  // considerando que el arma viene con
     // municion por default
     ~BuyWeapon();
     void action_to(IPlayerAction& player) override;
@@ -62,14 +62,14 @@ void action_to(IPlayerAction& player) override;
 class Reload: public ClientAction {
 
 public:
-    explicit Reload(player_id_t player_id);
+    explicit Reload(const player_id_t& player_id);
     ~Reload();
     void action_to(IPlayerAction& player) override;
 };
 class Shoot: public ClientAction, public ShootCommon {
 
 public:
-    Shoot(player_id_t player_id, coordinate_t mouse_x, coordinate_t mouse_y);
+    Shoot(const player_id_t& player_id, const coordinate_t& mouse_x, const coordinate_t& mouse_y);
     ~Shoot();
     void action_to(IPlayerAction& player) override;
 };
@@ -86,39 +86,41 @@ public:
     };
 
 
-    class DefuseBomb: public ClientAction {
-        public:
-        DefuseBomb(player_id_t player_id);
-        ~DefuseBomb();
-        void action_to(IPlayerAction& player) override;
-    };
 
     */
+class DefuseBomb: public ClientAction {
+public:
+    DefuseBomb(const player_id_t& player_id);
+    ~DefuseBomb();
+    void action_to(IPlayerAction& player) override;
+};
 
 class Drop: public ClientAction {
 public:
-    explicit Drop(player_id_t player_id);
+    explicit Drop(const player_id_t& player_id);
     ~Drop();
     void action_to(IPlayerAction& player) override;
 };
 
 class Equip: public ClientAction, public EquipCommon {
 public:
-    Equip(player_id_t player_id, EquipType equip_type);
+    Equip(const player_id_t& player_id, const EquipType& equip_type);
     ~Equip();
     void action_to(IPlayerAction& player) override;
 };
 
 /*
     GAME ACTIONS
-
-    class MousePosition: public ClientAction, public MousePositionCommon {
-    public:
-        MousePosition(player_id_t player_id, const coordinate_t mouse_x, const coordinate_t
-   mouse_y); ~MousePosition(); void action_to(IPlayerAction& player) override;
-    };
     */
 
+
+class MousePosition: public ClientAction, public MousePositionCommon {
+public:
+    MousePosition(const player_id_t& player_id, const coordinate_t& mouse_x,
+                  const coordinate_t& mouse_y);
+    ~MousePosition();
+    void action_to(IPlayerAction& player) override;
+};
 
 }  // namespace ServerSpace
 #endif  // !CLIENT_ACTION_H

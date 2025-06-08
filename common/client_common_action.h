@@ -17,7 +17,7 @@ protected:
     MoveType move_type;
 
 public:
-    explicit MoveCommon(MoveType& move_type): move_type(move_type) {}
+    explicit MoveCommon(const MoveType& move_type): move_type(move_type) {}
     virtual ~MoveCommon() = default;
 };
 
@@ -26,7 +26,7 @@ protected:
     WeaponCode weapon_code;
 
 public:
-    explicit BuyWeaponCommon(WeaponCode& weapon_code): weapon_code(weapon_code) {}
+    explicit BuyWeaponCommon(const WeaponCode& weapon_code): weapon_code(weapon_code) {}
     virtual ~BuyWeaponCommon() = default;
 };
 
@@ -36,7 +36,7 @@ protected:
     ammo_t ammo_count;
 
 public:
-    explicit BuyAmmoCommon(WeaponType& weapon_type, const ammo_t& ammo_count):
+    explicit BuyAmmoCommon(const WeaponType& weapon_type, const ammo_t& ammo_count):
             weapon_type(weapon_type), ammo_count(ammo_count) {}
     virtual ~BuyAmmoCommon() = default;
 };
@@ -57,7 +57,7 @@ protected:
     EquipType equip_type;
 
 public:
-    explicit EquipCommon(EquipType& equip_type): equip_type(equip_type) {}
+    explicit EquipCommon(const EquipType& equip_type): equip_type(equip_type) {}
     virtual ~EquipCommon() = default;
 };
 

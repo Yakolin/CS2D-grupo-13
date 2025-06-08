@@ -1,13 +1,13 @@
 #include "client_action.h"
 /*
 using ServerSpace::BuyAmmo;
-using ServerSpace::DefuseBomb;
 using ServerSpace::PlantBomb;
-using ServerSpace::MousePosition;
 */
 using ServerSpace::BuyWeapon;
+using ServerSpace::DefuseBomb;
 using ServerSpace::Drop;
 using ServerSpace::Equip;
+using ServerSpace::MousePosition;
 using ServerSpace::Move;
 using ServerSpace::Reload;
 using ServerSpace::Shoot;
@@ -17,7 +17,7 @@ using ServerSpace::Shoot;
     MOVEMENT ACTIONS
 */
 
-Move::Move(player_id_t player_id, MoveType move_type):
+Move::Move(const player_id_t& player_id, const MoveType& move_type):
         ClientAction(player_id), MoveCommon(move_type) {}
 
 Move::~Move() {}
@@ -25,7 +25,7 @@ Move::~Move() {}
 void Move::action_to(IPlayerAction& player) { player.move(this->move_type); }
 
 
-BuyWeapon::BuyWeapon(player_id_t player_id, WeaponCode weapon_code):
+BuyWeapon::BuyWeapon(const player_id_t& player_id, const WeaponCode& weapon_code):
         ClientAction(player_id), BuyWeaponCommon(weapon_code) {}
 
 BuyWeapon::~BuyWeapon() {}
@@ -50,14 +50,15 @@ void BuyAmmo::action_to(IPlayerAction& player) {
 */
 
 
-Reload::Reload(player_id_t player_id): ClientAction(player_id) {}
+Reload::Reload(const player_id_t& player_id): ClientAction(player_id) {}
 
 Reload::~Reload() {}
 
 void Reload::action_to(IPlayerAction& player) { player.reload(); }
 
 
-Shoot::Shoot(player_id_t player_id, coordinate_t mouse_x, coordinate_t mouse_y):
+Shoot::Shoot(const player_id_t& player_id, const coordinate_t& mouse_x,
+             const coordinate_t& mouse_y):
         ClientAction(player_id), ShootCommon(mouse_x, mouse_y) {}
 
 void Shoot::action_to(IPlayerAction& player) { player.shoot(this->mouse_x, this->mouse_y); }
@@ -65,14 +66,14 @@ void Shoot::action_to(IPlayerAction& player) { player.shoot(this->mouse_x, this-
 Shoot::~Shoot() {}
 
 
-Drop::Drop(player_id_t player_id): ClientAction(player_id) {}
+Drop::Drop(const player_id_t& player_id): ClientAction(player_id) {}
 
 Drop::~Drop() {}
 
 void Drop::action_to(IPlayerAction& player) { player.drop(); }
 
 
-Equip::Equip(player_id_t player_id, EquipType equip_type):
+Equip::Equip(const player_id_t& player_id, const EquipType& equip_type):
         ClientAction(player_id), EquipCommon(equip_type) {}
 
 Equip::~Equip() {}
@@ -90,22 +91,21 @@ void Equip::action_to(IPlayerAction& player) { player.change_weapon(this->equip_
 
     void PlantBomb::action_to(IPlayerAction& player) { player.plant_bomb(); }
 
-
-    DefuseBomb::DefuseBomb(player_id_t player_id): ClientAction(player_id) {}
-
-    DefuseBomb::~DefuseBomb() {}
-
-    void DefuseBomb::action_to(IPlayerAction& player) { player.defuse_bomb(); }
-
 */
+
+DefuseBomb::DefuseBomb(const player_id_t& player_id): ClientAction(player_id) {}
+
+DefuseBomb::~DefuseBomb() {}
+
+void DefuseBomb::action_to(IPlayerAction& player) { player.defuse_bomb(); }
+
 /*
-    GAME ACTIONS
+GAME ACTIONS
 
 
-    MousePosition::MousePosition(player_id_t player_id, const coordinate_t mouse_x,
-                                 const coordinate_t mouse_y):
-            ClientAction(player_id), MousePositionCommon(mouse_x, mouse_y) {}
-    MousePosition::~MousePosition() {}
-    void MousePosition::action_to(IPlayerAction& player) { player.watch(this->mouse_x,
-   this->mouse_y); }
 */
+MousePosition::MousePosition(const player_id_t& player_id, const coordinate_t& mouse_x,
+                             const coordinate_t& mouse_y):
+        ClientAction(player_id), MousePositionCommon(mouse_x, mouse_y) {}
+MousePosition::~MousePosition() {}
+void MousePosition::action_to(IPlayerAction& player) { player.watch(this->mouse_x, this->mouse_y); }

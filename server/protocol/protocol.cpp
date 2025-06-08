@@ -1,11 +1,12 @@
 #include "protocol.h"
 
-using ServerSpace::Move;
-/*
-using ServerSpace::BuyAmmo;
 using ServerSpace::BuyWeapon;
 using ServerSpace::Equip;
+using ServerSpace::MousePosition;
+using ServerSpace::Move;
 using ServerSpace::Shoot;
+/*
+using ServerSpace::BuyAmmo;
 */
 #include <iostream>
 
@@ -92,20 +93,28 @@ PlayerCommandType ServerProtocol::read_player_command() {
     return static_cast<PlayerCommandType>(command);
 }
 
-std::unique_ptr<Move> ServerProtocol::read_move(player_id_t player_id) {
+std::unique_ptr<Move> ServerProtocol::read_move(const player_id_t& player_id) {
     move_t move_type;
     this->read_byte_data(move_type);
     return std::make_unique<Move>(player_id, static_cast<MoveType>(move_type));
 }
 
-/*
 
-std::unique_ptr<BuyWeapon> ServerProtocol::read_buy_weapon(player_id_t player_id) {
+std::unique_ptr<BuyWeapon> ServerProtocol::read_buy_weapon(const player_id_t& player_id) {
     weapon_code_t weapon_code;
     this->read_byte_data(weapon_code);
     return std::make_unique<BuyWeapon>(player_id, static_cast<WeaponCode>(weapon_code));
 }
 
+
+std::unique_ptr<Shoot> ServerProtocol::read_shoot(const player_id_t& player_id) {
+    coordinate_t x;
+    coordinate_t y;
+    this->read_two_byte_data(x);
+    this->read_two_byte_data(y);
+    return std::make_unique<Shoot>(player_id, x, y);
+}
+/*
 std::unique_ptr<BuyAmmo> ServerProtocol::read_buy_ammo(player_id_t player_id) {
     weapon_type_t weapon_type;
     ammo_t ammo_count;
@@ -113,21 +122,23 @@ std::unique_ptr<BuyAmmo> ServerProtocol::read_buy_ammo(player_id_t player_id) {
     this->read_two_byte_data(ammo_count);
     return std::make_unique<BuyAmmo>(player_id, static_cast<WeaponType>(weapon_type), ammo_count);
 }
-
-std::unique_ptr<Shoot> ServerProtocol::read_shoot(player_id_t player_id) {
-    coordinate_t x;
-    coordinate_t y;
-    this->read_two_byte_data(x);
-    this->read_two_byte_data(y);
-    return std::make_unique<Shoot>(player_id, x, y);
 }
 
-std::unique_ptr<Equip> ServerProtocol::read_equip(player_id_t player_id) {
+*/
+
+std::unique_ptr<Equip> ServerProtocol::read_equip(const player_id_t& player_id) {
     equip_type_t equip_type;
     this->read_byte_data(equip_type);
     return std::make_unique<Equip>(player_id, static_cast<EquipType>(equip_type));
 }
-*/
+
+std::unique_ptr<MousePosition> ServerProtocol::read_mouse_position(const player_id_t& player_id) {
+    coordinate_t mouse_x, mouse_y;
+    this->read_two_byte_data(mouse_x);
+    this->read_two_byte_data(mouse_y);
+    return std::make_unique<MousePosition>(player_id, mouse_x, mouse_y);
+}
+
 void ServerProtocol::send_byte_data(uint8_t& data) {
     this->socket.sendall(&data, sizeof(uint8_t));
     if (this->socket.is_stream_send_closed()) {
@@ -182,6 +193,26 @@ void ServerProtocol::send_client_id(GameImage& game_image) {
     this->send_two_byte_data(client_id);
 }
 
+void ServerProtocol::send_weapons(const PlayerImage& player_image) {
+    length_weapons_images_t length_weapons = player_image.weapons.size();
+    std::vector<WeaponImage> weapons_images = player_image.weapons;
+    this->send_byte_data(length_weapons);
+
+    for (const WeaponImage& weapon_image: weapons_images) {
+        weapon_code_t weapon_code = static_cast<weapon_code_t>(weapon_image.weapon_code);
+        this->send_byte_data(weapon_code);
+
+        uint8_t current_bullets = weapon_image.current_bullets;
+        this->send_byte_data(current_bullets);
+
+        uint8_t magazine = weapon_image.magazine;
+        this->send_byte_data(magazine);
+
+        uint8_t inventory_bullets = weapon_image.inventory_bullets;
+        this->send_byte_data(inventory_bullets);
+    }
+}
+
 void ServerProtocol::send_player_image(GameImage& game_image) {
 
     std::vector<PlayerImage> players_images = game_image.players_images;
@@ -199,6 +230,24 @@ void ServerProtocol::send_player_image(GameImage& game_image) {
 
         points_t points = player_image.points;
         this->send_byte_data(points);
+
+        this->send_weapons(player_image);
+
+        team_t team = static_cast<team_t>(player_image.team);
+        this->send_byte_data(team);
+
+        coordinate_t mouse_x = player_image.position.x;
+        this->send_two_byte_data(mouse_x);
+
+        coordinate_t mouse_y = player_image.position.y;
+        this->send_two_byte_data(mouse_y);
+
+        skin_t ct_skin = static_cast<skin_t>(player_image.skin.ct_skin);
+        this->send_byte_data(ct_skin);
+
+
+        skin_t tt_skin = static_cast<skin_t>(player_image.skin.tt_skin);
+        this->send_byte_data(tt_skin);
     }
 }
 

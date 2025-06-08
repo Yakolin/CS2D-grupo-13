@@ -3,10 +3,10 @@
 #include <map>
 #include <memory>
 
-#include "FireableWeapon.h"
-#include "GameConfig.h"
-#include "SpecialWeapons.h"
-#include "Weapon.h"
+#include "../Config/GameConfig.h"
+#include "../Weapons/FireableWeapon.h"
+#include "../Weapons/SpecialWeapons.h"
+#include "../Weapons/Weapon.h"
 class WeaponFactory {
 private:
     std::map<WeaponCode, GameConfig::WeaponConfig>& weapon_configs;

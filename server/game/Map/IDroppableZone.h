@@ -2,9 +2,8 @@
 #define I_DROPPABLE_ZONE_H_
 #include <memory>
 
-#include "../../common/utility.h"
-
-#include "Weapon.h"
+#include "../../../common/utility.h"
+#include "../Weapons/Weapon.h"
 class IDroppableZone {
 public:
     virtual void drop(const player_id_t& player_id, std::shared_ptr<IDroppable>& dropeable) = 0;

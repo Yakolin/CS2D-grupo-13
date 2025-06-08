@@ -10,7 +10,7 @@
 #include <SDL2/SDL_ttf.h>
 #include <yaml-cpp/yaml.h>
 
-#include "../../common/player_command_types.h"
+#include "../../../common/player_command_types.h"
 class GameConfig {
 public:
     typedef struct WeaponConfig {

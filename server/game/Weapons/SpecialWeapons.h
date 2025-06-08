@@ -1,7 +1,8 @@
 #ifndef SpecialWeapons_H_
 #define SpecialWeapons_H_
+#include "../Timer.h"
+
 #include "IDroppable.h"
-#include "Timer.h"
 #include "Weapon.h"
 class Bomb: public IDroppable {
 private:

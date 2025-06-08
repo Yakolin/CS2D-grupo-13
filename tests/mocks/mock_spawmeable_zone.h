@@ -3,7 +3,7 @@
 
 #include <gmock/gmock.h>
 
-#include "../../server/game/ISpawneableZone.h"
+#include "../../../server/game/Map/ISpawneableZone.h"
 
 class MockISpawneableZone: public ISpawneableZone {
 public:

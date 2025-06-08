@@ -11,13 +11,13 @@
 #include "../../common/player_command_types.h"
 #include "../interfaces/interface_game.h"
 #include "../protocol/client_action.h"
+#include "Config/GameConfig.h"
+#include "Map/Map.h"
+#include "Player/Player.h"
+#include "Weapons/WeaponFactory.h"
 
-#include "GameConfig.h"
 #include "GameException.h"
-#include "Map.h"
-#include "Player.h"
 #include "Timer.h"
-#include "WeaponFactory.h"
 using std::map;
 using std::shared_ptr;
 using std::string;

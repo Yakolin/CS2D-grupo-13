@@ -2,8 +2,8 @@
 #define INTERFACE_CAN_INTERACT_H_
 #include <memory>
 
-#include "SpecialWeapons.h"
-#include "Weapon.h"
+#include "../Weapons/SpecialWeapons.h"
+#include "../Weapons/Weapon.h"
 class ICanInteract {
 public:
     virtual void damage(uint8_t damage) = 0;

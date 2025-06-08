@@ -1,9 +1,11 @@
 #ifndef MOCK_DROPPABLE_ZONE_H
 #define MOCK_DROPPABLE_ZONE_H
 
+#include <memory>
+
 #include <gmock/gmock.h>
 
-#include "../../server/game/IDropeableZone.h"
+#include "../../../server/game/Map/IDroppableZone.h"
 
 class MockIDroppableZone: public IDroppableZone {
 public:

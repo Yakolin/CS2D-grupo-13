@@ -4,12 +4,12 @@
 #include <map>
 #include <memory>
 
-#include "../../common/game_image.h"
-#include "../../common/player_command_types.h"
+#include "../../../common/game_image.h"
+#include "../../../common/player_command_types.h"
+#include "../Colliders/Colliders.h"
+#include "../Map/ISpawneableZone.h"
 
-#include "Colliders.h"
 #include "IDroppable.h"
-#include "ISpawneableZone.h"
 
 class Weapon: public IDroppable {
 public:

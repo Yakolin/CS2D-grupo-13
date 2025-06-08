@@ -5,13 +5,12 @@
 #include <utility>
 #include <vector>
 
-#include "../../common/player_command_types.h"
-
-#include "FireableWeapon.h"
-#include "IDropeableZone.h"
-#include "ISpawneableZone.h"
-#include "SpecialWeapons.h"
-#include "WeaponFactory.h"
+#include "../../../common/player_command_types.h"
+#include "../Map/IDroppableZone.h"
+#include "../Map/ISpawneableZone.h"
+#include "../Weapons/FireableWeapon.h"
+#include "../Weapons/SpecialWeapons.h"
+#include "../Weapons/WeaponFactory.h"
 
 class Equipment {
 private:

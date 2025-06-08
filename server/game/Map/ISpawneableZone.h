@@ -3,7 +3,7 @@
 #include <functional>
 #include <memory>
 
-#include "Colliders.h"
+#include "../Colliders/Colliders.h"
 
 class ISpawneableZone {
 public:

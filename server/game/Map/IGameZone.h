@@ -3,8 +3,8 @@
 
 #include <utility>
 
-#include "../../common/game_image.h"
-#include "../../common/utility.h"
+#include "../../../common/game_image.h"
+#include "../../../common/utility.h"
 class IGameZone {
 public:
     virtual void move(player_id_t id, const Position& direction) = 0;

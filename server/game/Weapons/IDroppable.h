@@ -1,6 +1,6 @@
 #ifndef DROPPABLE_H_
 #define DROPPABLE_H_
-#include "../../common/player_command_types.h"
+#include "../../../common/player_command_types.h"
 
 class IDroppable {
 public:

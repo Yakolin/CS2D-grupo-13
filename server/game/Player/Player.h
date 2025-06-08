@@ -6,17 +6,17 @@
 #include <utility>
 #include <vector>
 
-#include "../../common/game_image.h"
-#include "../../common/game_info.h"
-#include "../../common/player_command_types.h"
-#include "../../common/utility.h"
-#include "../interfaces/interface_player_action.h"
+#include "../../../common/game_image.h"
+#include "../../../common/game_info.h"
+#include "../../../common/player_command_types.h"
+#include "../../../common/utility.h"
+#include "../../interfaces/interface_player_action.h"
+#include "../Config/GameConfig.h"
+#include "../Map/IDroppableZone.h"
+#include "../Map/IGameZone.h"
 
 #include "Equipment.h"
-#include "GameConfig.h"
 #include "ICanInteract.h"
-#include "IDropeableZone.h"
-#include "IGameZone.h"
 class Player: public IPlayerAction, public ICanInteract {
 
 public:

@@ -6,12 +6,11 @@
 #include <utility>
 #include <vector>
 
-#include "../../common/utility.h"
-
-#include "Colliders.h"
-#include "ICanInteract.h"
-#include "IDroppable.h"
-#include "SpecialWeapons.h"
+#include "../../../common/utility.h"
+#include "../Colliders/Colliders.h"
+#include "../Player/ICanInteract.h"
+#include "../Weapons/IDroppable.h"
+#include "../Weapons/SpecialWeapons.h"
 #define Wall '#'
 #define Floor ' '
 

@@ -8,16 +8,16 @@
 #include <utility>
 #include <vector>
 
-#include "../../common/game_image.h"
-#include "../../common/game_info.h"
+#include "../../../common/game_image.h"
+#include "../../../common/game_info.h"
+#include "../Weapons/SpecialWeapons.h"
+#include "../Weapons/Weapon.h"
 
 #include "CollisionManager.h"
-#include "IDropeableZone.h"
+#include "IDroppableZone.h"
 #include "IGameZone.h"
 #include "ISpawneableZone.h"
 #include "MapExeption.h"
-#include "SpecialWeapons.h"
-#include "Weapon.h"
 
 #define WidthSpawn 5
 #define HeightSpawn 5

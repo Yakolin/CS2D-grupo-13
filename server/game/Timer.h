@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <chrono>
 
-#include "GameConfig.h"
+#include "Config/GameConfig.h"
 class Timer {
     using clock = std::chrono::steady_clock;
     int buy_duration;

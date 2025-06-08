@@ -8,16 +8,16 @@ target_sources(CS2D_tests
     ../../server/protocol/receiver.cpp
     ../../server/protocol/sender.cpp
     ../../server/protocol/game_loop.cpp
-    ../../server/game/Colliders.cpp
-    ../../server/game/CollisionManager.cpp
-    ../../server/game/Equipment.cpp
-    ../../server/game/FireableWeapon.cpp
-    ../../server/game/SpecialWeapons.cpp
+    ../../server/game/Colliders/Colliders.cpp
+    ../../server/game/Map/CollisionManager.cpp
+    ../../server/game/Player/Equipment.cpp
+    ../../server/game/Weapons/FireableWeapon.cpp
+    ../../server/game/Weapons/SpecialWeapons.cpp
     ../../server/game/GameManager.cpp
-    ../../server/game/Map.cpp
-    ../../server/game/Player.cpp
-    ../../server/game/GameConfig.cpp
-    ../../server/game/WeaponFactory.cpp
+    ../../server/game/Map/Map.cpp
+    ../../server/game/Player/Player.cpp
+    ../../server/game/Config/GameConfig.cpp
+    ../../server/game/Weapons/WeaponFactory.cpp
     ../../common/socket.cpp
 
     PUBLIC
@@ -28,17 +28,17 @@ target_sources(CS2D_tests
     ../../server/protocol/receiver.h
     ../../server/protocol/sender.h
     ../../server/protocol/game_loop.h
-    ../../server/game/CollisionManager.h
-    ../../server/game/Colliders.h
-    ../../server/game/Equipment.h
-    ../../server/game/FireableWeapon.h
+    ../../server/game/Map/CollisionManager.h
+    ../../server/game/Colliders/Colliders.h
+    ../../server/game/Player/Equipment.h
+    ../../server/game/Weapons/FireableWeapon.h
     ../../server/game/GameException.h
     ../../server/game/GameManager.h
-    ../../server/game/Map.h
-    ../../server/game/Player.h
-    ../../server/game/SpecialWeapons.h
-    ../../server/game/Weapon.h
+    ../../server/game/Map/Map.h
+    ../../server/game/Player/Player.h
+    ../../server/game/Weapons/SpecialWeapons.h
+    ../../server/game/Weapons/Weapon.h
     ../../common/socket.h
-    ../../server/game/GameConfig.h
-    ../../server/game/WeaponFactory.h
+    ../../server/game/Config/GameConfig.h
+    ../../server/game/Weapons/WeaponFactory.h
 )

@@ -6,6 +6,7 @@
 #include <utility>
 #include <vector>
 
+#include "game_info.h"
 #include "player_command_types.h"
 #include "utility.h"
 
@@ -13,6 +14,8 @@ using coordinate_t = std::uint16_t;
 using health_t = std::uint8_t;
 using points_t = std::uint8_t;
 using length_players_images_t = std::uint16_t;
+using length_weapons_images_t = std::uint8_t;
+using team_t = std::uint8_t;
 
 enum class Team { CT, TT };
 class BombImage {
@@ -52,15 +55,21 @@ public:
     points_t points;
     std::vector<WeaponImage> weapons;
     Team team;
+    Position mouse_position;
+    Skins skin;
+
     // Aca falta el tema del equipement y las armas
-    PlayerImage(player_id_t player_id, Position position, int health, int points,
-                std::vector<WeaponImage>&& weapons, Team team):
+    PlayerImage(const player_id_t& player_id, const Position& position, const int& health,
+                const int& points, std::vector<WeaponImage>&& weapons, const Team& team,
+                const Position& mouse_position, const Skins& skin):
             player_id(player_id),
             position(position),
             health(health),
             points(points),
             weapons(std::move(weapons)),
-            team(team) {}
+            team(team),
+            mouse_position(mouse_position),
+            skin(skin) {}
     ~PlayerImage() = default;
 };
 

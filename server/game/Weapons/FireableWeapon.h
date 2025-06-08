@@ -14,7 +14,7 @@
 class FireableWeapon: public Weapon {
 public:
     FireableWeapon(WeaponCode code, weapon_specs_t specs): Weapon(code, specs) {}
-    virtual void set_on_action(ISpawneableZone& spawn, player_id_t id,
+    virtual bool set_on_action(ISpawneableZone& spawn, player_id_t id,
                                Position& direction) override = 0;
     virtual void reload() override;
     virtual WeaponImage get_weapon_image() override;
@@ -25,7 +25,7 @@ private:
 
 public:
     explicit Ak47(weapon_specs_t specs): FireableWeapon(WeaponCode::AK47, specs) {}
-    virtual void set_on_action(ISpawneableZone& spawn, player_id_t id,
+    virtual bool set_on_action(ISpawneableZone& spawn, player_id_t id,
                                Position& direction) override;
     virtual bool is_droppable() override;
 };
@@ -35,7 +35,7 @@ private:
 
 public:
     explicit Glock(weapon_specs_t specs): FireableWeapon(WeaponCode::GLOCK, specs) {}
-    virtual void set_on_action(ISpawneableZone& spawn, player_id_t id,
+    virtual bool set_on_action(ISpawneableZone& spawn, player_id_t id,
                                Position& direction) override;
     virtual bool is_droppable() override;
 };
@@ -43,7 +43,7 @@ public:
 class Knife: public Weapon {
 public:
     explicit Knife(weapon_specs_t specs): Weapon(WeaponCode::KNIFE, specs) {}
-    virtual void set_on_action(ISpawneableZone& spawn, player_id_t id,
+    virtual bool set_on_action(ISpawneableZone& spawn, player_id_t id,
                                Position& direction) override;
     virtual void reload() override;
     virtual WeaponImage get_weapon_image() override;

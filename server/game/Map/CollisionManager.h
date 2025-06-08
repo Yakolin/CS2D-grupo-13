@@ -9,7 +9,7 @@
 #include "../../../common/utility.h"
 #include "../Colliders/Colliders.h"
 #include "../Player/ICanInteract.h"
-#include "../Weapons/IDroppable.h"
+#include "../Weapons/IInteractuable.h"
 #include "../Weapons/SpecialWeapons.h"
 #define Wall '#'
 #define Floor ' '
@@ -29,7 +29,7 @@ class CollisionManager {
     std::map<player_id_t, player_entity_t>& players_in_map;
     std::map<player_id_t, ColliderDamage> damage_colliders;
     std::pair<Position, std::shared_ptr<Bomb>>& bomb;
-    std::map<Position, std::shared_ptr<IDroppable>> dropped_things;
+    std::map<Position, std::shared_ptr<IInteractuable>> dropped_things;
     void check_weapon_stepped(PlayerEntity& player);
     void check_damage_collider(player_id_t caster, ColliderDamage& collider);
     void check_bomb_stepped(PlayerEntity& player);
@@ -41,7 +41,7 @@ public:
             walls(walls), players_in_map(players_in_map), bomb(bomb) {}
     bool check_movement(player_id_t id, const Position& next_position);
     void check_damage();
-    void drop(Position& player_position, std::shared_ptr<IDroppable>& dropable);
+    void drop(Position& player_position, std::shared_ptr<IInteractuable>& dropable);
     void add_damage_collider(player_id_t id, ColliderDamage& collider_damage);
     std::vector<WeaponDropped> get_dropped_things_images();
 };

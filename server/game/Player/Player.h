@@ -41,7 +41,7 @@ public:
     void damage(uint8_t damage) override;
     virtual bool is_dead() override;
 
-    virtual bool equip(std::shared_ptr<IDroppable>& droppable) override;
+    virtual bool equip(std::shared_ptr<IInteractuable>& droppable) override;
     virtual void move(const MoveType& move_type) override;
     virtual void reload() override;
     virtual void shoot(const coordinate_t& mouse_x, const coordinate_t& mouse_y) override;

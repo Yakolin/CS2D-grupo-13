@@ -1,12 +1,13 @@
 #include "SpecialWeapons.h"
 
 #include <iostream>
-void Bomb::set_on_bomb() {
-    // Le aviso al timer que tiene que empezar a correr por ser yo la bomba
+bool Bomb::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& direction) {
+    if (!spawn.plant_bomb(id))
+        return false;
     timer.bomb_start();
     equiped = false;
     activate = true;
-    std::cout << "Bomba activada" << std::endl;
+    return true;
 }
 void Bomb::set_equiped() { equiped = true; }
 void Bomb::set_unequiped() { equiped = false; }

@@ -9,9 +9,9 @@
 #include "../Map/IDroppableZone.h"
 #include "../Map/ISpawneableZone.h"
 #include "../Weapons/FireableWeapon.h"
+#include "../Weapons/IInteractuable.h"
 #include "../Weapons/SpecialWeapons.h"
 #include "../Weapons/WeaponFactory.h"
-
 class Equipment {
 private:
     const player_id_t& player_id;
@@ -24,8 +24,8 @@ private:
     std::shared_ptr<Weapon> secondary;
     std::shared_ptr<Weapon> knife;
     std::weak_ptr<Bomb> bomb;
-    std::shared_ptr<Weapon> weapon_in_hand;
-    void new_weapon_in_hand(const std::shared_ptr<Weapon>& weapon);
+    std::shared_ptr<IInteractuable> weapon_in_hand;
+    void new_weapon_in_hand(const std::shared_ptr<IInteractuable>& weapon);
     void equip_bomb(std::weak_ptr<Bomb> new_bomb);
 
 public:
@@ -44,7 +44,7 @@ public:
     void drop_weapon();
     void reload();
     void shoot(Position& position);
-    bool equip_droppable(const std::shared_ptr<IDroppable>& droppable);
+    bool equip_droppable(const std::shared_ptr<IInteractuable>& droppable);
     void drop_all();
     std::vector<WeaponImage> get_weapons_image();
 };

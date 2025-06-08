@@ -108,6 +108,9 @@ if(CS2D_CLIENT OR CS2D_EDITOR)
 
     FetchContent_MakeAvailable(SDL2 SDL2_image SDL2_mixer SDL2_ttf libSDL2pp)
     find_package(SDL2_image REQUIRED)
+    find_package(SDL2 REQUIRED)
+    find_library(SDL2_GFX_LIBRARY SDL2_gfx REQUIRED)
+
 
 endif()
 
@@ -146,6 +149,7 @@ if(CS2D_CLIENT)
         SDL2_image
         yaml-cpp
         SDL2_ttf
+        ${SDL2_GFX_LIBRARY}
     )
 
 endif()

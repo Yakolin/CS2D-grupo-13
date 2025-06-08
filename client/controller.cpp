@@ -68,7 +68,8 @@ bool Controller::has_game_image(GameImage& snapshot) {
         std::cout << "Jugador ID: " << p.player_id << " | Posición: (" << p.position.x << ", "
                   << p.position.y << ")"
                   << " | Vida: " << static_cast<int>(p.health)
-                  << " | Puntos: " << static_cast<int>(p.points) << std::endl;
+                  << " | Puntos: " << static_cast<int>(p.points)
+                  << " | pos mouse: " << static_cast<int>(p.mouse_position.x )<< ", " << static_cast<int>(p.mouse_position.y )<<std::endl;
         std::cout << "------------------------------------------\n ";
     }
     return true;

@@ -8,6 +8,7 @@ target_sources(CS2D_client
     SDL/gameView.cpp
     SDL/gameConfig.cpp
     SDL/mapView.cpp
+    SDL/fieldOfView.cpp
     SDL/playerView.cpp
     SDL/weaponView.cpp
     SDL/camera.cpp
@@ -22,6 +23,7 @@ target_sources(CS2D_client
     SDL/mapView.h
     SDL/playerView.h
     SDL/gameConfig.h
+    SDL/fieldOfView.h
     SDL/weaponView.h
     SDL/camera.h
     SDL/text.h

@@ -17,6 +17,7 @@
 #include "mapView.h"
 #include "playerView.h"
 #include "renderizable.h"
+#include "fieldOfView.h"
 #include <stdexcept> 
 #include <SDL_ttf.h>
 #include "gameConfig.h"
@@ -40,6 +41,7 @@ private:
     MapView* map;
     Text* text;
     Uint32 lastTime ;
+    FieldOfView* fov;
 
 
     bool handle_events(const SDL_Event& evento);
@@ -55,6 +57,10 @@ private:
 
 public:
     explicit GameView(Socket&& skt);
+
+    SDL_Window* init_window(const GameConfig& config);
+
+    SDL_Renderer* init_renderer(SDL_Window* window, GameConfig& config);
 
     bool cargar_skins(const std::map<Object, std::string >& rutas_skins);
 

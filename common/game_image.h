@@ -35,9 +35,9 @@ public:
     BombImage(Position pos, bool activate, bool dropped):
             position(pos), activate(activate), dropped(dropped) {}
     WeaponCode weapon_code = WeaponCode::BOMB;
-    Position position;
-    bool activate;
-    bool dropped;
+    Position position = Position();
+    bool activate = false;
+    bool dropped = false;
 };
 
 class WeaponDropped {

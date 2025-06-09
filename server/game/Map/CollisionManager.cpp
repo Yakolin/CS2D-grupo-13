@@ -35,7 +35,7 @@ void CollisionManager::check_weapon_stepped(PlayerEntity& player) {
     if (player.player.lock() && player.player.lock()->equip(it->second))
         dropped_things.erase(it);
 }
-void CollisionManager::add_bullet_image(Vector2f& initial_pos, Vector2f& final_pos) {
+void CollisionManager::add_bullet_image(const Vector2f& initial_pos, const Vector2f& final_pos) {
     coordinate_t x_initial = static_cast<coordinate_t>(std::round(initial_pos.x));
     coordinate_t y_initial = static_cast<coordinate_t>(std::round(initial_pos.y));
     coordinate_t x_final = static_cast<coordinate_t>(std::round(final_pos.x));
@@ -45,20 +45,32 @@ void CollisionManager::add_bullet_image(Vector2f& initial_pos, Vector2f& final_p
     BulletImage image(initial_cast, end_cast);
     bullets_image.push_back(std::move(image));
 }
-bool CollisionManager::is_a_wall(coordinate_t x, coordinate_t y) { return walls[x][y] == Wall; }
-bool CollisionManager::check_bullet_wall(Vector2f& initial_pos, Vector2f& final_pos) {
-    
-    coordinate_t x_initial = static_cast<coordinate_t>(std::round(initial_pos.x));
-    coordinate_t y_initial = static_cast<coordinate_t>(std::round(initial_pos.y));
-    coordinate_t x_final = static_cast<coordinate_t>(std::round(final_pos.x));
-    coordinate_t y_final = static_cast<coordinate_t>(std::round(final_pos.y));
-    coordinate_t x_i = x_initial;
-    coordinate_t y_i = y_initial;
-    int dx = std::abs(x_initial - x_final);
-    int dy = std::abs(y_initial - y_final);
-    int step_x = (x_initial < x_final) ? 1 : -1;
-    int step_y = (y_initial < y_final) ? 1 : -1;
-    while (x_i <= x_final && )
+bool CollisionManager::is_a_wall(coordinate_t x, coordinate_t y) {
+    return x < walls.size() && y < walls[0].size() && walls[x][y] == Wall;
+}
+
+bool CollisionManager::check_bullet_wall(const Vector2f& initial_pos, const Vector2f& final_pos) {
+    Vector2f direction(initial_pos.x - final_pos.x, initial_pos.y - final_pos.y);
+    direction.x = (direction.x > 0) ? 1 : -1;
+    direction.y = (direction.y > 0) ? 1 : -1;
+    float distance = initial_pos.distance(final_pos);
+    float step = 0.5;
+    float traveled = 0;
+    Vector2f current_pos = initial_pos;
+    while (traveled <= distance) {
+        coordinate_t x = static_cast<coordinate_t>(std::round(current_pos.x));
+        coordinate_t y = static_cast<coordinate_t>(std::round(current_pos.y));
+        if (x < walls.size() && y < walls[0].size()) {
+            return false;
+        }
+        if (is_a_wall(x, y)) {
+            add_bullet_image(initial_pos, current_pos);
+            return true;
+        }
+        current_pos.x += current_pos.x * step * direction.x;
+        current_pos.y += current_pos.y * step * direction.y;
+        traveled += step;
+    }
     return false;
 }
 std::vector<BulletImage> CollisionManager::get_bullets_image() { return bullets_image; }

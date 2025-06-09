@@ -30,12 +30,12 @@ class CollisionManager {
     std::pair<Position, std::shared_ptr<Bomb>>& bomb;
     std::map<Position, std::shared_ptr<IInteractuable>> dropped_things;
     std::vector<BulletImage> bullets_image;
-    void add_bullet_image(Vector2f& initial_pos, Vector2f& final_pos);
+    void add_bullet_image(const Vector2f& initial_pos, const Vector2f& final_pos);
     Position get_hit_pos(Position& initial, Position& end);
     bool is_a_wall(coordinate_t x, coordinate_t y);
     void check_damage_players(player_id_t caster, ColliderDamage& collider_damage,
                               std::vector<PlayerEntity>& players_affected);
-    bool check_bullet_wall(Vector2f& initial_pos, Vector2f& final_pos);
+    bool check_bullet_wall(const Vector2f& initial_pos, const Vector2f& final_pos);
     void check_weapon_stepped(PlayerEntity& player);
     void check_damage_collider(player_id_t caster, ColliderDamage& collider);
     void check_bomb_stepped(PlayerEntity& player);

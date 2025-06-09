@@ -47,6 +47,7 @@ class GameInfo {
 public:
     GameInfo() {}
     ~GameInfo() {}
+    std::vector<Position> walls;
 };
 
 #endif  // !GAME_INFO_H

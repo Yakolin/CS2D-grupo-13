@@ -20,6 +20,7 @@ using length_weapons_dropped_t = std::uint8_t;
 using team_t = std::uint8_t;
 
 enum class Team { CT, TT };
+enum class BombState { EQUIPED, DROPPED, ACTIVATED, DESACTIVATED, EXPLOTED };
 class BulletImage {
 public:
     Position initial;
@@ -32,12 +33,10 @@ class BombImage {  // esto deberia tener un ennum de estado BombState que puede 
                    // activate o lo que sea
 public:
     BombImage() = default;
-    BombImage(Position pos, bool activate, bool dropped):
-            position(pos), activate(activate), dropped(dropped) {}
+    BombImage(Position pos, BombState state): position(pos), state(state) {}
     WeaponCode weapon_code = WeaponCode::BOMB;
     Position position;
-    bool activate = false;
-    bool dropped = false;
+    BombState state = BombState::DROPPED;
 };
 
 class WeaponDropped {

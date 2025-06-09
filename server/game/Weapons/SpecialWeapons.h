@@ -8,9 +8,7 @@
 class Bomb: public IInteractuable {
 private:
     Timer& timer;
-    bool equiped = false;
-    bool activate = false;
-    bool defused = false;
+    BombState state = BombState::EQUIPED;
 
 public:
     explicit Bomb(Timer& timer): IInteractuable(WeaponCode::BOMB), timer(timer) {}
@@ -23,6 +21,7 @@ public:
     bool is_equiped();
     bool is_activate();
     bool is_defused();
+    BombState get_state() { return state; }
     WeaponImage get_weapon_image();
 };
 

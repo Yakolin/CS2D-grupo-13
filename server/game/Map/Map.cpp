@@ -28,13 +28,17 @@ void Map::charge_map() {
     this->spawn_CT = map_info.spawn_CT;
     this->walls = map_info.walls;
 }
-std::vector<Position> Map::get_walls() {
+MapInfo Map::get_map_info() {
     std::vector<Position> walls_pos;
     for (size_t i = 0; i < walls.size(); i++)
         for (size_t j = 0; j < walls[i].size(); j++)
             if (walls[i][j] == Wall)
                 walls_pos.push_back(Position(i, j));
-    return walls_pos;
+    RectangleInfo bomb_A_info(bomb_A.point_min, bomb_A.point_max);
+    RectangleInfo bomb_B_info(bomb_B.point_min, bomb_B.point_max);
+    RectangleInfo spawn_TT_info(spawn_TT.point_min, spawn_TT.point_max);
+    RectangleInfo spawn_CT_info(spawn_CT.point_min, spawn_CT.point_max);
+    return MapInfo(bomb_A_info, bomb_B_info, spawn_TT_info, spawn_CT_info, walls_pos);
 }
 void Map::move(player_id_t id, const Position& direction) {
     if (collision_manager.check_movement(id, direction))

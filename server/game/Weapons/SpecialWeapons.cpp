@@ -6,14 +6,13 @@ bool Bomb::set_on_action(ISpawneableZone& spawn, player_id_t id,
     if (!spawn.plant_bomb(id))
         return false;
     timer.bomb_start();
-    equiped = false;
-    activate = true;
+    state = BombState::ACTIVATED;
     return true;
 }
-void Bomb::defuse() { defused = true; }
-void Bomb::set_equiped() { equiped = true; }
-void Bomb::set_unequiped() { equiped = false; }
-bool Bomb::is_defused() { return defused; }
-bool Bomb::is_equiped() { return equiped; }
-bool Bomb::is_activate() { return activate; }
+void Bomb::defuse() { state = BombState::DESACTIVATED; }
+void Bomb::set_equiped() { state = BombState::EQUIPED; }
+void Bomb::set_unequiped() { state = BombState::DROPPED; }
+bool Bomb::is_defused() { return state == BombState::DESACTIVATED; }
+bool Bomb::is_equiped() { return state == BombState::EQUIPED; }
+bool Bomb::is_activate() { return state == BombState::ACTIVATED; }
 WeaponImage Bomb::get_weapon_image() { return WeaponImage(code, 0, 0, 0); }

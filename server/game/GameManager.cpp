@@ -148,7 +148,11 @@ GameImage GameManager::get_frame() {
     map_game.update_map_state();
     return generate_game_image();
 }
-
+GameInfo GameManager::get_game_info() {
+    MapInfo map_info = map_game.get_map_info();
+    std::vector<WeaponInfo> purchasables = game_config.get_info_weapons();
+    return GameInfo(map_info, purchasables);
+}
 void GameManager::remove_player(
         [[maybe_unused]] const player_id_t&  // habria que eliminarlo de todos los lugares
                 player_id) {

@@ -4,12 +4,13 @@
 #include <iostream>
 #include <map>
 #include <string>
-#include <unordered_map>
+#include <vector>
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <yaml-cpp/yaml.h>
 
+#include "../../../common/game_info.h"
 #include "../../../common/player_command_types.h"
 class GameConfig {
 public:
@@ -53,6 +54,7 @@ public:
     std::map<WeaponCode, WeaponConfig>& get_weapon_config() { return weapon_configs; }
     TimerConfig& get_timer_config() { return timer_config; }
     PlayerConfig& get_player_config() { return player_config; }
+    std::vector<WeaponInfo> get_info_weapons();
 };
 
 #endif  // GAME_CONFIG_H_

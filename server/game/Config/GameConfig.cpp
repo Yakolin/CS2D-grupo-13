@@ -49,3 +49,11 @@ void GameConfig::load(const std::string& file_path) {
         throw std::runtime_error("Error al leer archivo YAML: " + std::string(e.what()));
     }
 }
+std::vector<WeaponInfo> GameConfig::get_info_weapons() {
+    std::vector<WeaponInfo> aux;
+    for (const auto& weapon: weapon_configs) {
+        WeaponInfo info(weapon.first, weapon.second.price);
+        aux.push_back(info);
+    }
+    return aux;
+}

@@ -66,7 +66,7 @@ public:
             map_game(map_name, bomb) {}
     ~GameManager();
     GameImage get_frame();
-    std::vector<Position> get_game_map() { return map_game.get_walls(); }
+    GameInfo get_game_info();
     void start_game();
     void stop_game();
     virtual void process(ClientAction& action) override;

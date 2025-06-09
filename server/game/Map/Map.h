@@ -47,13 +47,11 @@ public:
     void remove_player(player_id_t id);
     void update_teams(const std::map<player_id_t, Team>& players_teams);
     void respawn_players();
-    std::vector<Position> get_walls();
+    MapInfo get_map_info();
     std::vector<WeaponDropped> get_dropped_things_images() {
         return collision_manager.get_dropped_things_images();
     }
-    BombImage get_bomb_image() {
-        return BombImage(bomb.first, bomb.second->is_activate(), !bomb.second->is_equiped());
-    }
+    BombImage get_bomb_image() { return BombImage(bomb.first, bomb.second->get_state();); }
     virtual void defuse_bomb(const player_id_t& player_id) override;
     void move(player_id_t id, const Position& direction) override;
     void spawn_collider(player_id_t id_spawn, collider_solicitude_t& wanted) override;

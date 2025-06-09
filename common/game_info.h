@@ -26,6 +26,7 @@ public:
     ~Skins() = default;
 };
 class WeaponInfo {
+public:
     WeaponInfo(WeaponCode code, uint16_t price): code(code), price(price) {}
     ~WeaponInfo() {}
     WeaponCode code;
@@ -33,6 +34,7 @@ class WeaponInfo {
 };
 class RectangleInfo {
 public:
+    RectangleInfo() = default;
     Position pos_min;
     Position pos_max;
     RectangleInfo(const Position& pos_min, const Position& pos_max):
@@ -43,6 +45,7 @@ class MapInfo {
 public:
     RectangleInfo bomb_A, bomb_B, spawn_TT, spawn_CT;
     std::vector<Position> walls;
+    MapInfo() = default;
     MapInfo(const RectangleInfo& bomb_A, const RectangleInfo& bomb_B, const RectangleInfo& spawn_TT,
             const RectangleInfo& spawn_CT, const std::vector<Position>& walls):
             bomb_A(bomb_A), bomb_B(bomb_B), spawn_TT(spawn_TT), spawn_CT(spawn_CT), walls(walls) {}
@@ -52,8 +55,10 @@ public:
 class GameInfo {
 public:
     GameInfo() {}
+    GameInfo(const MapInfo& map_info, const std::vector<WeaponInfo>& weapons_purchasables):
+            map_info(map_info), weapons_purchasables(weapons_purchasables) {}
     ~GameInfo() {}
-    std::vector<Position> walls;
+    MapInfo map_info;
+    std::vector<WeaponInfo> weapons_purchasables;
 };
-
 #endif  // !GAME_INFO_H

@@ -25,11 +25,26 @@ public:
             ct_skin(ct_skin), tt_skin(tt_skin) {}
     ~Skins() = default;
 };
+class RectangleInfo {
+public:
+    Position pos_min;
+    Position pos_max;
+    RectangleInfo(const Position& pos_min, const Position& pos_max):
+            pos_min(pos_min), pos_max(pos_max) {}
+};
 
+class MapInfo {
+public:
+    RectangleInfo bomb_A, bomb_B, spawn_TT, spawn_CT;
+    std::vector<Position> walls;
+    MapInfo(const RectangleInfo& bomb_A, const RectangleInfo& bomb_B, const RectangleInfo& spawn_TT,
+            const RectangleInfo& spawn_CT, const std::vector<Position>& walls):
+            bomb_A(bomb_A), bomb_B(bomb_B), spawn_TT(spawn_TT), spawn_CT(spawn_CT), walls(walls) {}
+    ~MapInfo() {}
+};
 
 class GameInfo {
 public:
-    std::vector<Position> walls;
     GameInfo() {}
     ~GameInfo() {}
 };

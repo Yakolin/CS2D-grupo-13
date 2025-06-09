@@ -91,10 +91,10 @@ void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage&
     PlayerEntity player_caster = players_in_map[caster];
     Vector2f pos_caster(player_caster.position.x, player_caster.position.y);
     Vector2f end = collider_damage.collider->get_end();
-    if (check_bullet_wall(pos_caster, end))
-        return;
     check_damage_players(caster, collider_damage, players_affected);
     if (players_affected.empty()) {
+        if (check_bullet_wall(pos_caster, end))
+            return;
         add_bullet_image(pos_caster, end);
         return;
     }
@@ -112,6 +112,8 @@ void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage&
             nearest = player;
         }
     }
+    if (check_bullet_wall(pos_caster, pos_nearest))
+        return;
     if (nearest.player.lock()) {
         uint8_t damage = collider_damage.damage_calculator(min_distance);
         int chance = rand() % 3;

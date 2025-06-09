@@ -13,6 +13,7 @@
 #include "../controller.h"
 #include "../tipos.h"
 #include "camera.h"
+#include "bomb.h"
 #include "manageTexture.h"
 #include "mapView.h"
 #include "playerView.h"
@@ -42,7 +43,7 @@ private:
     Text* text;
     Uint32 lastTime ;
     FieldOfView* fov;
-
+    bool bomb_activate;
 
     bool handle_events(const SDL_Event& evento);
 
@@ -75,7 +76,7 @@ public:
     pre:
     post:
     */
-    void draw_game();
+    void draw_game(const std::vector<Position> walls);
 
     bool add_player(float x, float y ,int speed, const std::string& img );
 

@@ -85,7 +85,7 @@ void Vista::run() {
                 return;
             }
         }
-        gameView.draw_game();
+        gameView.draw_game(walls);
     } catch (const std::exception& e) {
         std::cerr << "Excepción atrapada en vista: " << e.what() << std::endl;
     } catch (...) {

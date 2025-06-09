@@ -17,7 +17,8 @@ GameView::GameView(Socket&& skt):
         map(nullptr),
         text(nullptr),
         lastTime(SDL_GetTicks()) , 
-        fov(nullptr)
+        fov(nullptr),
+        bomb_activate(false)
 {
     texts = {{TextView::VIDA, "Vida : 0 "},
              {TextView::PUNTOS, "Puntos : 0"},
@@ -198,8 +199,14 @@ bool GameView::handle_events(const SDL_Event& event) {
 
     } else if (event.type == SDL_KEYDOWN) {
         SDL_Keycode tecla = event.key.keysym.sym;
+        controller.sender_mov_player(tecla); 
+        if (event.key.keysym.sym == SDLK_5) {
+            // El jugador presionó la tecla 5
+            std::cout << "Tecla 5 presionada" << std::endl;
+            return true;
+            // Aquí podés activar la bomba o cualquier otra acción
+        }
         player->add_speed(tecla);
-        controller.sender_mov_player(tecla);  // Notifica al controller (si querés)
 
         return true;
 
@@ -245,9 +252,9 @@ bool GameView::add_player(float x, float y, int speed, const std::string& img) {
     return true;
 }
 
-void GameView::draw_game() {
+void GameView::draw_game(const std::vector<Position> walls) {
 
-    this->map = new MapView("assets/pueblito_azteca.txt", &camera, &manger_texture, config);
+    this->map = new MapView(walls,&camera, &manger_texture, config);
     if (!map) {
         throw std::runtime_error("Error al cargar mapa");
         return;
@@ -256,6 +263,8 @@ void GameView::draw_game() {
 
     text = new Text(&manger_texture, TextView::VIDA, 10, 10);
     SDL_Event event;
+
+   // Bomb bomba = Bomb(player,camera,manger_texture,config);
 
     auto keep_running = [&]() -> bool {
         while (SDL_PollEvent(&event)) {
@@ -292,6 +301,9 @@ void GameView::draw_game() {
         draw_players();
         text->draw(*renderer);
         fov->draw(*renderer);
+        //if(bomb_activate){
+        //    bomba.draw(*renderer);
+        //}
 
         SDL_RenderPresent(renderer);
     };

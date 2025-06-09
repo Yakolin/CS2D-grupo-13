@@ -6,6 +6,18 @@ ManageTexture::ManageTexture(SDL_Renderer* renderer):
     renderer(renderer)
     {}
 
+
+
+void ManageTexture::calculate_dimensions(int& width_img, int& height_img,const Weapon& clave) {
+
+    SDL_Texture* texture = get_weapon(clave);
+    if (texture) {
+        std::cerr << "Error: No se pudo cargar la textura ." << std::endl;
+        return;
+    }
+    SDL_QueryTexture(texture, nullptr, nullptr, &width_img, &height_img);
+}
+
 bool ManageTexture::load(const Object& id, const std::string& filePath, SDL_Renderer* renderer) {
     SDL_Surface* surface = IMG_Load(filePath.c_str());
     if (!surface) {
@@ -111,9 +123,6 @@ SDL_Texture* ManageTexture::create_stencil(const int& ancho, const int& alto,con
 
     return stencil;
 }
-
-
-
 
 
 bool ManageTexture::load_weapons(const Weapon& id, const std::string& filePath, SDL_Renderer* renderer) {

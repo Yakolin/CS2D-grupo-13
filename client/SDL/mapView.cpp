@@ -1,7 +1,7 @@
 #include "mapView.h"
-MapView::MapView(const std::string& rute, Camera* camera_reseiver, ManageTexture* manejador,GameConfig& config):
+MapView::MapView(const std::vector<Position> walls, Camera* camera_reseiver, ManageTexture* manejador,GameConfig& config):
         config(config),
-        mapa(config.load_map(rute)),
+        mapa(cargar_coordenadas(walls)),
         width_map(mapa[0].size() * config.get_tile_width()),  // camara
         height_map(mapa.size() * config.get_tile_height()),    // camara
         camera(camera_reseiver),
@@ -16,6 +16,23 @@ MapView::MapView(const std::string& rute, Camera* camera_reseiver, ManageTexture
     ids['B'] = Object::ZONE_BOMBA1;
     ids['T'] = Object::ZONE_TERRORIST;
     ids['C'] = Object::ZONE_COUNTERTERROSIT;
+}
+
+
+std::vector<std::vector<char>>  MapView::cargar_coordenadas(const std::vector<Position> walls ) {
+
+    int max_fila = 0;
+    int max_columna = 0;
+    for (const Position& p : walls) {
+        if (p.y > max_fila) max_fila = p.y;
+        if (p.x > max_columna) max_columna = p.x;
+    }
+    std::vector<std::vector<char>> mapa(max_fila + 1, std::vector<char>(max_columna + 1, '.'));
+    for (const Position& p : walls) {
+        mapa[p.y][p.x] = '#';
+    }
+
+    return mapa;
 }
 
 void MapView::update_map_dimensions() {

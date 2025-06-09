@@ -12,6 +12,7 @@
 class ManageTexture {
 public:
 
+
     explicit ManageTexture(SDL_Renderer* renderer);
 
     bool load(const Object& id, const std::string& filePath, SDL_Renderer* renderer);
@@ -36,6 +37,8 @@ public:
     void remove(const TextView& id);
     
     void clear();
+
+    void calculate_dimensions(int& width_img, int& height_img,const Weapon& clave) ;
 
 private:
     SDL_Renderer* renderer;

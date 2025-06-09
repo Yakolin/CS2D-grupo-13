@@ -26,7 +26,7 @@ typedef struct ColliderDamage {
 class CollisionManager {
     std::vector<std::vector<char>>& walls;
     std::map<player_id_t, player_entity_t>& players_in_map;
-    std::map<player_id_t, ColliderDamage> damage_colliders;
+    std::pair<player_id_t, ColliderDamage> damage_collider;
     std::pair<Position, std::shared_ptr<Bomb>>& bomb;
     std::map<Position, std::shared_ptr<IInteractuable>> dropped_things;
     std::vector<BulletImage> bullets_image;

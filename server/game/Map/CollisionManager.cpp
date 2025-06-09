@@ -121,16 +121,14 @@ void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage&
 }
 
 void CollisionManager::check_damage() {
-    // A lo sumo hay 10 colliders creo, no deberia haber problema con complejidad)?
-    for (auto& collider: damage_colliders) check_damage_collider(collider.first, collider.second);
-    damage_colliders.clear();
+    check_damage_collider(damage_collider.first, damage_collider.second);
 }
 
 void CollisionManager::drop(Position& player_position, std::shared_ptr<IInteractuable>& dropable) {
     this->dropped_things.insert(std::make_pair(player_position, std::move(dropable)));
 }
 void CollisionManager::add_damage_collider(player_id_t id, ColliderDamage& collider_damage) {
-    damage_colliders.insert(std::make_pair(id, std::move(collider_damage)));
+    damage_collider = std::make_pair(id, std::move(collider_damage));
 }
 std::vector<WeaponDropped> CollisionManager::get_dropped_things_images() {
     std::vector<WeaponDropped> weapon_images;

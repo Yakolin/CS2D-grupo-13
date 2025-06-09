@@ -36,8 +36,8 @@ public:
             position(pos), activate(activate), dropped(dropped) {}
     WeaponCode weapon_code = WeaponCode::BOMB;
     Position position;
-    bool activate;
-    bool dropped;
+    bool activate = false;
+    bool dropped = false;
 };
 
 class WeaponDropped {

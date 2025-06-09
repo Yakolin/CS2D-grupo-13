@@ -6,7 +6,8 @@ Weapon::weapon_specs_t WeaponFactory::find_weapon_specs(WeaponCode code) {
         throw std::runtime_error("Error while reading a weapon config");
     GameConfig::WeaponConfig& config = it->second;
     Weapon::weapon_specs_t specs = {config.price, config.damage,    config.fire_rate,
-                                    config.max_b, config.current_b, config.current_b};
+                                    config.max_b, config.current_b, config.current_b,
+                                    config.width, config.distance};
     return specs;
 }
 std::shared_ptr<Weapon> WeaponFactory::weapon_create(WeaponCode code) {

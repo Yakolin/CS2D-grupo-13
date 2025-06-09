@@ -7,6 +7,7 @@
 #include "../../../common/game_image.h"
 #include "../../../common/player_command_types.h"
 #include "../Colliders/Colliders.h"
+#include "../Config/GameConfig.h"
 #include "../Map/ISpawneableZone.h"
 
 #include "IInteractuable.h"
@@ -19,6 +20,8 @@ public:
         uint8_t inventory_bullets;
         uint8_t current_bullets;
         uint8_t magazine;
+        uint8_t width;
+        uint8_t distance;
     } weapon_specs_t;
 
     weapon_specs_t specs;
@@ -34,7 +37,7 @@ public:
 
 class NullWeapon: public Weapon {
 public:
-    NullWeapon(): Weapon(WeaponCode::NONE, {0, 0, 0, 0, 0, 0}) {}
+    NullWeapon(): Weapon(WeaponCode::NONE, {0, 0, 0, 0, 0, 0, 0, 0}) {}
     ~NullWeapon() = default;
 
     virtual bool set_on_action([[maybe_unused]] ISpawneableZone& spawn,

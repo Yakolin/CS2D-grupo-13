@@ -19,6 +19,8 @@ public:
         uint8_t fire_rate;
         uint8_t max_b;
         uint8_t current_b;
+        uint8_t width;
+        uint8_t distance;
     } weapon_config_t;
 
     std::map<WeaponCode, WeaponConfig> weapon_configs;

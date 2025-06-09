@@ -5,18 +5,24 @@ Weapons:
     fire_rate: 3
     max_bullets: 90
     magazine: 30
+    width: 2
+    distance: 20
   Glock: 
     price: 500
     damage: 10
     fire_rate: 1 
     max_bullets: 120
     magazine: 30
+    width: 2
+    distance: 15
   Knife: 
     price: 0
     damage: 25
     fire_rate: 1
     max_bullets: 0
     magazine: 0
+    width: 4
+    distance: 2
 
 Player:
   health: 100

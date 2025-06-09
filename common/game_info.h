@@ -25,6 +25,12 @@ public:
             ct_skin(ct_skin), tt_skin(tt_skin) {}
     ~Skins() = default;
 };
+class WeaponInfo {
+    WeaponInfo(WeaponCode code, uint16_t price): code(code), price(price) {}
+    ~WeaponInfo() {}
+    WeaponCode code;
+    uint16_t price;
+};
 class RectangleInfo {
 public:
     Position pos_min;

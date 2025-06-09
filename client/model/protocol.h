@@ -22,10 +22,13 @@ private:
     void read_byte_data(uint8_t& data);
     void read_two_byte_data(uint16_t& data);
 
-    void read_client_id(GameImage& game_image);
+    void read_client_id(player_id_t& player_id);
     void read_position(Position& position);
     void read_weapons(std::vector<WeaponImage>& weapons);
-    void read_player_image(GameImage& game_image);
+    void read_player_image(std::vector<PlayerImage>& players_image);
+    void read_bullets_in_air(std::vector<BulletImage>& bullets_in_air);
+    void read_bomb(BombImage& game_image);
+    void read_weapons_dropped(std::vector<WeaponDropped>& weapons_dropped);
 
     void send_byte_data(uint8_t& data);
     void send_two_byte_data(uint16_t& data);

@@ -194,10 +194,10 @@ void ClientProtocol::read_two_byte_data(uint16_t& data) {
     data = ntohs(data_readed);
 }
 
-void ClientProtocol::read_client_id(GameImage& game_image) {
-    player_id_t client_id;
-    this->read_two_byte_data(client_id);
-    game_image.client_id = client_id;
+void ClientProtocol::read_client_id(player_id_t& player_id) {
+    player_id_t id;
+    this->read_two_byte_data(id);
+    player_id = id;
 }
 
 void ClientProtocol::read_position(Position& position) {
@@ -230,9 +230,12 @@ void ClientProtocol::read_weapons(std::vector<WeaponImage>& weapons) {
     }
 }
 
-void ClientProtocol::read_player_image(GameImage& game_image) {
+void ClientProtocol::read_player_image(std::vector<PlayerImage>& players_images) {
     length_players_images_t length_players_images;
     this->read_two_byte_data(length_players_images);
+
+    players_images.clear();
+    players_images.reserve(length_players_images);
 
     for (auto i = 0; i < length_players_images; ++i) {
         player_id_t player_id;
@@ -265,17 +268,69 @@ void ClientProtocol::read_player_image(GameImage& game_image) {
         TerroristSkin tt = static_cast<TerroristSkin>(tt_skin);
         Skins skins(ct, tt);
 
-        game_image.players_images.emplace_back(PlayerImage(player_id, position_player, health,
-                                                           points, std::move(weapons), team,
-                                                           position_mouse, skins));
+        players_images.emplace_back(PlayerImage(player_id, position_player, health, points,
+                                                std::move(weapons), team, position_mouse, skins));
+    }
+}
+
+void ClientProtocol::read_bullets_in_air(std::vector<BulletImage>& bullets_in_air) {
+    length_bullets_in_air_t length_bullets;
+    this->read_two_byte_data(length_bullets);
+
+    bullets_in_air.clear();
+    bullets_in_air.reserve(length_bullets);
+
+    for (length_bullets_in_air_t i = 0; i < length_bullets; ++i) {
+        Position initial, end;
+        this->read_position(initial);
+        this->read_position(end);
+        bullets_in_air.emplace_back(BulletImage(initial, end));
+    }
+}
+
+void ClientProtocol::read_bomb(BombImage& bomb_image) {
+    weapon_code_t bomb_code;
+    this->read_byte_data(bomb_code);
+    bomb_image.weapon_code = static_cast<WeaponCode>(bomb_code);
+
+    Position position;
+    this->read_position(position);
+    bomb_image.position = position;
+
+    uint8_t activate;
+    this->read_byte_data(activate);
+    bomb_image.activate = static_cast<bool>(activate);
+
+    uint8_t dropped;
+    this->read_byte_data(dropped);
+    bomb_image.dropped = static_cast<bool>(dropped);
+}
+
+void ClientProtocol::read_weapons_dropped(std::vector<WeaponDropped>& weapons_dropped) {
+    length_weapons_dropped_t length;
+    this->read_byte_data(length);
+
+    weapons_dropped.clear();
+    weapons_dropped.reserve(length);
+
+    for (length_weapons_dropped_t i = 0; i < length; ++i) {
+        weapon_code_t weapon_code;
+        this->read_byte_data(weapon_code);
+
+        Position position;
+        this->read_position(position);
+
+        weapons_dropped.emplace_back(WeaponDropped(static_cast<WeaponCode>(weapon_code), position));
     }
 }
 
 GameImage ClientProtocol::read_game_image() {
     GameImage game_image;
 
-    this->read_client_id(game_image);
-    this->read_player_image(game_image);
+    this->read_client_id(game_image.client_id);
+    this->read_player_image(game_image.players_images);
+    this->read_bomb(game_image.bomb);
+    this->read_weapons_dropped(game_image.dropped_things);
 
     return game_image;
 }

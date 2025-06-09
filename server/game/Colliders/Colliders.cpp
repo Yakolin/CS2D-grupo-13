@@ -32,3 +32,8 @@ Position Rectangle::get_random_position() {
     uint16_t y = point_min.y + rand() % (point_max.y - point_min.y);
     return Position(x, y);
 }
+Rectangle& Rectangle::operator=(Rectangle&& other) {
+    this->point_max = std::move(other.point_max);
+    this->point_min = std::move(other.point_max);
+    return *this;
+}

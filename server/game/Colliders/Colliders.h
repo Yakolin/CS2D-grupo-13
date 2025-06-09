@@ -38,11 +38,10 @@ public:
 };
 
 class Rectangle: public Collider {
-private:
-    Position point_min;
-    Position point_max;
 
 public:
+    Position point_min;
+    Position point_max;
     Rectangle() = default;
 
     Rectangle(coordinate_t width, coordinate_t height, const Position& point):
@@ -51,7 +50,7 @@ public:
 
     Rectangle(Position& point_min, Position& point_max):
             point_min(std::move(point_min)), point_max(std::move(point_max)) {}
-
+    Rectangle& operator=(Rectangle&& other);
     virtual bool is_in(const Position& position) override;
     Position get_random_position();
     virtual ~Rectangle() override = default;

@@ -11,7 +11,7 @@ bool CollisionManager::check_movement(player_id_t id, const Position& next_posit
     // Aca los destinos son distintos porque la matriz esta "invertida" con respecto a los vectores
     int x = destino.x;
     int y = destino.y;
-    if (!is_a_wall(x,y)) {
+    if (!is_a_wall(x, y)) {
         it->second.position += next_position;
         if (it->second.player.lock()->get_team() == Team::TT)
             check_bomb_stepped(it->second);
@@ -35,7 +35,7 @@ void CollisionManager::check_weapon_stepped(PlayerEntity& player) {
     if (player.player.lock() && player.player.lock()->equip(it->second))
         dropped_things.erase(it);
 }
-void CollisionManager::add_bullet_image(Vector2f& initial_pos, Vector2f& final_pos){
+void CollisionManager::add_bullet_image(Vector2f& initial_pos, Vector2f& final_pos) {
     coordinate_t x_initial = static_cast<coordinate_t>(std::round(initial_pos.x));
     coordinate_t y_initial = static_cast<coordinate_t>(std::round(initial_pos.y));
     coordinate_t x_final = static_cast<coordinate_t>(std::round(final_pos.x));
@@ -45,20 +45,25 @@ void CollisionManager::add_bullet_image(Vector2f& initial_pos, Vector2f& final_p
     BulletImage image(initial_cast, end_cast);
     bullets_image.push_back(std::move(image));
 }
-bool CollisionManager::is_a_wall(coordinate_t x, coordinate_t y) {
-    return walls[x][y] == Wall;
-}   
-bool CollisionManager::check_bullet_wall(Vector2f& initial_pos, Vector2f& final_pos){
+bool CollisionManager::is_a_wall(coordinate_t x, coordinate_t y) { return walls[x][y] == Wall; }
+bool CollisionManager::check_bullet_wall(Vector2f& initial_pos, Vector2f& final_pos) {
+    
     coordinate_t x_initial = static_cast<coordinate_t>(std::round(initial_pos.x));
     coordinate_t y_initial = static_cast<coordinate_t>(std::round(initial_pos.y));
     coordinate_t x_final = static_cast<coordinate_t>(std::round(final_pos.x));
     coordinate_t y_final = static_cast<coordinate_t>(std::round(final_pos.y));
     coordinate_t x_i = x_initial;
     coordinate_t y_i = y_initial;
+    int dx = std::abs(x_initial - x_final);
+    int dy = std::abs(y_initial - y_final);
+    int step_x = (x_initial < x_final) ? 1 : -1;
+    int step_y = (y_initial < y_final) ? 1 : -1;
+    while (x_i <= x_final && )
     return false;
 }
-std::vector<BulletImage> CollisionManager::get_bullets_image() { return bullets_image;}
-void CollisionManager::check_damage_players(player_id_t caster ,ColliderDamage& collider_damage,std::vector<PlayerEntity>& players_affected){
+std::vector<BulletImage> CollisionManager::get_bullets_image() { return bullets_image; }
+void CollisionManager::check_damage_players(player_id_t caster, ColliderDamage& collider_damage,
+                                            std::vector<PlayerEntity>& players_affected) {
     for (auto& player: players_in_map) {
         if (player.first == caster)
             continue;
@@ -72,9 +77,10 @@ void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage&
     PlayerEntity player_caster = players_in_map[caster];
     Vector2f pos_caster(player_caster.position.x, player_caster.position.y);
     Vector2f end = collider_damage.collider->get_end();
-    if (check_bullet_wall(pos_caster, end)) return;
+    if (check_bullet_wall(pos_caster, end))
+        return;
     check_damage_players(caster, collider_damage, players_affected);
-    if (players_affected.empty()){
+    if (players_affected.empty()) {
         add_bullet_image(pos_caster, end);
         return;
     }

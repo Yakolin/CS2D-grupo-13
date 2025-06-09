@@ -32,7 +32,7 @@ public:
     Line(const Vector2f& start, const Vector2f& end, uint8_t width):
             start(std::move(start)), end(std::move(end)), width(width) {}
     float distance(Vector2f& other);
-    Vector2f get_end() override { return end;}
+    Vector2f get_end() override { return end; }
     virtual ~Line() override = default;
     virtual bool is_in(const Position& position) override;
 };
@@ -55,7 +55,7 @@ public:
     virtual bool is_in(const Position& position) override;
     Position get_random_position();
     virtual ~Rectangle() override = default;
-    Vector2f get_end() override { return Vector2f(point_max.x, point_max.y);}
+    Vector2f get_end() override { return Vector2f(point_max.x, point_max.y); }
 };
 
 class Circle {};

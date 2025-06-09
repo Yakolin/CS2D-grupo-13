@@ -188,9 +188,7 @@ void ServerProtocol::send_game_info(GameInfo& game_info) {
     }
 }
 
-void ServerProtocol::send_client_id(player_id_t& client_id) {
-    this->send_two_byte_data(client_id);
-}
+void ServerProtocol::send_client_id(player_id_t& client_id) { this->send_two_byte_data(client_id); }
 
 void ServerProtocol::send_weapons(const PlayerImage& player_image) {
     length_weapons_images_t length_weapons = player_image.weapons.size();
@@ -245,17 +243,11 @@ void ServerProtocol::send_player_image(std::vector<PlayerImage>& players_images)
 }
 
 void ServerProtocol::send_bullets_in_air(std::vector<BulletImage>& game_image);
-
 }
 
-void send_bomb(BombImage& bomb_image) {
+void send_bomb(BombImage& bomb_image) {}
 
-}
-
-void send_weapons_droppped(std::vector<WeaponsDropped>& weapons_dropped) {
-
-
-}
+void send_weapons_droppped(std::vector<WeaponsDropped>& weapons_dropped) {}
 
 void ServerProtocol::send_game_image(GameImage& game_image) {
     player_id_t client_id = game_image.client_id;

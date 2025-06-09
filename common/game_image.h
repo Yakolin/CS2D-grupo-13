@@ -16,19 +16,20 @@ using points_t = std::uint8_t;
 using length_players_images_t = std::uint16_t;
 using length_weapons_images_t = std::uint8_t;
 using length_bullets_in_air_t = std::uint16_t;
-using length_weapons_dropped_t =std::uint8_t;
+using length_weapons_dropped_t = std::uint8_t;
 using team_t = std::uint8_t;
 
 enum class Team { CT, TT };
 class BulletImage {
-    public:
+public:
     Position initial;
     Position end;
-    BulletImage(const Position& initial, const Position& end): initial(initial) , end(end) {}
+    BulletImage(const Position& initial, const Position& end): initial(initial), end(end) {}
     ~BulletImage() {}
 };
 
-class BombImage { //esto deberia tener un ennum de estado BombState que puede ser dropped o activate o lo que sea
+class BombImage {  // esto deberia tener un ennum de estado BombState que puede ser dropped o
+                   // activate o lo que sea
 public:
     BombImage() = default;
     BombImage(Position pos, bool activate, bool dropped):

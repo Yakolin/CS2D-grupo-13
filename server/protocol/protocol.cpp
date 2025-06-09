@@ -251,7 +251,7 @@ void ServerProtocol::send_bullets_in_air(std::vector<BulletImage>& bullets_in_ai
     }
 }
 
-void ServerProtocol::send_bomb(BombImage& bomb_image) {
+void ServerProtocol::send_bomb_image(BombImage& bomb_image) {
     weapon_code_t bomb_code = static_cast<weapon_code_t>(bomb_image.weapon_code);
     this->send_byte_data(bomb_code);
 
@@ -261,12 +261,12 @@ void ServerProtocol::send_bomb(BombImage& bomb_image) {
     this->send_byte_data(activate);
 
     uint8_t dropped = static_cast<uint8_t>(bomb_image.dropped);
-    this->send_byte_data(dropped)
+    this->send_byte_data(dropped);
 }
 
 void ServerProtocol::send_weapons_dropped(std::vector<WeaponDropped>& weapons_dropped) {
-    length_weapons_dropped_t weapons_dropped = weapons_dropped.size();
-    this->send_byte_data(weapons_dropped);
+    length_weapons_dropped_t weapons_length = weapons_dropped.size();
+    this->send_byte_data(weapons_length);
     for (const WeaponDropped& weapon_dropped: weapons_dropped) {
         weapon_code_t weapon_code = static_cast<weapon_code_t>(weapon_dropped.weapon_code);
         this->send_byte_data(weapon_code);
@@ -280,7 +280,7 @@ void ServerProtocol::send_game_image(GameImage& game_image) {
     this->send_client_id(client_id);
 
     std::vector<PlayerImage> players_images = game_image.players_images;
-    this->send_player_image(players_images);
+    this->send_players_images(players_images);
 
     BombImage bomb_image = game_image.bomb;
     this->send_bomb_image(bomb_image);

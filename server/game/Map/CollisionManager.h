@@ -7,6 +7,7 @@
 #include <vector>
 
 #include "../../../common/utility.h"
+#include "../../../common/game_image.h"
 #include "../Colliders/Colliders.h"
 #include "../Player/ICanInteract.h"
 #include "../Weapons/IInteractuable.h"
@@ -28,6 +29,12 @@ class CollisionManager {
     std::map<player_id_t, ColliderDamage> damage_colliders;
     std::pair<Position, std::shared_ptr<Bomb>>& bomb;
     std::map<Position, std::shared_ptr<IInteractuable>> dropped_things;
+    std::vector<BulletImage> bullets_image;
+    void add_bullet_image(Vector2f& initial_pos, Vector2f& final_pos);
+    Position get_hit_pos(Position& initial ,Position& end);
+    bool is_a_wall(coordinate_t x, coordinate_t y);
+    void check_damage_players(player_id_t caster ,ColliderDamage& collider_damage,std::vector<PlayerEntity>& players_affected);
+    bool check_bullet_wall(Vector2f& initial_pos, Vector2f& final_pos);
     void check_weapon_stepped(PlayerEntity& player);
     void check_damage_collider(player_id_t caster, ColliderDamage& collider);
     void check_bomb_stepped(PlayerEntity& player);
@@ -42,6 +49,7 @@ public:
     void drop(Position& player_position, std::shared_ptr<IInteractuable>& dropable);
     void add_damage_collider(player_id_t id, ColliderDamage& collider_damage);
     std::vector<WeaponDropped> get_dropped_things_images();
+    std::vector<BulletImage> get_bullets_image();
 };
 
 #endif  // COLLISION_MANAGER_H_

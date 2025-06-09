@@ -5,11 +5,6 @@
 #include <utility>
 
 #include "../../../common/utility.h"
-class Collider {
-public:
-    virtual bool is_in(const Position& position) = 0;
-    virtual ~Collider() = 0;
-};
 class Vector2f {
 public:
     float x;
@@ -20,6 +15,14 @@ public:
     Vector2f(float x, float y): x(x), y(y) {}
     ~Vector2f() = default;
 };
+
+class Collider {
+public:
+    virtual bool is_in(const Position& position) = 0;
+    virtual ~Collider() = 0;
+    virtual Vector2f get_end() = 0;
+};
+
 class Line: public Collider {
     Vector2f start;
     Vector2f end;
@@ -29,6 +32,7 @@ public:
     Line(const Vector2f& start, const Vector2f& end, uint8_t width):
             start(std::move(start)), end(std::move(end)), width(width) {}
     float distance(Vector2f& other);
+    Vector2f get_end() override { return end;}
     virtual ~Line() override = default;
     virtual bool is_in(const Position& position) override;
 };
@@ -51,6 +55,7 @@ public:
     virtual bool is_in(const Position& position) override;
     Position get_random_position();
     virtual ~Rectangle() override = default;
+    Vector2f get_end() override { return Vector2f(point_max.x, point_max.y);}
 };
 
 class Circle {};

@@ -188,8 +188,7 @@ void ServerProtocol::send_game_info(GameInfo& game_info) {
     }
 }
 
-void ServerProtocol::send_client_id(GameImage& game_image) {
-    player_id_t client_id = game_image.client_id;
+void ServerProtocol::send_client_id(player_id_t& client_id) {
     this->send_two_byte_data(client_id);
 }
 
@@ -213,9 +212,7 @@ void ServerProtocol::send_weapons(const PlayerImage& player_image) {
     }
 }
 
-void ServerProtocol::send_player_image(GameImage& game_image) {
-
-    std::vector<PlayerImage> players_images = game_image.players_images;
+void ServerProtocol::send_player_image(std::vector<PlayerImage>& players_images) {
     length_players_images_t length_players = players_images.size();
     this->send_two_byte_data(length_players);
 
@@ -247,7 +244,29 @@ void ServerProtocol::send_player_image(GameImage& game_image) {
     }
 }
 
+void ServerProtocol::send_bullets_in_air(std::vector<BulletImage>& game_image);
+
+}
+
+void send_bomb(BombImage& bomb_image) {
+
+}
+
+void send_weapons_droppped(std::vector<WeaponsDropped>& weapons_dropped) {
+
+
+}
+
 void ServerProtocol::send_game_image(GameImage& game_image) {
-    this->send_client_id(game_image);
-    this->send_player_image(game_image);
+    player_id_t client_id = game_image.client_id;
+    this->send_client_id(client_id);
+
+    std::vector<PlayerImage> players_images = game_image.players_images;
+    this->send_player_image(players_images);
+
+    BombImage bomb_image = game_image.bomb;
+    this->send_bomb_image(bomb_image);
+
+    std::vector<WeaponsDropped> weapons_dropped = game_image.dropped_things;
+    this->send_weapons_dropped(weapons_dropped);
 }

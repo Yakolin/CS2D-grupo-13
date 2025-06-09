@@ -15,19 +15,30 @@ using health_t = std::uint8_t;
 using points_t = std::uint8_t;
 using length_players_images_t = std::uint16_t;
 using length_weapons_images_t = std::uint8_t;
+using length_bullets_in_air_t = std::uint16_t;
+using length_weapons_dropped_t =std::uint8_t;
 using team_t = std::uint8_t;
 
 enum class Team { CT, TT };
-class BombImage {
+class BulletImage {
+    public:
+    Position initial;
+    Position end;
+    BulletImage(const Position& initial, const Position& end): initial(initial) , end(end) {}
+    ~BulletImage() {}
+};
+
+class BombImage { //esto deberia tener un ennum de estado BombState que puede ser dropped o activate o lo que sea
 public:
     BombImage() = default;
     BombImage(Position pos, bool activate, bool dropped):
             position(pos), activate(activate), dropped(dropped) {}
     WeaponCode weapon_code = WeaponCode::BOMB;
-    Position position = Position();
-    bool activate = false;
-    bool dropped = false;
+    Position position;
+    bool activate;
+    bool dropped;
 };
+
 class WeaponDropped {
 public:
     WeaponDropped(WeaponCode weapon_code, Position pos): weapon_code(weapon_code), position(pos) {}
@@ -83,7 +94,7 @@ public:
     uint8_t time = 0;
     uint8_t round = 0;
 
-    // Balas en el aire
+    std::vector<BulletImage> bullets_in_air;
     BombImage bomb;
     std::vector<WeaponDropped> dropped_things;
 };

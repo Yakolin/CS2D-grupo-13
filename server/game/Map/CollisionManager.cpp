@@ -11,7 +11,7 @@ bool CollisionManager::check_movement(player_id_t id, const Position& next_posit
     // Aca los destinos son distintos porque la matriz esta "invertida" con respecto a los vectores
     int x = destino.x;
     int y = destino.y;
-    if (walls[y][x] != Wall) {
+    if (!is_a_wall(x,y)) {
         it->second.position += next_position;
         if (it->second.player.lock()->get_team() == Team::TT)
             check_bomb_stepped(it->second);
@@ -35,10 +35,30 @@ void CollisionManager::check_weapon_stepped(PlayerEntity& player) {
     if (player.player.lock() && player.player.lock()->equip(it->second))
         dropped_things.erase(it);
 }
-void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage& collider_damage) {
-    std::vector<PlayerEntity> players_affected;
-    PlayerEntity player_caster = players_in_map[caster];
-    // A lo sumo 10 players, no es algo costoso
+void CollisionManager::add_bullet_image(Vector2f& initial_pos, Vector2f& final_pos){
+    coordinate_t x_initial = static_cast<coordinate_t>(std::round(initial_pos.x));
+    coordinate_t y_initial = static_cast<coordinate_t>(std::round(initial_pos.y));
+    coordinate_t x_final = static_cast<coordinate_t>(std::round(final_pos.x));
+    coordinate_t y_final = static_cast<coordinate_t>(std::round(final_pos.y));
+    Position initial_cast(x_initial, y_initial);
+    Position end_cast(x_final, y_final);
+    BulletImage image(initial_cast, end_cast);
+    bullets_image.push_back(std::move(image));
+}
+bool CollisionManager::is_a_wall(coordinate_t x, coordinate_t y) {
+    return walls[x][y] == Wall;
+}   
+bool CollisionManager::check_bullet_wall(Vector2f& initial_pos, Vector2f& final_pos){
+    coordinate_t x_initial = static_cast<coordinate_t>(std::round(initial_pos.x));
+    coordinate_t y_initial = static_cast<coordinate_t>(std::round(initial_pos.y));
+    coordinate_t x_final = static_cast<coordinate_t>(std::round(final_pos.x));
+    coordinate_t y_final = static_cast<coordinate_t>(std::round(final_pos.y));
+    coordinate_t x_i = x_initial;
+    coordinate_t y_i = y_initial;
+    return false;
+}
+std::vector<BulletImage> CollisionManager::get_bullets_image() { return bullets_image;}
+void CollisionManager::check_damage_players(player_id_t caster ,ColliderDamage& collider_damage,std::vector<PlayerEntity>& players_affected){
     for (auto& player: players_in_map) {
         if (player.first == caster)
             continue;
@@ -46,9 +66,18 @@ void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage&
             continue;
         players_affected.push_back(player.second);
     }
-    if (players_affected.empty())
-        return;
+}
+void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage& collider_damage) {
+    std::vector<PlayerEntity> players_affected;
+    PlayerEntity player_caster = players_in_map[caster];
     Vector2f pos_caster(player_caster.position.x, player_caster.position.y);
+    Vector2f end = collider_damage.collider->get_end();
+    if (check_bullet_wall(pos_caster, end)) return;
+    check_damage_players(caster, collider_damage, players_affected);
+    if (players_affected.empty()){
+        add_bullet_image(pos_caster, end);
+        return;
+    }
     PlayerEntity nearest = players_affected[0];
     Vector2f pos_nearest(nearest.position.x, nearest.position.y);
     float min_distance = pos_caster.distance(pos_nearest);
@@ -59,16 +88,16 @@ void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage&
         float aux = pos_caster.distance(new_pos);
         if (aux < min_distance) {
             min_distance = aux;
+            pos_nearest = new_pos;
             nearest = player;
         }
     }
-    // Si golpeaste un muro, cambia tu direccion a eso.
-    // Add BulletImage
     if (nearest.player.lock()) {
         uint8_t damage = collider_damage.damage_calculator(min_distance);
         nearest.player.lock()->damage(damage);
         if (nearest.player.lock()->is_dead())
             player_caster.player.lock()->get_points();
+        add_bullet_image(pos_caster, pos_nearest);
     }
 }
 

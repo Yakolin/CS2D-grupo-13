@@ -60,12 +60,10 @@ GameImage GameManager::generate_game_image() {
     }
     game_image.dropped_things = map_game.get_dropped_things_images();
     game_image.bomb = map_game.get_bomb_image();
-    /*
-    GameStateImage game_state_image(static_cast<GameState>(this->game_state),
-    static_cast<round_time_t>(timer.get_time_round()),
-    static_cast<round_t>(round));
-    */
-    // game_image.game_state = game_state_image;
+    GameStateImage game_state_image(game_stats.state,
+                                    static_cast<round_time_t>(timer.get_time_round()),
+                                    static_cast<round_t>(round));
+    game_image.game_state = game_state_image;
     return game_image;
 }
 void GameManager::give_bomb() {

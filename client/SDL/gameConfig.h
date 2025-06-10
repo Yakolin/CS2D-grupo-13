@@ -5,7 +5,7 @@
 #include <string>
 #include "../tipos.h"
 #include <unordered_map>
-
+#include <yaml-cpp/yaml.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <unordered_map>
@@ -37,21 +37,15 @@ public:
     int get_window_width() const;
 
     int get_window_height() const;
-    int get_window_height() const;
 
-    int get_tile_width() const;
     int get_tile_width() const;
 
     int get_tile_height() const;
-    int get_tile_height() const;
 
-    int get_viewpost_height() const;
     int get_viewpost_height() const;
 
     int get_viewpost_width() const;
-    int get_viewpost_width() const;
 
-    int get_size_font() const;
     int get_size_font() const;
 
     std::string get_route_font() const;

@@ -1,11 +1,14 @@
 #ifndef TEXTUREMANAGER_H
 #define TEXTUREMANAGER_H
+#include <array>
+#include <cmath>
 #include <string>
 #include <unordered_map>
-#include <cmath>
+
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
+
 #include "../tipos.h"
 #include <array>
 #include <vector>
@@ -17,8 +20,6 @@
 
 class ManageTexture {
 public:
-
-
     explicit ManageTexture(SDL_Renderer* renderer);
 
     std::vector<std::string> split(const std::string& s, char delimiter);
@@ -37,16 +38,17 @@ public:
 
     SDL_Texture* get_weapon(const Weapon& id) const;
 
-    bool load_texture_text(const TextView& id,TTF_Font* fuente, SDL_Color& color,const std::string& text, SDL_Renderer* renderer);
+    bool load_texture_text(const TextView& id, TTF_Font* fuente, SDL_Color& color,
+                           const std::string& text, SDL_Renderer* renderer);
 
-    SDL_Texture * get_texture_text(const TextView & id) const;
+    SDL_Texture* get_texture_text(const TextView& id) const;
 
     SDL_Rect get_rect(const TextView& id) const;
 
     SDL_Texture* get(const Object& id) const;
-    
+
     void remove(const TextView& id);
-    
+
     void clear();
 
     SDL_Texture* reder_menu_texture(const std::unordered_map<Weapon, ShopItem>& items,

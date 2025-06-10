@@ -1,10 +1,10 @@
-#ifndef  FIELDOFDVIEW_H
+#ifndef FIELDOFDVIEW_H
 #define FIELDOFVIEW_H
-#include "renderizable.h"
+#include "camera.h"
 #include "gameConfig.h"
 #include "manageTexture.h"
-#include "camera.h"
 #include "playerView.h"
+#include "renderizable.h"
 class FieldOfView: public Renderizable {
 
 private:
@@ -17,16 +17,17 @@ private:
 
 
 public:
-    explicit FieldOfView(PlayerView& player, Camera& camera,ManageTexture& manager,GameConfig& config_game);
+    explicit FieldOfView(PlayerView& player, Camera& camera, ManageTexture& manager,
+                         GameConfig& config_game);
 
 
-    void draw(SDL_Renderer& renderer) override ;
-    /** 
-     * pre: 
+    void draw(SDL_Renderer& renderer) override;
+    /**
+     * pre:
      * post:
      */
-    void actualizarStencil( const int nuevo_ancho, const int nuevo_alto,const  float apertura);
+    void actualizarStencil(const int nuevo_ancho, const int nuevo_alto, const float apertura);
 };
 
 
-#endif // FIELDOFVIEW_H
+#endif  // FIELDOFVIEW_H

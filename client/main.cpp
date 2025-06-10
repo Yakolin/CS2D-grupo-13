@@ -12,7 +12,7 @@ int main(int argc, char* argv[]) {
         return ERROR_CLIENT;
     }
     try {
-        
+
         Client client(argc, argv);
         client.run();
 

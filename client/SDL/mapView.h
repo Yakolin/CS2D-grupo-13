@@ -3,14 +3,17 @@
 #include <iostream>
 #include <map>
 #include <vector>
-#include "camera.h"
+
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_render.h>
 #include <SDL_surface.h>
 #include <SDL_video.h>
+
 #include "../../common/utility.h"
 #include "../tipos.h"
+
+#include "camera.h"
 #include "gameConfig.h"
 #include "playerView.h"
 #include "renderizable.h"
@@ -19,7 +22,8 @@
 class MapView: public Renderizable {
 
 public:
-    explicit MapView(const std::vector<Position> walls, Camera* camera_reseiver, ManageTexture* manejador,GameConfig& config);
+    explicit MapView(const std::vector<Position> walls, Camera* camera_reseiver,
+                     ManageTexture* manejador, GameConfig& config);
     ~MapView();
 
     /*

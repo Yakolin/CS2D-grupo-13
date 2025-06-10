@@ -299,6 +299,17 @@ void ServerProtocol::send_weapons_dropped(std::vector<WeaponDropped>& weapons_dr
     }
 }
 
+void ServerProtocol::send_game_state_image(GameStateImage& game_state_image) {
+    game_state_t state = static_cast<game_state_t>(game_state_image.state);
+    this->send_byte_data(state);
+
+    round_time_t time = game_state_image.time;
+    this->send_two_byte_data(time);
+
+    round_t round = game_state_image.round;
+    this->send_byte_data(round);
+}
+
 void ServerProtocol::send_game_image(GameImage& game_image) {
     player_id_t client_id = game_image.client_id;
     this->send_client_id(client_id);
@@ -306,9 +317,16 @@ void ServerProtocol::send_game_image(GameImage& game_image) {
     std::vector<PlayerImage> players_images = game_image.players_images;
     this->send_players_images(players_images);
 
+
+    std::vector<BulletImage> bullets_in_air = game_image.bullets_in_air;
+    this->send_bullets_in_air(bullets_in_air);
+
     BombImage bomb_image = game_image.bomb;
     this->send_bomb_image(bomb_image);
 
     std::vector<WeaponDropped> weapons_dropped = game_image.dropped_things;
     this->send_weapons_dropped(weapons_dropped);
+
+    GameStateImage game_state_image = game_image.game_state;
+    this->send_game_state_image(game_state_image);
 }

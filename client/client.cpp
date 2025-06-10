@@ -4,7 +4,7 @@ Client::Client(int& argc, char* argv[]): vista(argc, argv) {}
 
 
 int Client::run() {
-    
+
     try {
         vista.run();
     } catch (const std::exception& e) {

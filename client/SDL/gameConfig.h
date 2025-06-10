@@ -1,11 +1,11 @@
 #ifndef GAMECONFIG_H
 #define GAMECONFIG_H
 #include <fstream>
+#include <iostream>
 #include <string>
 #include "../tipos.h"
 #include <unordered_map>
-#include <iostream>
-#include <yaml-cpp/yaml.h>
+
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <unordered_map>
@@ -14,7 +14,7 @@ class GameConfig {
 private:
     int window_width;
     int window_height;
-    int  tile_width;
+    int tile_width;
     int tile_height;
     int viewport_width;
     int viewport_height;
@@ -37,15 +37,21 @@ public:
     int get_window_width() const;
 
     int get_window_height() const;
+    int get_window_height() const;
 
+    int get_tile_width() const;
     int get_tile_width() const;
 
     int get_tile_height() const;
+    int get_tile_height() const;
 
+    int get_viewpost_height() const;
     int get_viewpost_height() const;
 
     int get_viewpost_width() const;
+    int get_viewpost_width() const;
 
+    int get_size_font() const;
     int get_size_font() const;
 
     std::string get_route_font() const;
@@ -58,4 +64,4 @@ public:
     TTF_Font *get_font_game();
 };
 
-#endif // GAMECONFIG_H
+#endif  // GAMECONFIG_H

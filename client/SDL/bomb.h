@@ -2,17 +2,20 @@
 #define BOMB_H
 #include <iostream>
 #include <map>
-#include "camera.h"
+
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_render.h>
 #include <SDL_surface.h>
 #include <SDL_video.h>
-#include "manageTexture.h"
+
 #include "../tipos.h"
+
+#include "camera.h"
 #include "gameConfig.h"
-#include "renderizable.h"
+#include "manageTexture.h"
 #include "playerView.h"
+#include "renderizable.h"
 
 class Bomb: public Renderizable {
 
@@ -30,16 +33,16 @@ private:
     int angle;
     bool activada;
 
-    void update() ;
+    void update();
 
 public:
-    explicit Bomb( PlayerView& plaayer,Camera& camera_reseiver, ManageTexture& manejador,GameConfig& config);
+    explicit Bomb(PlayerView& plaayer, Camera& camera_reseiver, ManageTexture& manejador,
+                  GameConfig& config);
     ~Bomb();
 
     void draw(SDL_Renderer& renderer) override;
 
     bool get_activate() const;
-
 };
 
 #endif  // BOMB_H

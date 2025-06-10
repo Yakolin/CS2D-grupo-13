@@ -1,6 +1,7 @@
 #ifndef TIPOS_H
 #define TIPOS_H
 #include <string>
+
 #include <SDL2/SDL.h>
 
 enum class GameMenu { CREATE, JOIN, HELP, EXIT, NONE };
@@ -102,11 +103,11 @@ struct MedidasSprites {
     int width;
     int height;
 };
-struct infoPlayer{
+struct infoPlayer {
     std::string name_game;
     std::string team;
     int puntos;
-    int vida ;
+    int vida;
     int muertes;
 };
 struct TextureData {
@@ -114,7 +115,7 @@ struct TextureData {
     int width;
     int height;
 };
-struct Coordenada{
+struct Coordenada {
     float x;
     float y;
 };

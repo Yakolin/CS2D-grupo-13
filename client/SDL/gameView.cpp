@@ -7,7 +7,7 @@ GameView::GameView(Socket&& skt):
         texts(),
         ids(),
         ventana(init_window(config)),
-        renderer(init_renderer(ventana,config)),
+        renderer(init_renderer(ventana, config)),
         backgroundTexture(nullptr),
         player(nullptr),
         camera(config.get_window_width(), config.get_window_height()),
@@ -16,7 +16,7 @@ GameView::GameView(Socket&& skt):
         snapshot(),
         map(nullptr),
         text(nullptr),
-        lastTime(SDL_GetTicks()) , 
+        lastTime(SDL_GetTicks()),
         fov(nullptr),
         shop(camera,manger_texture,config)
 { 
@@ -42,10 +42,10 @@ GameView::GameView(Socket&& skt):
     ids['C'] = Object::ZONE_COUNTERTERROSIT;
 }
 
-SDL_Window* GameView::init_window(const GameConfig& config){
-    SDL_Window*  window_game = SDL_CreateWindow("Mapa", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-                                config.get_window_width(), config.get_window_height(),
-                                SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+SDL_Window* GameView::init_window(const GameConfig& config) {
+    SDL_Window* window_game = SDL_CreateWindow(
+            "Mapa", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, config.get_window_width(),
+            config.get_window_height(), SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
     if (!window_game) {
         throw std::runtime_error(std::string("Error al crear la window_game: ") + SDL_GetError());
     }
@@ -124,15 +124,17 @@ void GameView::update_status_game() {
 
         } else if (players.find(id) == players.end()) {
             PlayerView* nuevo_jugador =
-                    new PlayerView(x_pixeles, y_pixeles, "assets/gfx/terrorist/t2.png", 200.0f,&camera, &manger_texture, config);
-                    nuevo_jugador->update_view_angle(player_img.mouse_position.x*32,player_img.mouse_position.y*32);
-                    players[id] = nuevo_jugador;
+                    new PlayerView(x_pixeles, y_pixeles, "assets/gfx/terrorist/t2.png", 200.0f,
+                                   &camera, &manger_texture, config);
+            nuevo_jugador->update_view_angle(player_img.mouse_position.x * 32,
+                                             player_img.mouse_position.y * 32);
+            players[id] = nuevo_jugador;
         } else {
             PlayerView* player_aux = players.at(id);
             int x_pixel_mouse = player_img.mouse_position.x * config.get_tile_width();
             int y_pixel_mouse = player_img.mouse_position.y * config.get_tile_height();
-            printf("pos mouse recibida (%d, %d)\n",x_pixel_mouse, y_pixel_mouse);
-            player_aux->update_view_angle(x_pixel_mouse,y_pixel_mouse);
+            printf("pos mouse recibida (%d, %d)\n", x_pixel_mouse, y_pixel_mouse);
+            player_aux->update_view_angle(x_pixel_mouse, y_pixel_mouse);
             reset_values(player_aux, x_pixeles, y_pixeles);
         }
     }
@@ -182,10 +184,11 @@ bool GameView::handle_events(const SDL_Event& event) {
             this->map->update_map_dimensions();
             printf("Nuevo mapa width: %d, height: %d\n", map->getMapWidth(), map->getMapHeight());
         }
-    } if (event.type == SDL_MOUSEBUTTONDOWN) {
+    }
+    if (event.type == SDL_MOUSEBUTTONDOWN) {
         if (event.button.button == SDL_BUTTON_LEFT) {
-            player->activate_weapon(Weapon::AK47);  
-            printf("Clic izquierdo detectado en (%d, %d)\n",event.button.x, event.button.y);
+            player->activate_weapon(Weapon::AK47);
+            printf("Clic izquierdo detectado en (%d, %d)\n", event.button.x, event.button.y);
         }
     }
     if (event.type == SDL_MOUSEMOTION) {
@@ -193,11 +196,11 @@ bool GameView::handle_events(const SDL_Event& event) {
         int mouseY = event.motion.y;
         player->update_view_angle(mouseX, mouseY);
         printf("-----------mov mouse----------------------\n");
-        printf("MOUSER en (%d, %d)\n",mouseX, mouseY);
+        printf("MOUSER en (%d, %d)\n", mouseX, mouseY);
 
         controller.sender_pos_mouse(mouseX, mouseY);
-        
-        
+
+
         return true;
     }
 
@@ -209,19 +212,19 @@ bool GameView::add_player(float x, float y, int speed, const std::string& img) {
     if (!manger_texture.load(Object::PLAYER, img)) {
         std::cerr << "Error: No se pudo cargar la textura del jugador." << std::endl;
         return false;
-    }  
+    }
     this->player = new PlayerView(x, y, img, speed, &camera, &manger_texture, config);
     return true;
 }
 
 void GameView::draw_game(const std::vector<Position> walls) {
 
-    this->map = new MapView(walls,&camera, &manger_texture, config);
+    this->map = new MapView(walls, &camera, &manger_texture, config);
     if (!map) {
         throw std::runtime_error("Error al cargar mapa");
         return;
     }
-    this->fov = new FieldOfView(*player,camera,manger_texture,config);
+    this->fov = new FieldOfView(*player, camera, manger_texture, config);
 
     SDL_Event event;
 
@@ -263,9 +266,9 @@ void GameView::draw_game(const std::vector<Position> walls) {
         draw_players();
         text->draw(*renderer);
         fov->draw(*renderer);
-        //if(bomb_activate){
-        //    bomba.draw(*renderer);
-        //}
+        // if(bomb_activate){
+        //     bomba.draw(*renderer);
+        // }
 
         SDL_RenderPresent(renderer);
     };
@@ -297,7 +300,7 @@ GameView::~GameView() {
 
     if (text)
         delete text;
-    if(fov)
+    if (fov)
         delete fov;
 
     this->manger_texture.clear();

@@ -13,11 +13,12 @@ Controller::Controller(Socket&& skt):
 
 void Controller::sender_pos_mouse(int x, int y) {
 
-    int tile_size = 32;  
-    Uint16 col = static_cast<Uint16>(x / tile_size);  
-    Uint16 fil = static_cast<Uint16>(y / tile_size);  
+    int tile_size = 32;
+    Uint16 col = static_cast<Uint16>(x / tile_size);
+    Uint16 fil = static_cast<Uint16>(y / tile_size);
 
-    std::unique_ptr<InterfaceClientAction> action = std::make_unique<ClientSpace::MousePosition>(col,fil);
+    std::unique_ptr<InterfaceClientAction> action =
+            std::make_unique<ClientSpace::MousePosition>(col, fil);
     send_queue->push(std::move(action));
 }
 
@@ -69,7 +70,8 @@ bool Controller::has_game_image(GameImage& snapshot) {
                   << p.position.y << ")"
                   << " | Vida: " << static_cast<int>(p.health)
                   << " | Puntos: " << static_cast<int>(p.points)
-                  << " | pos mouse: " << static_cast<int>(p.mouse_position.x )<< ", " << static_cast<int>(p.mouse_position.y )<<std::endl;
+                  << " | pos mouse: " << static_cast<int>(p.mouse_position.x) << ", "
+                  << static_cast<int>(p.mouse_position.y) << std::endl;
         std::cout << "------------------------------------------\n ";
     }
     return true;

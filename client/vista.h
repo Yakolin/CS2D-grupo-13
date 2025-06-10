@@ -3,11 +3,12 @@
 #include <QApplication>
 #include <fstream>
 #include <iostream>
+#include <map>
 #include <sstream>
 #include <stdexcept>
 #include <string>
 #include <vector>
-#include "tipos.h"
+
 #include "../common/game_image.h"
 #include "../common/game_info.h"
 #include "../common/queue.h"
@@ -18,8 +19,9 @@
 #include "SDL/mapView.h"
 #include "model/protocol.h"
 #include "model/receiver.h"  // necesario para recibir cosas
-#include <map>
+
 #include "controller.h"
+#include "tipos.h"
 
 class Vista {
 
@@ -35,6 +37,7 @@ public:
     explicit Vista(int& argc, char* argv[]);
     void run();
     ~Vista();
+
 private:
 };
 

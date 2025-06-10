@@ -15,7 +15,7 @@ struct ClosedQueue: public std::runtime_error {
 };
 
 struct QueueAlreadyClosed: public std::runtime_error {
-    QueueAlreadyClosed(): std::runtime_error("The queue is already closed.") {};
+    QueueAlreadyClosed(): std::runtime_error("The queue is already closed."){};
 };
 
 /*

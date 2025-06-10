@@ -13,19 +13,9 @@
 #include "IInteractuable.h"
 class Weapon: public IInteractuable {
 public:
-    typedef struct WeaponSpecs {
-        uint16_t price;
-        uint16_t damage;
-        uint8_t fire_rate;
-        uint8_t inventory_bullets;
-        uint8_t current_bullets;
-        uint8_t magazine;
-        uint8_t width;
-        uint8_t distance;
-    } weapon_specs_t;
-
-    weapon_specs_t specs;
-    explicit Weapon(WeaponCode code, weapon_specs_t specs): IInteractuable(code), specs(specs) {}
+    GameConfig::weapon_config_t specs;
+    explicit Weapon(WeaponCode code, GameConfig::weapon_config_t specs):
+            IInteractuable(code), specs(specs) {}
     virtual ~Weapon() = default;
 
     virtual bool set_on_action(ISpawneableZone& spawn, player_id_t id,
@@ -37,7 +27,7 @@ public:
 
 class NullWeapon: public Weapon {
 public:
-    NullWeapon(): Weapon(WeaponCode::NONE, {0, 0, 0, 0, 0, 0, 0, 0}) {}
+    NullWeapon(): Weapon(WeaponCode::NONE, {0, 0, 0, 0, 0, 0, 0}) {}
     ~NullWeapon() = default;
 
     virtual bool set_on_action([[maybe_unused]] ISpawneableZone& spawn,

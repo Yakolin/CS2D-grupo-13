@@ -10,7 +10,7 @@
 class WeaponFactory {
 private:
     std::map<WeaponCode, GameConfig::WeaponConfig>& weapon_configs;
-    Weapon::weapon_specs_t find_weapon_specs(WeaponCode code);
+    GameConfig::weapon_config_t find_weapon_specs(WeaponCode code);
 
 public:
     explicit WeaponFactory(std::map<WeaponCode, GameConfig::WeaponConfig>& weapon_configs):

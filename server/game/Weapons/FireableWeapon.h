@@ -12,8 +12,12 @@
 
 #include "Weapon.h"
 class FireableWeapon: public Weapon {
+    uint8_t inventory_bullets;
+    uint8_t magazine;
+
 public:
-    FireableWeapon(WeaponCode code, weapon_specs_t specs): Weapon(code, specs) {}
+    FireableWeapon(WeaponCode code, GameConfig::weapon_config_t specs):
+            Weapon(code, specs), inventory_bullets(specs.max_b), magazine(specs.current_b) {}
     virtual bool set_on_action(ISpawneableZone& spawn, player_id_t id,
                                Position& direction) override = 0;
     virtual void reload() override;
@@ -24,7 +28,7 @@ private:
     uint8_t calculate_damage(float distance);
 
 public:
-    explicit Ak47(weapon_specs_t specs): FireableWeapon(WeaponCode::AK47, specs) {}
+    explicit Ak47(GameConfig::weapon_config_t specs): FireableWeapon(WeaponCode::AK47, specs) {}
     virtual bool set_on_action(ISpawneableZone& spawn, player_id_t id,
                                Position& direction) override;
     virtual bool is_droppable() override;
@@ -34,7 +38,7 @@ private:
     uint8_t calculate_damage(float distance);
 
 public:
-    explicit Glock(weapon_specs_t specs): FireableWeapon(WeaponCode::GLOCK, specs) {}
+    explicit Glock(GameConfig::weapon_config_t specs): FireableWeapon(WeaponCode::GLOCK, specs) {}
     virtual bool set_on_action(ISpawneableZone& spawn, player_id_t id,
                                Position& direction) override;
     virtual bool is_droppable() override;
@@ -42,7 +46,7 @@ public:
 
 class Knife: public Weapon {
 public:
-    explicit Knife(weapon_specs_t specs): Weapon(WeaponCode::KNIFE, specs) {}
+    explicit Knife(GameConfig::weapon_config_t specs): Weapon(WeaponCode::KNIFE, specs) {}
     virtual bool set_on_action(ISpawneableZone& spawn, player_id_t id,
                                Position& direction) override;
     virtual void reload() override;

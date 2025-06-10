@@ -129,6 +129,8 @@ void GameView::update_status_game() {
             PlayerView* player_aux = players.at(id);
             int x_pixel_mouse = player_img.mouse_position.x * config.get_tile_width();
             int y_pixel_mouse = player_img.mouse_position.y * config.get_tile_height();
+            std::cout << player_img.mouse_position.x << std::endl;
+            std::cout << player_img.mouse_position.y << std::endl;
             printf("pos mouse recibida (%d, %d)\n", x_pixel_mouse, y_pixel_mouse);
             player_aux->update_view_angle(x_pixel_mouse, y_pixel_mouse);
             reset_values(player_aux, x_pixeles, y_pixeles);

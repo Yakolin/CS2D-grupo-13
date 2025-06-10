@@ -1,4 +1,5 @@
 #include "gameConfig.h"
+
 #include "manageTexture.h"
 
 
@@ -47,8 +48,8 @@ GameConfig::GameConfig():
 
 }
 
-SDL_Color GameConfig::get_color(const Color& clave){
-    
+SDL_Color GameConfig::get_color(const Color& clave) {
+
     auto it = colores.find(clave);
     if (it != colores.end()) {
         std::cout << "se encontró la textura para Object: " << static_cast<int>(clave) << std::endl;
@@ -57,14 +58,10 @@ SDL_Color GameConfig::get_color(const Color& clave){
     throw std::runtime_error("Textura no encontrada.");
 }
 
-TTF_Font* GameConfig::get_font_menu(){
-    return font_menu;
-}
-TTF_Font* GameConfig::get_font_game(){
-    return font_game;
-}
-void GameConfig::load(const std::string& file_path){
-    
+TTF_Font* GameConfig::get_font_menu() { return font_menu; }
+TTF_Font* GameConfig::get_font_game() { return font_game; }
+void GameConfig::load(const std::string& file_path) {
+
     try {
         YAML::Node config = YAML::LoadFile(file_path);
 
@@ -123,4 +120,4 @@ int GameConfig::get_viewpost_width() const { return viewport_width; }
 
 int GameConfig::get_size_font() const { return size_font; }
 
-std::string GameConfig::get_route_font() const {return route_font;}
+std::string GameConfig::get_route_font() const { return route_font; }

@@ -21,6 +21,7 @@
 #include "MapExeption.h"
 class Map: public IGameZone, public ISpawneableZone, public IDroppableZone {
 private:
+    MapInfo map_info_to_client;
     MapName map_name;
     MapConfig map_config;
     std::vector<std::vector<char>> walls;

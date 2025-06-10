@@ -52,8 +52,7 @@ void GameManager::reset_players(bool full_reset) {
 // Decidi que esto se cree cada vez que se pide para evitar datos copiados
 GameImage GameManager::generate_game_image() {
     GameImage game_image;
-    game_image.round = round;
-    game_image.time = timer.get_time_round();
+    // Aca posiblemente deba de tambien pedirle al mapa que me de su imagen
     for (const auto& par: players) {
         shared_ptr<Player> player = par.second;
         Position player_position = map_game.get_position(par.first);
@@ -61,7 +60,12 @@ GameImage GameManager::generate_game_image() {
     }
     game_image.dropped_things = map_game.get_dropped_things_images();
     game_image.bomb = map_game.get_bomb_image();
-    game_image.game_state = game_stats.state;
+    /*
+    GameStateImage game_state_image(static_cast<GameState>(this->game_state),
+    static_cast<round_time_t>(timer.get_time_round()),
+    static_cast<round_t>(round));
+    */
+    // game_image.game_state = game_state_image;
     return game_image;
 }
 void GameManager::give_bomb() {

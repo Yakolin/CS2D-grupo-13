@@ -173,7 +173,6 @@ TEST(ClientProtocolTest, SendMoveSendCorrectObject) {
 TEST(ClientProtocolTest, ReadGameInfoReadsCorrectData) {
     Socket server_socket("9999");
 
-    // --- Arrange: datos esperados que enviaremos desde el servidor ---
     GameInfo expected_game_info;
 
     expected_game_info.map_info.bomb_A = RectangleInfo(Position(10, 20), Position(30, 40));
@@ -187,7 +186,6 @@ TEST(ClientProtocolTest, ReadGameInfoReadsCorrectData) {
     expected_game_info.weapons_purchasables.emplace_back(WeaponCode::AK47, 2700);
     expected_game_info.weapons_purchasables.emplace_back(WeaponCode::M3, 3100);
 
-    // --- Simulamos el servidor que envía los datos ---
     std::thread server_thread([&]() {
         Socket client_socket = server_socket.accept();
 
@@ -198,7 +196,6 @@ TEST(ClientProtocolTest, ReadGameInfoReadsCorrectData) {
             client_socket.sendall(&y_net, sizeof(y_net));
         };
 
-        // 1. Enviar posiciones de zonas: bomb_A, bomb_B, spawn_TT, spawn_CT
         send_position(10, 20);
         send_position(30, 40);
 
@@ -211,20 +208,17 @@ TEST(ClientProtocolTest, ReadGameInfoReadsCorrectData) {
         send_position(130, 140);
         send_position(150, 160);
 
-        // 2. Enviar cantidad de paredes
+
         uint16_t wall_count = htons(expected_game_info.map_info.walls.size());
         client_socket.sendall(&wall_count, sizeof(wall_count));
 
-        // 3. Enviar paredes
         for (const Position& wall: expected_game_info.map_info.walls) {
             send_position(wall.x, wall.y);
         }
 
-        // 4. Enviar cantidad de armas (1 byte)
         uint8_t weapon_count = expected_game_info.weapons_purchasables.size();
         client_socket.sendall(&weapon_count, sizeof(weapon_count));
 
-        // 5. Enviar armas: código (1 byte), precio (2 bytes)
         for (const WeaponInfo& weapon: expected_game_info.weapons_purchasables) {
             uint8_t code = static_cast<uint8_t>(weapon.code);
             uint16_t price = htons(weapon.price);
@@ -233,13 +227,11 @@ TEST(ClientProtocolTest, ReadGameInfoReadsCorrectData) {
         }
     });
 
-    // --- Cliente lee la info ---
     Socket client_socket("localhost", "9999");
     ClientProtocol protocol(client_socket);
 
     GameInfo received_game_info = protocol.read_game_info();
 
-    // --- Asserts: comparar estructuras completas ---
     const auto& expected_map = expected_game_info.map_info;
     const auto& received_map = received_game_info.map_info;
 

@@ -15,10 +15,11 @@ GameView::GameView(Socket&& skt):
         players(),
         snapshot(),
         map(nullptr),
-        text(nullptr),
         lastTime(SDL_GetTicks()),
         fov(nullptr),
-        shop(camera,manger_texture,config)
+        shop(camera,manger_texture,config),
+        bomba(nullptr),
+        activa(false)
 { 
 
     leyenda['#'] = "assets/gfx/backgrounds/nuke.png";
@@ -71,11 +72,6 @@ bool GameView::init_game() {
 
     if (!(IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG) & (IMG_INIT_PNG | IMG_INIT_JPG))) {
         throw std::runtime_error(std::string("Error inicializando SDL_image: ") + IMG_GetError());
-        return false;
-    }
-
-    if (TTF_Init() == -1) {
-        SDL_Log("Error al inicializar SDL_ttf: %s", TTF_GetError());
         return false;
     }
 
@@ -153,26 +149,15 @@ bool GameView::handle_events(const SDL_Event& event) {
     if (event.type == SDL_QUIT) {
         return false;
 
-    } else if (event.type == SDL_KEYDOWN) {
+    }
+    if (event.type == SDL_KEYDOWN) {
         SDL_Keycode tecla = event.key.keysym.sym;
-        switch (tecla) {
-            case SDLK_w:
-            case SDLK_a:
-            case SDLK_s:
-            case SDLK_d:
-            case SDLK_UP:
-            case SDLK_DOWN:
-            case SDLK_LEFT:
-            case SDLK_RIGHT:
-            case SDLK_b:
-            // 
-                shop.activate_shop();
-                break;
-        }
         controller.sender_mov_player(tecla);
         player->add_speed(tecla);
-
-        return true;
+        
+        if(tecla == SDLK_1){
+            shop.activate_shop();
+        }
 
     } else if (event.type == SDL_KEYUP) {
         SDL_Keycode tecla = event.key.keysym.sym;
@@ -187,20 +172,21 @@ bool GameView::handle_events(const SDL_Event& event) {
     }
     if (event.type == SDL_MOUSEBUTTONDOWN) {
         if (event.button.button == SDL_BUTTON_LEFT) {
-            player->activate_weapon(Weapon::AK47);
+            //player->activate_weapon(Weapon::AK47);
+            bomba->activate();
             printf("Clic izquierdo detectado en (%d, %d)\n", event.button.x, event.button.y);
         }
     }
     if (event.type == SDL_MOUSEMOTION) {
         int mouseX = event.motion.x;
         int mouseY = event.motion.y;
+
+        shop.calculate_selection(mouseX,mouseY);
         player->update_view_angle(mouseX, mouseY);
-        printf("-----------mov mouse----------------------\n");
-        printf("MOUSER en (%d, %d)\n", mouseX, mouseY);
+       // printf("-----------mov mouse----------------------\n");
+       // printf("MOUSER en (%d, %d)\n", mouseX, mouseY);
 
         controller.sender_pos_mouse(mouseX, mouseY);
-
-
         return true;
     }
 
@@ -209,10 +195,6 @@ bool GameView::handle_events(const SDL_Event& event) {
 
 
 bool GameView::add_player(float x, float y, int speed, const std::string& img) {
-    if (!manger_texture.load(Object::PLAYER, img)) {
-        std::cerr << "Error: No se pudo cargar la textura del jugador." << std::endl;
-        return false;
-    }
     this->player = new PlayerView(x, y, img, speed, &camera, &manger_texture, config);
     return true;
 }
@@ -227,6 +209,7 @@ void GameView::draw_game(const std::vector<Position> walls) {
     this->fov = new FieldOfView(*player, camera, manger_texture, config);
 
     SDL_Event event;
+    bomba = new Bomb(player,camera,manger_texture,config);
 
 
     auto keep_running = [&]() -> bool {
@@ -258,17 +241,15 @@ void GameView::draw_game(const std::vector<Position> walls) {
 
         // Render
         SDL_RenderClear(renderer);
-        if(shop.get_activa()){
-            shop.draw(*renderer);
-        }
+
         map->draw(*renderer);
         player->draw(*renderer);
         draw_players();
-        text->draw(*renderer);
+        bomba->draw(*renderer);
         fov->draw(*renderer);
-        // if(bomb_activate){
-        //     bomba.draw(*renderer);
-        // }
+        if(shop.get_activa()){
+            shop.draw(*renderer);
+        }
 
         SDL_RenderPresent(renderer);
     };
@@ -298,8 +279,7 @@ GameView::~GameView() {
     if (map)
         delete map;
 
-    if (text)
-        delete text;
+
     if (fov)
         delete fov;
 

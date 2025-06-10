@@ -5,8 +5,10 @@
 #include <string>
 #include "../tipos.h"
 #include <unordered_map>
-
+#include <vector>
 #include <SDL2/SDL.h>
+#include <yaml-cpp/yaml.h>
+
 #include <SDL2/SDL_ttf.h>
 #include <unordered_map>
 class GameConfig {
@@ -37,22 +39,22 @@ public:
     int get_window_width() const;
 
     int get_window_height() const;
-    int get_window_height() const;
+
 
     int get_tile_width() const;
-    int get_tile_width() const;
+
 
     int get_tile_height() const;
-    int get_tile_height() const;
+
 
     int get_viewpost_height() const;
-    int get_viewpost_height() const;
+
 
     int get_viewpost_width() const;
-    int get_viewpost_width() const;
+
 
     int get_size_font() const;
-    int get_size_font() const;
+
 
     std::string get_route_font() const;
 
@@ -61,7 +63,8 @@ public:
     SDL_Color get_blanco() const;
 
     TTF_Font *get_font_menu();
-    TTF_Font *get_font_game();
+
+    TTF_Font* get_font_game();
 };
 
 #endif  // GAMECONFIG_H

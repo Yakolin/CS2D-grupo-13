@@ -11,7 +11,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL_ttf.h>
-
+#include "bomb.h"
 #include "../../common/constant_rate_loop.h"
 #include "../../common/game_image.h"
 #include "../controller.h"
@@ -42,10 +42,11 @@ private:
     std::map<player_id_t, PlayerView*> players;
     GameImage snapshot;
     MapView* map;
-    Text* text;
     Uint32 lastTime;
     FieldOfView* fov;
     Shopping shop;
+    Bomb* bomba;
+    bool activa;
 
 
 

@@ -88,6 +88,7 @@ private:
     float interp_time;
     std::map<Weapon, WeaponView*> weapons;
     bool activar_weapon;
+    SDL_Texture* texture_player;
 
 
     void calcular();

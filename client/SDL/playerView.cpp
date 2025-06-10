@@ -31,8 +31,11 @@ PlayerView::PlayerView(const float& x, const float& y, const std::string& rute, 
         interp_duration(0.1f),  // Duración de la interpolación en segundos
         interp_time(1.0f),
         weapons(),
-        activar_weapon(false) {
+        activar_weapon(false),
+        texture_player(nullptr) {
     calcular();
+
+    texture_player = manejador->get(Object::GIGN);
     WeaponView* ak47 = new WeaponView(*camera, *manejador, Weapon::AK47, x, y, anglePlayer);
     weapons[Weapon::AK47] = ak47;
 }
@@ -68,7 +71,7 @@ void PlayerView::update(const float& deltaTime) {
 
 void PlayerView::calcular() {
 
-    SDL_Texture* tiles_player = manejador->get(Object::PLAYER);
+    SDL_Texture* tiles_player = manejador->get(Object::GUERRILLA);
     if (!tiles_player) {
         std::cerr << "Error: No se pudo cargar la textura del jugador." << std::endl;
         return;
@@ -111,14 +114,13 @@ void PlayerView::activate_weapon(const Weapon& weapon) {
 }
 void PlayerView::draw(SDL_Renderer& renderer) {
 
-    SDL_Texture* tiles_player = manejador->get(Object::PLAYER);
     origin_rect = {item.col * width_img, item.fil * height_img, width_img / 2, height_img / 3};
 
     destination_rect = {static_cast<int>(x_actual) - camera->getX(),  // col=x
                         static_cast<int>(y_actual) - camera->getY(),  // fil =y
                         config.get_tile_width(),                      // ancho
                         config.get_tile_height()};                    // alto
-    SDL_RenderCopyEx(&renderer, tiles_player, &origin_rect, &destination_rect, anglePlayer, nullptr,
+    SDL_RenderCopyEx(&renderer, texture_player ,&origin_rect, &destination_rect, anglePlayer, nullptr,
                      SDL_FLIP_NONE);
 
     if (activar_weapon) {

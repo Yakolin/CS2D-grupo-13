@@ -45,8 +45,8 @@ void Shopping::update(const std::vector<WeaponData>& data) {
     int window_width = config.get_window_width();
     int window_height = config.get_window_height();
 
-    rect_shop.w = window_width;
-    rect_shop.h = window_height;
+    rect_shop.w = (window_width* 0.8);
+    rect_shop.h = (window_height*0.8);
     rect_shop.x = camera.getX()+50;
     rect_shop.y = camera.getY()+50;
     
@@ -76,6 +76,11 @@ void Shopping::calculate_selection(const int& mouse_x, const int& mouse_y){
 }
 
 void Shopping::draw(SDL_Renderer& renderer) {
+
+    if (!texture_menu) {
+        std::cerr << "ERROR: texture_menu es nullptr" << std::endl;
+        return;
+    }
 
     SDL_RenderCopy(&renderer,texture_menu, nullptr, &rect_shop);
 

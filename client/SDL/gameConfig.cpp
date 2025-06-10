@@ -14,9 +14,13 @@ GameConfig::GameConfig():
     blanco(),
     font_menu(nullptr)
     {
+        if (TTF_Init() == -1) {
+            SDL_Log("Error al inicializar SDL_ttf: %s", TTF_GetError());
+        }
+
 
         load("assets/configView.yaml");
-        font_menu = TTF_OpenFont(route_font.c_str(), 18); // 18 es el tamaño
+        font_menu = TTF_OpenFont(route_font.c_str(), 15); // 18 es el tamaño
         if (!font_menu) {
             std::cerr << "ERROR: fuente no cargada - " << TTF_GetError() << std::endl;
             throw std::runtime_error("No se pudo cargar la fuente del menu.");

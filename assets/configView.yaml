@@ -1,10 +1,10 @@
 window:
-  width: 640
-  height: 480
+  width: 700
+  height: 500
 
 camera:
-  viewport_logical_width: 640
-  viewport_logical_height: 480
+  viewport_logical_width: 700
+  viewport_logical_height: 500
 
 fuente:
   route_font_menu: "assets/gfx/fonts/cs_regular.ttf"

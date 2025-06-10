@@ -23,7 +23,18 @@ using game_state_t = std::uint8_t;
 using round_time_t = std::uint16_t;
 using round_t = std::uint8_t;
 
-enum class GameState { GAME_STARTED, GAME_ENDED, TT_WIN_ROUND, CT_WIN_ROUND };
+enum class GameState {
+    TIME_TO_BUY,
+    ROUND_STARTED,
+    GAME_STARTED,
+    GAME_ENDED,
+    TT_WIN_ROUND,
+    CT_WIN_ROUND,
+    NONE,
+    TT_WIN_GAME,
+    CT_WIN_GAME
+};
+
 enum class Team { CT, TT };
 enum class BombState { EQUIPED, DROPPED, ACTIVATED, DESACTIVATED, EXPLOTED };
 class BulletImage {

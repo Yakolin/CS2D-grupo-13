@@ -85,7 +85,7 @@ void CollisionManager::check_damage_players(player_id_t caster, ColliderDamage& 
     }
 }
 void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage& collider_damage) {
-    srand(time(0));
+    srand(time(nullptr));
     bullets_image.clear();
     std::vector<PlayerEntity> players_affected;
     PlayerEntity player_caster = players_in_map[caster];

@@ -37,7 +37,7 @@ MapInfo Map::get_map_info() {
     for (size_t i = 0; i < walls.size(); i++)
         for (size_t j = 0; j < walls[i].size(); j++)
             if (walls[i][j] == Wall)
-                walls_pos.push_back(Position(i, j));
+                walls_pos.push_back(Position(j, i));
     RectangleInfo bomb_A_info(bomb_A.point_min, bomb_A.point_max);
     RectangleInfo bomb_B_info(bomb_B.point_min, bomb_B.point_max);
     RectangleInfo spawn_TT_info(spawn_TT.point_min, spawn_TT.point_max);

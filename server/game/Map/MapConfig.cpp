@@ -62,6 +62,10 @@ std::string MapConfig::get_map_path(const MapName& map_name) {
     switch (map_name) {
         case MapName::PUEBLITO_AZTECA:
             return PueblitoAzteca_path;
+        case MapName::ZONA_ENTRENAMIENTO:
+            return ZonaEntrenamiento_path;
+        case MapName::DESIERTO:
+            return Desierto_path;
         default:
             break;
     }

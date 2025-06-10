@@ -28,7 +28,6 @@ public:
     typedef struct TimerConfig {
         int time_buy;
         int time_round;
-        int time_after_round;
         int time_bomb;
         int time_ending;
     } timer_config_t;

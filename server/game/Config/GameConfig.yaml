@@ -32,7 +32,6 @@ Player:
   multiplier_points: 3
 Timer: 
   time_buy: 0
-  time_round: 24
-  time_after_round: 10
+  time_round: 2
   time_bomb: 20
   time_ending: 5

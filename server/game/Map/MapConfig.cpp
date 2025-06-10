@@ -39,7 +39,7 @@ void MapConfig::load_walls(const YAML::Node& map_walls) {
         size_t max_y = std::max(y1, y2);
         for (size_t i = min_x; i <= max_x; i++) {
             for (size_t j = min_y; j <= max_y; j++) {
-                if (j < map_info.walls.size() && i < map_info.walls[0].size())
+                if (i < map_info.walls.size() && j < map_info.walls[0].size())
                     map_info.walls[i][j] = Wall;
             }
         }

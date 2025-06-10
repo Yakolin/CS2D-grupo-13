@@ -21,7 +21,7 @@
 #include <iostream>
 #include <map>
 #include <string>
-#include <QDebug>
+
 #include "../../common/lobby_action.h"
 #include "../../common/lobby_types.h"
 #include "../model/protocol.h"

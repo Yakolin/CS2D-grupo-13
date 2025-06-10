@@ -1,23 +1,22 @@
 
 #include "weaponView.h"
 
-WeaponView::WeaponView(Camera& camera, ManageTexture& managertexture,const Weapon& clave , const float& x, const float& y, const float& angle)
-    :
-    manager(managertexture),
-    weaponTexture(managertexture.get_weapon(clave)), 
-    destination_rect({static_cast<int>(x), static_cast<int>(y), 64, 64}), 
-    angleWeapon(angle),
-    is_used(false),
-    camera(camera) {
-
-}
+WeaponView::WeaponView(Camera& camera, ManageTexture& managertexture, const Weapon& clave,
+                       const float& x, const float& y, const float& angle):
+        manager(managertexture),
+        weaponTexture(managertexture.get_weapon(clave)),
+        destination_rect({static_cast<int>(x), static_cast<int>(y), 64, 64}),
+        angleWeapon(angle),
+        is_used(false),
+        camera(camera) {}
 
 void WeaponView::draw(SDL_Renderer& renderer) {
 
-    SDL_RenderCopyEx(&renderer, weaponTexture, nullptr, &destination_rect, angleWeapon, nullptr,SDL_FLIP_NONE);
+    SDL_RenderCopyEx(&renderer, weaponTexture, nullptr, &destination_rect, angleWeapon, nullptr,
+                     SDL_FLIP_NONE);
 }
-void WeaponView::update(const int& x_player,const  int& y_player,const  float& angle) {
-    
+void WeaponView::update(const int& x_player, const int& y_player, const float& angle) {
+
     int offsetX = 20;
     int offsetY = 2;
     angleWeapon = angle;
@@ -26,13 +25,7 @@ void WeaponView::update(const int& x_player,const  int& y_player,const  float& a
     destination_rect.y = static_cast<int>(y_player + offsetY) - camera.getY();
     destination_rect.w = 15;
     destination_rect.h = 15;
-    
 }
 
-void WeaponView::setUsed(bool used) {
-    is_used = used;
-}
-void WeaponView::shoot() {
-    
-    std::cout << "Disparando el arma." << std::endl;
-}
+void WeaponView::setUsed(bool used) { is_used = used; }
+void WeaponView::shoot() { std::cout << "Disparando el arma." << std::endl; }

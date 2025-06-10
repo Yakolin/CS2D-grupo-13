@@ -7,8 +7,9 @@
 #include <sstream>
 #include <stdexcept>
 #include <string>
-#include <vector>
 #include <utility>
+#include <vector>
+
 #include <SDL2/SDL.h>
 
 #include "../common/game_image.h"
@@ -47,7 +48,7 @@ public:
     */
     void sender_mov_player(SDL_Keycode tecla);
 
-    bool  has_game_image(GameImage& snapshot);
+    bool has_game_image(GameImage& snapshot);
 
     void run();
 

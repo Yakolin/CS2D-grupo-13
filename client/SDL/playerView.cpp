@@ -1,11 +1,12 @@
 #include "playerView.h"
+
 #include "mapView.h"
 
 const int FILAS_MAP = 17;
 const int COLUMNAS_MAP = 38;
 
 PlayerView::PlayerView(const float& x, const float& y, const std::string& rute, const float& speed,
-               Camera* camera_receiver, ManageTexture* manager_texture, GameConfig& config):
+                       Camera* camera_receiver, ManageTexture* manager_texture, GameConfig& config):
         config(config),
         fil(y),
         col(x),
@@ -18,20 +19,19 @@ PlayerView::PlayerView(const float& x, const float& y, const std::string& rute, 
         item({0, 0}),
         anglePlayer(),
         camera(camera_receiver),
-        manejador(manager_texture) ,
-        player_id() ,//!cambiar 
+        manejador(manager_texture),
+        player_id(),  //! cambiar
 
         x_actual(x),
         y_actual(y),
         velocity_x(0),
-        velocity_y( 0),
+        velocity_y(0),
         prev_pos({x, y}),
         target_pos({x, y}),
-        interp_duration(0.1f), // Duración de la interpolación en segundos
-        interp_time(1.0f) ,
+        interp_duration(0.1f),  // Duración de la interpolación en segundos
+        interp_time(1.0f),
         weapons(),
-        activar_weapon(false)
-        {
+        activar_weapon(false) {
     calcular();
     WeaponView* ak47 = new WeaponView(*camera, *manejador, Weapon::AK47, x, y, anglePlayer);
     weapons[Weapon::AK47] = ak47;
@@ -42,23 +42,15 @@ void PlayerView::setPrevPos(const float& new_x, const float& new_y) {
     prev_pos.y = new_y;
 }
 void PlayerView::setTargetPos(const float& new_x, const float& new_y) {
-    target_pos.x = new_x; 
+    target_pos.x = new_x;
     target_pos.y = new_y;
 }
 
-void PlayerView::setInterpDuration(const float& duration) {
-    interp_duration = duration;
-}
-void PlayerView::setInterpTime(const float& time) {
-    interp_time = time;
-}
-int PlayerView::pasar_pixeles_x(const float& tile_x) {
-    return tile_x * config.get_tile_width();
-}
+void PlayerView::setInterpDuration(const float& duration) { interp_duration = duration; }
+void PlayerView::setInterpTime(const float& time) { interp_time = time; }
+int PlayerView::pasar_pixeles_x(const float& tile_x) { return tile_x * config.get_tile_width(); }
 
-int PlayerView::pasar_pixeles_y(const float& tile_y) {
-    return tile_y * config.get_tile_height();
-}
+int PlayerView::pasar_pixeles_y(const float& tile_y) { return tile_y * config.get_tile_height(); }
 
 
 void PlayerView::update(const float& deltaTime) {
@@ -85,7 +77,7 @@ void PlayerView::calcular() {
 }
 
 void PlayerView::add_speed(const SDL_Keycode& tecla) {
-    
+
     if (tecla == SDLK_w || tecla == SDLK_UP) {
         setVelY(-speed_player);
     } else if (tecla == SDLK_s || tecla == SDLK_DOWN) {
@@ -116,29 +108,26 @@ void PlayerView::activate_weapon(const Weapon& weapon) {
     } else {
         std::cerr << "Error: Arma no encontrada." << std::endl;
     }
-
 }
 void PlayerView::draw(SDL_Renderer& renderer) {
 
     SDL_Texture* tiles_player = manejador->get(Object::PLAYER);
     origin_rect = {item.col * width_img, item.fil * height_img, width_img / 2, height_img / 3};
 
-    destination_rect = {
-        static_cast<int>(x_actual) - camera->getX(), // col=x
-        static_cast<int>(y_actual) - camera->getY(), //fil =y
-        config.get_tile_width(),  //ancho
-        config.get_tile_height()}; //alto
-    SDL_RenderCopyEx(&renderer, tiles_player, &origin_rect, &destination_rect, anglePlayer, nullptr,SDL_FLIP_NONE);
+    destination_rect = {static_cast<int>(x_actual) - camera->getX(),  // col=x
+                        static_cast<int>(y_actual) - camera->getY(),  // fil =y
+                        config.get_tile_width(),                      // ancho
+                        config.get_tile_height()};                    // alto
+    SDL_RenderCopyEx(&renderer, tiles_player, &origin_rect, &destination_rect, anglePlayer, nullptr,
+                     SDL_FLIP_NONE);
 
-    if(activar_weapon) {
+    if (activar_weapon) {
 
         WeaponView* weapon_view = weapons[Weapon::AK47];
         weapon_view->update(static_cast<int>(x_actual), static_cast<int>(y_actual), anglePlayer);
         weapon_view->draw(renderer);
-    
     }
 }
-
 
 
 void PlayerView::update_view_angle(const int& mouse_x, const int& mouse_y) {
@@ -165,21 +154,16 @@ std::string PlayerView::getRutaPlayer() const { return rutaPlayer; }
 
 float PlayerView::getSpeed() const { return speed_player; }
 
-void PlayerView::setFil(float y_world) {
-    fil = y_world;
-}
+void PlayerView::setFil(float y_world) { fil = y_world; }
 
-void PlayerView::setCol(float x_world) {
-    col = x_world;
-}
+void PlayerView::setCol(float x_world) { col = x_world; }
 
 
 void PlayerView::setXActual(float x) { x_actual = x; }
 void PlayerView::setYActual(float y) { y_actual = y; }
 
 
-
-float PlayerView::getXActual() {return  x_actual; }
+float PlayerView::getXActual() { return x_actual; }
 float PlayerView::getYActual() { return y_actual; }
 
 void PlayerView::setRutaPlayer(const std::string& ruta) { rutaPlayer = ruta; }
@@ -196,7 +180,6 @@ void PlayerView::setVelX(float vx) { velocity_x = vx; }
 void PlayerView::setVelY(float vy) { velocity_y = vy; }
 float PlayerView::getVelX() const { return velocity_x; }
 float PlayerView::getVelY() const { return velocity_y; }
-
 
 
 PlayerView::~PlayerView() {}

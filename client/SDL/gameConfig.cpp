@@ -2,21 +2,20 @@
 
 
 GameConfig::GameConfig():
-    window_width(0),
-    window_height(0),
-    tile_width(32),
-    tile_height(32),
-    viewport_width(0),
-    viewport_height(0),
-    font(),
-    size_font(),
-    blanco()
-    {
-        load("assets/configView.yaml");
-    }
+        window_width(0),
+        window_height(0),
+        tile_width(32),
+        tile_height(32),
+        viewport_width(0),
+        viewport_height(0),
+        font(),
+        size_font(),
+        blanco() {
+    load("assets/configView.yaml");
+}
 
-void GameConfig::load(const std::string& file_path){
-    
+void GameConfig::load(const std::string& file_path) {
+
     try {
         YAML::Node config = YAML::LoadFile(file_path);
 
@@ -35,7 +34,6 @@ void GameConfig::load(const std::string& file_path){
     } catch (const YAML::Exception& e) {
         throw std::runtime_error("Error al leer archivo YAML: " + std::string(e.what()));
     }
-
 }
 
 
@@ -57,23 +55,23 @@ std::vector<std::vector<char>> GameConfig::load_map(const std::string& archivo) 
         }
         mapa.push_back(fila);
     }
-    entrada.close(); 
+    entrada.close();
     return mapa;
 }
-SDL_Color GameConfig::get_blanco() const {return blanco; }
+SDL_Color GameConfig::get_blanco() const { return blanco; }
 
-int GameConfig::get_window_width() const {return window_width;}
+int GameConfig::get_window_width() const { return window_width; }
 
-int GameConfig::get_window_height() const {return window_height;}
+int GameConfig::get_window_height() const { return window_height; }
 
-int GameConfig::get_tile_width() const {return tile_width;}
+int GameConfig::get_tile_width() const { return tile_width; }
 
-int GameConfig::get_tile_height() const {return tile_height;}
+int GameConfig::get_tile_height() const { return tile_height; }
 
-int GameConfig::get_viewpost_height()const {return viewport_height;}
+int GameConfig::get_viewpost_height() const { return viewport_height; }
 
-int GameConfig::get_viewpost_width()const {return viewport_width;}
+int GameConfig::get_viewpost_width() const { return viewport_width; }
 
-int GameConfig::get_size_font() const {return size_font;}
+int GameConfig::get_size_font() const { return size_font; }
 
-std::string GameConfig::get_font() const {return font;}
+std::string GameConfig::get_font() const { return font; }

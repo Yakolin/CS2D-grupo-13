@@ -83,7 +83,9 @@ void LobbyView::section_player(QWidget* selection) {
             [this, combo_terrorist](const QString& skin) { infoPlayer.skin = skin.toStdString(); });
 
     connect(combo_counter_terrorist, &QComboBox::currentTextChanged,
-            [this, combo_counter_terrorist](const QString& skin) { infoPlayer.skin2 = skin.toStdString(); });
+            [this, combo_counter_terrorist](const QString& skin) {
+                infoPlayer.skin2 = skin.toStdString();
+            });
 }
 
 void imprimirPlayer(const Player& p) {
@@ -95,22 +97,30 @@ void imprimirPlayer(const Player& p) {
 }
 
 MapName LobbyView::get_map(const std::string map) {
-    if (map == "Desierto") return MapName::DESIERTO;
-    if (map == "Pueblito Azteca") return MapName::PUEBLITO_AZTECA;
+    if (map == "Desierto")
+        return MapName::DESIERTO;
+    if (map == "Pueblito Azteca")
+        return MapName::PUEBLITO_AZTECA;
     return MapName::ZONA_ENTRENAMIENTO;
 }
 
 CounterTerroristSkin LobbyView::get_skin_counter(const std::string skin_counter) {
-    if (skin_counter == "Seal Force") return CounterTerroristSkin::SEAL;
-    if (skin_counter == "German GSG-9") return CounterTerroristSkin::GSG9;
-    if (skin_counter == "UK SAS") return CounterTerroristSkin::SAS;
+    if (skin_counter == "Seal Force")
+        return CounterTerroristSkin::SEAL;
+    if (skin_counter == "German GSG-9")
+        return CounterTerroristSkin::GSG9;
+    if (skin_counter == "UK SAS")
+        return CounterTerroristSkin::SAS;
     return CounterTerroristSkin::GIGN;
 }
 
 TerroristSkin LobbyView::get_skin_terrorist(const std::string skin_terrorist) {
-    if (skin_terrorist == "Phoenix") return TerroristSkin::PHOENIX;
-    if (skin_terrorist == "L337 Krew") return TerroristSkin::L337_KREW;
-    if (skin_terrorist == "Arctic Avenger") return TerroristSkin::ARCTIC_AVENGER;
+    if (skin_terrorist == "Phoenix")
+        return TerroristSkin::PHOENIX;
+    if (skin_terrorist == "L337 Krew")
+        return TerroristSkin::L337_KREW;
+    if (skin_terrorist == "Arctic Avenger")
+        return TerroristSkin::ARCTIC_AVENGER;
     return TerroristSkin::GUERRILLA;
 }
 

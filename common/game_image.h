@@ -19,9 +19,11 @@ using length_bullets_in_air_t = std::uint16_t;
 using length_weapons_dropped_t = std::uint8_t;
 using bomb_state_t = std::uint8_t;
 using team_t = std::uint8_t;
+using game_state_t = std::uint8_t;
+using round_time_t = std::uint16_t;
+using round_t = std::uint8_t;
 
-
-enum class GameState { NONE, GAME_STARTED, TT_WIN_GAME, CT_WIN_GAME, TT_WIN_ROUND, CT_WIN_ROUND };
+enum class GameState { GAME_STARTED, GAME_ENDED, TT_WIN_ROUND, CT_WIN_ROUND };
 enum class Team { CT, TT };
 enum class BombState { EQUIPED, DROPPED, ACTIVATED, DESACTIVATED, EXPLOTED };
 class BulletImage {
@@ -87,6 +89,18 @@ public:
     ~PlayerImage() = default;
 };
 
+class GameStateImage {
+public:
+    GameState state;
+    round_time_t time;
+    round_t round;
+
+    GameStateImage() = default;
+    GameStateImage(GameState state, round_time_t time, round_t round):
+            state(state), time(time), round(round) {}
+    ~GameStateImage() = default;
+};
+
 class GameImage {
 public:
     GameImage() = default;
@@ -94,13 +108,10 @@ public:
 
     player_id_t client_id = 0;
     std::vector<PlayerImage> players_images;
-    uint8_t time = 0;
-    uint8_t round = 0;
-
     std::vector<BulletImage> bullets_in_air;
     BombImage bomb;
     std::vector<WeaponDropped> dropped_things;
-    GameState game_state = GameState::GAME_STARTED;
+    GameStateImage game_state;
 };
 
 #endif  // !GAME_IMAGE_H

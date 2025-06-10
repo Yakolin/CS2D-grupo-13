@@ -3,26 +3,29 @@
 #include <fstream>
 #include <map>
 #include <memory>
+#include <stdexcept>
 #include <string>
 #include <utility>
 #include <vector>
-#include <SDL2/SDL_ttf.h>
-#include "text.h"
+
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
+#include <SDL_ttf.h>
+
+#include "../../common/constant_rate_loop.h"
 #include "../../common/game_image.h"
 #include "../controller.h"
 #include "../tipos.h"
-#include "camera.h"
+
 #include "bomb.h"
+#include "camera.h"
+#include "fieldOfView.h"
+#include "gameConfig.h"
 #include "manageTexture.h"
 #include "mapView.h"
 #include "playerView.h"
 #include "renderizable.h"
-#include "fieldOfView.h"
-#include <stdexcept> 
-#include <SDL_ttf.h>
-#include "gameConfig.h"
-#include "../../common/constant_rate_loop.h"
+#include "text.h"
 class GameView {
 
 private:
@@ -37,11 +40,11 @@ private:
     PlayerView* player;
     Camera camera;
     ManageTexture manger_texture;
-    std::map<player_id_t, PlayerView*> players; 
+    std::map<player_id_t, PlayerView*> players;
     GameImage snapshot;
     MapView* map;
     Text* text;
-    Uint32 lastTime ;
+    Uint32 lastTime;
     FieldOfView* fov;
     bool bomb_activate;
 
@@ -63,7 +66,7 @@ public:
 
     SDL_Renderer* init_renderer(SDL_Window* window, GameConfig& config);
 
-    bool cargar_skins(const std::map<Object, std::string >& rutas_skins);
+    bool cargar_skins(const std::map<Object, std::string>& rutas_skins);
 
     bool cargar_text();
 
@@ -78,13 +81,13 @@ public:
     */
     void draw_game(const std::vector<Position> walls);
 
-    bool add_player(float x, float y ,int speed, const std::string& img );
+    bool add_player(float x, float y, int speed, const std::string& img);
 
     void start();
 
-    bool load_weapon(const  std::map<Weapon, std::string >& route_weapons);
+    bool load_weapon(const std::map<Weapon, std::string>& route_weapons);
 
-    void reset_values(PlayerView* player, const float& x_pixeles,const float& y_pixeles);
+    void reset_values(PlayerView* player, const float& x_pixeles, const float& y_pixeles);
 
 
     ~GameView();

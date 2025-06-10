@@ -4,22 +4,25 @@
 #include <map>
 #include <string>
 #include <vector>
-#include "weaponView.h"
+
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_render.h>
 #include <SDL_surface.h>
 #include <SDL_video.h>
-#include "camera.h"
+
 #include "../tipos.h"
+
+#include "camera.h"
 #include "gameConfig.h"
 #include "manageTexture.h"
 #include "renderizable.h"
+#include "weaponView.h"
 
 class PlayerView: public Renderizable {
 public:
     explicit PlayerView(const float& x, const float& y, const std::string& rute, const float& speed,
-               Camera* camera_reseiver, ManageTexture* manger_texture, GameConfig& config);
+                        Camera* camera_reseiver, ManageTexture* manger_texture, GameConfig& config);
     void setPrevPos(const float& new_x, const float& new_y);
     void setTargetPos(const float& new_x, const float& new_y);
     ~PlayerView();
@@ -32,7 +35,7 @@ public:
 
     void draw(SDL_Renderer& renderer) override;
 
-    void update(const float& delta_time) ;
+    void update(const float& delta_time);
     void update_view_angle(const int& mause_x, const int& mause_y);
 
     float getFil() const;
@@ -48,7 +51,7 @@ public:
     float getVelY() const;
     void setInterpTime(const float& time);
     int pasar_pixeles_x(const float& tile_x);
-    int pasar_pixeles_y(const float& tile_y) ;
+    int pasar_pixeles_y(const float& tile_y);
 
     void setFil(float newFil);
     void setCol(float newCol);
@@ -77,18 +80,17 @@ private:
     int player_id;
     float x_actual;
     float y_actual;
-    float velocity_x;  
-    float velocity_y; 
+    float velocity_x;
+    float velocity_y;
     Coordenada prev_pos;
     Coordenada target_pos;
     float interp_duration;
     float interp_time;
-    std::map<Weapon,WeaponView* > weapons;
+    std::map<Weapon, WeaponView*> weapons;
     bool activar_weapon;
 
 
     void calcular();
-
 };
 
 #endif  // PLAYERVIEW_H

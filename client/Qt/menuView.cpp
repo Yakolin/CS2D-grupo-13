@@ -10,13 +10,8 @@ const int WIDTH_MENU = 500;
 #define OPCION_MENU "Volver a Menu"
 
 MenuView::MenuView(QWidget* parent, ClientProtocol& protocol):
-        QWidget(parent),
-        stack(this),
-        menu(),
-        lobby(protocol),
-        protocolo(protocol) 
-        {
-    stack.setFixedSize(500, 500);  
+        QWidget(parent), stack(this), menu(), lobby(protocol), protocolo(protocol) {
+    stack.setFixedSize(500, 500);
 
     QLabel* img_icono = new QLabel(this);
     QPixmap img_img("assets/gfx/cs2d.png");
@@ -26,9 +21,9 @@ MenuView::MenuView(QWidget* parent, ClientProtocol& protocol):
     resize(WIDTH_MENU, HEIGHT_MENU);
 
 
-    QWidget *page_create = new QWidget();
-    QWidget *page_help = new QWidget();
-    QTabWidget *page_join = new QTabWidget();
+    QWidget* page_create = new QWidget();
+    QWidget* page_help = new QWidget();
+    QTabWidget* page_join = new QTabWidget();
 
     QPushButton* button_menu = new QPushButton(OPCION_MENU);
     QPushButton* button_menu2 = new QPushButton(OPCION_MENU);
@@ -36,26 +31,25 @@ MenuView::MenuView(QWidget* parent, ClientProtocol& protocol):
 
     lobby.action_create(page_create, button_menu);
     lobby.action_join(page_join, button_menu2);
-    lobby.action_help(page_help ,button_menu3);
+    lobby.action_help(page_help, button_menu3);
 
-    stack.addWidget(&menu);         
-    stack.addWidget(page_create);  
-    stack.addWidget(page_join);    
-    stack.addWidget(page_help);    
+    stack.addWidget(&menu);
+    stack.addWidget(page_create);
+    stack.addWidget(page_join);
+    stack.addWidget(page_help);
 
-    QVBoxLayout* layout = new QVBoxLayout(&menu); 
+    QVBoxLayout* layout = new QVBoxLayout(&menu);
     layout->addWidget(img_icono, 0, Qt::AlignCenter);
 
 
-    add_button(layout, OPCION_CREATE,[this]() { this->action_create();});
-    add_button(layout, OPCION_JOIN,[this]() { this->action_join(); });
-    add_button(layout, OPCION_HELP,[this]() { this->action_help(); });
+    add_button(layout, OPCION_CREATE, [this]() { this->action_create(); });
+    add_button(layout, OPCION_JOIN, [this]() { this->action_join(); });
+    add_button(layout, OPCION_HELP, [this]() { this->action_help(); });
 
     QObject::connect(button_menu, &QPushButton::clicked, this, &MenuView::action_menu);
     QObject::connect(button_menu2, &QPushButton::clicked, this, &MenuView::action_menu);
     QObject::connect(button_menu3, &QPushButton::clicked, this, &MenuView::action_menu);
     connect(&lobby, &LobbyView::opcionElegida, this, &MenuView::opcionElegida);
-
 }
 
 
@@ -65,36 +59,32 @@ void MenuView::action_exit() {
         close();
     }
 }
-void MenuView::action_create() {
-    stack.setCurrentIndex(1);
-}
+void MenuView::action_create() { stack.setCurrentIndex(1); }
 void MenuView::action_join() {
 
     protocolo.send_list_games();
     std::vector<std::string> list = protocolo.read_list_games();
     std::cout << "listta entrante \n";
-    for (size_t i = 0; i < list.size(); i++)
-    {
+    for (size_t i = 0; i < list.size(); i++) {
         std::cout << list[i] << std::endl;
     }
     std::cout << "listta saliente \n";
-    
-    lobby.update_join_list(list); 
+
+    lobby.update_join_list(list);
     stack.setCurrentIndex(2);
 }
 
-void MenuView::action_menu() {  stack.setCurrentIndex(0);}
+void MenuView::action_menu() { stack.setCurrentIndex(0); }
 
-void MenuView::action_help() {stack.setCurrentIndex(3);}
+void MenuView::action_help() { stack.setCurrentIndex(3); }
 
-void MenuView::add_button(QVBoxLayout* layout, const QString& text, std::function<void()> callback){
+void MenuView::add_button(QVBoxLayout* layout, const QString& text,
+                          std::function<void()> callback) {
     QPushButton* button = new QPushButton(text);
     button->setFixedSize(200, 50);
-    QObject::connect(button, &QPushButton::clicked, [callback,this]() { callback();});
+    QObject::connect(button, &QPushButton::clicked, [callback, this]() { callback(); });
     layout->addWidget(button, 0, Qt::AlignHCenter);
 }
 
 
-
 MenuView::~MenuView() {}
-

@@ -3,8 +3,16 @@
 #include <algorithm>
 
 Rectangle MapConfig::load_rectangle(const YAML::Node& rectangle) {
-    Position min(rectangle["x1"].as<uint8_t>(), rectangle["y1"].as<uint8_t>());
-    Position max(rectangle["x2"].as<uint8_t>(), rectangle["y2"].as<uint8_t>());
+    coordinate_t x1 = rectangle["x1"].as<coordinate_t>();
+    coordinate_t y1 = rectangle["y1"].as<coordinate_t>();
+    coordinate_t x2 = rectangle["x2"].as<coordinate_t>();
+    coordinate_t y2 = rectangle["y2"].as<coordinate_t>();
+    coordinate_t x_min = std::min(x1, x2);
+    coordinate_t y_min = std::min(y1, y2);
+    coordinate_t x_max = std::max(x1, x2);
+    coordinate_t y_max = std::max(y1, y2);
+    Position min(x_min, y_min);
+    Position max(x_max, y_max);
     return Rectangle(min, max);
 }
 void MapConfig::load_bomb_sites(const YAML::Node& bomb_sites) {

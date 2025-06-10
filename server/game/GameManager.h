@@ -24,16 +24,17 @@ using std::string;
 
 class GameManager: public InterfaceGameManager {
 
-    typedef struct GameState {
+    typedef struct GameStats {
         uint8_t rounds_TT;
         uint8_t rounds_CT;
-    } game_state_t;
+        GameState state;
+    } game_stats_t;
 
 private:
     // Configs
     string game_name;
     GameConfig game_config;
-    game_state_t game_state = {0, 0};
+    game_stats_t game_stats = {0, 0};
     int round = 0;
     bool game_started = false;
 

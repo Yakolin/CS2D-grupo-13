@@ -16,7 +16,7 @@ shared_ptr<Player> GameManager::find_player(const player_id_t& player_id) {
 }
 
 void GameManager::process(ClientAction& action) {
-    if (timer.is_time_buy()) {  // Aca hay que mejorar la logica de compra y demas
+    if (timer.is_time_to_buy()) {
         const ServerSpace::BuyWeapon* action_casted =
                 dynamic_cast<ServerSpace::BuyWeapon*>(&action);
         if (!action_casted)
@@ -47,14 +47,13 @@ void GameManager::reset_players(bool full_reset) {
     for (const auto& player: players) {
         player.second->reset(full_reset);
     }
-    // map_game.respawn_players();
+    map_game.respawn_players();
 }
 // Decidi que esto se cree cada vez que se pide para evitar datos copiados
 GameImage GameManager::generate_game_image() {
     GameImage game_image;
     game_image.round = round;
     game_image.time = timer.get_time_round();
-    // Aca posiblemente deba de tambien pedirle al mapa que me de su imagen
     for (const auto& par: players) {
         shared_ptr<Player> player = par.second;
         Position player_position = map_game.get_position(par.first);
@@ -62,6 +61,7 @@ GameImage GameManager::generate_game_image() {
     }
     game_image.dropped_things = map_game.get_dropped_things_images();
     game_image.bomb = map_game.get_bomb_image();
+    game_image.game_state = game_stats.state;
     return game_image;
 }
 void GameManager::give_bomb() {
@@ -74,7 +74,6 @@ void GameManager::give_bomb() {
     }
     if (players_tt.empty())
         throw GameException("Can´t find any TT to give the bomb");
-
     player_id_t id = players_tt[rand() % players_tt.size()];
     std::shared_ptr<Player> player_selected = find_player(id);
     std::shared_ptr<IInteractuable> casted_bomb = bomb;
@@ -103,18 +102,20 @@ bool GameManager::check_round_finished() {
         }
     }
     if (all_ct_dead) {
-        game_state.rounds_TT++;
+        game_stats.rounds_TT++;
         return true;
     } else if (all_tt_dead) {
-        game_state.rounds_CT++;
+        game_stats.rounds_CT++;
         return true;
     }
     bool time_end = timer.is_round_over();
     if (bomb->is_defused() || (time_end && !bomb->is_activate())) {
-        game_state.rounds_CT++;
+        game_stats.rounds_CT++;
+        game_stats.state = GameState::CT_WIN_ROUND;
         return true;
     } else if (time_end && !bomb->is_defused()) {
-        game_state.rounds_TT++;
+        game_stats.rounds_TT++;
+        game_stats.state = GameState::TT_WIN_ROUND;
         return true;
     }
     return false;
@@ -127,22 +128,21 @@ void GameManager::change_teams() {
 }
 GameImage GameManager::get_frame() {
     if (round == 10) {
-        std::cout << "Juego terminado, rondas: CT: " << static_cast<int>(game_state.rounds_CT)
-                  << " TT: " << static_cast<int>(game_state.rounds_TT) << std::endl;
+        game_stats.state = (game_stats.rounds_TT > game_stats.rounds_CT) ? GameState::TT_WIN_GAME :
+                                                                           GameState::CT_WIN_GAME;
         return generate_game_image();
     }
-    /*
-        1. Actualizar las cosas en el Mapa , como movimiento de las balas , armas q caen
-        2. Chekear colisiones que no sean propias del jugador (colisiones de bala por ejemplo)
-        3. Manejar esas colisiones como balas chocando, etc
-    */
-    if (check_round_finished()) {
+    // Si no estamos en tiempo ending
+    if (timer.get_state() != TimerState::ENDING_TIME) {
+        bool round_finished = check_round_finished();
+        if (round_finished)
+            timer.round_end();
+    }
+    // Si ya termino el tiempo ending
+    if (timer.get_state() == TimerState::ENDING_TIME && timer.get_time_round() == 0) {
         round++;
         bool full_reset = false;
-        std::cout << "Ronda terminada\n";
         if (round == 5) {
-            // Aca si deberia de resetearse de forma forzada
-            std::cout << "A cambiar de equipos" << std::endl;
             change_teams();
             full_reset = true;
         }

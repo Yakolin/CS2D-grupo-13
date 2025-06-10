@@ -5,16 +5,51 @@ ClientProtocol::ClientProtocol(Socket& socket): socket(socket) {}
 
 ClientProtocol::~ClientProtocol() {}
 
+void ClientProtocol::read_map_info(MapInfo& map_info) {
+    RectangleInfo bomb_A, bomb_B, spawn_TT, spawn_CT;
+    this->read_position(bomb_A.pos_min);
+    this->read_position(bomb_A.pos_max);
+
+    this->read_position(bomb_B.pos_min);
+    this->read_position(bomb_B.pos_max);
+
+    this->read_position(spawn_TT.pos_min);
+    this->read_position(spawn_TT.pos_max);
+
+    this->read_position(spawn_CT.pos_min);
+    this->read_position(spawn_CT.pos_max);
+
+    length_walls_t walls_length;
+    this->read_two_byte_data(walls_length);
+    map_info.walls.clear();
+    map_info.walls.reserve(walls_length);
+    for (length_walls_t i = 0; i < walls_length; ++i) {
+        Position wall;
+        this->read_position(wall);
+        map_info.walls.emplace_back(std::move(wall));
+    }
+
+    map_info.bomb_A = bomb_A;
+    map_info.bomb_B = bomb_B;
+    map_info.spawn_TT = spawn_TT;
+    map_info.spawn_CT = spawn_CT;
+}
+
 GameInfo ClientProtocol::read_game_info() {
     GameInfo game_info;
-    length_game_info_t info_size;
-    this->read_two_byte_data(info_size);
+    this->read_map_info(game_info.map_info);
+    length_weapons_info_t weapons_length;
+    this->read_byte_data(weapons_length);
+    game_info.weapons_purchasables.clear();
+    game_info.weapons_purchasables.reserve(weapons_length);
+    for (length_weapons_info_t i = 0; i < weapons_length; ++i) {
+        weapon_code_t weapon_code;
+        this->read_byte_data(weapon_code);
 
-    for (length_game_info_t i = 0; i < info_size; ++i) {
-        coordinate_t x, y;
-        this->read_two_byte_data(x);
-        this->read_two_byte_data(y);
-        game_info.walls.emplace_back(Position(x, y));
+        uint16_t price;
+        this->read_two_byte_data(price);
+
+        game_info.weapons_purchasables.emplace_back(static_cast<WeaponCode>(weapon_code), price);
     }
     return game_info;
 }
@@ -297,13 +332,9 @@ void ClientProtocol::read_bomb(BombImage& bomb_image) {
     this->read_position(position);
     bomb_image.position = position;
 
-    uint8_t activate;
-    this->read_byte_data(activate);
-    bomb_image.activate = static_cast<bool>(activate);
-
-    uint8_t dropped;
-    this->read_byte_data(dropped);
-    bomb_image.dropped = static_cast<bool>(dropped);
+    bomb_state_t bomb_state;
+    this->read_byte_data(bomb_state);
+    bomb_image.state = static_cast<BombState>(bomb_state);
 }
 
 void ClientProtocol::read_weapons_dropped(std::vector<WeaponDropped>& weapons_dropped) {

@@ -7,6 +7,8 @@
 #include "utility.h"
 
 using length_game_info_t = std::uint16_t;
+using length_weapons_info_t = std::uint8_t;
+using length_walls_t = std::uint16_t;
 using map_name_t = std::uint8_t;
 using skin_t = std::uint8_t;
 

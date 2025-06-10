@@ -41,6 +41,8 @@ private:
     void send_byte_data(uint8_t& data);
     void send_two_byte_data(uint16_t& data);
 
+    void send_map_info(const MapInfo& map_info);
+
     void send_position(const Position& position);
 
     void send_weapons(const PlayerImage& player_image);

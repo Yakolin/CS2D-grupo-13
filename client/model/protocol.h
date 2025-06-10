@@ -22,6 +22,8 @@ private:
     void read_byte_data(uint8_t& data);
     void read_two_byte_data(uint16_t& data);
 
+    void read_map_info(MapInfo& map_info);
+
     void read_client_id(player_id_t& player_id);
     void read_position(Position& position);
     void read_weapons(std::vector<WeaponImage>& weapons);

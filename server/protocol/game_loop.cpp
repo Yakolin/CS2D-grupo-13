@@ -17,7 +17,7 @@ void GameLoop::add_player(player_id_t& player_id, Skins& skins,
     recv_queue = this->recv_queue;
     send_queues[player_id] = send_queue;
     this->game.add_player(player_id, skins);
-    game_info.walls = this->game.get_game_map();
+    game_info = this->game.get_game_info();
 }
 
 bool GameLoop::is_full() { return (this->send_queues.size() == MAX_PLAYERS); }

@@ -154,6 +154,30 @@ void ServerProtocol::send_two_byte_data(uint16_t& data) {
     }
 }
 
+void ServerProtocol::send_map_info(const MapInfo& map_info) {
+    RectangleInfo bomb_A = map_info.bomb_A;
+    this->send_position(bomb_A.pos_min);
+    this->send_position(bomb_A.pos_max);
+
+    RectangleInfo bomb_B = map_info.bomb_B;
+    this->send_position(bomb_B.pos_min);
+    this->send_position(bomb_B.pos_max);
+
+    RectangleInfo spawn_TT = map_info.spawn_TT;
+    this->send_position(spawn_TT.pos_min);
+    this->send_position(spawn_TT.pos_max);
+
+    RectangleInfo spawn_CT = map_info.spawn_CT;
+    this->send_position(spawn_CT.pos_min);
+    this->send_position(spawn_CT.pos_max);
+
+    length_walls_t walls_length = map_info.walls.size();
+    this->send_two_byte_data(walls_length);
+    for (const Position& wall: map_info.walls) {
+        this->send_position(wall);
+    }
+}
+
 void ServerProtocol::send_position(const Position& position) {
     coordinate_t x = position.x;
     this->send_two_byte_data(x);
@@ -179,12 +203,15 @@ void ServerProtocol::send_list_games(ListGame& games) {
 }
 
 void ServerProtocol::send_game_info(GameInfo& game_info) {
-    std::vector<Position> walls = game_info.walls;
-    length_game_info_t info_size = walls.size();
-    this->send_two_byte_data(info_size);
+    this->send_map_info(game_info.map_info);
+    length_weapons_info_t weapons_length = game_info.weapons_purchasables.size();
+    this->send_byte_data(weapons_length);
+    for (const WeaponInfo& weapon_info: game_info.weapons_purchasables) {
+        weapon_code_t weapon_code = static_cast<weapon_code_t>(weapon_info.code);
+        this->send_byte_data(weapon_code);
 
-    for (const Position& wall_position: walls) {
-        this->send_position(wall_position);
+        uint16_t price = weapon_info.price;
+        this->send_two_byte_data(price);
     }
 }
 
@@ -257,11 +284,8 @@ void ServerProtocol::send_bomb_image(BombImage& bomb_image) {
 
     this->send_position(bomb_image.position);
 
-    uint8_t activate = static_cast<uint8_t>(bomb_image.activate);
-    this->send_byte_data(activate);
-
-    uint8_t dropped = static_cast<uint8_t>(bomb_image.dropped);
-    this->send_byte_data(dropped);
+    bomb_state_t bomb_state = static_cast<bomb_state_t>(bomb_image.state);
+    this->send_byte_data(bomb_state);
 }
 
 void ServerProtocol::send_weapons_dropped(std::vector<WeaponDropped>& weapons_dropped) {

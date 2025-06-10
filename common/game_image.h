@@ -17,8 +17,11 @@ using length_players_images_t = std::uint16_t;
 using length_weapons_images_t = std::uint8_t;
 using length_bullets_in_air_t = std::uint16_t;
 using length_weapons_dropped_t = std::uint8_t;
+using bomb_state_t = std::uint8_t;
 using team_t = std::uint8_t;
 
+
+enum class GameState { GAME_STARTED, GAME_ENDED, TT_WIN_ROUND, CT_WIN_ROUND };
 enum class Team { CT, TT };
 enum class BombState { EQUIPED, DROPPED, ACTIVATED, DESACTIVATED, EXPLOTED };
 class BulletImage {
@@ -97,6 +100,7 @@ public:
     std::vector<BulletImage> bullets_in_air;
     BombImage bomb;
     std::vector<WeaponDropped> dropped_things;
+    GameState game_state;
 };
 
 #endif  // !GAME_IMAGE_H

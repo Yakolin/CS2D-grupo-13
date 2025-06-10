@@ -114,41 +114,85 @@ TEST(ServerProtocolTest, ReadCreateGameReturnCorrectObject) {
 
     client_thread.join();
 }
-
 TEST(ServerProtocolTest, SendGameInfoSendsCorrectData) {
     Socket server_socket("9999");
-    GameInfo game_info;
-    game_info.walls.push_back(Position(1, 2));
-    game_info.walls.push_back(Position(3, 4));
 
+    // --- Arrange ---
+    GameInfo game_info;
+
+    // Set up map info (zones and spawns)
+    game_info.map_info.bomb_A = RectangleInfo(Position(10, 20), Position(30, 40));
+    game_info.map_info.bomb_B = RectangleInfo(Position(50, 60), Position(70, 80));
+    game_info.map_info.spawn_TT = RectangleInfo(Position(90, 100), Position(110, 120));
+    game_info.map_info.spawn_CT = RectangleInfo(Position(130, 140), Position(150, 160));
+
+    // Add walls
+    game_info.map_info.walls.push_back(Position(1, 2));
+    game_info.map_info.walls.push_back(Position(3, 4));
+
+    // Add purchasable weapons
+    game_info.weapons_purchasables.push_back(WeaponInfo{WeaponCode::AK47, 2700});
+    game_info.weapons_purchasables.push_back(WeaponInfo{WeaponCode::M3, 3100});
+
+    // --- Launch client thread to receive data ---
     std::thread client_thread([&]() {
         Socket client_socket("localhost", "9999");
 
-        length_game_info_t received_size;
-        client_socket.recvall(&received_size, sizeof(received_size));
-        received_size = ntohs(received_size);
-        ASSERT_EQ(received_size, game_info.walls.size());
+        auto recv_position = [&](coordinate_t expected_x, coordinate_t expected_y) {
+            coordinate_t received_x, received_y;
+            client_socket.recvall(&received_x, sizeof(received_x));
+            client_socket.recvall(&received_y, sizeof(received_y));
+            ASSERT_EQ(ntohs(received_x), expected_x);
+            ASSERT_EQ(ntohs(received_y), expected_y);
+        };
 
-        for (const Position& expected_pos: game_info.walls) {
-            coordinate_t received_x;
-            client_socket.recvall(&received_x, sizeof(coordinate_t));
-            received_x = ntohs(received_x);
+        // 1. Receive bomb_A, bomb_B, spawn_TT, spawn_CT (4 rectangles = 8 positions)
+        recv_position(10, 20);
+        recv_position(30, 40);
 
-            coordinate_t received_y;
-            client_socket.recvall(&received_y, sizeof(coordinate_t));
-            received_y = ntohs(received_y);
+        recv_position(50, 60);
+        recv_position(70, 80);
 
-            ASSERT_EQ(received_x, expected_pos.x);
-            ASSERT_EQ(received_y, expected_pos.y);
+        recv_position(90, 100);
+        recv_position(110, 120);
+
+        recv_position(130, 140);
+        recv_position(150, 160);
+
+        // 2. Receive wall count (2 bytes)
+        uint16_t walls_count;
+        client_socket.recvall(&walls_count, sizeof(walls_count));
+        walls_count = ntohs(walls_count);
+        ASSERT_EQ(walls_count, game_info.map_info.walls.size());
+
+        // 3. Receive each wall
+        for (const Position& wall: game_info.map_info.walls) {
+            recv_position(wall.x, wall.y);
+        }
+
+        // 4. Receive weapon count (1 byte)
+        uint8_t weapon_count;
+        client_socket.recvall(&weapon_count, sizeof(weapon_count));
+        ASSERT_EQ(weapon_count, game_info.weapons_purchasables.size());
+
+        // 5. For each weapon: receive code (1 byte), price (2 bytes)
+        for (const WeaponInfo& weapon: game_info.weapons_purchasables) {
+            uint8_t received_code;
+            client_socket.recvall(&received_code, sizeof(received_code));
+            ASSERT_EQ(received_code, static_cast<uint8_t>(weapon.code));
+
+            uint16_t received_price;
+            client_socket.recvall(&received_price, sizeof(received_price));
+            ASSERT_EQ(ntohs(received_price), weapon.price);
         }
     });
 
+    // --- Act ---
     Socket server_client = server_socket.accept();
     ServerProtocol protocol(server_client);
-
-    // Act
     protocol.send_game_info(game_info);
 
+    // --- Wait for client to finish ---
     client_thread.join();
 }
 

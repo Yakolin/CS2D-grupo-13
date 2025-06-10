@@ -173,37 +173,103 @@ TEST(ClientProtocolTest, SendMoveSendCorrectObject) {
 TEST(ClientProtocolTest, ReadGameInfoReadsCorrectData) {
     Socket server_socket("9999");
 
+    // --- Arrange: datos esperados que enviaremos desde el servidor ---
     GameInfo expected_game_info;
-    expected_game_info.walls.push_back(Position(1, 2));
-    expected_game_info.walls.push_back(Position(3, 4));
 
+    expected_game_info.map_info.bomb_A = RectangleInfo(Position(10, 20), Position(30, 40));
+    expected_game_info.map_info.bomb_B = RectangleInfo(Position(50, 60), Position(70, 80));
+    expected_game_info.map_info.spawn_TT = RectangleInfo(Position(90, 100), Position(110, 120));
+    expected_game_info.map_info.spawn_CT = RectangleInfo(Position(130, 140), Position(150, 160));
+
+    expected_game_info.map_info.walls.push_back(Position(1, 2));
+    expected_game_info.map_info.walls.push_back(Position(3, 4));
+
+    expected_game_info.weapons_purchasables.emplace_back(WeaponCode::AK47, 2700);
+    expected_game_info.weapons_purchasables.emplace_back(WeaponCode::M3, 3100);
+
+    // --- Simulamos el servidor que envía los datos ---
     std::thread server_thread([&]() {
         Socket client_socket = server_socket.accept();
 
-        length_game_info_t size_to_send =
-                htons(static_cast<length_game_info_t>(expected_game_info.walls.size()));
-        client_socket.sendall(&size_to_send, sizeof(size_to_send));
+        auto send_position = [&](coordinate_t x, coordinate_t y) {
+            coordinate_t x_net = htons(x);
+            coordinate_t y_net = htons(y);
+            client_socket.sendall(&x_net, sizeof(x_net));
+            client_socket.sendall(&y_net, sizeof(y_net));
+        };
 
-        for (const Position& pos: expected_game_info.walls) {
-            // Enviar coordenada x
-            coordinate_t x_to_send = htons(pos.x);
-            client_socket.sendall(&x_to_send, sizeof(coordinate_t));
+        // 1. Enviar posiciones de zonas: bomb_A, bomb_B, spawn_TT, spawn_CT
+        send_position(10, 20);
+        send_position(30, 40);
 
-            coordinate_t y_to_send = htons(pos.y);
-            client_socket.sendall(&y_to_send, sizeof(coordinate_t));
+        send_position(50, 60);
+        send_position(70, 80);
+
+        send_position(90, 100);
+        send_position(110, 120);
+
+        send_position(130, 140);
+        send_position(150, 160);
+
+        // 2. Enviar cantidad de paredes
+        uint16_t wall_count = htons(expected_game_info.map_info.walls.size());
+        client_socket.sendall(&wall_count, sizeof(wall_count));
+
+        // 3. Enviar paredes
+        for (const Position& wall: expected_game_info.map_info.walls) {
+            send_position(wall.x, wall.y);
+        }
+
+        // 4. Enviar cantidad de armas (1 byte)
+        uint8_t weapon_count = expected_game_info.weapons_purchasables.size();
+        client_socket.sendall(&weapon_count, sizeof(weapon_count));
+
+        // 5. Enviar armas: código (1 byte), precio (2 bytes)
+        for (const WeaponInfo& weapon: expected_game_info.weapons_purchasables) {
+            uint8_t code = static_cast<uint8_t>(weapon.code);
+            uint16_t price = htons(weapon.price);
+            client_socket.sendall(&code, sizeof(code));
+            client_socket.sendall(&price, sizeof(price));
         }
     });
 
+    // --- Cliente lee la info ---
     Socket client_socket("localhost", "9999");
     ClientProtocol protocol(client_socket);
 
     GameInfo received_game_info = protocol.read_game_info();
 
-    ASSERT_EQ(received_game_info.walls.size(), expected_game_info.walls.size());
+    // --- Asserts: comparar estructuras completas ---
+    const auto& expected_map = expected_game_info.map_info;
+    const auto& received_map = received_game_info.map_info;
 
-    for (size_t i = 0; i < expected_game_info.walls.size(); ++i) {
-        ASSERT_EQ(received_game_info.walls[i].x, expected_game_info.walls[i].x);
-        ASSERT_EQ(received_game_info.walls[i].y, expected_game_info.walls[i].y);
+    auto assert_position = [](const Position& a, const Position& b) {
+        ASSERT_EQ(a.x, b.x);
+        ASSERT_EQ(a.y, b.y);
+    };
+
+    assert_position(expected_map.bomb_A.pos_min, received_map.bomb_A.pos_min);
+    assert_position(expected_map.bomb_A.pos_max, received_map.bomb_A.pos_max);
+    assert_position(expected_map.bomb_B.pos_min, received_map.bomb_B.pos_min);
+    assert_position(expected_map.bomb_B.pos_max, received_map.bomb_B.pos_max);
+    assert_position(expected_map.spawn_TT.pos_min, received_map.spawn_TT.pos_min);
+    assert_position(expected_map.spawn_TT.pos_max, received_map.spawn_TT.pos_max);
+    assert_position(expected_map.spawn_CT.pos_min, received_map.spawn_CT.pos_min);
+    assert_position(expected_map.spawn_CT.pos_max, received_map.spawn_CT.pos_max);
+
+    ASSERT_EQ(received_map.walls.size(), expected_map.walls.size());
+    for (size_t i = 0; i < expected_map.walls.size(); ++i) {
+        assert_position(received_map.walls[i], expected_map.walls[i]);
     }
+
+    const auto& expected_weapons = expected_game_info.weapons_purchasables;
+    const auto& received_weapons = received_game_info.weapons_purchasables;
+
+    ASSERT_EQ(received_weapons.size(), expected_weapons.size());
+    for (size_t i = 0; i < expected_weapons.size(); ++i) {
+        ASSERT_EQ(received_weapons[i].code, expected_weapons[i].code);
+        ASSERT_EQ(received_weapons[i].price, expected_weapons[i].price);
+    }
+
     server_thread.join();
 }

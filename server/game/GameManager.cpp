@@ -17,10 +17,15 @@ shared_ptr<Player> GameManager::find_player(const player_id_t& player_id) {
 
 void GameManager::process(ClientAction& action) {
     if (timer.is_time_buy()) {  // Aca hay que mejorar la logica de compra y demas
-        return;
+        const ServerSpace::BuyWeapon* action_casted =
+                dynamic_cast<ServerSpace::BuyWeapon*>(&action);
+        if (!action_casted)
+            return;
     }
     player_id_t player_id = action.get_player_id();
     shared_ptr<Player> player = find_player(player_id);
+    if (player->is_dead())
+        return;
     action.action_to(*player);
 }
 

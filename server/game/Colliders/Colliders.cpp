@@ -28,12 +28,13 @@ bool Rectangle::is_in(const Position& position) {
     return x_in && y_in;
 }
 Position Rectangle::get_random_position() {
+
     uint16_t x = point_min.x + rand() % (point_max.x - point_min.x);
     uint16_t y = point_min.y + rand() % (point_max.y - point_min.y);
     return Position(x, y);
 }
 Rectangle& Rectangle::operator=(Rectangle&& other) {
     this->point_max = std::move(other.point_max);
-    this->point_min = std::move(other.point_max);
+    this->point_min = std::move(other.point_min);
     return *this;
 }

@@ -15,6 +15,9 @@ class FireableWeapon: public Weapon {
     uint8_t inventory_bullets;
     uint8_t magazine;
 
+protected:
+    bool reduce_bullets();
+
 public:
     FireableWeapon(WeaponCode code, GameConfig::weapon_config_t specs):
             Weapon(code, specs), inventory_bullets(specs.max_b), magazine(specs.current_b) {}

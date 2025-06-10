@@ -1,8 +1,6 @@
 #include "FireableWeapon.h"
 bool Glock::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& direction) {
-    if (specs.current_b > 0) {
-        uint8_t bullets_fired = std::min(specs.current_b, specs.fire_rate);
-        specs.current_b -= bullets_fired;
+    if (reduce_bullets()) {
         auto calculate_damage_func = [this](float distance) {
             return this->calculate_damage(distance);
         };
@@ -19,9 +17,7 @@ uint8_t Glock::calculate_damage(float distance) { return specs.damage * distance
 uint8_t Ak47::calculate_damage(float distance) { return specs.damage * distance; }
 
 bool Ak47::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& direction) {
-    if (specs.current_b > 0) {
-        uint8_t bullets_fired = std::min(specs.current_b, specs.fire_rate);
-        specs.current_b -= bullets_fired;
+    if (reduce_bullets()) {
         auto calculate_damage_func = [this](float distance) {
             return this->calculate_damage(distance);
         };
@@ -34,6 +30,13 @@ bool Ak47::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& direc
 
 bool Ak47::is_droppable() { return true; }
 
+bool FireableWeapon::reduce_bullets() {
+    if (specs.current_b > 0)
+        return false;
+    uint8_t bullets_fired = std::min(specs.current_b, specs.fire_rate);
+    specs.current_b -= bullets_fired;
+    return true;
+}
 void FireableWeapon::reload() {
     if (inventory_bullets > 0 && specs.current_b < magazine) {
         uint8_t needed_bullets = magazine - specs.current_b;

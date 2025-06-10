@@ -53,7 +53,7 @@ void MapConfig::load_map(const YAML::Node& map) {
     YAML::Node walls = map_data["walls"];
     int width = map_size["x"].as<int>();
     int height = map_size["y"].as<int>();
-    this->map_info.walls = std::vector<std::vector<char>>(height, std::vector<char>(width, Floor));
+    this->map_info.walls = std::vector<std::vector<char>>(width, std::vector<char>(height, Floor));
     load_bomb_sites(bomb_sites);
     load_spawn_sites(spawn_sites);
     load_walls(walls);

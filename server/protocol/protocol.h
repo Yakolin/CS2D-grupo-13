@@ -52,6 +52,7 @@ private:
     void send_bullets_in_air(std::vector<BulletImage>& bullets_in_image);
     void send_bomb_image(BombImage& game_image);
     void send_weapons_dropped(std::vector<WeaponDropped>& weapons_dropped);
+    void send_game_state_image(GameStateImage& game_state_image);
 
 
 public:

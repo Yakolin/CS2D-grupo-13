@@ -31,6 +31,7 @@ private:
     void read_bullets_in_air(std::vector<BulletImage>& bullets_in_air);
     void read_bomb(BombImage& game_image);
     void read_weapons_dropped(std::vector<WeaponDropped>& weapons_dropped);
+    void read_game_state_image(GameStateImage& game_state_image);
 
     void send_byte_data(uint8_t& data);
     void send_two_byte_data(uint16_t& data);

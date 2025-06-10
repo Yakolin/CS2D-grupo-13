@@ -355,6 +355,20 @@ void ClientProtocol::read_weapons_dropped(std::vector<WeaponDropped>& weapons_dr
     }
 }
 
+void ClientProtocol::read_game_state_image(GameStateImage& game_image) {
+    game_state_t game_state_raw;
+    this->read_byte_data(game_state_raw);
+    game_image.state = static_cast<GameState>(game_state_raw);
+
+    round_time_t time;
+    this->read_two_byte_data(time);
+    game_image.time = time;
+
+    round_t round;
+    this->read_byte_data(round);
+    game_image.round = round;
+}
+
 GameImage ClientProtocol::read_game_image() {
     GameImage game_image;
 
@@ -362,6 +376,7 @@ GameImage ClientProtocol::read_game_image() {
     this->read_player_image(game_image.players_images);
     this->read_bomb(game_image.bomb);
     this->read_weapons_dropped(game_image.dropped_things);
+    this->read_game_state_image(game_image.game_state);
 
     return game_image;
 }

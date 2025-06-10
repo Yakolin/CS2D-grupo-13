@@ -93,11 +93,14 @@ void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage&
     Vector2f end = collider_damage.collider->get_end();
     check_damage_players(caster, collider_damage, players_affected);
     if (players_affected.empty()) {
+        // Si no se detecto ningun jugador, revisamos si hay un muro entre medio
         if (check_bullet_wall(pos_caster, end))
             return;
+        // En caso de que no, directamente la linea es toda su distancia inicial
         add_bullet_image(pos_caster, end);
         return;
     }
+    // Aca buscamos de todos los detectados, que son a lo sumo 10, el mas cercano
     PlayerEntity nearest = players_affected[0];
     Vector2f pos_nearest(nearest.position.x, nearest.position.y);
     float min_distance = pos_caster.distance(pos_nearest);
@@ -112,6 +115,7 @@ void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage&
             nearest = player;
         }
     }
+    // Ya detectado el mas cercano, revisamos si hay un muro entre medio
     if (check_bullet_wall(pos_caster, pos_nearest))
         return;
     if (nearest.player.lock()) {

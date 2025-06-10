@@ -10,6 +10,7 @@ target_sources(CS2D_client
     SDL/mapView.cpp
     SDL/fieldOfView.cpp
     SDL/playerView.cpp
+    SDL/shopping.cpp
     SDL/weaponView.cpp
     SDL/camera.cpp
     SDL/text.cpp
@@ -24,6 +25,7 @@ target_sources(CS2D_client
     SDL/playerView.h
     SDL/gameConfig.h
     SDL/fieldOfView.h
+    SDL/shopping.h
     SDL/weaponView.h
     SDL/camera.h
     SDL/text.h

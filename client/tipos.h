@@ -9,7 +9,22 @@ enum class ItemTerrorism { PHOENIX, L337_KREW, ARCTIC_AVENGER, GUERRILLA };
 
 enum class ItemCounterTerrorism { SEAL, GSG9, SAS, GIGN };
 
-enum class TextView {VIDA, PUNTOS,MUERTES,RONDA};
+enum class TextView {HEALTH, AMMO,TIME,POINTS,TEAM,BOMB,WEAPON,BULLETS,NONE};
+ 
+enum class Color {
+    ROJO,
+    VERDE,
+    AZUL,
+    BLANCO,
+    NEGRO,
+    AMARILLO,
+    CIAN,
+    MAGENTA,
+    GRIS,
+    NARANJA,
+    VIOLETA,
+    ROSADO
+};
 
 enum class Weapon {
     AK47,
@@ -28,8 +43,11 @@ enum class Weapon {
     DEAGLE,
     GLOCK,
     SNIKE,
-    BOMB
+    BOMB,
+    M3,
+    NONE
 };   
+
 enum class Object {
     STONE,
     WALL,
@@ -51,6 +69,8 @@ enum class Object {
     PUNTOS,
     NOMBRE,
     BANDO,
+    EXPLOSION,
+    BULLET,
 
     ZONE_TERRORIST,
     ZONE_COUNTERTERROSIT,
@@ -98,6 +118,10 @@ struct Coordenada{
     float x;
     float y;
 };
+struct CoordenadaInt{
+    int x;
+    int y;
+};
 struct ItemSprite {
     int fil;
     int col;
@@ -108,10 +132,23 @@ struct PlayerSummary {
     int deaths;
     int collected_money;
 };
+struct ShopItem{
+    SDL_Texture* texture;
+    int price;
+    std::string name;
+    SDL_Rect destRect;
+    std::string descripcion;
 
+};
+struct WeaponData{
+    Weapon clave;
+    std::string name;
+    int price;
+    std::string descripcion;
+};
 struct Rankings {
     int ranking_terrorists;
     int ranking_counter_terrorists;
 };
 
-#endif
+#endif //TIPOS_H

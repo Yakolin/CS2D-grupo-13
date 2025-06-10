@@ -12,6 +12,7 @@
 #include "../../common/game_image.h"
 #include "../controller.h"
 #include "../tipos.h"
+#include "shopping.h"
 #include "camera.h"
 #include "bomb.h"
 #include "manageTexture.h"
@@ -43,13 +44,17 @@ private:
     Text* text;
     Uint32 lastTime ;
     FieldOfView* fov;
+    Shopping shop;
+
+
+
+
     bool bomb_activate;
 
     bool handle_events(const SDL_Event& evento);
 
     void load_textures();
 
-    bool load_text();
 
     void update_status_game();
 
@@ -63,9 +68,6 @@ public:
 
     SDL_Renderer* init_renderer(SDL_Window* window, GameConfig& config);
 
-    bool cargar_skins(const std::map<Object, std::string >& rutas_skins);
-
-    bool cargar_text();
 
     /*
     pre:  width y height deben ser mayores que 0.
@@ -81,8 +83,6 @@ public:
     bool add_player(float x, float y ,int speed, const std::string& img );
 
     void start();
-
-    bool load_weapon(const  std::map<Weapon, std::string >& route_weapons);
 
     void reset_values(PlayerView* player, const float& x_pixeles,const float& y_pixeles);
 

@@ -29,8 +29,6 @@ public:
     Socket skt;  // enviar referencia al controller
     ClientProtocol protocolo;
     LobbyCommandType opcionElegida;
-    std::map<Object, std::string > rutas_skins;
-    std::map<Weapon, std::string > route_weapons;
     Player info_game;
 
 

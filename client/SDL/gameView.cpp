@@ -18,12 +18,8 @@ GameView::GameView(Socket&& skt):
         text(nullptr),
         lastTime(SDL_GetTicks()) , 
         fov(nullptr),
-        bomb_activate(false)
-{
-    texts = {{TextView::VIDA, "Vida : 0 "},
-             {TextView::PUNTOS, "Puntos : 0"},
-             {TextView::MUERTES, "Muertes: 0"},
-             {TextView::RONDA, "Ronda n°: 1"}};
+        shop(camera,manger_texture,config)
+{ 
 
     leyenda['#'] = "assets/gfx/backgrounds/nuke.png";
     leyenda[' '] = "assets/gfx/backgrounds/stone1.jpg";
@@ -66,37 +62,6 @@ SDL_Renderer* GameView::init_renderer(SDL_Window* window, GameConfig& config) {
     return renderer;
 }
 
-bool GameView::cargar_skins(const std::map<Object, std::string>& rutas_skins) {
-    for (const auto& par: rutas_skins) {
-        if (!this->manger_texture.load(par.first, par.second, renderer)) {
-            std::cerr << "Fallo al cargar la textura para skin: " << std::endl;
-            return false;
-        }
-    }
-    return true;
-}
-
-bool GameView::load_text() {
-    TTF_Font* fuente = TTF_OpenFont(config.get_font().c_str(), 23);
-    if (!fuente) {
-        std::cerr << "Error al abrir fuente: " << TTF_GetError() << std::endl;
-        return false;
-    }
-
-    SDL_Color color = config.get_blanco();
-
-    for (const auto& par: texts) {
-        if (!this->manger_texture.load_texture_text(par.first, fuente, color, par.second,
-                                                    renderer)) {
-            std::cerr << "Fallo al cargar la textura de texto : " << std::endl;
-            TTF_CloseFont(fuente);
-            return false;
-        }
-    }
-
-    TTF_CloseFont(fuente);
-    return true;
-}
 
 bool GameView::init_game() {
     if (SDL_Init(SDL_INIT_VIDEO) != 0) {
@@ -116,7 +81,6 @@ bool GameView::init_game() {
 
     try {
         load_textures();
-        load_text();
     } catch (const std::exception& e) {
         std::cerr << e.what() << '\n';
         return false;
@@ -130,20 +94,10 @@ bool GameView::init_game() {
 
 void GameView::load_textures() {
     for (const auto& par: leyenda) {
-        manger_texture.load(ids.at(par.first), par.second, renderer);
+        manger_texture.load(ids.at(par.first), par.second);
     }
 }
 
-bool GameView::load_weapon(const std::map<Weapon, std::string>& route_weapons) {
-
-    for (const auto& par: route_weapons) {
-        if (!this->manger_texture.load_weapons(par.first, par.second, renderer)) {
-            std::cerr << "Fallo al cargar la textura del arma: " << std::endl;
-            return false;
-        }
-    }
-    return true;
-}
 void GameView::reset_values(PlayerView* player, const float& x_pixeles, const float& y_pixeles) {
 
     player->setPrevPos(player->getXActual(), player->getYActual());
@@ -199,13 +153,21 @@ bool GameView::handle_events(const SDL_Event& event) {
 
     } else if (event.type == SDL_KEYDOWN) {
         SDL_Keycode tecla = event.key.keysym.sym;
-        controller.sender_mov_player(tecla); 
-        if (event.key.keysym.sym == SDLK_5) {
-            // El jugador presionó la tecla 5
-            std::cout << "Tecla 5 presionada" << std::endl;
-            return true;
-            // Aquí podés activar la bomba o cualquier otra acción
+        switch (tecla) {
+            case SDLK_w:
+            case SDLK_a:
+            case SDLK_s:
+            case SDLK_d:
+            case SDLK_UP:
+            case SDLK_DOWN:
+            case SDLK_LEFT:
+            case SDLK_RIGHT:
+            case SDLK_b:
+            // 
+                shop.activate_shop();
+                break;
         }
+        controller.sender_mov_player(tecla);
         player->add_speed(tecla);
 
         return true;
@@ -244,7 +206,7 @@ bool GameView::handle_events(const SDL_Event& event) {
 
 
 bool GameView::add_player(float x, float y, int speed, const std::string& img) {
-    if (!manger_texture.load(Object::PLAYER, img, renderer)) {
+    if (!manger_texture.load(Object::PLAYER, img)) {
         std::cerr << "Error: No se pudo cargar la textura del jugador." << std::endl;
         return false;
     }  
@@ -261,10 +223,8 @@ void GameView::draw_game(const std::vector<Position> walls) {
     }
     this->fov = new FieldOfView(*player,camera,manger_texture,config);
 
-    text = new Text(&manger_texture, TextView::VIDA, 10, 10);
     SDL_Event event;
 
-   // Bomb bomba = Bomb(player,camera,manger_texture,config);
 
     auto keep_running = [&]() -> bool {
         while (SDL_PollEvent(&event)) {
@@ -295,7 +255,9 @@ void GameView::draw_game(const std::vector<Position> walls) {
 
         // Render
         SDL_RenderClear(renderer);
-
+        if(shop.get_activa()){
+            shop.draw(*renderer);
+        }
         map->draw(*renderer);
         player->draw(*renderer);
         draw_players();

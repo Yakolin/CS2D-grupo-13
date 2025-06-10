@@ -8,6 +8,12 @@
 #include <SDL2/SDL_ttf.h>
 #include "../tipos.h"
 #include <array>
+#include <vector>
+#include <iostream>
+#include <map>
+#include <stdexcept>
+#include <sstream>
+#include <SDL2/SDL2_gfxPrimitives.h>
 
 class ManageTexture {
 public:
@@ -15,7 +21,12 @@ public:
 
     explicit ManageTexture(SDL_Renderer* renderer);
 
-    bool load(const Object& id, const std::string& filePath, SDL_Renderer* renderer);
+    std::vector<std::string> split(const std::string& s, char delimiter);
+
+    void render_text(const SDL_Rect& rect, const std::string& text, const SDL_Color& color,
+                     TTF_Font* font);
+
+    bool load(const Object& id, const std::string& filePath);
 
     void fillTriangle(SDL_Renderer* renderer, int x0, int y0, int x1, int y1, int x2, int y2);
 
@@ -38,13 +49,17 @@ public:
     
     void clear();
 
-    void calculate_dimensions(int& width_img, int& height_img,const Weapon& clave) ;
+    SDL_Texture* reder_menu_texture(const std::unordered_map<Weapon, ShopItem>& items,
+                                    const SDL_Rect& menu_rect, TTF_Font* font);
+
+    void calculate_dimensions(int& width_img, int& height_img, const Weapon& clave);
 
 private:
     SDL_Renderer* renderer;
     std::unordered_map<Object, SDL_Texture*> textures;
     std::unordered_map<TextView, TextureData> textures_text;
     std::unordered_map<Weapon,SDL_Texture*> textures_weapons;
+    std::unordered_map<Color, SDL_Color> colores;
 
 };
 

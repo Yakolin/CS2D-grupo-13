@@ -1,12 +1,123 @@
 #include "manageTexture.h"
-#include <iostream>
-#include <stdexcept>
-#include <SDL2/SDL2_gfxPrimitives.h>
+const int OFFSET=40;
 ManageTexture::ManageTexture(SDL_Renderer* renderer):
     renderer(renderer)
-    {}
+    {
+    colores = {
+        {Color::ROJO,     {255,   0,   0, 255}},
+        {Color::VERDE,    {  0, 255,   0, 255}},
+        {Color::AZUL,     {  0,   0, 255, 255}},
+        {Color::BLANCO,   {255, 255, 255, 255}},
+        {Color::NEGRO,    {  0,   0,   0, 255}},
+        {Color::AMARILLO, {255, 255,   0, 255}},
+        {Color::CIAN,     {  0, 255, 255, 255}},
+        {Color::MAGENTA,  {255,   0, 255, 255}},
+        {Color::GRIS,     {128, 128, 128, 255}},
+        {Color::NARANJA,  {255, 165,   0, 255}},
+        {Color::VIOLETA,  {138,  43, 226, 255}},
+        {Color::ROSADO,   {255, 192, 203, 255}}
+    };
+    load(Object::EXPLOSION,"assets/gfx/explosion.png");
+    load(Object::BULLET,"assets/gfx/bala.png");
+    load(Object::PHOENIX, "assets/gfx/terrorist/t2.png");
+    load(Object::L337_KREW, "assets/gfx/terrorist/t4.png");
+    load(Object::ARCTIC_AVENGER, "assets/gfx/terrorist/t3.png");
+    load(Object::GUERRILLA, "assets/gfx/terrorist/t1_1.png");
+    load(Object::SEAL, "assets/gfx/counterTerrorist/ct2.png");
+    load(Object::GSG9, "assets/gfx/counterTerrorist/ct4.png");
+    load(Object::SAS, "assets/gfx/counterTerrorist/ct3.png");
+    load(Object::GIGN, "assets/gfx/counterTerrorist/ct1.png");
+    load_weapons(Weapon::BOMB,"assets/gfx/weapons/bomb.png",renderer);
+    load_weapons(Weapon::AK47,"assets/gfx/weapons/ak47v.png",renderer);
+    load_weapons(Weapon::AWP,"assets/gfx/weapons/awpv.png",renderer);
+    load_weapons(Weapon::M3,"assets/gfx/weapons/m3v.png",renderer);
+    load_weapons(Weapon::SNIKE, "assets/gfx/weapons/knife.png",renderer);
+    load_weapons(Weapon::GLOCK, "assets/gfx/weapons/glock.png",renderer);
+    }
+
+std::vector<std::string> ManageTexture::split(const std::string& s, char delimiter) {
+    std::vector<std::string> tokens;
+    std::stringstream ss(s);
+    std::string token;
+    
+    while (std::getline(ss, token, delimiter)) {
+        tokens.push_back(token);
+    }
+    
+    return tokens;
+}
+
+void ManageTexture::render_text(const SDL_Rect& rect,const std::string& text,const  SDL_Color& color, TTF_Font* font){
+    if (!font) {
+        std::cerr << "Error: font es nullptr - " << TTF_GetError() << std::endl;
+        return;
+    }
+
+    if (text.empty()) {
+        std::cerr << "Advertencia: intentando renderizar texto vacío" << std::endl;
+        return;
+    }
+
+    SDL_Surface* surface = TTF_RenderText_Blended(font, text.c_str(), color);
+    if (!surface) {
+        std::cerr << "Error renderizando texto: " << TTF_GetError() << std::endl;
+        return;
+    }
+
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
+    if (!texture) {
+        std::cerr << "Error creando textura desde superficie: " << SDL_GetError() << std::endl;
+        SDL_FreeSurface(surface);
+        return;
+    }
+
+    SDL_Rect textRect = { rect.x + rect.w + 10, rect.y, surface->w, surface->h };
+    SDL_RenderCopy(renderer, texture, nullptr, &textRect);
+
+    SDL_FreeSurface(surface);
+    SDL_DestroyTexture(texture);
+
+}
 
 
+SDL_Texture* ManageTexture::reder_menu_texture(const  std::unordered_map<Weapon, ShopItem>& items,const SDL_Rect& menu_rect ,TTF_Font* font) {
+    
+    SDL_Texture* menuTexture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, menu_rect.w, menu_rect.h);
+    SDL_SetTextureBlendMode(menuTexture, SDL_BLENDMODE_BLEND); // Blend mode correcto
+    SDL_SetRenderTarget(renderer, menuTexture);
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 128); // Fondo semi-transparente
+    SDL_RenderClear(renderer);
+    
+    SDL_Rect tileRect = {menu_rect.x, menu_rect.y, 0,0};
+
+    render_text(tileRect,"- ARMAS", colores.at(Color::ROJO), font);
+
+    for (const auto& item : items) {
+        SDL_RenderCopy(renderer, item.second.texture, nullptr, &item.second.destRect);
+
+        SDL_Rect nameRect = item.second.destRect;
+        nameRect.x += 10;
+        nameRect.y += OFFSET;
+        render_text(nameRect, item.second.name, colores.at(Color::BLANCO), font);
+
+        SDL_Rect priceRect = item.second.destRect;
+        priceRect.x += 10;
+        priceRect.y += OFFSET+15; 
+        render_text(priceRect, "$" + std::to_string(item.second.price), colores.at(Color::AMARILLO), font);
+
+        std::vector<std::string> partes = split(item.second.descripcion,',');
+        for (size_t i = 0; i < partes.size(); i++){
+            SDL_Rect descRect = item.second.destRect;
+            descRect.x += item.second.destRect.w +10 ;
+            descRect.y += (i*25); 
+            render_text(descRect,partes[i],colores.at(Color::BLANCO), font);
+        }
+        
+    }
+
+    SDL_SetRenderTarget(renderer, nullptr); 
+    return menuTexture;
+}
 
 void ManageTexture::calculate_dimensions(int& width_img, int& height_img,const Weapon& clave) {
 
@@ -18,7 +129,7 @@ void ManageTexture::calculate_dimensions(int& width_img, int& height_img,const W
     SDL_QueryTexture(texture, nullptr, nullptr, &width_img, &height_img);
 }
 
-bool ManageTexture::load(const Object& id, const std::string& filePath, SDL_Renderer* renderer) {
+bool ManageTexture::load(const Object& id, const std::string& filePath) {
     SDL_Surface* surface = IMG_Load(filePath.c_str());
     if (!surface) {
         std::cerr << "Error cargando imagen: " << IMG_GetError() << std::endl;
@@ -34,7 +145,6 @@ bool ManageTexture::load(const Object& id, const std::string& filePath, SDL_Rend
     textures[id] = texture;
     return true;
 }
-
 
 
 void ManageTexture::fillTriangle(SDL_Renderer* renderer, int x0, int y0, int x1, int y1, int x2, int y2) {
@@ -223,71 +333,3 @@ void ManageTexture::clear() {
     }
     textures_text.clear();
 }
-/*void  ManageTexture::objectToString() {
-
-    std::cout << "=== Claves en textures ===\n";
-    for (const auto& pair : textures) {
-        std::cout << static_cast<int>(pair.first) << '\n';
-    }
-}
-*/
-
-/*
-SDL_Texture* ManageTexture::create_stencil(const int& ancho, const int& alto,const  float& angle, const float& apertura) {
-    
-    std::cout << "Llamado a create_stencil con los siguientes valores:-----------------------------\n";
-    std::cout << "Ancho: " << ancho << "\n";
-    std::cout << "Alto: " << alto << "\n";
-    std::cout << "Ángulo: " << angle << "\n";
-    std::cout << "Apertura: " << apertura << "\n";
-    int lado = ancho+alto;
-    std::cout << "lado: " << lado << "\n";
-
-
-    SDL_Texture* stencil = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, lado, lado);
-    if (!stencil) {
-        throw std::runtime_error("Error: la textura stencil  no se cargó correctamente.");
-    }
-
-    SDL_SetTextureBlendMode(stencil, SDL_BLENDMODE_BLEND);
-    SDL_SetTextureAlphaMod(stencil, 128);
-
-    SDL_Texture* old_target = SDL_GetRenderTarget(renderer);
-    SDL_SetRenderTarget(renderer, stencil);
-
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-    SDL_RenderClear(renderer);
-
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
-
-    int cx = lado / 2;
-    int cy = lado / 2;
-    float radio = lado / 2;
-    float angle_rad = angle * M_PI / 180.0f;
-    float apertura_rad = apertura * M_PI / 180.0f;
-    SDL_Point points[4];
-
-    points[0] = {cx, cy}; 
-    points[1] = { 
-        static_cast<int>(std::round(cx + radio * cos(angle_rad - apertura_rad / 2))),
-        static_cast<int>(std::round(cy + radio * sin(angle_rad - apertura_rad / 2)))
-    };
-    points[2] = { 
-        static_cast<int>(std::round(cx + radio * cos(angle_rad + apertura_rad / 2))),
-        static_cast<int>(std::round(cy + radio * sin(angle_rad + apertura_rad / 2)))
-    };
-    points[3] = points[0]; 
-    
-  //  SDL_RenderDrawLines(renderer, points, 4);
-
-    for (int i = 0; i <= 100; ++i) {
-        float t = i / 100.0f;
-        int x = static_cast<int>(points[1].x + t * (points[2].x - points[1].x));
-        int y = static_cast<int>(points[1].y + t * (points[2].y - points[1].y));
-        SDL_RenderDrawLine(renderer, points[0].x, points[0].y, x, y);
-    }
-
-    SDL_SetRenderTarget(renderer, old_target);
-
-    return stencil;
-}*/

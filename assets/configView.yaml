@@ -7,7 +7,7 @@ camera:
   viewport_logical_height: 480
 
 fuente:
-  rute_fuente: "assets/gfx/fonts/sourcesans.ttf"
+  route_font_menu: "assets/gfx/fonts/cs_regular.ttf"
   size_fuente: 10
 
 blanco:

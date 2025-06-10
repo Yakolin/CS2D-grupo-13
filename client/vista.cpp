@@ -8,32 +8,13 @@
 #include <QVBoxLayout>
 
 Vista::Vista(int& argc, char* argv[]):
-        argc(argc),
-        argv(argv),
-        skt(argv[1], argv[2]),
-        protocolo(skt),
-        opcionElegida(LobbyCommandType::NONE),
-        rutas_skins(),
-        route_weapons(),
-        info_game() {
+    argc(argc),
+    argv(argv),
+    skt(argv[1], argv[2]),
+    protocolo(skt),
+    opcionElegida(LobbyCommandType::NONE),
+    info_game() {
 
-    route_weapons = {
-            {Weapon::AK47, "assets/gfx/weapons/ak47.png"},
-            {Weapon::AWP, "assets/gfx/weapons/awp.png"},
-            {Weapon::SNIKE, "assets/gfx/weapons/knife.png"},
-            {Weapon::AK47, "assets/gfx/weapons/m3.png"},
-            {Weapon::GLOCK, "assets/gfx/weapons/glock.png"},
-            {Weapon::BOMB, "assets/gfx/weapons/bomb.png"},
-    };
-
-    rutas_skins = {{Object::PHOENIX, "assets/gfx/terrorist/t2.png"},
-                   {Object::L337_KREW, "assets/gfx/terrorist/t4.png"},
-                   {Object::ARCTIC_AVENGER, "assets/gfx/terrorist/t3.png"},
-                   {Object::GUERRILLA, "assets/gfx/terrorist/t1_1.png"},
-                   {Object::SEAL, "assets/gfx/counterTerrorist/ct2.png"},
-                   {Object::GSG9, "assets/gfx/counterTerrorist/ct4.png"},
-                   {Object::SAS, "assets/gfx/counterTerrorist/ct3.png"},
-                   {Object::GIGN, "assets/gfx/counterTerrorist/ct1.png"}};
 }
 
 
@@ -64,24 +45,19 @@ void Vista::run() {
     std::vector<Position> walls = info_game.map_info.walls;
     std::cout << "walls ===================== " << std::endl;
     std::cout << "cant walls ====== " << walls.size() << std::endl;
-    /*for (size_t i = 0; i < walls.size(); i++)
-    {
-        std::cout << "("<<walls[i].x<< "," << walls[i].y << ")" << std::endl;
-    }*/
 
     try {
         GameView gameView(std::move(skt));
-        if (!gameView.init_game() || !gameView.cargar_skins(rutas_skins) ||
-            !gameView.load_weapon(route_weapons))
+        if (!gameView.init_game())
             throw std::runtime_error(std::string("Error a inicializar game"));
 
 
         if (opcionElegida == LobbyCommandType::CREATE_GAME) {
-            if (!gameView.add_player(11, 4, 200.0f, rutas_skins.at(Object::GUERRILLA))) {
+            if (!gameView.add_player(11, 4, 200.0f, "assets/gfx/terrorist/t2.png")) {
                 return;
             }
         } else {
-            if (!gameView.add_player(23, 9, 200.0f, rutas_skins.at(Object::PHOENIX))) {
+            if (!gameView.add_player(23, 9, 200.0f, "assets/gfx/terrorist/t2.png")) {
                 return;
             }
         }

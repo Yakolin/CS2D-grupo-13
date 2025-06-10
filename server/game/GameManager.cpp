@@ -60,6 +60,7 @@ GameImage GameManager::generate_game_image() {
     }
     game_image.dropped_things = map_game.get_dropped_things_images();
     game_image.bomb = map_game.get_bomb_image();
+    game_stats.state = (timer.is_time_to_buy()) ? GameState::TIME_TO_BUY : game_stats.state;
     GameStateImage game_state_image(game_stats.state,
                                     static_cast<round_time_t>(timer.get_time_round()),
                                     static_cast<round_t>(round));

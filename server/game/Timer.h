@@ -9,10 +9,12 @@ class Timer {
     int buy_duration;
     int round_duration;
     int bomb_duration;
+    int ending_duration;
     bool round_started = false;
     bool bomb_activate = false;
     clock::time_point round_start_time;
     clock::time_point bomb_start_time;
+    clock::time_point round_ending_time;
     GameConfig::TimerConfig timer_config;
 
 public:
@@ -20,11 +22,16 @@ public:
         buy_duration = timer_config.time_buy;
         bomb_duration = timer_config.time_bomb;
         round_duration = timer_config.time_round + buy_duration;
+        ending_duration = timer_config.time_ending;
     }
     ~Timer() = default;
     void round_start() {
         round_start_time = clock::now();
         round_started = true;
+    }
+    void round_end() {
+        round_ending_time = clock::now();
+        round_started = false;
     }
     void bomb_start() {
         bomb_start_time = clock::now();
@@ -42,6 +49,12 @@ public:
         auto time =
                 std::chrono::duration_cast<std::chrono::seconds>(clock::now() - time_start).count();
         return std::max(0, round_real_time - static_cast<int>(time));
+    }
+    int get_ending_time() const {
+        auto time =
+                std::chrono::duration_cast<std::chrono::seconds>(clock::now() - round_ending_time)
+                        .count();
+        return std::max(0, ending_duration - static_cast<int>(time));
     }
     bool is_round_over() { return round_started && get_time_round() == 0; }
     bool is_time_buy() { return get_time_buy() > 0; }

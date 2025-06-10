@@ -31,7 +31,8 @@ void GameConfig::load_weapons(const YAML::Node& config) {
 void GameConfig::load_timers(const YAML::Node& config) {
     YAML::Node timer = config["Timer"];
     timer_config = {timer["time_buy"].as<int>(), timer["time_round"].as<int>(),
-                    timer["time_after_round"].as<int>(), timer["time_bomb"].as<int>()};
+                    timer["time_after_round"].as<int>(), timer["time_bomb"].as<int>(),
+                    timer["time_ending"].as<int>()};
 }
 void GameConfig::load_player(const YAML::Node& config) {
     YAML::Node player = config["Player"];

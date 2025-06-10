@@ -35,3 +35,4 @@ Timer:
   time_round: 24
   time_after_round: 10
   time_bomb: 20
+  time_ending: 5

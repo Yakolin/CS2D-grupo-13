@@ -51,7 +51,7 @@ public:
     std::vector<WeaponDropped> get_dropped_things_images() {
         return collision_manager.get_dropped_things_images();
     }
-    BombImage get_bomb_image() { return BombImage(bomb.first, bomb.second->get_state();); }
+    BombImage get_bomb_image() { return BombImage(bomb.first, bomb.second->get_state()); }
     virtual void defuse_bomb(const player_id_t& player_id) override;
     void move(player_id_t id, const Position& direction) override;
     void spawn_collider(player_id_t id_spawn, collider_solicitude_t& wanted) override;

@@ -21,12 +21,12 @@ void Map::add_player(player_id_t id, std::weak_ptr<ICanInteract> player) {
     players_in_map.insert(std::make_pair(id, PlayerEntity{player, Position(15, 15)}));
 }
 void Map::charge_map() {
-    MapConfig::map_info_t map_info = map_config.get_map_info();
-    this->bomb_A = map_info.bomb_A;
-    this->bomb_B = map_info.bomb_B;
-    this->spawn_TT = map_info.spawn_TT;
-    this->spawn_CT = map_info.spawn_CT;
-    this->walls = map_info.walls;
+    MapConfig::map_info_t& map_info = map_config.get_map_info();
+    this->bomb_A = std::move(map_info.bomb_A);
+    this->bomb_B = std::move(map_info.bomb_B);
+    this->spawn_TT = std::move(map_info.spawn_TT);
+    this->spawn_CT = std::move(map_info.spawn_CT);
+    this->walls = std::move(map_info.walls);
 }
 MapInfo Map::get_map_info() {
     std::vector<Position> walls_pos;

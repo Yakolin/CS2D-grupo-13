@@ -15,11 +15,8 @@ GameView::GameView(Socket&& skt):
         players(),
         snapshot(),
         map(nullptr),
-        text(nullptr),
         lastTime(SDL_GetTicks()),
-        fov(nullptr),
-        shop(camera,manger_texture,config)
-{ 
+        fov(nullptr) {
 
     leyenda['#'] = "assets/gfx/backgrounds/nuke.png";
     leyenda[' '] = "assets/gfx/backgrounds/stone1.jpg";
@@ -133,6 +130,8 @@ void GameView::update_status_game() {
             PlayerView* player_aux = players.at(id);
             int x_pixel_mouse = player_img.mouse_position.x * config.get_tile_width();
             int y_pixel_mouse = player_img.mouse_position.y * config.get_tile_height();
+            std::cout << player_img.mouse_position.x << std::endl;
+            std::cout << player_img.mouse_position.y << std::endl;
             printf("pos mouse recibida (%d, %d)\n", x_pixel_mouse, y_pixel_mouse);
             player_aux->update_view_angle(x_pixel_mouse, y_pixel_mouse);
             reset_values(player_aux, x_pixeles, y_pixeles);
@@ -155,25 +154,9 @@ bool GameView::handle_events(const SDL_Event& event) {
 
     } else if (event.type == SDL_KEYDOWN) {
         SDL_Keycode tecla = event.key.keysym.sym;
-        switch (tecla) {
-            case SDLK_w:
-            case SDLK_a:
-            case SDLK_s:
-            case SDLK_d:
-            case SDLK_UP:
-            case SDLK_DOWN:
-            case SDLK_LEFT:
-            case SDLK_RIGHT:
-            case SDLK_b:
-            // 
-                shop.activate_shop();
-                break;
-        }
         controller.sender_mov_player(tecla);
         player->add_speed(tecla);
-
         return true;
-
     } else if (event.type == SDL_KEYUP) {
         SDL_Keycode tecla = event.key.keysym.sym;
         player->stop_speed(tecla);  // Detiene movimiento
@@ -195,8 +178,10 @@ bool GameView::handle_events(const SDL_Event& event) {
         int mouseX = event.motion.x;
         int mouseY = event.motion.y;
         player->update_view_angle(mouseX, mouseY);
+        /*
         printf("-----------mov mouse----------------------\n");
         printf("MOUSER en (%d, %d)\n", mouseX, mouseY);
+        */
 
         controller.sender_pos_mouse(mouseX, mouseY);
 
@@ -258,13 +243,14 @@ void GameView::draw_game(const std::vector<Position> walls) {
 
         // Render
         SDL_RenderClear(renderer);
-        if(shop.get_activa()){
+        /*
+        if (shop.get_activa()) {
             shop.draw(*renderer);
         }
+        */
         map->draw(*renderer);
         player->draw(*renderer);
         draw_players();
-        text->draw(*renderer);
         fov->draw(*renderer);
         // if(bomb_activate){
         //     bomba.draw(*renderer);
@@ -297,9 +283,6 @@ GameView::~GameView() {
 
     if (map)
         delete map;
-
-    if (text)
-        delete text;
     if (fov)
         delete fov;
 

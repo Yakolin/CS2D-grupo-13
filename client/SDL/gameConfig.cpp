@@ -1,50 +1,43 @@
 #include "gameConfig.h"
+
 #include "manageTexture.h"
 
 
 GameConfig::GameConfig():
-    window_width(0),
-    window_height(0),
-    tile_width(32),
-    tile_height(32),
-    viewport_width(0),
-    viewport_height(0),
-    route_font(),
-    size_font(),
-    blanco(),
-    font_menu(nullptr)
-    {
+        window_width(0),
+        window_height(0),
+        tile_width(32),
+        tile_height(32),
+        viewport_width(0),
+        viewport_height(0),
+        route_font(),
+        size_font(),
+        blanco(),
+        font_menu(nullptr) {
 
-        load("assets/configView.yaml");
-        font_menu = TTF_OpenFont(route_font.c_str(), 18); // 18 es el tamaño
-        if (!font_menu) {
-            std::cerr << "ERROR: fuente no cargada - " << TTF_GetError() << std::endl;
-            throw std::runtime_error("No se pudo cargar la fuente del menu.");
-        }
-        font_game =TTF_OpenFont("assets/gfx/fonts/sourcesans.ttf", 20); // 18 es el tamaño
-        if (!font_game) {
-            std::cerr << "ERROR: fuente no cargada - " << TTF_GetError() << std::endl;
-            throw std::runtime_error("No se pudo cargar la fuente.");
-        }
-        colores = {
-        {Color::ROJO,     {255,   0,   0, 255}},
-        {Color::VERDE,    {  0, 255,   0, 255}},
-        {Color::AZUL,     {  0,   0, 255, 255}},
-        {Color::BLANCO,   {255, 255, 255, 255}},
-        {Color::NEGRO,    {  0,   0,   0, 255}},
-        {Color::AMARILLO, {255, 255,   0, 255}},
-        {Color::CIAN,     {  0, 255, 255, 255}},
-        {Color::MAGENTA,  {255,   0, 255, 255}},
-        {Color::GRIS,     {128, 128, 128, 255}},
-        {Color::NARANJA,  {255, 165,   0, 255}},
-        {Color::VIOLETA,  {138,  43, 226, 255}},
-        {Color::ROSADO,   {255, 192, 203, 255}}
-    };
-
+    load("assets/configView.yaml");
+    /*
+    font_menu = TTF_OpenFont("assets/gfx/fonts/cs_regular.ttf", 18);  // 18 es el tamaño
+    if (!font_menu) {
+        std::cerr << "ERROR: fuente no cargada - " << TTF_GetError() << std::endl;
+        throw std::runtime_error("No se pudo cargar la fuente del menu.");
+    }
+    font_game = TTF_OpenFont("assets/gfx/fonts/cs_regular.ttf", 20);  // 18 es el tamaño
+    if (!font_game) {
+        std::cerr << "ERROR: fuente no cargada - " << TTF_GetError() << std::endl;
+        throw std::runtime_error("No se pudo cargar la fuente.");
+    }
+    */
+    colores = {{Color::ROJO, {255, 0, 0, 255}},       {Color::VERDE, {0, 255, 0, 255}},
+               {Color::AZUL, {0, 0, 255, 255}},       {Color::BLANCO, {255, 255, 255, 255}},
+               {Color::NEGRO, {0, 0, 0, 255}},        {Color::AMARILLO, {255, 255, 0, 255}},
+               {Color::CIAN, {0, 255, 255, 255}},     {Color::MAGENTA, {255, 0, 255, 255}},
+               {Color::GRIS, {128, 128, 128, 255}},   {Color::NARANJA, {255, 165, 0, 255}},
+               {Color::VIOLETA, {138, 43, 226, 255}}, {Color::ROSADO, {255, 192, 203, 255}}};
 }
 
-SDL_Color GameConfig::get_color(const Color& clave){
-    
+SDL_Color GameConfig::get_color(const Color& clave) {
+
     auto it = colores.find(clave);
     if (it != colores.end()) {
         std::cout << "se encontró la textura para Object: " << static_cast<int>(clave) << std::endl;
@@ -53,14 +46,10 @@ SDL_Color GameConfig::get_color(const Color& clave){
     throw std::runtime_error("Textura no encontrada.");
 }
 
-TTF_Font* GameConfig::get_font_menu(){
-    return font_menu;
-}
-TTF_Font* GameConfig::get_font_game(){
-    return font_game;
-}
-void GameConfig::load(const std::string& file_path){
-    
+TTF_Font* GameConfig::get_font_menu() { return font_menu; }
+TTF_Font* GameConfig::get_font_game() { return font_game; }
+void GameConfig::load(const std::string& file_path) {
+
     try {
         YAML::Node config = YAML::LoadFile(file_path);
 
@@ -119,4 +108,4 @@ int GameConfig::get_viewpost_width() const { return viewport_width; }
 
 int GameConfig::get_size_font() const { return size_font; }
 
-std::string GameConfig::get_route_font() const {return route_font;}
+std::string GameConfig::get_route_font() const { return route_font; }

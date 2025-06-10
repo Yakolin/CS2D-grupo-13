@@ -1,7 +1,7 @@
 #include "MapConfig.h"
 
 #include <algorithm>
-
+#include <iostream>
 Rectangle MapConfig::load_rectangle(const YAML::Node& rectangle) {
     coordinate_t x1 = rectangle["x1"].as<coordinate_t>();
     coordinate_t y1 = rectangle["y1"].as<coordinate_t>();
@@ -18,14 +18,14 @@ Rectangle MapConfig::load_rectangle(const YAML::Node& rectangle) {
 void MapConfig::load_bomb_sites(const YAML::Node& bomb_sites) {
     YAML::Node A = bomb_sites["A"];
     YAML::Node B = bomb_sites["B"];
-    map_info.bomb_A = load_rectangle(A);
-    map_info.bomb_B = load_rectangle(B);
+    map_data.bomb_A = load_rectangle(A);
+    map_data.bomb_B = load_rectangle(B);
 }
 void MapConfig::load_spawn_sites(const YAML::Node& spawn_sites) {
     YAML::Node CT = spawn_sites["CT"];
     YAML::Node TT = spawn_sites["TT"];
-    map_info.spawn_CT = load_rectangle(CT);
-    map_info.spawn_TT = load_rectangle(TT);
+    map_data.spawn_CT = load_rectangle(CT);
+    map_data.spawn_TT = load_rectangle(TT);
 }
 void MapConfig::load_walls(const YAML::Node& map_walls) {
     for (const auto& wall: map_walls) {
@@ -39,8 +39,8 @@ void MapConfig::load_walls(const YAML::Node& map_walls) {
         size_t max_y = std::max(y1, y2);
         for (size_t i = min_x; i <= max_x; i++) {
             for (size_t j = min_y; j <= max_y; j++) {
-                if (i < map_info.walls.size() && j < map_info.walls[0].size())
-                    map_info.walls[i][j] = Wall;
+                if (i < map_data.walls.size() && j < map_data.walls[0].size())
+                    map_data.walls[i][j] = Wall;
             }
         }
     }
@@ -53,7 +53,7 @@ void MapConfig::load_map(const YAML::Node& map) {
     YAML::Node walls = map_data["walls"];
     int width = map_size["x"].as<int>();
     int height = map_size["y"].as<int>();
-    this->map_info.walls = std::vector<std::vector<char>>(width, std::vector<char>(height, Floor));
+    this->map_data.walls = std::vector<std::vector<char>>(width, std::vector<char>(height, Floor));
     load_bomb_sites(bomb_sites);
     load_spawn_sites(spawn_sites);
     load_walls(walls);

@@ -25,14 +25,12 @@ void Map::add_player(player_id_t id, std::weak_ptr<ICanInteract> player) {
     players_in_map.insert(std::make_pair(id, PlayerEntity{player, Position(15, 15)}));
 }
 void Map::charge_map() {
-    MapConfig::map_info_t& map_info = map_config.get_map_info();
+    MapConfig::map_data_t& map_info = map_config.get_map_info();
     this->bomb_A = std::move(map_info.bomb_A);
     this->bomb_B = std::move(map_info.bomb_B);
     this->spawn_TT = std::move(map_info.spawn_TT);
     this->spawn_CT = std::move(map_info.spawn_CT);
     this->walls = std::move(map_info.walls);
-}
-MapInfo Map::get_map_info() {
     std::vector<Position> walls_pos;
     for (size_t i = 0; i < walls.size(); i++)
         for (size_t j = 0; j < walls[i].size(); j++)
@@ -42,8 +40,9 @@ MapInfo Map::get_map_info() {
     RectangleInfo bomb_B_info(bomb_B.point_min, bomb_B.point_max);
     RectangleInfo spawn_TT_info(spawn_TT.point_min, spawn_TT.point_max);
     RectangleInfo spawn_CT_info(spawn_CT.point_min, spawn_CT.point_max);
-    return MapInfo(bomb_A_info, bomb_B_info, spawn_TT_info, spawn_CT_info, walls_pos);
+    map_info_to_client = MapInfo(bomb_A_info, bomb_B_info, spawn_TT_info, spawn_CT_info, walls_pos);
 }
+MapInfo Map::get_map_info() { return map_info_to_client; }
 void Map::move(player_id_t id, const Position& direction) {
     if (collision_manager.check_movement(id, direction))
         return;

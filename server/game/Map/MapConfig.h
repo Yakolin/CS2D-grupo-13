@@ -17,13 +17,14 @@
 #define PueblitoAzteca_path "server/game/Map/Maps/Azteca.yaml"
 #define ZonaEntrenamiento_path "server/game/Map/Maps/Entrenamiento.yaml"
 #define Desierto_path "server/game/Map/Maps/Desierto.yaml"
+
 class MapConfig {
 public:
-    typedef struct MapInfo {
+    typedef struct MapData {
         Rectangle bomb_A, bomb_B, spawn_CT, spawn_TT;
         std::vector<std::vector<char>> walls;
-    } map_info_t;
-    map_info_t map_info;
+    } map_data_t;
+    map_data_t map_data;
 
 private:
     Rectangle load_rectangle(const YAML::Node& rectangle);
@@ -36,7 +37,7 @@ private:
 
 public:
     explicit MapConfig(const MapName& map_name) { load(map_name); }
-    map_info_t& get_map_info() { return map_info; }
+    map_data_t& get_map_info() { return map_data; }
 };
 
 #endif  // MAP_CONFIG_H_

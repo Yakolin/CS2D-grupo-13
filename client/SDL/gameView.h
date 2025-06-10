@@ -16,7 +16,7 @@
 #include "../../common/game_image.h"
 #include "../controller.h"
 #include "../tipos.h"
-#include "shopping.h"
+
 #include "camera.h"
 #include "fieldOfView.h"
 #include "gameConfig.h"
@@ -24,6 +24,7 @@
 #include "mapView.h"
 #include "playerView.h"
 #include "renderizable.h"
+#include "shopping.h"
 #include "text.h"
 class GameView {
 
@@ -42,12 +43,9 @@ private:
     std::map<player_id_t, PlayerView*> players;
     GameImage snapshot;
     MapView* map;
-    Text* text;
     Uint32 lastTime;
     FieldOfView* fov;
-    Shopping shop;
-
-
+    // Shopping shop;
 
 
     bool bomb_activate;

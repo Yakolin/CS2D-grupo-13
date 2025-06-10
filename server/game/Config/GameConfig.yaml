@@ -1,5 +1,5 @@
-Weapons: 
-  Ak47: 
+Weapons:
+  Ak47:
     price: 2700
     damage: 5
     fire_rate: 3
@@ -7,15 +7,15 @@ Weapons:
     magazine: 30
     width: 2
     distance: 20
-  Glock: 
+  Glock:
     price: 500
     damage: 10
-    fire_rate: 1 
+    fire_rate: 1
     max_bullets: 120
     magazine: 30
     width: 2
     distance: 15
-  Knife: 
+  Knife:
     price: 0
     damage: 25
     fire_rate: 1
@@ -30,8 +30,8 @@ Player:
   points: 0
   earned_points: 100
   multiplier_points: 3
-Timer: 
-  time_buy: 15
+Timer:
+  time_buy: 0
   time_round: 160
   time_bomb: 25
   time_ending: 10

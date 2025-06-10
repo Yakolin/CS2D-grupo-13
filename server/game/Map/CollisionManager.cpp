@@ -46,7 +46,7 @@ void CollisionManager::add_bullet_image(const Vector2f& initial_pos, const Vecto
     bullets_image.push_back(std::move(image));
 }
 bool CollisionManager::is_a_wall(coordinate_t x, coordinate_t y) {
-    return y < walls.size() && x < walls[0].size() && walls[x][y] == Wall;
+    return x < walls.size() && y < walls[0].size() && walls[x][y] == Wall;
 }
 
 bool CollisionManager::check_bullet_wall(const Vector2f& initial_pos, const Vector2f& final_pos) {

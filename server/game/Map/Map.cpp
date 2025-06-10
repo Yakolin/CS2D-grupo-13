@@ -12,9 +12,12 @@ Position Map::get_position(player_id_t id) {
 }
 void Map::respawn_players() {
     for (auto& player: players_in_map) {
-        player.second.position = (player.second.player.lock()->get_team() == Team::CT) ?
-                                         spawn_CT.get_random_position() :
-                                         spawn_TT.get_random_position();
+        while (walls[player.second.position.x][player.second.position.x] ==
+               Wall)  // Aca podemos agregar que tampoco sea un Player, pero por ahora lo dejamos
+                      // asi
+            player.second.position = (player.second.player.lock()->get_team() == Team::CT) ?
+                                             spawn_CT.get_random_position() :
+                                             spawn_TT.get_random_position();
     }
 }
 void Map::add_player(player_id_t id, std::weak_ptr<ICanInteract> player) {

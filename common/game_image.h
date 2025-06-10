@@ -21,7 +21,7 @@ using bomb_state_t = std::uint8_t;
 using team_t = std::uint8_t;
 
 
-enum class GameState { GAME_STARTED, TT_WIN_GAME, CT_WIN_GAME, TT_WIN_ROUND, CT_WIN_ROUND };
+enum class GameState { NONE, GAME_STARTED, TT_WIN_GAME, CT_WIN_GAME, TT_WIN_ROUND, CT_WIN_ROUND };
 enum class Team { CT, TT };
 enum class BombState { EQUIPED, DROPPED, ACTIVATED, DESACTIVATED, EXPLOTED };
 class BulletImage {

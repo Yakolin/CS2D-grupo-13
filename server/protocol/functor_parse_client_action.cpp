@@ -18,6 +18,16 @@ ParseLobbyAction::ParseLobbyAction(
 
 ParseLobbyAction::~ParseLobbyAction() {}
 
+void ParseLobbyAction::read_ack(const std::string& game_name) {
+    Acknowledge ack = this->protocol.read_acknowledge();
+    if (ack == Acknowledge::READY) {
+        this->games_monitor.player_ready(this->player_id, game_name);
+    } else {
+        throw std::runtime_error("Error en el lobby: ACK ERROR");
+    }
+    this->in_lobby = false;
+}
+
 void ParseLobbyAction::run() {
     switch (this->command) {
         case LobbyCommandType::CREATE_GAME: {
@@ -26,7 +36,7 @@ void ParseLobbyAction::run() {
             if (this->games_monitor.create_game(this->player_id, create_game, this->recv_queue,
                                                 this->send_queue, game_info)) {
                 protocol.send_game_info(game_info);
-                this->in_lobby = false;
+                this->read_ack(create_game.game_name);
             }
             break;
         }
@@ -36,7 +46,7 @@ void ParseLobbyAction::run() {
             if (this->games_monitor.join_game(this->player_id, join_game, this->recv_queue,
                                               this->send_queue, game_info)) {
                 protocol.send_game_info(game_info);
-                this->in_lobby = false;
+                this->read_ack(join_game.game_name);
             }
             break;
         }

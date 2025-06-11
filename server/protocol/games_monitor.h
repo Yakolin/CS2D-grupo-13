@@ -31,6 +31,8 @@ public:
 
     std::vector<std::string> list_games() override;
 
+    void player_ready(player_id_t& player_id, const std::string& game_name) override;
+
     void reap();
 
     void clear();

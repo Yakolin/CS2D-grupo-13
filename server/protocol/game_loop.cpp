@@ -5,6 +5,7 @@ GameLoop::GameLoop(const std::string& game_name, const MapName& map_name):
         game(game_name, map_name),
         send_queues(),
         recv_queue(std::make_shared<Queue<std::unique_ptr<ClientAction>>>(QUEUE_MAX_SIZE)),
+        players_ready(),
         constant_rate_loop([this]() { return this->should_keep_running(); },
                            [this]() { this->step(); }),
         game_started(false) {}
@@ -16,11 +17,29 @@ void GameLoop::add_player(player_id_t& player_id, Skins& skins,
                           std::shared_ptr<Queue<GameImage>>& send_queue, GameInfo& game_info) {
     recv_queue = this->recv_queue;
     send_queues[player_id] = send_queue;
+    players_ready[player_id] = false;
     this->game.add_player(player_id, skins);
     game_info = this->game.get_game_info();
 }
 
-bool GameLoop::is_full() { return (this->send_queues.size() == MAX_PLAYERS); }
+void GameLoop::player_ready(const player_id_t& player_id) {
+    auto it = players_ready.find(player_id);
+    if (it != players_ready.end()) {
+        it->second = true;
+        std::cout << "Jugador " << player_id << " está listo." << std::endl;
+    } else {
+        std::cerr << "Error: jugador " << player_id << " no encontrado." << std::endl;
+    }
+}
+
+bool GameLoop::all_players_ready() {
+    for (const auto& [player_id, ready]: players_ready) {
+        if (!ready) {
+            return false;
+        }
+    }
+    return true;
+}
 
 bool GameLoop::waiting_for_players() { return !this->game_started; }
 

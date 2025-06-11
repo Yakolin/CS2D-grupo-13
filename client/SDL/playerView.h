@@ -12,6 +12,7 @@
 #include <SDL_video.h>
 
 #include "../../common/game_image.h"
+#include "../../common/player_command_types.h"
 #include "../tipos.h"
 
 #include "camera.h"
@@ -32,7 +33,8 @@ public:
 
     void stop_speed(const SDL_Keycode& tecla);
 
-    void activate_weapon(const Weapon& weapon);
+    void update_weapons(const std::vector<WeaponImage>& weapons_vec);
+    void activate_weapon(const WeaponCode& weapon_code);
 
     void draw(SDL_Renderer& renderer) override;
 
@@ -90,7 +92,7 @@ private:
     std::map<WeaponCode, WeaponView*> weapons;
     bool activar_weapon;
     SDL_Texture* texture_player;
-
+    WeaponCode clave;
 
     void calcular();
 };

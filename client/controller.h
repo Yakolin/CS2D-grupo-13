@@ -38,7 +38,7 @@ public:
     pre:
     post: envía las coordenadas del mouse en píxeles, puedes castearlas con las dimensiones del mapa
     */
-    void sender_equip(const EquipType& equip);
+    void sender_equip(EquipType& equip);
 
     void sender_reload();
 
@@ -50,7 +50,8 @@ public:
 
     void sender_defuse();
 
-    void sender_buy_weapon(WeaponCode code) void stop();
+    void sender_buy_weapon(WeaponCode code);
+    void stop();
 
     /*
     pre:

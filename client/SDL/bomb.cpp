@@ -12,8 +12,11 @@ Bomb::Bomb(int x, int y, Camera& camera_reseiver, ManageTexture& manejador, Game
         height_img(),
         item_sprite({0, 0}),
         pos_bomb(),
+        angle(0),
         activada(false),
-        last_frame_time(SDL_GetTicks()) {
+        last_frame_time(SDL_GetTicks()),
+        x(x),
+        y(y) {
     manejador.calculate_dimensions(width_img, height_img, Object::EXPLOSION);
     update();
 }
@@ -26,10 +29,9 @@ void Bomb::update() {
 
     int offsetX = 20;
     int offsetY = 2;
-    this->angle = player_actual->getAnglePlayer();
 
-    destination_rect.x = static_cast<int>(player_actual->getXActual() + offsetX) - camera.getX();
-    destination_rect.y = static_cast<int>(player_actual->getYActual() + offsetY) - camera.getY();
+    destination_rect.x = static_cast<int>(x + offsetX) - camera.getX();
+    destination_rect.y = static_cast<int>(y + offsetY) - camera.getY();
     destination_rect.w = 15;
     destination_rect.h = 15;
 }

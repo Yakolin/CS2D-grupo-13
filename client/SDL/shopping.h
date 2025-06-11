@@ -11,12 +11,12 @@
 #include <SDL_ttf.h>
 #include <SDL_video.h>
 
+#include "../../common/player_command_types.h"
 #include "../tipos.h"
 
 #include "camera.h"
 #include "gameConfig.h"
 #include "manageTexture.h"
-#include "player_command_types.h"
 #include "renderizable.h"
 
 
@@ -28,20 +28,20 @@ private:
     Camera& camera;
     ManageTexture& manejador;
     //  std::vector<ShopItem> items;
-    std::unordered_map<Weapon, ShopItem> items;
+    std::unordered_map<WeaponCode, ShopItem> items;
     int selectedIndex;
     SDL_Rect rect_shop;
     bool activa;
     SDL_Texture* texture_menu;
-    Weapon weapon_selec;
+    WeaponCode weapon_selec;
 
-    void load_items(const Weapon& clave, const std::string& name, const int& price,
+    void load_items(const WeaponCode& clave, const std::string& name, const int& price,
                     const SDL_Rect& destRect, const std::string& descrpcion);
 
 public:
     explicit Shopping(Camera& camera_reseiver, ManageTexture& manejador, GameConfig& config);
 
-    Weapon get_wepon_selec();
+    WeaponCode get_wepon_selec();
 
     void activate_shop();
 

@@ -212,7 +212,7 @@ void GameView::draw_game(const std::vector<Position> walls) {
     this->fov = new FieldOfView(*player, camera, manger_texture, config);
 
     SDL_Event event;
-    bomba = new Bomb(player, camera, manger_texture, config);
+    bomba = new Bomb(0, 0, camera, manger_texture, config);
 
 
     auto keep_running = [&]() -> bool {

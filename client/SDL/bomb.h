@@ -34,6 +34,8 @@ private:
     int angle;
     bool activada;
     int last_frame_time;
+    int x;
+    int y;
 
     void update();
 

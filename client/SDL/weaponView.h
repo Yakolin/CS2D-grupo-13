@@ -5,11 +5,12 @@
 #include <SDL.h>
 #include <SDL_image.h>
 
+#include "../../common/game_image.h"
+#include "../tipos.h"
+
 #include "camera.h"
-#include "game_image.h"
 #include "manageTexture.h"
 #include "renderizable.h"
-#include "tipos.h"
 class WeaponView: public Renderizable {
 private:
     ManageTexture& manager;
@@ -24,7 +25,7 @@ private:
     int limite;
 
 public:
-    explicit WeaponView(Camera& camera, ManageTexture& managertexture, const Weapon& clave,
+    explicit WeaponView(Camera& camera, ManageTexture& managertexture, const WeaponCode& clave,
                         const float& x, const float& y, const float& angle);
 
     void activate_bullets();

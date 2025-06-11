@@ -32,12 +32,9 @@ PlayerView::PlayerView(const float& x, const float& y, const std::string& rute, 
         interp_time(1.0f),
         weapons(),
         activar_weapon(false),
-        texture_player(nullptr) {
+        texture_player(nullptr),
+        clave(WeaponCode::NONE) {
     calcular();
-
-    texture_player = manejador->get(Object::GIGN);
-    WeaponView* ak47 = new WeaponView(*camera, *manejador, Weapon::AK47, x, y, anglePlayer);
-    weapons[Weapon::AK47] = ak47;
 }
 
 void PlayerView::setPrevPos(const float& new_x, const float& new_y) {
@@ -73,8 +70,8 @@ void PlayerView::update_weapons(const std::vector<WeaponImage>& weapons_vec) {
     for (const WeaponImage& weapon_img: weapons_vec) {
         WeaponCode weapon_key = weapon_img.weapon_code;
         if (this->weapons.find(weapon_key) == this->weapons.end()) {
-            WeaponView* new_weapon =
-                    new WeaponView(*camera, *manejador, weapon, x_actual, y_actual, anglePlayer);
+            WeaponView* new_weapon = new WeaponView(*camera, *manejador, weapon_key, x_actual,
+                                                    y_actual, anglePlayer);
             weapons[weapon_key] = new_weapon;
 
         } else {
@@ -117,11 +114,11 @@ void PlayerView::stop_speed(const SDL_Keycode& tecla) {
     }
 }
 
-void PlayerView::activate_weapon(const Weapon& weapon) {
+void PlayerView::activate_weapon(const WeaponCode& weapon_code) {
 
-    if (weapons.find(weapon) != weapons.end()) {
+    if (weapons.find(weapon_code) != weapons.end()) {
         activar_weapon = true;
-        weapons[weapon]->setUsed(true);
+        weapons[weapon_code]->setUsed(true);
     } else {
         std::cerr << "Error: Arma no encontrada." << std::endl;
     }
@@ -138,8 +135,7 @@ void PlayerView::draw(SDL_Renderer& renderer) {
                      nullptr, SDL_FLIP_NONE);
 
     if (activar_weapon) {
-
-        WeaponView* weapon_view = weapons[Weapon::AK47];
+        WeaponView* weapon_view = weapons[clave];
         weapon_view->update(static_cast<int>(x_actual), static_cast<int>(y_actual), anglePlayer);
         weapon_view->draw(renderer);
     }
@@ -148,8 +144,8 @@ void PlayerView::draw(SDL_Renderer& renderer) {
 
 void PlayerView::update_view_angle(const int& mouse_x, const int& mouse_y) {
 
-    int jugador_centro_x = destination_rect.x + destination_rect.w / 2;
-    int jugador_centro_y = destination_rect.y + destination_rect.h / 2;
+    int jugador_centro_x = destination_rect.x;
+    int jugador_centro_y = destination_rect.y;
 
     int dx = mouse_x - jugador_centro_x;
     int dy = mouse_y - jugador_centro_y;

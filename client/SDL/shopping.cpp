@@ -9,28 +9,28 @@ Shopping::Shopping(Camera& camera_receiver, ManageTexture& manejador, GameConfig
         rect_shop(),
         activa(false),
         texture_menu(nullptr),
-        weapon_selec(Weapon::NONE) {
+        weapon_selec(WeaponCode::NONE) {
 
     std::vector<WeaponData> weaponVector = {
-            {Weapon::AWP, "AWP", 2100,
+            {WeaponCode::AWP, "AWP", 2100,
              "- Mayor  alcance  Daño  maximo ,- No  afectado  por  distancia ,- Retardo  alto  "
              "entre  disparos "},
-            {Weapon::AK47, "AK47", 2000,
+            {WeaponCode::AK47, "AK47", 2000,
              "- Dispara  ráfagas  de  3 balas ,- Mantener  click:  Rafagas  cada  0.4 balas/seg,- "
              "Daño  menor  que pistola "},
-            {Weapon::M3, "M3", 200,
+            {WeaponCode::M3, "M3", 200,
              "- Daño  en  area  en  forma  de  cono  ,- Menor  alcance ,- Disparo  unico  por  "
              "click ,- Daño  muy alto  a  corta  distancia "}};
 
     update(weaponVector);
     texture_menu = manejador.reder_menu_texture(items, rect_shop, config.get_font_menu());
 }
-Weapon Shopping::get_wepon_selec() { return weapon_selec; }
+WeaponCode Shopping::get_wepon_selec() { return weapon_selec; }
 
 void Shopping::activate_shop() { activa = !activa; }
 bool Shopping::get_activa() const { return activa; }
 
-void Shopping::load_items(const Weapon& clave, const std::string& name, const int& price,
+void Shopping::load_items(const WeaponCode& clave, const std::string& name, const int& price,
                           const SDL_Rect& destRect, const std::string& descripcion) {
     ShopItem new_item;
     new_item.texture = manejador.get_weapon(clave);
@@ -73,6 +73,7 @@ WeaponCode Shopping::calculate_selection(const int& mouse_x, const int& mouse_y)
             (mouse_y >= item.second.destRect.y &&
              mouse_y <= item.second.destRect.y + item.second.destRect.h)) {
             std::cout << "click EN  " << item.second.name << std::endl;
+            WeaponCode code = static_cast<WeaponCode>(item.first);
             return item.first;
         }
     }

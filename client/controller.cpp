@@ -22,9 +22,8 @@ void Controller::sender_pos_mouse(int x, int y) {
     send_queue->push(std::move(action));
 }
 
-void Controller::sender_equip(const EquipType& equip) {
-    std::unique_ptr<InterfaceClientAction> action =
-            std::make_unique<ClientSpace::Equip>(EquipType::PRIMARY);
+void Controller::sender_equip(EquipType& equip) {
+    std::unique_ptr<InterfaceClientAction> action = std::make_unique<ClientSpace::Equip>(equip);
     send_queue->push(std::move(action));
 }
 
@@ -48,7 +47,7 @@ void Controller::sender_defuse() {
     std::unique_ptr<InterfaceClientAction> action = std::make_unique<ClientSpace::DefuseBomb>();
     send_queue->push(std::move(action));
 }
-void Contoller::sender_drop() {
+void Controller::sender_drop() {
     std::unique_ptr<InterfaceClientAction> action = std::make_unique<ClientSpace::Drop>();
     send_queue->push(std::move(action));
 }

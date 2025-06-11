@@ -1,7 +1,7 @@
 
 #include "weaponView.h"
 
-WeaponView::WeaponView(Camera& camera, ManageTexture& managertexture, const Weapon& clave,
+WeaponView::WeaponView(Camera& camera, ManageTexture& managertexture, const WeaponCode& clave,
                        const float& x, const float& y, const float& angle):
         manager(managertexture),
         weaponTexture(managertexture.get_weapon(clave)),

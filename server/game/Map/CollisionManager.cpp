@@ -85,6 +85,7 @@ void CollisionManager::check_damage_players(player_id_t caster, ColliderDamage& 
     }
 }
 void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage& collider_damage) {
+    std::cout << "Chekeando si golpea a alguien la bala\n";
     srand(time(nullptr));
     bullets_image.clear();
     std::vector<PlayerEntity> players_affected;

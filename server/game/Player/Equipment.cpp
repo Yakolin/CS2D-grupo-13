@@ -37,8 +37,10 @@ void Equipment::change_weapon(const EquipType& equip) {
     }
 }
 void Equipment::buy_weapon_by_code(const WeaponCode& weapon_code, uint16_t money) {
-    if (weapon_factory.price_weapon(weapon_code) > money)
+    if (weapon_factory.price_weapon(weapon_code) > money) {
+        std::cout << "Not enoguht money\n";
         return;
+    }
     primary = weapon_factory.weapon_create(weapon_code);
 }
 void Equipment::reset_equipment() {
@@ -55,7 +57,7 @@ void Equipment::drop_weapon() {
             std::shared_ptr<IInteractuable> dropped = this->weapon_in_hand;
             this->droppable_zone.drop(this->player_id, dropped);
             this->new_weapon_in_hand(this->secondary);
-            this->primary = std::make_shared<NullWeapon>();
+            this->primary = std::make_shared<NullWeapon>();  // Mejorable
         }
     }
 }
@@ -63,7 +65,8 @@ void Equipment::drop_weapon() {
 void Equipment::reload() { this->weapon_in_hand->reload(); }
 
 void Equipment::shoot(Position& position) {
-    change_weapon(EquipType::BOMB);
+    change_weapon(EquipType::SECONDARY);  // HardCodeado
+    std::cout << "Disparando Arma\n";
     if (weapon_in_hand->get_weapon_code() == WeaponCode::BOMB && bomb.lock()) {
         if (weapon_in_hand->set_on_action(this->spawneable_zone, this->player_id, position)) {
             bomb.reset();

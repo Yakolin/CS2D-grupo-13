@@ -16,15 +16,21 @@ Vista::Vista(int& argc, char* argv[]):
         info_game() {}
 
 TerroristSkin toItemTerrorism(const std::string& str) {
-    if (str == "Phoenix") return TerroristSkin::PHOENIX;
-    if (str == "L337 Krew") return TerroristSkin::L337_KREW;
-    if (str == "Arctic Avenger") return TerroristSkin::ARCTIC_AVENGER;
+    if (str == "Phoenix")
+        return TerroristSkin::PHOENIX;
+    if (str == "L337 Krew")
+        return TerroristSkin::L337_KREW;
+    if (str == "Arctic Avenger")
+        return TerroristSkin::ARCTIC_AVENGER;
     return TerroristSkin::GUERRILLA;
 }
 CounterTerroristSkin toItemCounterTerrorism(const std::string& str) {
-    if (str == "Seal Force") return CounterTerroristSkin::SEAL;
-    if (str == "German GSG-9") return CounterTerroristSkin::GSG9;
-    if (str == "UK SAS") return CounterTerroristSkin::SAS;
+    if (str == "Seal Force")
+        return CounterTerroristSkin::SEAL;
+    if (str == "German GSG-9")
+        return CounterTerroristSkin::GSG9;
+    if (str == "UK SAS")
+        return CounterTerroristSkin::SAS;
     return CounterTerroristSkin::GIGN;
 }
 void Vista::run() {
@@ -65,7 +71,7 @@ void Vista::run() {
 
 
         if (opcionElegida == LobbyCommandType::CREATE_GAME) {
-            if (!gameView.add_player(11, 4, 200.0f,claves )) {
+            if (!gameView.add_player(11, 4, 200.0f, claves)) {
                 return;
             }
         } else {
@@ -73,7 +79,8 @@ void Vista::run() {
                 return;
             }
         }
-        gameView.draw_game(info_game_view,info_game);
+        gameView.initial_draw_game(info_game_view, info_game);
+        gameView.draw_game_loop();
     } catch (const std::exception& e) {
         std::cerr << "Excepción atrapada en vista: " << e.what() << std::endl;
     } catch (...) {

@@ -1,6 +1,8 @@
 #include "gameView.h"
 int counter2 = 0;
-GameView::GameView(Socket&& skt):
+GameView::GameView(
+        Socket&& skt):  // Aca realmente deberia de recibir el mapa y las armas disponibles, ya que
+                        // es informacion necesaria para cargar el mapa
         config(),
         controller(std::move(skt)),
         leyenda(),
@@ -115,19 +117,18 @@ void GameView::update_status_game() {
 
         if (id == snapshot.client_id) {
             reset_values(player, x_pixeles, y_pixeles);
-            //player->update_weapons(snapshot.players_images[id].weapons);
+            // player->update_weapons(snapshot.players_images[id].weapons);
 
         } else if (players.find(id) == players.end()) {
-             Claves_skins claves;
+            Claves_skins claves;
             claves.ct_skin = player_img.skin.ct_skin;
             claves.tt_skin = player_img.skin.tt_skin;
-            
-            PlayerView* nuevo_jugador =
-                    new PlayerView(x_pixeles, y_pixeles, claves, 200.0f,
-                                   &camera, &manger_texture, config);
+
+            PlayerView* nuevo_jugador = new PlayerView(x_pixeles, y_pixeles, claves, 200.0f,
+                                                       &camera, &manger_texture, config);
             nuevo_jugador->update_view_angle(player_img.mouse_position.x * 32,
                                              player_img.mouse_position.y * 32);
-            //nuevo_jugador->update_weapons(snapshot.players_images[id].weapons);
+            // nuevo_jugador->update_weapons(snapshot.players_images[id].weapons);
             players[id] = nuevo_jugador;
 
         } else {
@@ -136,7 +137,7 @@ void GameView::update_status_game() {
             int y_pixel_mouse = player_img.mouse_position.y * config.get_tile_height();
             player_aux->update_view_angle(x_pixel_mouse, y_pixel_mouse);
             reset_values(player_aux, x_pixeles, y_pixeles);
-            //player_aux->update_weapons(snapshot.players_images[id].weapons);
+            // player_aux->update_weapons(snapshot.players_images[id].weapons);
         }
     }
 }
@@ -154,34 +155,62 @@ bool GameView::handle_events(const SDL_Event& event) {
     if (event.type == SDL_QUIT) {
         return false;
     }
+
     if (event.type == SDL_KEYDOWN) {
         SDL_Keycode tecla = event.key.keysym.sym;
         controller.sender_mov_player(tecla);
         player->add_speed(tecla);
-
+        if (snapshot.game_state.state != GameState::TIME_TO_BUY)
+            shop.desactivate_shop();
         if (tecla == SDLK_b && snapshot.game_state.state == GameState::TIME_TO_BUY) {
             shop.activate_shop();
         }
     }
+
     if (event.type == SDL_KEYUP) {
         SDL_Keycode tecla = event.key.keysym.sym;
         player->stop_speed(tecla);  // Detiene movimiento
         return true;
     }
+
     if (event.type == SDL_WINDOWEVENT) {
         if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
-
             this->map->update_map_dimensions();
             printf("Nuevo mapa width: %d, height: %d\n", map->getMapWidth(), map->getMapHeight());
         }
     }
-    if (event.type == SDL_MOUSEBUTTONDOWN) {
+
+    if (event.type == SDL_MOUSEMOTION) {  // para mover mouse
+        int mouseX = event.motion.x;
+        int mouseY = event.motion.y;
+
+        player->update_view_angle(mouseX, mouseY);
+        // printf("-----------mov mouse----------------------\n");
+        // printf("MOUSER en (%d, %d)\n", mouseX, mouseY);
+        controller.sender_pos_mouse(mouseX, mouseY);
+    }
+
+
+    if (event.type == SDL_MOUSEBUTTONDOWN) {  // para comprar arma
         if (event.button.button == SDL_BUTTON_LEFT) {
+            int mouseX = event.button.x;
+            int mouseY = event.button.y;
+            if (shop.get_activa()) {
+                WeaponCode code = shop.calculate_selection(mouseX, mouseY);
+                if (code != WeaponCode::NONE)  // Realmente esto no deberia de siquiera pasar, casi
+                                               // que es una exception
+                    controller.sender_buy_weapon(code);
+            }
+            if (snapshot.game_state.state == GameState::ROUND_STARTED) {
+                controller.sender_shoot(mouseX, mouseY);
+            }
+            printf("Clic izquierdo detectado en (%d, %d)\n", mouseX, mouseY);
             // player->activate_weapon(Weapon::AK47);
-            bomba->activate();
-            printf("Clic izquierdo detectado en (%d, %d)\n", event.button.x, event.button.y);
+            // bomba->activate();
         }
     }
+
+
     if (event.type == SDL_MOUSEBUTTONDOWN) {
         if (event.button.button == SDL_BUTTON_LEFT) {
             int mouseX = event.button.x;
@@ -193,7 +222,7 @@ bool GameView::handle_events(const SDL_Event& event) {
                     controller.sender_buy_weapon(code);
             }
             // player->activate_weapon(Weapon::AK47);
-            bomba->activate();
+            //  bomba->activate();
             printf("Clic izquierdo detectado en (%d, %d)\n", mouseX, mouseY);
         }
     }
@@ -202,12 +231,15 @@ bool GameView::handle_events(const SDL_Event& event) {
 }
 
 
-bool GameView::add_player(float x, float y, int speed,const Claves_skins& claves) {
+bool GameView::add_player(float x, float y, int speed, const Claves_skins& claves) {
     this->player = new PlayerView(x, y, claves, speed, &camera, &manger_texture, config);
     return true;
 }
 
-void GameView::draw_game(const GameInfo& info_game_view,const  Player& info_game ){
+// esto deberia ser RAII
+void GameView::initial_draw_game(
+        const GameInfo& info_game_view,
+        const Player& info_game) {  // Dibuja la primer etapa del mapa y info principal
     std::cout << "Nombre del jugador: " << info_game.info.name_player << std::endl;
     std::cout << "Nombre del juego: " << info_game.info.name_game << std::endl;
 
@@ -216,12 +248,17 @@ void GameView::draw_game(const GameInfo& info_game_view,const  Player& info_game
         throw std::runtime_error("Error al cargar mapa");
         return;
     }
+    shop.set_weapons_purchasables(info_game_view.weapons_purchasables);
+}
+
+void GameView::init_bomb() {
+    bomba = new Bomb(snapshot.bomb.position.x, snapshot.bomb.position.y, camera, manger_texture,
+                     config);
+}
+
+void GameView::draw_game_loop() {
     this->fov = new FieldOfView(*player, camera, manger_texture, config);
-
     SDL_Event event;
-    bomba = new Bomb(0, 0, camera, manger_texture, config);
-
-
     auto keep_running = [&]() -> bool {
         while (SDL_PollEvent(&event)) {
             if (!handle_events(event)) {
@@ -230,30 +267,14 @@ void GameView::draw_game(const GameInfo& info_game_view,const  Player& info_game
         }
         return true;
     };
-
     auto game_step = [&]() {
         Uint32 currentTime = SDL_GetTicks();
         float deltaTime = (currentTime - lastTime) / 1000.0f;
         lastTime = currentTime;
-        bool datos_validos = true;
         if (controller.has_game_image(this->snapshot)) {
-            player_id_t id_real = snapshot.client_id-1;
-            if (snapshot.players_images.empty()) {
-                std::cerr << "Error: No hay jugadores en snapshot.players_images\n";
-                datos_validos = false;
-            }
-            // Verifica que client_id esté dentro del rango válido
-            else if (id_real>= snapshot.players_images.size()) {
-                std::cerr << "Error: client_id fuera de rango (" << snapshot.client_id
-                          << " >= " << snapshot.players_images.size() << ")\n";
-                datos_validos = false;
-            }
-            if (datos_validos) {
-                hud.load(snapshot.players_images[id_real], snapshot.bomb,
-                         snapshot.game_state.time, snapshot.game_state);
-            }
-
-
+            // init_bomb();
+            hud.load(snapshot.players_images[snapshot.client_id], snapshot.bomb,
+                     snapshot.game_state.time, snapshot.game_state);
             update_status_game();
         }
         player->update(deltaTime);
@@ -272,7 +293,8 @@ void GameView::draw_game(const GameInfo& info_game_view,const  Player& info_game
         map->draw(*renderer);
         player->draw(*renderer);
         draw_players();
-        bomba->draw(*renderer);
+        // if (bomba)
+        //    bomba->draw(*renderer);
         fov->draw(*renderer);
         if (shop.get_activa()) {
             shop.draw(*renderer);

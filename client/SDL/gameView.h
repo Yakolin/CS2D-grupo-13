@@ -52,7 +52,6 @@ private:
     HUD hud;
     bool activa;
 
-
     bool bomb_activate;
 
     bool handle_events(const SDL_Event& evento);
@@ -64,6 +63,8 @@ private:
 
     void draw_players();
 
+    void init_bomb();
+
 
 public:
     explicit GameView(Socket&& skt);
@@ -71,7 +72,6 @@ public:
     SDL_Window* init_window(const GameConfig& config);
 
     SDL_Renderer* init_renderer(SDL_Window* window, GameConfig& config);
-
 
     /*
     pre:  width y height deben ser mayores que 0.
@@ -82,9 +82,10 @@ public:
     pre:
     post:
     */
-    void draw_game(const GameInfo& info_game_view,const  Player& info_game);
+    void initial_draw_game(const GameInfo& info_game_view, const Player& info_game);
+    void draw_game_loop();
 
-    bool add_player(float x, float y, int speed,const Claves_skins& claves);
+    bool add_player(float x, float y, int speed, const Claves_skins& claves);
 
     void start();
 

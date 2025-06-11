@@ -47,6 +47,7 @@ PlayerImage HUD::jugador_inicial() {
         pos,         // position
         100,         // health
         0,           // points
+        0,
         std::move(armas),
         Team::CT,    // team
         mouse,
@@ -104,7 +105,7 @@ std::string get_weapon_str(WeaponCode weapon) {
 void HUD::update() {
 
     TTF_Font* font = config.get_font_menu();  
-    if (!player.weapons|.empty()){
+    if (!player.weapons.empty()){
         const WeaponImage& weapon = player.weapons[0];    // Esto es el arma primaria, puede ser NONE, debe ser la ACTUAL
         load_info(TextView::WEAPON, get_weapon_str(weapon.weapon_code),Color::NEGRO,font); //Quizas una imagen
         load_info(TextView::BULLETS, std::to_string(weapon.current_bullets) + "/" + std::to_string(weapon.magazine),Color::AZUL,font);

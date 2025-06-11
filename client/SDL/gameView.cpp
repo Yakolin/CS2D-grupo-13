@@ -196,6 +196,7 @@ bool GameView::handle_events(const SDL_Event& event) {
             shop.calculate_selection(mouseX, mouseY);
         }
         player->update_view_angle(mouseX, mouseY);
+        handle_mouse_motion(mouseX, mouseY);
        // printf("-----------mov mouse----------------------\n");
        // printf("MOUSER en (%d, %d)\n", mouseX, mouseY);
 

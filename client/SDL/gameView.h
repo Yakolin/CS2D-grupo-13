@@ -48,8 +48,8 @@ private:
     Shopping shop;
     Bomb* bomba;
     bool activa;
-     Uint32 last_sent;
-      HUD hud;
+    Uint32 last_sent;
+    HUD hud;
 
 
 

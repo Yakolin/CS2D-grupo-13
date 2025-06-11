@@ -15,7 +15,6 @@
 
 #include "client_action.h"
 
-
 #define QUEUE_MAX_SIZE 10000
 #define MAX_PLAYERS 1
 

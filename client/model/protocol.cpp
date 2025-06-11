@@ -28,7 +28,6 @@ void ClientProtocol::read_map_info(MapInfo& map_info) {
         this->read_position(wall);
         map_info.walls.emplace_back(std::move(wall));
     }
-
     map_info.bomb_A = bomb_A;
     map_info.bomb_B = bomb_B;
     map_info.spawn_TT = spawn_TT;

@@ -11,12 +11,14 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL_ttf.h>
-#include "bomb.h"
+
 #include "../../common/constant_rate_loop.h"
 #include "../../common/game_image.h"
 #include "../controller.h"
 #include "../tipos.h"
 
+#include "HUD.h"
+#include "bomb.h"
 #include "camera.h"
 #include "fieldOfView.h"
 #include "gameConfig.h"
@@ -47,9 +49,8 @@ private:
     FieldOfView* fov;
     Shopping shop;
     Bomb* bomba;
+    HUD hud;
     bool activa;
-
-
 
 
     bool bomb_activate;

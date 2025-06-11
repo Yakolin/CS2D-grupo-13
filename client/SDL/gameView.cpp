@@ -1,5 +1,5 @@
 #include "gameView.h"
-int counter2=0;
+int counter2 = 0;
 GameView::GameView(Socket&& skt):
         config(),
         controller(std::move(skt)),
@@ -17,10 +17,10 @@ GameView::GameView(Socket&& skt):
         map(nullptr),
         lastTime(SDL_GetTicks()),
         fov(nullptr),
-        shop(camera,manger_texture,config),
+        shop(camera, manger_texture, config),
         bomba(nullptr),
-        activa(false)
-{ 
+        hud(config, manger_texture),
+        activa(false) {
 
     leyenda['#'] = "assets/gfx/backgrounds/nuke.png";
     leyenda[' '] = "assets/gfx/backgrounds/stone1.jpg";
@@ -150,23 +150,21 @@ void GameView::draw_players() {
 bool GameView::handle_events(const SDL_Event& event) {
     if (event.type == SDL_QUIT) {
         return false;
-
     }
     if (event.type == SDL_KEYDOWN) {
         SDL_Keycode tecla = event.key.keysym.sym;
         controller.sender_mov_player(tecla);
         player->add_speed(tecla);
-        
-        if(tecla == SDLK_1){
+
+        if (tecla == SDLK_1) {
             shop.activate_shop();
         }
-
-    } 
+    }
     if (event.type == SDL_KEYUP) {
         SDL_Keycode tecla = event.key.keysym.sym;
         player->stop_speed(tecla);  // Detiene movimiento
         return true;
-    } 
+    }
     if (event.type == SDL_WINDOWEVENT) {
         if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
 
@@ -176,7 +174,7 @@ bool GameView::handle_events(const SDL_Event& event) {
     }
     if (event.type == SDL_MOUSEBUTTONDOWN) {
         if (event.button.button == SDL_BUTTON_LEFT) {
-            //player->activate_weapon(Weapon::AK47);
+            // player->activate_weapon(Weapon::AK47);
             bomba->activate();
             printf("Clic izquierdo detectado en (%d, %d)\n", event.button.x, event.button.y);
         }
@@ -185,10 +183,10 @@ bool GameView::handle_events(const SDL_Event& event) {
         int mouseX = event.motion.x;
         int mouseY = event.motion.y;
 
-        shop.calculate_selection(mouseX,mouseY);
+        shop.calculate_selection(mouseX, mouseY);
         player->update_view_angle(mouseX, mouseY);
-       // printf("-----------mov mouse----------------------\n");
-       // printf("MOUSER en (%d, %d)\n", mouseX, mouseY);
+        // printf("-----------mov mouse----------------------\n");
+        // printf("MOUSER en (%d, %d)\n", mouseX, mouseY);
 
         controller.sender_pos_mouse(mouseX, mouseY);
     }
@@ -212,7 +210,7 @@ void GameView::draw_game(const std::vector<Position> walls) {
     this->fov = new FieldOfView(*player, camera, manger_texture, config);
 
     SDL_Event event;
-    bomba = new Bomb(player,camera,manger_texture,config);
+    bomba = new Bomb(player, camera, manger_texture, config);
 
 
     auto keep_running = [&]() -> bool {
@@ -230,8 +228,8 @@ void GameView::draw_game(const std::vector<Position> walls) {
         lastTime = currentTime;
 
         if (controller.has_game_image(this->snapshot)) {
-            counter2++;
-            std::cout << "counte2"<< counter2 << std::endl;
+            hud.load(snapshot.players_images[snapshot.client_id], snapshot.bomb,
+                     snapshot.game_state.time, snapshot.game_state);
             update_status_game();
         }
         player->update(deltaTime);
@@ -252,10 +250,10 @@ void GameView::draw_game(const std::vector<Position> walls) {
         draw_players();
         bomba->draw(*renderer);
         fov->draw(*renderer);
-        if(shop.get_activa()){
+        if (shop.get_activa()) {
             shop.draw(*renderer);
         }
-
+        hud.render(*renderer);
         SDL_RenderPresent(renderer);
     };
 

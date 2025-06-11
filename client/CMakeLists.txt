@@ -19,6 +19,7 @@ target_sources(CS2D_client
     SDL/manageTexture.cpp
     Qt/menuView.cpp
     vista.cpp
+    SDL/HUD.cpp
     PUBLIC
     
     SDL/gameView.h
@@ -40,7 +41,7 @@ target_sources(CS2D_client
     SDL/renderizable.h
     tipos.h
     vista.h
-
+    SDL/HUD.h
     )
 
 add_subdirectory(model/)

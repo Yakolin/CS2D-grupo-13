@@ -41,7 +41,9 @@ void Vista::run() {
     std::vector<Position> walls = info_game.map_info.walls;
     std::cout << "walls ===================== " << std::endl;
     std::cout << "cant walls ====== " << walls.size() << std::endl;
-
+    Acknowledge ack = Acknowledge::READY;
+    protocolo.send_acknowledge(ack);  // tal vez esto se tenga que mandar luego de
+                                      // chequear que game info esta bien
     try {
         GameView gameView(std::move(skt));
         if (!gameView.init_game())

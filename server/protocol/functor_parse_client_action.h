@@ -35,6 +35,7 @@ private:
     std::shared_ptr<Queue<GameImage>>& send_queue;
     InterfaceGamesMonitor& games_monitor;
     bool& in_lobby;
+    void read_ack(const std::string& game_name);
 
 public:
     ParseLobbyAction(player_id_t& player_id, ServerProtocol& protocol, LobbyCommandType& command,

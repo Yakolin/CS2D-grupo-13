@@ -22,6 +22,7 @@ using team_t = std::uint8_t;
 using game_state_t = std::uint8_t;
 using round_time_t = std::uint16_t;
 using round_t = std::uint8_t;
+using money_t = std::uint16_t;
 
 enum class GameState {
     TIME_TO_BUY,
@@ -80,20 +81,21 @@ public:
     Position position;
     health_t health;
     points_t points;
-    std::vector<WeaponImage> weapons;  // En orden -> Primary, Secondary , Knife , Bomb
-    // Aca deberiamos agregar CUAL esta equipada
+    money_t money;
+    std::vector<WeaponImage> weapons;
     Team team;
     Position mouse_position;
     Skins skin;
 
     // Aca falta el tema del equipement y las armas
     PlayerImage(const player_id_t& player_id, const Position& position, const int& health,
-                const int& points, std::vector<WeaponImage>&& weapons, const Team& team,
-                const Position& mouse_position, const Skins& skin):
+                const int& points, const money_t money, std::vector<WeaponImage>&& weapons,
+                const Team& team, const Position& mouse_position, const Skins& skin):
             player_id(player_id),
             position(position),
             health(health),
             points(points),
+            money(money),
             weapons(std::move(weapons)),
             team(team),
             mouse_position(mouse_position),

@@ -14,9 +14,6 @@ bool GamesMonitor::create_game(player_id_t& player_id, const CreateGame& create_
         std::unique_ptr<GameLoop> game_loop =
                 std::make_unique<GameLoop>(create_game.game_name, map_name);
         game_loop->add_player(player_id, skins, recv_queue, send_queue, game_info);
-        if (game_loop->is_full()) {
-            game_loop->start();
-        }
         games[game_name] = std::move(game_loop);
         std::cout << "Partida creada" << game_name << std::endl;
         return true;
@@ -34,10 +31,6 @@ bool GamesMonitor::join_game(player_id_t& player_id, const JoinGame& join_game,
         if (!it->second->is_full()) {
             Skins skins = join_game.skins;
             it->second->add_player(player_id, skins, recv_queue, send_queue, game_info);
-            if (it->second->is_full()) {
-                std::cout << "Comienza la partida" << player_id << std::endl;
-                it->second->start();
-            }
             return true;
         }
     }
@@ -51,6 +44,19 @@ std::vector<std::string> GamesMonitor::list_games() {
         game_names.push_back(game.first);
     }
     return game_names;
+}
+
+void GamesMonitor::player_ready(player_id_t& player_id, const std::string& game_name) {
+    std::lock_guard<std::mutex> lock(mutex);
+    auto it = games.find(game_name);
+    if (it != games.end()) {
+        it->second->player_ready(player_id);
+        if (it->second->all_players_ready() && it->second->is_full()) {
+            it->second->start();
+        }
+    } else {
+        std::cout << "No existe la partida: " << game_name << std::endl;
+    }
 }
 
 void GamesMonitor::reap() {

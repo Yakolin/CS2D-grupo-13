@@ -25,6 +25,7 @@ public:
                            std::shared_ptr<Queue<std::unique_ptr<ClientAction>>>& recv_queue,
                            std::shared_ptr<Queue<GameImage>>& send_queue, GameInfo& game_info) = 0;
     virtual std::vector<std::string> list_games() = 0;
+    virtual void player_ready(player_id_t& player_id, const std::string& game_name) = 0;
 };
 
 

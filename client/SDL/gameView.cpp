@@ -182,18 +182,20 @@ bool GameView::handle_events(const SDL_Event& event) {
             printf("Clic izquierdo detectado en (%d, %d)\n", event.button.x, event.button.y);
         }
     }
-    if (event.type == SDL_MOUSEMOTION) {
-        int mouseX = event.motion.x;
-        int mouseY = event.motion.y;
-        if (shop.get_activa()) {
-            WeaponCode code = shop.calculate_selection(mouseX, mouseY);
-            controller.sender_buy_weapon(code);
+    if (event.type == SDL_MOUSEBUTTONDOWN) {
+        if (event.button.button == SDL_BUTTON_LEFT) {
+            int mouseX = event.button.x;
+            int mouseY = event.button.y;
+            if (shop.get_activa()) {
+                WeaponCode code = shop.calculate_selection(mouseX, mouseY);
+                if (code != WeaponCode::NONE)  // Realmente esto no deberia de siquiera pasar, casi
+                                               // que es una exception
+                    controller.sender_buy_weapon(code);
+            }
+            // player->activate_weapon(Weapon::AK47);
+            bomba->activate();
+            printf("Clic izquierdo detectado en (%d, %d)\n", mouseX, mouseY);
         }
-        player->update_view_angle(mouseX, mouseY);
-        // printf("-----------mov mouse----------------------\n");
-        // printf("MOUSER en (%d, %d)\n", mouseX, mouseY);
-
-        //controller.sender_pos_mouse(mouseX, mouseY);
     }
 
     return true;

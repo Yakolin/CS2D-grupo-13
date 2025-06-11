@@ -10,6 +10,27 @@ Controller::Controller(Socket&& skt):
         receiver(this->skt, this->recv_queue) {
     start();
 }
+/*
+void Controller::send_buy(WeaponCode code) {
+    std::unique_ptr<InterfaceClientAction> action = std::make_unique<ClientSpace::BuyWeapon>(code);
+    send_queue->push(std::move(action));
+}
+*/
+void Controller::send_defuse() {  // E
+    std::unique_ptr<InterfaceClientAction> action = std::make_unique<ClientSpace::DefuseBomb>();
+    send_queue->push(std::move(action));
+}
+
+void Controller::send_drop() {  // G
+    std::unique_ptr<InterfaceClientAction> action = std::make_unique<ClientSpace::Drop>();
+    send_queue->push(std::move(action));
+}
+
+void Controller::send_equip(EquipType& equip_type) {  // 1 2 3 4 para cada arma
+    std::unique_ptr<InterfaceClientAction> action =
+            std::make_unique<ClientSpace::Equip>(equip_type);
+    send_queue->push(std::move(action));
+}
 
 void Controller::sender_pos_mouse(int x, int y) {
 
@@ -64,7 +85,7 @@ void Controller::stop() {
 
 
 bool Controller::has_game_image(GameImage& snapshot) {
-    
+
     if (recv_queue->empty()) {
         std::cout << "Ojo, la cola esta vacia\n";
         return false;

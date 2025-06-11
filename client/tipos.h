@@ -4,14 +4,17 @@
 
 #include <SDL2/SDL.h>
 
+#include "../../common/player_command_types.h"
+
+
 enum class GameMenu { CREATE, JOIN, HELP, EXIT, NONE };
 
 enum class ItemTerrorism { PHOENIX, L337_KREW, ARCTIC_AVENGER, GUERRILLA };
 
 enum class ItemCounterTerrorism { SEAL, GSG9, SAS, GIGN };
 
-enum class TextView {HEALTH, AMMO,TIME,POINTS,TEAM,BOMB,WEAPON,BULLETS,NONE};
- 
+enum class TextView { HEALTH, AMMO, TIME, POINTS, TEAM, BOMB, WEAPON, BULLETS, NONE };
+
 enum class Color {
     ROJO,
     VERDE,
@@ -47,7 +50,7 @@ enum class Weapon {
     BOMB,
     M3,
     NONE
-};   
+};
 
 enum class Object {
     STONE,
@@ -119,7 +122,7 @@ struct Coordenada {
     float x;
     float y;
 };
-struct CoordenadaInt{
+struct CoordenadaInt {
     int x;
     int y;
 };
@@ -133,16 +136,15 @@ struct PlayerSummary {
     int deaths;
     int collected_money;
 };
-struct ShopItem{
+struct ShopItem {
     SDL_Texture* texture;
     int price;
     std::string name;
     SDL_Rect destRect;
     std::string descripcion;
-
 };
-struct WeaponData{
-    Weapon clave;
+struct WeaponData {
+    WeaponCode clave;
     std::string name;
     int price;
     std::string descripcion;
@@ -152,4 +154,4 @@ struct Rankings {
     int ranking_counter_terrorists;
 };
 
-#endif //TIPOS_H
+#endif  // TIPOS_H

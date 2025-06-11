@@ -13,6 +13,7 @@
 #include <SDL2/SDL.h>
 
 #include "../common/game_image.h"
+#include "../common/player_command_types.h"
 #include "../common/queue.h"
 #include "../common/socket.h"
 #include "model/client_action.h"
@@ -37,10 +38,14 @@ public:
     /*
     pre:
     post: envía las coordenadas del mouse en píxeles, puedes castearlas con las dimensiones del mapa
+    void send_buy(WeaponCode code);
     */
     void sender_pos_mouse(int x, int y);
 
+    void send_defuse();
 
+    void send_drop();
+    void send_equip(EquipType& equip_type);
     void stop();
     /*
     pre:

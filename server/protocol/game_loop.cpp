@@ -1,5 +1,5 @@
 #include "game_loop.h"
-int contador = 0;
+
 GameLoop::GameLoop(const std::string& game_name, const MapName& map_name):
         game_name(game_name),
         game(game_name, map_name),
@@ -32,10 +32,10 @@ void GameLoop::run() {
 
 void GameLoop::step() {
     try {
-        std::unique_ptr<ClientAction> action = recv_queue->pop();
-        contador++;
-        std::cout << "Recibi, clientAction \nContador: " << contador << std::endl;
-        game.process(*action);
+        std::unique_ptr<ClientAction> action;
+        while (recv_queue->try_pop(action)) {
+            game.process(*action);
+        }
         GameImage game_image = this->game.get_frame();
         this->broadcast(game_image);
     } catch (const ClosedQueue& e) {

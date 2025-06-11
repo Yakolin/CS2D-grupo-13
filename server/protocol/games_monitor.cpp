@@ -28,7 +28,7 @@ bool GamesMonitor::join_game(player_id_t& player_id, const JoinGame& join_game,
     std::cout << "Me uno a la partida" << player_id << std::endl;
     auto it = games.find(join_game.game_name);
     if (it != games.end()) {
-        if (!it->second->all_players_ready()) {
+        if (!it->second->is_full()) {
             Skins skins = join_game.skins;
             it->second->add_player(player_id, skins, recv_queue, send_queue, game_info);
             return true;
@@ -51,7 +51,7 @@ void GamesMonitor::player_ready(player_id_t& player_id, const std::string& game_
     auto it = games.find(game_name);
     if (it != games.end()) {
         it->second->player_ready(player_id);
-        if (it->second->all_players_ready()) {
+        if (it->second->all_players_ready() && it->second->is_full()) {
             it->second->start();
         }
     } else {

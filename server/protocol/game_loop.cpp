@@ -22,6 +22,8 @@ void GameLoop::add_player(player_id_t& player_id, Skins& skins,
     game_info = this->game.get_game_info();
 }
 
+bool GameLoop::is_full() { return (this->send_queues.size() == MAX_PLAYERS); }
+
 void GameLoop::player_ready(const player_id_t& player_id) {
     auto it = players_ready.find(player_id);
     if (it != players_ready.end()) {

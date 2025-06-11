@@ -16,7 +16,7 @@
 #include "client_action.h"
 
 #define QUEUE_MAX_SIZE 10000
-#define MAX_PLAYERS 1
+#define MAX_PLAYERS 2
 
 class GameLoop: public Thread {
 private:
@@ -40,6 +40,7 @@ public:
     bool all_players_ready();
     void player_ready(const player_id_t& player_id);
     bool waiting_for_players();
+    bool is_full();
     void run() override;
     void stop() override;
 };

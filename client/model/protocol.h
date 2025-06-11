@@ -61,6 +61,7 @@ public:
     void send_mouse_position(coordinate_t& mouse_x, coordinate_t& mouse_y);
 
     GameInfo read_game_info();
+    void send_acknowledge(Acknowledge& ack);
     std::vector<std::string> read_list_games();
     GameImage read_game_image();
 };

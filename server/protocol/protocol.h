@@ -77,6 +77,8 @@ public:
     */
     std::unique_ptr<ServerSpace::MousePosition> read_mouse_position(const player_id_t& player_id);
 
+    Acknowledge read_acknowledge();
+
     void send_list_games(ListGame& games);
 
     void send_game_info(GameInfo& game_info);

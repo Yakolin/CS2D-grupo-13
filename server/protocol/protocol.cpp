@@ -251,6 +251,12 @@ void ServerProtocol::send_game_info(GameInfo& game_info) {
     }
 }
 
+Acknowledge ServerProtocol::read_acknowledge() {
+    acknowledge_t acknowledge;
+    this->read_byte_data(acknowledge);
+    return static_cast<Acknowledge>(acknowledge);
+}
+
 void ServerProtocol::send_client_id(player_id_t& client_id) { this->send_two_byte_data(client_id); }
 
 void ServerProtocol::send_weapons(const PlayerImage& player_image) {

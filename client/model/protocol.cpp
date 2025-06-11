@@ -56,28 +56,27 @@ void ClientProtocol::read_map_info(MapInfo& map_info) {
 
     length_walls_t walls_length;
     this->read_two_byte_data(walls_length);
-    map_info.walls.clear();
-    map_info.walls.reserve(walls_length);
+    std::vector<Position> walls;
     for (length_walls_t i = 0; i < walls_length; ++i) {
         Position wall;
         this->read_position(wall);
-        map_info.walls.emplace_back(std::move(wall));
+        walls.emplace_back(std::move(wall));
     }
 
     map_info.bomb_A = bomb_A;
     map_info.bomb_B = bomb_B;
     map_info.spawn_TT = spawn_TT;
     map_info.spawn_CT = spawn_CT;
-    draw_map(map_info, 50, 50);  // Para depuración, dibuja el mapa en la consola
+    map_info.walls = std::move(walls);
+    draw_map(map_info, 50, 50);
 }
 
 GameInfo ClientProtocol::read_game_info() {
-    GameInfo game_info;
-    this->read_map_info(game_info.map_info);
+    MapInfo map_info;
+    this->read_map_info(map_info);
     length_weapons_info_t weapons_length;
     this->read_byte_data(weapons_length);
-    game_info.weapons_purchasables.clear();
-    game_info.weapons_purchasables.reserve(weapons_length);
+    std::vector<WeaponInfo> weapons_purchasables;
     for (length_weapons_info_t i = 0; i < weapons_length; ++i) {
         weapon_code_t weapon_code;
         this->read_byte_data(weapon_code);
@@ -85,9 +84,9 @@ GameInfo ClientProtocol::read_game_info() {
         uint16_t price;
         this->read_two_byte_data(price);
 
-        game_info.weapons_purchasables.emplace_back(static_cast<WeaponCode>(weapon_code), price);
+        weapons_purchasables.emplace_back(WeaponInfo(static_cast<WeaponCode>(weapon_code), price));
     }
-    return game_info;
+    return GameInfo(std::move(map_info), std::move(weapons_purchasables));
 }
 
 std::vector<std::string> ClientProtocol::read_list_games() {
@@ -176,6 +175,11 @@ void ClientProtocol::send_join_game(const JoinGame& join_game) {
 void ClientProtocol::send_list_games() {
     uint8_t header = static_cast<uint8_t>(LobbyCommandType::LIST_GAMES);
     this->send_byte_data(header);
+}
+
+void ClientProtocol::send_acknowledge(Acknowledge& ack) {
+    uint8_t acknowledge_header = static_cast<uint8_t>(ack);
+    this->send_byte_data(acknowledge_header);
 }
 
 void ClientProtocol::send_move(MoveType& move_type) {

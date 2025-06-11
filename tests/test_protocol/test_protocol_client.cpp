@@ -265,3 +265,20 @@ TEST(ClientProtocolTest, ReadGameInfoReadsCorrectData) {
 
     server_thread.join();
 }
+TEST(ClientProtocolTest, SendAckSendCorrectData) {
+    // Arrange
+    Socket server_socket("9999");
+    Socket client_socket("localhost", "9999");
+    Socket accepted = server_socket.accept();
+    ClientProtocol protocol(client_socket);
+
+    Acknowledge expected_ack = Acknowledge::READY;
+
+    // Act
+    protocol.send_acknowledge(expected_ack);
+
+    // Assert
+    acknowledge_t ack_type;
+    accepted.recvall(&ack_type, sizeof(ack_type));
+    ASSERT_EQ(static_cast<Acknowledge>(ack_type), expected_ack);
+}

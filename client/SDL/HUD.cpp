@@ -26,6 +26,7 @@ HUD::HUD(GameConfig& config,ManageTexture& manager):
     // Fila 1 (3 elementos)
     load_text(TextView::AMMO,   espacio * 1, fila1_y);
     load_text(TextView::POINTS, espacio * 2, fila1_y);
+    load_text(TextView::MONEY, espacio * 2, fila1_y);
     load_text(TextView::HEALTH, espacio * 3, fila1_y);
 
     // Fila 2 (4 elementos)
@@ -102,15 +103,13 @@ std::string get_weapon_str(WeaponCode weapon) {
 // actualiza si los valores 
 void HUD::update() {
 
-    TTF_Font* font = config.get_font_menu();
-    const WeaponImage& weapon = player.weapons[0];  // arma actual
-    if (!player.weapons.empty()) {
-        load_info(TextView::BULLETS,"- BALA: " + std::to_string(weapon.current_bullets) +"/" + std::to_string(weapon.magazine),Color::AZUL,font);
-    } else {
-        load_info(TextView::BULLETS,"- SIN BALAS " ,Color::NEGRO,font);
+    TTF_Font* font = config.get_font_menu();  
+    if (!player.weapons|.empty()){
+        const WeaponImage& weapon = player.weapons[0];    // Esto es el arma primaria, puede ser NONE, debe ser la ACTUAL
+        load_info(TextView::WEAPON, get_weapon_str(weapon.weapon_code),Color::NEGRO,font); //Quizas una imagen
+        load_info(TextView::BULLETS, std::to_string(weapon.current_bullets) + "/" + std::to_string(weapon.magazine),Color::AZUL,font);
     }
-    load_info(TextView::WEAPON,"- WEAPON: "+ get_weapon_str(weapon.weapon_code),Color::NEGRO,font);
-
+    //Esto deberia de ser algo que quiza no deberia estar aca?
     std::string bomb_state_str;
     switch (bomb.state) {
         case BombState::EQUIPED: bomb_state_str = " Bomba: EQUIPADA"; break;
@@ -120,12 +119,14 @@ void HUD::update() {
         case BombState::EXPLOTED: bomb_state_str = " Bomba: EXPLOTÓ"; break;
         default: bomb_state_str = " Bomba: ???"; break;
     }
+
     load_info(TextView::BOMB,bomb_state_str,Color::NEGRO,font);
-    load_info(TextView::HEALTH,"- VIDA: " + std::to_string(player.health),Color::NEGRO,font);
+    load_info(TextView::HEALTH,"+ " + std::to_string(player.health),Color::NEGRO,font);
     //texture_manager.drawHealthBar(20,20,100,10,0.75f);
-    load_info(TextView::TIME,"- TIEMPO : " + std::to_string(time), Color::NEGRO,font);
-    load_info(TextView::POINTS,"- PUNTOS : " + std::to_string(player.points), Color::NEGRO,font);
-    load_info(TextView::TEAM,player.team == Team::CT ? "Equipo: CT" : "Equipo: TT",Color::NEGRO ,font);
+    load_info(TextView::TIME,"Reloj" + std::to_string(time), Color::AMARILLO,font);
+    load_info(TextView::POINTS,"- PUNTOS : " + std::to_string(player.points), Color::AMARILLO,font);
+    //load_info(TextView::MONEY, "$ " + std::to_string(player.points))
+    load_info(TextView::TEAM,player.team == Team::CT ? "Counter Terrorist" : "Terrorist",Color::NEGRO ,font);
 }
 
 void HUD::render(SDL_Renderer& renderer) {

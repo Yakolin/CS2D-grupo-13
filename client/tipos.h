@@ -13,7 +13,7 @@ enum class ItemTerrorism { PHOENIX, L337_KREW, ARCTIC_AVENGER, GUERRILLA };
 
 enum class ItemCounterTerrorism { SEAL, GSG9, SAS, GIGN };
 
-enum class TextView { HEALTH, AMMO, TIME, POINTS, TEAM, BOMB, WEAPON, BULLETS, NONE };
+enum class TextView { HEALTH, AMMO, TIME, POINTS, TEAM, BOMB, WEAPON, BULLETS, NONE,MONEY };
 
 enum class Color {
     ROJO,

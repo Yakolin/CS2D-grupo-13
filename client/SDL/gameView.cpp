@@ -20,7 +20,10 @@ GameView::GameView(Socket&& skt):
         fov(nullptr),
         shop(camera, manger_texture, config),
         bomba(nullptr),
-        activa(false)
+        activa(false),
+        last_sent(SDL_GetTicks()),
+        hud(config,manger_texture)
+
 { 
 
     leyenda['#'] = "assets/gfx/backgrounds/nuke.png";

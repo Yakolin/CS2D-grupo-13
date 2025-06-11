@@ -15,8 +15,6 @@ void Sender::run() {
             game_image.client_id = this->client_id;
             if (this->should_keep_running()) {
                 this->protocol.send_game_image(game_image);
-                std::cout << "envio accion " << contador << std::endl;
-                contador++;
             }
         }
     } catch (const ConnectionClosedException& e) {

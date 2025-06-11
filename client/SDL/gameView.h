@@ -16,7 +16,8 @@
 #include "../../common/player_command_types.h"
 #include "../controller.h"
 #include "../tipos.h"
-
+#include "bomb.h"
+#include "HUD.h"
 #include "camera.h"
 #include "fieldOfView.h"
 #include "gameConfig.h"

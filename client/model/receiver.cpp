@@ -11,8 +11,6 @@ void Receiver::run() {
     try {
         while (!closed && this->should_keep_running()) {
             GameImage game_image = this->protocol.read_game_image();
-            contador++;
-            std::cout << "Recibido frame numero: " << contador << std::endl;
             this->recv_queue->push(std::move(game_image));
         }
     } catch (ClosedQueue& e) {

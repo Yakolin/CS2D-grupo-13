@@ -58,6 +58,7 @@ void Controller::stop() {
 
 bool Controller::has_game_image(GameImage& snapshot) {
     if (recv_queue->empty()) {
+        
         return false;
     }
 

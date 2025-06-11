@@ -49,9 +49,6 @@ private:
     Bomb* bomba;
     bool activa;
 
-
-
-
     bool bomb_activate;
 
     bool handle_events(const SDL_Event& evento);

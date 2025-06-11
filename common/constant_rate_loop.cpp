@@ -5,7 +5,7 @@
 
 using namespace std::chrono;
 
-#define FPS 60
+#define FPS 15
 #define FRAME_INTERVAL static_cast<int>((1.0f / FPS) * 1000)
 #define FRAME_RATE std::chrono::milliseconds(FRAME_INTERVAL)
 

@@ -374,6 +374,7 @@ GameImage ClientProtocol::read_game_image() {
 
     this->read_client_id(game_image.client_id);
     this->read_player_image(game_image.players_images);
+    this->read_bullets_in_air(game_image.bullets_in_air);
     this->read_bomb(game_image.bomb);
     this->read_weapons_dropped(game_image.dropped_things);
     this->read_game_state_image(game_image.game_state);

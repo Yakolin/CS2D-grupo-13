@@ -49,6 +49,7 @@ void Receiver::run_game() {
             parser();
             if (!this->closed && this->recv_queue) {
                 this->recv_queue->push(std::move(action));
+                std::cout << "Pusheando ClientAction\n";
             }
         }
     } catch (ClosedQueue& e) {

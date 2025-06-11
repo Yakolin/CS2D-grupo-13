@@ -32,10 +32,11 @@ void Map::charge_map() {
     this->spawn_CT = std::move(map_info.spawn_CT);
     this->walls = std::move(map_info.walls);
     std::vector<Position> walls_pos;
+    // Esto tenes que cambiarlo yaco
     for (size_t i = 0; i < walls.size(); i++)
         for (size_t j = 0; j < walls[i].size(); j++)
             if (walls[i][j] == Wall)
-                walls_pos.push_back(Position(j, i));
+                walls_pos.push_back(Position(i, j));
     RectangleInfo bomb_A_info(bomb_A.point_min, bomb_A.point_max);
     RectangleInfo bomb_B_info(bomb_B.point_min, bomb_B.point_max);
     RectangleInfo spawn_TT_info(spawn_TT.point_min, spawn_TT.point_max);

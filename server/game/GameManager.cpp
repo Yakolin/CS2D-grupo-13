@@ -16,6 +16,7 @@ shared_ptr<Player> GameManager::find_player(const player_id_t& player_id) {
 }
 
 void GameManager::process(ClientAction& action) {
+    std::cout << "Procesando accion\n";
     if (timer.is_time_to_buy()) {
         const ServerSpace::BuyWeapon* action_casted =
                 dynamic_cast<ServerSpace::BuyWeapon*>(&action);
@@ -154,6 +155,7 @@ GameImage GameManager::get_frame() {
         give_bomb();
     }
     map_game.update_map_state();
+    std::cout<< "Devolviendo game_image\n";
     return generate_game_image();
 }
 GameInfo GameManager::get_game_info() {

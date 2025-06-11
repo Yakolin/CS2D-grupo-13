@@ -5,6 +5,41 @@ ClientProtocol::ClientProtocol(Socket& socket): socket(socket) {}
 
 ClientProtocol::~ClientProtocol() {}
 
+void draw_map(const MapInfo& map_info, int width, int height) {
+    // Crear la matriz y llenarla de '.'
+    std::vector<std::vector<char>> grid(height, std::vector<char>(width, '.'));
+
+    // Dibujar los rectangles
+    auto draw_rectangle = [&](const RectangleInfo& rect, char symbol) {
+        for (int y = rect.pos_min.y; y <= rect.pos_max.y && y < height; ++y) {
+            for (int x = rect.pos_min.x; x <= rect.pos_max.x && x < width; ++x) {
+                grid[y][x] = symbol;
+            }
+        }
+    };
+
+    draw_rectangle(map_info.bomb_A, 'A');
+    draw_rectangle(map_info.bomb_B, 'B');
+    draw_rectangle(map_info.spawn_TT, 'T');
+    draw_rectangle(map_info.spawn_CT, 'C');
+
+    // Dibujar los muros
+    for (const auto& wall: map_info.walls) {
+        if (wall.y < height && wall.x < width) {
+            grid[wall.y][wall.x] = 'W';
+        }
+    }
+
+    // Imprimir la matriz
+    std::cout << "=== MAPA ===\n";
+    for (int y = 0; y < height; ++y) {
+        for (int x = 0; x < width; ++x) {
+            std::cout << grid[y][x];
+        }
+        std::cout << "\n";
+    }
+}
+
 void ClientProtocol::read_map_info(MapInfo& map_info) {
     RectangleInfo bomb_A, bomb_B, spawn_TT, spawn_CT;
     this->read_position(bomb_A.pos_min);
@@ -33,6 +68,7 @@ void ClientProtocol::read_map_info(MapInfo& map_info) {
     map_info.bomb_B = bomb_B;
     map_info.spawn_TT = spawn_TT;
     map_info.spawn_CT = spawn_CT;
+    draw_map(map_info, 50, 50);  // Para depuración, dibuja el mapa en la consola
 }
 
 GameInfo ClientProtocol::read_game_info() {

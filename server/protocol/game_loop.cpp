@@ -32,10 +32,12 @@ void GameLoop::run() {
 
 void GameLoop::step() {
     try {
-        std::unique_ptr<ClientAction> action = recv_queue->pop();
+        std::unique_ptr<ClientAction> action;
+        while (this->recv_queue->try_pop(action)) {
+            game.process(*action);
+        }
         contador++;
         std::cout << "Recibi, clientAction \nContador: " << contador << std::endl;
-        game.process(*action);
         GameImage game_image = this->game.get_frame();
         this->broadcast(game_image);
     } catch (const ClosedQueue& e) {
@@ -49,6 +51,7 @@ void GameLoop::step() {
         this->stop();
     }
 }
+
 
 void GameLoop::broadcast(GameImage& game_image) {
     std::vector<player_id_t> to_remove;

@@ -16,7 +16,7 @@
 #include "../../common/game_image.h"
 #include "../controller.h"
 #include "../tipos.h"
-
+#include "HUD.h"
 #include "camera.h"
 #include "fieldOfView.h"
 #include "gameConfig.h"
@@ -48,6 +48,7 @@ private:
     Shopping shop;
     Bomb* bomba;
     bool activa;
+    HUD hud;
 
     bool bomb_activate;
 

@@ -2,14 +2,14 @@
 #include "HUD.h"
 #include <string>
 
-HUD::HUD(PlayerImage& player,GameConfig& config,ManageTexture& manager,BombImage& bomb, uint8_t time, GameState game_state): 
+HUD::HUD(GameConfig& config,ManageTexture& manager): 
     config(config),
     texture_manager(manager),
     texts(),
-    player(player),
-    bomb(bomb),
-    time(55),
-    game_state(game_state)
+    player(jugador_inicial()),
+    bomb(bomba_inicial()),
+    time(0),
+    game_state(estado_juego_inicial())
 
 {
     load_text( TextView::TIME, config.get_window_width()/2, 20);
@@ -33,9 +33,35 @@ HUD::HUD(PlayerImage& player,GameConfig& config,ManageTexture& manager,BombImage
     load_text(TextView::TEAM,    espacio * 2, fila2_y);
     load_text(TextView::WEAPON,  espacio * 3, fila2_y);
     load_text(TextView::BULLETS, espacio * 4, fila2_y);
-
-    update();
 }
+
+PlayerImage HUD::jugador_inicial() {
+    Position pos = {100, 100};
+    Position mouse = {110, 110};
+    std::vector<WeaponImage> armas;
+    armas.emplace_back(WeaponCode::GLOCK, 20, 20, 60);  // Arma básica
+
+    return PlayerImage(
+        1,           // player_id
+        pos,         // position
+        100,         // health
+        0,           // points
+        std::move(armas),
+        Team::CT,    // team
+        mouse,
+        Skins(CounterTerroristSkin::GIGN, TerroristSkin::GUERRILLA)
+    );
+}
+
+
+BombImage HUD::bomba_inicial() {
+    return BombImage(Position{0, 0}, BombState::DROPPED);
+}
+
+GameStateImage HUD::estado_juego_inicial() {
+    return GameStateImage(GameState::TIME_TO_BUY, 120, 1);  // 2 min de compra, ronda 1
+}
+
 
 void HUD::load_text(const TextView& clave,const int& x,const int& y ){
     Text item(texture_manager,clave,x,y);
@@ -54,7 +80,13 @@ void HUD::load_info( const TextView& clave, const std::string text,Color color_i
 
 }
 
-
+void HUD::load(PlayerImage& player, BombImage& bomb, uint8_t time, GameStateImage game_state){
+    this->player = player;
+    this->bomb = bomb;
+    this->game_state = game_state;
+    this->time = time;
+    update();
+}
 std::string get_weapon_str(WeaponCode weapon) {
     switch (weapon) {
         case WeaponCode::GLOCK: return "GLOCK";

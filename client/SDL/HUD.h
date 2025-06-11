@@ -13,19 +13,27 @@ private:
     GameConfig config ;
     ManageTexture& texture_manager;
     std::unordered_map<TextView, Text> texts;
-    PlayerImage& player;
-    BombImage& bomb;
+    PlayerImage player;
+    BombImage bomb;
     uint8_t time;
-    GameState& game_state;
+    GameStateImage game_state;
 
-    void load_text(const TextView &clave, const int &x, const int &y);
+    PlayerImage jugador_inicial();
+
+    BombImage bomba_inicial();
+
+    GameStateImage estado_juego_inicial();
+
+    void load_text(const TextView& clave, const int& x, const int& y);
 
     void load_info(const TextView &clave, const std::string text, Color color_id, TTF_Font *font);
 
-    public:
-    HUD(PlayerImage& player,GameConfig& config,ManageTexture& manager, BombImage& bomb, uint8_t time, GameState game_state);
 
 
+public:
+    HUD(GameConfig& config,ManageTexture& manager);
+
+    void load(PlayerImage& player, BombImage& bomb, uint8_t time, GameStateImage game_state);
     void update();
     void render(SDL_Renderer& renderer);
 };

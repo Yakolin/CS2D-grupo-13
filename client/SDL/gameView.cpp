@@ -20,7 +20,7 @@ GameView::GameView(Socket&& skt):
         shop(camera,manger_texture,config),
         bomba(nullptr),
         activa(false),
-        hugs()
+        hud(config,manger_texture)
 { 
 
     leyenda['#'] = "assets/gfx/backgrounds/nuke.png";
@@ -158,7 +158,7 @@ bool GameView::handle_events(const SDL_Event& event) {
         controller.sender_mov_player(tecla);
         player->add_speed(tecla);
         
-        if(tecla == SDLK_1){
+        if(tecla == SDLK_b){
             shop.activate_shop();
         }
 
@@ -191,7 +191,7 @@ bool GameView::handle_events(const SDL_Event& event) {
        // printf("-----------mov mouse----------------------\n");
        // printf("MOUSER en (%d, %d)\n", mouseX, mouseY);
 
-        controller.sender_pos_mouse(mouseX, mouseY);
+       // controller.sender_pos_mouse(mouseX, mouseY);
     }
 
     return true;
@@ -213,6 +213,9 @@ void GameView::draw_game(const std::vector<Position> walls) {
     this->fov = new FieldOfView(*player, camera, manger_texture, config);
 
     SDL_Event event;
+    uint8_t time=20;
+    std::cout << static_cast<int>(time) << std::endl;
+
     bomba = new Bomb(player,camera,manger_texture,config);
 
 
@@ -234,6 +237,7 @@ void GameView::draw_game(const std::vector<Position> walls) {
             counter2++;
             std::cout << "counte2"<< counter2 << std::endl;
             update_status_game();
+            this->hud.load(snapshot.players_images[snapshot.client_id],snapshot.bomb,snapshot.game_state.time,snapshot.game_state);
         }
         player->update(deltaTime);
 
@@ -256,6 +260,8 @@ void GameView::draw_game(const std::vector<Position> walls) {
         if(shop.get_activa()){
             shop.draw(*renderer);
         }
+
+        hud.render(*renderer);
 
         SDL_RenderPresent(renderer);
     };

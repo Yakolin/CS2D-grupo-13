@@ -11,6 +11,7 @@ target_sources(CS2D_client
     SDL/bomb.cpp
     SDL/fieldOfView.cpp
     SDL/playerView.cpp
+    SDL/HUD.cpp
     SDL/shopping.cpp
     SDL/weaponView.cpp
     SDL/camera.cpp
@@ -25,6 +26,7 @@ target_sources(CS2D_client
     SDL/mapView.h
     SDL/playerView.h
     SDL/gameConfig.h
+    SDL/HUD.h
     SDL/fieldOfView.h
     SDL/bomb.h
     SDL/shopping.h

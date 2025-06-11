@@ -63,7 +63,7 @@ private:
     Equipment equipment;
     uint8_t health;
     uint8_t points;
-    uint16_t money = 5000;
+    money_t money = 5000;
     Position mouse_position;
     IGameZone& game_zone;
 

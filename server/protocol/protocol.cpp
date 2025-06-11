@@ -295,6 +295,9 @@ void ServerProtocol::send_players_images(std::vector<PlayerImage>& players_image
         points_t points = player_image.points;
         this->send_byte_data(points);
 
+        money_t money = player_image.money;
+        this->send_two_byte_data(money);
+
         this->send_weapons(player_image);
 
         team_t team = static_cast<team_t>(player_image.team);

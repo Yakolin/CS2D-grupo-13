@@ -103,9 +103,10 @@ std::unique_ptr<Move> ServerProtocol::read_move(const player_id_t& player_id) {
 std::unique_ptr<BuyWeapon> ServerProtocol::read_buy_weapon(const player_id_t& player_id) {
     weapon_code_t weapon_code;
     this->read_byte_data(weapon_code);
-    return std::make_unique<BuyWeapon>(player_id, static_cast<WeaponCode>(weapon_code));
+    std::unique_ptr<BuyWeapon> buy_weapon =
+            std::make_unique<BuyWeapon>(player_id, static_cast<WeaponCode>(weapon_code));
+    return buy_weapon;
 }
-
 
 std::unique_ptr<Shoot> ServerProtocol::read_shoot(const player_id_t& player_id) {
     coordinate_t x;
@@ -120,7 +121,8 @@ std::unique_ptr<BuyAmmo> ServerProtocol::read_buy_ammo(player_id_t player_id) {
     ammo_t ammo_count;
     this->read_byte_data(weapon_type);
     this->read_two_byte_data(ammo_count);
-    return std::make_unique<BuyAmmo>(player_id, static_cast<WeaponType>(weapon_type), ammo_count);
+    return std::make_unique<BuyAmmo>(player_id, static_cast<WeaponType>(weapon_type),
+ammo_count);
 }
 }
 

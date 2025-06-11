@@ -19,12 +19,12 @@ void GameConfig::load_weapons(const YAML::Node& config) {
         std::string name = weapon.first.as<std::string>();
         WeaponCode code = weapon_name_to_code(name);
         YAML::Node data = weapon.second;
+        bool purchasable = data["purchasable"].as<int>();
         WeaponConfig weapon_config{
                 data["price"].as<uint16_t>(),    data["damage"].as<uint8_t>(),
                 data["fire_rate"].as<uint8_t>(), data["max_bullets"].as<uint8_t>(),
                 data["magazine"].as<uint8_t>(),  data["width"].as<uint8_t>(),
-                data["distance"].as<uint8_t>(),
-        };
+                data["distance"].as<uint8_t>(),  purchasable};
         weapon_configs[code] = weapon_config;
     }
 }
@@ -52,8 +52,10 @@ void GameConfig::load(const std::string& file_path) {
 std::vector<WeaponInfo> GameConfig::get_info_weapons() {
     std::vector<WeaponInfo> aux;
     for (const auto& weapon: weapon_configs) {
-        WeaponInfo info(weapon.first, weapon.second.price);
-        aux.push_back(info);
+        if (weapon.second.purchasable) {
+            WeaponInfo info(weapon.first, weapon.second.price);
+            aux.push_back(info);
+        }
     }
     return aux;
 }

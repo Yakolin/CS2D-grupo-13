@@ -7,6 +7,7 @@ Weapons:
     magazine: 30
     width: 2
     distance: 20
+    purchasable: 1
   Glock:
     price: 500
     damage: 10
@@ -15,6 +16,7 @@ Weapons:
     magazine: 30
     width: 2
     distance: 15
+    purchasable: 0
   Knife:
     price: 0
     damage: 25
@@ -23,10 +25,11 @@ Weapons:
     magazine: 0
     width: 4
     distance: 2
+    purchasable: 0
 
 Player:
   health: 100
-  money: 500
+  money: 3000
   points: 0
   earned_points: 100
   multiplier_points: 3

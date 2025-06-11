@@ -22,6 +22,7 @@ public:
         uint8_t current_b;
         uint8_t width;
         uint8_t distance;
+        bool purchasable;
     } weapon_config_t;
 
     std::map<WeaponCode, WeaponConfig> weapon_configs;

@@ -58,7 +58,7 @@ void GameLoop::step() {
             game.process(*action);
         }
         contador++;
-        std::cout << "Recibi, clientAction \nContador: " << contador << std::endl;
+        //std::cout << "Recibi, clientAction \nContador: " << contador << std::endl;
         GameImage game_image = this->game.get_frame();
         this->broadcast(game_image);
     } catch (const ClosedQueue& e) {

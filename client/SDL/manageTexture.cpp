@@ -17,16 +17,19 @@ ManageTexture::ManageTexture(SDL_Renderer* renderer):
         {Color::VIOLETA,  {138,  43, 226, 255}},
         {Color::ROSADO,   {255, 192, 203, 255}}
     };
+
+
     load(Object::EXPLOSION,"assets/gfx/explosion.png");
     load(Object::BULLET,"assets/gfx/bala.png");
-    load(Object::PHOENIX, "assets/gfx/terrorist/t2.png");
-    load(Object::L337_KREW, "assets/gfx/terrorist/t4.png");
-    load(Object::ARCTIC_AVENGER, "assets/gfx/terrorist/t3.png");
-    load(Object::GUERRILLA, "assets/gfx/terrorist/t1_1.png");
-    load(Object::SEAL, "assets/gfx/counterTerrorist/ct2.png");
-    load(Object::GSG9, "assets/gfx/counterTerrorist/ct4.png");
-    load(Object::SAS, "assets/gfx/counterTerrorist/ct3.png");
-    load(Object::GIGN, "assets/gfx/counterTerrorist/ct1.png");
+
+    load_skins_tt(TerroristSkin::PHOENIX, "assets/gfx/terrorist/t2.png");
+    load_skins_tt(TerroristSkin::L337_KREW, "assets/gfx/terrorist/t4.png");
+    load_skins_tt(TerroristSkin::ARCTIC_AVENGER, "assets/gfx/terrorist/t3.png");
+    load_skins_tt(TerroristSkin::GUERRILLA, "assets/gfx/terrorist/t1_1.png");
+    load_skins_ct(CounterTerroristSkin::SEAL, "assets/gfx/counterTerrorist/ct2.png");
+    load_skins_ct(CounterTerroristSkin::GSG9, "assets/gfx/counterTerrorist/ct4.png");
+    load_skins_ct(CounterTerroristSkin::SAS, "assets/gfx/counterTerrorist/ct3.png");
+    load_skins_ct(CounterTerroristSkin::GIGN, "assets/gfx/counterTerrorist/ct1.png");
     load_weapons(WeaponCode::BOMB,"assets/gfx/weapons/bomb.png",renderer);
     load_weapons(WeaponCode::AK47,"assets/gfx/weapons/ak47v.png",renderer);
     load_weapons(WeaponCode::AWP,"assets/gfx/weapons/awpv.png",renderer);
@@ -34,6 +37,7 @@ ManageTexture::ManageTexture(SDL_Renderer* renderer):
     load_weapons(WeaponCode::KNIFE, "assets/gfx/weapons/knife.png",renderer);
     load_weapons(WeaponCode::GLOCK, "assets/gfx/weapons/glock.png",renderer);
     }
+
 void ManageTexture::drawHealthBar( int x, int y, int width, int height, float healthPercent) {
     // Contorno de la barra
     SDL_Rect border = { x, y, width, height };
@@ -161,6 +165,55 @@ void ManageTexture::load(const Object& id, const std::string& filePath) {
     textures[id] = texture;
 }
 
+void ManageTexture::load_skins_tt(const TerroristSkin& id, const std::string& filePath) {
+    
+    SDL_Surface* surface = IMG_Load(filePath.c_str());
+    if (!surface) {
+        throw std::runtime_error("Error cargando imagen: " + std::string(IMG_GetError()));
+    }
+
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
+    SDL_FreeSurface(surface);
+
+    if (!texture) {
+        throw std::runtime_error("Error creando textura: " + std::string(SDL_GetError()));
+    }
+
+    texture_skin_tt[id] = texture;
+}
+void ManageTexture::load_skins_ct(const CounterTerroristSkin& id, const std::string& filePath) {
+    
+    SDL_Surface* surface = IMG_Load(filePath.c_str());
+    if (!surface) {
+        throw std::runtime_error("Error cargando imagen: " + std::string(IMG_GetError()));
+    }
+
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
+    SDL_FreeSurface(surface);
+
+    if (!texture) {
+        throw std::runtime_error("Error creando textura: " + std::string(SDL_GetError()));
+    }
+
+    texture_skin_ct[id] = texture;
+}
+
+SDL_Texture* ManageTexture::get_texture_ct(const CounterTerroristSkin& id) const {
+
+    auto it = texture_skin_ct.find(id);
+    if (it != texture_skin_ct.end()) {
+        return it->second;
+    }
+    return nullptr;
+}
+SDL_Texture* ManageTexture::get_texture_tt(const TerroristSkin& id) const {
+
+    auto it = texture_skin_tt.find(id);
+    if (it != texture_skin_tt.end()) {
+        return it->second;
+    }
+    return nullptr;
+}
 
 void ManageTexture::fillTriangle(SDL_Renderer* renderer, int x0, int y0, int x1, int y1, int x2, int y2) {
     // Ordenar los puntos por Y
@@ -188,6 +241,7 @@ void ManageTexture::fillTriangle(SDL_Renderer* renderer, int x0, int y0, int x1,
     }
 }
 
+
 std::array<SDL_Point, 4> calculo(const int& lado,const int& angle, const int& apertura){
     int cx = lado / 2;
     int cy = lado / 2;
@@ -212,7 +266,7 @@ std::array<SDL_Point, 4> calculo(const int& lado,const int& angle, const int& ap
 
 SDL_Texture* ManageTexture::create_stencil(const int& ancho, const int& alto,const  float& angle, const float& apertura) {
     
-    int lado = ancho+alto;
+    int lado = (ancho+alto);
     SDL_Texture* stencil = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, lado, lado);
     if (!stencil) {
         throw std::runtime_error("Error: la textura stencil  no se cargó correctamente.");
@@ -221,29 +275,17 @@ SDL_Texture* ManageTexture::create_stencil(const int& ancho, const int& alto,con
     SDL_SetRenderTarget(renderer, stencil);
     std::array<SDL_Point, 4> points = calculo(lado,angle,apertura); 
 
-   // int radio_fondo = lado / 4;
     int radio_pequeno = 64; // Ajusta este valor al tamaño deseado
-
-
-
     SDL_SetTextureBlendMode(stencil, SDL_BLENDMODE_BLEND); // vuelve tui textura trasparente
 
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 128); //128 fondo simi trasparente negro
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
     SDL_RenderClear(renderer);
 
-
-    //filledCircleRGBA(renderer, points[0].x, points[0].y, radio_fondo, 0, 0, 0, 128);
-    //SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
-
     filledCircleRGBA(renderer,points[0].x,points[0].y, radio_pequeno, 0, 0, 0, 0);
-
-    
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
     fillTriangle(renderer, points[0].x, points[0].y, points[1].x, points[1].y,points[2].x, points[2].y);
-
-
     SDL_SetRenderTarget(renderer, old_target);
 
     return stencil;

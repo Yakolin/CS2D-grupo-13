@@ -155,7 +155,7 @@ GameImage GameManager::get_frame() {
         give_bomb();
     }
     map_game.update_map_state();
-    std::cout<< "Devolviendo game_image\n";
+    //std::cout<< "Devolviendo game_image\n";
     return generate_game_image();
 }
 GameInfo GameManager::get_game_info() {

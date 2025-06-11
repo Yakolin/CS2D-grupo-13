@@ -82,9 +82,9 @@ public:
     pre:
     post:
     */
-    void draw_game(const std::vector<Position> walls);
+    void draw_game(const GameInfo& info_game_view,const  Player& info_game);
 
-    bool add_player(float x, float y, int speed, const std::string& img);
+    bool add_player(float x, float y, int speed,const Claves_skins& claves);
 
     void start();
 

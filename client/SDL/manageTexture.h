@@ -15,6 +15,7 @@
 #include <sstream>
 #include <SDL2/SDL2_gfxPrimitives.h>
 #include "../../common/player_command_types.h"
+#include "../../common/game_info.h"
 class ManageTexture {
 public:
 
@@ -25,6 +26,14 @@ public:
     void drawHealthBar( int x, int y, int width, int height, float healthPercent);
 
     void load(const Object& id, const std::string& filePath);
+
+    void load_skins_tt(const TerroristSkin& id, const std::string& filePath);
+
+    void load_skins_ct(const CounterTerroristSkin& id, const std::string& filePath);
+
+    SDL_Texture* get_texture_ct(const CounterTerroristSkin& id) const;
+
+    SDL_Texture* get_texture_tt(const TerroristSkin& id) const;
 
     void fillTriangle(SDL_Renderer* renderer, int x0, int y0, int x1, int y1, int x2, int y2);
 
@@ -56,6 +65,8 @@ private:
     std::unordered_map<TextView, TextureData> textures_text;
     std::unordered_map<WeaponCode,SDL_Texture*> textures_weapons;
     std::unordered_map<Color, SDL_Color> colores;
+    std::unordered_map<CounterTerroristSkin, SDL_Texture*> texture_skin_ct;
+    std::unordered_map<TerroristSkin, SDL_Texture*> texture_skin_tt;
 
     TTF_Font *get_font_menu();
 

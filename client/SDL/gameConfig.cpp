@@ -52,7 +52,7 @@ SDL_Color GameConfig::get_color(const Color& clave) {
 
     auto it = colores.find(clave);
     if (it != colores.end()) {
-        std::cout << "se encontró la textura para Object: " << static_cast<int>(clave) << std::endl;
+       // std::cout << "se encontró la textura para Object: " << static_cast<int>(clave) << std::endl;
         return it->second;
     }
     throw std::runtime_error("Textura no encontrada.");

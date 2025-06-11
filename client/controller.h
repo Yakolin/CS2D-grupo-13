@@ -13,6 +13,7 @@
 #include <SDL2/SDL.h>
 
 #include "../common/game_image.h"
+#include "../common/game_info.h"
 #include "../common/queue.h"
 #include "../common/socket.h"
 #include "model/client_action.h"
@@ -43,6 +44,10 @@ public:
     void sender_reload();
 
     void sender_shoot(int x, int y);
+
+    TerroristSkin toItemTerrorism(const std::string& str);
+
+    CounterTerroristSkin toItemCounterTerrorism(const std::string& str);
 
     void sender_pos_mouse(int x, int y);
 

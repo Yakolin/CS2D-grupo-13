@@ -105,7 +105,7 @@ std::string get_weapon_str(WeaponCode weapon) {
 // actualiza si los valores
 void HUD::update() {
 
-    TTF_Font* font = config.get_font_menu();
+    TTF_Font* font = config.get_font_game();
     if (!player.weapons.empty()) {
         const WeaponImage& weapon =
                 player.weapons[0];  // Esto es el arma primaria, puede ser NONE, debe ser la ACTUAL

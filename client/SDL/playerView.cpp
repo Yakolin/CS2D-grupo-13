@@ -5,14 +5,11 @@
 const int FILAS_MAP = 17;
 const int COLUMNAS_MAP = 38;
 
-PlayerView::PlayerView(const float& x, const float& y, const std::string& rute, const float& speed,
+PlayerView::PlayerView(const float& x, const float& y,const  Claves_skins& clave_player, const float& speed,
                        Camera* camera_receiver, ManageTexture* manager_texture, GameConfig& config):
         config(config),
-        fil(y),
-        col(x),
-        rutaPlayer(rute),
         origin_rect({0, 0, 64, 96}),
-        destination_rect({static_cast<int>(col), static_cast<int>(fil), 32, 32}),
+        destination_rect({static_cast<int>(x), static_cast<int>(y), 32, 32}),
         speed_player(speed),
         width_img(),
         height_img(),
@@ -21,7 +18,6 @@ PlayerView::PlayerView(const float& x, const float& y, const std::string& rute, 
         camera(camera_receiver),
         manejador(manager_texture),
         player_id(),  //! cambiar
-
         x_actual(x),
         y_actual(y),
         velocity_x(0),
@@ -32,25 +28,13 @@ PlayerView::PlayerView(const float& x, const float& y, const std::string& rute, 
         interp_time(1.0f),
         weapons(),
         activar_weapon(false),
-        texture_player(nullptr),
-        clave(WeaponCode::NONE) {
+        texture_player(manejador->get_texture_ct(clave_player.ct_skin)),
+        clave(WeaponCode::NONE),
+        lastUpdateTime(0)
+         {
     calcular();
+    lastUpdateTime = SDL_GetTicks();
 }
-
-void PlayerView::setPrevPos(const float& new_x, const float& new_y) {
-    prev_pos.x = new_x;
-    prev_pos.y = new_y;
-}
-void PlayerView::setTargetPos(const float& new_x, const float& new_y) {
-    target_pos.x = new_x;
-    target_pos.y = new_y;
-}
-
-void PlayerView::setInterpDuration(const float& duration) { interp_duration = duration; }
-void PlayerView::setInterpTime(const float& time) { interp_time = time; }
-int PlayerView::pasar_pixeles_x(const float& tile_x) { return tile_x * config.get_tile_width(); }
-
-int PlayerView::pasar_pixeles_y(const float& tile_y) { return tile_y * config.get_tile_height(); }
 
 
 void PlayerView::update(const float& deltaTime) {
@@ -60,12 +44,8 @@ void PlayerView::update(const float& deltaTime) {
         float t = std::min(interp_time / interp_duration, 1.0f);
         x_actual = prev_pos.x + (target_pos.x - prev_pos.x) * t;
         y_actual = prev_pos.y + (target_pos.y - prev_pos.y) * t;
-    } else {
-        x_actual = target_pos.x;
-        y_actual = target_pos.y;
     }
 }
-
 void PlayerView::update_weapons(const std::vector<WeaponImage>& weapons_vec) {
     for (const WeaponImage& weapon_img: weapons_vec) {
         WeaponCode weapon_key = weapon_img.weapon_code;
@@ -82,12 +62,7 @@ void PlayerView::update_weapons(const std::vector<WeaponImage>& weapons_vec) {
 
 void PlayerView::calcular() {
 
-    SDL_Texture* tiles_player = manejador->get(Object::GUERRILLA);
-    if (!tiles_player) {
-        std::cerr << "Error: No se pudo cargar la textura del jugador." << std::endl;
-        return;
-    }
-    SDL_QueryTexture(tiles_player, nullptr, nullptr, &width_img, &height_img);
+    SDL_QueryTexture(texture_player, nullptr, nullptr, &width_img, &height_img);
 }
 
 void PlayerView::add_speed(const SDL_Keycode& tecla) {
@@ -141,35 +116,18 @@ void PlayerView::draw(SDL_Renderer& renderer) {
     }
 }
 
-
 void PlayerView::update_view_angle(const int& mouse_x, const int& mouse_y) {
-
     int jugador_centro_x = destination_rect.x;
     int jugador_centro_y = destination_rect.y;
 
-    int dx = mouse_x - jugador_centro_x;
-    int dy = mouse_y - jugador_centro_y;
-
-    // Ángulo en radianes
-    float angulo = std::atan2(dx, -dy);
+    // Ángulo en radianes (hacia el mouse)
+    float angulo = std::atan2(mouse_y - jugador_centro_y, mouse_x - jugador_centro_x);
 
     // Convertir a grados
     anglePlayer = angulo * 180.0f / M_PI;
 }
 
-
-float PlayerView::getFil() const { return fil; }
-
-float PlayerView::getCol() const { return col; }
-//
-std::string PlayerView::getRutaPlayer() const { return rutaPlayer; }
-
 float PlayerView::getSpeed() const { return speed_player; }
-
-void PlayerView::setFil(float y_world) { fil = y_world; }
-
-void PlayerView::setCol(float x_world) { col = x_world; }
-
 
 void PlayerView::setXActual(float x) { x_actual = x; }
 void PlayerView::setYActual(float y) { y_actual = y; }
@@ -178,7 +136,6 @@ void PlayerView::setYActual(float y) { y_actual = y; }
 float PlayerView::getXActual() { return x_actual; }
 float PlayerView::getYActual() { return y_actual; }
 
-void PlayerView::setRutaPlayer(const std::string& ruta) { rutaPlayer = ruta; }
 
 void PlayerView::setSpeed(float speed) { speed_player = speed; }
 
@@ -193,5 +150,19 @@ void PlayerView::setVelY(float vy) { velocity_y = vy; }
 float PlayerView::getVelX() const { return velocity_x; }
 float PlayerView::getVelY() const { return velocity_y; }
 
+void PlayerView::setPrevPos(const float& new_x, const float& new_y) {
+    prev_pos.x = new_x;
+    prev_pos.y = new_y;
+}
+void PlayerView::setTargetPos(const float& new_x, const float& new_y) {
+    target_pos.x = new_x;
+    target_pos.y = new_y;
+}
+
+void PlayerView::setInterpDuration(const float& duration) { interp_duration = duration; }
+void PlayerView::setInterpTime(const float& time) { interp_time = time; }
+int PlayerView::pasar_pixeles_x(const float& tile_x) { return tile_x * config.get_tile_width(); }
+
+int PlayerView::pasar_pixeles_y(const float& tile_y) { return tile_y * config.get_tile_height(); }
 
 PlayerView::~PlayerView() {}

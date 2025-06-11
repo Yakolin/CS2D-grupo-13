@@ -100,9 +100,6 @@ void GameView::reset_values(PlayerView* player, const float& x_pixeles, const fl
     player->setTargetPos(x_pixeles, y_pixeles);
     player->setInterpTime(0.0f);
     player->setInterpDuration(0.1f);
-
-    player->setCol(x_pixeles);
-    player->setFil(y_pixeles);
 }
 
 void GameView::update_status_game() {
@@ -121,8 +118,12 @@ void GameView::update_status_game() {
 
 
         } else if (players.find(id) == players.end()) {
+             Claves_skins claves;
+            claves.ct_skin = player_img.skin.ct_skin;
+            claves.tt_skin = player_img.skin.tt_skin;
+            
             PlayerView* nuevo_jugador =
-                    new PlayerView(x_pixeles, y_pixeles, "assets/gfx/terrorist/t2.png", 200.0f,
+                    new PlayerView(x_pixeles, y_pixeles, claves, 200.0f,
                                    &camera, &manger_texture, config);
             nuevo_jugador->update_view_angle(player_img.mouse_position.x * 32,
                                              player_img.mouse_position.y * 32);
@@ -197,14 +198,16 @@ bool GameView::handle_events(const SDL_Event& event) {
 }
 
 
-bool GameView::add_player(float x, float y, int speed, const std::string& img) {
-    this->player = new PlayerView(x, y, img, speed, &camera, &manger_texture, config);
+bool GameView::add_player(float x, float y, int speed,const Claves_skins& claves) {
+    this->player = new PlayerView(x, y, claves, speed, &camera, &manger_texture, config);
     return true;
 }
 
-void GameView::draw_game(const std::vector<Position> walls) {
+void GameView::draw_game(const GameInfo& info_game_view,const  Player& info_game ){
+    std::cout << "Nombre del jugador: " << info_game.info.name_player << std::endl;
+    std::cout << "Nombre del juego: " << info_game.info.name_game << std::endl;
 
-    this->map = new MapView(walls, &camera, &manger_texture, config);
+    this->map = new MapView(info_game_view.map_info.walls, &camera, &manger_texture, config);
     if (!map) {
         throw std::runtime_error("Error al cargar mapa");
         return;

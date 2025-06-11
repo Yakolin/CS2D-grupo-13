@@ -11,6 +11,18 @@ Controller::Controller(Socket&& skt):
     start();
 }
 
+TerroristSkin Controller::toItemTerrorism(const std::string& str) {
+    if (str == "Phoenix") return TerroristSkin::PHOENIX;
+    if (str == "L337 Krew") return TerroristSkin::L337_KREW;
+    if (str == "Arctic Avenger") return TerroristSkin::ARCTIC_AVENGER;
+    return TerroristSkin::GUERRILLA;
+}
+CounterTerroristSkin Controller::toItemCounterTerrorism(const std::string& str) {
+    if (str == "Seal Force") return CounterTerroristSkin::SEAL;
+    if (str == "German GSG-9") return CounterTerroristSkin::GSG9;
+    if (str == "UK SAS") return CounterTerroristSkin::SAS;
+    return CounterTerroristSkin::GIGN;
+}
 void Controller::sender_pos_mouse(int x, int y) {
 
     int tile_size = 32;
@@ -95,11 +107,11 @@ void Controller::stop() {
 
 bool Controller::has_game_image(GameImage& snapshot) {
 
-    if (recv_queue->empty()) {
-        std::cout << "Ojo, la cola esta vacia\n";
+    if (recv_queue->empty()) { 
         return false;
     }
     snapshot = recv_queue->pop();
+  //  std::cout << "recibo de la cola\n";
     return true;
 }
 

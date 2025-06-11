@@ -12,6 +12,7 @@
 #include <SDL_video.h>
 
 #include "../../common/game_image.h"
+#include "../../common/game_info.h"
 #include "../../common/player_command_types.h"
 #include "../tipos.h"
 
@@ -23,8 +24,10 @@
 
 class PlayerView: public Renderizable {
 public:
-    explicit PlayerView(const float& x, const float& y, const std::string& rute, const float& speed,
+    explicit PlayerView(const float& x, const float& y, const  Claves_skins& clave_player, const float& speed,
                         Camera* camera_reseiver, ManageTexture* manger_texture, GameConfig& config);
+
+
     void setPrevPos(const float& new_x, const float& new_y);
     void setTargetPos(const float& new_x, const float& new_y);
     ~PlayerView();
@@ -41,8 +44,6 @@ public:
     void update(const float& delta_time);
     void update_view_angle(const int& mause_x, const int& mause_y);
 
-    float getFil() const;
-    float getCol() const;
     float getSpeed() const;
     std::string getRutaPlayer() const;
     int getWidthImg() const;   // todo no inicializadas
@@ -56,20 +57,15 @@ public:
     int pasar_pixeles_x(const float& tile_x);
     int pasar_pixeles_y(const float& tile_y);
 
-    void setFil(float newFil);
-    void setCol(float newCol);
     void setXActual(float x);
     void setYActual(float y);
     void setSpeed(float newSpeed);
     float getXActual();
     float getYActual();
-    void setRutaPlayer(const std::string& nuevaRuta);
+
 
 private:
     GameConfig config;
-    float fil;
-    float col;
-    std::string rutaPlayer;
     SDL_Rect origin_rect;
     SDL_Rect destination_rect;
     float speed_player;
@@ -93,6 +89,7 @@ private:
     bool activar_weapon;
     SDL_Texture* texture_player;
     WeaponCode clave;
+    Uint32 lastUpdateTime;
 
     void calcular();
 };

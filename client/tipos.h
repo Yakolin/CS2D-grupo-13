@@ -2,6 +2,7 @@
 #define TIPOS_H
 #include <string>
 #include "../common/player_command_types.h"
+#include "../common/game_info.h"
 #include <SDL2/SDL.h>
 
 enum class GameMenu { CREATE, JOIN, HELP, EXIT, NONE };
@@ -56,15 +57,6 @@ enum class Object {
     BOX,
     PLAYER,
     WATER,
-
-    PHOENIX,
-    L337_KREW,
-    ARCTIC_AVENGER,
-    GUERRILLA,
-    SEAL,
-    GSG9,
-    SAS,
-    GIGN,
     VIDA,
     MUERTES,
     PUNTOS,
@@ -89,6 +81,11 @@ enum class Movement { UP, DOWN, LEFT, RIGHT, NONE };
 struct InfoGame {
     std::string name_player;
     std::string name_game;
+};
+
+struct Claves_skins{
+    CounterTerroristSkin ct_skin;
+    TerroristSkin tt_skin;
 };
 
 struct Player {

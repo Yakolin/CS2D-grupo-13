@@ -115,7 +115,7 @@ void GameView::update_status_game() {
 
         if (id == snapshot.client_id) {
             reset_values(player, x_pixeles, y_pixeles);
-
+            //player->update_weapons(snapshot.players_images[id].weapons);
 
         } else if (players.find(id) == players.end()) {
              Claves_skins claves;
@@ -127,6 +127,7 @@ void GameView::update_status_game() {
                                    &camera, &manger_texture, config);
             nuevo_jugador->update_view_angle(player_img.mouse_position.x * 32,
                                              player_img.mouse_position.y * 32);
+            //nuevo_jugador->update_weapons(snapshot.players_images[id].weapons);
             players[id] = nuevo_jugador;
 
         } else {
@@ -135,6 +136,7 @@ void GameView::update_status_game() {
             int y_pixel_mouse = player_img.mouse_position.y * config.get_tile_height();
             player_aux->update_view_angle(x_pixel_mouse, y_pixel_mouse);
             reset_values(player_aux, x_pixeles, y_pixeles);
+            //player_aux->update_weapons(snapshot.players_images[id].weapons);
         }
     }
 }
@@ -191,7 +193,7 @@ bool GameView::handle_events(const SDL_Event& event) {
         // printf("-----------mov mouse----------------------\n");
         // printf("MOUSER en (%d, %d)\n", mouseX, mouseY);
 
-        controller.sender_pos_mouse(mouseX, mouseY);
+        //controller.sender_pos_mouse(mouseX, mouseY);
     }
 
     return true;

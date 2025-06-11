@@ -58,6 +58,8 @@ public:
     void sender_buy_weapon(WeaponCode code);
     void stop();
 
+    bool is_valid_weapon_code(WeaponCode code);
+
     /*
     pre:
     post: envía el movimiento del jugador

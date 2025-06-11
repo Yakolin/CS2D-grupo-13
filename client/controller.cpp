@@ -103,6 +103,19 @@ void Controller::stop() {
     this->receiver.join();
     this->sender.join();
 }
+bool Controller::is_valid_weapon_code(WeaponCode code) {
+    switch (code) {
+        case WeaponCode::BOMB:
+        case WeaponCode::AK47:
+        case WeaponCode::AWP:
+        case WeaponCode::M3:
+        case WeaponCode::KNIFE:
+        case WeaponCode::GLOCK:
+            return true;
+        default:
+            return false;
+    }
+}
 
 
 bool Controller::has_game_image(GameImage& snapshot) {

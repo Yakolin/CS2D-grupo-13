@@ -13,9 +13,6 @@ WeaponView::WeaponView(Camera& camera, ManageTexture& managertexture, const Weap
         bullets(),
         bulles_activate(false),
         limite(10) {
-    bullets = {
-            BulletImage(Position{1, 2}, Position{3, 4}),
-    };
 }
 void WeaponView::activate_bullets() {
     bulles_activate = true;
@@ -29,12 +26,11 @@ void WeaponView::draw(SDL_Renderer& renderer) {
     if (bulles_activate) {
         std::cout << "------------preparando para disparar-------\n";
         SDL_SetRenderDrawColor(&renderer, 255, 255, 0, 255);  // Color amarillo para las balas
-        //  for (const auto& bullet : bullets) {
-        SDL_Rect bulletRect = {bullets[0].initial.x * 32, bullets[0].initial.y * 32, 5, 5};
-        std::cout << "DISPARO-------\n";
-        //    SDL_Rect bulletRect = {bullet.initial.x, bullet.initial.y, 5, 5}; // Tamaño de la bala
-        SDL_RenderFillRect(&renderer, &bulletRect);
-        //  }
+
+        if (!bullets.empty()) {
+            SDL_Rect bulletRect = {bullets[0].initial.x * 32, bullets[0].initial.y * 32, 5, 5};
+            SDL_RenderFillRect(&renderer, &bulletRect);
+        }
         limite++;
     }
     if (limite <= 0) {

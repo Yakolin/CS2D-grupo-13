@@ -4,7 +4,7 @@
 #include <map>
 #include <string>
 #include <vector>
-
+#include <memory>
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_render.h>
@@ -85,7 +85,7 @@ private:
     Coordenada target_pos;
     float interp_duration;
     float interp_time;
-    std::map<WeaponCode, WeaponView*> weapons;
+    std::unordered_map<WeaponCode, std::unique_ptr<WeaponView>> weapons;
     bool activar_weapon;
     SDL_Texture* texture_player;
     WeaponCode clave;

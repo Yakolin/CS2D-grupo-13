@@ -9,7 +9,6 @@ Sender::~Sender() {}
 void Sender::run() {
     try {
         while (!this->closed && this->should_keep_running()) {
-            std::cout << "recibo la imagen" << std::endl;
             GameImage game_image = this->send_queue->pop();
             game_image.client_id = this->client_id;
             if (this->should_keep_running()) {

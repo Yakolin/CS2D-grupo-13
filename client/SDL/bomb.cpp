@@ -7,7 +7,7 @@ Bomb::Bomb( PlayerView* player,Camera& camera_reseiver, ManageTexture& manejador
     config(config),
     camera(camera_reseiver),
     manejador(manejador),
-    texture_bomb(manejador.get_weapon(Weapon::BOMB)),
+    texture_bomb(manejador.get_weapon(WeaponCode::BOMB)),
     texture_explosion(manejador.get(Object::EXPLOSION)),
     width_img(),
     height_img(),

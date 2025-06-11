@@ -20,7 +20,7 @@ private:
     Camera& camera;
 
 public:
-    explicit WeaponView(Camera& camera, ManageTexture& managertexture, const Weapon& clave,
+    explicit WeaponView(Camera& camera, ManageTexture& managertexture, const WeaponCode& clave,
                         const float& x, const float& y, const float& angle);
 
 

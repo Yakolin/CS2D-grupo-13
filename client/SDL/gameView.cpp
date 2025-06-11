@@ -151,11 +151,12 @@ void GameView::draw_players() {
 
 void GameView::handle_mouse_motion(int x, int y) {
     Uint32 now = SDL_GetTicks();
-    if (now - last_sent >= 50) {  // 50 ms entre envíos
+    if (now - last_sent >= 500) {  // 50 ms entre envíos
         controller.sender_pos_mouse(x, y);
         last_sent = now;
     }
 }
+
 bool GameView::handle_events(const SDL_Event& event) {
     if (event.type == SDL_QUIT) {
         return false;
@@ -191,14 +192,18 @@ bool GameView::handle_events(const SDL_Event& event) {
     if (event.type == SDL_MOUSEMOTION) {
         int mouseX = event.motion.x;
         int mouseY = event.motion.y;
-
-        shop.calculate_selection(mouseX, mouseY);
+        if(shop.get_activa()){
+            shop.calculate_selection(mouseX, mouseY);
+        }
         player->update_view_angle(mouseX, mouseY);
         handle_mouse_motion(mouseX, mouseY);
+        /*
         if (shop.get_activa()) {
             WeaponCode code = shop.calculate_selection(mouseX, mouseY);
             controller.send_buy(code);
         }
+        
+        */
     }
     return true;
 }

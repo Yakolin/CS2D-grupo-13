@@ -4,7 +4,7 @@
 
 #include <SDL2/SDL.h>
 
-#include "../../common/player_command_types.h"
+#include "../common/player_command_types.h"
 
 
 enum class GameMenu { CREATE, JOIN, HELP, EXIT, NONE };

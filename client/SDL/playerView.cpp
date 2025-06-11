@@ -36,8 +36,8 @@ PlayerView::PlayerView(const float& x, const float& y, const std::string& rute, 
     calcular();
 
     texture_player = manejador->get(Object::GIGN);
-    WeaponView* ak47 = new WeaponView(*camera, *manejador, Weapon::AK47, x, y, anglePlayer);
-    weapons[Weapon::AK47] = ak47;
+    WeaponView* ak47 = new WeaponView(*camera, *manejador, WeaponCode::AK47, x, y, anglePlayer);
+    weapons[WeaponCode::AK47] = ak47;
 }
 
 void PlayerView::setPrevPos(const float& new_x, const float& new_y) {
@@ -103,8 +103,7 @@ void PlayerView::stop_speed(const SDL_Keycode& tecla) {
     }
 }
 
-void PlayerView::activate_weapon(const Weapon& weapon) {
-
+void PlayerView::activate_weapon(const WeaponCode& weapon) {
     if (weapons.find(weapon) != weapons.end()) {
         activar_weapon = true;
         weapons[weapon]->setUsed(true);
@@ -125,7 +124,7 @@ void PlayerView::draw(SDL_Renderer& renderer) {
 
     if (activar_weapon) {
 
-        WeaponView* weapon_view = weapons[Weapon::AK47];
+        WeaponView* weapon_view = weapons[WeaponCode::AK47];
         weapon_view->update(static_cast<int>(x_actual), static_cast<int>(y_actual), anglePlayer);
         weapon_view->draw(renderer);
     }

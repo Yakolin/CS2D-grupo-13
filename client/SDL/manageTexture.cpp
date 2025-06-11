@@ -21,7 +21,7 @@ ManageTexture::ManageTexture(SDL_Renderer* renderer): renderer(renderer) {
     load_weapons(WeaponCode::AK47, "assets/gfx/weapons/ak47v.png", renderer);
     load_weapons(WeaponCode::AWP, "assets/gfx/weapons/awpv.png", renderer);
     load_weapons(WeaponCode::M3, "assets/gfx/weapons/m3v.png", renderer);
-    load_weapons(WeaponCode::SNIKE, "assets/gfx/weapons/knife.png", renderer);
+    load_weapons(WeaponCode::KNIFE, "assets/gfx/weapons/knife.png", renderer);
     load_weapons(WeaponCode::GLOCK, "assets/gfx/weapons/glock.png", renderer);
 }
 void ManageTexture::drawHealthBar(int x, int y, int width, int height, float healthPercent) {
@@ -253,7 +253,7 @@ SDL_Texture* ManageTexture::create_stencil(const int& ancho, const int& alto, co
 }
 
 
-bool ManageTexture::load_weapons(const Weapon& id, const std::string& filePath,
+bool ManageTexture::load_weapons(const WeaponCode& id, const std::string& filePath,
                                  SDL_Renderer* renderer) {
 
     SDL_Surface* surface = IMG_Load(filePath.c_str());
@@ -319,7 +319,7 @@ SDL_Rect ManageTexture::get_rect(const TextView& id) const {
     }
     return SDL_Rect{0, 0, 0, 0};
 }
-SDL_Texture* ManageTexture::get_weapon(const Weapon& id) const {
+SDL_Texture* ManageTexture::get_weapon(const WeaponCode& id) const {
     auto it = textures_weapons.find(id);
     // std::cout << "se encontró la textura para WeaponCode: " << static_cast<int>(id) << std::endl;
     if (it != textures_weapons.end()) {

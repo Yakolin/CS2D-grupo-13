@@ -14,8 +14,6 @@ Vista::Vista(int& argc, char* argv[]):
         protocolo(skt),
         opcionElegida(LobbyCommandType::NONE),
         info_game() {}
-
-
 void Vista::run() {
 
     QApplication app(argc, argv);

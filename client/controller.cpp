@@ -87,7 +87,6 @@ void Controller::stop() {
 bool Controller::has_game_image(GameImage& snapshot) {
 
     if (recv_queue->empty()) {
-        std::cout << "Ojo, la cola esta vacia\n";
         return false;
     }
     snapshot = recv_queue->pop();

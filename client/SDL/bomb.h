@@ -2,22 +2,24 @@
 #define BOMB_H
 #include <iostream>
 #include <map>
-#include "camera.h"
+
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_render.h>
 #include <SDL_surface.h>
 #include <SDL_video.h>
-#include "manageTexture.h"
+
 #include "../tipos.h"
+
+#include "camera.h"
 #include "gameConfig.h"
-#include "renderizable.h"
+#include "manageTexture.h"
 #include "playerView.h"
+#include "renderizable.h"
 
 class Bomb: public Renderizable {
 
 private:
-    PlayerView* player_actual;
     GameConfig& config;
     Camera& camera;
     ManageTexture& manejador;
@@ -33,10 +35,11 @@ private:
     bool activada;
     int last_frame_time;
 
-    void update() ;
+    void update();
 
 public:
-    explicit Bomb( PlayerView* plaayer,Camera& camera_reseiver, ManageTexture& manejador,GameConfig& config);
+    explicit Bomb(int x, int y, Camera& camera_reseiver, ManageTexture& manejador,
+                  GameConfig& config);
     bool explosion_finished();
     ~Bomb();
 

@@ -104,6 +104,7 @@ void GameView::reset_values(PlayerView* player, const float& x_pixeles, const fl
     player->setCol(x_pixeles);
     player->setFil(y_pixeles);
 }
+
 void GameView::update_status_game() {
 
     int tile_width = config.get_tile_width();
@@ -118,6 +119,7 @@ void GameView::update_status_game() {
         if (id == snapshot.client_id) {
             reset_values(player, x_pixeles, y_pixeles);
 
+
         } else if (players.find(id) == players.end()) {
             PlayerView* nuevo_jugador =
                     new PlayerView(x_pixeles, y_pixeles, "assets/gfx/terrorist/t2.png", 200.0f,
@@ -125,13 +127,11 @@ void GameView::update_status_game() {
             nuevo_jugador->update_view_angle(player_img.mouse_position.x * 32,
                                              player_img.mouse_position.y * 32);
             players[id] = nuevo_jugador;
+
         } else {
             PlayerView* player_aux = players.at(id);
             int x_pixel_mouse = player_img.mouse_position.x * config.get_tile_width();
             int y_pixel_mouse = player_img.mouse_position.y * config.get_tile_height();
-            std::cout << player_img.mouse_position.x << std::endl;
-            std::cout << player_img.mouse_position.y << std::endl;
-            printf("pos mouse recibida (%d, %d)\n", x_pixel_mouse, y_pixel_mouse);
             player_aux->update_view_angle(x_pixel_mouse, y_pixel_mouse);
             reset_values(player_aux, x_pixeles, y_pixeles);
         }
@@ -156,7 +156,7 @@ bool GameView::handle_events(const SDL_Event& event) {
         controller.sender_mov_player(tecla);
         player->add_speed(tecla);
 
-        if (tecla == SDLK_1) {
+        if (tecla == SDLK_b && snapshot.game_state.state == GameState::TIME_TO_BUY) {
             shop.activate_shop();
         }
     }
@@ -182,8 +182,10 @@ bool GameView::handle_events(const SDL_Event& event) {
     if (event.type == SDL_MOUSEMOTION) {
         int mouseX = event.motion.x;
         int mouseY = event.motion.y;
-
-        shop.calculate_selection(mouseX, mouseY);
+        if (shop.get_activa()) {
+            WeaponCode code = shop.calculate_selection(mouseX, mouseY);
+            controller.sender_buy_weapon(code);
+        }
         player->update_view_angle(mouseX, mouseY);
         // printf("-----------mov mouse----------------------\n");
         // printf("MOUSER en (%d, %d)\n", mouseX, mouseY);
@@ -226,10 +228,24 @@ void GameView::draw_game(const std::vector<Position> walls) {
         Uint32 currentTime = SDL_GetTicks();
         float deltaTime = (currentTime - lastTime) / 1000.0f;
         lastTime = currentTime;
-
+        bool datos_validos = true;
         if (controller.has_game_image(this->snapshot)) {
-            hud.load(snapshot.players_images[snapshot.client_id], snapshot.bomb,
-                     snapshot.game_state.time, snapshot.game_state);
+            if (snapshot.players_images.empty()) {
+                std::cerr << "Error: No hay jugadores en snapshot.players_images\n";
+                datos_validos = false;
+            }
+            // Verifica que client_id esté dentro del rango válido
+            else if (snapshot.client_id >= snapshot.players_images.size()) {
+                std::cerr << "Error: client_id fuera de rango (" << snapshot.client_id
+                          << " >= " << snapshot.players_images.size() << ")\n";
+                datos_validos = false;
+            }
+            if (datos_validos) {
+                hud.load(snapshot.players_images[snapshot.client_id], snapshot.bomb,
+                         snapshot.game_state.time, snapshot.game_state);
+            }
+
+
             update_status_game();
         }
         player->update(deltaTime);

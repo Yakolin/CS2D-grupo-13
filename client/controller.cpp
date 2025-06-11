@@ -14,11 +14,42 @@ Controller::Controller(Socket&& skt):
 void Controller::sender_pos_mouse(int x, int y) {
 
     int tile_size = 32;
-    Uint16 col = static_cast<Uint16>(x / tile_size);
-    Uint16 fil = static_cast<Uint16>(y / tile_size);
+    coordinate_t col = static_cast<coordinate_t>(x / tile_size);
+    coordinate_t fil = static_cast<coordinate_t>(y / tile_size);
 
     std::unique_ptr<InterfaceClientAction> action =
             std::make_unique<ClientSpace::MousePosition>(col, fil);
+    send_queue->push(std::move(action));
+}
+
+void Controller::sender_equip(const EquipType& equip) {
+    std::unique_ptr<InterfaceClientAction> action =
+            std::make_unique<ClientSpace::Equip>(EquipType::PRIMARY);
+    send_queue->push(std::move(action));
+}
+
+void Controller::sender_reload() {
+    std::unique_ptr<InterfaceClientAction> action = std::make_unique<ClientSpace::Reload>();
+    send_queue->push(std::move(action));
+}
+
+void Controller::sender_shoot(int x, int y) {
+    coordinate_t x_c = static_cast<coordinate_t>(x);
+    coordinate_t y_c = static_cast<coordinate_t>(y);
+    std::unique_ptr<InterfaceClientAction> action = std::make_unique<ClientSpace::Shoot>(x_c, y_c);
+    send_queue->push(std::move(action));
+}
+
+void Controller::sender_buy_weapon(WeaponCode code) {
+    std::unique_ptr<InterfaceClientAction> action = std::make_unique<ClientSpace::BuyWeapon>(code);
+    send_queue->push(std::move(action));
+}
+void Controller::sender_defuse() {
+    std::unique_ptr<InterfaceClientAction> action = std::make_unique<ClientSpace::DefuseBomb>();
+    send_queue->push(std::move(action));
+}
+void Contoller::sender_drop() {
+    std::unique_ptr<InterfaceClientAction> action = std::make_unique<ClientSpace::Drop>();
     send_queue->push(std::move(action));
 }
 
@@ -64,7 +95,7 @@ void Controller::stop() {
 
 
 bool Controller::has_game_image(GameImage& snapshot) {
-    
+
     if (recv_queue->empty()) {
         std::cout << "Ojo, la cola esta vacia\n";
         return false;

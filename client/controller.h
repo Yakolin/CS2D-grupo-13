@@ -38,10 +38,20 @@ public:
     pre:
     post: envía las coordenadas del mouse en píxeles, puedes castearlas con las dimensiones del mapa
     */
+    void sender_equip(const EquipType& equip);
+
+    void sender_reload();
+
+    void sender_shoot(int x, int y);
+
     void sender_pos_mouse(int x, int y);
 
+    void sender_drop();
 
-    void stop();
+    void sender_defuse();
+
+    void sender_buy_weapon(WeaponCode code) void stop();
+
     /*
     pre:
     post: envía el movimiento del jugador

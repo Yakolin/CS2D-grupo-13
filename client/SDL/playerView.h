@@ -11,6 +11,7 @@
 #include <SDL_surface.h>
 #include <SDL_video.h>
 
+#include "../../common/game_image.h"
 #include "../tipos.h"
 
 #include "camera.h"
@@ -86,7 +87,7 @@ private:
     Coordenada target_pos;
     float interp_duration;
     float interp_time;
-    std::map<Weapon, WeaponView*> weapons;
+    std::map<WeaponCode, WeaponView*> weapons;
     bool activar_weapon;
     SDL_Texture* texture_player;
 

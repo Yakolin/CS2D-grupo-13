@@ -69,6 +69,20 @@ void PlayerView::update(const float& deltaTime) {
     }
 }
 
+void PlayerView::update_weapons(const std::vector<WeaponImage>& weapons_vec) {
+    for (const WeaponImage& weapon_img: weapons_vec) {
+        WeaponCode weapon_key = weapon_img.weapon_code;
+        if (this->weapons.find(weapon_key) == this->weapons.end()) {
+            WeaponView* new_weapon =
+                    new WeaponView(*camera, *manejador, weapon, x_actual, y_actual, anglePlayer);
+            weapons[weapon_key] = new_weapon;
+
+        } else {
+            weapons[weapon_key]->update(x_actual, y_actual, anglePlayer);
+        }
+    }
+}
+
 void PlayerView::calcular() {
 
     SDL_Texture* tiles_player = manejador->get(Object::GUERRILLA);
@@ -120,8 +134,8 @@ void PlayerView::draw(SDL_Renderer& renderer) {
                         static_cast<int>(y_actual) - camera->getY(),  // fil =y
                         config.get_tile_width(),                      // ancho
                         config.get_tile_height()};                    // alto
-    SDL_RenderCopyEx(&renderer, texture_player ,&origin_rect, &destination_rect, anglePlayer, nullptr,
-                     SDL_FLIP_NONE);
+    SDL_RenderCopyEx(&renderer, texture_player, &origin_rect, &destination_rect, anglePlayer,
+                     nullptr, SDL_FLIP_NONE);
 
     if (activar_weapon) {
 

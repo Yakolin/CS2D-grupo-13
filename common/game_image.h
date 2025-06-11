@@ -80,7 +80,8 @@ public:
     Position position;
     health_t health;
     points_t points;
-    std::vector<WeaponImage> weapons;
+    std::vector<WeaponImage> weapons;  // En orden -> Primary, Secondary , Knife , Bomb
+    // Aca deberiamos agregar CUAL esta equipada
     Team team;
     Position mouse_position;
     Skins skin;

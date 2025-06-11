@@ -11,12 +11,12 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL_ttf.h>
-#include "bomb.h"
+
 #include "../../common/constant_rate_loop.h"
-#include "../../common/game_image.h"
+#include "../../common/player_command_types.h"
 #include "../controller.h"
 #include "../tipos.h"
-#include "HUD.h"
+
 #include "camera.h"
 #include "fieldOfView.h"
 #include "gameConfig.h"
@@ -48,7 +48,11 @@ private:
     Shopping shop;
     Bomb* bomba;
     bool activa;
-    HUD hud;
+     Uint32 last_sent;
+      HUD hud;
+
+
+
 
     bool bomb_activate;
 
@@ -56,7 +60,7 @@ private:
 
     void load_textures();
 
-
+    void handle_mouse_motion(int x, int y);
     void update_status_game();
 
     void draw_players();

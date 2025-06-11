@@ -1,5 +1,7 @@
 #include "receiver.h"
 
+int contador = 0;
+
 Receiver::Receiver(Socket& socket, std::shared_ptr<Queue<GameImage>>& recv_queue):
         closed(false), protocol(socket), recv_queue(recv_queue) {}
 
@@ -9,6 +11,8 @@ void Receiver::run() {
     try {
         while (!closed && this->should_keep_running()) {
             GameImage game_image = this->protocol.read_game_image();
+            contador++;
+            std::cout << "Recibido frame numero: " << contador << std::endl;
             this->recv_queue->push(std::move(game_image));
         }
     } catch (ClosedQueue& e) {

@@ -8,16 +8,12 @@
 #include <QVBoxLayout>
 
 Vista::Vista(int& argc, char* argv[]):
-    argc(argc),
-    argv(argv),
-    skt(argv[1], argv[2]),
-    protocolo(skt),
-    opcionElegida(LobbyCommandType::NONE),
-    info_game() {
-
-}
-
-
+        argc(argc),
+        argv(argv),
+        skt(argv[1], argv[2]),
+        protocolo(skt),
+        opcionElegida(LobbyCommandType::NONE),
+        info_game() {}
 void Vista::run() {
 
     QApplication app(argc, argv);
@@ -53,11 +49,11 @@ void Vista::run() {
 
 
         if (opcionElegida == LobbyCommandType::CREATE_GAME) {
-            if (!gameView.add_player(11, 4, 200.0f, "assets/gfx/terrorist/t2.png")) {
+            if (!gameView.add_player(11, 4, 500.0f, "assets/gfx/terrorist/t2.png")) {
                 return;
             }
         } else {
-            if (!gameView.add_player(23, 9, 200.0f, "assets/gfx/terrorist/t2.png")) {
+            if (!gameView.add_player(23, 9, 500.0f, "assets/gfx/terrorist/t2.png")) {
                 return;
             }
         }

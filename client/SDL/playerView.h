@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 
+#include "../../common/player_command_types.h"
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_render.h>
@@ -31,7 +32,7 @@ public:
 
     void stop_speed(const SDL_Keycode& tecla);
 
-    void activate_weapon(const Weapon& weapon);
+    void activate_weapon(const WeaponCode& weapon);
 
     void draw(SDL_Renderer& renderer) override;
 
@@ -86,7 +87,7 @@ private:
     Coordenada target_pos;
     float interp_duration;
     float interp_time;
-    std::map<Weapon, WeaponView*> weapons;
+    std::map<WeaponCode, WeaponView*> weapons;
     bool activar_weapon;
     SDL_Texture* texture_player;
 

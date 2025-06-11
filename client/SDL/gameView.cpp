@@ -230,18 +230,19 @@ void GameView::draw_game(const std::vector<Position> walls) {
         lastTime = currentTime;
         bool datos_validos = true;
         if (controller.has_game_image(this->snapshot)) {
+            player_id_t id_real = snapshot.client_id-1;
             if (snapshot.players_images.empty()) {
                 std::cerr << "Error: No hay jugadores en snapshot.players_images\n";
                 datos_validos = false;
             }
             // Verifica que client_id esté dentro del rango válido
-            else if (snapshot.client_id >= snapshot.players_images.size()) {
+            else if (id_real>= snapshot.players_images.size()) {
                 std::cerr << "Error: client_id fuera de rango (" << snapshot.client_id
                           << " >= " << snapshot.players_images.size() << ")\n";
                 datos_validos = false;
             }
             if (datos_validos) {
-                hud.load(snapshot.players_images[snapshot.client_id], snapshot.bomb,
+                hud.load(snapshot.players_images[id_real], snapshot.bomb,
                          snapshot.game_state.time, snapshot.game_state);
             }
 

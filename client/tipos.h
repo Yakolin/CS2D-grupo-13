@@ -1,7 +1,7 @@
 #ifndef TIPOS_H
 #define TIPOS_H
 #include <string>
-
+#include "../common/player_command_types.h"
 #include <SDL2/SDL.h>
 
 enum class GameMenu { CREATE, JOIN, HELP, EXIT, NONE };
@@ -141,7 +141,7 @@ struct ShopItem {
     std::string descripcion;
 };
 struct WeaponData {
-    Weapon clave;
+    WeaponCode clave;
     std::string name;
     int price;
     std::string descripcion;

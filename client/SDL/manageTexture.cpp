@@ -27,12 +27,12 @@ ManageTexture::ManageTexture(SDL_Renderer* renderer):
     load(Object::GSG9, "assets/gfx/counterTerrorist/ct4.png");
     load(Object::SAS, "assets/gfx/counterTerrorist/ct3.png");
     load(Object::GIGN, "assets/gfx/counterTerrorist/ct1.png");
-    load_weapons(Weapon::BOMB,"assets/gfx/weapons/bomb.png",renderer);
-    load_weapons(Weapon::AK47,"assets/gfx/weapons/ak47v.png",renderer);
-    load_weapons(Weapon::AWP,"assets/gfx/weapons/awpv.png",renderer);
-    load_weapons(Weapon::M3,"assets/gfx/weapons/m3v.png",renderer);
-    load_weapons(Weapon::SNIKE, "assets/gfx/weapons/knife.png",renderer);
-    load_weapons(Weapon::GLOCK, "assets/gfx/weapons/glock.png",renderer);
+    load_weapons(WeaponCode::BOMB,"assets/gfx/weapons/bomb.png",renderer);
+    load_weapons(WeaponCode::AK47,"assets/gfx/weapons/ak47v.png",renderer);
+    load_weapons(WeaponCode::AWP,"assets/gfx/weapons/awpv.png",renderer);
+    load_weapons(WeaponCode::M3,"assets/gfx/weapons/m3v.png",renderer);
+    load_weapons(WeaponCode::KNIFE, "assets/gfx/weapons/knife.png",renderer);
+    load_weapons(WeaponCode::GLOCK, "assets/gfx/weapons/glock.png",renderer);
     }
 void ManageTexture::drawHealthBar( int x, int y, int width, int height, float healthPercent) {
     // Contorno de la barra
@@ -104,7 +104,7 @@ SDL_Rect rect(const int& x, const int& y, const int& w, const int& h){
     return {x,y,w,h};
 }
 
-SDL_Texture* ManageTexture::reder_menu_texture(const  std::unordered_map<Weapon, ShopItem>& items,const SDL_Rect& menu_rect ,TTF_Font* font) {
+SDL_Texture* ManageTexture::reder_menu_texture(const std::unordered_map<WeaponCode, ShopItem>& items,const SDL_Rect& menu_rect ,TTF_Font* font) {
     
 
     SDL_Texture* menuTexture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, menu_rect.w, menu_rect.h);
@@ -250,7 +250,7 @@ SDL_Texture* ManageTexture::create_stencil(const int& ancho, const int& alto,con
 }
 
 
-bool ManageTexture::load_weapons(const Weapon& id, const std::string& filePath, SDL_Renderer* renderer) {
+bool ManageTexture::load_weapons(const WeaponCode& id, const std::string& filePath, SDL_Renderer* renderer) {
     
     SDL_Surface* surface = IMG_Load(filePath.c_str());
     if (!surface) {
@@ -314,7 +314,7 @@ SDL_Rect ManageTexture::get_rect(const TextView& id) const {
     }
     return SDL_Rect{0, 0, 0, 0};
 }
-SDL_Texture* ManageTexture::get_weapon(const Weapon& id) const {
+SDL_Texture* ManageTexture::get_weapon(const WeaponCode& id) const {
     auto it = textures_weapons.find(id);
     //std::cout << "se encontró la textura para Weapon: " << static_cast<int>(id) << std::endl;
     if (it != textures_weapons.end()) {

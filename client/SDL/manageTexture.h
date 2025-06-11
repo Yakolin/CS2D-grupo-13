@@ -14,11 +14,11 @@
 #include <stdexcept>
 #include <sstream>
 #include <SDL2/SDL2_gfxPrimitives.h>
+#include "../../common/player_command_types.h"
 class ManageTexture {
 public:
 
-    
-    SDL_Texture* reder_menu_texture(const  std::unordered_map<Weapon, ShopItem>& items,const SDL_Rect& menu_rect ,TTF_Font* fontt);
+    SDL_Texture* reder_menu_texture(const  std::unordered_map<WeaponCode, ShopItem>& items,const SDL_Rect& menu_rect ,TTF_Font* fontt);
     
     explicit ManageTexture(SDL_Renderer* renderer);
 
@@ -31,9 +31,9 @@ public:
     SDL_Texture* create_stencil(const int& ancho, const int& alto, const float& angle,
                                 const float& apertura);
 
-    bool load_weapons(const Weapon& id, const std::string& filePath, SDL_Renderer* renderer);
+    bool load_weapons(const WeaponCode& id, const std::string& filePath, SDL_Renderer* renderer);
 
-    SDL_Texture* get_weapon(const Weapon& id) const;
+    SDL_Texture* get_weapon(const WeaponCode& id) const;
 
     bool load_texture_text(const TextView& id,TTF_Font* fuente, SDL_Color& color,const std::string& text);
 
@@ -54,7 +54,7 @@ private:
     SDL_Renderer* renderer;
     std::unordered_map<Object, SDL_Texture*> textures;
     std::unordered_map<TextView, TextureData> textures_text;
-    std::unordered_map<Weapon,SDL_Texture*> textures_weapons;
+    std::unordered_map<WeaponCode,SDL_Texture*> textures_weapons;
     std::unordered_map<Color, SDL_Color> colores;
 
     TTF_Font *get_font_menu();

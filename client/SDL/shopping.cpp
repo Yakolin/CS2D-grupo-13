@@ -74,7 +74,7 @@ WeaponCode Shopping::calculate_selection(const int& mouse_x, const int& mouse_y)
              mouse_y <= item.second.destRect.y + item.second.destRect.h)) {
             std::cout << "click EN  " << item.second.name << std::endl;
             WeaponCode code = static_cast<WeaponCode>(item.first);
-            return item.first;
+            return code;
         }
     }
     return WeaponCode::NONE;

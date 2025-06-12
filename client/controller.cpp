@@ -40,17 +40,20 @@ void Controller::sender_pos_mouse(int x, int y) {
     send_queue->push(std::move(action));
 }
 
-void Controller::sender_equip(EquipType& equip) {
+void Controller::sender_equip(EquipType equip) {
+    std::cout << "Quiero cambiar equipo\n";
     std::unique_ptr<InterfaceClientAction> action = std::make_unique<ClientSpace::Equip>(equip);
     send_queue->push(std::move(action));
 }
 
 void Controller::sender_reload() {
+    std::cout << "Quiero recargar\n";
     std::unique_ptr<InterfaceClientAction> action = std::make_unique<ClientSpace::Reload>();
     send_queue->push(std::move(action));
 }
 
 void Controller::sender_shoot(int x, int y) {
+    std::cout << "Quiero disparar\n";
     coordinate_t x_c = static_cast<coordinate_t>(x);
     coordinate_t y_c = static_cast<coordinate_t>(y);
     std::unique_ptr<InterfaceClientAction> action = std::make_unique<ClientSpace::Shoot>(x_c, y_c);
@@ -58,6 +61,7 @@ void Controller::sender_shoot(int x, int y) {
 }
 
 void Controller::sender_buy_weapon(WeaponCode code) {
+    std::cout << "Quiero comprar arma\n";
     std::unique_ptr<InterfaceClientAction> action = std::make_unique<ClientSpace::BuyWeapon>(code);
     send_queue->push(std::move(action));
 }
@@ -66,6 +70,7 @@ void Controller::sender_defuse() {
     send_queue->push(std::move(action));
 }
 void Controller::sender_drop() {
+    std::cout << "Quiero tirar arma\n";
     std::unique_ptr<InterfaceClientAction> action = std::make_unique<ClientSpace::Drop>();
     send_queue->push(std::move(action));
 }
@@ -74,7 +79,7 @@ void Controller::sender_mov_player(SDL_Keycode key) {
     MoveType mov = MoveType::DOWN;
 
     if (key == SDLK_UP || key == SDLK_w) {
-        mov = MoveType::UP;
+        mov = MoveType::DOWN;  // Invertimos la polaridad en y
         std::cout << "Tecla ARRIBA o W presionada -> mov = UP\n";
     } else if (key == SDLK_LEFT || key == SDLK_a) {
         mov = MoveType::LEFT;
@@ -83,7 +88,7 @@ void Controller::sender_mov_player(SDL_Keycode key) {
         mov = MoveType::RIGHT;
         std::cout << "Tecla DERECHA o D presionada -> mov = RIGHT\n";
     } else if (key == SDLK_DOWN || key == SDLK_s) {
-        mov = MoveType::DOWN;
+        mov = MoveType::UP;  // Invertimos la polaridad en y
         std::cout << "Tecla ABAJO o S presionada -> mov = DOWN\n";
     } else {
         std::cout << "Tecla no mapeada presionada: " << SDL_GetKeyName(key) << "\n";
@@ -122,8 +127,6 @@ bool Controller::is_valid_weapon_code(WeaponCode code) {
             return false;
     }
 }
-
-
 bool Controller::has_game_image(GameImage& snapshot) {
 
     if (recv_queue->empty()) {

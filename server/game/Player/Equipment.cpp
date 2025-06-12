@@ -14,7 +14,7 @@ Equipment::Equipment(const player_id_t& player_id, ISpawneableZone& spawneable_z
 Equipment::~Equipment() {}
 
 void Equipment::new_weapon_in_hand(const std::shared_ptr<IInteractuable>& weapon) {
-    if (!weapon)
+    if (!weapon || weapon->get_weapon_code() == WeaponCode::NONE)
         return;
     this->weapon_in_hand = weapon;
 }
@@ -49,6 +49,10 @@ void Equipment::reset_equipment() {
     secondary = weapon_factory.weapon_create(WeaponCode::GLOCK);
     bomb.reset();
 }
+/*
+void Equipment::restore(){ //Recarga todas las balas
+}
+*/
 
 void Equipment::drop_weapon() {
     change_weapon(EquipType::PRIMARY);
@@ -65,8 +69,6 @@ void Equipment::drop_weapon() {
 void Equipment::reload() { this->weapon_in_hand->reload(); }
 
 void Equipment::shoot(Position& position) {
-    change_weapon(EquipType::SECONDARY);  // HardCodeado
-    std::cout << "Disparando Arma\n";
     if (weapon_in_hand->get_weapon_code() == WeaponCode::BOMB && bomb.lock()) {
         if (weapon_in_hand->set_on_action(this->spawneable_zone, this->player_id, position)) {
             bomb.reset();
@@ -115,3 +117,4 @@ void Equipment::drop_all() {
         bomb.reset();
     }
 }
+WeaponCode Equipment::get_equiped_code() { return weapon_in_hand->get_weapon_code(); }

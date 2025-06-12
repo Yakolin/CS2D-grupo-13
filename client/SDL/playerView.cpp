@@ -5,8 +5,9 @@
 const int FILAS_MAP = 17;
 const int COLUMNAS_MAP = 38;
 
-PlayerView::PlayerView(const float& x, const float& y,const  Claves_skins& clave_player, const float& speed,
-                       Camera* camera_receiver, ManageTexture* manager_texture, GameConfig& config):
+PlayerView::PlayerView(const float& x, const float& y, const Claves_skins& clave_player,
+                       const float& speed, Camera* camera_receiver, ManageTexture* manager_texture,
+                       GameConfig& config):
         config(config),
         origin_rect({0, 0, 64, 96}),
         destination_rect({static_cast<int>(x), static_cast<int>(y), 32, 32}),
@@ -30,8 +31,7 @@ PlayerView::PlayerView(const float& x, const float& y,const  Claves_skins& clave
         activar_weapon(false),
         texture_player(manejador->get_texture_ct(clave_player.ct_skin)),
         clave(WeaponCode::NONE),
-        lastUpdateTime(0)
-         {
+        lastUpdateTime(0) {
     calcular();
     lastUpdateTime = SDL_GetTicks();
 }
@@ -43,10 +43,10 @@ void imprimir_weapons_vec(const std::vector<WeaponImage>& weapons_vec) {
     }
 
     std::cout << "Armas del jugador:" << std::endl;
-    
 
-    for (const WeaponImage& weapon : weapons_vec) {
-         if (weapon.weapon_code == WeaponCode::NONE) {
+
+    for (const WeaponImage& weapon: weapons_vec) {
+        if (weapon.weapon_code == WeaponCode::NONE) {
             std::cout << "  (Arma vacía / NONE, se salta)" << std::endl;
             continue;
         }
@@ -79,21 +79,23 @@ bool is_valid_weapon_code(WeaponCode code) {
         default:
             return false;
     }
-}void PlayerView::update_weapons(const std::vector<WeaponImage>& weapons_vec) {
+}
+void PlayerView::update_weapons(const std::vector<WeaponImage>& weapons_vec) {
     if (weapons_vec.empty()) {
         std::cout << "El jugador no tiene armas." << std::endl;
         return;
     }
     imprimir_weapons_vec(weapons_vec);
 
-    for (const WeaponImage& weapon_img : weapons_vec) {
+    for (const WeaponImage& weapon_img: weapons_vec) {
         WeaponCode weapon_key = weapon_img.weapon_code;
 
         if (weapon_key == WeaponCode::NONE)
             continue;
 
         if (!is_valid_weapon_code(weapon_key)) {
-            std::cerr << "WeaponCode inválido recibido: " << static_cast<int>(weapon_key) << std::endl;
+            std::cerr << "WeaponCode inválido recibido: " << static_cast<int>(weapon_key)
+                      << std::endl;
             continue;
         }
         if (this->weapons.find(weapon_key) != this->weapons.end()) {
@@ -167,7 +169,8 @@ void PlayerView::update_view_angle(const int& mouse_x, const int& mouse_y) {
     int jugador_centro_y = destination_rect.y;
 
     // Ángulo en radianes (hacia el mouse)
-    float angulo = std::atan2(mouse_y - jugador_centro_y, mouse_x - jugador_centro_x);
+    float angulo = std::atan2(mouse_x - jugador_centro_x,
+                              -(mouse_y - jugador_centro_y));  // Esto esta bien
 
     // Convertir a grados
     anglePlayer = angulo * 180.0f / M_PI;

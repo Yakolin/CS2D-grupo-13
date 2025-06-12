@@ -53,7 +53,7 @@ private:
     bool activa;
 
     bool bomb_activate;
-
+    void handle_equip_type(const SDL_Keycode& tecla);
     bool handle_events(const SDL_Event& evento);
 
     void load_textures();
@@ -82,8 +82,8 @@ public:
     pre:
     post:
     */
-    void initial_draw_game(const GameInfo& info_game_view, const Player& info_game);
-    void draw_game_loop();
+    void initial_draw_game(const GameInfo& info_game_view /*, const Player& info_game*/);
+    void draw_game();
 
     bool add_player(float x, float y, int speed, const Claves_skins& claves);
 

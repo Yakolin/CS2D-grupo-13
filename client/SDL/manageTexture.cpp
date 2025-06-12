@@ -97,7 +97,7 @@ std::vector<std::string> split(const std::string& s, char delimiter) {
 }
 SDL_Rect rect(const int& x, const int& y, const int& w, const int& h) { return {x, y, w, h}; }
 
-SDL_Texture* ManageTexture::render_menu_texture(
+SDL_Texture* ManageTexture::reder_menu_texture(
         const std::unordered_map<WeaponCode, ShopItem>& items, const SDL_Rect& menu_rect,
         TTF_Font* font) {
 

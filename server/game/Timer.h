@@ -23,6 +23,28 @@ class Timer {
                         .count();
         return std::max(0, buy_duration - static_cast<int>(time));
     }
+    int calculate_real_time() {
+        if (is_time_to_buy())
+            return buy_duration;
+        switch (state) {
+            case TimerState::BOMB_ACTIVATED:
+                return bomb_duration;
+            case TimerState::ENDING_TIME:
+                return ending_duration;
+            default:
+                return round_duration;
+        };
+    }
+    clock::time_point calculate_time_point() {
+        switch (state) {
+            case TimerState::BOMB_ACTIVATED:
+                return bomb_start_time;
+            case TimerState::ENDING_TIME:
+                return ending_start_time;
+            default:
+                return round_start_time;
+        };
+    }
 
 public:
     explicit Timer(GameConfig::TimerConfig& timer_config): timer_config(timer_config) {
@@ -44,13 +66,9 @@ public:
         bomb_start_time = clock::now();
         state = TimerState::BOMB_ACTIVATED;
     }
-    int get_time_round() const {
-        int round_real_time = (state == TimerState::BOMB_ACTIVATED) ? bomb_duration :
-                              (state == TimerState::ENDING_TIME)    ? ending_duration :
-                                                                      round_duration;
-        clock::time_point time_start = (state == TimerState::BOMB_ACTIVATED) ? bomb_start_time :
-                                       (state == TimerState::ENDING_TIME)    ? ending_start_time :
-                                                                               round_start_time;
+    int get_time_round() {
+        int round_real_time = calculate_real_time();
+        clock::time_point time_start = calculate_time_point();
         auto time =
                 std::chrono::duration_cast<std::chrono::seconds>(clock::now() - time_start).count();
         return std::max(0, round_real_time - static_cast<int>(time));

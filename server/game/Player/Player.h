@@ -29,6 +29,7 @@ public:
             equipment(std::move(equipment)),
             health(player_config.health),
             points(player_config.points),
+            money(player_config.money),
             mouse_position(0, 0),
             game_zone(game_zone) {}
     virtual ~Player() = default;
@@ -63,7 +64,7 @@ private:
     Equipment equipment;
     uint8_t health;
     uint8_t points;
-    money_t money = 5000;
+    money_t money;
     Position mouse_position;
     IGameZone& game_zone;
 

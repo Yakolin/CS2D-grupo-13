@@ -67,7 +67,7 @@ void Shopping::set_weapons_purchasables(const std::vector<WeaponInfo>& weapons_p
         load_items(weapon, destRect);
         ++i;
     }
-    texture_menu = manejador.render_menu_texture(items, rect_shop, config.get_font_menu());
+    texture_menu = manejador.reder_menu_texture(items, rect_shop, config.get_font_menu());
 }
 
 WeaponCode Shopping::get_wepon_selec() { return weapon_selec; }

@@ -47,7 +47,7 @@ PlayerImage HUD::jugador_inicial() {
                        pos,  // position
                        100,  // health
                        0,    // points
-                       0, std::move(armas),
+                       0, WeaponCode::NONE, std::move(armas),
                        Team::CT,  // team
                        mouse, Skins(CounterTerroristSkin::GIGN, TerroristSkin::GUERRILLA));
 }
@@ -102,18 +102,31 @@ std::string get_weapon_str(WeaponCode weapon) {
             return "UNKNOWN";
     }
 }
-// actualiza si los valores
+/*
+    Aca deberias de hacer 2 funciones.
+
+    Una que encuentre y dibuje el arma equipada //Puede ser como el original y resaltarla con color
+    Otra que dibuje las demas en el inventario
+
+*/
 void HUD::update() {
 
     TTF_Font* font = config.get_font_game();
+
     if (!player.weapons.empty()) {
-        const WeaponImage& weapon =
-                player.weapons[0];  // Esto es el arma primaria, puede ser NONE, debe ser la ACTUAL
-        load_info(TextView::WEAPON, get_weapon_str(weapon.weapon_code), Color::NEGRO,
+        auto weapon = std::find_if(player.weapons.begin(), player.weapons.end(),
+                                   [this](const WeaponImage& weapon) {
+                                       return weapon.weapon_code == player.equipped_weapon;
+                                   });
+        if (weapon == player.weapons.end())
+            return;  // Exception?
+        // Esto es el arma primaria, puede ser NONE, debe ser la ACTUAL
+        load_info(TextView::WEAPON, get_weapon_str(weapon->weapon_code), Color::NEGRO,
                   font);  // Quizas una imagen
         load_info(TextView::BULLETS,
-                  std::to_string(weapon.current_bullets) + "/" + std::to_string(weapon.magazine),
+                  std::to_string(weapon->current_bullets) + "/" + std::to_string(weapon->magazine),
                   Color::AZUL, font);
+        // Faltan las demas armas aca!
     }
     // Esto deberia de ser algo que quiza no deberia estar aca?
     std::string bomb_state_str;

@@ -1,8 +1,11 @@
 #ifndef GAME_LOOP_H
 #define GAME_LOOP_H
 
+#include <fstream>
 #include <memory>
 #include <tuple>
+
+#include <yaml-cpp/yaml.h>
 
 #include "../../common/constant_rate_loop.h"
 #include "../../common/game_image.h"
@@ -15,8 +18,10 @@
 
 #include "client_action.h"
 
+
 #define QUEUE_MAX_SIZE 10000
-#define MAX_PLAYERS 2
+
+using max_players_t = uint8_t;
 
 class GameLoop: public Thread {
 private:
@@ -26,8 +31,11 @@ private:
     std::shared_ptr<Queue<std::unique_ptr<ClientAction>>> recv_queue;
     std::map<player_id_t, bool> players_ready;
     ConstantRateLoop constant_rate_loop;
+    max_players_t max_players;
     bool game_started;
 
+    max_players_t read_max_players_from_config(
+            const std::string& path = "server/protocol/server_config.yaml");
     void step();
     void broadcast(GameImage& game_image);
 

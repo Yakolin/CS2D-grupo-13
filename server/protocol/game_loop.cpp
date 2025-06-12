@@ -8,9 +8,18 @@ GameLoop::GameLoop(const std::string& game_name, const MapName& map_name):
         players_ready(),
         constant_rate_loop([this]() { return this->should_keep_running(); },
                            [this]() { this->step(); }),
+        max_players(read_max_players_from_config()),
         game_started(false) {}
 
 GameLoop::~GameLoop() {}
+
+max_players_t GameLoop::read_max_players_from_config(const std::string& path) {
+    YAML::Node config = YAML::LoadFile(path);
+    if (!config["max_players"]) {
+        throw std::runtime_error("MAX_PLAYERS no está definido en el archivo YAML.");
+    }
+    return config["max_players"].as<max_players_t>();
+}
 
 void GameLoop::add_player(player_id_t& player_id, Skins& skins,
                           std::shared_ptr<Queue<std::unique_ptr<ClientAction>>>& recv_queue,
@@ -22,7 +31,7 @@ void GameLoop::add_player(player_id_t& player_id, Skins& skins,
     game_info = this->game.get_game_info();
 }
 
-bool GameLoop::is_full() { return (this->send_queues.size() == MAX_PLAYERS); }
+bool GameLoop::is_full() { return (this->send_queues.size() == this->max_players); }
 
 void GameLoop::player_ready(const player_id_t& player_id) {
     auto it = players_ready.find(player_id);
@@ -58,7 +67,7 @@ void GameLoop::step() {
             game.process(*action);
         }
         contador++;
-        //std::cout << "Recibi, clientAction \nContador: " << contador << std::endl;
+        // std::cout << "Recibi, clientAction \nContador: " << contador << std::endl;
         GameImage game_image = this->game.get_frame();
         this->broadcast(game_image);
     } catch (const ClosedQueue& e) {

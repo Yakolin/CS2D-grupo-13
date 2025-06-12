@@ -219,7 +219,7 @@ void ClientProtocol::read_byte_data(uint8_t& data) {
     uint8_t data_readed;
     this->socket.recvall(&data_readed, sizeof(uint8_t));
     if (this->socket.is_stream_recv_closed()) {
-        throw ConnectionClosedException("El cliente cerró la conexión");
+        throw ConnectionClosedException("El servidor cerró la conexión");
     }
     data = data_readed;
 }
@@ -228,7 +228,7 @@ void ClientProtocol::read_two_byte_data(uint16_t& data) {
     uint16_t data_readed;
     this->socket.recvall(&data_readed, sizeof(uint16_t));
     if (this->socket.is_stream_recv_closed()) {
-        throw ConnectionClosedException("El cliente cerró la conexión");
+        throw ConnectionClosedException("El servidor cerró la conexión");
     }
     data = ntohs(data_readed);
 }

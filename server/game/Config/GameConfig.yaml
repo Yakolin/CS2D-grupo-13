@@ -29,7 +29,7 @@ Weapons:
 
 Player:
   health: 100
-  money: 3000
+  money: 200
   points: 0
   earned_points: 100
   multiplier_points: 3

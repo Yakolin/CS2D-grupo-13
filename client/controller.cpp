@@ -12,15 +12,21 @@ Controller::Controller(Socket&& skt):
 }
 
 TerroristSkin Controller::toItemTerrorism(const std::string& str) {
-    if (str == "Phoenix") return TerroristSkin::PHOENIX;
-    if (str == "L337 Krew") return TerroristSkin::L337_KREW;
-    if (str == "Arctic Avenger") return TerroristSkin::ARCTIC_AVENGER;
+    if (str == "Phoenix")
+        return TerroristSkin::PHOENIX;
+    if (str == "L337 Krew")
+        return TerroristSkin::L337_KREW;
+    if (str == "Arctic Avenger")
+        return TerroristSkin::ARCTIC_AVENGER;
     return TerroristSkin::GUERRILLA;
 }
 CounterTerroristSkin Controller::toItemCounterTerrorism(const std::string& str) {
-    if (str == "Seal Force") return CounterTerroristSkin::SEAL;
-    if (str == "German GSG-9") return CounterTerroristSkin::GSG9;
-    if (str == "UK SAS") return CounterTerroristSkin::SAS;
+    if (str == "Seal Force")
+        return CounterTerroristSkin::SEAL;
+    if (str == "German GSG-9")
+        return CounterTerroristSkin::GSG9;
+    if (str == "UK SAS")
+        return CounterTerroristSkin::SAS;
     return CounterTerroristSkin::GIGN;
 }
 void Controller::sender_pos_mouse(int x, int y) {
@@ -35,16 +41,19 @@ void Controller::sender_pos_mouse(int x, int y) {
 }
 
 void Controller::sender_equip(EquipType& equip) {
+    std::cout << "Quiero cambiar equipo\n";
     std::unique_ptr<InterfaceClientAction> action = std::make_unique<ClientSpace::Equip>(equip);
     send_queue->push(std::move(action));
 }
 
 void Controller::sender_reload() {
+    std::cout << "Quiero recargar\n";
     std::unique_ptr<InterfaceClientAction> action = std::make_unique<ClientSpace::Reload>();
     send_queue->push(std::move(action));
 }
 
 void Controller::sender_shoot(int x, int y) {
+    std::cout << "Quiero disparar\n";
     coordinate_t x_c = static_cast<coordinate_t>(x);
     coordinate_t y_c = static_cast<coordinate_t>(y);
     std::unique_ptr<InterfaceClientAction> action = std::make_unique<ClientSpace::Shoot>(x_c, y_c);
@@ -52,6 +61,7 @@ void Controller::sender_shoot(int x, int y) {
 }
 
 void Controller::sender_buy_weapon(WeaponCode code) {
+    std::cout << "Quiero comprar arma\n";
     std::unique_ptr<InterfaceClientAction> action = std::make_unique<ClientSpace::BuyWeapon>(code);
     send_queue->push(std::move(action));
 }
@@ -60,6 +70,7 @@ void Controller::sender_defuse() {
     send_queue->push(std::move(action));
 }
 void Controller::sender_drop() {
+    std::cout << "Quiero tirar arma\n";
     std::unique_ptr<InterfaceClientAction> action = std::make_unique<ClientSpace::Drop>();
     send_queue->push(std::move(action));
 }
@@ -120,11 +131,11 @@ bool Controller::is_valid_weapon_code(WeaponCode code) {
 
 bool Controller::has_game_image(GameImage& snapshot) {
 
-    if (recv_queue->empty()) { 
+    if (recv_queue->empty()) {
         return false;
     }
     snapshot = recv_queue->pop();
-  //  std::cout << "recibo de la cola\n";
+    //  std::cout << "recibo de la cola\n";
     return true;
 }
 

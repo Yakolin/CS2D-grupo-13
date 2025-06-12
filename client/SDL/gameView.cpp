@@ -226,10 +226,9 @@ void GameView::draw_game(const GameInfo& info_game_view, const Player& info_game
         return;
     }
     this->fov = new FieldOfView(*player, camera, manger_texture, config);
-
+    shop.set_weapons_purchasables(info_game_view.weapons_purchasables);
     SDL_Event event;
     bomba = new Bomb(0, 0, camera, manger_texture, config);
-
 
     auto keep_running = [&]() -> bool {
         while (SDL_PollEvent(&event)) {

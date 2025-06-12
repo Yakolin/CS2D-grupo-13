@@ -35,21 +35,23 @@ private:
     SDL_Texture* texture_menu;
     WeaponCode weapon_selec;
 
-    void load_items(const WeaponCode& clave, const std::string& name, const int& price,
-                    const SDL_Rect& destRect, const std::string& descrpcion);
+    void code_to_info_weapon(const WeaponCode& code, std::string& name, std::string& descripcion);
+
+    void load_items(const WeaponInfo& clave, const SDL_Rect& destRect);
 
 public:
     explicit Shopping(Camera& camera_reseiver, ManageTexture& manejador, GameConfig& config);
 
+    void set_weapons_purchasables(const std::vector<WeaponInfo>& weapons_purchasables);
+
     WeaponCode get_wepon_selec();
+    void desactivate_shop();
 
     void activate_shop();
 
     bool get_activa() const;
 
     ~Shopping();
-
-    void update(const std::vector<WeaponData>& data);
 
     WeaponCode calculate_selection(const int& mouse_x, const int& mouse_y);
 

@@ -18,11 +18,15 @@ void FieldOfView::draw(SDL_Renderer& renderer) {
     SDL_Rect dstRect;
     dstRect.w = lado;
     dstRect.h = lado;
-    dstRect.x = static_cast<int>(player.getXActual()) - camera.getX() - lado / 2;
-    dstRect.y = static_cast<int>(player.getYActual()) - camera.getY() - lado / 2;
+    /*
+        Aca vean que le sume un 10, esto es un offset porque el player
+        al parecer no es el centro centro de la pantalla
+    */
+    dstRect.x = static_cast<int>(player.getXActual()) - camera.getX() - (lado / 2) + 15;
+    dstRect.y = static_cast<int>(player.getYActual()) - camera.getY() - (lado / 2) + 10;
 
-    SDL_RenderCopyEx(&renderer, texture_fov, nullptr, &dstRect, player.getAnglePlayer(), nullptr,
-                     SDL_FLIP_NONE);
+    float angulo = player.getAnglePlayer() - 90.0f;
+    SDL_RenderCopyEx(&renderer, texture_fov, nullptr, &dstRect, angulo, nullptr, SDL_FLIP_NONE);
 }
 
 

@@ -97,13 +97,11 @@ std::vector<std::string> split(const std::string& s, char delimiter) {
 }
 SDL_Rect rect(const int& x, const int& y, const int& w, const int& h) { return {x, y, w, h}; }
 
-SDL_Texture* ManageTexture::reder_menu_texture(
-        const std::unordered_map<WeaponCode, ShopItem>& items, const SDL_Rect& menu_rect,
+SDL_Texture* ManageTexture::render_menu_texture(const std::unordered_map<WeaponCode, ShopItem>& items, const SDL_Rect& menu_rect,
         TTF_Font* font) {
 
 
-    SDL_Texture* menuTexture = SDL_CreateTexture(
-            renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, menu_rect.w, menu_rect.h);
+    SDL_Texture* menuTexture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, menu_rect.w, menu_rect.h);
     SDL_SetTextureBlendMode(menuTexture, SDL_BLENDMODE_BLEND);  // Blend mode correcto
     SDL_SetRenderTarget(renderer, menuTexture);
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 128);  // Fondo semi-transparente

@@ -269,6 +269,7 @@ void GameView::initial_draw_game(const GameInfo& info_game_view /*,const Player&
     shop.set_weapons_purchasables(info_game_view.weapons_purchasables);
 }
 void GameView::draw_game() {
+
     SDL_Event event;
     bomba = new Bomb(0, 0, camera, manger_texture, config);
     auto keep_running = [&]() -> bool {
@@ -287,6 +288,7 @@ void GameView::draw_game() {
             bool found = false;
             player_id_t counter = 0;
             player_id_t index_player_id = 0;
+            
             while (!found && counter < snapshot.players_images.size()) {
                 if (snapshot.players_images[counter].player_id == snapshot.client_id) {
                     index_player_id = counter;
@@ -302,9 +304,8 @@ void GameView::draw_game() {
                           << " en players_images\n";
             }
         }
-    }
-            update_status_game();
-        }
+    
+        update_status_game();
         player->update(deltaTime);
 
         for (auto& pair: players) {

@@ -20,8 +20,8 @@
 #include "../tipos.h"
 class ManageTexture {
 public:
-    SDL_Texture* render_menu_texture(const std::unordered_map<WeaponCode, ShopItem>& items,
-                                     const SDL_Rect& menu_rect, TTF_Font* fontt);
+    SDL_Texture* render_menu_texture(const std::unordered_map<WeaponCode, ShopItem>& items, const SDL_Rect& menu_rect,
+        TTF_Font* font);
 
     explicit ManageTexture(SDL_Renderer* renderer);
 

@@ -216,10 +216,7 @@ bool GameView::add_player(float x, float y, int speed, const Claves_skins& clave
     return true;
 }
 
-void GameView::draw_game(const GameInfo& info_game_view, const Player& info_game) {
-    std::cout << "Nombre del jugador: " << info_game.info.name_player << std::endl;
-    std::cout << "Nombre del juego: " << info_game.info.name_game << std::endl;
-
+void GameView::initial_draw_game(const GameInfo& info_game_view /*,const Player& info_game*/) {
     this->map = new MapView(info_game_view.map_info.walls, &camera, &manger_texture, config);
     if (!map) {
         throw std::runtime_error("Error al cargar mapa");
@@ -227,9 +224,10 @@ void GameView::draw_game(const GameInfo& info_game_view, const Player& info_game
     }
     this->fov = new FieldOfView(*player, camera, manger_texture, config);
     shop.set_weapons_purchasables(info_game_view.weapons_purchasables);
+}
+void GameView::draw_game() {
     SDL_Event event;
     bomba = new Bomb(0, 0, camera, manger_texture, config);
-
     auto keep_running = [&]() -> bool {
         while (SDL_PollEvent(&event)) {
             if (!handle_events(event)) {
@@ -238,7 +236,6 @@ void GameView::draw_game(const GameInfo& info_game_view, const Player& info_game
         }
         return true;
     };
-
     auto game_step = [&]() {
         Uint32 currentTime = SDL_GetTicks();
         float deltaTime = (currentTime - lastTime) / 1000.0f;

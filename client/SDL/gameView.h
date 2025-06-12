@@ -82,9 +82,10 @@ public:
     pre:
     post:
     */
-    void draw_game(const GameInfo& info_game_view,const  Player& info_game);
+    void initial_draw_game(const GameInfo& info_game_view /*, const Player& info_game*/);
+    void draw_game();
 
-    bool add_player(float x, float y, int speed,const Claves_skins& claves);
+    bool add_player(float x, float y, int speed, const Claves_skins& claves);
 
     void start();
 

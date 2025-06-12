@@ -14,6 +14,8 @@ bool Player::is_dead() { return health == 0; }
 void Player::reset(bool full_reset) {
     if (full_reset || health == 0) {
         equipment.reset_equipment();
+    } else {
+        equipment.restore();
     }
     health = config.health;
 }

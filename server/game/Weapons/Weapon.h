@@ -21,6 +21,7 @@ public:
     virtual bool set_on_action(ISpawneableZone& spawn, player_id_t id,
                                Position& direction) override = 0;
     virtual void reload() override = 0;
+    virtual void restore_bullets() = 0;
     virtual WeaponImage get_weapon_image() = 0;
     virtual bool is_droppable() = 0;
 };
@@ -36,6 +37,7 @@ public:
         return false;
     }
     void reload() override {}
+    void restore_bullets() override {}
     WeaponImage get_weapon_image() override { return WeaponImage(WeaponCode::NONE, 0, 0, 0); }
     bool is_droppable() override { return false; }
 };

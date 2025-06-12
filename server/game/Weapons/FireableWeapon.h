@@ -24,6 +24,7 @@ public:
     virtual bool set_on_action(ISpawneableZone& spawn, player_id_t id,
                                Position& direction) override = 0;
     virtual void reload() override;
+    virtual void restore_bullets() override;
     virtual WeaponImage get_weapon_image() override;
 };
 class Ak47: public FireableWeapon {
@@ -53,6 +54,7 @@ public:
     virtual bool set_on_action(ISpawneableZone& spawn, player_id_t id,
                                Position& direction) override;
     virtual void reload() override;
+    virtual void restore_bullets() override {}  // Quiza aca no deberia ir esto... desp lo veo bien
     virtual WeaponImage get_weapon_image() override;
     virtual bool is_droppable() override;
 };

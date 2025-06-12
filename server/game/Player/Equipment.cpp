@@ -14,7 +14,7 @@ Equipment::Equipment(const player_id_t& player_id, ISpawneableZone& spawneable_z
 Equipment::~Equipment() {}
 
 void Equipment::new_weapon_in_hand(const std::shared_ptr<IInteractuable>& weapon) {
-    if (!weapon)
+    if (!weapon || weapon->get_weapon_code() == WeaponCode::NONE)
         return;
     this->weapon_in_hand = weapon;
 }

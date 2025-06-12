@@ -149,6 +149,26 @@ void GameView::draw_players() {
         }
     }
 }
+void GameView::handle_equip_type(const SDL_Keycode& tecla) {
+    switch (tecla) {
+        case SDLK_1:
+            std::cout << "Presionaste la tecla 1" << std::endl;
+            controller.sender_equip(EquipType::PRIMARY);
+            break;
+        case SDLK_2:
+            controller.sender_equip(EquipType::SECONDARY);
+            std::cout << "Presionaste la tecla 2" << std::endl;
+            break;
+        case SDLK_3:
+            controller.sender_equip(EquipType::KNIFE);
+            std::cout << "Presionaste la tecla 3" << std::endl;
+            break;
+        case SDLK_4:
+            controller.sender_equip(EquipType::BOMB);
+            std::cout << "Presionaste la tecla 4" << std::endl;
+            break;
+    }
+}
 bool GameView::handle_events(const SDL_Event& event) {
     if (event.type == SDL_QUIT) {
         return false;
@@ -163,6 +183,7 @@ bool GameView::handle_events(const SDL_Event& event) {
         if (tecla == SDLK_b && snapshot.game_state.state == GameState::TIME_TO_BUY) {
             shop.activate_shop();
         }
+        handle_equip_type(tecla);
     }
     if (event.type == SDL_KEYUP) {
         SDL_Keycode tecla = event.key.keysym.sym;

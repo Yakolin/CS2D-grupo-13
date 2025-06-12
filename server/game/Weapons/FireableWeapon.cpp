@@ -31,7 +31,7 @@ bool Ak47::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& direc
 bool Ak47::is_droppable() { return true; }
 
 bool FireableWeapon::reduce_bullets() {
-    if (specs.current_b > 0)
+    if (specs.current_b == 0)
         return false;
     uint8_t bullets_fired = std::min(specs.current_b, specs.fire_rate);
     specs.current_b -= bullets_fired;

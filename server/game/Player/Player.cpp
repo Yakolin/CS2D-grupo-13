@@ -61,8 +61,8 @@ bool Player::equip(std::shared_ptr<IInteractuable>& droppable) {
     return equipment.equip_droppable(droppable);
 }
 void Player::get_points() {
-    this->money += config.points * config.multiplier_points;
-    this->points += config.points;
+    this->money += config.earned_points * config.multiplier_points;
+    this->points += config.earned_points;
 }
 void Player::defuse_bomb() { game_zone.defuse_bomb(id); }
 

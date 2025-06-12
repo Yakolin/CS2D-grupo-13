@@ -6,16 +6,16 @@ Weapons:
     max_bullets: 90
     magazine: 30
     width: 2
-    distance: 20
+    distance: 90
     purchasable: 1
   Glock:
     price: 500
-    damage: 10
+    damage: 1
     fire_rate: 1
     max_bullets: 120
     magazine: 30
     width: 2
-    distance: 15
+    distance: 60
     purchasable: 0
   Knife:
     price: 0
@@ -23,8 +23,8 @@ Weapons:
     fire_rate: 1
     max_bullets: 0
     magazine: 0
-    width: 4
-    distance: 2
+    width: 2
+    distance: 1
     purchasable: 0
 
 Player:
@@ -35,6 +35,6 @@ Player:
   multiplier_points: 3
 Timer:
   time_buy: 5
-  time_round: 20
+  time_round: 100
   time_bomb: 25
   time_ending: 5

@@ -223,7 +223,8 @@ bool GameView::handle_events(const SDL_Event& event) {
                 if (code != WeaponCode::NONE)  // Realmente esto no deberia de siquiera pasar, casi
                                                // que es una exception
                     controller.sender_buy_weapon(code);
-            }
+            } else if (snapshot.game_state.state != GameState::TIME_TO_BUY)  // Quiza innecesaria
+                controller.sender_shoot(mouseX, mouseY);
             // player->activate_weapon(Weapon::AK47);
             bomba->activate();
             printf("Clic izquierdo detectado en (%d, %d)\n", mouseX, mouseY);

@@ -49,6 +49,10 @@ void Equipment::reset_equipment() {
     secondary = weapon_factory.weapon_create(WeaponCode::GLOCK);
     bomb.reset();
 }
+/*
+void Equipment::restore(){ //Recarga todas las balas
+}
+*/
 
 void Equipment::drop_weapon() {
     change_weapon(EquipType::PRIMARY);
@@ -65,8 +69,6 @@ void Equipment::drop_weapon() {
 void Equipment::reload() { this->weapon_in_hand->reload(); }
 
 void Equipment::shoot(Position& position) {
-    change_weapon(EquipType::SECONDARY);  // HardCodeado
-    std::cout << "Disparando Arma\n";
     if (weapon_in_hand->get_weapon_code() == WeaponCode::BOMB && bomb.lock()) {
         if (weapon_in_hand->set_on_action(this->spawneable_zone, this->player_id, position)) {
             bomb.reset();

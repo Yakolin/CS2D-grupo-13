@@ -45,6 +45,10 @@ void FireableWeapon::reload() {
         inventory_bullets -= avalible_bullets;
     }
 }
+void FireableWeapon::restore_bullets() {
+    this->inventory_bullets = specs.max_b;
+    specs.current_b = this->magazine;
+}
 WeaponImage FireableWeapon::get_weapon_image() {
     return WeaponImage(code, specs.current_b, magazine, inventory_bullets);
 }

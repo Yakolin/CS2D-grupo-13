@@ -49,10 +49,11 @@ void Equipment::reset_equipment() {
     secondary = weapon_factory.weapon_create(WeaponCode::GLOCK);
     bomb.reset();
 }
-/*
-void Equipment::restore(){ //Recarga todas las balas
+void Equipment::restore() {
+    this->primary->restore_bullets();
+    this->secondary->restore_bullets();
+    // Cuchillo y bomba posiblemente no necesiten esto
 }
-*/
 
 void Equipment::drop_weapon() {
     change_weapon(EquipType::PRIMARY);

@@ -44,8 +44,8 @@ void Player::shoot(const coordinate_t& mouse_x, const coordinate_t& mouse_y) {
 
 PlayerImage Player::get_player_image(const Position& position) {
     return PlayerImage(id, Position(position.x, position.y), health, points, money,
-                       std::move(equipment.get_weapons_image()), team, this->mouse_position,
-                       this->skins);
+                       equipment.get_equiped_code(), std::move(equipment.get_weapons_image()), team,
+                       this->mouse_position, this->skins);
 }
 
 void Player::buy_weapon(const WeaponCode& weapon_code) {

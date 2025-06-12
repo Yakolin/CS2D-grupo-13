@@ -52,7 +52,6 @@ void GameManager::reset_players(bool full_reset) {
 // Decidi que esto se cree cada vez que se pide para evitar datos copiados
 GameImage GameManager::generate_game_image() {
     GameImage game_image;
-    // Aca posiblemente deba de tambien pedirle al mapa que me de su imagen
     for (const auto& par: players) {
         shared_ptr<Player> player = par.second;
         Position player_position = map_game.get_position(par.first);
@@ -60,7 +59,7 @@ GameImage GameManager::generate_game_image() {
     }
     game_image.dropped_things = map_game.get_dropped_things_images();
     game_image.bomb = map_game.get_bomb_image();
-    game_stats.state = (timer.is_time_to_buy()) ? GameState::TIME_TO_BUY : game_stats.state;
+    game_stats.state = game_stats.state;
     GameStateImage game_state_image(game_stats.state,
                                     static_cast<round_time_t>(timer.get_time_round()),
                                     static_cast<round_t>(round));
@@ -135,8 +134,10 @@ GameImage GameManager::get_frame() {
                                                                            GameState::CT_WIN_GAME;
         return generate_game_image();
     }
-    // Si no estamos en tiempo ending
-    if (timer.get_state() != TimerState::ENDING_TIME) {
+    if (timer.is_time_to_buy())
+        game_stats.state = GameState::TIME_TO_BUY;
+    else if (timer.get_state() != TimerState::ENDING_TIME) {
+        game_stats.state = GameState::ROUND_STARTED;
         bool round_finished = check_round_finished();
         if (round_finished)
             timer.round_end();

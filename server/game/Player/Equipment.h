@@ -47,6 +47,7 @@ public:
     bool equip_droppable(const std::shared_ptr<IInteractuable>& droppable);
     void drop_all();
     std::vector<WeaponImage> get_weapons_image();
+    WeaponCode get_equiped_code();
 };
 
 #endif  // EQUIPMENT_H_

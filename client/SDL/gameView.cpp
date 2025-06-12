@@ -157,6 +157,7 @@ bool GameView::handle_events(const SDL_Event& event) {
         SDL_Keycode tecla = event.key.keysym.sym;
         controller.sender_mov_player(tecla);
         player->add_speed(tecla);
+        // Este deberia estar desactivado una vez el estado no sea time_to_buy
         if (snapshot.game_state.state != GameState::TIME_TO_BUY)
             shop.desactivate_shop();
         if (tecla == SDLK_b && snapshot.game_state.state == GameState::TIME_TO_BUY) {

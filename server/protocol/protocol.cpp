@@ -264,6 +264,9 @@ void ServerProtocol::send_players_images(std::vector<PlayerImage>& players_image
 
         money_t money = player_image.money;
         this->send_two_byte_data(money);
+        weapon_code_t equipped_weapon_code =
+                static_cast<weapon_code_t>(player_image.equipped_weapon);
+        this->send_byte_data(equipped_weapon_code);
 
         this->send_weapons(player_image);
 

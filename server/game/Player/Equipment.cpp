@@ -115,3 +115,4 @@ void Equipment::drop_all() {
         bomb.reset();
     }
 }
+WeaponCode Equipment::get_equiped_code() { return weapon_in_hand->get_weapon_code(); }

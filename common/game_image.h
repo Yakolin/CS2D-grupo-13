@@ -82,20 +82,21 @@ public:
     health_t health;
     points_t points;
     money_t money;
+    WeaponCode equipped_weapon;
     std::vector<WeaponImage> weapons;
     Team team;
     Position mouse_position;
     Skins skin;
-
-    // Aca falta el tema del equipement y las armas
     PlayerImage(const player_id_t& player_id, const Position& position, const int& health,
-                const int& points, const money_t money, std::vector<WeaponImage>&& weapons,
-                const Team& team, const Position& mouse_position, const Skins& skin):
+                const int& points, const money_t money, const WeaponCode equipped_weapon,
+                std::vector<WeaponImage>&& weapons, const Team& team,
+                const Position& mouse_position, const Skins& skin):
             player_id(player_id),
             position(position),
             health(health),
             points(points),
             money(money),
+            equipped_weapon(equipped_weapon),
             weapons(std::move(weapons)),
             team(team),
             mouse_position(mouse_position),

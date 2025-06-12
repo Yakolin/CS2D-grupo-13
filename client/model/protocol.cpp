@@ -292,6 +292,9 @@ void ClientProtocol::read_player_image(std::vector<PlayerImage>& players_images)
         money_t money;
         this->read_two_byte_data(money);
 
+        weapon_code_t equipped_weapon_code;
+        this->read_byte_data(equipped_weapon_code);
+
         std::vector<WeaponImage> weapons;
         this->read_weapons(weapons);
 
@@ -311,6 +314,7 @@ void ClientProtocol::read_player_image(std::vector<PlayerImage>& players_images)
         Skins skins(ct, tt);
 
         players_images.emplace_back(PlayerImage(player_id, position_player, health, points, money,
+                                                static_cast<WeaponCode>(equipped_weapon_code),
                                                 std::move(weapons), team, position_mouse, skins));
     }
 }

@@ -1,6 +1,8 @@
 #include "gameView.h"
 int counter2 = 0;
-GameView::GameView(Socket&& skt):
+GameView::GameView(
+        Socket&& skt):  // Aca realmente deberia de recibir el mapa y las armas disponibles, ya que
+                        // es informacion necesaria para cargar el mapa
         config(),
         controller(std::move(skt)),
         leyenda(),
@@ -173,11 +175,11 @@ bool GameView::handle_events(const SDL_Event& event) {
     if (event.type == SDL_QUIT) {
         return false;
     }
+
     if (event.type == SDL_KEYDOWN) {
         SDL_Keycode tecla = event.key.keysym.sym;
         controller.sender_mov_player(tecla);
         player->add_speed(tecla);
-        // Este deberia estar desactivado una vez el estado no sea time_to_buy
         if (snapshot.game_state.state != GameState::TIME_TO_BUY)
             shop.desactivate_shop();
         if (tecla == SDLK_b && snapshot.game_state.state == GameState::TIME_TO_BUY) {
@@ -185,22 +187,24 @@ bool GameView::handle_events(const SDL_Event& event) {
         }
         handle_equip_type(tecla);
     }
+
     if (event.type == SDL_KEYUP) {
         SDL_Keycode tecla = event.key.keysym.sym;
         player->stop_speed(tecla);  // Detiene movimiento
         return true;
     }
+
     if (event.type == SDL_WINDOWEVENT) {
         if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
-
             this->map->update_map_dimensions();
             printf("Nuevo mapa width: %d, height: %d\n", map->getMapWidth(), map->getMapHeight());
         }
     }
 
-    if (event.type == SDL_MOUSEMOTION) {  // para mover mouseAdd commentMore actions
+    if (event.type == SDL_MOUSEMOTION) {  // para mover mouse
         int mouseX = event.motion.x;
         int mouseY = event.motion.y;
+
         player->update_view_angle(mouseX, mouseY);
         // printf("-----------mov mouse----------------------\n");
         // printf("MOUSER en (%d, %d)\n", mouseX, mouseY);
@@ -209,11 +213,24 @@ bool GameView::handle_events(const SDL_Event& event) {
 
     if (event.type == SDL_MOUSEBUTTONDOWN) {
         if (event.button.button == SDL_BUTTON_LEFT) {
+            int mouseX = event.button.x;
+            int mouseY = event.button.y;
+            if (shop.get_activa()) {
+                WeaponCode code = shop.calculate_selection(mouseX, mouseY);
+                if (code != WeaponCode::NONE)  // Realmente esto no deberia de siquiera pasar, casi
+                                               // que es una exception
+                    controller.sender_buy_weapon(code);
+            }
+            if (snapshot.game_state.state == GameState::ROUND_STARTED) {
+                controller.sender_shoot(mouseX, mouseY);
+            }
+            printf("Clic izquierdo detectado en (%d, %d)\n", mouseX, mouseY);
             // player->activate_weapon(Weapon::AK47);
-            bomba->activate();
-            printf("Clic izquierdo detectado en (%d, %d)\n", event.button.x, event.button.y);
+            // bomba->activate();
         }
     }
+
+
     if (event.type == SDL_MOUSEBUTTONDOWN) {
         if (event.button.button == SDL_BUTTON_LEFT) {
             int mouseX = event.button.x;
@@ -226,7 +243,7 @@ bool GameView::handle_events(const SDL_Event& event) {
             } else if (snapshot.game_state.state != GameState::TIME_TO_BUY)  // Quiza innecesaria
                 controller.sender_shoot(mouseX, mouseY);
             // player->activate_weapon(Weapon::AK47);
-            bomba->activate();
+            //  bomba->activate();
             printf("Clic izquierdo detectado en (%d, %d)\n", mouseX, mouseY);
         }
     }
@@ -240,7 +257,9 @@ bool GameView::add_player(float x, float y, int speed, const Claves_skins& clave
     return true;
 }
 
+
 void GameView::initial_draw_game(const GameInfo& info_game_view /*,const Player& info_game*/) {
+
     this->map = new MapView(info_game_view.map_info.walls, &camera, &manger_texture, config);
     if (!map) {
         throw std::runtime_error("Error al cargar mapa");
@@ -282,7 +301,8 @@ void GameView::draw_game() {
                 std::cerr << "Error: No se encontró el jugador con client_id " << snapshot.client_id
                           << " en players_images\n";
             }
-
+        }
+    }
             update_status_game();
         }
         player->update(deltaTime);
@@ -301,7 +321,8 @@ void GameView::draw_game() {
         map->draw(*renderer);
         player->draw(*renderer);
         draw_players();
-        bomba->draw(*renderer);
+        // if (bomba)
+        //    bomba->draw(*renderer);
         fov->draw(*renderer);
         if (shop.get_activa()) {
             shop.draw(*renderer);

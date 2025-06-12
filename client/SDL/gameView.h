@@ -52,7 +52,6 @@ private:
     HUD hud;
     bool activa;
 
-
     bool bomb_activate;
     void handle_equip_type(const SDL_Keycode& tecla);
     bool handle_events(const SDL_Event& evento);
@@ -64,6 +63,8 @@ private:
 
     void draw_players();
 
+    void init_bomb();
+
 
 public:
     explicit GameView(Socket&& skt);
@@ -71,7 +72,6 @@ public:
     SDL_Window* init_window(const GameConfig& config);
 
     SDL_Renderer* init_renderer(SDL_Window* window, GameConfig& config);
-
 
     /*
     pre:  width y height deben ser mayores que 0.

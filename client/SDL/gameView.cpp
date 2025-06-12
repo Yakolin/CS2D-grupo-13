@@ -264,24 +264,24 @@ void GameView::draw_game() {
         Uint32 currentTime = SDL_GetTicks();
         float deltaTime = (currentTime - lastTime) / 1000.0f;
         lastTime = currentTime;
-        bool datos_validos = true;
         if (controller.has_game_image(this->snapshot)) {
-            player_id_t id_real = snapshot.client_id - 1;
-            if (snapshot.players_images.empty()) {
-                std::cerr << "Error: No hay jugadores en snapshot.players_images\n";
-                datos_validos = false;
+            bool found = false;
+            player_id_t counter = 0;
+            player_id_t index_player_id = 0;
+            while (!found && counter < snapshot.players_images.size()) {
+                if (snapshot.players_images[counter].player_id == snapshot.client_id) {
+                    index_player_id = counter;
+                    found = true;
+                }
+                counter++;
             }
-            // Verifica que client_id esté dentro del rango válido
-            else if (id_real >= snapshot.players_images.size()) {
-                std::cerr << "Error: client_id fuera de rango (" << snapshot.client_id
-                          << " >= " << snapshot.players_images.size() << ")\n";
-                datos_validos = false;
+            if (found) {
+                hud.load(snapshot.players_images[index_player_id], snapshot.bomb,
+                         snapshot.game_state.time, snapshot.game_state);
+            } else {
+                std::cerr << "Error: No se encontró el jugador con client_id " << snapshot.client_id
+                          << " en players_images\n";
             }
-            if (datos_validos) {
-                hud.load(snapshot.players_images[id_real], snapshot.bomb, snapshot.game_state.time,
-                         snapshot.game_state);
-            }
-
 
             update_status_game();
         }

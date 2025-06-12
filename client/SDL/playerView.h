@@ -23,6 +23,37 @@
 #include "weaponView.h"
 
 class PlayerView: public Renderizable {
+
+
+private:
+    GameConfig config;
+    SDL_Rect origin_rect;
+    SDL_Rect destination_rect;
+    float speed_player;
+    int width_img;
+    int height_img;
+    ItemSprite spritePlayer;
+    ItemSprite item;
+    float anglePlayer;
+    Camera* camera;
+    ManageTexture* manejador;
+    int player_id;
+    float x_actual;
+    float y_actual;
+    float velocity_x;
+    float velocity_y;
+    Coordenada prev_pos;
+    Coordenada target_pos;
+    float interp_duration;
+    float interp_time;
+    std::unordered_map<WeaponCode, std::unique_ptr<WeaponView>> weapons;
+    bool activar_weapon;
+    SDL_Texture* texture_player;
+    WeaponCode clave;
+    Uint32 lastUpdateTime;
+
+    void calcular();
+    
 public:
     explicit PlayerView(const float& x, const float& y, const  Claves_skins& clave_player, const float& speed,
                         Camera* camera_reseiver, ManageTexture* manger_texture, GameConfig& config);
@@ -64,34 +95,6 @@ public:
     float getYActual();
 
 
-private:
-    GameConfig config;
-    SDL_Rect origin_rect;
-    SDL_Rect destination_rect;
-    float speed_player;
-    int width_img;
-    int height_img;
-    ItemSprite spritePlayer;
-    ItemSprite item;
-    float anglePlayer;
-    Camera* camera;
-    ManageTexture* manejador;
-    int player_id;
-    float x_actual;
-    float y_actual;
-    float velocity_x;
-    float velocity_y;
-    Coordenada prev_pos;
-    Coordenada target_pos;
-    float interp_duration;
-    float interp_time;
-    std::unordered_map<WeaponCode, std::unique_ptr<WeaponView>> weapons;
-    bool activar_weapon;
-    SDL_Texture* texture_player;
-    WeaponCode clave;
-    Uint32 lastUpdateTime;
-
-    void calcular();
 };
 
 #endif  // PLAYERVIEW_H

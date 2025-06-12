@@ -117,7 +117,7 @@ void GameView::update_status_game() {
 
         if (id == snapshot.client_id) {
             reset_values(player, x_pixeles, y_pixeles);
-            // player->update_weapons(snapshot.players_images[id].weapons);
+            player->update_weapons(player_img.weapons);
 
         } else if (players.find(id) == players.end()) {
             Claves_skins claves;
@@ -128,7 +128,7 @@ void GameView::update_status_game() {
                                                        &camera, &manger_texture, config);
             nuevo_jugador->update_view_angle(player_img.mouse_position.x * 32,
                                              player_img.mouse_position.y * 32);
-            // nuevo_jugador->update_weapons(snapshot.players_images[id].weapons);
+            nuevo_jugador->update_weapons(player_img.weapons);
             players[id] = nuevo_jugador;
 
         } else {
@@ -137,7 +137,7 @@ void GameView::update_status_game() {
             int y_pixel_mouse = player_img.mouse_position.y * config.get_tile_height();
             player_aux->update_view_angle(x_pixel_mouse, y_pixel_mouse);
             reset_values(player_aux, x_pixeles, y_pixeles);
-            // player_aux->update_weapons(snapshot.players_images[id].weapons);
+            player_aux->update_weapons(player_img.weapons);
         }
     }
 }
@@ -169,6 +169,24 @@ void GameView::handle_equip_type(const SDL_Keycode& tecla) {
             controller.sender_equip(EquipType::BOMB);
             std::cout << "Presionaste la tecla 4" << std::endl;
             break;
+    }
+}
+
+void GameView::mouse_position_tiles(int& posx, int& posy, const int& mousex, const int& mousey){
+    const int TILE_SIZE = 32;
+
+    int camX = camera.getX();
+    int camY = camera.getY();
+    int mapPixelX = mousex + camX;
+    int mapPixelY = mousey + camY;
+
+    posx = mapPixelX / TILE_SIZE;
+    posy = mapPixelY / TILE_SIZE;
+
+    if (posx >= 0 && posx < 50 && posy >= 0 && posy < 50) {
+        printf("Estás sobre el tile (%d, %d)\n", posx,posy);
+    } else {
+        printf("El mouse está fuera del mapa.\n");
     }
 }
 bool GameView::handle_events(const SDL_Event& event) {
@@ -212,9 +230,13 @@ bool GameView::handle_events(const SDL_Event& event) {
     }
 
     if (event.type == SDL_MOUSEBUTTONDOWN) {
+
         if (event.button.button == SDL_BUTTON_LEFT) {
             int mouseX = event.button.x;
             int mouseY = event.button.y;
+            int mousex_tile=-1;
+            int mousey_tile=-1;
+            mouse_position_tiles(mousex_tile, mousey_tile,mouseX,mouseY);
             if (shop.get_activa()) {
                 WeaponCode code = shop.calculate_selection(mouseX, mouseY);
                 if (code != WeaponCode::NONE)  // Realmente esto no deberia de siquiera pasar, casi
@@ -222,7 +244,7 @@ bool GameView::handle_events(const SDL_Event& event) {
                     controller.sender_buy_weapon(code);
             }
             if (snapshot.game_state.state == GameState::ROUND_STARTED) {
-                controller.sender_shoot(mouseX, mouseY);
+                controller.sender_shoot(mousex_tile, mousey_tile);
             }
             printf("Clic izquierdo detectado en (%d, %d)\n", mouseX, mouseY);
             // player->activate_weapon(Weapon::AK47);
@@ -274,6 +296,7 @@ void GameView::draw_game() {
     bomba = new Bomb(0, 0, camera, manger_texture, config);
     auto keep_running = [&]() -> bool {
         while (SDL_PollEvent(&event)) {
+
             if (!handle_events(event)) {
                 return false;
             }
@@ -342,7 +365,7 @@ void GameView::draw_game() {
         std::cerr << "Excepción deteniendo a los hilos: " << e.what() << std::endl;
     } catch (...) {
         std::cerr << "Excepción desconocida en stop" << std::endl;
-    }
+    } 
 }
 
 GameView::~GameView() {

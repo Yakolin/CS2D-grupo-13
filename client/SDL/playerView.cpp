@@ -42,7 +42,7 @@ void imprimir_weapons_vec(const std::vector<WeaponImage>& weapons_vec) {
         return;
     }
 
-    std::cout << "Armas del jugador:" << std::endl;
+   // std::cout << "Armas del jugador:" << std::endl;
 
 
     for (const WeaponImage& weapon: weapons_vec) {
@@ -85,7 +85,7 @@ void PlayerView::update_weapons(const std::vector<WeaponImage>& weapons_vec) {
         std::cout << "El jugador no tiene armas." << std::endl;
         return;
     }
-    imprimir_weapons_vec(weapons_vec);
+    //imprimir_weapons_vec(weapons_vec);
 
     for (const WeaponImage& weapon_img: weapons_vec) {
         WeaponCode weapon_key = weapon_img.weapon_code;
@@ -94,8 +94,7 @@ void PlayerView::update_weapons(const std::vector<WeaponImage>& weapons_vec) {
             continue;
 
         if (!is_valid_weapon_code(weapon_key)) {
-            std::cerr << "WeaponCode inválido recibido: " << static_cast<int>(weapon_key)
-                      << std::endl;
+            std::cerr << "WeaponCode inválido recibido: " << static_cast<int>(weapon_key) << std::endl;
             continue;
         }
         if (this->weapons.find(weapon_key) != this->weapons.end()) {
@@ -105,6 +104,11 @@ void PlayerView::update_weapons(const std::vector<WeaponImage>& weapons_vec) {
                                                                x_actual, y_actual, anglePlayer);
         }
     }
+    //std::cout << "armas. cargadas ---------" << std::endl;
+    /* for (const auto& par : weapons ) {
+        std::cout << static_cast<int>(par.first) << std::endl;
+    }*/
+    
 }
 
 

@@ -54,6 +54,7 @@ private:
 
     bool bomb_activate;
     void handle_equip_type(const SDL_Keycode& tecla);
+    void mouse_position_tiles(int& posx, int& posy , const int& mousex, const int& mousey);
     bool handle_events(const SDL_Event& evento);
 
     void load_textures();

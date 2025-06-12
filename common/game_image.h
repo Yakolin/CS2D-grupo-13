@@ -87,6 +87,7 @@ public:
     Team team;
     Position mouse_position;
     Skins skin;
+    PlayerImage() = default;
     PlayerImage(const player_id_t& player_id, const Position& position, const int& health,
                 const int& points, const money_t money, const WeaponCode equipped_weapon,
                 std::vector<WeaponImage>&& weapons, const Team& team,

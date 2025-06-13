@@ -13,12 +13,17 @@ void Receiver::run() {
         }
     } catch (ClosedQueue& e) {
         closed = true;
-    } catch (const ConnectionClosedException& e) {  // el cliente podria cerrar la conexion
-        closed = true;
-    } catch (...) {
+
+    } /*
+    catch (const ConnectionClosedException& e) {  // el cliente podria cerrar la conexion
+    closed = true;
+
+
+    catch (...) {
         std::cerr << "Something went wrong and an unknown exception was caught." << std::endl;
         closed = true;
     }
+    */
 }
 
 void Receiver::stop() { this->recv_queue->close(); }

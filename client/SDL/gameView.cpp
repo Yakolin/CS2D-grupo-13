@@ -268,79 +268,84 @@ void GameView::initial_draw_game(const GameInfo& info_game_view /*,const Player&
     this->fov = new FieldOfView(*player, camera, manger_texture, config);
     shop.set_weapons_purchasables(info_game_view.weapons_purchasables);
 }
+
 void GameView::draw_game() {
-
-    SDL_Event event;
-    bomba = new Bomb(0, 0, camera, manger_texture, config);
-    auto keep_running = [&]() -> bool {
-        while (SDL_PollEvent(&event)) {
-            if (!handle_events(event)) {
-                return false;
-            }
-        }
-        return true;
-    };
-    auto game_step = [&]() {
-        Uint32 currentTime = SDL_GetTicks();
-        float deltaTime = (currentTime - lastTime) / 1000.0f;
-        lastTime = currentTime;
-        if (controller.has_game_image(this->snapshot)) {
-            bool found = false;
-            player_id_t counter = 0;
-            player_id_t index_player_id = 0;
-            
-            while (!found && counter < snapshot.players_images.size()) {
-                if (snapshot.players_images[counter].player_id == snapshot.client_id) {
-                    index_player_id = counter;
-                    found = true;
-                }
-                counter++;
-            }
-            if (found) {
-                hud.load(snapshot.players_images[index_player_id], snapshot.bomb,
-                         snapshot.game_state.time, snapshot.game_state);
-            } else {
-                std::cerr << "Error: No se encontró el jugador con client_id " << snapshot.client_id
-                          << " en players_images\n";
-            }
-        }
-    
-        update_status_game();
-        player->update(deltaTime);
-
-        for (auto& pair: players) {
-            if (pair.second != nullptr && pair.second != player) {
-                pair.second->update(deltaTime);
-            }
-        }
-        camera.update(player->getYActual(), player->getXActual(), player->getWidthImg(),
-                      player->getHeightImg(), map->getMapWidth(), map->getMapHeight());
-
-        // Render
-        SDL_RenderClear(renderer);
-
-        map->draw(*renderer);
-        player->draw(*renderer);
-        draw_players();
-        // if (bomba)
-        //    bomba->draw(*renderer);
-        fov->draw(*renderer);
-        if (shop.get_activa()) {
-            shop.draw(*renderer);
-        }
-        hud.render(*renderer);
-        SDL_RenderPresent(renderer);
-    };
-
-    ConstantRateLoop loop(keep_running, game_step);
-    loop.execute();
-
-    //-----------------------------------------------------------
     try {
+        SDL_Event event;
+        bomba = new Bomb(0, 0, camera, manger_texture, config);
+        auto keep_running = [&]() -> bool {
+            while (SDL_PollEvent(&event)) {
+                if (!handle_events(event)) {
+                    return false;
+                }
+            }
+            return true;
+        };
+        auto game_step = [&]() {
+            Uint32 currentTime = SDL_GetTicks();
+            float deltaTime = (currentTime - lastTime) / 1000.0f;
+            lastTime = currentTime;
+            if (controller.has_game_image(this->snapshot)) {
+                bool found = false;
+                player_id_t counter = 0;
+                player_id_t index_player_id = 0;
+
+                while (!found && counter < snapshot.players_images.size()) {
+                    if (snapshot.players_images[counter].player_id == snapshot.client_id) {
+                        index_player_id = counter;
+                        found = true;
+                    }
+                    counter++;
+                }
+                if (found) {
+                    hud.load(snapshot.players_images[index_player_id], snapshot.bomb,
+                             snapshot.game_state.time, snapshot.game_state);
+                } else {
+                    std::cerr << "Error: No se encontró el jugador con client_id "
+                              << snapshot.client_id << " en players_images\n";
+                }
+            }
+
+            update_status_game();
+            player->update(deltaTime);
+
+            for (auto& pair: players) {
+                if (pair.second != nullptr && pair.second != player) {
+                    pair.second->update(deltaTime);
+                }
+            }
+            camera.update(player->getYActual(), player->getXActual(), player->getWidthImg(),
+                          player->getHeightImg(), map->getMapWidth(), map->getMapHeight());
+
+            // Render
+            SDL_RenderClear(renderer);
+
+            map->draw(*renderer);
+            player->draw(*renderer);
+            draw_players();
+            // if (bomba)
+            //    bomba->draw(*renderer);
+            fov->draw(*renderer);
+            if (shop.get_activa()) {
+                shop.draw(*renderer);
+            }
+            hud.render(*renderer);
+            SDL_RenderPresent(renderer);
+        };
+
+        ConstantRateLoop loop(keep_running, game_step);
+        loop.execute();
+
+        //-----------------------------------------------------------
+    } catch (const ConnectionClosedException& e) {
         this->controller.stop();
+        return;  // el servidor cerró la conexión
+
     } catch (const std::exception& e) {
+        this->controller.stop();
         std::cerr << "Excepción deteniendo a los hilos: " << e.what() << std::endl;
     } catch (...) {
+        this->controller.stop();
         std::cerr << "Excepción desconocida en stop" << std::endl;
     }
 }

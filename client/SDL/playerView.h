@@ -15,7 +15,7 @@
 #include "../../common/game_info.h"
 #include "../../common/player_command_types.h"
 #include "../tipos.h"
-
+#include "bullet.h"
 #include "camera.h"
 #include "gameConfig.h"
 #include "manageTexture.h"
@@ -49,7 +49,7 @@ private:
     std::unordered_map<WeaponCode, std::unique_ptr<WeaponView>> weapons;
     bool activar_weapon;
     SDL_Texture* texture_player;
-    WeaponCode clave;
+    WeaponCode equipped_weapon;
     Uint32 lastUpdateTime;
 
     void calcular();
@@ -57,6 +57,8 @@ private:
 public:
     explicit PlayerView(const float& x, const float& y, const  Claves_skins& clave_player, const float& speed,
                         Camera* camera_reseiver, ManageTexture* manger_texture, GameConfig& config);
+
+    void update_equip(const PlayerImage player_aux);
 
 
     void setPrevPos(const float& new_x, const float& new_y);
@@ -68,7 +70,7 @@ public:
     void stop_speed(const SDL_Keycode& tecla);
 
     void update_weapons(const std::vector<WeaponImage>& weapons_vec);
-    void activate_weapon(const WeaponCode& weapon_code);
+    void activate_weapon();
 
     void draw(SDL_Renderer& renderer) override;
 

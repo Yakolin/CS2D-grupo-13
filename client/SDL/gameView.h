@@ -16,7 +16,7 @@
 #include "../../common/game_image.h"
 #include "../controller.h"
 #include "../tipos.h"
-
+#include "bullet.h"
 #include "HUD.h"
 #include "bomb.h"
 #include "camera.h"
@@ -51,6 +51,7 @@ private:
     Bomb* bomba;
     HUD hud;
     bool activa;
+    std::vector<Bullet> bullets;
 
     bool bomb_activate;
     void handle_equip_type(const SDL_Keycode& tecla);

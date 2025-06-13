@@ -30,10 +30,14 @@ PlayerView::PlayerView(const float& x, const float& y, const Claves_skins& clave
         weapons(),
         activar_weapon(false),
         texture_player(manejador->get_texture_ct(clave_player.ct_skin)),
-        clave(WeaponCode::NONE),
+        equipped_weapon(WeaponCode::NONE),
         lastUpdateTime(0) {
     calcular();
     lastUpdateTime = SDL_GetTicks();
+}
+
+void PlayerView::update_equip(const PlayerImage player_aux){
+    this->equipped_weapon = player_aux.equipped_weapon;
 }
 
 void imprimir_weapons_vec(const std::vector<WeaponImage>& weapons_vec) {
@@ -58,7 +62,7 @@ void imprimir_weapons_vec(const std::vector<WeaponImage>& weapons_vec) {
     }
 }
 
-void PlayerView::update(const float& deltaTime) {
+void PlayerView::update(const float& deltaTime) { 
 
     if (interp_time < interp_duration) {
         interp_time += deltaTime;
@@ -141,14 +145,8 @@ void PlayerView::stop_speed(const SDL_Keycode& tecla) {
     }
 }
 
-void PlayerView::activate_weapon(const WeaponCode& weapon_code) {
-
-    if (weapons.find(weapon_code) != weapons.end()) {
-        activar_weapon = true;
-        weapons[weapon_code]->setUsed(true);
-    } else {
-        std::cerr << "Error: Arma no encontrada." << std::endl;
-    }
+void PlayerView::activate_weapon() {
+    activar_weapon = true;
 }
 void PlayerView::draw(SDL_Renderer& renderer) {
 
@@ -157,12 +155,16 @@ void PlayerView::draw(SDL_Renderer& renderer) {
     destination_rect = {static_cast<int>(x_actual) - camera->getX(),  // col=x
                         static_cast<int>(y_actual) - camera->getY(),  // fil =y
                         config.get_tile_width(),                      // ancho
-                        config.get_tile_height()};                    // alto
+                        config.get_tile_height()};                   // alto
+
     SDL_RenderCopyEx(&renderer, texture_player, &origin_rect, &destination_rect, anglePlayer,
                      nullptr, SDL_FLIP_NONE);
 
-    if (activar_weapon) {
-        WeaponView& weapon_view = *weapons[clave];
+    if (this->equipped_weapon != WeaponCode::NONE) {
+        //SDL_Point center;
+        //center.x = x_actual;
+        //center.y = y_actual ;
+        WeaponView& weapon_view = *weapons[equipped_weapon];
         weapon_view.update(static_cast<int>(x_actual), static_cast<int>(y_actual), anglePlayer);
         weapon_view.draw(renderer);
     }

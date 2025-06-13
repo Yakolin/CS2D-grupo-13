@@ -22,7 +22,8 @@ GameView::GameView(
         shop(camera, manger_texture, config),
         bomba(nullptr),
         hud(config, manger_texture),
-        activa(false) {
+        activa(false),
+        bullets() {
 
     leyenda['#'] = "assets/gfx/backgrounds/nuke.png";
     leyenda[' '] = "assets/gfx/backgrounds/stone1.jpg";
@@ -104,7 +105,62 @@ void GameView::reset_values(PlayerView* player, const float& x_pixeles, const fl
     player->setInterpDuration(0.1f);
 }
 
+void print_game_image(const GameImage& image) {
+    std::cout << "=== Game Image ===\n";
+    std::cout << "Client ID: " << image.client_id << "\n";
+
+    std::cout << "--- Players ---\n";
+    for (const auto& player : image.players_images) {
+        std::cout << "Player ID: " << player.player_id << "\n";
+        std::cout << "  Position: (" << player.position.x << ", " << player.position.y << ")\n";
+        std::cout << "  Health: " << static_cast<int>(player.health) << "\n";
+        std::cout << "  Points: " << static_cast<int>(player.points) << "\n";
+        std::cout << "  Money: " << player.money << "\n";
+        std::cout << "  Equipped weapon: " << static_cast<int>(player.equipped_weapon) << "\n";
+        std::cout << "  Mouse position: (" << player.mouse_position.x << ", " << player.mouse_position.y << ")\n";
+        std::cout << "  Team: " << (player.team == Team::CT ? "CT" : "TT") << "\n";
+        std::cout << "  Weapons:\n";
+        for (const auto& weapon : player.weapons) {
+            std::cout << "    WeaponCode: " << static_cast<int>(weapon.weapon_code)
+                      << ", Current: " << static_cast<int>(weapon.current_bullets)
+                      << ", Magazine: " << static_cast<int>(weapon.magazine)
+                      << ", Inventory: " << static_cast<int>(weapon.inventory_bullets) << "\n";
+        }
+    }
+
+    std::cout << "--- Bullets in Air ---\n";
+    for (const auto& bullet : image.bullets_in_air) {
+        std::cout << "  From (" << bullet.initial.x << ", " << bullet.initial.y << ") to ("
+                  << bullet.end.x << ", " << bullet.end.y << ")\n";
+    }
+
+    std::cout << "--- Bomb ---\n";
+    std::cout << "  Position: (" << image.bomb.position.x << ", " << image.bomb.position.y << ")\n";
+    std::cout << "  State: " << static_cast<int>(image.bomb.state) << "\n";
+
+    std::cout << "--- Dropped Weapons ---\n";
+    for (const auto& dropped : image.dropped_things) {
+        std::cout << "  WeaponCode: " << static_cast<int>(dropped.weapon_code)
+                  << ", Position: (" << dropped.position.x << ", " << dropped.position.y << ")\n";
+    }
+
+    std::cout << "--- Game State ---\n";
+    std::cout << "  State: " << static_cast<int>(image.game_state.state) << "\n";
+    std::cout << "  Time: " << image.game_state.time << "\n";
+    std::cout << "  Round: " << static_cast<int>(image.game_state.round) << "\n";
+}
 void GameView::update_status_game() {
+    print_game_image(snapshot);
+    /* bullets.clear();
+    for (const BulletImage& bullet : snapshot.bullets_in_air) {
+        std::cout << "Initial: (" << bullet.initial.x << ", " << bullet.initial.y << ")\n";
+        std::cout << "End: (" << bullet.end.x << ", " << bullet.end.y << ")\n";
+        Coordenada init = { static_cast<float>(bullet.initial.x), static_cast<float>(bullet.initial.y) };
+        Coordenada end  = { static_cast<float>(bullet.end.x), static_cast<float>(bullet.end.y) };
+
+        Bullet bullet_aux(init,end,manger_texture.get(Object::STONE));
+        this->bullets.push_back(bullet_aux);
+    }*/
 
     int tile_width = config.get_tile_width();
     int tile_height = config.get_tile_height();
@@ -118,6 +174,7 @@ void GameView::update_status_game() {
         if (id == snapshot.client_id) {
             reset_values(player, x_pixeles, y_pixeles);
             player->update_weapons(player_img.weapons);
+            player->update_equip(player_img);
 
         } else if (players.find(id) == players.end()) {
             Claves_skins claves;
@@ -247,7 +304,7 @@ bool GameView::handle_events(const SDL_Event& event) {
                 controller.sender_shoot(mousex_tile, mousey_tile);
             }
             printf("Clic izquierdo detectado en (%d, %d)\n", mouseX, mouseY);
-            // player->activate_weapon(Weapon::AK47);
+            player->activate_weapon();
             // bomba->activate();
         }
     }
@@ -291,6 +348,22 @@ void GameView::initial_draw_game(const GameInfo& info_game_view /*,const Player&
     shop.set_weapons_purchasables(info_game_view.weapons_purchasables);
 }
 void GameView::draw_game() {
+    std::vector<std::pair<Coordenada, Coordenada>> balas_hardcodeadas = {
+        {{2.0f, 3.0f}, {4.0f, 6.0f}},
+        {{5.5f, 1.2f}, {8.0f, 2.0f}},
+        {{0.0f, 0.0f}, {10.0f, 10.0f}}
+    };
+
+    for (const auto& par : balas_hardcodeadas) {
+        const Coordenada& init = par.first;
+        const Coordenada& end = par.second;
+
+        Bullet bala(init, end, manger_texture.get(Object::BULLET));
+        bullets.push_back(bala);
+
+        std::cout << "Init: (" << init.x << ", " << init.y << "), ";
+        std::cout << "End: (" << end.x << ", " << end.y << ")\n";
+    }
 
     SDL_Event event;
     bomba = new Bomb(0, 0, camera, manger_texture, config);
@@ -307,6 +380,7 @@ void GameView::draw_game() {
         Uint32 currentTime = SDL_GetTicks();
         float deltaTime = (currentTime - lastTime) / 1000.0f;
         lastTime = currentTime;
+
         if (controller.has_game_image(this->snapshot)) {
             bool found = false;
             player_id_t counter = 0;
@@ -347,6 +421,13 @@ void GameView::draw_game() {
         draw_players();
         // if (bomba)
         //    bomba->draw(*renderer);
+        if(bullets.empty()){
+            std::cout << "sin balas\n";
+        }
+        for ( Bullet& bullet : this->bullets) {
+            bullet.updateBullet(0.1f); 
+            bullet.draw(*renderer);
+        }
         fov->draw(*renderer);
         if (shop.get_activa()) {
             shop.draw(*renderer);

@@ -51,6 +51,8 @@ void Map::move(player_id_t id, const Position& direction) {
     throw MapException("Can´t found players in the map to move");
 }
 
+std::vector<BulletImage> Map::get_bullets_in_air() { return collision_manager.get_bullets_image(); }
+
 void Map::spawn_collider(player_id_t id_spawn, collider_solicitude_t& wanted) {
     Position aux = get_position(id_spawn);
     Vector2f player_pos(aux.x, aux.y);

@@ -158,6 +158,9 @@ void ServerProtocol::send_two_byte_data(uint16_t& data) {
 
 
 void ServerProtocol::send_map_info(const MapInfo& map_info) {
+    map_name_t map_name = static_cast<map_name_t>(map_info.map_name);
+    this->send_byte_data(map_name);
+
     RectangleInfo bomb_A = map_info.bomb_A;
     this->send_position(bomb_A.pos_min);
     this->send_position(bomb_A.pos_max);

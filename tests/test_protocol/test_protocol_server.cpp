@@ -121,6 +121,7 @@ TEST(ServerProtocolTest, SendGameInfoSendsCorrectData) {
     // Arrange
     GameInfo game_info;
 
+    game_info.map_info.map_name = MapName::DESIERTO;
     game_info.map_info.bomb_A = RectangleInfo(Position(10, 20), Position(30, 40));
     game_info.map_info.bomb_B = RectangleInfo(Position(50, 60), Position(70, 80));
     game_info.map_info.spawn_TT = RectangleInfo(Position(90, 100), Position(110, 120));
@@ -132,8 +133,14 @@ TEST(ServerProtocolTest, SendGameInfoSendsCorrectData) {
     game_info.weapons_purchasables.push_back(WeaponInfo{WeaponCode::AK47, 2700});
     game_info.weapons_purchasables.push_back(WeaponInfo{WeaponCode::M3, 3100});
 
+
     std::thread client_thread([&]() {
         Socket client_socket("localhost", "9999");
+
+        // First, receive map_name
+        map_name_t received_map_name;
+        client_socket.recvall(&received_map_name, sizeof(received_map_name));
+        ASSERT_EQ(static_cast<MapName>(received_map_name), game_info.map_info.map_name);
 
         auto recv_position = [&](coordinate_t expected_x, coordinate_t expected_y) {
             coordinate_t received_x, received_y;

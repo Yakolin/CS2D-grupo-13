@@ -102,10 +102,10 @@ void Controller::sender_mov_player(SDL_Keycode key) {
 
 
 void Controller::start() {
-
     this->receiver.start();
     this->sender.start();
 }
+
 void Controller::stop() {
     this->receiver.stop();
     this->sender.stop();
@@ -114,6 +114,7 @@ void Controller::stop() {
     this->receiver.join();
     this->sender.join();
 }
+
 bool Controller::is_valid_weapon_code(WeaponCode code) {
     switch (code) {
         case WeaponCode::BOMB:
@@ -127,15 +128,7 @@ bool Controller::is_valid_weapon_code(WeaponCode code) {
             return false;
     }
 }
-bool Controller::has_game_image(GameImage& snapshot) {
-
-    if (recv_queue->empty()) {
-        return false;
-    }
-    snapshot = recv_queue->pop();
-    //  std::cout << "recibo de la cola\n";
-    return true;
-}
+bool Controller::has_game_image(GameImage& snapshot) { return this->recv_queue->try_pop(snapshot); }
 
 void Controller::run() {}
 

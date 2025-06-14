@@ -42,6 +42,7 @@ target_sources(CS2D_client
     tipos.h
     vista.h
     SDL/HUD.h
+    SDL/quit_game_exception.h
     )
 
 add_subdirectory(model/)

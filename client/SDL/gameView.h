@@ -25,6 +25,7 @@
 #include "manageTexture.h"
 #include "mapView.h"
 #include "playerView.h"
+#include "quit_game_exception.h"
 #include "renderizable.h"
 #include "shopping.h"
 #include "text.h"
@@ -54,16 +55,22 @@ private:
 
     bool bomb_activate;
     void handle_equip_type(const SDL_Keycode& tecla);
-    bool handle_events(const SDL_Event& evento);
+
+    void handle_events(const SDL_Event& evento);
 
     void load_textures();
-
 
     void update_status_game();
 
     void draw_players();
 
     void init_bomb();
+
+    void process_events();
+
+    void update_game_state(float deltaTime);
+
+    void render_game();
 
 
 public:

@@ -11,12 +11,14 @@
 
 #include "../common/game_image.h"
 #include "../common/game_info.h"
+#include "../common/liberror.h"
 #include "../common/queue.h"
 #include "../common/socket.h"
 #include "Qt/menuView.h"
 #include "Qt/scoreBoard.h"
 #include "SDL/gameView.h"
 #include "SDL/mapView.h"
+#include "SDL/quit_game_exception.h"
 #include "model/protocol.h"
 #include "model/receiver.h"  // necesario para recibir cosas
 

@@ -89,9 +89,8 @@ std::vector<std::vector<char>> MapView::completar_mapa(const MapInfo& info_map){
     }
 
     char piso = ' ', wall = ' ';
-    MapName map = MapName::PUEBLITO_AZTECA;
 
-    switch (map){
+    switch (info_map.map_name){
         case MapName::DESIERTO:
             piso = FLOOR_DESIERTO;
             wall = WALL_DESIERTO;

@@ -60,6 +60,10 @@ private:
 
     void draw_players();
 
+    void updates_game();
+
+    void draw_object();
+
 
 public:
     explicit GameView(Socket&& skt);

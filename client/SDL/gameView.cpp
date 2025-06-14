@@ -113,16 +113,16 @@ void print_game_image(const GameImage& image) {
 }
 void GameView::update_status_game() {
     print_game_image(snapshot);
-    /* bullets.clear();
+ bullets.clear();
     for (const BulletImage& bullet : snapshot.bullets_in_air) {
         std::cout << "Initial: (" << bullet.initial.x << ", " << bullet.initial.y << ")\n";
         std::cout << "End: (" << bullet.end.x << ", " << bullet.end.y << ")\n";
         Coordenada init = { static_cast<float>(bullet.initial.x), static_cast<float>(bullet.initial.y) };
         Coordenada end  = { static_cast<float>(bullet.end.x), static_cast<float>(bullet.end.y) };
 
-        Bullet bullet_aux(init,end,manger_texture.get(Object::STONE));
+        Bullet bullet_aux(init,end,manger_texture.get(Object::BULLET));
         this->bullets.push_back(bullet_aux);
-    }*/
+    }
 
     int tile_width = config.get_tile_width();
     int tile_height = config.get_tile_height();
@@ -302,37 +302,9 @@ void GameView::initial_draw_game(const GameInfo& info_game_view /*,const Player&
     this->fov = new FieldOfView(*player, camera, manger_texture, config);
     shop.set_weapons_purchasables(info_game_view.weapons_purchasables);
 }
-void GameView::draw_game() {
-    std::vector<std::pair<Coordenada, Coordenada>> balas_hardcodeadas = {
-        {{2.0f, 3.0f}, {4.0f, 6.0f}},
-        {{5.5f, 1.2f}, {8.0f, 2.0f}},
-        {{0.0f, 0.0f}, {10.0f, 10.0f}}
-    };
 
-    for (const auto& par : balas_hardcodeadas) {
-        const Coordenada& init = par.first;
-        const Coordenada& end = par.second;
-
-        Bullet bala(init, end, manger_texture.get(Object::BULLET));
-        bullets.push_back(bala);
-
-        std::cout << "Init: (" << init.x << ", " << init.y << "), ";
-        std::cout << "End: (" << end.x << ", " << end.y << ")\n";
-    }
-
-    SDL_Event event;
-    bomba = new Bomb(0, 0, camera, manger_texture, config);
-    auto keep_running = [&]() -> bool {
-        while (SDL_PollEvent(&event)) {
-
-            if (!handle_events(event)) {
-                return false;
-            }
-        }
-        return true;
-    };
-    auto game_step = [&]() {
-        Uint32 currentTime = SDL_GetTicks();
+void GameView::updates_game(){
+     Uint32 currentTime = SDL_GetTicks();
         float deltaTime = (currentTime - lastTime) / 1000.0f;
         lastTime = currentTime;
 
@@ -358,10 +330,7 @@ void GameView::draw_game() {
         }
     
         update_status_game();
-        std::cout << "Antes de update: x = " << player->getXActual() << ", y = " << player->getYActual() << "\n";
         player->update(deltaTime);
-        std::cout << "Después de update: x = " << player->getXActual() << ", y = " << player->getYActual() << "\n";
-
 
         for (auto& pair: players) {
             if (pair.second != nullptr && pair.second != player) {
@@ -371,9 +340,9 @@ void GameView::draw_game() {
         camera.update(player->getYActual(), player->getXActual(), player->getWidthImg(),
                       player->getHeightImg(), map->getMapWidth(), map->getMapHeight());
 
-        // Render
-        SDL_RenderClear(renderer);
-
+}
+void GameView::draw_object(){
+    
         map->draw(*renderer);
         player->draw(*renderer);
         draw_players();
@@ -392,6 +361,28 @@ void GameView::draw_game() {
         }
         //map->render_objet(*renderer);
         hud.render(*renderer);
+
+}
+
+void GameView::draw_game() {
+
+
+    SDL_Event event;
+    bomba = new Bomb(0, 0, camera, manger_texture, config);
+    auto keep_running = [&]() -> bool {
+        while (SDL_PollEvent(&event)) {
+
+            if (!handle_events(event)) {
+                return false;
+            }
+        }
+        return true;
+    };
+    auto game_step = [&]() {
+       
+        updates_game();
+        SDL_RenderClear(renderer);
+        draw_object();
         SDL_RenderPresent(renderer);
     };
 

@@ -146,7 +146,6 @@ void GameView::draw_players() {
     for (auto& pair: this->players) {
         PlayerView* player = pair.second;
         if (player) {
-
             player->draw(*renderer);
         }
     }
@@ -171,6 +170,45 @@ void GameView::handle_equip_type(const SDL_Keycode& tecla) {
             break;
     }
 }
+void GameView::handle_movements(SDL_Keycode& tecla) {
+    if (tecla == SDLK_w || tecla == SDLK_UP)
+        controller.sender_move(MoveType::DOWN);
+    if (tecla == SDLK_s || tecla == SDLK_DOWN)
+        controller.sender_move(MoveType::UP);
+    if (tecla == SDLK_a || tecla == SDLK_LEFT)
+        controller.sender_move(MoveType::LEFT);
+    if (tecla == SDLK_d || tecla == SDLK_RIGHT)
+        controller.sender_move(MoveType::RIGHT);
+    player->add_speed(tecla);
+}
+void GameView::handle_extras(SDL_Keycode& tecla) {
+    if (tecla == SDLK_g)
+        controller.sender_drop();
+    if (tecla == SDLK_r)
+        controller.sender_reload();
+    if (tecla == SDLK_e)
+        controller.sender_defuse();
+}
+void GameView::handle_key_down(SDL_Keycode& tecla) {
+    if (snapshot.game_state.state != GameState::TIME_TO_BUY)
+        shop.desactivate_shop();
+    if (tecla == SDLK_b && snapshot.game_state.state == GameState::TIME_TO_BUY) {
+        shop.activate_shop();
+    }
+    handle_movements(tecla);
+    handle_equip_type(tecla);
+    handle_extras(tecla);
+}
+void GameView::handle_mouse_left_down(int mouseX, int mouseY) {
+    if (shop.get_activa()) {
+        WeaponCode code = shop.calculate_selection(mouseX, mouseY);
+        // Realmente esto no deberia de siquiera pasar, casi que es una exception
+        if (code != WeaponCode::NONE)
+            controller.sender_buy_weapon(code);
+    }
+    if (snapshot.game_state.state == GameState::ROUND_STARTED)
+        controller.sender_shoot(mouseX, mouseY);
+}
 void GameView::handle_events(const SDL_Event& event) {
     try {
         if (event.type == SDL_QUIT) {
@@ -180,22 +218,13 @@ void GameView::handle_events(const SDL_Event& event) {
 
         if (event.type == SDL_KEYDOWN) {
             SDL_Keycode tecla = event.key.keysym.sym;
-            controller.sender_mov_player(tecla);
-            player->add_speed(tecla);
-            if (snapshot.game_state.state != GameState::TIME_TO_BUY)
-                shop.desactivate_shop();
-            if (tecla == SDLK_b && snapshot.game_state.state == GameState::TIME_TO_BUY) {
-                shop.activate_shop();
-            }
-            handle_equip_type(tecla);
+            handle_key_down(tecla);
         }
-
         if (event.type == SDL_KEYUP) {
             SDL_Keycode tecla = event.key.keysym.sym;
             player->stop_speed(tecla);  // Detiene movimiento
         }
-
-        if (event.type == SDL_WINDOWEVENT) {
+        if (event.type == SDL_WINDOWEVENT) {  // LA PANTALLA
             if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
                 this->map->update_map_dimensions();
                 printf("Nuevo mapa width: %d, height: %d\n", map->getMapWidth(),
@@ -206,10 +235,7 @@ void GameView::handle_events(const SDL_Event& event) {
         if (event.type == SDL_MOUSEMOTION) {  // para mover mouse
             int mouseX = event.motion.x;
             int mouseY = event.motion.y;
-
             player->update_view_angle(mouseX, mouseY);
-            // printf("-----------mov mouse----------------------\n");
-            // printf("MOUSER en (%d, %d)\n", mouseX, mouseY);
             controller.sender_pos_mouse(mouseX, mouseY);
         }
 
@@ -217,39 +243,7 @@ void GameView::handle_events(const SDL_Event& event) {
             if (event.button.button == SDL_BUTTON_LEFT) {
                 int mouseX = event.button.x;
                 int mouseY = event.button.y;
-                if (shop.get_activa()) {
-                    WeaponCode code = shop.calculate_selection(mouseX, mouseY);
-                    if (code !=
-                        WeaponCode::NONE)  // Realmente esto no deberia de siquiera pasar, casi
-                        // que es una exception
-                        controller.sender_buy_weapon(code);
-                }
-                if (snapshot.game_state.state == GameState::ROUND_STARTED) {
-                    controller.sender_shoot(mouseX, mouseY);
-                }
-                printf("Clic izquierdo detectado en (%d, %d)\n", mouseX, mouseY);
-                // player->activate_weapon(Weapon::AK47);
-                // bomba->activate();
-            }
-        }
-
-
-        if (event.type == SDL_MOUSEBUTTONDOWN) {
-            if (event.button.button == SDL_BUTTON_LEFT) {
-                int mouseX = event.button.x;
-                int mouseY = event.button.y;
-                if (shop.get_activa()) {
-                    WeaponCode code = shop.calculate_selection(mouseX, mouseY);
-                    if (code !=
-                        WeaponCode::NONE)  // Realmente esto no deberia de siquiera pasar, casi
-                        // que es una exception
-                        controller.sender_buy_weapon(code);
-                } else if (snapshot.game_state.state !=
-                           GameState::TIME_TO_BUY)  // Quiza innecesaria
-                    controller.sender_shoot(mouseX, mouseY);
-                // player->activate_weapon(Weapon::AK47);
-                //  bomba->activate();
-                printf("Clic izquierdo detectado en (%d, %d)\n", mouseX, mouseY);
+                handle_mouse_left_down(mouseX, mouseY);
             }
         }
 

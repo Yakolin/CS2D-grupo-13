@@ -73,6 +73,14 @@ private:
     void render_game();
 
 
+    /*
+    INPUT HANDLER
+    */
+    void handle_mouse_left_down(int mouseX, int mouseY);
+    void handle_key_down(SDL_Keycode& tecla);
+    void handle_extras(SDL_Keycode& tecla);
+    void handle_movements(SDL_Keycode& tecla);
+
 public:
     explicit GameView(Socket&& skt);
 

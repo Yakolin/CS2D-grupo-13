@@ -79,8 +79,8 @@ void Vista::run() {
                 return;
             }
         }
-        gameView.initial_draw_game(info_game_view /*, info_game*/);
-        gameView.draw_game();
+        gameView.start(info_game_view /*, info_game*/);
+        gameView.run();
     } catch (const QuitGameException& e) {  // no pongo mensaje porque es el comportamiento esperado
     } catch (const LibError& e) {           // no pongo mensaje porque es el comportamiento esperado
     } catch (const std::exception& e) {

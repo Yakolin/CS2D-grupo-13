@@ -5,6 +5,8 @@ GameView::GameView(
                         // es informacion necesaria para cargar el mapa
         config(),
         controller(std::move(skt)),
+        constant_rate_loop([this]() { return this->should_keep_running(); },
+                           [this]() { this->step(); }),
         leyenda(),
         texts(),
         ids(),
@@ -22,7 +24,8 @@ GameView::GameView(
         shop(camera, manger_texture, config),
         bomba(nullptr),
         hud(config, manger_texture),
-        activa(false) {
+        activa(false),
+        keep_running(true) {
 
     leyenda['#'] = "assets/gfx/backgrounds/nuke.png";
     leyenda[' '] = "assets/gfx/backgrounds/stone1.jpg";
@@ -213,6 +216,7 @@ void GameView::handle_events(const SDL_Event& event) {
     try {
         if (event.type == SDL_QUIT) {
             this->controller.stop();
+            this->keep_running = false;
             throw QuitGameException("Juego cerrado por el usuario");
         }
 
@@ -260,7 +264,7 @@ bool GameView::add_player(float x, float y, int speed, const Claves_skins& clave
 }
 
 
-void GameView::initial_draw_game(const GameInfo& info_game_view /*,const Player& info_game*/) {
+void GameView::start(const GameInfo& info_game_view /*,const Player& info_game*/) {
 
     this->map = new MapView(info_game_view.map_info.walls, &camera, &manger_texture, config);
     if (!map) {
@@ -278,32 +282,7 @@ void GameView::process_events() {
     }
 }
 
-void GameView::update_game_state(float deltaTime) {
-    try {
-        if (controller.has_game_image(this->snapshot)) {
-            bool found = false;
-            player_id_t counter = 0;
-            player_id_t index_player_id = 0;
-
-            while (!found && counter < snapshot.players_images.size()) {
-                if (snapshot.players_images[counter].player_id == snapshot.client_id) {
-                    index_player_id = counter;
-                    found = true;
-                }
-                counter++;
-            }
-            if (found) {
-                hud.load(snapshot.players_images[index_player_id], snapshot.bomb,
-                         snapshot.game_state.time, snapshot.game_state);
-            } else {
-                std::cerr << "Error: No se encontró el jugador con client_id " << snapshot.client_id
-                          << " en players_images\n";
-            }
-        }
-    } catch (const ClosedQueue& e) {  // comportamiento esperado
-        this->controller.stop();
-    }
-
+void GameView::update_game(float deltaTime) {
     update_status_game();
     player->update(deltaTime);
 
@@ -333,25 +312,50 @@ void GameView::render_game() {
     SDL_RenderPresent(renderer);
 }
 
-void GameView::draw_game() {
-    bomba = new Bomb(0, 0, camera, manger_texture, config);
+void GameView::update_game_image() {
+    try {
+        if (controller.has_game_image(this->snapshot)) {
+            bool found = false;
+            player_id_t counter = 0;
+            player_id_t index_player_id = 0;
 
-    auto keep_running = [&]() -> bool {
-        process_events();
-        return true;
-    };
+            while (!found && counter < snapshot.players_images.size()) {
+                if (snapshot.players_images[counter].player_id == snapshot.client_id) {
+                    index_player_id = counter;
+                    found = true;
+                }
+                counter++;
+            }
+            if (found) {
+                hud.load(snapshot.players_images[index_player_id], snapshot.bomb,
+                         snapshot.game_state.time, snapshot.game_state);
+            } else {
+                std::cerr << "Error: No se encontró el jugador con client_id " << snapshot.client_id
+                          << " en players_images\n";
+            }
+        }
+    } catch (const ClosedQueue& e) {  // comportamiento esperado
+        this->controller.stop();
+    }
+}
 
-    auto game_step = [&]() {
-        Uint32 currentTime = SDL_GetTicks();
-        float deltaTime = (currentTime - lastTime) / 1000.0f;
-        lastTime = currentTime;
+bool GameView::should_keep_running() { return this->keep_running; }
 
-        update_game_state(deltaTime);
-        render_game();
-    };
+void GameView::run() {
+    this->controller.start();
+    this->constant_rate_loop.execute();
+}
 
-    ConstantRateLoop loop(keep_running, game_step);
-    loop.execute();
+
+void GameView::step() {
+    Uint32 currentTime = SDL_GetTicks();
+    float deltaTime = (currentTime - this->lastTime) / 1000.0f;
+    this->lastTime = currentTime;
+
+    this->process_events();
+    this->update_game_image();
+    this->update_game(deltaTime);
+    this->render_game();
 }
 
 GameView::~GameView() {

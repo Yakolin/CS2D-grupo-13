@@ -7,9 +7,7 @@ Controller::Controller(Socket&& skt):
         send_queue(std::make_shared<Queue<std::unique_ptr<InterfaceClientAction>>>(MAX_QUEUE_SIZE)),
         recv_queue(std::make_shared<Queue<GameImage>>(MAX_QUEUE_SIZE)),
         sender(this->skt, this->send_queue),
-        receiver(this->skt, this->recv_queue) {
-    start();
-}
+        receiver(this->skt, this->recv_queue) {}
 
 TerroristSkin Controller::toItemTerrorism(const std::string& str) {
     if (str == "Phoenix")
@@ -112,6 +110,5 @@ bool Controller::is_valid_weapon_code(WeaponCode code) {
 }
 bool Controller::has_game_image(GameImage& snapshot) { return this->recv_queue->try_pop(snapshot); }
 
-void Controller::run() {}
 
 Controller::~Controller() {}

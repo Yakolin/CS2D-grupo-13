@@ -34,6 +34,7 @@ class GameView {
 private:
     GameConfig config;
     Controller controller;
+    ConstantRateLoop constant_rate_loop;
     std::map<char, std::string> leyenda;
     std::map<TextView, std::string> texts;
     std::map<char, Object> ids;
@@ -52,6 +53,7 @@ private:
     Bomb* bomba;
     HUD hud;
     bool activa;
+    std::atomic<bool> keep_running;
 
     bool bomb_activate;
     void handle_equip_type(const SDL_Keycode& tecla);
@@ -66,9 +68,15 @@ private:
 
     void init_bomb();
 
+    void step();
+
+    bool should_keep_running();
+
     void process_events();
 
-    void update_game_state(float deltaTime);
+    void update_game(float deltaTime);
+
+    void update_game_image();
 
     void render_game();
 
@@ -97,12 +105,11 @@ public:
     pre:
     post:
     */
-    void initial_draw_game(const GameInfo& info_game_view /*, const Player& info_game*/);
-    void draw_game();
+    void start(const GameInfo& info_game_view /*, const Player& info_game*/);
 
     bool add_player(float x, float y, int speed, const Claves_skins& claves);
 
-    void start();
+    void run();
 
     void reset_values(PlayerView* player, const float& x_pixeles, const float& y_pixeles);
 

@@ -30,7 +30,6 @@ private:
     Sender sender;
     Receiver receiver;
 
-    void start();
 
 public:
     explicit Controller(Socket&& skt);
@@ -68,7 +67,7 @@ public:
 
     bool has_game_image(GameImage& snapshot);
 
-    void run();
+    void start();
 
     ~Controller();
 };

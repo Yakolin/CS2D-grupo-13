@@ -5,6 +5,8 @@ GameView::GameView(
                         // es informacion necesaria para cargar el mapa
         config(),
         controller(std::move(skt)),
+        constant_rate_loop([this]() { return this->should_keep_running(); },
+                           [this]() { this->step(); }),
         leyenda(),
         texts(),
         ids(),
@@ -22,7 +24,8 @@ GameView::GameView(
         shop(camera, manger_texture, config),
         bomba(nullptr),
         hud(config, manger_texture),
-        activa(false) {
+        activa(false),
+        keep_running(true) {
 
     leyenda['#'] = "assets/gfx/backgrounds/nuke.png";
     leyenda[' '] = "assets/gfx/backgrounds/stone1.jpg";
@@ -146,7 +149,6 @@ void GameView::draw_players() {
     for (auto& pair: this->players) {
         PlayerView* player = pair.second;
         if (player) {
-
             player->draw(*renderer);
         }
     }
@@ -171,31 +173,62 @@ void GameView::handle_equip_type(const SDL_Keycode& tecla) {
             break;
     }
 }
+void GameView::handle_movements(SDL_Keycode& tecla) {
+    if (tecla == SDLK_w || tecla == SDLK_UP)
+        controller.sender_move(MoveType::DOWN);
+    if (tecla == SDLK_s || tecla == SDLK_DOWN)
+        controller.sender_move(MoveType::UP);
+    if (tecla == SDLK_a || tecla == SDLK_LEFT)
+        controller.sender_move(MoveType::LEFT);
+    if (tecla == SDLK_d || tecla == SDLK_RIGHT)
+        controller.sender_move(MoveType::RIGHT);
+    player->add_speed(tecla);
+}
+void GameView::handle_extras(SDL_Keycode& tecla) {
+    if (tecla == SDLK_g)
+        controller.sender_drop();
+    if (tecla == SDLK_r)
+        controller.sender_reload();
+    if (tecla == SDLK_e)
+        controller.sender_defuse();
+}
+void GameView::handle_key_down(SDL_Keycode& tecla) {
+    if (snapshot.game_state.state != GameState::TIME_TO_BUY)
+        shop.desactivate_shop();
+    if (tecla == SDLK_b && snapshot.game_state.state == GameState::TIME_TO_BUY) {
+        shop.activate_shop();
+    }
+    handle_movements(tecla);
+    handle_equip_type(tecla);
+    handle_extras(tecla);
+}
+void GameView::handle_mouse_left_down(int mouseX, int mouseY) {
+    if (shop.get_activa()) {
+        WeaponCode code = shop.calculate_selection(mouseX, mouseY);
+        // Realmente esto no deberia de siquiera pasar, casi que es una exception
+        if (code != WeaponCode::NONE)
+            controller.sender_buy_weapon(code);
+    }
+    if (snapshot.game_state.state == GameState::ROUND_STARTED)
+        controller.sender_shoot(mouseX, mouseY);
+}
 void GameView::handle_events(const SDL_Event& event) {
     try {
         if (event.type == SDL_QUIT) {
             this->controller.stop();
+            this->keep_running = false;
             throw QuitGameException("Juego cerrado por el usuario");
         }
 
         if (event.type == SDL_KEYDOWN) {
             SDL_Keycode tecla = event.key.keysym.sym;
-            controller.sender_mov_player(tecla);
-            player->add_speed(tecla);
-            if (snapshot.game_state.state != GameState::TIME_TO_BUY)
-                shop.desactivate_shop();
-            if (tecla == SDLK_b && snapshot.game_state.state == GameState::TIME_TO_BUY) {
-                shop.activate_shop();
-            }
-            handle_equip_type(tecla);
+            handle_key_down(tecla);
         }
-
         if (event.type == SDL_KEYUP) {
             SDL_Keycode tecla = event.key.keysym.sym;
             player->stop_speed(tecla);  // Detiene movimiento
         }
-
-        if (event.type == SDL_WINDOWEVENT) {
+        if (event.type == SDL_WINDOWEVENT) {  // LA PANTALLA
             if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
                 this->map->update_map_dimensions();
                 printf("Nuevo mapa width: %d, height: %d\n", map->getMapWidth(),
@@ -206,10 +239,7 @@ void GameView::handle_events(const SDL_Event& event) {
         if (event.type == SDL_MOUSEMOTION) {  // para mover mouse
             int mouseX = event.motion.x;
             int mouseY = event.motion.y;
-
             player->update_view_angle(mouseX, mouseY);
-            // printf("-----------mov mouse----------------------\n");
-            // printf("MOUSER en (%d, %d)\n", mouseX, mouseY);
             controller.sender_pos_mouse(mouseX, mouseY);
         }
 
@@ -217,39 +247,7 @@ void GameView::handle_events(const SDL_Event& event) {
             if (event.button.button == SDL_BUTTON_LEFT) {
                 int mouseX = event.button.x;
                 int mouseY = event.button.y;
-                if (shop.get_activa()) {
-                    WeaponCode code = shop.calculate_selection(mouseX, mouseY);
-                    if (code !=
-                        WeaponCode::NONE)  // Realmente esto no deberia de siquiera pasar, casi
-                        // que es una exception
-                        controller.sender_buy_weapon(code);
-                }
-                if (snapshot.game_state.state == GameState::ROUND_STARTED) {
-                    controller.sender_shoot(mouseX, mouseY);
-                }
-                printf("Clic izquierdo detectado en (%d, %d)\n", mouseX, mouseY);
-                // player->activate_weapon(Weapon::AK47);
-                // bomba->activate();
-            }
-        }
-
-
-        if (event.type == SDL_MOUSEBUTTONDOWN) {
-            if (event.button.button == SDL_BUTTON_LEFT) {
-                int mouseX = event.button.x;
-                int mouseY = event.button.y;
-                if (shop.get_activa()) {
-                    WeaponCode code = shop.calculate_selection(mouseX, mouseY);
-                    if (code !=
-                        WeaponCode::NONE)  // Realmente esto no deberia de siquiera pasar, casi
-                        // que es una exception
-                        controller.sender_buy_weapon(code);
-                } else if (snapshot.game_state.state !=
-                           GameState::TIME_TO_BUY)  // Quiza innecesaria
-                    controller.sender_shoot(mouseX, mouseY);
-                // player->activate_weapon(Weapon::AK47);
-                //  bomba->activate();
-                printf("Clic izquierdo detectado en (%d, %d)\n", mouseX, mouseY);
+                handle_mouse_left_down(mouseX, mouseY);
             }
         }
 
@@ -266,7 +264,7 @@ bool GameView::add_player(float x, float y, int speed, const Claves_skins& clave
 }
 
 
-void GameView::initial_draw_game(const GameInfo& info_game_view /*,const Player& info_game*/) {
+void GameView::start(const GameInfo& info_game_view /*,const Player& info_game*/) {
 
     this->map = new MapView(info_game_view.map_info.walls, &camera, &manger_texture, config);
     if (!map) {
@@ -284,32 +282,7 @@ void GameView::process_events() {
     }
 }
 
-void GameView::update_game_state(float deltaTime) {
-    try {
-        if (controller.has_game_image(this->snapshot)) {
-            bool found = false;
-            player_id_t counter = 0;
-            player_id_t index_player_id = 0;
-
-            while (!found && counter < snapshot.players_images.size()) {
-                if (snapshot.players_images[counter].player_id == snapshot.client_id) {
-                    index_player_id = counter;
-                    found = true;
-                }
-                counter++;
-            }
-            if (found) {
-                hud.load(snapshot.players_images[index_player_id], snapshot.bomb,
-                         snapshot.game_state.time, snapshot.game_state);
-            } else {
-                std::cerr << "Error: No se encontró el jugador con client_id " << snapshot.client_id
-                          << " en players_images\n";
-            }
-        }
-    } catch (const ClosedQueue& e) {  // comportamiento esperado
-        this->controller.stop();
-    }
-
+void GameView::update_game(float deltaTime) {
     update_status_game();
     player->update(deltaTime);
 
@@ -339,25 +312,50 @@ void GameView::render_game() {
     SDL_RenderPresent(renderer);
 }
 
-void GameView::draw_game() {
-    bomba = new Bomb(0, 0, camera, manger_texture, config);
+void GameView::update_game_image() {
+    try {
+        if (controller.has_game_image(this->snapshot)) {
+            bool found = false;
+            player_id_t counter = 0;
+            player_id_t index_player_id = 0;
 
-    auto keep_running = [&]() -> bool {
-        process_events();
-        return true;
-    };
+            while (!found && counter < snapshot.players_images.size()) {
+                if (snapshot.players_images[counter].player_id == snapshot.client_id) {
+                    index_player_id = counter;
+                    found = true;
+                }
+                counter++;
+            }
+            if (found) {
+                hud.load(snapshot.players_images[index_player_id], snapshot.bomb,
+                         snapshot.game_state.time, snapshot.game_state);
+            } else {
+                std::cerr << "Error: No se encontró el jugador con client_id " << snapshot.client_id
+                          << " en players_images\n";
+            }
+        }
+    } catch (const ClosedQueue& e) {  // comportamiento esperado
+        this->controller.stop();
+    }
+}
 
-    auto game_step = [&]() {
-        Uint32 currentTime = SDL_GetTicks();
-        float deltaTime = (currentTime - lastTime) / 1000.0f;
-        lastTime = currentTime;
+bool GameView::should_keep_running() { return this->keep_running; }
 
-        update_game_state(deltaTime);
-        render_game();
-    };
+void GameView::run() {
+    this->controller.start();
+    this->constant_rate_loop.execute();
+}
 
-    ConstantRateLoop loop(keep_running, game_step);
-    loop.execute();
+
+void GameView::step() {
+    Uint32 currentTime = SDL_GetTicks();
+    float deltaTime = (currentTime - this->lastTime) / 1000.0f;
+    this->lastTime = currentTime;
+
+    this->process_events();
+    this->update_game_image();
+    this->update_game(deltaTime);
+    this->render_game();
 }
 
 GameView::~GameView() {

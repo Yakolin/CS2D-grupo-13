@@ -35,6 +35,7 @@ void CollisionManager::check_weapon_stepped(PlayerEntity& player) {
     if (player.player.lock() && player.player.lock()->equip(it->second))
         dropped_things.erase(it);
 }
+
 void CollisionManager::add_bullet_image(const Vector2f& initial_pos, const Vector2f& final_pos) {
     coordinate_t x_initial = static_cast<coordinate_t>(std::round(initial_pos.x));
     coordinate_t y_initial = static_cast<coordinate_t>(std::round(initial_pos.y));
@@ -45,6 +46,7 @@ void CollisionManager::add_bullet_image(const Vector2f& initial_pos, const Vecto
     BulletImage image(initial_cast, end_cast);
     bullets_image.push_back(std::move(image));
 }
+
 bool CollisionManager::is_a_wall(coordinate_t x, coordinate_t y) {
     return x < walls.size() && y < walls[0].size() && walls[x][y] == Wall;
 }
@@ -73,7 +75,13 @@ bool CollisionManager::check_bullet_wall(const Vector2f& initial_pos, const Vect
     }
     return false;
 }
-std::vector<BulletImage> CollisionManager::get_bullets_image() { return bullets_image; }
+
+std::vector<BulletImage> CollisionManager::get_bullets_image() {
+    std::vector<BulletImage> bullets_image = std::move(this->bullets_image);
+    this->bullets_image.clear();
+    return bullets_image;
+}
+
 void CollisionManager::check_damage_players(player_id_t caster, ColliderDamage& collider_damage,
                                             std::vector<PlayerEntity>& players_affected) {
     for (auto& player: players_in_map) {
@@ -84,6 +92,7 @@ void CollisionManager::check_damage_players(player_id_t caster, ColliderDamage& 
         players_affected.push_back(player.second);
     }
 }
+
 void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage& collider_damage) {
     srand(time(nullptr));
     bullets_image.clear();

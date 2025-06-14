@@ -90,7 +90,6 @@ void print_game_image(const GameImage& image) {
     }
 
     */
-    std::cout << "--- Bullets in Air ---\n";
     for (const auto& bullet: image.bullets_in_air) {
         std::cout << "  From (" << bullet.initial.x << ", " << bullet.initial.y << ") to ("
                   << bullet.end.x << ", " << bullet.end.y << ")\n";
@@ -115,19 +114,19 @@ void print_game_image(const GameImage& image) {
 
 void GameView::update_status_game() {
     print_game_image(snapshot);
+    int tile_width = config.get_tile_width();
+    int tile_height = config.get_tile_height();
     for (const BulletImage& bullet: snapshot.bullets_in_air) {
         std::cout << "Initial: (" << bullet.initial.x << ", " << bullet.initial.y << ")\n";
         std::cout << "End: (" << bullet.end.x << ", " << bullet.end.y << ")\n";
-        Coordenada init = {static_cast<float>(bullet.initial.x),
-                           static_cast<float>(bullet.initial.y)};
-        Coordenada end = {static_cast<float>(bullet.end.x), static_cast<float>(bullet.end.y)};
+        Coordenada init = {static_cast<float>(bullet.initial.x * tile_width),
+                           static_cast<float>(bullet.initial.y * tile_height)};
+        Coordenada end = {static_cast<float>(bullet.end.x * tile_width),
+                          static_cast<float>(bullet.end.y * tile_height)};
 
         Bullet bullet_aux(init, end, manger_texture.get(Object::BULLET));
         this->bullets.push_back(bullet_aux);
     }
-
-    int tile_width = config.get_tile_width();
-    int tile_height = config.get_tile_height();
 
     for (PlayerImage& player_img: this->snapshot.players_images) {
         player_id_t id = player_img.player_id;
@@ -265,25 +264,6 @@ bool GameView::handle_events(const SDL_Event& event) {
             // bomba->activate();
         }
     }
-
-
-    if (event.type == SDL_MOUSEBUTTONDOWN) {
-        if (event.button.button == SDL_BUTTON_LEFT) {
-            int mouseX = event.button.x;
-            int mouseY = event.button.y;
-            if (shop.get_activa()) {
-                WeaponCode code = shop.calculate_selection(mouseX, mouseY);
-                if (code != WeaponCode::NONE)  // Realmente esto no deberia de siquiera pasar, casi
-                                               // que es una exception
-                    controller.sender_buy_weapon(code);
-            } else if (snapshot.game_state.state != GameState::TIME_TO_BUY)  // Quiza innecesaria
-                controller.sender_shoot(mouseX, mouseY);
-            // player->activate_weapon(Weapon::AK47);
-            //  bomba->activate();
-            printf("Clic izquierdo detectado en (%d, %d)\n", mouseX, mouseY);
-        }
-    }
-
     return true;
 }
 
@@ -349,16 +329,14 @@ void GameView::draw_object() {
     draw_players();
     // if (bomba)
     //    bomba->draw(*renderer);
-    if (bullets.empty()) {
-        std::cout << "sin balas\n";
-    }
-    for (size_t i = 0; i < bullets.size(); ++i) {
-        Bullet& bullet = bullets[i];
-        bullet.updateBullet(0.1f);
-        if (bullet.finalizado()) {
-            bullets.erase(bullets.begin() + i);
+    for (auto it = bullets.begin(); it != bullets.end();) {
+        if (it->finalizado()) {
+            it = bullets.erase(it);
         } else {
-            bullet.draw(*renderer);
+            Coordenada camera_pos(camera.getX(), camera.getY());
+            it->set_camera(camera_pos);
+            it->draw(*renderer);
+            ++it;
         }
     }
     fov->draw(*renderer);

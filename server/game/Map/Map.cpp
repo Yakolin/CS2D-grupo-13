@@ -64,8 +64,8 @@ void Map::spawn_collider(player_id_t id_spawn, collider_solicitude_t& wanted) {
     // Aca le sumo la posicion del jugador, para saber desde donde debe salir la bala
     Vector2f end_pos(relative_direction.x + player_pos.x, relative_direction.y + player_pos.y);
     // Aca es un chekeo para que basicamente no se vayan de rango las balas
-    end_pos.x = std::max(0.0f, std::min(end_pos.x, static_cast<float>(walls.size())));
-    end_pos.y = std::max(0.0f, std::min(end_pos.y, static_cast<float>(walls[0].size())));
+    end_pos.x = std::max(0.0f, end_pos.x);
+    end_pos.y = std::max(0.0f, end_pos.y);
     std::unique_ptr<Collider> line =
             std::make_unique<Line>(std::move(player_pos), std::move(end_pos), wanted.width);
     collider_damage_t collider_damage = {std::move(line), wanted.damage_function};

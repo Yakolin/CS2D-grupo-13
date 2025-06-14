@@ -39,7 +39,6 @@ void Player::move(const MoveType& move_type) {
 void Player::reload() { this->equipment.reload(); }
 
 void Player::shoot(const coordinate_t& mouse_x, const coordinate_t& mouse_y) {
-    std::cout << "Tratando de disparar :)\n";
     Position position(mouse_x, mouse_y);
     this->equipment.shoot(position);
 }

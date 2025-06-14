@@ -100,6 +100,10 @@ void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage&
     PlayerEntity player_caster = players_in_map[caster];
     Vector2f pos_caster(player_caster.position.x, player_caster.position.y);
     Vector2f end = collider_damage.collider->get_end();
+    Vector2f origin = collider_damage.collider->get_start();
+    std::cout << "La bala se dispara desde: (" << origin.x << ", " << origin.y << ") hacia: ("
+              << end.x << ", " << end.y << ")\n";
+    /*
     check_damage_players(caster, collider_damage, players_affected);
     if (players_affected.empty()) {
         // Si no se detecto ningun jugador, revisamos si hay un muro entre medio
@@ -109,7 +113,6 @@ void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage&
         add_bullet_image(pos_caster, end);
         return;
     }
-    // Aca buscamos de todos los detectados, que son a lo sumo 10, el mas cercano
     PlayerEntity nearest = players_affected[0];
     Vector2f pos_nearest(nearest.position.x, nearest.position.y);
     float min_distance = pos_caster.distance(pos_nearest);
@@ -124,7 +127,10 @@ void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage&
             nearest = player;
         }
     }
+    */
+    // Aca buscamos de todos los detectados, que son a lo sumo 10, el mas cercano
     // Ya detectado el mas cercano, revisamos si hay un muro entre medio
+    /*
     if (check_bullet_wall(pos_caster, pos_nearest)) {
         std::cout << "Hay un muro en medio\n";
         return;
@@ -139,8 +145,9 @@ void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage&
                 player_caster.player.lock()->get_points();
             }
         }
-        add_bullet_image(pos_caster, pos_nearest);
     }
+    */
+    add_bullet_image(origin, end);
 }
 
 void CollisionManager::check_damage() {

@@ -75,6 +75,7 @@ void Controller::sender_drop() {
     send_queue->push(std::move(action));
 }
 
+
 void Controller::sender_mov_player(SDL_Keycode key) {
     MoveType mov = MoveType::DOWN;
 

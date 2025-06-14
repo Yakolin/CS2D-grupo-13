@@ -33,12 +33,9 @@ class GameView {
 private:
     GameConfig config;
     Controller controller;
-    std::map<char, std::string> leyenda;
     std::map<TextView, std::string> texts;
-    std::map<char, Object> ids;
     SDL_Window* ventana;
     SDL_Renderer* renderer;
-    SDL_Texture* backgroundTexture;
     PlayerView* player;
     Camera camera;
     ManageTexture manger_texture;
@@ -58,14 +55,10 @@ private:
     void mouse_position_tiles(int& posx, int& posy , const int& mousex, const int& mousey);
     bool handle_events(const SDL_Event& evento);
 
-    void load_textures();
-
 
     void update_status_game();
 
     void draw_players();
-
-    void init_bomb();
 
 
 public:

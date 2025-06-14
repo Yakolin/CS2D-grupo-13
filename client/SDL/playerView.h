@@ -50,7 +50,6 @@ private:
     bool activar_weapon;
     SDL_Texture* texture_player;
     WeaponCode equipped_weapon;
-    Uint32 lastUpdateTime;
 
     void calcular();
     

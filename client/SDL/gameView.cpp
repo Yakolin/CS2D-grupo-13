@@ -5,19 +5,15 @@ GameView::GameView(
                         // es informacion necesaria para cargar el mapa
         config(),
         controller(std::move(skt)),
-        leyenda(),
         texts(),
-        ids(),
         ventana(init_window(config)),
         renderer(init_renderer(ventana, config)),
-        backgroundTexture(nullptr),
         player(nullptr),
         camera(config.get_window_width(), config.get_window_height()),
         manger_texture(renderer),
         players(),
         snapshot(),
         map(nullptr),
-        lastTime(SDL_GetTicks()),
         fov(nullptr),
         shop(camera, manger_texture, config),
         bomba(nullptr),
@@ -25,25 +21,6 @@ GameView::GameView(
         activa(false),
         bullets() {
 
-    leyenda['#'] = "assets/gfx/backgrounds/nuke.png";
-    leyenda[' '] = "assets/gfx/backgrounds/stone1.jpg";
-    leyenda['~'] = "assets/gfx/backgrounds/water4.jpg";
-    leyenda['='] = "assets/gfx/box.PNG";
-    leyenda['.'] = "assets/gfx/backgrounds/gras1.jpg";
-    leyenda['A'] = "assets/gfx/backgrounds/zonaa.jpeg";
-    leyenda['B'] = "assets/gfx/backgrounds/zonab.jpeg";
-    leyenda['C'] = "assets/gfx/backgrounds/zonacounter.jpeg";
-    leyenda['T'] = "assets/gfx/backgrounds/zonaTerrorist.jpeg";
-
-    ids['#'] = Object::WALL;
-    ids[' '] = Object::STONE;
-    ids['~'] = Object::WATER;
-    ids['='] = Object::BOX;
-    ids['.'] = Object::GRASS;
-    ids['A'] = Object::ZONE_BOMBA2;
-    ids['B'] = Object::ZONE_BOMBA1;
-    ids['T'] = Object::ZONE_TERRORIST;
-    ids['C'] = Object::ZONE_COUNTERTERROSIT;
 }
 
 SDL_Window* GameView::init_window(const GameConfig& config) {
@@ -78,31 +55,16 @@ bool GameView::init_game() {
         return false;
     }
 
-    try {
-        load_textures();
-    } catch (const std::exception& e) {
-        std::cerr << e.what() << '\n';
-        return false;
-    } catch (...) {
-        std::cerr << "Excepción desconocida en load_text o load_textures" << std::endl;
-        return false;
-    }
-
     return true;
 }
 
-void GameView::load_textures() {
-    for (const auto& par: leyenda) {
-        manger_texture.load(ids.at(par.first), par.second);
-    }
-}
 
 void GameView::reset_values(PlayerView* player, const float& x_pixeles, const float& y_pixeles) {
 
     player->setPrevPos(player->getXActual(), player->getYActual());
     player->setTargetPos(x_pixeles, y_pixeles);
     player->setInterpTime(0.0f);
-    player->setInterpDuration(0.1f);
+   // player->setInterpDuration(0.1f);
 }
 
 void print_game_image(const GameImage& image) {
@@ -211,20 +173,16 @@ void GameView::draw_players() {
 void GameView::handle_equip_type(const SDL_Keycode& tecla) {
     switch (tecla) {
         case SDLK_1:
-            std::cout << "Presionaste la tecla 1" << std::endl;
             controller.sender_equip(EquipType::PRIMARY);
             break;
         case SDLK_2:
             controller.sender_equip(EquipType::SECONDARY);
-            std::cout << "Presionaste la tecla 2" << std::endl;
             break;
         case SDLK_3:
             controller.sender_equip(EquipType::KNIFE);
-            std::cout << "Presionaste la tecla 3" << std::endl;
             break;
         case SDLK_4:
             controller.sender_equip(EquipType::BOMB);
-            std::cout << "Presionaste la tecla 4" << std::endl;
             break;
     }
 }
@@ -251,10 +209,10 @@ bool GameView::handle_events(const SDL_Event& event) {
         return false;
     }
 
-    if (event.type == SDL_KEYDOWN) {
+    if (event.type == SDL_KEYDOWN) { // precionas una tecla
         SDL_Keycode tecla = event.key.keysym.sym;
-        controller.sender_mov_player(tecla);
         player->add_speed(tecla);
+        controller.sender_mov_player(tecla);
         if (snapshot.game_state.state != GameState::TIME_TO_BUY)
             shop.desactivate_shop();
         if (tecla == SDLK_b && snapshot.game_state.state == GameState::TIME_TO_BUY) {
@@ -263,7 +221,7 @@ bool GameView::handle_events(const SDL_Event& event) {
         handle_equip_type(tecla);
     }
 
-    if (event.type == SDL_KEYUP) {
+    if (event.type == SDL_KEYUP) { // sueeltas una teca
         SDL_Keycode tecla = event.key.keysym.sym;
         player->stop_speed(tecla);  // Detiene movimiento
         return true;
@@ -272,7 +230,6 @@ bool GameView::handle_events(const SDL_Event& event) {
     if (event.type == SDL_WINDOWEVENT) {
         if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
             this->map->update_map_dimensions();
-            printf("Nuevo mapa width: %d, height: %d\n", map->getMapWidth(), map->getMapHeight());
         }
     }
 
@@ -281,8 +238,6 @@ bool GameView::handle_events(const SDL_Event& event) {
         int mouseY = event.motion.y;
 
         player->update_view_angle(mouseX, mouseY);
-        // printf("-----------mov mouse----------------------\n");
-        // printf("MOUSER en (%d, %d)\n", mouseX, mouseY);
         controller.sender_pos_mouse(mouseX, mouseY);
     }
 
@@ -339,7 +294,7 @@ bool GameView::add_player(float x, float y, int speed, const Claves_skins& clave
 
 void GameView::initial_draw_game(const GameInfo& info_game_view /*,const Player& info_game*/) {
 
-    this->map = new MapView(info_game_view.map_info.walls, &camera, &manger_texture, config);
+    this->map = new MapView(info_game_view.map_info, &camera, &manger_texture, config);
     if (!map) {
         throw std::runtime_error("Error al cargar mapa");
         return;
@@ -403,7 +358,10 @@ void GameView::draw_game() {
         }
     
         update_status_game();
+        std::cout << "Antes de update: x = " << player->getXActual() << ", y = " << player->getYActual() << "\n";
         player->update(deltaTime);
+        std::cout << "Después de update: x = " << player->getXActual() << ", y = " << player->getYActual() << "\n";
+
 
         for (auto& pair: players) {
             if (pair.second != nullptr && pair.second != player) {
@@ -432,6 +390,7 @@ void GameView::draw_game() {
         if (shop.get_activa()) {
             shop.draw(*renderer);
         }
+        //map->render_objet(*renderer);
         hud.render(*renderer);
         SDL_RenderPresent(renderer);
     };
@@ -466,9 +425,6 @@ GameView::~GameView() {
         delete fov;
 
     this->manger_texture.clear();
-
-    if (backgroundTexture)
-        SDL_DestroyTexture(backgroundTexture);
 
     if (renderer)
         SDL_DestroyRenderer(renderer);

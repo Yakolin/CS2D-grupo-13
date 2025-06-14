@@ -9,7 +9,7 @@ FieldOfView::FieldOfView(PlayerView& player, Camera& camera, ManageTexture& mana
         lado(config_game.get_window_width() + config_game.get_window_height()),
         texture_fov(nullptr),
         config(config_game) {
-    texture_fov = manager.create_stencil(lado, lado, 0.0f, 90.0f);
+    texture_fov = manager.create_stencil(lado, lado, 0.0f, 90.0f ,config.get_intensity());
 }
 
 
@@ -38,5 +38,5 @@ void FieldOfView::actualizarStencil(const int nuevo_ancho, const int nuevo_alto,
         SDL_DestroyTexture(texture_fov);
 
     texture_fov = manager.create_stencil(nuevo_ancho, nuevo_alto, 0.0f,
-                                         apertura);  // ángulo 0, solo para la forma
+                                         apertura, config.get_intensity());  // ángulo 0, solo para la forma
 }

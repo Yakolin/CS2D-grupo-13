@@ -71,11 +71,11 @@ void Vista::run() {
 
 
         if (opcionElegida == LobbyCommandType::CREATE_GAME) {
-            if (!gameView.add_player(11, 4, 200.0f, claves)) {
+            if (!gameView.add_player(11, 4, 100.0f, claves)) {
                 return;
             }
         } else {
-            if (!gameView.add_player(23, 9, 200.0f, claves)) {
+            if (!gameView.add_player(23, 9, 100.0f, claves)) {
                 return;
             }
         }

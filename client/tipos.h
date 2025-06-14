@@ -49,10 +49,12 @@ enum class Weapon {
     M3,
     NONE
 };
-
 enum class Object {
     STONE,
-    WALL,
+    WALL_AZTEC,
+    WALL_ENTRENAMIENTO,
+    WALL_DESIERTO,
+
     GRASS,
     BOX,
     PLAYER,
@@ -65,12 +67,20 @@ enum class Object {
     EXPLOSION,
     BULLET,
 
+    TREE_AZTEC,
+    TREE_ENTRENAMIENTO,
+    TREE_DESIERTO,
+
+    FLOOR_AZTEC,
+    FLOOR_ENTRENAMIENTO,
+    FLOOR_DESIERTO,
+
     ZONE_TERRORIST,
     ZONE_COUNTERTERROSIT,
     ZONE_BOMBA1,
     ZONE_BOMBA2
-
 };
+
 
 // campo en el desierto, un pueblito azteca o una zona de entrenamiento
 enum class Map { DESIERTO, PUEBLITO_AZTECA, ZONA_ENTRENAMIENTO };

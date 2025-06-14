@@ -2,8 +2,7 @@
 
 #include "mapView.h"
 
-const int FILAS_MAP = 17;
-const int COLUMNAS_MAP = 38;
+
 
 PlayerView::PlayerView(const float& x, const float& y, const Claves_skins& clave_player,
                        const float& speed, Camera* camera_receiver, ManageTexture* manager_texture,
@@ -30,10 +29,8 @@ PlayerView::PlayerView(const float& x, const float& y, const Claves_skins& clave
         weapons(),
         activar_weapon(false),
         texture_player(manejador->get_texture_ct(clave_player.ct_skin)),
-        equipped_weapon(WeaponCode::NONE),
-        lastUpdateTime(0) {
+        equipped_weapon(WeaponCode::NONE) {
     calcular();
-    lastUpdateTime = SDL_GetTicks();
 }
 
 void PlayerView::update_equip(const PlayerImage player_aux){
@@ -70,6 +67,8 @@ void PlayerView::update(const float& deltaTime) {
         x_actual = prev_pos.x + (target_pos.x - prev_pos.x) * t;
         y_actual = prev_pos.y + (target_pos.y - prev_pos.y) * t;
     }
+
+    
 }
 bool is_valid_weapon_code(WeaponCode code) {
     switch (code) {

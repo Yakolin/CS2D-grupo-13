@@ -26,20 +26,32 @@ ManageTexture::ManageTexture(SDL_Renderer* renderer): renderer(renderer) {
     load_weapons(WeaponCode::M3, "assets/gfx/weapons/m3v.png", renderer);
     load_weapons(WeaponCode::KNIFE, "assets/gfx/weapons/knife.png", renderer);
     load_weapons(WeaponCode::GLOCK, "assets/gfx/weapons/glock.png", renderer);
+
+    
+    load(Object::WALL_AZTEC, "assets/gfx/backgrounds/nuke.png");
+    load(Object::WALL_DESIERTO, "assets/gfx/backgrounds/dust.png");
+    load(Object::WALL_ENTRENAMIENTO, "assets/gfx/backgrounds/stone1.jpg");
+
+    load(Object::FLOOR_AZTEC, "assets/gfx/blockglas.PNG");
+    load(Object::FLOOR_DESIERTO, "assets/gfx/backgrounds/sand1.jpg");
+    load(Object::FLOOR_ENTRENAMIENTO, "assets/gfx/backgrounds/sand1-night.jpg");
+    
+    load(Object::TREE_AZTEC, "assets/gfx/sprites/palmr1.png");
+    load(Object::TREE_DESIERTO, "assets/gfx/sprites/palmr.png");
+    load(Object::TREE_ENTRENAMIENTO, "assets/gfx/sprites/plant1r.png");
+
+    load(Object::STONE, "assets/gfx/backgrounds/stone1.jpg");
+    load(Object::WATER, "assets/gfx/backgrounds/water4.jpg");
+    load(Object::BOX, "assets/gfx/box.PNG");
+    load(Object::GRASS, "assets/gfx/backgrounds/gras1.jpg");
+    load(Object::ZONE_BOMBA2, "assets/gfx/backgrounds/zonaa.jpeg");
+    load(Object::ZONE_BOMBA1, "assets/gfx/backgrounds/zonab.jpeg");
+    load(Object::ZONE_COUNTERTERROSIT, "assets/gfx/backgrounds/zonacounter.jpeg");
+    load(Object::ZONE_TERRORIST, "assets/gfx/backgrounds/zonaTerrorist.jpeg");
+    load(Object::EXPLOSION, "assets/gfx/explosion.png");
+
 }
 
-void ManageTexture::drawHealthBar(int x, int y, int width, int height, float healthPercent) {
-    // Contorno de la barra
-    SDL_Rect border = {x, y, width, height};
-    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);  // Color blanco
-    SDL_RenderDrawRect(renderer, &border);
-
-    // Barra de vida (relleno)
-    SDL_Rect healthBar = {x + 2, y + 2, static_cast<int>((width - 4) * healthPercent), height - 4};
-    SDL_SetRenderDrawColor(renderer, 255 * (1 - healthPercent), 255 * healthPercent, 0,
-                           255);  // Rojo -> Verde
-    SDL_RenderFillRect(renderer, &healthBar);
-}
 
 
 void ManageTexture::render_text(const SDL_Rect& rect, const std::string& text,
@@ -137,11 +149,13 @@ SDL_Texture* ManageTexture::render_menu_texture(const std::unordered_map<WeaponC
     SDL_SetRenderTarget(renderer, nullptr);
     return menuTexture;
 }
-
 void ManageTexture::load(const Object& id, const std::string& filePath) {
+    std::cout << "[LOAD TEXTURE] Intentando cargar: " << filePath << std::endl;
 
     SDL_Surface* surface = IMG_Load(filePath.c_str());
     if (!surface) {
+        std::cerr << "[ERROR] No se pudo cargar la imagen: " << filePath << "\n"
+                  << "Motivo: " << IMG_GetError() << std::endl;
         throw std::runtime_error("Error cargando imagen: " + std::string(IMG_GetError()));
     }
 
@@ -149,10 +163,13 @@ void ManageTexture::load(const Object& id, const std::string& filePath) {
     SDL_FreeSurface(surface);
 
     if (!texture) {
+        std::cerr << "[ERROR] No se pudo crear textura desde: " << filePath << "\n"
+                  << "Motivo: " << SDL_GetError() << std::endl;
         throw std::runtime_error("Error creando textura: " + std::string(SDL_GetError()));
     }
 
     textures[id] = texture;
+    std::cout << "[LOAD TEXTURE] Textura cargada con éxito: " << filePath << std::endl;
 }
 
 void ManageTexture::load_skins_tt(const TerroristSkin& id, const std::string& filePath) {
@@ -264,8 +281,8 @@ std::array<SDL_Point, 4> calculo(const int& lado, const int& angle, const int& a
 }
 
 SDL_Texture* ManageTexture::create_stencil(const int& ancho, const int& alto, const float& angle,
-                                           const float& apertura) {
-
+                                           const float& apertura, const int& intensity) {
+                                            (void)intensity;
     int lado = (ancho + alto);
     SDL_Texture* stencil = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888,
                                              SDL_TEXTUREACCESS_TARGET, lado, lado);

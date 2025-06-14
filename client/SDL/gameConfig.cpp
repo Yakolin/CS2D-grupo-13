@@ -75,6 +75,7 @@ void GameConfig::load(const std::string& file_path) {
         this->blanco.g = config["blanco"]["g"].as<Uint8>();
         this->blanco.b = config["blanco"]["b"].as<Uint8>();
         this->blanco.a = config["blanco"]["a"].as<Uint8>();
+        this->intensity = config["fov"]["intensity"].as<int>();
 
 
     } catch (const YAML::Exception& e) {
@@ -82,6 +83,7 @@ void GameConfig::load(const std::string& file_path) {
     }
 }
 
+int GameConfig::get_intensity(){return intensity;}
 
 std::vector<std::vector<char>> GameConfig::load_map(const std::string& archivo) {
 

@@ -5,8 +5,8 @@ Weapons:
     fire_rate: 3
     max_bullets: 90
     magazine: 30
-    width: 2
-    distance: 90
+    width: 1
+    distance: 15
     purchasable: 1
   Glock:
     price: 500
@@ -14,8 +14,8 @@ Weapons:
     fire_rate: 1
     max_bullets: 120
     magazine: 30
-    width: 2
-    distance: 60
+    width: 1
+    distance: 10
     purchasable: 0
   Knife:
     price: 0

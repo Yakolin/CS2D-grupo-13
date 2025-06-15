@@ -62,8 +62,8 @@ private:
     Skins skins;
     GameConfig::player_config_t& config;
     Equipment equipment;
-    uint8_t health;
-    uint8_t points;
+    health_t health;
+    points_t points;
     money_t money;
     Position mouse_position;
     IGameZone& game_zone;

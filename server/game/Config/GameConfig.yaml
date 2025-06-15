@@ -32,7 +32,7 @@ Player:
   money: 200
   points: 0
   earned_points: 100
-  multiplier_points: 3
+  multiplier_points: 12
 Timer:
   time_buy: 5
   time_round: 100

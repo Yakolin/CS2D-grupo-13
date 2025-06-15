@@ -290,7 +290,7 @@ void ClientProtocol::read_player_image(std::vector<PlayerImage>& players_images)
         this->read_byte_data(health);
 
         points_t points;
-        this->read_byte_data(points);
+        this->read_two_byte_data(points);
 
         money_t money;
         this->read_two_byte_data(money);

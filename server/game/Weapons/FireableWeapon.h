@@ -12,8 +12,8 @@
 
 #include "Weapon.h"
 class FireableWeapon: public Weapon {
-    uint8_t inventory_bullets;
-    uint8_t magazine;
+    max_bullets_t inventory_bullets;
+    max_bullets_t magazine;
 
 protected:
     bool reduce_bullets();

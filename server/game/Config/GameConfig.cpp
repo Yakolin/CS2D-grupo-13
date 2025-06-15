@@ -21,10 +21,10 @@ void GameConfig::load_weapons(const YAML::Node& config) {
         YAML::Node data = weapon.second;
         bool purchasable = data["purchasable"].as<int>();
         WeaponConfig weapon_config{
-                data["price"].as<uint16_t>(),    data["damage"].as<uint8_t>(),
-                data["fire_rate"].as<uint8_t>(), data["max_bullets"].as<uint8_t>(),
-                data["magazine"].as<uint8_t>(),  data["width"].as<uint8_t>(),
-                data["distance"].as<uint8_t>(),  purchasable};
+                data["price"].as<price_t>(),          data["damage"].as<damage_t>(),
+                data["fire_rate"].as<fire_rate_t>(),  data["max_bullets"].as<max_bullets_t>(),
+                data["magazine"].as<max_bullets_t>(), data["width"].as<width_t>(),
+                data["distance"].as<distance_t>(),    purchasable};
         weapon_configs[code] = weapon_config;
     }
 }
@@ -35,9 +35,9 @@ void GameConfig::load_timers(const YAML::Node& config) {
 }
 void GameConfig::load_player(const YAML::Node& config) {
     YAML::Node player = config["Player"];
-    player_config = {player["health"].as<uint8_t>(), player["money"].as<uint16_t>(),
-                     player["points"].as<uint16_t>(), player["earned_points"].as<uint16_t>(),
-                     player["multiplier_points"].as<uint8_t>()};
+    player_config = {player["health"].as<health_t>(), player["money"].as<money_t>(),
+                     player["points"].as<points_t>(), player["earned_points"].as<earned_points_t>(),
+                     player["multiplier_points"].as<multiplier_points_t>()};
 }
 void GameConfig::load(const std::string& file_path) {
     try {

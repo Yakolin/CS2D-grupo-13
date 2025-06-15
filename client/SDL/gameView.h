@@ -25,6 +25,7 @@
 #include "manageTexture.h"
 #include "mapView.h"
 #include "playerView.h"
+#include "quit_game_exception.h"
 #include "renderizable.h"
 #include "shopping.h"
 #include "text.h"
@@ -33,6 +34,8 @@ class GameView {
 private:
     GameConfig config;
     Controller controller;
+    ConstantRateLoop constant_rate_loop;
+    std::map<char, std::string> leyenda;
     std::map<TextView, std::string> texts;
     SDL_Window* ventana;
     SDL_Renderer* renderer;
@@ -48,13 +51,17 @@ private:
     Bomb* bomba;
     HUD hud;
     bool activa;
+    std::atomic<bool> keep_running;
     std::vector<Bullet> bullets;
-
     bool bomb_activate;
+  
     void handle_equip_type(const SDL_Keycode& tecla);
+  
     void mouse_position_tiles(int& posx, int& posy , const int& mousex, const int& mousey);
+  
     bool handle_events(const SDL_Event& evento);
 
+    void load_textures();
 
     void update_status_game();
 
@@ -64,6 +71,26 @@ private:
 
     void draw_object();
 
+    void step();
+
+    bool should_keep_running();
+
+    void process_events();
+
+    void update_game();
+
+    void update_game_image();
+
+    void render_game();
+
+
+    /*
+    INPUT HANDLER
+    */
+    void handle_mouse_left_down(int mouseX, int mouseY);
+    void handle_key_down(SDL_Keycode& tecla);
+    void handle_extras(SDL_Keycode& tecla);
+    void handle_movements(SDL_Keycode& tecla);
 
 public:
     explicit GameView(Socket&& skt);
@@ -81,12 +108,11 @@ public:
     pre:
     post:
     */
-    void initial_draw_game(const GameInfo& info_game_view /*, const Player& info_game*/);
-    void draw_game();
+    void start(const GameInfo& info_game_view /*, const Player& info_game*/);
 
     bool add_player(float x, float y, int speed, const Claves_skins& claves);
 
-    void start();
+    void run();
 
     void reset_values(PlayerView* player, const float& x_pixeles, const float& y_pixeles);
 

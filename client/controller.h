@@ -30,7 +30,6 @@ private:
     Sender sender;
     Receiver receiver;
 
-    void start();
 
 public:
     explicit Controller(Socket&& skt);
@@ -64,11 +63,11 @@ public:
     pre:
     post: envía el movimiento del jugador
     */
-    void sender_mov_player(SDL_Keycode tecla);
+    void sender_move(MoveType move);
 
     bool has_game_image(GameImage& snapshot);
 
-    void run();
+    void start();
 
     ~Controller();
 };

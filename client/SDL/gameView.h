@@ -16,9 +16,10 @@
 #include "../../common/game_image.h"
 #include "../controller.h"
 #include "../tipos.h"
-#include "bullet.h"
+
 #include "HUD.h"
 #include "bomb.h"
+#include "bullet.h"
 #include "camera.h"
 #include "fieldOfView.h"
 #include "gameConfig.h"
@@ -37,6 +38,7 @@ private:
     ConstantRateLoop constant_rate_loop;
     std::map<char, std::string> leyenda;
     std::map<TextView, std::string> texts;
+    std::map<char, Object> ids;
     SDL_Window* ventana;
     SDL_Renderer* renderer;
     PlayerView* player;
@@ -50,26 +52,22 @@ private:
     Shopping shop;
     Bomb* bomba;
     HUD hud;
-    bool activa;
-    std::atomic<bool> keep_running;
     std::vector<Bullet> bullets;
+    bool activa;
     bool bomb_activate;
-  
+    std::atomic<bool> keep_running;
+
     void handle_equip_type(const SDL_Keycode& tecla);
-  
-    void mouse_position_tiles(int& posx, int& posy , const int& mousex, const int& mousey);
-  
-    bool handle_events(const SDL_Event& evento);
+
+    void mouse_position_tiles(int& posx, int& posy, const int& mousex, const int& mousey);
+
+    void handle_events(const SDL_Event& evento);
 
     void load_textures();
 
     void update_status_game();
 
     void draw_players();
-
-    void updates_game();
-
-    void draw_object();
 
     void step();
 

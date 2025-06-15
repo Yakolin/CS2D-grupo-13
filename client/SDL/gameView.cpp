@@ -9,6 +9,7 @@ GameView::GameView(
                            [this]() { this->step(); }),
         leyenda(),
         texts(),
+        ids(),
         ventana(init_window(config)),
         renderer(init_renderer(ventana, config)),
         player(nullptr),
@@ -21,8 +22,9 @@ GameView::GameView(
         shop(camera, manger_texture, config),
         bomba(nullptr),
         hud(config, manger_texture),
-        activa(false),
         bullets(),
+        activa(false),
+        bomb_activate(false),
         keep_running(true) {
 
     leyenda['#'] = "assets/gfx/backgrounds/nuke.png";
@@ -35,7 +37,7 @@ GameView::GameView(
     leyenda['C'] = "assets/gfx/backgrounds/zonacounter.jpeg";
     leyenda['T'] = "assets/gfx/backgrounds/zonaTerrorist.jpeg";
 
-    ids['#'] = Object::WALL;
+    ids['#'] = Object::WALL_AZTEC;
     ids[' '] = Object::STONE;
     ids['~'] = Object::WATER;
     ids['='] = Object::BOX;
@@ -78,9 +80,18 @@ bool GameView::init_game() {
         return false;
     }
 
+    try {
+        load_textures();
+    } catch (const std::exception& e) {
+        std::cerr << e.what() << '\n';
+        return false;
+    } catch (...) {
+        std::cerr << "Excepción desconocida en load_text o load_textures" << std::endl;
+        return false;
+    }
+
     return true;
 }
-
 
 void GameView::reset_values(PlayerView* player, const float& x_pixeles, const float& y_pixeles) {
 
@@ -230,7 +241,7 @@ void GameView::mouse_position_tiles(int& posx, int& posy, const int& mousex, con
         printf("El mouse está fuera del mapa.\n");
     }
 }
-          
+
 void GameView::handle_movements(SDL_Keycode& tecla) {
     if (tecla == SDLK_w || tecla == SDLK_UP)
         controller.sender_move(MoveType::DOWN);
@@ -242,7 +253,7 @@ void GameView::handle_movements(SDL_Keycode& tecla) {
         controller.sender_move(MoveType::RIGHT);
     player->add_speed(tecla);
 }
-          
+
 void GameView::handle_extras(SDL_Keycode& tecla) {
     if (tecla == SDLK_g)
         controller.sender_drop();
@@ -251,7 +262,7 @@ void GameView::handle_extras(SDL_Keycode& tecla) {
     if (tecla == SDLK_e)
         controller.sender_defuse();
 }
-          
+
 void GameView::handle_key_down(SDL_Keycode& tecla) {
     if (snapshot.game_state.state != GameState::TIME_TO_BUY)
         shop.desactivate_shop();
@@ -262,7 +273,7 @@ void GameView::handle_key_down(SDL_Keycode& tecla) {
     handle_equip_type(tecla);
     handle_extras(tecla);
 }
-          
+
 void GameView::handle_mouse_left_down(int mouseX, int mouseY) {
     if (shop.get_activa()) {
         WeaponCode code = shop.calculate_selection(mouseX, mouseY);
@@ -273,7 +284,14 @@ void GameView::handle_mouse_left_down(int mouseX, int mouseY) {
     if (snapshot.game_state.state == GameState::ROUND_STARTED)
         controller.sender_shoot(mouseX, mouseY);
 }
-          
+
+void GameView::load_textures() {
+    for (const auto& par: leyenda) {
+        manger_texture.load(ids.at(par.first), par.second);
+    }
+}
+
+
 void GameView::handle_events(const SDL_Event& event) {
     try {
         if (event.type == SDL_QUIT) {

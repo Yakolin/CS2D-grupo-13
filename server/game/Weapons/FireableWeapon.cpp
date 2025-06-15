@@ -14,8 +14,6 @@ bool Glock::is_droppable() { return false; }
 
 uint8_t Glock::calculate_damage(float distance) { return specs.damage * distance; }
 
-uint8_t Ak47::calculate_damage(float distance) { return specs.damage * distance; }
-
 bool Ak47::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& direction) {
     if (reduce_bullets()) {
         auto calculate_damage_func = [this](float distance) {
@@ -30,6 +28,37 @@ bool Ak47::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& direc
 
 bool Ak47::is_droppable() { return true; }
 
+uint8_t Ak47::calculate_damage(float distance) { return specs.damage * distance; }
+
+
+bool M3::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& direction) {
+    if (reduce_bullets()) {
+        auto calculate_damage_func = [this](float distance) {
+            return this->calculate_damage(distance);
+        };
+        ISpawneableZone::collider_solicitude_t wanted = {specs.width, specs.distance, direction,
+                                                         calculate_damage_func};
+        spawn.spawn_collider(id, wanted);
+    }
+    return true;
+}
+bool M3::is_droppable() { return true; }
+
+uint8_t M3::calculate_damage(float distance) { return specs.damage / distance; }
+bool AWP::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& direction) {
+    if (reduce_bullets()) {
+        auto calculate_damage_func = [this](float distance) {
+            return this->calculate_damage(distance);
+        };
+        ISpawneableZone::collider_solicitude_t wanted = {specs.width, specs.distance, direction,
+                                                         calculate_damage_func};
+        spawn.spawn_collider(id, wanted);
+    }
+    return true;
+}
+bool AWP::is_droppable() { return true; }
+
+uint8_t AWP::calculate_damage([[maybe_unused]] float distance) { return specs.damage; }
 bool FireableWeapon::reduce_bullets() {
     if (specs.current_b == 0)
         return false;
@@ -45,6 +74,10 @@ void FireableWeapon::reload() {
         inventory_bullets -= avalible_bullets;
     }
 }
+void FireableWeapon::restore_bullets() {
+    this->inventory_bullets = specs.max_b;
+    specs.current_b = this->magazine;
+}
 WeaponImage FireableWeapon::get_weapon_image() {
     return WeaponImage(code, specs.current_b, magazine, inventory_bullets);
 }
@@ -57,6 +90,7 @@ bool Knife::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& dire
     spawn.spawn_collider(id, wanted);
     return true;
 }
+
 void Knife::reload() { return; }
 WeaponImage Knife::get_weapon_image() { return WeaponImage(code, 0, 0, 0); }
 

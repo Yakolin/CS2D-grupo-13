@@ -10,18 +10,34 @@
 #include <SDL2/SDL_ttf.h>
 #include <yaml-cpp/yaml.h>
 
+#include "../../../common/game_image.h"
 #include "../../../common/game_info.h"
 #include "../../../common/player_command_types.h"
+
+// Weapons
+using price_t = uint16_t;
+using damage_t = uint8_t;
+using fire_rate_t = uint8_t;
+using max_bullets_t = uint8_t;
+using current_bullets_t = uint8_t;
+using width_t = uint8_t;
+using distance_t = uint8_t;
+
+
+// Player
+using earned_points_t = uint16_t;
+using multiplier_points_t = uint16_t;
+
 class GameConfig {
 public:
     typedef struct WeaponConfig {
-        uint16_t price;
-        uint8_t damage;
-        uint8_t fire_rate;
-        uint8_t max_b;
-        uint8_t current_b;
-        uint8_t width;
-        uint8_t distance;
+        price_t price;
+        damage_t damage;
+        fire_rate_t fire_rate;
+        max_bullets_t max_b;
+        current_bullets_t current_b;
+        width_t width;
+        distance_t distance;
         bool purchasable;
     } weapon_config_t;
 
@@ -35,11 +51,11 @@ public:
     TimerConfig timer_config;
 
     typedef struct PlayerConfig {
-        uint8_t health;
-        uint16_t money;
-        uint16_t points;
-        uint16_t earned_points;
-        uint8_t multiplier_points;
+        health_t health;
+        money_t money;
+        points_t points;
+        earned_points_t earned_points;
+        multiplier_points_t multiplier_points;
     } player_config_t;
     PlayerConfig player_config;
 

@@ -6,6 +6,9 @@ ClientProtocol::ClientProtocol(Socket& socket): socket(socket) {}
 ClientProtocol::~ClientProtocol() {}
 
 void ClientProtocol::read_map_info(MapInfo& map_info) {
+    map_name_t map_name;
+    this->read_byte_data(map_name);
+
     RectangleInfo bomb_A, bomb_B, spawn_TT, spawn_CT;
     this->read_position(bomb_A.pos_min);
     this->read_position(bomb_A.pos_max);
@@ -27,7 +30,7 @@ void ClientProtocol::read_map_info(MapInfo& map_info) {
         this->read_position(wall);
         walls.emplace_back(std::move(wall));
     }
-
+    map_info.map_name = static_cast<MapName>(map_name);
     map_info.bomb_A = bomb_A;
     map_info.bomb_B = bomb_B;
     map_info.spawn_TT = spawn_TT;
@@ -287,7 +290,7 @@ void ClientProtocol::read_player_image(std::vector<PlayerImage>& players_images)
         this->read_byte_data(health);
 
         points_t points;
-        this->read_byte_data(points);
+        this->read_two_byte_data(points);
 
         money_t money;
         this->read_two_byte_data(money);

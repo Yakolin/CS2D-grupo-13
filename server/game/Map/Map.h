@@ -49,6 +49,7 @@ public:
     void update_teams(const std::map<player_id_t, Team>& players_teams);
     void respawn_players();
     MapInfo get_map_info();
+    std::vector<BulletImage> get_bullets_in_air();
     std::vector<WeaponDropped> get_dropped_things_images() {
         return collision_manager.get_dropped_things_images();
     }

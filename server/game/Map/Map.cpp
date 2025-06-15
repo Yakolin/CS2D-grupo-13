@@ -41,7 +41,8 @@ void Map::charge_map() {
     RectangleInfo bomb_B_info(bomb_B.point_min, bomb_B.point_max);
     RectangleInfo spawn_TT_info(spawn_TT.point_min, spawn_TT.point_max);
     RectangleInfo spawn_CT_info(spawn_CT.point_min, spawn_CT.point_max);
-    map_info_to_client = MapInfo(bomb_A_info, bomb_B_info, spawn_TT_info, spawn_CT_info, walls_pos);
+    map_info_to_client =
+            MapInfo(map_name, bomb_A_info, bomb_B_info, spawn_TT_info, spawn_CT_info, walls_pos);
 }
 MapInfo Map::get_map_info() { return map_info_to_client; }
 void Map::move(player_id_t id, const Position& direction) {
@@ -50,17 +51,23 @@ void Map::move(player_id_t id, const Position& direction) {
     throw MapException("Can´t found players in the map to move");
 }
 
+std::vector<BulletImage> Map::get_bullets_in_air() { return collision_manager.get_bullets_image(); }
+
 void Map::spawn_collider(player_id_t id_spawn, collider_solicitude_t& wanted) {
     Position aux = get_position(id_spawn);
     Vector2f player_pos(aux.x, aux.y);
-    float dir_x = wanted.mouse_position.x - player_pos.x;
-    float dir_y = wanted.mouse_position.y - player_pos.y;
-    Vector2f relative_direction(dir_x, dir_y);
+    Vector2f relative_direction(wanted.mouse_position.x - player_pos.x,
+                                wanted.mouse_position.y - player_pos.y);
     relative_direction.normalize();
     relative_direction.x *= wanted.distance;
     relative_direction.y *= wanted.distance;
-    std::unique_ptr<Collider> line = std::make_unique<Line>(
-            std::move(player_pos), std::move(relative_direction), wanted.width);
+    // Aca le sumo la posicion del jugador, para saber desde donde debe salir la bala
+    Vector2f end_pos(relative_direction.x + player_pos.x, relative_direction.y + player_pos.y);
+    // Aca es un chekeo para que basicamente no se vayan de rango las balas
+    end_pos.x = std::max(0.0f, end_pos.x);
+    end_pos.y = std::max(0.0f, end_pos.y);
+    std::unique_ptr<Collider> line =
+            std::make_unique<Line>(std::move(player_pos), std::move(end_pos), wanted.width);
     collider_damage_t collider_damage = {std::move(line), wanted.damage_function};
     collision_manager.add_damage_collider(id_spawn, collider_damage);
 }

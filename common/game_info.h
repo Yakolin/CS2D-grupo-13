@@ -45,12 +45,19 @@ public:
 
 class MapInfo {
 public:
+    MapName map_name;
     RectangleInfo bomb_A, bomb_B, spawn_TT, spawn_CT;
     std::vector<Position> walls;
     MapInfo() = default;
-    MapInfo(const RectangleInfo& bomb_A, const RectangleInfo& bomb_B, const RectangleInfo& spawn_TT,
-            const RectangleInfo& spawn_CT, const std::vector<Position>& walls):
-            bomb_A(bomb_A), bomb_B(bomb_B), spawn_TT(spawn_TT), spawn_CT(spawn_CT), walls(walls) {}
+    MapInfo(const MapName map_name, const RectangleInfo& bomb_A, const RectangleInfo& bomb_B,
+            const RectangleInfo& spawn_TT, const RectangleInfo& spawn_CT,
+            const std::vector<Position>& walls):
+            map_name(map_name),
+            bomb_A(bomb_A),
+            bomb_B(bomb_B),
+            spawn_TT(spawn_TT),
+            spawn_CT(spawn_CT),
+            walls(walls) {}
     ~MapInfo() {}
 };
 

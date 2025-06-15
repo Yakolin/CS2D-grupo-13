@@ -15,7 +15,7 @@
 #include "../../common/game_info.h"
 #include "../../common/player_command_types.h"
 #include "../tipos.h"
-
+#include "bullet.h"
 #include "camera.h"
 #include "gameConfig.h"
 #include "manageTexture.h"
@@ -23,45 +23,6 @@
 #include "weaponView.h"
 
 class PlayerView: public Renderizable {
-public:
-    explicit PlayerView(const float& x, const float& y, const  Claves_skins& clave_player, const float& speed,
-                        Camera* camera_reseiver, ManageTexture* manger_texture, GameConfig& config);
-
-
-    void setPrevPos(const float& new_x, const float& new_y);
-    void setTargetPos(const float& new_x, const float& new_y);
-    ~PlayerView();
-    void setInterpDuration(const float& duration);
-    void add_speed(const SDL_Keycode& tecla);
-
-    void stop_speed(const SDL_Keycode& tecla);
-
-    void update_weapons(const std::vector<WeaponImage>& weapons_vec);
-    void activate_weapon(const WeaponCode& weapon_code);
-
-    void draw(SDL_Renderer& renderer) override;
-
-    void update(const float& delta_time);
-    void update_view_angle(const int& mause_x, const int& mause_y);
-
-    float getSpeed() const;
-    std::string getRutaPlayer() const;
-    int getWidthImg() const;   // todo no inicializadas
-    int getHeightImg() const;  // todo no incializadas no usar
-    float getAnglePlayer() const;
-    void setVelX(float vx);
-    void setVelY(float vy);
-    float getVelX() const;
-    float getVelY() const;
-    void setInterpTime(const float& time);
-    int pasar_pixeles_x(const float& tile_x);
-    int pasar_pixeles_y(const float& tile_y);
-
-    void setXActual(float x);
-    void setYActual(float y);
-    void setSpeed(float newSpeed);
-    float getXActual();
-    float getYActual();
 
 
 private:
@@ -88,10 +49,53 @@ private:
     std::unordered_map<WeaponCode, std::unique_ptr<WeaponView>> weapons;
     bool activar_weapon;
     SDL_Texture* texture_player;
-    WeaponCode clave;
-    Uint32 lastUpdateTime;
+    WeaponCode equipped_weapon;
 
     void calcular();
+    
+public:
+    explicit PlayerView(const float& x, const float& y, const  Claves_skins& clave_player, const float& speed,
+                        Camera* camera_reseiver, ManageTexture* manger_texture, GameConfig& config);
+
+    void update_equip(const PlayerImage player_aux);
+
+
+    void setPrevPos(const float& new_x, const float& new_y);
+    void setTargetPos(const float& new_x, const float& new_y);
+    ~PlayerView();
+    void setInterpDuration(const float& duration);
+    void add_speed(const SDL_Keycode& tecla);
+
+    void stop_speed(const SDL_Keycode& tecla);
+
+    void update_weapons(const std::vector<WeaponImage>& weapons_vec);
+    void activate_weapon();
+
+    void draw(SDL_Renderer& renderer) override;
+
+    void update(const float& delta_time);
+    void update_view_angle(const int& mause_x, const int& mause_y);
+
+    float getSpeed() const;
+    std::string getRutaPlayer() const;
+    int getWidthImg() const;   // todo no inicializadas
+    int getHeightImg() const;  // todo no incializadas no usar
+    float getAnglePlayer() const;
+    void setVelX(float vx);
+    void setVelY(float vy);
+    float getVelX() const;
+    float getVelY() const;
+    void setInterpTime(const float& time);
+    int pasar_pixeles_x(const float& tile_x);
+    int pasar_pixeles_y(const float& tile_y);
+
+    void setXActual(float x);
+    void setYActual(float y);
+    void setSpeed(float newSpeed);
+    float getXActual();
+    float getYActual();
+
+
 };
 
 #endif  // PLAYERVIEW_H

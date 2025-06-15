@@ -2,8 +2,7 @@
 
 #include "mapView.h"
 
-const int FILAS_MAP = 17;
-const int COLUMNAS_MAP = 38;
+
 
 PlayerView::PlayerView(const float& x, const float& y, const Claves_skins& clave_player,
                        const float& speed, Camera* camera_receiver, ManageTexture* manager_texture,
@@ -30,10 +29,12 @@ PlayerView::PlayerView(const float& x, const float& y, const Claves_skins& clave
         weapons(),
         activar_weapon(false),
         texture_player(manejador->get_texture_ct(clave_player.ct_skin)),
-        clave(WeaponCode::NONE),
-        lastUpdateTime(0) {
+        equipped_weapon(WeaponCode::NONE) {
     calcular();
-    lastUpdateTime = SDL_GetTicks();
+}
+
+void PlayerView::update_equip(const PlayerImage player_aux){
+    this->equipped_weapon = player_aux.equipped_weapon;
 }
 
 void imprimir_weapons_vec(const std::vector<WeaponImage>& weapons_vec) {
@@ -42,7 +43,7 @@ void imprimir_weapons_vec(const std::vector<WeaponImage>& weapons_vec) {
         return;
     }
 
-    std::cout << "Armas del jugador:" << std::endl;
+   // std::cout << "Armas del jugador:" << std::endl;
 
 
     for (const WeaponImage& weapon: weapons_vec) {
@@ -58,7 +59,7 @@ void imprimir_weapons_vec(const std::vector<WeaponImage>& weapons_vec) {
     }
 }
 
-void PlayerView::update(const float& deltaTime) {
+void PlayerView::update(const float& deltaTime) { 
 
     if (interp_time < interp_duration) {
         interp_time += deltaTime;
@@ -66,6 +67,8 @@ void PlayerView::update(const float& deltaTime) {
         x_actual = prev_pos.x + (target_pos.x - prev_pos.x) * t;
         y_actual = prev_pos.y + (target_pos.y - prev_pos.y) * t;
     }
+
+    
 }
 bool is_valid_weapon_code(WeaponCode code) {
     switch (code) {
@@ -85,7 +88,7 @@ void PlayerView::update_weapons(const std::vector<WeaponImage>& weapons_vec) {
         std::cout << "El jugador no tiene armas." << std::endl;
         return;
     }
-    imprimir_weapons_vec(weapons_vec);
+    //imprimir_weapons_vec(weapons_vec);
 
     for (const WeaponImage& weapon_img: weapons_vec) {
         WeaponCode weapon_key = weapon_img.weapon_code;
@@ -94,8 +97,7 @@ void PlayerView::update_weapons(const std::vector<WeaponImage>& weapons_vec) {
             continue;
 
         if (!is_valid_weapon_code(weapon_key)) {
-            std::cerr << "WeaponCode inválido recibido: " << static_cast<int>(weapon_key)
-                      << std::endl;
+            std::cerr << "WeaponCode inválido recibido: " << static_cast<int>(weapon_key) << std::endl;
             continue;
         }
         if (this->weapons.find(weapon_key) != this->weapons.end()) {
@@ -105,6 +107,11 @@ void PlayerView::update_weapons(const std::vector<WeaponImage>& weapons_vec) {
                                                                x_actual, y_actual, anglePlayer);
         }
     }
+    //std::cout << "armas. cargadas ---------" << std::endl;
+    /* for (const auto& par : weapons ) {
+        std::cout << static_cast<int>(par.first) << std::endl;
+    }*/
+    
 }
 
 
@@ -137,14 +144,8 @@ void PlayerView::stop_speed(const SDL_Keycode& tecla) {
     }
 }
 
-void PlayerView::activate_weapon(const WeaponCode& weapon_code) {
-
-    if (weapons.find(weapon_code) != weapons.end()) {
-        activar_weapon = true;
-        weapons[weapon_code]->setUsed(true);
-    } else {
-        std::cerr << "Error: Arma no encontrada." << std::endl;
-    }
+void PlayerView::activate_weapon() {
+    activar_weapon = true;
 }
 void PlayerView::draw(SDL_Renderer& renderer) {
 
@@ -153,12 +154,16 @@ void PlayerView::draw(SDL_Renderer& renderer) {
     destination_rect = {static_cast<int>(x_actual) - camera->getX(),  // col=x
                         static_cast<int>(y_actual) - camera->getY(),  // fil =y
                         config.get_tile_width(),                      // ancho
-                        config.get_tile_height()};                    // alto
+                        config.get_tile_height()};                   // alto
+
     SDL_RenderCopyEx(&renderer, texture_player, &origin_rect, &destination_rect, anglePlayer,
                      nullptr, SDL_FLIP_NONE);
 
-    if (activar_weapon) {
-        WeaponView& weapon_view = *weapons[clave];
+    if (this->equipped_weapon != WeaponCode::NONE) {
+        //SDL_Point center;
+        //center.x = x_actual;
+        //center.y = y_actual ;
+        WeaponView& weapon_view = *weapons[equipped_weapon];
         weapon_view.update(static_cast<int>(x_actual), static_cast<int>(y_actual), anglePlayer);
         weapon_view.draw(renderer);
     }

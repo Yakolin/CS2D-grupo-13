@@ -14,13 +14,14 @@ std::shared_ptr<Weapon> WeaponFactory::weapon_create(WeaponCode code) {
     switch (code) {
         case WeaponCode::GLOCK:
             return std::make_unique<Glock>(config);
-            break;
         case WeaponCode::AK47:
             return std::make_unique<Ak47>(config);
-            break;
+        case WeaponCode::M3:
+            return std::make_unique<M3>(config);
+        case WeaponCode::AWP:
+            return std::make_unique<AWP>(config);
         case WeaponCode::KNIFE:
             return std::make_unique<Knife>(config);
-            break;
         default:
             break;
     }

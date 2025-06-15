@@ -21,6 +21,7 @@ public:
     virtual bool is_in(const Position& position) = 0;
     virtual ~Collider() = 0;
     virtual Vector2f get_end() = 0;
+    virtual Vector2f get_start() = 0;
 };
 
 class Line: public Collider {
@@ -33,6 +34,7 @@ public:
             start(std::move(start)), end(std::move(end)), width(width) {}
     float distance(Vector2f& other);
     Vector2f get_end() override { return end; }
+    Vector2f get_start() override { return start; }
     virtual ~Line() override = default;
     virtual bool is_in(const Position& position) override;
 };
@@ -55,6 +57,7 @@ public:
     Position get_random_position();
     virtual ~Rectangle() override = default;
     Vector2f get_end() override { return Vector2f(point_max.x, point_max.y); }
+    Vector2f get_start() override { return Vector2f(point_min.x, point_min.y); }
 };
 
 class Circle {};

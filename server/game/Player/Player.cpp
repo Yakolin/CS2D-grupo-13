@@ -14,6 +14,8 @@ bool Player::is_dead() { return health == 0; }
 void Player::reset(bool full_reset) {
     if (full_reset || health == 0) {
         equipment.reset_equipment();
+    } else {
+        equipment.restore();
     }
     health = config.health;
 }
@@ -37,7 +39,6 @@ void Player::move(const MoveType& move_type) {
 void Player::reload() { this->equipment.reload(); }
 
 void Player::shoot(const coordinate_t& mouse_x, const coordinate_t& mouse_y) {
-    std::cout << "Tratando de disparar :)\n";
     Position position(mouse_x, mouse_y);
     this->equipment.shoot(position);
 }

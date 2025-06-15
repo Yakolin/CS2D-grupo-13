@@ -40,7 +40,7 @@ public:
     void fillTriangle(SDL_Renderer* renderer, int x0, int y0, int x1, int y1, int x2, int y2);
 
     SDL_Texture* create_stencil(const int& ancho, const int& alto, const float& angle,
-                                const float& apertura);
+                                const float& apertura,const int& intensity);
 
     bool load_weapons(const WeaponCode& id, const std::string& filePath, SDL_Renderer* renderer);
 

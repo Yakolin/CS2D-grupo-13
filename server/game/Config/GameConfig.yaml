@@ -5,18 +5,36 @@ Weapons:
     fire_rate: 3
     max_bullets: 90
     magazine: 30
-    width: 2
-    distance: 90
-    purchasable: 1
+    width: 1
+    distance: 15
+    purchasable: true
   Glock:
     price: 500
     damage: 1
     fire_rate: 1
     max_bullets: 120
     magazine: 30
-    width: 2
-    distance: 60
-    purchasable: 0
+    width: 1
+    distance: 10
+    purchasable: false
+  M3:
+    price: 800
+    damage: 20
+    fire_rate: 1
+    max_bullets: 16
+    magazine: 4
+    width: 3
+    distance: 4
+    purchasable: true
+  AWP:
+    price: 3250
+    damage: 250
+    fire_rate: 1
+    max_bullets: 12
+    magazine: 6
+    width: 1
+    distance: 30
+    purchasable: true
   Knife:
     price: 0
     damage: 25
@@ -25,16 +43,16 @@ Weapons:
     magazine: 0
     width: 2
     distance: 1
-    purchasable: 0
+    purchasable: false
 
 Player:
   health: 100
-  money: 200
+  money: 100
   points: 0
   earned_points: 100
-  multiplier_points: 3
+  multiplier_points: 12
 Timer:
-  time_buy: 5
+  time_buy: 8
   time_round: 100
   time_bomb: 25
   time_ending: 5

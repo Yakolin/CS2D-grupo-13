@@ -57,6 +57,7 @@ GameImage GameManager::generate_game_image() {
         Position player_position = map_game.get_position(par.first);
         game_image.players_images.push_back(std::move(player->get_player_image(player_position)));
     }
+    game_image.bullets_in_air = map_game.get_bullets_in_air();
     game_image.dropped_things = map_game.get_dropped_things_images();
     game_image.bomb = map_game.get_bomb_image();
     game_stats.state = game_stats.state;

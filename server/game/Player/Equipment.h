@@ -41,6 +41,7 @@ public:
     void change_weapon(const EquipType& equip_type);
     void buy_weapon_by_code(const WeaponCode& weapon_code, uint16_t money);
     void reset_equipment();
+    void restore();
     void drop_weapon();
     void reload();
     void shoot(Position& position);

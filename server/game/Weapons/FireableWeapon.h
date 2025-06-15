@@ -12,8 +12,8 @@
 
 #include "Weapon.h"
 class FireableWeapon: public Weapon {
-    uint8_t inventory_bullets;
-    uint8_t magazine;
+    max_bullets_t inventory_bullets;
+    max_bullets_t magazine;
 
 protected:
     bool reduce_bullets();
@@ -24,6 +24,7 @@ public:
     virtual bool set_on_action(ISpawneableZone& spawn, player_id_t id,
                                Position& direction) override = 0;
     virtual void reload() override;
+    virtual void restore_bullets() override;
     virtual WeaponImage get_weapon_image() override;
 };
 class Ak47: public FireableWeapon {
@@ -46,13 +47,33 @@ public:
                                Position& direction) override;
     virtual bool is_droppable() override;
 };
+class M3: public FireableWeapon {
+private:
+    uint8_t calculate_damage(float distance);
 
+public:
+    explicit M3(GameConfig::weapon_config_t specs): FireableWeapon(WeaponCode::M3, specs) {}
+    virtual bool set_on_action(ISpawneableZone& spawn, player_id_t id,
+                               Position& direction) override;
+    virtual bool is_droppable() override;
+};
+class AWP: public FireableWeapon {
+private:
+    uint8_t calculate_damage(float distance);
+
+public:
+    explicit AWP(GameConfig::weapon_config_t specs): FireableWeapon(WeaponCode::AWP, specs) {}
+    virtual bool set_on_action(ISpawneableZone& spawn, player_id_t id,
+                               Position& direction) override;
+    virtual bool is_droppable() override;
+};
 class Knife: public Weapon {
 public:
     explicit Knife(GameConfig::weapon_config_t specs): Weapon(WeaponCode::KNIFE, specs) {}
     virtual bool set_on_action(ISpawneableZone& spawn, player_id_t id,
                                Position& direction) override;
     virtual void reload() override;
+    virtual void restore_bullets() override {}  // Quiza aca no deberia ir esto... desp lo veo bien
     virtual WeaponImage get_weapon_image() override;
     virtual bool is_droppable() override;
 };

@@ -175,6 +175,7 @@ TEST(ClientProtocolTest, ReadGameInfoReadsCorrectData) {
 
     GameInfo expected_game_info;
 
+    expected_game_info.map_info.map_name = MapName::DESIERTO;
     expected_game_info.map_info.bomb_A = RectangleInfo(Position(10, 20), Position(30, 40));
     expected_game_info.map_info.bomb_B = RectangleInfo(Position(50, 60), Position(70, 80));
     expected_game_info.map_info.spawn_TT = RectangleInfo(Position(90, 100), Position(110, 120));
@@ -188,6 +189,9 @@ TEST(ClientProtocolTest, ReadGameInfoReadsCorrectData) {
 
     std::thread server_thread([&]() {
         Socket client_socket = server_socket.accept();
+
+        map_name_t map_code = static_cast<map_name_t>(expected_game_info.map_info.map_name);
+        client_socket.sendall(&map_code, sizeof(map_code));
 
         auto send_position = [&](coordinate_t x, coordinate_t y) {
             coordinate_t x_net = htons(x);
@@ -207,7 +211,6 @@ TEST(ClientProtocolTest, ReadGameInfoReadsCorrectData) {
 
         send_position(130, 140);
         send_position(150, 160);
-
 
         uint16_t wall_count = htons(expected_game_info.map_info.walls.size());
         client_socket.sendall(&wall_count, sizeof(wall_count));
@@ -234,6 +237,9 @@ TEST(ClientProtocolTest, ReadGameInfoReadsCorrectData) {
 
     const auto& expected_map = expected_game_info.map_info;
     const auto& received_map = received_game_info.map_info;
+
+    // Assert map_name
+    ASSERT_EQ(received_map.map_name, expected_map.map_name);
 
     auto assert_position = [](const Position& a, const Position& b) {
         ASSERT_EQ(a.x, b.x);
@@ -265,6 +271,7 @@ TEST(ClientProtocolTest, ReadGameInfoReadsCorrectData) {
 
     server_thread.join();
 }
+
 TEST(ClientProtocolTest, SendAckSendCorrectData) {
     // Arrange
     Socket server_socket("9999");

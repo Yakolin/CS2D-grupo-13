@@ -25,14 +25,14 @@ private:
     SDL_Color blanco;
     TTF_Font* font_menu;
     TTF_Font* font_game;
-    
     std::unordered_map<Color, SDL_Color> colores;
-
+    int intensity;
     void load(const std::string& file_path);
 
 
 public:
     GameConfig();
+
 
     SDL_Color get_color(const Color &clave);
 
@@ -58,7 +58,9 @@ public:
 
     std::string get_route_font() const;
 
-    std::vector<std::vector<char>> load_map(const std::string &archivo);
+    int get_intensity();
+
+    std::vector<std::vector<char>> load_map(const std::string& archivo);
 
     SDL_Color get_blanco() const;
 

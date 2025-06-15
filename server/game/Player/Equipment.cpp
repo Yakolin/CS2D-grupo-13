@@ -49,10 +49,11 @@ void Equipment::reset_equipment() {
     secondary = weapon_factory.weapon_create(WeaponCode::GLOCK);
     bomb.reset();
 }
-/*
-void Equipment::restore(){ //Recarga todas las balas
+void Equipment::restore() {
+    this->primary->restore_bullets();
+    this->secondary->restore_bullets();
+    // Cuchillo y bomba posiblemente no necesiten esto
 }
-*/
 
 void Equipment::drop_weapon() {
     change_weapon(EquipType::PRIMARY);
@@ -71,6 +72,7 @@ void Equipment::reload() { this->weapon_in_hand->reload(); }
 void Equipment::shoot(Position& position) {
     if (weapon_in_hand->get_weapon_code() == WeaponCode::BOMB && bomb.lock()) {
         if (weapon_in_hand->set_on_action(this->spawneable_zone, this->player_id, position)) {
+            this->change_weapon(EquipType::SECONDARY);
             bomb.reset();
         }
     } else {

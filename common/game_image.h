@@ -12,7 +12,7 @@
 
 using coordinate_t = std::uint16_t;
 using health_t = std::uint8_t;
-using points_t = std::uint8_t;
+using points_t = std::uint16_t;
 using length_players_images_t = std::uint16_t;
 using length_weapons_images_t = std::uint8_t;
 using length_bullets_in_air_t = std::uint16_t;

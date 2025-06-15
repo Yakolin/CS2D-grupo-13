@@ -9,22 +9,20 @@ GameView::GameView(
                            [this]() { this->step(); }),
         leyenda(),
         texts(),
-        ids(),
         ventana(init_window(config)),
         renderer(init_renderer(ventana, config)),
-        backgroundTexture(nullptr),
         player(nullptr),
         camera(config.get_window_width(), config.get_window_height()),
         manger_texture(renderer),
         players(),
         snapshot(),
         map(nullptr),
-        lastTime(SDL_GetTicks()),
         fov(nullptr),
         shop(camera, manger_texture, config),
         bomba(nullptr),
         hud(config, manger_texture),
         activa(false),
+        bullets(),
         keep_running(true) {
 
     leyenda['#'] = "assets/gfx/backgrounds/nuke.png";
@@ -80,37 +78,80 @@ bool GameView::init_game() {
         return false;
     }
 
-    try {
-        load_textures();
-    } catch (const std::exception& e) {
-        std::cerr << e.what() << '\n';
-        return false;
-    } catch (...) {
-        std::cerr << "Excepción desconocida en load_text o load_textures" << std::endl;
-        return false;
-    }
-
     return true;
 }
 
-void GameView::load_textures() {
-    for (const auto& par: leyenda) {
-        manger_texture.load(ids.at(par.first), par.second);
-    }
-}
 
 void GameView::reset_values(PlayerView* player, const float& x_pixeles, const float& y_pixeles) {
 
     player->setPrevPos(player->getXActual(), player->getYActual());
     player->setTargetPos(x_pixeles, y_pixeles);
     player->setInterpTime(0.0f);
-    player->setInterpDuration(0.1f);
+    // player->setInterpDuration(0.1f);
+}
+
+void print_game_image(const GameImage& image) {
+    /*
+    std::cout << "=== Game Image ===\n";
+    std::cout << "Client ID: " << image.client_id << "\n";
+    std::cout << "--- Players ---\n";
+    for (const auto& player: image.players_images) {
+        std::cout << "Player ID: " << player.player_id << "\n";
+        std::cout << "  Position: (" << player.position.x << ", " << player.position.y << ")\n";
+        std::cout << "  Health: " << static_cast<int>(player.health) << "\n";
+        std::cout << "  Points: " << static_cast<int>(player.points) << "\n";
+        std::cout << "  Money: " << player.money << "\n";
+        std::cout << "  Equipped weapon: " << static_cast<int>(player.equipped_weapon) << "\n";
+        std::cout << "  Mouse position: (" << player.mouse_position.x << ", "
+                  << player.mouse_position.y << ")\n";
+        std::cout << "  Team: " << (player.team == Team::CT ? "CT" : "TT") << "\n";
+        std::cout << "  Weapons:\n";
+        for (const auto& weapon: player.weapons) {
+            std::cout << "    WeaponCode: " << static_cast<int>(weapon.weapon_code)
+            << ", Current: " << static_cast<int>(weapon.current_bullets)
+                      << ", Magazine: " << static_cast<int>(weapon.magazine)
+                      << ", Inventory: " << static_cast<int>(weapon.inventory_bullets) << "\n";
+        }
+    }
+
+    */
+    for (const auto& bullet: image.bullets_in_air) {
+        std::cout << "  From (" << bullet.initial.x << ", " << bullet.initial.y << ") to ("
+                  << bullet.end.x << ", " << bullet.end.y << ")\n";
+    }
+    /*
+    std::cout << "--- Bomb ---\n";
+    std::cout << "  Position: (" << image.bomb.position.x << ", " << image.bomb.position.y << ")\n";
+    std::cout << "  State: " << static_cast<int>(image.bomb.state) << "\n";
+
+    std::cout << "--- Dropped Weapons ---\n";
+    for (const auto& dropped: image.dropped_things) {
+        std::cout << "  WeaponCode: " << static_cast<int>(dropped.weapon_code) << ", Position: ("
+        << dropped.position.x << ", " << dropped.position.y << ")\n";
+    }
+
+    std::cout << "--- Game State ---\n";
+    std::cout << "  State: " << static_cast<int>(image.game_state.state) << "\n";
+    std::cout << "  Time: " << image.game_state.time << "\n";
+    std::cout << "  Round: " << static_cast<int>(image.game_state.round) << "\n";
+    */
 }
 
 void GameView::update_status_game() {
-
+    print_game_image(snapshot);
     int tile_width = config.get_tile_width();
     int tile_height = config.get_tile_height();
+    for (const BulletImage& bullet: snapshot.bullets_in_air) {
+        std::cout << "Initial: (" << bullet.initial.x << ", " << bullet.initial.y << ")\n";
+        std::cout << "End: (" << bullet.end.x << ", " << bullet.end.y << ")\n";
+        Coordenada init = {static_cast<float>(bullet.initial.x * tile_width),
+                           static_cast<float>(bullet.initial.y * tile_height)};
+        Coordenada end = {static_cast<float>(bullet.end.x * tile_width),
+                          static_cast<float>(bullet.end.y * tile_height)};
+
+        Bullet bullet_aux(init, end, manger_texture.get(Object::BULLET));
+        this->bullets.push_back(bullet_aux);
+    }
 
     for (PlayerImage& player_img: this->snapshot.players_images) {
         player_id_t id = player_img.player_id;
@@ -120,7 +161,8 @@ void GameView::update_status_game() {
 
         if (id == snapshot.client_id) {
             reset_values(player, x_pixeles, y_pixeles);
-            // player->update_weapons(snapshot.players_images[id].weapons);
+            player->update_weapons(player_img.weapons);
+            player->update_equip(player_img);
 
         } else if (players.find(id) == players.end()) {
             Claves_skins claves;
@@ -131,7 +173,7 @@ void GameView::update_status_game() {
                                                        &camera, &manger_texture, config);
             nuevo_jugador->update_view_angle(player_img.mouse_position.x * 32,
                                              player_img.mouse_position.y * 32);
-            // nuevo_jugador->update_weapons(snapshot.players_images[id].weapons);
+            nuevo_jugador->update_weapons(player_img.weapons);
             players[id] = nuevo_jugador;
 
         } else {
@@ -140,7 +182,7 @@ void GameView::update_status_game() {
             int y_pixel_mouse = player_img.mouse_position.y * config.get_tile_height();
             player_aux->update_view_angle(x_pixel_mouse, y_pixel_mouse);
             reset_values(player_aux, x_pixeles, y_pixeles);
-            // player_aux->update_weapons(snapshot.players_images[id].weapons);
+            player_aux->update_weapons(player_img.weapons);
         }
     }
 }
@@ -153,26 +195,42 @@ void GameView::draw_players() {
         }
     }
 }
+
 void GameView::handle_equip_type(const SDL_Keycode& tecla) {
     switch (tecla) {
         case SDLK_1:
-            std::cout << "Presionaste la tecla 1" << std::endl;
             controller.sender_equip(EquipType::PRIMARY);
             break;
         case SDLK_2:
             controller.sender_equip(EquipType::SECONDARY);
-            std::cout << "Presionaste la tecla 2" << std::endl;
             break;
         case SDLK_3:
             controller.sender_equip(EquipType::KNIFE);
-            std::cout << "Presionaste la tecla 3" << std::endl;
             break;
         case SDLK_4:
             controller.sender_equip(EquipType::BOMB);
-            std::cout << "Presionaste la tecla 4" << std::endl;
             break;
     }
 }
+
+void GameView::mouse_position_tiles(int& posx, int& posy, const int& mousex, const int& mousey) {
+    const int TILE_SIZE = 32;
+
+    int camX = camera.getX();
+    int camY = camera.getY();
+    int mapPixelX = mousex + camX;
+    int mapPixelY = mousey + camY;
+
+    posx = mapPixelX / TILE_SIZE;
+    posy = mapPixelY / TILE_SIZE;
+
+    if (posx >= 0 && posx < 50 && posy >= 0 && posy < 50) {
+        printf("Estás sobre el tile (%d, %d)\n", posx, posy);
+    } else {
+        printf("El mouse está fuera del mapa.\n");
+    }
+}
+          
 void GameView::handle_movements(SDL_Keycode& tecla) {
     if (tecla == SDLK_w || tecla == SDLK_UP)
         controller.sender_move(MoveType::DOWN);
@@ -184,6 +242,7 @@ void GameView::handle_movements(SDL_Keycode& tecla) {
         controller.sender_move(MoveType::RIGHT);
     player->add_speed(tecla);
 }
+          
 void GameView::handle_extras(SDL_Keycode& tecla) {
     if (tecla == SDLK_g)
         controller.sender_drop();
@@ -192,6 +251,7 @@ void GameView::handle_extras(SDL_Keycode& tecla) {
     if (tecla == SDLK_e)
         controller.sender_defuse();
 }
+          
 void GameView::handle_key_down(SDL_Keycode& tecla) {
     if (snapshot.game_state.state != GameState::TIME_TO_BUY)
         shop.desactivate_shop();
@@ -202,6 +262,7 @@ void GameView::handle_key_down(SDL_Keycode& tecla) {
     handle_equip_type(tecla);
     handle_extras(tecla);
 }
+          
 void GameView::handle_mouse_left_down(int mouseX, int mouseY) {
     if (shop.get_activa()) {
         WeaponCode code = shop.calculate_selection(mouseX, mouseY);
@@ -212,6 +273,7 @@ void GameView::handle_mouse_left_down(int mouseX, int mouseY) {
     if (snapshot.game_state.state == GameState::ROUND_STARTED)
         controller.sender_shoot(mouseX, mouseY);
 }
+          
 void GameView::handle_events(const SDL_Event& event) {
     try {
         if (event.type == SDL_QUIT) {
@@ -257,16 +319,14 @@ void GameView::handle_events(const SDL_Event& event) {
     }
 }
 
-
 bool GameView::add_player(float x, float y, int speed, const Claves_skins& claves) {
     this->player = new PlayerView(x, y, claves, speed, &camera, &manger_texture, config);
     return true;
 }
 
-
 void GameView::start(const GameInfo& info_game_view /*,const Player& info_game*/) {
 
-    this->map = new MapView(info_game_view.map_info.walls, &camera, &manger_texture, config);
+    this->map = new MapView(info_game_view.map_info, &camera, &manger_texture, config);
     if (!map) {
         throw std::runtime_error("Error al cargar mapa");
         return;
@@ -282,7 +342,11 @@ void GameView::process_events() {
     }
 }
 
-void GameView::update_game(float deltaTime) {
+void GameView::update_game() {
+    Uint32 currentTime = SDL_GetTicks();
+    float deltaTime = (currentTime - this->lastTime) / 1000.0f;
+    this->lastTime = currentTime;
+
     update_status_game();
     player->update(deltaTime);
 
@@ -295,7 +359,6 @@ void GameView::update_game(float deltaTime) {
                   player->getHeightImg(), map->getMapWidth(), map->getMapHeight());
 }
 
-
 void GameView::render_game() {
     SDL_RenderClear(renderer);
 
@@ -304,10 +367,21 @@ void GameView::render_game() {
     draw_players();
     // if (bomba)
     //    bomba->draw(*renderer);
+    for (auto it = bullets.begin(); it != bullets.end();) {
+        if (it->finalizado()) {
+            it = bullets.erase(it);
+        } else {
+            Coordenada camera_pos(camera.getX(), camera.getY());
+            it->set_camera(camera_pos);
+            it->draw(*renderer);
+            ++it;
+        }
+    }
     fov->draw(*renderer);
     if (shop.get_activa()) {
         shop.draw(*renderer);
     }
+    // map->render_objet(*renderer);
     hud.render(*renderer);
     SDL_RenderPresent(renderer);
 }
@@ -346,15 +420,10 @@ void GameView::run() {
     this->constant_rate_loop.execute();
 }
 
-
 void GameView::step() {
-    Uint32 currentTime = SDL_GetTicks();
-    float deltaTime = (currentTime - this->lastTime) / 1000.0f;
-    this->lastTime = currentTime;
-
     this->process_events();
     this->update_game_image();
-    this->update_game(deltaTime);
+    this->update_game();
     this->render_game();
 }
 
@@ -375,9 +444,6 @@ GameView::~GameView() {
         delete fov;
 
     this->manger_texture.clear();
-
-    if (backgroundTexture)
-        SDL_DestroyTexture(backgroundTexture);
 
     if (renderer)
         SDL_DestroyRenderer(renderer);

@@ -8,6 +8,10 @@ WeaponCode GameConfig::weapon_name_to_code(const std::string& name) {
         return WeaponCode::GLOCK;
     else if (name == "Ak47")
         return WeaponCode::AK47;
+    else if (name == "M3")
+        return WeaponCode::M3;
+    else if (name == "AWP")
+        return WeaponCode::AWP;
     else if (name == "Knife")
         return WeaponCode::KNIFE;
     else
@@ -19,7 +23,7 @@ void GameConfig::load_weapons(const YAML::Node& config) {
         std::string name = weapon.first.as<std::string>();
         WeaponCode code = weapon_name_to_code(name);
         YAML::Node data = weapon.second;
-        bool purchasable = data["purchasable"].as<int>();
+        bool purchasable = data["purchasable"].as<bool>();
         WeaponConfig weapon_config{
                 data["price"].as<price_t>(),          data["damage"].as<damage_t>(),
                 data["fire_rate"].as<fire_rate_t>(),  data["max_bullets"].as<max_bullets_t>(),

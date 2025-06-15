@@ -47,7 +47,26 @@ public:
                                Position& direction) override;
     virtual bool is_droppable() override;
 };
+class M3: public FireableWeapon {
+private:
+    uint8_t calculate_damage(float distance);
 
+public:
+    explicit M3(GameConfig::weapon_config_t specs): FireableWeapon(WeaponCode::M3, specs) {}
+    virtual bool set_on_action(ISpawneableZone& spawn, player_id_t id,
+                               Position& direction) override;
+    virtual bool is_droppable() override;
+};
+class AWP: public FireableWeapon {
+private:
+    uint8_t calculate_damage(float distance);
+
+public:
+    explicit AWP(GameConfig::weapon_config_t specs): FireableWeapon(WeaponCode::AWP, specs) {}
+    virtual bool set_on_action(ISpawneableZone& spawn, player_id_t id,
+                               Position& direction) override;
+    virtual bool is_droppable() override;
+};
 class Knife: public Weapon {
 public:
     explicit Knife(GameConfig::weapon_config_t specs): Weapon(WeaponCode::KNIFE, specs) {}

@@ -2,27 +2,54 @@
 #define BUTTON_CREATE "Create"
 #define BUTTON_JOIN "Join"
 
-LobbyView::LobbyView(ClientProtocol& protoccol):
-        protocol(protoccol),
+LobbyView::LobbyView(StackNavigator& stack_navigator, ClientProtocol& protocol):
+        protocol(protocol),
+        stack_navigator(stack_navigator),
         infoPlayer(),
         options_map(),
         img_maps(),
         list_games(new QListWidget(this)) {
 
-    options_map << "Desierto"
-                << "Pueblito Azteca"
-                << "Zona de Entrenamiento";
-    img_maps["Desierto"] = "assets/gfx/tiles/default_inferno.png";
-    img_maps["Pueblito Azteca"] = "assets/gfx/tiles/default_aztec.png";
-    img_maps["Zona de Entrenamiento"] = "assets/gfx/tiles/default_dust.png";
+    options_map << "Desierto" << "Pueblito Azteca" << "Zona de Entrenamiento";
+    img_maps["Desierto"] = "assets/"
+                           "gfx/screens/dust2.jpg";
+    img_maps["Pueblito Azteca"] = ""
+                                  "assets/gfx/screens/aztecc.jpg";
+    img_maps["Zona de Entrenamiento"] = "assets/gfx/screens/"
+                                        "entrenamiento.jpg";
+    set_skins_ct();
+    set_skins_tt();
 }
 
+// Falta agregar las skins
+void LobbyView::set_skins_ct() {
+    this->options_skins_ct << "Phoenix" << "L337 Krew" << "Arctic Avenger" << "Guerrilla";
+    this->img_skins_ct["Phoenix"] = "assets/gfx/screens/"
+                                    "entrenamiento.jpg";
+    this->img_skins_ct["L337 Krew"] = "";
+    this->img_skins_ct["Arctic Avenger"] = "";
+    this->img_skins_ct["Guerrilla"] = "";
+}
 
+void LobbyView::set_skins_tt() {
+    this->options_skins_tt << "Seal Force" << "German GSG-9" << "UK SAS" << "French GIGN";
+    this->img_skins_tt["Seal Force"] = "";
+    this->img_skins_tt["German GSG-9"] = "";
+    this->img_skins_tt["UK SAS"] = "";
+    this->img_skins_tt["French GIGN"] = "";
+}
 QListWidget* LobbyView::create_item(QWidget* parent, const QStringList& options) {
 
     QListWidget* list_map = new QListWidget(parent);
-    list_map->setStyleSheet("QListWidget::item { margin-bottom: 5px; }");
-
+    list_map->setStyleSheet(R"(
+    QListWidget {
+        background-color: transparent;
+        border: 2px solid #444;
+        border-radius: 8px;
+        padding: 5px;
+        color: white;
+        font-size: 16px;
+  })");
     QFont fuente;
     list_map->setFont(fuente);
 
@@ -32,60 +59,48 @@ QListWidget* LobbyView::create_item(QWidget* parent, const QStringList& options)
     return list_map;
 }
 
+/*
+Seccion de mostrar mapas
+Este metodo en si es viejo, es mejor la version similar a skins ya que esta
+cargado al crear y no al correr esta funcion el mapa
+*/
 void LobbyView::section_maps(QWidget* tabMap, const std::map<QString, QString>& options,
                              const QStringList& items_text) {
 
-    QLabel* labelMap = new QLabel();
+    QLabel* images = new QLabel();
+    QLabel* selected = new QLabel();
+    selected->setFixedSize(200, 25);
+    selected->setAlignment(Qt::AlignCenter);
+    selected->setStyleSheet(LOBBY_LABEL_STYLE2);
+    QLabel* maps_names = new QLabel("Maps Names");
+    maps_names->setFixedSize(200, 25);
+    maps_names->setAlignment(Qt::AlignCenter);
+    maps_names->setStyleSheet(LOBBY_LABEL_STYLE2);
+    images->setAlignment(Qt::AlignCenter);
 
-    QListWidget* list_map = create_item(tabMap, items_text);
-    QVBoxLayout* layoutMap = new QVBoxLayout(tabMap);  // tabs
-    layoutMap->addWidget(list_map);
-    layoutMap->addWidget(labelMap);
-
-    connect(list_map, &QListWidget::itemClicked, [this, labelMap, options](QListWidgetItem* item) {
-        QString nombre = item->text();
-        infoPlayer.map = nombre.toStdString();
-        labelMap->setPixmap(QPixmap(options.at(nombre)).scaled(300, 300, Qt::KeepAspectRatio));
-    });
-}
-
-void LobbyView::section_dates(QWidget* selection) {
-
-    QLineEdit* name = new QLineEdit(selection);
-    QLineEdit* name_game = new QLineEdit(selection);
-
-    QFormLayout* formLayout = new QFormLayout(selection);
-    formLayout->addRow("Name Player: ", name);
-    formLayout->addRow("Name Game: ", name_game);
-
-    connect(name, &QLineEdit::textChanged, this,
-            [&](const QString& text) { this->infoPlayer.info.name_player = text.toStdString(); });
-    connect(name_game, &QLineEdit::textChanged, this,
-            [&](const QString& text) { this->infoPlayer.info.name_game = text.toStdString(); });
-}
-
-void LobbyView::section_player(QWidget* selection) {
-
-    QFormLayout* layout = new QFormLayout(selection);
-
-    QComboBox* combo_terrorist = new QComboBox(selection);
-    QComboBox* combo_counter_terrorist = new QComboBox(selection);
-
-    QStringList list_terrorist = {"Seal Force", "German GSG-9", "UK SAS", "French GIGN"};
-    QStringList list_counter = {"Phoenix", "L337 Krew", "Arctic Avenger", "Guerrilla"};
-
-    combo_terrorist->addItems(list_terrorist);
-    combo_counter_terrorist->addItems(list_counter);
-    layout->addRow("Counter Terrorist:", combo_terrorist);
-    layout->addRow("Terrorist :", combo_counter_terrorist);
-
-    connect(combo_terrorist, &QComboBox::currentTextChanged,
-            [this, combo_terrorist](const QString& skin) { infoPlayer.skin = skin.toStdString(); });
-
-    connect(combo_counter_terrorist, &QComboBox::currentTextChanged,
-            [this, combo_counter_terrorist](const QString& skin) {
-                infoPlayer.skin2 = skin.toStdString();
-            });
+    QVBoxLayout* maps_layout = new QVBoxLayout();
+    maps_layout->addWidget(maps_names);
+    for (const QString& map_name: items_text) {
+        // Options ya deberia estar cargado, no por parametro
+        QPushButton* button_map = buttons_creator.create_button(
+                map_name,
+                [this, images, options, map_name, selected]() {
+                    infoPlayer.map = map_name.toStdString();
+                    QPixmap pixmap(options.at(map_name));
+                    images->setPixmap(pixmap.scaled(600, 600, Qt::KeepAspectRatio));
+                    selected->setText(map_name);
+                },
+                ITEM_STYLE);
+        maps_layout->addWidget(button_map);
+    }
+    QVBoxLayout* info_layout = new QVBoxLayout();
+    info_layout->addWidget(images);
+    info_layout->addWidget(selected, 0, Qt::AlignCenter);
+    info_layout->setSpacing(10);
+    QHBoxLayout* final_layout = new QHBoxLayout(tabMap);
+    final_layout->addLayout(maps_layout);
+    final_layout->addSpacing(20);
+    final_layout->addLayout(info_layout);
 }
 
 void imprimirPlayer(const Player& p) {
@@ -124,6 +139,9 @@ TerroristSkin LobbyView::get_skin_terrorist(const std::string skin_terrorist) {
     return TerroristSkin::GUERRILLA;
 }
 
+/*
+FUNCIONES DE UTILIDAD
+*/
 void LobbyView::function_join() {
 
     Skins skins(get_skin_counter(infoPlayer.skin2), get_skin_terrorist(infoPlayer.skin));
@@ -135,113 +153,282 @@ void LobbyView::function_create() {
     std::cout << "envio nombre create partida: " << infoPlayer.info.name_game << std::endl;
     MapName map_name(get_map(infoPlayer.map));
     Skins skins(get_skin_counter(infoPlayer.skin2), get_skin_terrorist(infoPlayer.skin));
-
-
     protocol.send_create_game(CreateGame(infoPlayer.info.name_game, map_name, skins));
     emit opcionElegida(LobbyCommandType::CREATE_GAME, infoPlayer);
 }
-
-void LobbyView::action_button(QVBoxLayout* layout, const QString& text,
-                              std::function<void()> callback) {
-
-    QPushButton* button = new QPushButton(text);
-    QObject::connect(button, &QPushButton::clicked, [callback, this]() { callback(); });
-    layout->addWidget(button, 0, Qt::AlignHCenter);
-}
-void LobbyView::action_create(QWidget* page, QPushButton* button_menu) {
-    QVBoxLayout* layout = new QVBoxLayout(page);
-    QTabWidget* page_create = new QTabWidget();
-
-    QWidget* tabMap = new QWidget();
-    QWidget* tabDatos = new QWidget();
-    QWidget* tabPlayers = new QWidget();
-
-    page_create->addTab(tabDatos, "Datos");
-    page_create->addTab(tabMap, "Maps");
-    page_create->addTab(tabPlayers, "personaje");
-
-    layout->addWidget(page_create);
-
-    section_maps(tabMap, img_maps, options_map);
-    section_dates(tabDatos);
-    section_player(tabPlayers);
-
-    action_button(layout, BUTTON_CREATE, [this]() { this->function_create(); });
-    layout->addWidget(button_menu);
-}
-
-void LobbyView::update_join_list(const std::vector<std::string>& nuevas_partidas) {
-
+void LobbyView::update_join_list() {
+    protocol.send_list_games();
+    std::vector<std::string> list = protocol.read_list_games();
     list_games->clear();
-    for (const std::string& partida: nuevas_partidas) {
-        QString qpartida = QString::fromStdString(partida);
+    for (const std::string& partida: list) {
         list_games->addItem(QString::fromStdString(partida));
         qDebug() << "Partida añadida:" << QString::fromStdString(partida);
     }
 }
+/*
 
-void LobbyView::action_join(QTabWidget* page_join, QPushButton* button_menu) {
+ACTION HELP
 
-    QWidget* window = new QWidget();
-    QWidget* window_players = new QWidget();
-    QStringList options;
-    QVBoxLayout* layout = new QVBoxLayout(window);
-
-    QWidget* formWidget = new QWidget(window);
-
-    QFormLayout* formLayout = new QFormLayout();
-
-    formWidget->setLayout(formLayout);
-
-    QLineEdit* name = new QLineEdit(window);
-    formLayout->addRow("Name Player: ", name);
-
-    page_join->addTab(window, "partidas");
-    page_join->addTab(window_players, "Players");
-    section_player(window_players);
-
-    this->list_games = create_item(window, options);
-
-    connect(this->list_games, &QListWidget::itemClicked, [this, options](QListWidgetItem* item) {
-        qDebug() << item->text();
-        infoPlayer.info.name_game = item->text().toStdString();
-    });
-
-    layout->addWidget(list_games);
-    layout->addWidget(formWidget);
-    action_button(layout, BUTTON_JOIN, [this]() { this->function_join(); });
-    layout->addWidget(button_menu);
-}
-
-void LobbyView::action_help(QWidget* page_help, QPushButton* button_menu) {
+*/
+void LobbyView::action_help(QWidget* page_help) {
 
     QVBoxLayout* layout = new QVBoxLayout(page_help);
 
     QTextEdit* helpText = new QTextEdit(page_help);
     helpText->setReadOnly(true);
 
-
     QFont fuente("Segoe UI", 11);
     helpText->setFont(fuente);
+    const QString helpHtml = R"(<style>
+  body {
+    color: rgb(226, 160, 160);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgb(10, 10, 10);
+    padding: 20px;
+  }
+  h2 {
+    color: rgb(255, 80, 80);
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px black;
+  }
+  .label-box {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgb(255, 80, 80);
+    border-radius: 10px;
+    padding: 10px 15px;
+    margin: 10px 0;
+    box-shadow: 0 0 8px rgba(255, 80, 80, 0.6);
+    font-size: 14px;
+    color: #eee;
+  }
+  .label-box b {
+    color: rgb(255, 150, 150);
+  }
+  </style>
 
-    helpText->setHtml("<style>"
-                      "body { color: #2E2E2E; font-family: 'Segoe UI'; background-color: #f5f5f5; "
-                      "padding: 10px; }"
-                      "h2 { color: #007acc; margin-bottom: 15px; }"
-                      "p { margin: 8px 0; font-size: 13px; }"
-                      "b { color: #444; }"
-                      "</style>"
-                      "<body>"
-                      "<h2>Ayuda</h2>"
-                      "<p><b>Create Game:</b> Para crear una partida nueva.</p>"
-                      "<p><b>Join Game:</b> Para unirse a una partida existente.</p>"
-                      "</body>");
-
-
-    helpText->setStyleSheet("QTextEdit { border: none; background-color: #f5f5f5; }");
+  <body>
+    <h2>Bienvenido al Tutorial del Lobby</h2>
+    <div class="label-box">
+      <b>Join Game:</b> En la ventana de Join game tendra la posibilidad de unirse a una partida ya creada por otro jugador.
+    </div>
+    <div class="label-box">
+      <b>Create Game:</b> En la ventana de Create Game podra crear usted mismo su partida!.
+    <table>
+    H
+    <h2> Como unirse o crear una partida </h2>
+    <thead>
+      <tr>
+        <th>Unirse a una partida</th>
+        Al unirse a una partida debera de indicar su nombre, y las skins que quiera tener en el momento de jugar
+      </tr>
+      <tr>
+        <th>Crear una partida</th>
+        Al crear una partida debera de indicar el mapa con el cual su partida se creara, luego sera igual que al unirse a una partida.
+      </tr>
+    </thead>
+  </table>
+  <img src="assets/gfx/screens/promotional.jpg" width="500" height="auto" />
+  </body>)";
+    helpText->setHtml(helpHtml);
 
     layout->addWidget(helpText);
-    layout->addWidget(button_menu);
+}
+
+void LobbyView::add_help_page(QWidget* page_help) {
+    QVBoxLayout* layout = new QVBoxLayout(page_help);
+    QWidget* container = new QWidget();
+    layout->addWidget(container);
+    // Aca agregamos el boton de help
+    QPushButton* back_button = buttons_creator.create_button(
+            "Back", [this]() { this->stack_navigator.back(); }, LOBBY_STYLE);
+    action_help(container);  // Aca seteamos la pagina en si
+    layout->addWidget(back_button);
+    stack_navigator.add_widget(page_help);
+    return;
+}
+
+/*
+
+ACTION UNIRSE / CREAR JUGADOR
+
+*/
+
+void LobbyView::section_skins(QVBoxLayout* selection) {
+    // Quiza que no sean CBox
+    QHBoxLayout* h_layout = new QHBoxLayout();
+    h_layout->setAlignment(Qt::AlignCenter);
+    QFormLayout* tt_column = new QFormLayout();
+    QFormLayout* ct_column = new QFormLayout();
+    QLabel* ct_text = new QLabel("CounterTerrorist skins");
+    QLabel* tt_text = new QLabel("Terrorist skins");
+    ct_text->setStyleSheet(LOBBY_LABEL_STYLE2);
+    tt_text->setStyleSheet(LOBBY_LABEL_STYLE2);
+    ct_text->setFixedSize(200, 50);
+    tt_text->setFixedSize(200, 50);
+    QLabel* ct_img = new QLabel();
+    QLabel* tt_img = new QLabel();
+    tt_img->setFixedSize(300, 300);
+    ct_img->setFixedSize(300, 300);
+    QComboBox* combo_terrorist = new QComboBox();
+    QComboBox* combo_counter_terrorist = new QComboBox();
+    combo_terrorist->setStyleSheet(LOBBY_COMBO_STYLE);
+    combo_counter_terrorist->setStyleSheet(LOBBY_COMBO_STYLE);
+    for (const auto& skins: this->img_skins_tt) combo_terrorist->addItem(skins.first);
+    for (const auto& skins: this->img_skins_ct) combo_counter_terrorist->addItem(skins.first);
+    ct_column->addWidget(ct_text);
+    ct_column->addRow(combo_counter_terrorist);
+    tt_column->addWidget(tt_text);
+    tt_column->addRow(combo_terrorist);
+    tt_column->addWidget(tt_img);
+    ct_column->addWidget(ct_img);
+    h_layout->addLayout(tt_column);
+    h_layout->addStretch(1);
+    h_layout->addLayout(ct_column);
+    selection->addLayout(h_layout);
+    connect(combo_terrorist, &QComboBox::currentTextChanged, [this, tt_img](const QString& skin) {
+        infoPlayer.skin = skin.toStdString();
+        QPixmap pixmap(this->img_skins_tt.at(skin));  // Recordatorio, Pixmap es la img en path
+        tt_img->setPixmap(pixmap.scaled(300, 300, Qt::KeepAspectRatio));
+    });
+    connect(combo_counter_terrorist, &QComboBox::currentTextChanged,
+            [this, ct_img](const QString& skin) {
+                infoPlayer.skin2 = skin.toStdString();
+                // Recordatorio, Pixmap es la img en path
+                QPixmap pixmap(this->img_skins_ct.at(skin));
+                ct_img->setPixmap(pixmap.scaled(300, 300, Qt::KeepAspectRatio));
+            });
+}
+void LobbyView::add_player_page(QWidget* page_player) {
+    QVBoxLayout* layout = new QVBoxLayout(page_player);
+    QPushButton* back_button = buttons_creator.create_button(
+            "Back", [this]() { this->stack_navigator.back(); }, LOBBY_STYLE);
+    QLabel* name_player = new QLabel("NickName: ");
+    name_player->setStyleSheet(LOBBY_LABEL_STYLE2);
+    name_player->setFixedSize(200, 50);
+    QLineEdit* name = new QLineEdit();
+    connect(name, &QLineEdit::textChanged, this,
+            [&](const QString& text) { this->infoPlayer.info.name_player = text.toStdString(); });
+    layout->addWidget(name_player);
+    layout->addWidget(name);
+    section_skins(layout);  // Aca viene la seleccion de skins
+    QPushButton* play_button = buttons_creator.create_button(
+            "Play",
+            [this]() {
+                if (this->infoPlayer.info.name_player.empty()) {
+                    QMessageBox::warning(nullptr, "Empty name", "No tenes ningun nickname");
+                    return;
+                }
+                if (this->modo_lobby_actual == LobbyMode::JOIN)
+                    this->function_join();
+                else
+                    this->function_create();
+            },
+            LOBBY_STYLE);
+    QHBoxLayout* options = new QHBoxLayout();
+    options->addWidget(back_button);
+    options->addStretch();
+    options->addWidget(play_button);
+    layout->addLayout(options);
+    stack_navigator.add_widget(page_player);
+    return;
+}
+
+/*
+VENTANAS DE CREATE Y JOIN
+*/
+void LobbyView::configure_window_join(QWidget* window_join) {
+    QStringList options;
+    QVBoxLayout* layout = new QVBoxLayout(window_join);
+
+    QPushButton* help_button = buttons_creator.create_button(
+            "Tutorial", [this]() { this->stack_navigator.go_to(this->page_help); }, LOBBY_STYLE);
+
+    QPushButton* back_button = buttons_creator.create_button(
+            "Back", [this]() { this->stack_navigator.back(); }, LOBBY_STYLE);
+
+    // Lista de partidas aca
+    QWidget* formWidget = new QWidget(window_join);
+    this->list_games = create_item(window_join, options);
+    connect(this->list_games, &QListWidget::itemClicked, [this, options](QListWidgetItem* item) {
+        qDebug() << item->text();
+        infoPlayer.info.name_game = item->text().toStdString();
+    });
+    //
+    QHBoxLayout* h_box = new QHBoxLayout();
+    layout->addWidget(list_games);
+    layout->addWidget(formWidget);
+    buttons_creator.add_button(
+            layout, BUTTON_JOIN,
+            [this]() {
+                if (this->infoPlayer.info.name_game.empty()) {
+                    QMessageBox::warning(nullptr, "Empty name", "No seleccionaste ninguna partida");
+                    return;
+                }
+                this->modo_lobby_actual = LobbyMode::JOIN;
+                this->stack_navigator.go_to(this->page_player_select);
+            },
+            LOBBY_STYLE);
+    h_box->addWidget(back_button, 0, Qt::AlignLeft);
+    h_box->addStretch();
+    h_box->addWidget(help_button, 0, Qt::AlignRight);
+    layout->addLayout(h_box);
+}
+void LobbyView::configure_window_create(QWidget* window_create) {
+    QVBoxLayout* layout = new QVBoxLayout(window_create);
+    QPushButton* help_button = buttons_creator.create_button(
+            "Help", [this]() { this->stack_navigator.go_to(this->page_help); }, LOBBY_STYLE);
+    QPushButton* back_button = buttons_creator.create_button(
+            "Back", [this]() { this->stack_navigator.back(); }, LOBBY_STYLE);
+    QLabel* set_name = new QLabel("New Game Name");
+    set_name->setAlignment(Qt::AlignCenter);
+    set_name->setFixedSize(200, 25);
+    set_name->setStyleSheet(LOBBY_LABEL_STYLE2);
+    QLineEdit* input_name = new QLineEdit();
+    connect(input_name, &QLineEdit::textChanged, this,
+            [&](const QString& text) { this->infoPlayer.info.name_game = text.toStdString(); });
+    layout->addWidget(set_name);
+    layout->addWidget(input_name);
+    QWidget* maps = new QWidget();
+    section_maps(maps, img_maps, options_map);
+    layout->addWidget(maps);
+    buttons_creator.add_button(
+            layout, BUTTON_CREATE,
+            [this]() {
+                if (this->infoPlayer.info.name_game.empty()) {
+                    QMessageBox::warning(nullptr, "Empty name",
+                                         "No seleccionaste ningun nombre de partida");
+                    return;
+                } else if (this->infoPlayer.map.empty()) {
+                    QMessageBox::warning(nullptr, "Empty map", "No seleccionaste ningun mapa");
+                    return;
+                }
+                // Aca alertas de que pasa si no pusiste nombre ni seleccionaste mapa
+                this->modo_lobby_actual = LobbyMode::CREATE;
+                this->stack_navigator.go_to(this->page_player_select);
+            },
+            LOBBY_STYLE);
+    QHBoxLayout* h_box = new QHBoxLayout();
+    h_box->addWidget(back_button, 0, Qt::AlignLeft);
+    h_box->addStretch();
+    h_box->addWidget(help_button, 0, Qt::AlignRight);
+    layout->addLayout(h_box);
+}
+
+/*
+EL INICIO DE PLAY SERIA ESTE
+*/
+void LobbyView::play_game(QTabWidget* page_play) {
+    this->page_player_select = new QWidget();
+    this->page_player_select->setStyleSheet(PAGE_PLAYER_STYLE);
+    this->page_help = new QWidget();
+    add_player_page(this->page_player_select);
+    add_help_page(this->page_help);
+    QWidget* window_join = new QWidget();
+    QWidget* window_create = new QWidget();
+    page_play->addTab(window_join, "Join Game");
+    page_play->addTab(window_create, "Create Game");
+    configure_window_join(window_join);
+    configure_window_create(window_create);
 }
 
 LobbyView::~LobbyView() {}

@@ -13,6 +13,7 @@ target_sources(CS2D_client
     SDL/playerView.cpp
     SDL/shopping.cpp
     SDL/weaponView.cpp
+    Qt/ButtonsCreator.cpp
     SDL/camera.cpp
     SDL/text.cpp
     Qt/scoreBoard.cpp
@@ -23,6 +24,8 @@ target_sources(CS2D_client
     PUBLIC
     
     SDL/gameView.h
+    Qt/ButtonsCreator.h
+    Qt/StackNavigator.h
     SDL/mapView.h
     SDL/playerView.h
     SDL/gameConfig.h

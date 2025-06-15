@@ -72,6 +72,7 @@ void Equipment::reload() { this->weapon_in_hand->reload(); }
 void Equipment::shoot(Position& position) {
     if (weapon_in_hand->get_weapon_code() == WeaponCode::BOMB && bomb.lock()) {
         if (weapon_in_hand->set_on_action(this->spawneable_zone, this->player_id, position)) {
+            this->change_weapon(EquipType::SECONDARY);
             bomb.reset();
         }
     } else {

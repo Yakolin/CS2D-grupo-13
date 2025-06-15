@@ -98,5 +98,12 @@ void Map::defuse_bomb(const player_id_t& player_id) {
         return;
     bomb.second->defuse();
 }
-
+void Map::spawn_random_weapons(std::vector<std::shared_ptr<IInteractuable>>& weapons) {
+    // Esto quiza deberia estar en otro lado, pero en secuencia esta bien y funca
+    collision_manager.reset_dropped_things();
+    for (std::shared_ptr<IInteractuable> weapon: weapons) {
+        Position random_pos(0, 0);  // Por ahora
+        collision_manager.drop(random_pos, weapon);
+    }
+}
 void Map::remove_player([[maybe_unused]] player_id_t id) {}  // Esto no es asi, acordate de fixearlo

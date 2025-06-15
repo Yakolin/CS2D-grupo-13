@@ -56,3 +56,5 @@ Timer:
   time_round: 100
   time_bomb: 25
   time_ending: 5
+
+RandomWeapons: 6

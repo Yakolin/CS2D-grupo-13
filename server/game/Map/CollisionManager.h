@@ -49,6 +49,7 @@ public:
     void check_damage();
     void drop(Position& player_position, std::shared_ptr<IInteractuable>& dropable);
     void add_damage_collider(player_id_t id, ColliderDamage& collider_damage);
+    void reset_dropped_things() { dropped_things.clear(); }
     std::vector<WeaponDropped> get_dropped_things_images();
     std::vector<BulletImage> get_bullets_image();
 };

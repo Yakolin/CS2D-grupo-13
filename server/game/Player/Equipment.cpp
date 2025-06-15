@@ -62,7 +62,7 @@ void Equipment::drop_weapon() {
             std::shared_ptr<IInteractuable> dropped = this->weapon_in_hand;
             this->droppable_zone.drop(this->player_id, dropped);
             this->new_weapon_in_hand(this->secondary);
-            this->primary = std::make_shared<NullWeapon>();  // Mejorable
+            this->primary = std::make_shared<NullWeapon>();
         }
     }
 }

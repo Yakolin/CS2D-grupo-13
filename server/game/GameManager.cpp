@@ -43,11 +43,16 @@ void GameManager::add_player(const player_id_t& id, Skins& skins) {
     map_game.add_player(id, player);  // Player es un ICanInteract
 }
 
-void GameManager::reset_players(bool full_reset) {
-    for (const auto& player: players) {
-        player.second->reset(full_reset);
-    }
+void GameManager::reset_round(bool full_reset) {
+    for (const auto& player: players) player.second->reset(full_reset);
     map_game.respawn_players();
+    std::vector<std::shared_ptr<IInteractuable>> weapons;
+    for (int i = 0; i < 5; i++) { /*Aca debe encargarse el GameConfig*/
+        std::shared_ptr<IInteractuable> weapon = weapon_factory.create_random_weapon();
+        weapons.push_back(weapon);
+    }
+    map_game.spawn_random_weapons(weapons);
+    give_bomb();
 }
 // Decidi que esto se cree cada vez que se pide para evitar datos copiados
 GameImage GameManager::generate_game_image() {
@@ -88,7 +93,7 @@ void GameManager::start_game() {
         return;
     }
     timer.round_start();
-    reset_players(false);
+    reset_round(false);
     give_bomb();
     game_started = true;
 }
@@ -152,8 +157,7 @@ GameImage GameManager::get_frame() {
             full_reset = true;
         }
         timer.round_start();
-        reset_players(full_reset);
-        give_bomb();
+        reset_round(full_reset);
     }
     map_game.update_map_state();
     // std::cout<< "Devolviendo game_image\n";

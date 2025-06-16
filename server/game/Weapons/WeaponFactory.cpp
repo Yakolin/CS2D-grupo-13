@@ -7,16 +7,20 @@ GameConfig::weapon_config_t WeaponFactory::find_weapon_specs(WeaponCode code) {
     GameConfig::WeaponConfig& config = it->second;
     return config;
 }
-std::shared_ptr<Weapon> WeaponFactory::create_random_weapon() {
-    int rand_value = rand() % 3;  // Muy mejorable esta funcion...
-    if (rand_value == 0)
-        return weapon_create(WeaponCode::AK47);
-    else if (rand_value == 1)
-        return weapon_create(WeaponCode::M3);
-    else if (rand_value == 2)
+std::shared_ptr<Weapon> WeaponFactory::create_random_weapon(
+        const GameConfig::dropped_weapons_t& dropped_weapons) {
+    std::random_device rd;
+    std::mt19937 rand(rd());
+    int total =
+            dropped_weapons.awp_chance + dropped_weapons.ak47_chance + dropped_weapons.m3_chance;
+    std::uniform_int_distribution<> dis(0, total);
+    int rand_value = dis(rand);
+    if (rand_value < dropped_weapons.awp_chance)
         return weapon_create(WeaponCode::AWP);
+    else if (rand_value < dropped_weapons.ak47_chance)
+        return weapon_create(WeaponCode::AK47);
     else
-        return weapon_create(WeaponCode::NONE);  // Esto casi que es una exception...
+        return weapon_create(WeaponCode::M3);
 }
 std::shared_ptr<Weapon> WeaponFactory::weapon_create(WeaponCode code) {
     if (code == WeaponCode::NONE)

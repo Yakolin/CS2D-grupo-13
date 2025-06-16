@@ -92,7 +92,6 @@ void CollisionManager::check_damage_players(player_id_t caster, ColliderDamage& 
 }
 
 void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage& collider_damage) {
-    srand(time(nullptr));
     bullets_image.clear();
     std::vector<PlayerEntity> players_affected;
     PlayerEntity player_caster = players_in_map[caster];
@@ -128,8 +127,13 @@ void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage&
     if (nearest.player.lock()) {
         std::cout << "Se detecto un enemigo golpeado\n";
         uint8_t damage = collider_damage.damage_calculator(min_distance);
+        std::random_device rd;
+        std::mt19937 rand(rd());
+        std::uniform_int_distribution<uint8_t> dist(0, 4);
+        int random_num = dist(rand);
         if (!nearest.player.lock()->is_dead()) {
-            nearest.player.lock()->damage(damage);
+            if (random_num != 0)
+                nearest.player.lock()->damage(damage);
             if (nearest.player.lock()->is_dead()) {
                 std::cout << "Se murio el otro jugador, felicidades :)\n";
                 player_caster.player.lock()->get_points();

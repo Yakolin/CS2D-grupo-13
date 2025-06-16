@@ -62,6 +62,6 @@ Rounds: 10
 RandomWeapons: 
   max_weapons: 5
   Weapons:  # Esto va en porcentajes.
-    Ak47: 50
-    M3: 80
-    AWP: 30
+    Ak47: 35
+    M3: 50
+    AWP: 10

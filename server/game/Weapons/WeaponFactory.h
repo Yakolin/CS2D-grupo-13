@@ -2,6 +2,7 @@
 #define WEAPON_FACTORY_H_
 #include <map>
 #include <memory>
+#include <random>
 
 #include "../Config/GameConfig.h"
 #include "../Weapons/FireableWeapon.h"

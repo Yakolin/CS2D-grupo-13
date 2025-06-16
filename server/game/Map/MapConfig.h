@@ -14,9 +14,9 @@
 #define Wall '#'
 #define Floor ' '
 
-#define PueblitoAzteca_path "server/game/Map/Maps/Azteca.yaml"
-#define ZonaEntrenamiento_path "server/game/Map/Maps/Entrenamiento.yaml"
-#define Desierto_path "server/game/Map/Maps/Desierto.yaml"
+#define PueblitoAzteca_path "Map/Maps/Azteca.yaml"
+#define ZonaEntrenamiento_path "Map/Maps/Entrenamiento.yaml"
+#define Desierto_path "Map/Maps/Desierto.yaml"
 
 class MapConfig {
 public:

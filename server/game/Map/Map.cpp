@@ -101,7 +101,7 @@ void Map::defuse_bomb(const player_id_t& player_id) {
 Position Map::get_random_position() {
     int x = rand() % walls.size();
     int y = rand() % walls[0].size();
-    while (wall[x][y] == Wall) {
+    while (walls[x][y] == Wall) {
         x = rand() % walls.size();
         y = rand() % walls[0].size();
     }

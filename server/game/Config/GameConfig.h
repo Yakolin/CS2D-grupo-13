@@ -58,12 +58,14 @@ public:
         multiplier_points_t multiplier_points;
     } player_config_t;
     PlayerConfig player_config;
+    uint8_t dropped_weapons;
 
 private:
     WeaponCode weapon_name_to_code(const std::string& name);
     void load_weapons(const YAML::Node& config);
     void load_timers(const YAML::Node& config);
     void load_player(const YAML::Node& config);
+    void load_general_configs(const YAML::Node& config);
     void load(const std::string& file_path);
 
 public:

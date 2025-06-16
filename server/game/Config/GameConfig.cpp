@@ -1,7 +1,7 @@
 #include "GameConfig.h"
 
 // Quiza el hardcodeo este este mal)?
-GameConfig::GameConfig() { load("server/game/Config/GameConfig.yaml"); }
+GameConfig::GameConfig() { load("Config/GameConfig.yaml"); }
 
 WeaponCode GameConfig::weapon_name_to_code(const std::string& name) {
     if (name == "Glock")
@@ -43,12 +43,16 @@ void GameConfig::load_player(const YAML::Node& config) {
                      player["points"].as<points_t>(), player["earned_points"].as<earned_points_t>(),
                      player["multiplier_points"].as<multiplier_points_t>()};
 }
+void GameConfig::load_general_configs(const YAML::Node& config) {
+    dropped_weapons = config["RandomWeapons"].as<uint8_t>();
+}
 void GameConfig::load(const std::string& file_path) {
     try {
         YAML::Node config = YAML::LoadFile(file_path);
         load_weapons(config);
         load_timers(config);
         load_player(config);
+        load_general_configs(config);
     } catch (const YAML::Exception& e) {
         throw std::runtime_error("Error al leer archivo YAML: " + std::string(e.what()));
     }

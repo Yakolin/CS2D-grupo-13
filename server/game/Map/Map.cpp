@@ -106,4 +106,9 @@ void Map::spawn_random_weapons(const std::vector<std::shared_ptr<IInteractuable>
         collision_manager.drop(random_pos, weapon);
     }
 }
-void Map::remove_player([[maybe_unused]] player_id_t id) {}  // Esto no es asi, acordate de fixearlo
+void Map::remove_player([[maybe_unused]] player_id_t id) {
+    // Esto si seria algo extraño que pase...
+    if (players_in_map.find(id) == players_in_map.end())
+        throw MapException("Player not found in the map to remove");
+    players_in_map.erase(id);
+}

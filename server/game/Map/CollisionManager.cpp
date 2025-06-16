@@ -75,9 +75,9 @@ bool CollisionManager::check_bullet_wall(const Vector2f& initial_pos, const Vect
 }
 
 std::vector<BulletImage> CollisionManager::get_bullets_image() {
-    std::vector<BulletImage> bullets_image = std::move(this->bullets_image);
+    std::vector<BulletImage> bullets_image_aux = std::move(this->bullets_image);
     this->bullets_image.clear();
-    return bullets_image;
+    return bullets_image_aux;
 }
 
 void CollisionManager::check_damage_players(player_id_t caster, ColliderDamage& collider_damage,

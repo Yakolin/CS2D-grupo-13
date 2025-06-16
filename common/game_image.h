@@ -106,9 +106,9 @@ public:
 
 class GameStateImage {
 public:
-    GameState state;
-    round_time_t time;
-    round_t round;
+    GameState state = GameState::NONE;
+    round_time_t time = 0;
+    round_t round = 0;
 
     GameStateImage() = default;
     GameStateImage(GameState state, round_time_t time, round_t round):

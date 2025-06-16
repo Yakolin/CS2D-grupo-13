@@ -65,7 +65,6 @@ GameImage GameManager::generate_game_image() {
     game_image.bullets_in_air = map_game.get_bullets_in_air();
     game_image.dropped_things = map_game.get_dropped_things_images();
     game_image.bomb = map_game.get_bomb_image();
-    game_stats.state = game_stats.state;
     GameStateImage game_state_image(game_stats.state,
                                     static_cast<round_time_t>(timer.get_time_round()),
                                     static_cast<round_t>(round));

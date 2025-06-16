@@ -45,7 +45,7 @@ public:
 
 class MapInfo {
 public:
-    MapName map_name;
+    MapName map_name = MapName::DESIERTO;  // Quiza deberia ser NONE
     RectangleInfo bomb_A, bomb_B, spawn_TT, spawn_CT;
     std::vector<Position> walls;
     MapInfo() = default;

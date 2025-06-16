@@ -98,7 +98,7 @@ void Map::defuse_bomb(const player_id_t& player_id) {
         return;
     bomb.second->defuse();
 }
-void Map::spawn_random_weapons(std::vector<std::shared_ptr<IInteractuable>>& weapons) {
+void Map::spawn_random_weapons(const std::vector<std::shared_ptr<IInteractuable>>& weapons) {
     // Esto quiza deberia estar en otro lado, pero en secuencia esta bien y funca
     collision_manager.reset_dropped_things();
     for (std::shared_ptr<IInteractuable> weapon: weapons) {

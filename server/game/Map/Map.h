@@ -30,6 +30,7 @@ private:
     CollisionManager collision_manager;
     std::map<player_id_t, player_entity_t> players_in_map;
     void charge_map();
+    Position get_random_position();
 
 public:
     explicit Map(const MapName& _map_name, std::shared_ptr<Bomb> bomb_ptr):

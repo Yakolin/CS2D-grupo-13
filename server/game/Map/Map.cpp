@@ -98,11 +98,20 @@ void Map::defuse_bomb(const player_id_t& player_id) {
         return;
     bomb.second->defuse();
 }
+Position Map::get_random_position() {
+    int x = rand() % walls.size();
+    int y = rand() % walls[0].size();
+    while (wall[x][y] == Wall) {
+        x = rand() % walls.size();
+        y = rand() % walls[0].size();
+    }
+    return Position(x, y);
+}
 void Map::spawn_random_weapons(const std::vector<std::shared_ptr<IInteractuable>>& weapons) {
     // Esto quiza deberia estar en otro lado, pero en secuencia esta bien y funca
     collision_manager.reset_dropped_things();
     for (std::shared_ptr<IInteractuable> weapon: weapons) {
-        Position random_pos(0, 0);  // Por ahora
+        Position random_pos = get_random_position();
         collision_manager.drop(random_pos, weapon);
     }
 }

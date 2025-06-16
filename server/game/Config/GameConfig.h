@@ -58,7 +58,15 @@ public:
         multiplier_points_t multiplier_points;
     } player_config_t;
     PlayerConfig player_config;
-    uint8_t dropped_weapons;
+    typedef struct DroppedWeapons {
+        uint8_t max_weapons;
+        uint8_t ak47_chance;
+        uint8_t m3_chance;
+        uint8_t awp_chance;
+    } dropped_weapons_t;
+    dropped_weapons_t dropped_weapons;
+
+    uint8_t max_rounds;
 
 private:
     WeaponCode weapon_name_to_code(const std::string& name);
@@ -73,6 +81,10 @@ public:
     std::map<WeaponCode, WeaponConfig>& get_weapon_config() { return weapon_configs; }
     TimerConfig& get_timer_config() { return timer_config; }
     PlayerConfig& get_player_config() { return player_config; }
+    // Este le sirve tamb al WeaponFactory
+    DroppedWeapons& get_dropped_weapons() { return dropped_weapons; }
+    uint8_t get_max_dropped_weapons() { return dropped_weapons.max_weapons; }
+    uint8_t get_max_rounds() { return max_rounds; }
     std::vector<WeaponInfo> get_info_weapons();
 };
 

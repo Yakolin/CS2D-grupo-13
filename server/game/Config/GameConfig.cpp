@@ -44,7 +44,13 @@ void GameConfig::load_player(const YAML::Node& config) {
                      player["multiplier_points"].as<multiplier_points_t>()};
 }
 void GameConfig::load_general_configs(const YAML::Node& config) {
-    dropped_weapons = config["RandomWeapons"].as<uint8_t>();
+    this->max_rounds = config["Rounds"].as<uint8_t>();
+    YAML::Node random_weapons = config["RandomWeapons"];
+    YAML::Node weapons_dropped = random_weapons["Weapons"];
+    dropped_weapons = {random_weapons["max_weapons"].as<uint8_t>(),
+                       weapons_dropped["Ak47"].as<uint8_t>(), weapons_dropped["M3"].as<uint8_t>(),
+                       weapons_dropped["AWP"].as<uint8_t>()};
+    std::cout << "Dropped weapons: " << dropped_weapons.max_weapons << "\n";
 }
 void GameConfig::load(const std::string& file_path) {
     try {

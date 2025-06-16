@@ -55,10 +55,7 @@ private:
     bool check_round_finished();
     void change_teams();
 
-    // void charge_map(MapName nombre_enum); Esta funcion deberia de mandarle al mapa , crearlo con
-    // el path ya buscado desde el yaml
 public:
-    // Aca el nombre del mapa es inutil, deberia de ser un enum de mapas para saber cuaaal cargar
     explicit GameManager(const string& _game_name, const MapName& map_name):
             game_name(_game_name),
             timer(game_config.get_timer_config()),

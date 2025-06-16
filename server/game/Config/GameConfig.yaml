@@ -57,4 +57,11 @@ Timer:
   time_bomb: 25
   time_ending: 5
 
-RandomWeapons: 6
+Rounds: 10
+
+RandomWeapons: 
+  max_weapons: 5
+  Weapons:  # Esto va en porcentajes.
+    Ak47: 50
+    M3: 80
+    AWP: 30

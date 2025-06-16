@@ -47,8 +47,9 @@ void GameManager::reset_round(bool full_reset) {
     for (const auto& player: players) player.second->reset(full_reset);
     map_game.respawn_players();
     std::vector<std::shared_ptr<IInteractuable>> weapons;
-    for (int i = 0; i < 5; i++) { /*Aca debe encargarse el GameConfig*/
-        std::shared_ptr<IInteractuable> weapon = weapon_factory.create_random_weapon();
+    for (int i = 0; i < game_config.get_max_dropped_weapons(); i++) {
+        std::shared_ptr<IInteractuable> weapon =
+                weapon_factory.create_random_weapon(game_config.get_dropped_weapons());
         weapons.push_back(weapon);
     }
     map_game.spawn_random_weapons(weapons);
@@ -134,7 +135,7 @@ void GameManager::change_teams() {
     }
 }
 GameImage GameManager::get_frame() {
-    if (round == 10) {
+    if (round == game_config.get_max_rounds()) {
         game_stats.state = (game_stats.rounds_TT > game_stats.rounds_CT) ? GameState::TT_WIN_GAME :
                                                                            GameState::CT_WIN_GAME;
         return generate_game_image();
@@ -151,7 +152,8 @@ GameImage GameManager::get_frame() {
     if (timer.get_state() == TimerState::ENDING_TIME && timer.get_time_round() == 0) {
         round++;
         bool full_reset = false;
-        if (round == 5) {
+        // Quiza no deberia ser asi, es decir, / 2 ??
+        if (round == game_config.get_max_rounds() / 2) {
             change_teams();
             full_reset = true;
         }
@@ -159,7 +161,6 @@ GameImage GameManager::get_frame() {
         reset_round(full_reset);
     }
     map_game.update_map_state();
-    // std::cout<< "Devolviendo game_image\n";
     return generate_game_image();
 }
 GameInfo GameManager::get_game_info() {
@@ -179,16 +180,3 @@ void GameManager::remove_player(
 }
 
 GameManager::~GameManager() { players.clear(); }
-
-/*
-void GameManager::reload(player_id_t player_id) {
-        shared_ptr<Player> player = find_player(player_id);
-        player.reload_current_weapon();
-}
-void GameManager::plant_bomb(player_id_t player_id) {
-    shared_ptr<Player> terro = find_player(player_id);
-    Vector2 player_position = map_game.get_position(player_id);
-
-    if (map_game.bomb_A.is_in(player_position) || map_game.bomb_B.is_in(player_position)) {
-}
-*/

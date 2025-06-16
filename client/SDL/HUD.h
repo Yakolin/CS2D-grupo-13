@@ -13,6 +13,7 @@
 #include "text.h"
 class HUD {
 private:
+    InfoGame info_name;
     GameConfig config;
     ManageTexture& texture_manager;
     std::unordered_map<TextView, Text> texts;
@@ -33,7 +34,7 @@ private:
 
 
 public:
-    HUD(GameConfig& config, ManageTexture& manager);
+    HUD(GameConfig& config, ManageTexture& manager,const InfoGame& info_game);
 
     void load(PlayerImage& player, BombImage& bomb, uint8_t time, GameStateImage game_state);
     void update();

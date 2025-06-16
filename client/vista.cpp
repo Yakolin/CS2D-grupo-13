@@ -15,24 +15,7 @@ Vista::Vista(int& argc, char* argv[]):
         opcionElegida(LobbyCommandType::NONE),
         info_game() {}
 
-TerroristSkin toItemTerrorism(const std::string& str) {
-    if (str == "Phoenix")
-        return TerroristSkin::PHOENIX;
-    if (str == "L337 Krew")
-        return TerroristSkin::L337_KREW;
-    if (str == "Arctic Avenger")
-        return TerroristSkin::ARCTIC_AVENGER;
-    return TerroristSkin::GUERRILLA;
-}
-CounterTerroristSkin toItemCounterTerrorism(const std::string& str) {
-    if (str == "Seal Force")
-        return CounterTerroristSkin::SEAL;
-    if (str == "German GSG-9")
-        return CounterTerroristSkin::GSG9;
-    if (str == "UK SAS")
-        return CounterTerroristSkin::SAS;
-    return CounterTerroristSkin::GIGN;
-}
+
 void Vista::run() {
 
     QApplication app(argc, argv);
@@ -61,25 +44,16 @@ void Vista::run() {
     Acknowledge ack = Acknowledge::READY;
     protocolo.send_acknowledge(ack);  // tal vez esto se tenga que mandar luego de
                                       // chequear que game info esta bien
-    Claves_skins claves;
-    claves.ct_skin = toItemCounterTerrorism(info_game.skin2);
-    claves.tt_skin = toItemTerrorism(info_game.skin);
     try {
-        GameView gameView(std::move(skt));
+        GameView gameView(std::move(skt),info_game_view,info_game);
+    std::cout << "inicalizado correctamente " << info_game.map << std::endl;
         if (!gameView.init_game())
             throw std::runtime_error(std::string("Error a inicializar game"));
+    std::cout << "cargaron objetos " << info_game.map << std::endl;
 
+        gameView.start(info_game_view );
+    std::cout << "strat " << info_game.map << std::endl;
 
-        if (opcionElegida == LobbyCommandType::CREATE_GAME) {
-            if (!gameView.add_player(11, 4, 100.0f, claves)) {
-                return;
-            }
-        } else {
-            if (!gameView.add_player(23, 9, 100.0f, claves)) {
-                return;
-            }
-        }
-        gameView.start(info_game_view /*, info_game*/);
         gameView.run();
     } catch (const QuitGameException& e) {  // no pongo mensaje porque es el comportamiento esperado
     } catch (const LibError& e) {           // no pongo mensaje porque es el comportamiento esperado

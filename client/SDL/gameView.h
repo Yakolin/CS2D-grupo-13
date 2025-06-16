@@ -36,14 +36,11 @@ private:
     GameConfig config;
     Controller controller;
     ConstantRateLoop constant_rate_loop;
-    std::map<char, std::string> leyenda;
-    std::map<TextView, std::string> texts;
-    std::map<char, Object> ids;
     SDL_Window* ventana;
     SDL_Renderer* renderer;
-    PlayerView* player;
     Camera camera;
     ManageTexture manger_texture;
+    PlayerView* player;
     std::map<player_id_t, PlayerView*> players;
     GameImage snapshot;
     MapView* map;
@@ -63,7 +60,8 @@ private:
 
     void handle_events(const SDL_Event& evento);
 
-    void load_textures();
+
+    void update_bullets_snapshot();
 
     void update_status_game();
 
@@ -89,9 +87,12 @@ private:
     void handle_key_down(SDL_Keycode& tecla);
     void handle_extras(SDL_Keycode& tecla);
     void handle_movements(SDL_Keycode& tecla);
+    Skins load_claves(const Player& info_Player);
 
 public:
-    explicit GameView(Socket&& skt);
+    explicit GameView( Socket&& skt, const GameInfo& game_info, const Player& info_game);
+
+
 
     SDL_Window* init_window(const GameConfig& config);
 
@@ -107,8 +108,6 @@ public:
     post:
     */
     void start(const GameInfo& info_game_view /*, const Player& info_game*/);
-
-    bool add_player(float x, float y, int speed, const Claves_skins& claves);
 
     void run();
 

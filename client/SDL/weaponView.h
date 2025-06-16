@@ -29,6 +29,8 @@ public:
     void draw(SDL_Renderer& renderer) override;
 
 
+    void draw_dropped(SDL_Renderer& renderer);
+
     void update(const int& x_player, const int& y_player, const float& angle);
 
     void setUsed(bool used);

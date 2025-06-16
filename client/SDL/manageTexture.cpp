@@ -48,7 +48,6 @@ ManageTexture::ManageTexture(SDL_Renderer* renderer): renderer(renderer) {
     load(Object::ZONE_BOMBA1, "assets/gfx/backgrounds/zonab.jpeg");
     load(Object::ZONE_COUNTERTERROSIT, "assets/gfx/backgrounds/zonacounter.jpeg");
     load(Object::ZONE_TERRORIST, "assets/gfx/backgrounds/zonaTerrorist.jpeg");
-    load(Object::EXPLOSION, "assets/gfx/explosion.png");
 
 }
 
@@ -149,6 +148,7 @@ SDL_Texture* ManageTexture::render_menu_texture(const std::unordered_map<WeaponC
     SDL_SetRenderTarget(renderer, nullptr);
     return menuTexture;
 }
+
 void ManageTexture::load(const Object& id, const std::string& filePath) {
     std::cout << "[LOAD TEXTURE] Intentando cargar: " << filePath << std::endl;
 
@@ -206,21 +206,29 @@ void ManageTexture::load_skins_ct(const CounterTerroristSkin& id, const std::str
 }
 
 SDL_Texture* ManageTexture::get_texture_ct(const CounterTerroristSkin& id) const {
-
+    
+    std::cout << "[DEBUG] Buscando textura CT para id: " << static_cast<int>(id) << std::endl;
     auto it = texture_skin_ct.find(id);
     if (it != texture_skin_ct.end()) {
+        std::cout << "[DEBUG] Textura encontrada para CT id: " << static_cast<int>(id) << std::endl;
         return it->second;
     }
+    std::cerr << "[ERROR] No se encontró textura para CT id: " << static_cast<int>(id) << std::endl;
     return nullptr;
 }
-SDL_Texture* ManageTexture::get_texture_tt(const TerroristSkin& id) const {
 
+SDL_Texture* ManageTexture::get_texture_tt(const TerroristSkin& id) const {
+    
+    std::cout << "[DEBUG] Buscando textura TT para id: " << static_cast<int>(id) << std::endl;
     auto it = texture_skin_tt.find(id);
     if (it != texture_skin_tt.end()) {
+        std::cout << "[DEBUG] Textura encontrada para TT id: " << static_cast<int>(id) << std::endl;
         return it->second;
     }
+    std::cerr << "[ERROR] No se encontró textura para TT id: " << static_cast<int>(id) << std::endl;
     return nullptr;
 }
+
 
 void ManageTexture::fillTriangle(SDL_Renderer* renderer, int x0, int y0, int x1, int y1, int x2,
                                  int y2) {
@@ -417,13 +425,17 @@ void ManageTexture::remove(const TextView& id) {
 }
 
 void ManageTexture::clear() {
-    for (auto& pair: textures) {
-        SDL_DestroyTexture(pair.second);
-    }
-    textures.clear();
 
     for (auto& pair: textures_text) {
         SDL_DestroyTexture(pair.second.texture);
     }
+    for (auto& kv : textures)
+        SDL_DestroyTexture(kv.second);
+    textures.clear();
+    for (auto& kv : texture_skin_tt)
+        SDL_DestroyTexture(kv.second);
+
+    for (auto& kv : texture_skin_ct)
+        SDL_DestroyTexture(kv.second);
     textures_text.clear();
 }

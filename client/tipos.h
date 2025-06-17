@@ -7,10 +7,6 @@
 
 enum class GameMenu { CREATE, JOIN, HELP, EXIT, NONE };
 
-enum class ItemTerrorism { PHOENIX, L337_KREW, ARCTIC_AVENGER, GUERRILLA };
-
-enum class ItemCounterTerrorism { SEAL, GSG9, SAS, GIGN };
-
 enum class TextView { HEALTH, AMMO, TIME, POINTS, TEAM, BOMB, MONEY, WEAPON, BULLETS, NONE };
 
 enum class Color {

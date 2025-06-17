@@ -1,52 +1,50 @@
 #include "gameView.h"
 int counter2 = 0;
 GameView::GameView(
-        Socket&& skt):  // Aca realmente deberia de recibir el mapa y las armas disponibles, ya que
-                        // es informacion necesaria para cargar el mapa
+        Socket&& skt , const GameInfo& game_info,const Player& info_Player):  
         config(),
         controller(std::move(skt)),
         constant_rate_loop([this]() { return this->should_keep_running(); },
                            [this]() { this->step(); }),
-        leyenda(),
-        texts(),
-        ids(),
         ventana(init_window(config)),
         renderer(init_renderer(ventana, config)),
-        player(nullptr),
         camera(config.get_window_width(), config.get_window_height()),
         manger_texture(renderer),
+        player(new PlayerView(11, 4,load_claves(info_Player),200.0f ,&camera, &manger_texture, config)),// !cambiar a 200.0f
         players(),
         snapshot(),
-        map(nullptr),
+        map(new MapView(game_info.map_info, &camera, &manger_texture, config)),
         fov(nullptr),
         shop(camera, manger_texture, config),
-        bomba(nullptr),
-        hud(config, manger_texture),
+        bomba(new Bomb(500,500,camera,manger_texture,config)),
+        hud(config, manger_texture,info_Player.info),
         bullets(),
         activa(false),
         bomb_activate(false),
         keep_running(true) {
-
-    leyenda['#'] = "assets/gfx/backgrounds/nuke.png";
-    leyenda[' '] = "assets/gfx/backgrounds/stone1.jpg";
-    leyenda['~'] = "assets/gfx/backgrounds/water4.jpg";
-    leyenda['='] = "assets/gfx/box.PNG";
-    leyenda['.'] = "assets/gfx/backgrounds/gras1.jpg";
-    leyenda['A'] = "assets/gfx/backgrounds/zonaa.jpeg";
-    leyenda['B'] = "assets/gfx/backgrounds/zonab.jpeg";
-    leyenda['C'] = "assets/gfx/backgrounds/zonacounter.jpeg";
-    leyenda['T'] = "assets/gfx/backgrounds/zonaTerrorist.jpeg";
-
-    ids['#'] = Object::WALL_AZTEC;
-    ids[' '] = Object::STONE;
-    ids['~'] = Object::WATER;
-    ids['='] = Object::BOX;
-    ids['.'] = Object::GRASS;
-    ids['A'] = Object::ZONE_BOMBA2;
-    ids['B'] = Object::ZONE_BOMBA1;
-    ids['T'] = Object::ZONE_TERRORIST;
-    ids['C'] = Object::ZONE_COUNTERTERROSIT;
 }
+TerroristSkin toItemTerrorism(const std::string& str) {
+    if (str == "Phoenix")
+        return TerroristSkin::PHOENIX;
+    if (str == "L337 Krew")
+        return TerroristSkin::L337_KREW;
+    if (str == "Arctic Avenger")
+        return TerroristSkin::ARCTIC_AVENGER;
+    return TerroristSkin::GUERRILLA;
+}
+CounterTerroristSkin toItemCounterTerrorism(const std::string& str) {
+    if (str == "Seal Force")
+        return CounterTerroristSkin::SEAL;
+    if (str == "German GSG-9")
+        return CounterTerroristSkin::GSG9;
+    if (str == "UK SAS")
+        return CounterTerroristSkin::SAS;
+    return CounterTerroristSkin::GIGN;
+}
+Skins GameView::load_claves(const Player& info_Player){
+    return Skins(toItemCounterTerrorism(info_Player.skin2),toItemTerrorism(info_Player.skin));
+}
+
 
 SDL_Window* GameView::init_window(const GameConfig& config) {
     SDL_Window* window_game = SDL_CreateWindow(
@@ -79,17 +77,6 @@ bool GameView::init_game() {
         throw std::runtime_error(std::string("Error inicializando SDL_image: ") + IMG_GetError());
         return false;
     }
-
-    try {
-        load_textures();
-    } catch (const std::exception& e) {
-        std::cerr << e.what() << '\n';
-        return false;
-    } catch (...) {
-        std::cerr << "Excepción desconocida en load_text o load_textures" << std::endl;
-        return false;
-    }
-
     return true;
 }
 
@@ -98,18 +85,18 @@ void GameView::reset_values(PlayerView* player, const float& x_pixeles, const fl
     player->setPrevPos(player->getXActual(), player->getYActual());
     player->setTargetPos(x_pixeles, y_pixeles);
     player->setInterpTime(0.0f);
-    // player->setInterpDuration(0.1f);
+    player->setInterpDuration(0.1f);
 }
 
 void print_game_image(const GameImage& image) {
-    /*
+    
     std::cout << "=== Game Image ===\n";
-    std::cout << "Client ID: " << image.client_id << "\n";
+   std::cout << "Client ID: " << image.client_id << "\n";
     std::cout << "--- Players ---\n";
     for (const auto& player: image.players_images) {
         std::cout << "Player ID: " << player.player_id << "\n";
         std::cout << "  Position: (" << player.position.x << ", " << player.position.y << ")\n";
-        std::cout << "  Health: " << static_cast<int>(player.health) << "\n";
+/*         std::cout << "  Health: " << static_cast<int>(player.health) << "\n";
         std::cout << "  Points: " << static_cast<int>(player.points) << "\n";
         std::cout << "  Money: " << player.money << "\n";
         std::cout << "  Equipped weapon: " << static_cast<int>(player.equipped_weapon) << "\n";
@@ -122,39 +109,38 @@ void print_game_image(const GameImage& image) {
             << ", Current: " << static_cast<int>(weapon.current_bullets)
                       << ", Magazine: " << static_cast<int>(weapon.magazine)
                       << ", Inventory: " << static_cast<int>(weapon.inventory_bullets) << "\n";
-        }
+         }*/
     }
 
-    */
+/*    
     for (const auto& bullet: image.bullets_in_air) {
         std::cout << "  From (" << bullet.initial.x << ", " << bullet.initial.y << ") to ("
                   << bullet.end.x << ", " << bullet.end.y << ")\n";
     }
-    /*
+  */  
     std::cout << "--- Bomb ---\n";
     std::cout << "  Position: (" << image.bomb.position.x << ", " << image.bomb.position.y << ")\n";
     std::cout << "  State: " << static_cast<int>(image.bomb.state) << "\n";
-
+ 
     std::cout << "--- Dropped Weapons ---\n";
     for (const auto& dropped: image.dropped_things) {
         std::cout << "  WeaponCode: " << static_cast<int>(dropped.weapon_code) << ", Position: ("
         << dropped.position.x << ", " << dropped.position.y << ")\n";
     }
-
+/*  
     std::cout << "--- Game State ---\n";
     std::cout << "  State: " << static_cast<int>(image.game_state.state) << "\n";
     std::cout << "  Time: " << image.game_state.time << "\n";
     std::cout << "  Round: " << static_cast<int>(image.game_state.round) << "\n";
-    */
+*/
 }
 
-void GameView::update_status_game() {
-    print_game_image(snapshot);
+
+
+void GameView::update_bullets_snapshot(){
     int tile_width = config.get_tile_width();
     int tile_height = config.get_tile_height();
     for (const BulletImage& bullet: snapshot.bullets_in_air) {
-        std::cout << "Initial: (" << bullet.initial.x << ", " << bullet.initial.y << ")\n";
-        std::cout << "End: (" << bullet.end.x << ", " << bullet.end.y << ")\n";
         Coordenada init = {static_cast<float>(bullet.initial.x * tile_width),
                            static_cast<float>(bullet.initial.y * tile_height)};
         Coordenada end = {static_cast<float>(bullet.end.x * tile_width),
@@ -163,6 +149,16 @@ void GameView::update_status_game() {
         Bullet bullet_aux(init, end, manger_texture.get(Object::BULLET));
         this->bullets.push_back(bullet_aux);
     }
+}
+
+
+void GameView::update_status_game() {
+    print_game_image(snapshot);
+    int tile_width = config.get_tile_width();
+    int tile_height = config.get_tile_height();
+    update_bullets_snapshot();
+    bomba->update_bomb(snapshot.bomb);
+    this->map->update_weapon_dropped(snapshot.dropped_things);
 
     for (PlayerImage& player_img: this->snapshot.players_images) {
         player_id_t id = player_img.player_id;
@@ -176,11 +172,8 @@ void GameView::update_status_game() {
             player->update_equip(player_img);
 
         } else if (players.find(id) == players.end()) {
-            Claves_skins claves;
-            claves.ct_skin = player_img.skin.ct_skin;
-            claves.tt_skin = player_img.skin.tt_skin;
 
-            PlayerView* nuevo_jugador = new PlayerView(x_pixeles, y_pixeles, claves, 200.0f,
+            PlayerView* nuevo_jugador = new PlayerView(x_pixeles, y_pixeles, player_img.skin, 200.0f,
                                                        &camera, &manger_texture, config);
             nuevo_jugador->update_view_angle(player_img.mouse_position.x * 32,
                                              player_img.mouse_position.y * 32);
@@ -252,6 +245,7 @@ void GameView::handle_movements(SDL_Keycode& tecla) {
     if (tecla == SDLK_d || tecla == SDLK_RIGHT)
         controller.sender_move(MoveType::RIGHT);
     player->add_speed(tecla);
+    //player->auxiliar(tecla); //todo comentar
 }
 
 void GameView::handle_extras(SDL_Keycode& tecla) {
@@ -289,12 +283,6 @@ void GameView::handle_mouse_left_down(int mouseX, int mouseY) {
     }
 }
 
-void GameView::load_textures() {
-    for (const auto& par: leyenda) {
-        manger_texture.load(ids.at(par.first), par.second);
-    }
-}
-
 
 void GameView::handle_events(const SDL_Event& event) {
     try {
@@ -308,6 +296,7 @@ void GameView::handle_events(const SDL_Event& event) {
             SDL_Keycode tecla = event.key.keysym.sym;
             handle_key_down(tecla);
         }
+        
         if (event.type == SDL_KEYUP) {
             SDL_Keycode tecla = event.key.keysym.sym;
             player->stop_speed(tecla);  // Detiene movimiento
@@ -341,18 +330,8 @@ void GameView::handle_events(const SDL_Event& event) {
     }
 }
 
-bool GameView::add_player(float x, float y, int speed, const Claves_skins& claves) {
-    this->player = new PlayerView(x, y, claves, speed, &camera, &manger_texture, config);
-    return true;
-}
+void GameView::start(const GameInfo& info_game_view ) {
 
-void GameView::start(const GameInfo& info_game_view /*,const Player& info_game*/) {
-
-    this->map = new MapView(info_game_view.map_info, &camera, &manger_texture, config);
-    if (!map) {
-        throw std::runtime_error("Error al cargar mapa");
-        return;
-    }
     this->fov = new FieldOfView(*player, camera, manger_texture, config);
     shop.set_weapons_purchasables(info_game_view.weapons_purchasables);
 }
@@ -370,7 +349,7 @@ void GameView::update_game() {
     this->lastTime = currentTime;
 
     update_status_game();
-    player->update(deltaTime);
+    player->update(deltaTime);//! desconetar
 
     for (auto& pair: players) {
         if (pair.second != nullptr && pair.second != player) {
@@ -385,10 +364,10 @@ void GameView::render_game() {
     SDL_RenderClear(renderer);
 
     map->draw(*renderer);
+    map->draw_weapon_dropped(*renderer);
     player->draw(*renderer);
     draw_players();
-    // if (bomba)
-    //    bomba->draw(*renderer);
+    bomba->draw(*renderer);
     for (auto it = bullets.begin(); it != bullets.end();) {
         if (it->finalizado()) {
             it = bullets.erase(it);

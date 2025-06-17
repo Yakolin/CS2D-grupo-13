@@ -54,7 +54,7 @@ private:
     void calcular();
     
 public:
-    explicit PlayerView(const float& x, const float& y, const  Claves_skins& clave_player, const float& speed,
+    explicit PlayerView(const float& x, const float& y, const Skins& clave_player, const float& speed,
                         Camera* camera_reseiver, ManageTexture* manger_texture, GameConfig& config);
 
     void update_equip(const PlayerImage player_aux);
@@ -68,12 +68,14 @@ public:
 
     void stop_speed(const SDL_Keycode& tecla);
 
+    void auxiliar(const SDL_Keycode& tecla);
+
     void update_weapons(const std::vector<WeaponImage>& weapons_vec);
     void activate_weapon();
 
     void draw(SDL_Renderer& renderer) override;
 
-    void update(const float& delta_time);
+    void update(const float& dt);
     void update_view_angle(const int& mause_x, const int& mause_y);
 
     float getSpeed() const;

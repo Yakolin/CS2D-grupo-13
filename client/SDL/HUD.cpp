@@ -3,7 +3,8 @@
 
 #include <string>
 
-HUD::HUD(GameConfig& config, ManageTexture& manager):
+HUD::HUD(GameConfig& config, ManageTexture& manager,const InfoGame& info_game):
+        info_name(info_game),
         config(config),
         texture_manager(manager),
         texts(),

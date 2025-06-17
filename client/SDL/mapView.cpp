@@ -22,7 +22,9 @@ MapView::MapView(const MapInfo& info, Camera* camera_reseiver,
         camera(camera_reseiver),
         manejador(manejador),
         ids(),
-        libres() { 
+        libres(),
+        weapon_dropped()
+        { 
     ids['~'] = Object::WATER;
     ids['='] = Object::BOX;
     ids['A'] = Object::ZONE_BOMBA2;
@@ -51,6 +53,16 @@ MapView::MapView(const MapInfo& info, Camera* camera_reseiver,
     ids[TREE_ENTRENAMIENTO] = Object::TREE_ENTRENAMIENTO;
     ids[TREE_DESIERTO] = Object::TREE_DESIERTO;
 }
+
+void MapView::update_weapon_dropped( const std::vector<WeaponDropped>& dropped){
+    weapon_dropped.clear();
+    for (const WeaponDropped& weaponDrop: dropped) {
+        int x = weaponDrop.position.x * config.get_tile_width();
+        int y = weaponDrop.position.y * config.get_tile_height();
+        WeaponView weapon = WeaponView(*camera,*manejador, weaponDrop.weapon_code, x,y,0.0f);
+        this->weapon_dropped.push_back(weapon);
+    }
+}
 std::vector<std::vector<char>> MapView::cargar_coordenadas(const std::vector<Position> walls, const char& piso, const int& max_fil, const int& max_col, const char& objet) {
 
     std::vector<std::vector<char>> mapa(max_fil + 1, std::vector<char>(max_col + 1, piso));
@@ -59,7 +71,15 @@ std::vector<std::vector<char>> MapView::cargar_coordenadas(const std::vector<Pos
     }
 
     return mapa;
-}/*
+}
+void  MapView::draw_weapon_dropped(SDL_Renderer& renderer){
+    for ( WeaponView& weapon: this->weapon_dropped) {
+        weapon.draw_dropped(renderer);
+    }
+}
+
+
+/*
 void MapView::free_positions( std::vector<std::vector<char>> mapa, const char& piso,const char& wall, const int& max_fil, const int& max_col){
     for (int y = 0; y <= max_fil; ++y) {
         for (int x = 0; x <= max_col; ++x) {

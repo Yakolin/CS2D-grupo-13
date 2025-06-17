@@ -35,12 +35,16 @@ public:
 
     std::vector<std::vector<char>> cargar_coordenadas(const std::vector<Position> walls, const char& piso, const int& max_fil, const int& max_col,const char& objet);
 
+    void draw_weapon_dropped(SDL_Renderer& renderer);
+
     std::vector<std::vector<char>> completar_mapa(const MapInfo& info_map);
 
     void update_map_dimensions();
     void render_objet(SDL_Renderer& renderer);
     int getMapWidth();
     int getMapHeight();
+
+    void update_weapon_dropped(const std::vector<WeaponDropped>& dropped);
 
 
 private:
@@ -52,6 +56,7 @@ private:
     ManageTexture* manejador;
     std::map<char, Object> ids;
     std::vector<Position> libres;
+    std::vector<WeaponView> weapon_dropped;
 
     void update_limites(Coordenada& pos_start, Coordenada& pos_end);
 

@@ -13,34 +13,40 @@ Bomb::Bomb(int x, int y, Camera& camera_reseiver, ManageTexture& manejador, Game
         item_sprite({0, 0}),
         pos_bomb(),
         angle(0),
-        activada(false),
         last_frame_time(SDL_GetTicks()),
+        state(BombState::DROPPED),
         x(x),
         y(y) {
     manejador.calculate_dimensions(width_img, height_img, Object::EXPLOSION);
-    update();
+   // update();
 }
 
-bool Bomb::get_activate() const { return activada; }
-
-void Bomb::activate() { this->activada = true; }
-
-void Bomb::update() {
-
-    int offsetX = 20;
-    int offsetY = 2;
-
-    destination_rect.x = static_cast<int>(x + offsetX) - camera.getX();
-    destination_rect.y = static_cast<int>(y + offsetY) - camera.getY();
-    destination_rect.w = 15;
-    destination_rect.h = 15;
+void Bomb::set_pos(int& new_x ,int& new_y){ 
+    this->x = new_x;
+    this->y = new_y;
 }
 
-void Bomb::draw(SDL_Renderer& renderer) {
-    // std::cout << "activada"<< static_cast<int>(activada)<< std::endl;
-    if (activada) {
-        Uint32 now = SDL_GetTicks();
+void Bomb::update_bomb(const BombImage& bombImg) {
 
+    destination_rect.x = static_cast<int>(bombImg.position.x) - camera.getX();
+    destination_rect.y = static_cast<int>(bombImg.position.y) - camera.getY();
+    state = bombImg.state;
+    std::cout << "Posición de la bomba actualizada a (x: " 
+              << destination_rect.x << ", y: " 
+              << destination_rect.y << ")" << std::endl;
+}
+
+
+void Bomb::draw_dropped(SDL_Renderer& renderer){
+    destination_rect.x = static_cast<int>(x) - camera.getX();
+    destination_rect.y = static_cast<int>(y) - camera.getY();
+    destination_rect.w = config.get_tile_width();
+    destination_rect.h = config.get_tile_height();
+    SDL_RenderCopyEx(&renderer, texture_bomb, nullptr, &destination_rect, angle, nullptr,
+                         SDL_FLIP_NONE);
+}
+void Bomb::draw_activate(SDL_Renderer& renderer){
+    Uint32 now = SDL_GetTicks();
         if (now - last_frame_time >= UN_SEGUNDO) {
             last_frame_time = now;
             if (item_sprite.x < 4) {
@@ -60,9 +66,32 @@ void Bomb::draw(SDL_Renderer& renderer) {
                        (width_img / 5), (height_img / 5)};
         SDL_RenderCopyEx(&renderer, texture_explosion, &origin_rect, &destination_rect, angle,
                          nullptr, SDL_FLIP_NONE);
-    } else {
-        SDL_RenderCopyEx(&renderer, texture_bomb, nullptr, &destination_rect, angle, nullptr,
-                         SDL_FLIP_NONE);
+}
+
+void Bomb::draw(SDL_Renderer& renderer) {
+
+     switch (state) {
+        case BombState::EQUIPED:
+            std::cout << "La bomba está equipada.\n";
+            //draw_dropped(renderer);
+            break;
+        case BombState::DROPPED:
+            std::cout << "La bomba fue soltada.\n";
+            draw_dropped(renderer);
+            break;
+        case BombState::ACTIVATED:
+            std::cout << "La bomba está activada.\n";
+            draw_activate(renderer);
+            break;
+        case BombState::DESACTIVATED:
+            std::cout << "La bomba fue desactivada.\n";
+            draw_dropped(renderer);
+            break;
+        case BombState::EXPLOTED:
+            std::cout << "La bomba explotó.\n";
+            break;
+        default:
+            break;
     }
 }
 

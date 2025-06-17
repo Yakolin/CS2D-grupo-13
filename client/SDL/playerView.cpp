@@ -4,7 +4,7 @@
 
 
 
-PlayerView::PlayerView(const float& x, const float& y, const Claves_skins& clave_player,
+PlayerView::PlayerView(const float& x, const float& y, const Skins& clave_player,
                        const float& speed, Camera* camera_receiver, ManageTexture* manager_texture,
                        GameConfig& config):
         config(config),
@@ -67,7 +67,6 @@ void PlayerView::update(const float& deltaTime) {
         x_actual = prev_pos.x + (target_pos.x - prev_pos.x) * t;
         y_actual = prev_pos.y + (target_pos.y - prev_pos.y) * t;
     }
-
     
 }
 bool is_valid_weapon_code(WeaponCode code) {
@@ -119,9 +118,7 @@ void PlayerView::calcular() {
 
     SDL_QueryTexture(texture_player, nullptr, nullptr, &width_img, &height_img);
 }
-
 void PlayerView::add_speed(const SDL_Keycode& tecla) {
-
     if (tecla == SDLK_w || tecla == SDLK_UP) {
         setVelY(-speed_player);
     } else if (tecla == SDLK_s || tecla == SDLK_DOWN) {
@@ -143,6 +140,19 @@ void PlayerView::stop_speed(const SDL_Keycode& tecla) {
         setVelX(0);
     }
 }
+void PlayerView::auxiliar(const SDL_Keycode& tecla) {
+
+    if (tecla == SDLK_w || tecla == SDLK_UP) {  // arriba
+        y_actual -= speed_player;
+    } else if (tecla == SDLK_a || tecla == SDLK_LEFT) {  // izquierda
+        x_actual -= speed_player;
+    } else if (tecla == SDLK_d || tecla == SDLK_RIGHT) {  // derecha
+        x_actual += speed_player;
+    } else if (tecla == SDLK_s || tecla == SDLK_DOWN) {  // abajo
+        y_actual += speed_player;
+    }
+}
+
 
 void PlayerView::activate_weapon() {
     activar_weapon = true;

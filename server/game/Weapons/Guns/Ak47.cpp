@@ -6,7 +6,7 @@ Ak47::Ak47(GameConfig::weapon_config_t specs): FireableWeapon(WeaponCode::AK47, 
 Ak47::~Ak47() {}
 
 bool Ak47::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& direction) {
-
+    // ACA NO HAY LOGICA DE TIMER
     if (bullets_in_burst == 0 && !burst_timer.elapsed(this->burst_coldown))
         return false;
 

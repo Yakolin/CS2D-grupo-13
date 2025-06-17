@@ -1,6 +1,7 @@
 #ifndef GLOCK_H
 #define GLOCK_H
 
+#include "../../Config/GameConfig.h"
 #include "../FireableWeapon.h"
 
 class Glock: public FireableWeapon {

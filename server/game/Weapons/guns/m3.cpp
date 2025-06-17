@@ -8,7 +8,7 @@ bool M3::is_droppable() { return true; }
 
 uint8_t M3::calculate_damage(float distance) { return specs.damage / distance; }
 
-bool AWP::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& direction) {
+bool M3::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& direction) {
     if (reduce_bullets()) {
         auto calculate_damage_func = [this](float distance) {
             return this->calculate_damage(distance);

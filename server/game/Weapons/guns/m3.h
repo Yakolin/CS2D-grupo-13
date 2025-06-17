@@ -1,6 +1,7 @@
 #ifndef M3_H
 #define M3_H
 
+#include "../../Config/GameConfig.h"
 #include "../FireableWeapon.h"
 
 class M3: public FireableWeapon {

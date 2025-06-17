@@ -1,7 +1,8 @@
 #ifndef KNIFE_H
 #define KNIFE_H
 
-#include "../FireableWeapon.h"
+#include "../../Config/GameConfig.h"
+#include "../Weapon.h"
 
 class Knife: public Weapon {
 public:

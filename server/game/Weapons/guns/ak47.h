@@ -3,6 +3,7 @@
 
 #include <chrono>
 
+#include "../../Config/GameConfig.h"
 #include "../FireableWeapon.h"
 
 class Clock {

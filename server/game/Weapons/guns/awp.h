@@ -1,6 +1,7 @@
 #ifndef AWP_H
 #define AWP_H
 
+#include "../../Config/GameConfig.h"
 #include "../FireableWeapon.h"
 
 class Awp: public FireableWeapon {

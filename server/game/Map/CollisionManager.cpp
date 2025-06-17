@@ -1,6 +1,5 @@
 #include "CollisionManager.h"
-#define Wall '#'
-#define Floor ' '
+
 #include <iostream>
 
 bool CollisionManager::check_movement(player_id_t id, const Position& next_position) {

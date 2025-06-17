@@ -11,9 +11,6 @@
 #include "../../../common/game_info.h"
 #include "../Colliders/Colliders.h"
 
-#define Wall '#'
-#define Floor ' '
-
 #define PueblitoAzteca_path "server/game/Map/Maps/Azteca.yaml"
 #define ZonaEntrenamiento_path "server/game/Map/Maps/Entrenamiento.yaml"
 #define Desierto_path "server/game/Map/Maps/Desierto.yaml"

@@ -34,7 +34,7 @@ std::shared_ptr<Weapon> WeaponFactory::weapon_create(WeaponCode code) {
         case WeaponCode::M3:
             return std::make_unique<M3>(config);
         case WeaponCode::AWP:
-            return std::make_unique<AWP>(config);
+            return std::make_unique<Awp>(config);
         case WeaponCode::KNIFE:
             return std::make_unique<Knife>(config);
         default:

@@ -5,9 +5,15 @@
 #include <random>
 
 #include "../Config/GameConfig.h"
-#include "../Weapons/FireableWeapon.h"
-#include "../Weapons/SpecialWeapons.h"
-#include "../Weapons/Weapon.h"
+#include "guns/ak47.h"
+#include "guns/awp.h"
+#include "guns/glock.h"
+#include "guns/knife.h"
+#include "guns/m3.h"
+
+#include "FireableWeapon.h"
+#include "SpecialWeapons.h"
+#include "Weapon.h"
 class WeaponFactory {
 private:
     std::map<WeaponCode, GameConfig::WeaponConfig>& weapon_configs;

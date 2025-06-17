@@ -2,6 +2,7 @@
 #define BURST_CLOCK_H_
 
 #include <chrono>
+// Ojo que BurstClock es casi lo mismo que TimerWeapons
 class BurstClock {
 private:
     std::chrono::steady_clock::time_point start_time;

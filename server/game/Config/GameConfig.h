@@ -18,6 +18,7 @@
 using price_t = uint16_t;
 using damage_t = uint8_t;
 using fire_rate_t = uint8_t;
+using timer_fire_t = uint16_t;
 using max_bullets_t = uint8_t;
 using current_bullets_t = uint8_t;
 using width_t = uint8_t;
@@ -34,6 +35,7 @@ public:
         price_t price;
         damage_t damage;
         fire_rate_t fire_rate;
+        timer_fire_t timer_fire;
         max_bullets_t max_b;
         current_bullets_t current_b;
         width_t width;

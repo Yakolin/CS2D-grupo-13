@@ -26,7 +26,7 @@ public:
             Weapon(code, specs),
             inventory_bullets(specs.max_b),
             magazine(specs.current_b),
-            timer(500) {}  // Esto deberia estar x yaml
+            timer(specs.timer_fire) {}
     virtual bool set_on_action(ISpawneableZone& spawn, player_id_t id,
                                Position& direction) override = 0;
     virtual void reload() override;

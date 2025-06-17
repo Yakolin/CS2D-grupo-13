@@ -77,6 +77,7 @@ bool CollisionManager::check_bullet_wall(const Vector2f& initial_pos, const Vect
 std::vector<BulletImage> CollisionManager::get_bullets_image() {
     std::vector<BulletImage> bullets_image_aux = std::move(this->bullets_image);
     this->bullets_image.clear();
+    this->damages_collider.clear();
     return bullets_image_aux;
 }
 
@@ -146,7 +147,6 @@ void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage&
 
 void CollisionManager::check_damage() {
     for (auto& collider: damages_collider) check_damage_collider(collider.first, collider.second);
-    damages_collider.clear();
 }
 
 void CollisionManager::drop(Position& player_position, std::shared_ptr<IInteractuable>& dropable) {

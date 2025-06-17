@@ -3,6 +3,7 @@ Weapons:
     price: 2700
     damage: 5
     fire_rate: 3
+    timer_fire: 400
     max_bullets: 90
     magazine: 30
     width: 1
@@ -12,6 +13,7 @@ Weapons:
     price: 500
     damage: 1
     fire_rate: 1
+    timer_fire: 600
     max_bullets: 120
     magazine: 30
     width: 1
@@ -21,6 +23,7 @@ Weapons:
     price: 800
     damage: 20
     fire_rate: 1
+    timer_fire: 800
     max_bullets: 16
     magazine: 4
     width: 3
@@ -30,6 +33,7 @@ Weapons:
     price: 3250
     damage: 250
     fire_rate: 1
+    timer_fire: 1200
     max_bullets: 12
     magazine: 6
     width: 1
@@ -39,6 +43,7 @@ Weapons:
     price: 0
     damage: 25
     fire_rate: 1
+    timer_fire: 800 # Aca hay un error, el knife ni usa esto
     max_bullets: 0
     magazine: 0
     width: 2

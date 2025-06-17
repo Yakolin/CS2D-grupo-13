@@ -27,7 +27,8 @@ bool Ak47::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& direc
         };
         for (int i = 0; i < specs.fire_rate; i++) {
             // aproximadamente se duerme 0.1seg
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+            // Podriamos sumarle algo como desviaciones aleatorias tambien
+            // Aca posible thread_sleep?
             ISpawneableZone::collider_solicitude_t wanted = {specs.width, specs.distance, direction,
                                                              calculate_damage_func};
             spawn.spawn_collider(id, wanted);

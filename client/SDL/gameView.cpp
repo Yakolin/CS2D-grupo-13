@@ -281,8 +281,12 @@ void GameView::handle_mouse_left_down(int mouseX, int mouseY) {
         if (code != WeaponCode::NONE)
             controller.sender_buy_weapon(code);
     }
-    if (snapshot.game_state.state == GameState::ROUND_STARTED)
-        controller.sender_shoot(mouseX, mouseY);
+    if (snapshot.game_state.state == GameState::ROUND_STARTED) {
+        int mousex_tile = -1;
+        int mousey_tile = -1;
+        mouse_position_tiles(mousex_tile, mousey_tile, mouseX, mouseY);
+        controller.sender_shoot(mousex_tile, mousey_tile);
+    }
 }
 
 void GameView::load_textures() {
@@ -327,10 +331,7 @@ void GameView::handle_events(const SDL_Event& event) {
             if (event.button.button == SDL_BUTTON_LEFT) {
                 int mouseX = event.button.x;
                 int mouseY = event.button.y;
-                int mousex_tile = -1;
-                int mousey_tile = -1;
-                mouse_position_tiles(mousex_tile, mousey_tile, mouseX, mouseY);
-                handle_mouse_left_down(mousex_tile, mousey_tile);
+                handle_mouse_left_down(mouseX, mouseY);
             }
         }
 

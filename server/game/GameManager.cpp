@@ -171,12 +171,12 @@ GameInfo GameManager::get_game_info() {
 void GameManager::remove_player(
         [[maybe_unused]] const player_id_t&  // habria que eliminarlo de todos los lugares
                 player_id) {
-    map_game.remove_player(player_id);
     std::shared_ptr<Player> player = find_player(player_id);
     // Esto es para matarlo antes de que se vaya, evitamos tener que hacer mas metodos sobre la
     // bomba y demas.
     player->damage(200);  // Quiza un metodo kill sea mejor que esto...
     players.erase(player_id);
+    map_game.remove_player(player_id);
 }
 
 GameManager::~GameManager() { players.clear(); }

@@ -96,7 +96,6 @@ void GameLoop::broadcast(GameImage& game_image) {
         } catch (const ClosedQueue& e) {
             std::cerr << "Info: una send_queue está cerrada, se eliminará del juego.\n";
             to_remove.push_back(player_id);
-            this->game.remove_player(player_id);
         } catch (const std::exception& e) {
             std::cerr << "Error inesperado al enviar por send_queue: " << e.what() << "\n";
         }

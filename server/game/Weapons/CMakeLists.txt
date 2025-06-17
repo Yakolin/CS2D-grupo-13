@@ -11,3 +11,4 @@ target_sources(CS2D_server
     IInteractuable.h
     # .h files
     )
+    add_subdirectory(guns/)

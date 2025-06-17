@@ -99,11 +99,15 @@ void Map::defuse_bomb(const player_id_t& player_id) {
     bomb.second->defuse();
 }
 Position Map::get_random_position() {
-    int x = rand() % walls.size();
-    int y = rand() % walls[0].size();
+    std::random_device rd;
+    std::mt19937 rand(rd());
+    std::uniform_int_distribution<int> distx(0, walls.size() - 1);
+    std::uniform_int_distribution<int> disty(0, walls[0].size() - 1);
+    int x = distx(rand);
+    int y = disty(rand);
     while (walls[x][y] == Wall) {
-        x = rand() % walls.size();
-        y = rand() % walls[0].size();
+        x = distx(rand);
+        y = disty(rand);
     }
     return Position(x, y);
 }

@@ -129,6 +129,7 @@ void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage&
         uint8_t damage = collider_damage.damage_calculator(min_distance);
         std::random_device rd;
         std::mt19937 rand(rd());
+        // Esto hay q hacerlo x yaml
         std::uniform_int_distribution<uint8_t> dist(0, 4);
         int random_num = dist(rand);
         if (!nearest.player.lock()->is_dead()) {

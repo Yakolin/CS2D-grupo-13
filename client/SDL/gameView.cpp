@@ -16,7 +16,7 @@ GameView::GameView(
         map(new MapView(game_info.map_info, &camera, &manger_texture, config)),
         fov(nullptr),
         shop(camera, manger_texture, config),
-        bomba(nullptr),
+        bomba(new Bomb(500,500,camera,manger_texture,config)),
         hud(config, manger_texture,info_Player.info),
         bullets(),
         activa(false),
@@ -117,11 +117,11 @@ void print_game_image(const GameImage& image) {
         std::cout << "  From (" << bullet.initial.x << ", " << bullet.initial.y << ") to ("
                   << bullet.end.x << ", " << bullet.end.y << ")\n";
     }
-    
+  */  
     std::cout << "--- Bomb ---\n";
     std::cout << "  Position: (" << image.bomb.position.x << ", " << image.bomb.position.y << ")\n";
     std::cout << "  State: " << static_cast<int>(image.bomb.state) << "\n";
- */
+ 
     std::cout << "--- Dropped Weapons ---\n";
     for (const auto& dropped: image.dropped_things) {
         std::cout << "  WeaponCode: " << static_cast<int>(dropped.weapon_code) << ", Position: ("
@@ -157,6 +157,7 @@ void GameView::update_status_game() {
     int tile_width = config.get_tile_width();
     int tile_height = config.get_tile_height();
     update_bullets_snapshot();
+    bomba->update_bomb(snapshot.bomb);
     this->map->update_weapon_dropped(snapshot.dropped_things);
 
     for (PlayerImage& player_img: this->snapshot.players_images) {
@@ -244,7 +245,7 @@ void GameView::handle_movements(SDL_Keycode& tecla) {
     if (tecla == SDLK_d || tecla == SDLK_RIGHT)
         controller.sender_move(MoveType::RIGHT);
     player->add_speed(tecla);
-   // player->auxiliar(tecla);
+    //player->auxiliar(tecla); //todo comentar
 }
 
 void GameView::handle_extras(SDL_Keycode& tecla) {
@@ -365,8 +366,7 @@ void GameView::render_game() {
     map->draw_weapon_dropped(*renderer);
     player->draw(*renderer);
     draw_players();
-    // if (bomba)
-    //    bomba->draw(*renderer);
+    bomba->draw(*renderer);
     for (auto it = bullets.begin(); it != bullets.end();) {
         if (it->finalizado()) {
             it = bullets.erase(it);

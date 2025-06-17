@@ -34,10 +34,14 @@ private:
     int angle;
     bool activada;
     int last_frame_time;
+    BombState state;
     int x;
     int y;
 
-    void update();
+
+    void draw_dropped(SDL_Renderer& renderer);
+
+    void draw_activate(SDL_Renderer& renderer);
 
 public:
     explicit Bomb(int x, int y, Camera& camera_reseiver, ManageTexture& manejador,
@@ -45,11 +49,12 @@ public:
     bool explosion_finished();
     ~Bomb();
 
-    void draw(SDL_Renderer& renderer) override;
+    void draw(SDL_Renderer& renderer) override ;
 
-    bool get_activate() const;
+    void set_pos(int& new_x, int& new_y);
 
-    void activate();
+    void update_bomb(const BombImage& bombImg);
+
 };
 
 #endif  // BOMB_H

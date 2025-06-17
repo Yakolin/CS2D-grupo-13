@@ -22,7 +22,10 @@ class MapConfig {
 public:
     typedef struct MapData {
         Rectangle bomb_A, bomb_B, spawn_CT, spawn_TT;
-        std::vector<std::vector<char>> walls;
+        size_t width;
+        size_t height;
+        std::vector<Position> boxes_pos;
+        std::vector<Position> walls_pos;
     } map_data_t;
     map_data_t map_data;
 
@@ -37,7 +40,7 @@ private:
 
 public:
     explicit MapConfig(const MapName& map_name) { load(map_name); }
-    map_data_t& get_map_info() { return map_data; }
+    map_data_t& get_map_data() { return map_data; }
 };
 
 #endif  // MAP_CONFIG_H_

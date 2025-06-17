@@ -15,7 +15,7 @@ void Map::respawn_players() {
         player.second.position = (player.second.player.lock()->get_team() == Team::CT) ?
                                          spawn_CT.get_random_position() :
                                          spawn_TT.get_random_position();
-        while (walls[player.second.position.x][player.second.position.y] == Wall)
+        while (collision_manager.is_a_wall(player.second.position.x, player.second.position.y))
             player.second.position = (player.second.player.lock()->get_team() == Team::CT) ?
                                              spawn_CT.get_random_position() :
                                              spawn_TT.get_random_position();
@@ -25,26 +25,24 @@ void Map::add_player(player_id_t id, std::weak_ptr<ICanInteract> player) {
     players_in_map.insert(std::make_pair(id, PlayerEntity{player, Position(15, 15)}));
 }
 void Map::charge_map() {
-    MapConfig::map_data_t& map_info = map_config.get_map_info();
+    MapConfig::map_data_t& map_info = map_config.get_map_data();
     this->bomb_A = std::move(map_info.bomb_A);
     this->bomb_B = std::move(map_info.bomb_B);
     this->spawn_TT = std::move(map_info.spawn_TT);
     this->spawn_CT = std::move(map_info.spawn_CT);
-    this->walls = std::move(map_info.walls);
-    std::vector<Position> walls_pos;
-    // Esto tenes que cambiarlo yaco
-    for (size_t i = 0; i < walls.size(); i++)
-        for (size_t j = 0; j < walls[i].size(); j++)
-            if (walls[i][j] == Wall)
-                walls_pos.push_back(Position(i, j));
+    this->collision_pos = map_info.walls_pos;
+    this->collision_pos.insert(this->collision_pos.end(), map_info.boxes_pos.begin(),
+                               map_info.boxes_pos.end());
+}
+MapInfo Map::get_map_info() {
+    MapConfig::map_data_t& map_info = map_config.get_map_data();
     RectangleInfo bomb_A_info(bomb_A.point_min, bomb_A.point_max);
     RectangleInfo bomb_B_info(bomb_B.point_min, bomb_B.point_max);
     RectangleInfo spawn_TT_info(spawn_TT.point_min, spawn_TT.point_max);
     RectangleInfo spawn_CT_info(spawn_CT.point_min, spawn_CT.point_max);
-    map_info_to_client =
-            MapInfo(map_name, bomb_A_info, bomb_B_info, spawn_TT_info, spawn_CT_info, walls_pos);
+    return MapInfo(map_name, bomb_A_info, bomb_B_info, spawn_TT_info, spawn_CT_info,
+                   map_info.walls_pos);
 }
-MapInfo Map::get_map_info() { return map_info_to_client; }
 void Map::move(player_id_t id, const Position& direction) {
     if (collision_manager.check_movement(id, direction))
         return;
@@ -99,13 +97,14 @@ void Map::defuse_bomb(const player_id_t& player_id) {
     bomb.second->defuse();
 }
 Position Map::get_random_position() {
+    MapConfig::map_data_t& map_info = map_config.get_map_data();
     std::random_device rd;
     std::mt19937 rand(rd());
-    std::uniform_int_distribution<int> distx(0, walls.size() - 1);
-    std::uniform_int_distribution<int> disty(0, walls[0].size() - 1);
+    std::uniform_int_distribution<int> distx(0, map_info.width - 1);
+    std::uniform_int_distribution<int> disty(0, map_info.height - 1);
     int x = distx(rand);
     int y = disty(rand);
-    while (walls[x][y] == Wall) {
+    while (collision_manager.is_a_wall(x, y)) {
         x = distx(rand);
         y = disty(rand);
     }

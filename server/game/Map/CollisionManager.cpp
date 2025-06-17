@@ -48,7 +48,8 @@ void CollisionManager::add_bullet_image(const Vector2f& initial_pos, const Vecto
 }
 
 bool CollisionManager::is_a_wall(coordinate_t x, coordinate_t y) {
-    return x < walls.size() && y < walls[0].size() && walls[x][y] == Wall;
+    return std::find(collision_pos.begin(), collision_pos.end(), Position(x, y)) !=
+           collision_pos.end();
 }
 
 bool CollisionManager::check_bullet_wall(const Vector2f& initial_pos, const Vector2f& final_pos) {
@@ -61,8 +62,6 @@ bool CollisionManager::check_bullet_wall(const Vector2f& initial_pos, const Vect
     while (traveled <= distance) {
         coordinate_t x = static_cast<coordinate_t>(std::round(current_pos.x));
         coordinate_t y = static_cast<coordinate_t>(std::round(current_pos.y));
-        if (x >= walls.size() && y >= walls[0].size())
-            return false;
         if (is_a_wall(x, y)) {
             add_bullet_image(initial_pos, current_pos);
             return true;

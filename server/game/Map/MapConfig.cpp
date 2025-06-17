@@ -39,8 +39,8 @@ void MapConfig::load_walls(const YAML::Node& map_walls) {
         size_t max_y = std::max(y1, y2);
         for (size_t i = min_x; i <= max_x; i++) {
             for (size_t j = min_y; j <= max_y; j++) {
-                if (i < map_data.walls.size() && j < map_data.walls[0].size())
-                    map_data.walls[i][j] = Wall;
+                if (i < map_data.width && j < map_data.height)
+                    this->map_data.walls_pos.push_back(Position(i, j));
             }
         }
     }
@@ -51,9 +51,8 @@ void MapConfig::load_map(const YAML::Node& map) {
     YAML::Node data = map["map"];
     YAML::Node map_size = data["map_size"];
     YAML::Node walls = data["walls"];
-    int width = map_size["x"].as<int>();
-    int height = map_size["y"].as<int>();
-    this->map_data.walls = std::vector<std::vector<char>>(width, std::vector<char>(height, Floor));
+    this->map_data.width = map_size["x"].as<int>();
+    this->map_data.height = map_size["y"].as<int>();
     load_bomb_sites(bomb_sites);
     load_spawn_sites(spawn_sites);
     load_walls(walls);

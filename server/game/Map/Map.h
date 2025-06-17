@@ -21,10 +21,9 @@
 #include "MapExeption.h"
 class Map: public IGameZone, public ISpawneableZone, public IDroppableZone {
 private:
-    MapInfo map_info_to_client;
     MapName map_name;
     MapConfig map_config;
-    std::vector<std::vector<char>> walls;
+    std::vector<Position> collision_pos;  // Vector de posiciones chocables
     Rectangle spawn_CT, spawn_TT, bomb_A, bomb_B;
     std::pair<Position, std::shared_ptr<Bomb>> bomb;
     CollisionManager collision_manager;
@@ -40,7 +39,7 @@ public:
             map_name(_map_name),
             map_config(map_name),
             bomb(std::make_pair(Position(10, 10), bomb_ptr)),
-            collision_manager(walls, players_in_map, bomb) {
+            collision_manager(collision_pos, players_in_map, bomb) {
         charge_map();
     }
     void update_map_state();

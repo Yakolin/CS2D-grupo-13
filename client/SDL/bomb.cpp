@@ -16,9 +16,9 @@ Bomb::Bomb(int x, int y, Camera& camera_reseiver, ManageTexture& manejador, Game
         last_frame_time(SDL_GetTicks()),
         state(BombState::DROPPED),
         x(x),
-        y(y) {
+        y(y)
+{
     manejador.calculate_dimensions(width_img, height_img, Object::EXPLOSION);
-   // update();
 }
 
 void Bomb::set_pos(int& new_x ,int& new_y){ 
@@ -28,8 +28,8 @@ void Bomb::set_pos(int& new_x ,int& new_y){
 
 void Bomb::update_bomb(const BombImage& bombImg) {
 
-    destination_rect.x = static_cast<int>(bombImg.position.x) - camera.getX();
-    destination_rect.y = static_cast<int>(bombImg.position.y) - camera.getY();
+    destination_rect.x = (static_cast<int>(bombImg.position.x) * config.get_tile_width())- camera.getX();
+    destination_rect.y = (static_cast<int>(bombImg.position.y) * config.get_tile_height()) - camera.getY();
     state = bombImg.state;
     std::cout << "Posición de la bomba actualizada a (x: " 
               << destination_rect.x << ", y: " 

@@ -24,19 +24,18 @@ LobbyView::LobbyView(StackNavigator& stack_navigator, ClientProtocol& protocol):
 // Falta agregar las skins
 void LobbyView::set_skins_ct() {
     this->options_skins_ct << "Phoenix" << "L337 Krew" << "Arctic Avenger" << "Guerrilla";
-    this->img_skins_ct["Phoenix"] = "assets/gfx/screens/"
-                                    "entrenamiento.jpg";
-    this->img_skins_ct["L337 Krew"] = "";
-    this->img_skins_ct["Arctic Avenger"] = "";
-    this->img_skins_ct["Guerrilla"] = "";
+    this->img_skins_ct["Phoenix"] = "assets/gfx/npc/poe.png";
+    this->img_skins_ct["L337 Krew"] = "assets/gfx/npc/kreew.png";
+    this->img_skins_ct["Arctic Avenger"] = "assets/gfx/npc/artic.png";
+    this->img_skins_ct["Guerrilla"] = "assets/gfx/npc/guerrilla.png";
 }
 
 void LobbyView::set_skins_tt() {
     this->options_skins_tt << "Seal Force" << "German GSG-9" << "UK SAS" << "French GIGN";
-    this->img_skins_tt["Seal Force"] = "";
-    this->img_skins_tt["German GSG-9"] = "";
-    this->img_skins_tt["UK SAS"] = "";
-    this->img_skins_tt["French GIGN"] = "";
+    this->img_skins_tt["Seal Force"] = "assets/gfx/npc/urban}.png";
+    this->img_skins_tt["German GSG-9"] = "assets/gfx/npc/gs.png";
+    this->img_skins_tt["UK SAS"] = "assets/gfx/npc/sas.png";
+    this->img_skins_tt["French GIGN"] = "assets/gfx/npc/gign.png";
 }
 QListWidget* LobbyView::create_item(QWidget* parent, const QStringList& options) {
 
@@ -267,6 +266,9 @@ void LobbyView::section_skins(QVBoxLayout* selection) {
     tt_text->setFixedSize(200, 50);
     QLabel* ct_img = new QLabel();
     QLabel* tt_img = new QLabel();
+    tt_img->setAlignment(Qt::AlignCenter);
+    ct_img->setAlignment(Qt::AlignCenter);
+
     tt_img->setFixedSize(300, 300);
     ct_img->setFixedSize(300, 300);
     QComboBox* combo_terrorist = new QComboBox();

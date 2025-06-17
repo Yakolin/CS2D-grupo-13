@@ -12,6 +12,7 @@ bool Bomb::set_on_action(ISpawneableZone& spawn, player_id_t id,
 void Bomb::defuse() { state = BombState::DESACTIVATED; }
 void Bomb::set_equiped() { state = BombState::EQUIPED; }
 void Bomb::set_unequiped() { state = BombState::DROPPED; }
+void Bomb::set_exploted() { state = BombState::EXPLOTED; }
 bool Bomb::is_defused() { return state == BombState::DESACTIVATED; }
 bool Bomb::is_equiped() { return state == BombState::EQUIPED; }
 bool Bomb::is_activate() { return state == BombState::ACTIVATED; }

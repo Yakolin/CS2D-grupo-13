@@ -18,6 +18,7 @@ public:
     void defuse();
     void set_equiped();
     void set_unequiped();
+    void set_exploted();
     bool is_equiped();
     bool is_activate();
     bool is_defused();

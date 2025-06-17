@@ -120,12 +120,13 @@ bool GameManager::check_round_finished() {
         game_stats.rounds_CT++;
         return true;
     }
-    bool time_end = timer.is_round_over();
+    bool time_end = timer.get_time_round() == 0;
     if (bomb->is_defused() || (time_end && !bomb->is_activate())) {
         game_stats.rounds_CT++;
         game_stats.state = GameState::CT_WIN_ROUND;
         return true;
     } else if (time_end && !bomb->is_defused()) {
+        bomb->set_exploted();
         game_stats.rounds_TT++;
         game_stats.state = GameState::TT_WIN_ROUND;
         return true;

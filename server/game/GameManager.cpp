@@ -73,7 +73,6 @@ GameImage GameManager::generate_game_image() {
     return game_image;
 }
 void GameManager::give_bomb() {
-    std::srand(time(NULL));
     std::vector<player_id_t> players_tt;
     for (auto& player: players) {
         if (player.second->get_team() == Team::CT)
@@ -82,8 +81,13 @@ void GameManager::give_bomb() {
     }
     if (players_tt.empty())
         throw GameException("Can´t find any TT to give the bomb");
-    player_id_t id = players_tt[rand() % players_tt.size()];
+    std::random_device rd;
+    std::mt19937 rand(rd());
+    std::uniform_int_distribution<size_t> dist(0, players_tt.size() - 1);
+    int index_selected = dist(rand);
+    player_id_t id = players_tt[index_selected];
     std::shared_ptr<Player> player_selected = find_player(id);
+    bomb->set_equiped();
     std::shared_ptr<IInteractuable> casted_bomb = bomb;
     player_selected->equip(casted_bomb);
 }

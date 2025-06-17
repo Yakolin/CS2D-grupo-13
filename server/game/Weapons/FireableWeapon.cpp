@@ -15,15 +15,35 @@ bool Glock::is_droppable() { return false; }
 uint8_t Glock::calculate_damage(float distance) { return specs.damage * distance; }
 
 bool Ak47::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& direction) {
+    return false;
+
+    if (bullets_in_burst == 0 && !burst_timer.elapsed(this->burst_coldown))
+        return false;
+
+    if (!shot_timer.elapsed(this->time_between_shoots))
+        return false;
+
     if (reduce_bullets()) {
+        shot_timer.start();
+
         auto calculate_damage_func = [this](float distance) {
             return this->calculate_damage(distance);
         };
+
         ISpawneableZone::collider_solicitude_t wanted = {specs.width, specs.distance, direction,
                                                          calculate_damage_func};
         spawn.spawn_collider(id, wanted);
+
+        bullets_in_burst++;
+
+        if (bullets_in_burst >= this->max_burst) {
+            bullets_in_burst = 0;
+            burst_timer.start();
+        }
+
+        return true;
     }
-    return true;
+    return false;
 }
 
 bool Ak47::is_droppable() { return true; }

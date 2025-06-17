@@ -74,7 +74,6 @@ public:
         return std::max(0, round_real_time - static_cast<int>(time));
     }
     TimerState get_state() { return state; }
-    bool is_round_over() { return state == TimerState::ROUND_START && get_time_round() == 0; }
     bool is_time_to_buy() { return get_time_buy() > 0; }
 };
 

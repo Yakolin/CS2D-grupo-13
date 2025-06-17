@@ -31,6 +31,7 @@ private:
     void load_bomb_sites(const YAML::Node& bomb_sites);
     void load_spawn_sites(const YAML::Node& spawn_sites);
     void load_walls(const YAML::Node& map_walls);
+    void load_boxes(const YAML::Node& map_boxes);
     void load_map(const YAML::Node& map);
     std::string get_map_path(const MapName& map_name);
     void load(const MapName& map_name);

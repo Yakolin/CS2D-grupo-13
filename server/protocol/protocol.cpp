@@ -182,6 +182,11 @@ void ServerProtocol::send_map_info(const MapInfo& map_info) {
     for (const Position& wall: map_info.walls) {
         this->send_position(wall);
     }
+    length_boxes_t boxes_length = map_info.boxes.size();
+    this->send_two_byte_data(boxes_length);
+    for (const Position& box: map_info.boxes) {
+        this->send_position(box);
+    }
 }
 
 void ServerProtocol::send_position(const Position& position) {

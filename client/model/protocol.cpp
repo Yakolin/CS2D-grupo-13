@@ -30,6 +30,14 @@ void ClientProtocol::read_map_info(MapInfo& map_info) {
         this->read_position(wall);
         walls.emplace_back(std::move(wall));
     }
+    length_walls_t boxes_length;
+    this->read_two_byte_data(boxes_length);
+    std::vector<Position> boxes;
+    for (length_walls_t i = 0; i < boxes_length; ++i) {
+        Position box;
+        this->read_position(box);
+        walls.emplace_back(std::move(box));
+    }
     map_info.map_name = static_cast<MapName>(map_name);
     map_info.bomb_A = bomb_A;
     map_info.bomb_B = bomb_B;

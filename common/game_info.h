@@ -9,6 +9,7 @@
 using length_game_info_t = std::uint16_t;
 using length_weapons_info_t = std::uint8_t;
 using length_walls_t = std::uint16_t;
+using length_boxes_t = std::uint16_t;
 using map_name_t = std::uint8_t;
 using skin_t = std::uint8_t;
 
@@ -48,16 +49,18 @@ public:
     MapName map_name = MapName::DESIERTO;  // Quiza deberia ser NONE
     RectangleInfo bomb_A, bomb_B, spawn_TT, spawn_CT;
     std::vector<Position> walls;
+    std::vector<Position> boxes;
     MapInfo() = default;
     MapInfo(const MapName map_name, const RectangleInfo& bomb_A, const RectangleInfo& bomb_B,
             const RectangleInfo& spawn_TT, const RectangleInfo& spawn_CT,
-            const std::vector<Position>& walls):
+            const std::vector<Position>& walls, const std::vector<Position>& boxes):
             map_name(map_name),
             bomb_A(bomb_A),
             bomb_B(bomb_B),
             spawn_TT(spawn_TT),
             spawn_CT(spawn_CT),
-            walls(walls) {}
+            walls(walls),
+            boxes(boxes) {}
     ~MapInfo() {}
 };
 

@@ -45,17 +45,27 @@ void MapConfig::load_walls(const YAML::Node& map_walls) {
         }
     }
 }
+void MapConfig::load_boxes(const YAML::Node& map_boxes) {
+    for (const auto& box: map_boxes) {
+        size_t x = box["x"].as<size_t>();
+        size_t y = box["y"].as<size_t>();
+        Position aux(x, y);
+        this->map_data.boxes_pos.push_back(aux);
+    }
+}
 void MapConfig::load_map(const YAML::Node& map) {
     YAML::Node bomb_sites = map["bomb_sites"];
     YAML::Node spawn_sites = map["spawn_sites"];
     YAML::Node data = map["map"];
     YAML::Node map_size = data["map_size"];
     YAML::Node walls = data["walls"];
+    YAML::Node boxes = data["boxes"];
     this->map_data.width = map_size["x"].as<int>();
     this->map_data.height = map_size["y"].as<int>();
     load_bomb_sites(bomb_sites);
     load_spawn_sites(spawn_sites);
     load_walls(walls);
+    load_boxes(boxes);
 }
 std::string MapConfig::get_map_path(const MapName& map_name) {
     switch (map_name) {

@@ -1,4 +1,4 @@
-#include "m3.h"
+#include "M3.h"
 
 M3::M3(GameConfig::weapon_config_t specs): FireableWeapon(WeaponCode::M3, specs) {}
 
@@ -9,7 +9,8 @@ bool M3::is_droppable() { return true; }
 uint8_t M3::calculate_damage(float distance) { return specs.damage / distance; }
 
 bool M3::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& direction) {
-    if (reduce_bullets()) {
+    if (have_bullets()) {
+        reduce_bullets();
         auto calculate_damage_func = [this](float distance) {
             return this->calculate_damage(distance);
         };

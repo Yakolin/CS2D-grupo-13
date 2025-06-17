@@ -1,4 +1,4 @@
-#include "knife.h"
+#include "Knife.h"
 
 Knife::Knife(GameConfig::weapon_config_t specs): Weapon(WeaponCode::KNIFE, specs) {}
 

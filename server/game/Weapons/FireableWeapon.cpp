@@ -15,3 +15,9 @@ void FireableWeapon::restore_bullets() {
 WeaponImage FireableWeapon::get_weapon_image() {
     return WeaponImage(code, specs.current_b, magazine, inventory_bullets);
 }
+
+void FireableWeapon::reduce_bullets() {
+    uint8_t bullets_fired = std::min(specs.current_b, specs.fire_rate);
+    specs.current_b -= bullets_fired;
+}
+bool FireableWeapon::have_bullets() { return specs.current_b > 0; }

@@ -5,11 +5,11 @@
 #include <random>
 
 #include "../Config/GameConfig.h"
-#include "guns/ak47.h"
-#include "guns/awp.h"
-#include "guns/glock.h"
-#include "guns/knife.h"
-#include "guns/m3.h"
+#include "Guns/Ak47.h"
+#include "Guns/Awp.h"
+#include "Guns/Glock.h"
+#include "Guns/Knife.h"
+#include "Guns/M3.h"
 
 #include "FireableWeapon.h"
 #include "SpecialWeapons.h"

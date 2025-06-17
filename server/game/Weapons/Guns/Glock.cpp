@@ -1,11 +1,12 @@
-#include "glock.h"
+#include "Glock.h"
 
 Glock::Glock(GameConfig::weapon_config_t specs): FireableWeapon(WeaponCode::GLOCK, specs) {}
 
 Glock::~Glock() {}
 
 bool Glock::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& direction) {
-    if (reduce_bullets()) {
+    if (!have_bullets()) {
+        reduce_bullets();
         auto calculate_damage_func = [this](float distance) {
             return this->calculate_damage(distance);
         };

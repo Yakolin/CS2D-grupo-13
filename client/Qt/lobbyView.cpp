@@ -299,6 +299,11 @@ void LobbyView::section_skins(QVBoxLayout* selection) {
                 QPixmap pixmap(this->img_skins_ct.at(skin));
                 ct_img->setPixmap(pixmap.scaled(300, 300, Qt::KeepAspectRatio));
             });
+    // Aca seteamos la primera img
+    QPixmap ct_default(img_skins_ct.begin()->second);
+    ct_img->setPixmap(ct_default.scaled(300, 300, Qt::KeepAspectRatio));
+    QPixmap tt_default(this->img_skins_tt.begin()->second);
+    tt_img->setPixmap(tt_default.scaled(300, 300, Qt::KeepAspectRatio));
 }
 void LobbyView::add_player_page(QWidget* page_player) {
     QVBoxLayout* layout = new QVBoxLayout(page_player);

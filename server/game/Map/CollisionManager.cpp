@@ -33,14 +33,15 @@ void CollisionManager::check_weapon_stepped(PlayerEntity& player) {
         dropped_things.erase(it);
 }
 
-void CollisionManager::add_bullet_image(const Vector2f& initial_pos, const Vector2f& final_pos) {
+void CollisionManager::add_bullet_image(const Vector2f& initial_pos, const Vector2f& final_pos,
+                                        const ColliderDamage& collider_info) {
     coordinate_t x_initial = static_cast<coordinate_t>(std::round(initial_pos.x));
     coordinate_t y_initial = static_cast<coordinate_t>(std::round(initial_pos.y));
     coordinate_t x_final = static_cast<coordinate_t>(std::round(final_pos.x));
     coordinate_t y_final = static_cast<coordinate_t>(std::round(final_pos.y));
     Position initial_cast(x_initial, y_initial);
     Position end_cast(x_final, y_final);
-    BulletImage image(initial_cast, end_cast);
+    BulletImage image(initial_cast, end_cast, collider_info.width, collider_info.code);
     bullets_image.push_back(std::move(image));
 }
 
@@ -53,7 +54,8 @@ bool CollisionManager::player_in(const Position& pos) {
             return true;
     return false;
 }
-bool CollisionManager::check_bullet_wall(const Vector2f& initial_pos, const Vector2f& final_pos) {
+bool CollisionManager::check_bullet_wall(const Vector2f& initial_pos, const Vector2f& final_pos,
+                                         const ColliderDamage& collider_info) {
     Vector2f direction(final_pos.x - initial_pos.x, final_pos.y - initial_pos.y);
     direction.normalize();
     float distance = initial_pos.distance(final_pos);
@@ -64,7 +66,7 @@ bool CollisionManager::check_bullet_wall(const Vector2f& initial_pos, const Vect
         coordinate_t x = static_cast<coordinate_t>(std::round(current_pos.x));
         coordinate_t y = static_cast<coordinate_t>(std::round(current_pos.y));
         if (is_a_collision(Position(x, y))) {
-            add_bullet_image(initial_pos, current_pos);
+            add_bullet_image(initial_pos, current_pos, collider_info);
             return true;
         }
         current_pos.x += step * direction.x;
@@ -100,10 +102,10 @@ void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage&
     check_damage_players(caster, collider_damage, players_affected);
     if (players_affected.empty()) {
         // Si no se detecto ningun jugador, revisamos si hay un muro entre medio
-        if (check_bullet_wall(origin, end))
+        if (check_bullet_wall(origin, end, collider_damage))
             return;
         // En caso de que no, directamente la linea es toda su distancia inicial
-        add_bullet_image(origin, end);
+        add_bullet_image(origin, end, collider_damage);
         return;
     }
     PlayerEntity nearest = players_affected[0];
@@ -122,7 +124,7 @@ void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage&
     }
     // Aca buscamos de todos los detectados, que son a lo sumo 10, el mas cercano
     // Ya detectado el mas cercano, revisamos si hay un muro entre medio
-    if (check_bullet_wall(origin, pos_nearest))
+    if (check_bullet_wall(origin, pos_nearest, collider_damage))
         return;
     if (nearest.player.lock()) {
         std::cout << "Se detecto un enemigo golpeado\n";
@@ -140,7 +142,7 @@ void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage&
                 player_caster.player.lock()->get_points();
             }
         }
-        add_bullet_image(origin, end);
+        add_bullet_image(origin, end, collider_damage);
     }
 }
 

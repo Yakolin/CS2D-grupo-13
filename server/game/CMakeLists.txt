@@ -8,6 +8,7 @@ target_sources(CS2D_server
     GameException.h
     GameManager.h
     Timer.h
+    TimerActions.h
     )
 add_subdirectory(Colliders/)
 add_subdirectory(Player/)

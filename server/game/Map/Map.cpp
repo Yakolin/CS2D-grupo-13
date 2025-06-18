@@ -68,7 +68,8 @@ void Map::spawn_collider(player_id_t id_spawn, collider_solicitude_t& wanted) {
     end_pos.y = std::max(0.0f, end_pos.y);
     std::unique_ptr<Collider> line =
             std::make_unique<Line>(std::move(player_pos), std::move(end_pos), wanted.width);
-    collider_damage_t collider_damage = {std::move(line), wanted.damage_function};
+    collider_damage_t collider_damage = {std::move(line), wanted.damage_function, wanted.width,
+                                         wanted.code};
     collision_manager.add_damage_collider(id_spawn, collider_damage);
 }
 
@@ -96,7 +97,17 @@ void Map::defuse_bomb(const player_id_t& player_id) {
     if (!(player_entity.position == bomb.first) ||
         player_entity.player.lock()->get_team() == Team::TT)
         return;
-    bomb.second->defuse();
+    if (defuse_timing.get_counting() > 0.5 && planting) {
+        planting = false;
+        return;
+    }
+    if (!planting) {
+        defuse_timing.start();
+        planting = true;
+    }
+    defuse_timing.start_counting();
+    if (defuse_timing.elapsed_time())
+        bomb.second->defuse();
 }
 Position Map::get_random_position() {
     const MapConfig::map_data_t& map_info = map_config.get_map_data();

@@ -35,14 +35,25 @@ enum class GameState {
     TT_WIN_GAME,
     CT_WIN_GAME
 };
-
+enum class PlayerStates {
+    SHOOTING,
+    WALKING,
+    RELOADING,
+    PLANTING,
+    DEFUSING,
+    DYING,
+    CHANGING_WEAPON
+};
 enum class Team { CT, TT };
 enum class BombState { EQUIPED, DROPPED, ACTIVATED, DESACTIVATED, EXPLOTED };
 class BulletImage {
 public:
     Position initial;
     Position end;
-    BulletImage(const Position& initial, const Position& end): initial(initial), end(end) {}
+    uint8_t width;
+    WeaponCode code;
+    BulletImage(const Position& initial, const Position& end, uint8_t width, WeaponCode code):
+            initial(initial), end(end), width(width), code(code) {}
     ~BulletImage() {}
 };
 

@@ -6,8 +6,8 @@ Knife::~Knife() {}
 
 bool Knife::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& direction) {
     auto function_damage = [this]([[maybe_unused]] float distance) { return specs.damage; };
-    ISpawneableZone::collider_solicitude_t wanted = {specs.width, specs.distance, direction,
-                                                     function_damage};
+    ISpawneableZone::collider_solicitude_t wanted = {specs.width, specs.distance, this->code,
+                                                     direction, function_damage};
 
     spawn.spawn_collider(id, wanted);
     return true;

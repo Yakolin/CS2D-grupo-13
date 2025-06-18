@@ -310,6 +310,10 @@ void ServerProtocol::send_bullets_in_air(std::vector<BulletImage>& bullets_in_ai
     for (const BulletImage& bullet_in_air_image: bullets_in_air_image) {
         this->send_position(bullet_in_air_image.initial);
         this->send_position(bullet_in_air_image.end);
+        uint8_t width = bullet_in_air_image.width;
+        weapon_code_t weapon_code = static_cast<weapon_code_t>(bullet_in_air_image.code);
+        this->send_byte_data(width);
+        this->send_byte_data(weapon_code);
     }
 }
 

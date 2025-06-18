@@ -11,14 +11,16 @@ Position Map::get_position(player_id_t id) {
     throw MapException("Can´t found player in the map to get the position");
 }
 void Map::respawn_players() {
+    std::vector<Position> spawneds;
     for (auto& player: players_in_map) {
-        player.second.position = (player.second.player.lock()->get_team() == Team::CT) ?
-                                         spawn_CT.get_random_position() :
-                                         spawn_TT.get_random_position();
-        while (collision_manager.is_a_wall(player.second.position.x, player.second.position.y))
+        do {
             player.second.position = (player.second.player.lock()->get_team() == Team::CT) ?
                                              spawn_CT.get_random_position() :
                                              spawn_TT.get_random_position();
+        } while (collision_manager.is_a_collision(player.second.position) &&
+                 std::find(spawneds.begin(), spawneds.end(), player.second.position) !=
+                         spawneds.end());
+        spawneds.push_back(player.second.position);
     }
 }
 void Map::add_player(player_id_t id, std::weak_ptr<ICanInteract> player) {
@@ -40,10 +42,8 @@ MapInfo Map::get_map_info() {
     RectangleInfo bomb_B_info(bomb_B.point_min, bomb_B.point_max);
     RectangleInfo spawn_TT_info(spawn_TT.point_min, spawn_TT.point_max);
     RectangleInfo spawn_CT_info(spawn_CT.point_min, spawn_CT.point_max);
-    std::cout << "tam boxes: "<< map_info.boxes_pos.size()<< std::endl;
     return MapInfo(map_name, bomb_A_info, bomb_B_info, spawn_TT_info, spawn_CT_info,
                    map_info.walls_pos, map_info.boxes_pos);
-
 }
 void Map::move(player_id_t id, const Position& direction) {
     if (collision_manager.check_movement(id, direction))
@@ -106,11 +106,15 @@ Position Map::get_random_position() {
     std::uniform_int_distribution<int> disty(0, map_info.height - 1);
     int x = distx(rand);
     int y = disty(rand);
-    while (collision_manager.is_a_wall(x, y)) {
+    Position pos(x, y);
+    while (collision_manager.is_a_collision(pos) && spawn_CT.is_in(pos) && spawn_TT.is_in(pos) &&
+           bomb_A.is_in(pos) && bomb_B.is_in(pos)) {
         x = distx(rand);
         y = disty(rand);
+        pos.x = x;
+        pos.y = y;
     }
-    return Position(x, y);
+    return pos;
 }
 void Map::spawn_random_weapons(const std::vector<std::shared_ptr<IInteractuable>>& weapons) {
     // Esto quiza deberia estar en otro lado, pero en secuencia esta bien y funca

@@ -8,9 +8,7 @@ bool CollisionManager::check_movement(player_id_t id, const Position& next_posit
         return false;
     Position destino = it->second.position + next_position;
     // Aca los destinos son distintos porque la matriz esta "invertida" con respecto a los vectores
-    int x = destino.x;
-    int y = destino.y;
-    if (!is_a_wall(x, y)) {
+    if (!is_a_collision(destino) && !player_in(destino)) {
         it->second.position += next_position;
         if (it->second.player.lock()->get_team() == Team::TT)
             check_bomb_stepped(it->second);
@@ -46,11 +44,15 @@ void CollisionManager::add_bullet_image(const Vector2f& initial_pos, const Vecto
     bullets_image.push_back(std::move(image));
 }
 
-bool CollisionManager::is_a_wall(coordinate_t x, coordinate_t y) {
-    return std::find(collision_pos.begin(), collision_pos.end(), Position(x, y)) !=
-           collision_pos.end();
+bool CollisionManager::is_a_collision(const Position& pos) {
+    return std::find(collision_pos.begin(), collision_pos.end(), pos) != collision_pos.end();
 }
-
+bool CollisionManager::player_in(const Position& pos) {
+    for (const auto& player: players_in_map)
+        if (player.second.position == pos)
+            return true;
+    return false;
+}
 bool CollisionManager::check_bullet_wall(const Vector2f& initial_pos, const Vector2f& final_pos) {
     Vector2f direction(final_pos.x - initial_pos.x, final_pos.y - initial_pos.y);
     direction.normalize();
@@ -61,7 +63,7 @@ bool CollisionManager::check_bullet_wall(const Vector2f& initial_pos, const Vect
     while (traveled <= distance) {
         coordinate_t x = static_cast<coordinate_t>(std::round(current_pos.x));
         coordinate_t y = static_cast<coordinate_t>(std::round(current_pos.y));
-        if (is_a_wall(x, y)) {
+        if (is_a_collision(Position(x, y))) {
             add_bullet_image(initial_pos, current_pos);
             return true;
         }

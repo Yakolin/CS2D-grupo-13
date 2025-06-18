@@ -188,13 +188,23 @@ void ClientProtocol::send_reload() {
     this->send_byte_data(reload_header);
 }
 
-void ClientProtocol::send_shoot(coordinate_t& mouse_x, coordinate_t& mouse_y) {
-    player_command_t shoot_header = static_cast<player_command_t>(PlayerCommandType::SHOOT);
-    this->send_byte_data(shoot_header);
+void ClientProtocol::send_common_shoot(player_command_t& shoot_command, coordinate_t& mouse_x,
+                                       coordinate_t& mouse_y) {
+    this->send_byte_data(shoot_command);
     this->send_two_byte_data(mouse_x);
     this->send_two_byte_data(mouse_y);
 }
 
+void ClientProtocol::send_shoot(coordinate_t& mouse_x, coordinate_t& mouse_y) {
+    player_command_t shoot_header = static_cast<player_command_t>(PlayerCommandType::SHOOT);
+    this->send_common_shoot(shoot_header, mouse_x, mouse_y)
+}
+
+void ClientProtocol::send_burst_shoot(coordinate_t& mouse_x, coordinate_t& mouse_y) {
+    player_command_t shoot_burst_header =
+            static_cast<player_command_t>(PlayerCommandType::SHOOT_BURST);
+    this->send_common_shoot(shoot_burst_header, mouse_x, mouse_y)
+}
 
 void ClientProtocol::send_plant_bomb() {
     player_command_t plant_bomb_header =

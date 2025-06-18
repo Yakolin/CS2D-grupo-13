@@ -11,24 +11,29 @@
 #include "../Map/ISpawneableZone.h"
 
 #include "IInteractuable.h"
-class Weapon: public IInteractuable {
-public:
-    GameConfig::weapon_config_t specs;
-    explicit Weapon(WeaponCode code, GameConfig::weapon_config_t specs):
-            IInteractuable(code), specs(specs) {}
-    virtual ~Weapon() = default;
+#include "fire_mode.h"
 
-    virtual bool set_on_action(ISpawneableZone& spawn, player_id_t id,
-                               Position& direction) override = 0;
-    virtual void reload() override = 0;
+using damage_t = uint8_t;
+
+class Weapon {
+protected:
+    damage_t damage;
+    std::unique_ptr<FireMode> mode;
+
+public:
+    explicit Weapon(damage_t damage, std::unique_ptr<FireMode> mode): damage(damage), mode(mode) {}
+
+    virtual ~Weapon() = default;
+    virtual void reload() = 0;
     virtual void restore_bullets() = 0;
     virtual WeaponImage get_weapon_image() = 0;
     virtual bool is_droppable() = 0;
+    virtual void reset() = 0;
 };
 
 class NullWeapon: public Weapon {
 public:
-    NullWeapon(): Weapon(WeaponCode::NONE, {0, 0, 0, 0, 0, 0, 0, 0}) {}
+    NullWeapon(): Weapon(0, std::make_unique<SemiAutomatic>()) {}
     ~NullWeapon() = default;
 
     virtual bool set_on_action([[maybe_unused]] ISpawneableZone& spawn,

@@ -1,33 +1,33 @@
 
-#ifndef FIREABLE_WEAPON_H_
-#define FIREABLE_WEAPON_H_
+#ifndef FIREABLE_WEAPON_H
+#define FIREABLE_WEAPON_H
 
 //  "Copyright 2025 Yaco Santamarina"
-#include <algorithm>
-#include <chrono>
-#include <iostream>
-#include <map>
-#include <memory>
-#include <utility>
-#include <vector>
 
-#include "Weapon.h"
-class FireableWeapon: public Weapon {
-    max_bullets_t inventory_bullets;
-    max_bullets_t magazine;
+using fire_rate_t = uint8_t;
+using magazine_t = uint8_t;
+using bullet_t = uint8_t;
+using width_t = uint8_t;
+using distance_t = uint8_t;
 
+class FireableWeapon {
 protected:
+    const bullet_t max_bullets;
+    const magazine_t max_magazine;
+    const fire_rate_t fire_rate;
+
+    magazine_t actual_magazine;
+    bullet_t actual_bullets;
+
     bool reduce_bullets();
 
 public:
-    FireableWeapon(WeaponCode code, GameConfig::weapon_config_t specs):
-            Weapon(code, specs), inventory_bullets(specs.max_b), magazine(specs.current_b) {}
-    virtual bool set_on_action(ISpawneableZone& spawn, player_id_t id,
-                               Position& direction) override = 0;
-    virtual void reload() override;
-    virtual void restore_bullets() override;
-    virtual WeaponImage get_weapon_image() override;
+    FireableWeapon(bullet_t max_bullets, magazine_t magazine, fire_rate_t fire_rate);
+    ~FireableWeapon();
+
+    void reload();
+    void restore_bullets();
 };
 
 
-#endif  // FIREABLE_WEAPON_H_
+#endif  // FIREABLE_WEAPON_H

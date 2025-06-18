@@ -92,6 +92,7 @@ void GameManager::start_game() {
         std::cout << "El juego no tiene suficientes jugadores\n";
         return;
     }
+    WeaponConfig::get_instance().load(WEAPON_CONFIG_PATH);
     timer.round_start();
     reset_round(false);
     give_bomb();

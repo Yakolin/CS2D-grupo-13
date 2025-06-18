@@ -15,12 +15,16 @@
 #include "Map/Map.h"
 #include "Player/Player.h"
 #include "Weapons/WeaponFactory.h"
+#include "Weapons/guns/weapon_config.h"
 
 #include "GameException.h"
 #include "Timer.h"
 using std::map;
 using std::shared_ptr;
 using std::string;
+
+#define WEAPON_CONFIG_PATH "server/game/Weapons/guns/weapon_config.yaml"
+#define PLAYER_CONFIG_PATH "server/game/Player/player_config.yaml"
 
 class GameManager: public InterfaceGameManager {
 
@@ -61,7 +65,10 @@ public:
             timer(game_config.get_timer_config()),
             weapon_factory(game_config.get_weapon_config()),
             bomb(std::make_shared<Bomb>(timer)),
-            map_game(map_name, bomb) {}
+            map_game(map_name, bomb) {
+        WeaponConfig::get_instance().load(WEAPON_CONFIG_PATH);
+        PlayerConfig::get_instance().load(PLAYER_CONFIG_PATH);
+    }
     ~GameManager();
     GameImage get_frame();
     GameInfo get_game_info();

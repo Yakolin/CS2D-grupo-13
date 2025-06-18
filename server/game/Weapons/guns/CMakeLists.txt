@@ -12,4 +12,5 @@ target_sources(CS2D_server
     glock.h
     knife.h
     m3.h
+    weapon_config.h
 )

@@ -6,5 +6,6 @@ target_sources(CS2D_server
     ICanInteract.h
     Equipment.h
     Player.h
+    player_config.h
     # .h files
     )

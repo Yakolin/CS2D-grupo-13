@@ -43,6 +43,11 @@ void Player::shoot(const coordinate_t& mouse_x, const coordinate_t& mouse_y) {
     this->equipment.shoot(position);
 }
 
+void Player::shoot_burst(const coordinate_t& mouse_x, const coordinate_t& mouse_y) {
+    Position position(mouse_x, mouse_y);
+    this->equipment.shoot(position);
+}
+
 PlayerImage Player::get_player_image(const Position& position) {
     return PlayerImage(id, Position(position.x, position.y), health, points, money,
                        equipment.get_equiped_code(), std::move(equipment.get_weapons_image()), team,

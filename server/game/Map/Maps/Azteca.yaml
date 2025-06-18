@@ -111,17 +111,17 @@ bomb_sites:
   B: 
     x1: 1
     y1: 14
-    x2: 4
+    x2: 6
     y2: 16
 
 spawn_sites:
   CT:
     x1: 1
     y1: 1
-    x2: 4
+    x2: 6
     y2: 4
   TT:
-    x1: 0
+    x1: 1
     y1: 27
-    x2: 4
+    x2: 6
     y2: 24

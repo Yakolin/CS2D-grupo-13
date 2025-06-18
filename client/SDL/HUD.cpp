@@ -182,9 +182,8 @@ void HUD::update() {
             return;  // Exception?
         Object clave = convertir_a_imagen(player.equipped_weapon);
         if(clave != weapon_used){
-            HUDItem par = texts.at(TextView::WEAPON);
             weapon_used = clave;
-            par.icono = texture_manager.get(weapon_used);
+            texts.at(TextView::WEAPON).icono = texture_manager.get(weapon_used);
         }
         load_info(TextView::WEAPON, get_weapon_str(weapon->weapon_code), Color::AMARILLO,
                   font); 
@@ -200,7 +199,6 @@ void HUD::update() {
         balas = weapon.current_bullets;
         break;
     }
-
     load_info(TextView::BOMB, bomb_state_str, Color::AMARILLO, font);
     load_info(TextView::AMMO, std::to_string(balas), Color::AMARILLO, font);
     load_info(TextView::HEALTH, std::to_string(player.health), Color::AMARILLO, font);
@@ -212,7 +210,10 @@ void HUD::update() {
 }
 
 void HUD::render(SDL_Renderer& renderer) {
-    for (auto& text: texts) {
-        text.second.draw(renderer);
+    for (auto& [clave, item] : texts) {
+        if (clave == TextView::BOMB && player.team == Team::CT) {
+            continue; // No dibujar el icono de bomba si es CT
+        }
+        item.draw(renderer);
     }
 }

@@ -27,7 +27,7 @@
 
 class Vista {
 
-public:
+private:
     int& argc;
     char** argv;
     Socket skt;  // enviar referencia al controller
@@ -35,9 +35,11 @@ public:
     LobbyCommandType opcionElegida;
     Player info_game;
 
-
+public:
     explicit Vista(int& argc, char* argv[]);
-    void run();
+    bool showLobby();
+    void showGame();
+    void showScoreboard();
     ~Vista();
 
 private:

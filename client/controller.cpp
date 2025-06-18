@@ -32,7 +32,7 @@ void Controller::sender_pos_mouse(int x, int y) {
     int tile_size = 32;
     coordinate_t col = static_cast<coordinate_t>(x / tile_size);
     coordinate_t fil = static_cast<coordinate_t>(y / tile_size);
-   // std::cout << "Enviando pos del mouse\n";
+    // std::cout << "Enviando pos del mouse\n";
     std::unique_ptr<InterfaceClientAction> action =
             std::make_unique<ClientSpace::MousePosition>(col, fil);
     send_queue->push(std::move(action));
@@ -77,7 +77,7 @@ void Controller::sender_drop() {
 void Controller::sender_move(MoveType move) {
     std::unique_ptr<InterfaceClientAction> action = std::make_unique<ClientSpace::Move>(move);
     send_queue->push(std::move(action));
-    std::cout << "Movimiento enviado (enum como int): " << static_cast<int>(move) << std::endl;
+    //std::cout << "Movimiento enviado (enum como int): " << static_cast<int>(move) << std::endl;
 }
 
 

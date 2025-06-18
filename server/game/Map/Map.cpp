@@ -40,8 +40,10 @@ MapInfo Map::get_map_info() {
     RectangleInfo bomb_B_info(bomb_B.point_min, bomb_B.point_max);
     RectangleInfo spawn_TT_info(spawn_TT.point_min, spawn_TT.point_max);
     RectangleInfo spawn_CT_info(spawn_CT.point_min, spawn_CT.point_max);
+    std::cout << "tam boxes: "<< map_info.boxes_pos.size()<< std::endl;
     return MapInfo(map_name, bomb_A_info, bomb_B_info, spawn_TT_info, spawn_CT_info,
                    map_info.walls_pos, map_info.boxes_pos);
+
 }
 void Map::move(player_id_t id, const Position& direction) {
     if (collision_manager.check_movement(id, direction))

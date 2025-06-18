@@ -27,6 +27,7 @@ private:
     TTF_Font* font_game;
     std::unordered_map<Color, SDL_Color> colores;
     int intensity;
+    std::unordered_map<ColorTranslucent, SDL_Color> translucent_colors;
     void load(const std::string& file_path);
 
 
@@ -64,7 +65,9 @@ public:
 
     SDL_Color get_blanco() const;
 
-    TTF_Font *get_font_menu();
+    SDL_Color get_color_translucent(const ColorTranslucent& clave) ;
+
+    TTF_Font* get_font_menu();
 
     TTF_Font* get_font_game();
 };

@@ -22,33 +22,9 @@
 
 class MapView: public Renderizable {
 
-public:
-    explicit MapView(const MapInfo& info, Camera* camera_reseiver,
-                     ManageTexture* manejador, GameConfig& config);
-    ~MapView();
-
-    /*
-    pre: render y texturas deben existir y el mapa no debe estar vacio.
-    post:recorre el mapa y dibuja texturas de 32x32 pixeles
-    */
-    void draw(SDL_Renderer& renderer) override;
-
-    std::vector<std::vector<char>> cargar_coordenadas(const std::vector<Position> walls, const char& piso, const int& max_fil, const int& max_col,const char& objet);
-
-    void draw_weapon_dropped(SDL_Renderer& renderer);
-
-    std::vector<std::vector<char>> completar_mapa(const MapInfo& info_map);
-
-    void update_map_dimensions();
-    void render_objet(SDL_Renderer& renderer);
-    int getMapWidth();
-    int getMapHeight();
-
-    void update_weapon_dropped(const std::vector<WeaponDropped>& dropped);
-
 
 private:
-    GameConfig& config;
+    GameConfig & config;
     std::vector<std::vector<char>> mapa;
     int width_map;
     int height_map;
@@ -57,12 +33,46 @@ private:
     std::map<char, Object> ids;
     std::vector<Position> libres;
     std::vector<WeaponView> weapon_dropped;
+    std::unordered_map<Object, TextureInfo > zones;
 
-    void update_limites(Coordenada& pos_start, Coordenada& pos_end);
+    void update_limites(Coordenada & pos_start, Coordenada & pos_end);
 
-    void free_positions( std::vector<std::vector<char>> mapa, const char& piso,const char& wall, const int& max_fil, const int& max_col);
+    Object get_random_box();
 
+    void cargar_coordenadas(std::vector<std::vector<char>>& map,const std::vector<Position>& walls, const char& objet);
+
+    std::vector<std::vector<char>> completar_mapa(const MapInfo& info_map);
+    void free_positions(std::vector<std::vector<char>> mapa, const char& piso, const char& wall,
+                        const int& max_fil, const int& max_col);
+
+    TextureInfo load_zone_texture(const RectangleInfo& rectangle, const Object& zone,const SDL_Color& color);
     void load_trees(int& size_objet);
-};
+
+    void draw_zone(const Object& clave, SDL_Renderer& renderer);
+public:
+    explicit MapView(const MapInfo& info, Camera* camera_reseiver,
+                     ManageTexture* manejador, GameConfig& config);
+    ~MapView();
+
+    void update_map_dimensions();
+    /*
+    pre: render y texturas deben existir y el mapa no debe estar vacio.
+    post:recorre el mapa y dibuja texturas de 32x32 pixeles
+    */
+    void draw(SDL_Renderer& renderer) override;
+
+    void draw_weapon_dropped(SDL_Renderer& renderer);
+
+    void render_objet(SDL_Renderer& renderer);
+
+    std::unordered_map<Object, TextureInfo> load_zones(const MapInfo& info);
+
+    int getMapWidth();
+    int getMapHeight();
+
+    void update_weapon_dropped(const std::vector<WeaponDropped>& dropped);
+
+    void draw_zones(SDL_Renderer& renderer);
+    };
 
 #endif  // MAPVIEW_H

@@ -32,19 +32,28 @@ GameConfig::GameConfig():
             throw std::runtime_error("No se pudo cargar la fuente.");
         }
         colores = {
-        {Color::ROJO,     {255,   0,   0, 255}},
-        {Color::VERDE,    {  0, 255,   0, 255}},
-        {Color::AZUL,     {  0,   0, 255, 255}},
-        {Color::BLANCO,   {255, 255, 255, 255}},
-        {Color::NEGRO,    {  0,   0,   0, 255}},
-        {Color::AMARILLO, {255, 255,   0, 255}},
-        {Color::CIAN,     {  0, 255, 255, 255}},
-        {Color::MAGENTA,  {255,   0, 255, 255}},
-        {Color::GRIS,     {128, 128, 128, 255}},
-        {Color::NARANJA,  {255, 165,   0, 255}},
-        {Color::VIOLETA,  {138,  43, 226, 255}},
-        {Color::ROSADO,   {255, 192, 203, 255}}
+        {Color::ROJO,     {255,   0,   0, 255}},{Color::VERDE,    {  0, 255,   0, 255}},
+        {Color::AZUL,     {  0,   0, 255, 255}},{Color::BLANCO,   {255, 255, 255, 255}},
+        {Color::NEGRO,    {  0,   0,   0, 255}},{Color::AMARILLO, {255, 255,   0, 255}},
+        {Color::CIAN,     {  0, 255, 255, 255}},{Color::MAGENTA,  {255,   0, 255, 255}},
+        {Color::GRIS,     {128, 128, 128, 255}},{Color::NARANJA,  {255, 165,   0, 255}},
+        {Color::VIOLETA,  {138,  43, 226, 255}},{Color::ROSADO,   {255, 192, 203, 255}}
     };
+    translucent_colors = {
+        {ColorTranslucent::ROJO,     {255, 0, 0, 50}},
+        {ColorTranslucent::VERDE,    {0, 255, 0, 50}},
+        {ColorTranslucent::AZUL,     {0, 0, 255, 50}},
+        {ColorTranslucent::BLANCO,   {255, 255, 255, 50}},
+        {ColorTranslucent::NEGRO,    {0, 0, 0, 50}},
+        {ColorTranslucent::AMARILLO, {255, 255, 0, 50}},
+        {ColorTranslucent::CIAN,     {0, 255, 255, 50}},
+        {ColorTranslucent::MAGENTA,  {255, 0, 255, 50}},
+        {ColorTranslucent::GRIS,     {128, 128, 128, 50}},
+        {ColorTranslucent::NARANJA,  {255, 165, 0, 50}},
+        {ColorTranslucent::VIOLETA,  {138, 43, 226, 50}},
+        {ColorTranslucent::ROSADO,   {255, 192, 203, 50}},
+    };
+
 
 }
 
@@ -58,6 +67,15 @@ SDL_Color GameConfig::get_color(const Color& clave) {
     throw std::runtime_error("Textura no encontrada.");
 }
 
+SDL_Color GameConfig::get_color_translucent(const ColorTranslucent& clave)  {
+
+    auto it = translucent_colors.find(clave);
+    if (it != translucent_colors.end()) {
+       // std::cout << "se encontró la textura para Object: " << static_cast<int>(clave) << std::endl;
+        return it->second;
+    }
+    throw std::runtime_error("Textura no encontrada.");
+}
 TTF_Font* GameConfig::get_font_menu() { return font_menu; }
 TTF_Font* GameConfig::get_font_game() { return font_game; }
 void GameConfig::load(const std::string& file_path) {

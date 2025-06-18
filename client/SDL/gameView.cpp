@@ -121,13 +121,13 @@ void print_game_image(const GameImage& image) {
     std::cout << "--- Bomb ---\n";
     std::cout << "  Position: (" << image.bomb.position.x << ", " << image.bomb.position.y << ")\n";
     std::cout << "  State: " << static_cast<int>(image.bomb.state) << "\n";
- 
+ /* 
     std::cout << "--- Dropped Weapons ---\n";
     for (const auto& dropped: image.dropped_things) {
         std::cout << "  WeaponCode: " << static_cast<int>(dropped.weapon_code) << ", Position: ("
         << dropped.position.x << ", " << dropped.position.y << ")\n";
     }
-/*  
+ 
     std::cout << "--- Game State ---\n";
     std::cout << "  State: " << static_cast<int>(image.game_state.state) << "\n";
     std::cout << "  Time: " << image.game_state.time << "\n";
@@ -153,7 +153,7 @@ void GameView::update_bullets_snapshot(){
 
 
 void GameView::update_status_game() {
-    print_game_image(snapshot);
+    //print_game_image(snapshot);
     int tile_width = config.get_tile_width();
     int tile_height = config.get_tile_height();
     update_bullets_snapshot();
@@ -378,6 +378,7 @@ void GameView::render_game() {
             ++it;
         }
     }
+    map->draw_zones(*renderer);
     fov->draw(*renderer);
     if (shop.get_activa()) {
         shop.draw(*renderer);

@@ -15,9 +15,102 @@ Vista::Vista(int& argc, char* argv[]):
         opcionElegida(LobbyCommandType::NONE),
         info_game() {}
 
+void imprimir_game_info(const GameInfo& game_info) {
+    
+    auto to_string_map = [](MapName map) -> const char* {
+        switch (map) {
+            case MapName::DESIERTO: return "Desierto";
+            case MapName::PUEBLITO_AZTECA: return "Pueblito Azteca";
+            case MapName::ZONA_ENTRENAMIENTO: return "Zona de Entrenamiento";
+            default: return "Desconocido";
+        }
+    };
 
-void Vista::run() {
+    auto to_string_weapon = [](WeaponCode code) -> const char* {
+        switch (code) {
+            case WeaponCode::KNIFE: return "Cuchillo";
+            case WeaponCode::GLOCK: return "Pistola";
+            case WeaponCode::AWP : return "Rifle";
+            case WeaponCode::AK47 : return "Francotirador";
+            default: return "Desconocida";
+        }
+    };
 
+    auto to_string_pos = [](const Position& p) -> std::string {
+        return "(" + std::to_string(p.x) + ", " + std::to_string(p.y) + ")";
+    };
+
+    const MapInfo& mapa = game_info.map_info;
+
+    std::cout << "==== INFORMACIÓN DEL JUEGO ====" << std::endl;
+    std::cout << "Mapa: " << to_string_map(mapa.map_name) << std::endl;
+
+    std::cout << "Zona Bomba A: " << to_string_pos(mapa.bomb_A.pos_min)
+              << " hasta " << to_string_pos(mapa.bomb_A.pos_max) << std::endl;
+
+    std::cout << "Zona Bomba B: " << to_string_pos(mapa.bomb_B.pos_min)
+              << " hasta " << to_string_pos(mapa.bomb_B.pos_max) << std::endl;
+
+    std::cout << "Spawn Terrorista: " << to_string_pos(mapa.spawn_TT.pos_min)
+              << " hasta " << to_string_pos(mapa.spawn_TT.pos_max) << std::endl;
+
+    std::cout << "Spawn Antiterrorista: " << to_string_pos(mapa.spawn_CT.pos_min)
+              << " hasta " << to_string_pos(mapa.spawn_CT.pos_max) << std::endl;
+
+    std::cout << "Paredes (" << mapa.walls.size() << "):" << std::endl;
+    for (const auto& pos : mapa.walls)
+        std::cout << " - " << to_string_pos(pos) << std::endl;
+
+    std::cout << "Armas comprables (" << game_info.weapons_purchasables.size() << "):" << std::endl;
+    for (const auto& arma : game_info.weapons_purchasables)
+        std::cout << " - " << to_string_weapon(arma.code) << ": $" << arma.price << std::endl;
+
+    std::cout << "================================" << std::endl;
+}
+
+void dibujar_mapa(const MapInfo& mapa, int ancho, int alto) {
+    std::vector<std::string> grid(alto, std::string(ancho, '.'));
+
+    for (const auto& wall : mapa.walls) {
+        grid[wall.y][wall.x] = '#';
+    }
+
+    for (const auto& box : mapa.boxes) {
+        grid[box.y][box.x] = 'B';
+    }
+
+    for (int y = mapa.bomb_A.pos_min.y; y <= mapa.bomb_A.pos_max.y; ++y) {
+        for (int x = mapa.bomb_A.pos_min.x; x <= mapa.bomb_A.pos_max.x; ++x) {
+            grid[y][x] = 'A';
+        }
+    }
+
+    for (int y = mapa.bomb_B.pos_min.y; y <= mapa.bomb_B.pos_max.y; ++y) {
+        for (int x = mapa.bomb_B.pos_min.x; x <= mapa.bomb_B.pos_max.x; ++x) {
+            grid[y][x] = 'a';
+        }
+    }
+
+    for (int y = mapa.spawn_TT.pos_min.y; y <= mapa.spawn_TT.pos_max.y; ++y) {
+        for (int x = mapa.spawn_TT.pos_min.x; x <= mapa.spawn_TT.pos_max.x; ++x) {
+            grid[y][x] = 'T';
+        }
+    }
+
+    for (int y = mapa.spawn_CT.pos_min.y; y <= mapa.spawn_CT.pos_max.y; ++y) {
+        for (int x = mapa.spawn_CT.pos_min.x; x <= mapa.spawn_CT.pos_max.x; ++x) {
+            grid[y][x] = 'C';
+        }
+    }
+
+    // Imprimir
+    for (const auto& fila : grid) {
+        std::cout << fila << '\n';
+    }
+}
+
+
+bool Vista::showLobby(){
     QApplication app(argc, argv);
     MenuView menu(nullptr, protocolo);
     menu.show();
@@ -29,31 +122,31 @@ void Vista::run() {
                          menu.close();
                      });
     app.exec();
-    std::cout << "Nombre del jugador: " << info_game.info.name_player << std::endl;
-    std::cout << "Nombre del juego: " << info_game.info.name_game << std::endl;
-    std::cout << "Equipo: " << info_game.team << std::endl;
-    std::cout << "Skin: " << info_game.skin << std::endl;
-    std::cout << "Skin2: " << info_game.skin2 << std::endl;
-    std::cout << "Mapa: " << info_game.map << std::endl;
 
     if (opcionElegida != LobbyCommandType::CREATE_GAME &&
         opcionElegida != LobbyCommandType::JOIN_GAME) {
-        return;
+        return false;
     }
+    return true;
+}
+
+void Vista::showGame(){
+
     GameInfo info_game_view = protocolo.read_game_info();
+   // imprimir_game_info(info_game_view); // todo sacar cualdo moleste
+    std::cout << "Mapa bx: " << info_game_view.map_info.boxes.size() << std::endl;
+  //  std::cout << "Mapa: " << info_game.map << std::endl;
+
+    dibujar_mapa(info_game_view.map_info,40,40);
     Acknowledge ack = Acknowledge::READY;
     protocolo.send_acknowledge(ack);  // tal vez esto se tenga que mandar luego de
                                       // chequear que game info esta bien
     try {
-        GameView gameView(std::move(skt),info_game_view,info_game);
-    std::cout << "inicalizado correctamente " << info_game.map << std::endl;
+        GameView gameView(std::move(skt), info_game_view, info_game);
         if (!gameView.init_game())
             throw std::runtime_error(std::string("Error a inicializar game"));
-    std::cout << "cargaron objetos " << info_game.map << std::endl;
 
-        gameView.start(info_game_view );
-    std::cout << "strat " << info_game.map << std::endl;
-
+        gameView.start(info_game_view);
         gameView.run();
     } catch (const QuitGameException& e) {  // no pongo mensaje porque es el comportamiento esperado
     } catch (const LibError& e) {           // no pongo mensaje porque es el comportamiento esperado
@@ -62,6 +155,17 @@ void Vista::run() {
     } catch (...) {
         std::cerr << "Excepción desconocida en vista " << std::endl;
     }
+
 }
+
+void Vista::showScoreboard(){
+
+    QApplication app(argc, argv);
+    ScoreBoard score;
+    score.show_scores_game();
+    app.exec();
+
+}
+
 
 Vista::~Vista() {}

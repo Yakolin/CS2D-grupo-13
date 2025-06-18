@@ -1,9 +1,11 @@
 #ifndef TIPOS_H
 #define TIPOS_H
 #include <string>
-#include "../common/player_command_types.h"
-#include "../common/game_info.h"
+
 #include <SDL2/SDL.h>
+
+#include "../common/game_info.h"
+#include "../common/player_command_types.h"
 
 enum class GameMenu { CREATE, JOIN, HELP, EXIT, NONE };
 
@@ -24,6 +26,21 @@ enum class Color {
     ROSADO
 };
 
+
+enum class ColorTranslucent {
+    ROJO,
+    VERDE,
+    AZUL,
+    BLANCO,
+    NEGRO,
+    AMARILLO,
+    CIAN,
+    MAGENTA,
+    GRIS,
+    NARANJA,
+    VIOLETA,
+    ROSADO
+};
 enum class Weapon {
     AK47,
     M4A1,
@@ -52,7 +69,12 @@ enum class Object {
     WALL_DESIERTO,
 
     GRASS,
-    BOX,
+    BOX1,
+    BOX3,
+    BOX2,
+    BOX4,
+    BOX5,
+    BOX6,
     PLAYER,
     WATER,
     VIDA,
@@ -73,8 +95,8 @@ enum class Object {
 
     ZONE_TERRORIST,
     ZONE_COUNTERTERROSIT,
-    ZONE_BOMBA1,
-    ZONE_BOMBA2
+    ZONE_BOMBA,
+    ZONE_BOMBB
 };
 
 
@@ -89,7 +111,7 @@ struct InfoGame {
     std::string name_game;
 };
 
-struct Claves_skins{
+struct Claves_skins {
     CounterTerroristSkin ct_skin;
     TerroristSkin tt_skin;
 };
@@ -153,5 +175,8 @@ struct Rankings {
     int ranking_terrorists;
     int ranking_counter_terrorists;
 };
-
+struct TextureInfo{
+    SDL_Texture* textura;
+    SDL_Rect medidas;
+};
 #endif  // TIPOS_H

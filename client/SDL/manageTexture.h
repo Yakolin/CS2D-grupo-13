@@ -23,6 +23,8 @@ public:
     SDL_Texture* render_menu_texture(const std::unordered_map<WeaponCode, ShopItem>& items, const SDL_Rect& menu_rect,
         TTF_Font* font);
 
+    SDL_Texture* create_texture_rect(const SDL_Rect& rect,const SDL_Color& color,const Object& zone);
+
     explicit ManageTexture(SDL_Renderer* renderer);
 
     void drawHealthBar(int x, int y, int width, int height, float healthPercent);

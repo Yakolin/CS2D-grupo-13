@@ -69,7 +69,7 @@ int ScoreBoard::show_scores_game() {
     QWidget* info_ranking = new QWidget();
     info_ranking->setWindowTitle("Scores");
     info_ranking->setStyleSheet("background-color:rgb(160, 188, 194);");
-    info_ranking->resize(500, 500);
+    info_ranking->resize(800, 500);
 
     QVBoxLayout* scores_table = new QVBoxLayout(info_ranking);
 

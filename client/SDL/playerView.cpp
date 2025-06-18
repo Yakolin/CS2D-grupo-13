@@ -17,7 +17,7 @@ PlayerView::PlayerView(const float& x, const float& y, const Skins& clave_player
         anglePlayer(),
         camera(camera_receiver),
         manejador(manager_texture),
-        player_id(),  //! cambiar
+        clave_team(Team::CT), 
         x_actual(x),
         y_actual(y),
         velocity_x(0),
@@ -28,13 +28,21 @@ PlayerView::PlayerView(const float& x, const float& y, const Skins& clave_player
         interp_time(1.0f),
         weapons(),
         activar_weapon(false),
-        texture_player(manejador->get_texture_ct(clave_player.ct_skin)),
-        equipped_weapon(WeaponCode::NONE) {
+        equipped_weapon(WeaponCode::NONE),
+        textures_player(load_claves(clave_player))
+{ 
     calcular();
+}
+std::unordered_map<Team, SDL_Texture*> PlayerView::load_claves(const Skins& clave_player){
+    std::unordered_map<Team, SDL_Texture*> text;
+    text[Team::CT] = manejador->get_texture_ct(clave_player.ct_skin);
+    text[Team::TT] = manejador->get_texture_tt(clave_player.tt_skin);
+    return text;
 }
 
 void PlayerView::update_equip(const PlayerImage player_aux){
     this->equipped_weapon = player_aux.equipped_weapon;
+    this->clave_team = player_aux.team;
 }
 
 void imprimir_weapons_vec(const std::vector<WeaponImage>& weapons_vec) {
@@ -42,10 +50,6 @@ void imprimir_weapons_vec(const std::vector<WeaponImage>& weapons_vec) {
         std::cout << "El vector de armas está vacío." << std::endl;
         return;
     }
-
-   // std::cout << "Armas del jugador:" << std::endl;
-
-
     for (const WeaponImage& weapon: weapons_vec) {
         if (weapon.weapon_code == WeaponCode::NONE) {
             std::cout << "  (Arma vacía / NONE, se salta)" << std::endl;
@@ -115,9 +119,11 @@ void PlayerView::update_weapons(const std::vector<WeaponImage>& weapons_vec) {
 
 
 void PlayerView::calcular() {
-
+    SDL_Texture* texture_player = textures_player.at(clave_team); 
     SDL_QueryTexture(texture_player, nullptr, nullptr, &width_img, &height_img);
 }
+
+
 void PlayerView::add_speed(const SDL_Keycode& tecla) {
     if (tecla == SDLK_w || tecla == SDLK_UP) {
         setVelY(-speed_player);
@@ -160,7 +166,7 @@ void PlayerView::activate_weapon() {
 void PlayerView::draw(SDL_Renderer& renderer) {
 
     origin_rect = {item.col * width_img, item.fil * height_img, width_img / 2, height_img / 3};
-
+    SDL_Texture* texture_player = textures_player.at(clave_team); 
     destination_rect = {static_cast<int>(x_actual) - camera->getX(),  // col=x
                         static_cast<int>(y_actual) - camera->getY(),  // fil =y
                         config.get_tile_width(),                      // ancho
@@ -170,9 +176,6 @@ void PlayerView::draw(SDL_Renderer& renderer) {
                      nullptr, SDL_FLIP_NONE);
 
     if (this->equipped_weapon != WeaponCode::NONE) {
-        //SDL_Point center;
-        //center.x = x_actual;
-        //center.y = y_actual ;
         WeaponView& weapon_view = *weapons[equipped_weapon];
         weapon_view.update(static_cast<int>(x_actual), static_cast<int>(y_actual), anglePlayer);
         weapon_view.draw(renderer);

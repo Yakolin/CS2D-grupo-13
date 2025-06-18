@@ -31,9 +31,6 @@ void Bomb::update_bomb(const BombImage& bombImg) {
     destination_rect.x = (static_cast<int>(bombImg.position.x) * config.get_tile_width())- camera.getX();
     destination_rect.y = (static_cast<int>(bombImg.position.y) * config.get_tile_height()) - camera.getY();
     state = bombImg.state;
-    std::cout << "Posición de la bomba actualizada a (x: " 
-              << destination_rect.x << ", y: " 
-              << destination_rect.y << ")" << std::endl;
 }
 
 
@@ -72,23 +69,24 @@ void Bomb::draw(SDL_Renderer& renderer) {
 
      switch (state) {
         case BombState::EQUIPED:
-            std::cout << "La bomba está equipada.\n";
+           // std::cout << "La bomba está equipada.\n";
             //draw_dropped(renderer);
             break;
         case BombState::DROPPED:
-            std::cout << "La bomba fue soltada.\n";
+           // std::cout << "La bomba fue soltada.\n";
             draw_dropped(renderer);
             break;
         case BombState::ACTIVATED:
-            std::cout << "La bomba está activada.\n";
-            draw_activate(renderer);
+            //std::cout << "La bomba está activada.\n";
+            draw_dropped(renderer);
             break;
         case BombState::DESACTIVATED:
-            std::cout << "La bomba fue desactivada.\n";
+            //std::cout << "La bomba fue desactivada.\n";
             draw_dropped(renderer);
             break;
         case BombState::EXPLOTED:
-            std::cout << "La bomba explotó.\n";
+            draw_activate(renderer);
+            //std::cout << "La bomba explotó.\n";
             break;
         default:
             break;

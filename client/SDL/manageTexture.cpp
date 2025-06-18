@@ -42,16 +42,71 @@ ManageTexture::ManageTexture(SDL_Renderer* renderer): renderer(renderer) {
 
     load(Object::STONE, "assets/gfx/backgrounds/stone1.jpg");
     load(Object::WATER, "assets/gfx/backgrounds/water4.jpg");
-    load(Object::BOX, "assets/gfx/box.PNG");
+    load(Object::BOX1, "assets/gfx/backgrounds/b1.jpeg");
+    load(Object::BOX2, "assets/gfx/backgrounds/b2.jpeg");
+    load(Object::BOX3, "assets/gfx/backgrounds/b3.jpeg");
+    load(Object::BOX4, "assets/gfx/backgrounds/b4.jpeg");
+    load(Object::BOX5, "assets/gfx/backgrounds/b5.jpeg");
+    load(Object::BOX6, "assets/gfx/backgrounds/b6.jpeg");
     load(Object::GRASS, "assets/gfx/backgrounds/gras1.jpg");
-    load(Object::ZONE_BOMBA2, "assets/gfx/backgrounds/zonaa.jpeg");
-    load(Object::ZONE_BOMBA1, "assets/gfx/backgrounds/zonab.jpeg");
-    load(Object::ZONE_COUNTERTERROSIT, "assets/gfx/backgrounds/zonacounter.jpeg");
-    load(Object::ZONE_TERRORIST, "assets/gfx/backgrounds/zonaTerrorist.jpeg");
+
+    load(Object::ZONE_BOMBA, "assets/gfx/npc/zonea.png");
+    load(Object::ZONE_BOMBB, "assets/gfx/npc/zoneb.png");
+   // load(Object::ZONE_COUNTERTERROSIT, "assets/gfx/backgrounds/zonacounter.jpeg");//todo de movento no hay logo de counter
+   // load(Object::ZONE_TERRORIST, "assets/gfx/backgrounds/zonaTerrorist.jpeg");
 
 }
 
+/*
+pre:
+post: dibuja una imagen arriba de un rectangulo textura y lo retorna
+*/
+SDL_Texture* ManageTexture::create_texture_rect(const SDL_Rect& rect,const SDL_Color& color,const Object& zone) {
 
+    SDL_Texture* textura = SDL_CreateTexture(renderer,SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET,rect.w, rect.h);
+    SDL_SetTextureBlendMode(textura, SDL_BLENDMODE_BLEND);
+
+    if (!textura) {
+        SDL_Log("Error creando textura: %s", SDL_GetError());
+        return nullptr;
+    }
+    SDL_Texture* render_anterior = SDL_GetRenderTarget(renderer);
+    SDL_SetRenderTarget(renderer, textura);
+    SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+    SDL_RenderClear(renderer);
+
+    if (zone == Object::ZONE_BOMBA || zone == Object::ZONE_BOMBB) {
+        SDL_Texture* text = get(zone);
+        SDL_SetTextureBlendMode(text, SDL_BLENDMODE_BLEND);
+        int w_text = 1, h_text = 1; 
+
+        if (SDL_QueryTexture(text, nullptr, nullptr, &w_text, &h_text) != 0) {
+            SDL_Log("Error obteniendo dimensiones de textura: %s", SDL_GetError());
+            // continuar con w_text = h_text = 1
+        }
+
+        float scale_x = static_cast<float>(rect.w) / w_text;
+        float scale_y = static_cast<float>(rect.h) / h_text;
+        float scale = std::min(scale_x, scale_y);
+        scale = std::min(scale, 1.0f);
+
+        SDL_Rect destino;
+        destino.w = static_cast<int>(w_text * scale);
+        destino.h = static_cast<int>(h_text * scale);
+        destino.x = (rect.w - destino.w) / 2;
+        destino.y = (rect.h - destino.h) / 2;
+
+        SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+        SDL_RenderCopy(renderer, text, nullptr, &destino);
+    }
+    SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
+   // SDL_SetRenderDrawColor(renderer,255, 0, 0, 50);
+    SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+    SDL_RenderFillRect(renderer, nullptr);  // llena todo el target
+    SDL_SetRenderTarget(renderer, render_anterior);
+    return textura;
+}
 
 void ManageTexture::render_text(const SDL_Rect& rect, const std::string& text,
                                 const SDL_Color& color, TTF_Font* font) {
@@ -158,16 +213,13 @@ void ManageTexture::load(const Object& id, const std::string& filePath) {
                   << "Motivo: " << IMG_GetError() << std::endl;
         throw std::runtime_error("Error cargando imagen: " + std::string(IMG_GetError()));
     }
-
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_FreeSurface(surface);
-
     if (!texture) {
         std::cerr << "[ERROR] No se pudo crear textura desde: " << filePath << "\n"
                   << "Motivo: " << SDL_GetError() << std::endl;
         throw std::runtime_error("Error creando textura: " + std::string(SDL_GetError()));
     }
-
     textures[id] = texture;
     std::cout << "[LOAD TEXTURE] Textura cargada con éxito: " << filePath << std::endl;
 }
@@ -178,14 +230,11 @@ void ManageTexture::load_skins_tt(const TerroristSkin& id, const std::string& fi
     if (!surface) {
         throw std::runtime_error("Error cargando imagen: " + std::string(IMG_GetError()));
     }
-
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_FreeSurface(surface);
-
     if (!texture) {
         throw std::runtime_error("Error creando textura: " + std::string(SDL_GetError()));
     }
-
     texture_skin_tt[id] = texture;
 }
 void ManageTexture::load_skins_ct(const CounterTerroristSkin& id, const std::string& filePath) {
@@ -290,7 +339,7 @@ std::array<SDL_Point, 4> calculo(const int& lado, const int& angle, const int& a
 
 SDL_Texture* ManageTexture::create_stencil(const int& ancho, const int& alto, const float& angle,
                                            const float& apertura, const int& intensity) {
-                                            (void)intensity;
+
     int lado = (ancho + alto);
     SDL_Texture* stencil = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888,
                                              SDL_TEXTUREACCESS_TARGET, lado, lado);
@@ -304,7 +353,7 @@ SDL_Texture* ManageTexture::create_stencil(const int& ancho, const int& alto, co
     int radio_pequeno = 64;                                 // Ajusta este valor al tamaño deseado
     SDL_SetTextureBlendMode(stencil, SDL_BLENDMODE_BLEND);  // vuelve tui textura trasparente
 
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 128);  // 128 fondo simi trasparente negro
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, intensity);  // 128 fondo simi trasparente negro
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
     SDL_RenderClear(renderer);
 

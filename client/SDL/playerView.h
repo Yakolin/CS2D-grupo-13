@@ -37,7 +37,7 @@ private:
     float anglePlayer;
     Camera* camera;
     ManageTexture* manejador;
-    int player_id;
+    Team clave_team;
     float x_actual;
     float y_actual;
     float velocity_x;
@@ -48,14 +48,18 @@ private:
     float interp_time;
     std::unordered_map<WeaponCode, std::unique_ptr<WeaponView>> weapons;
     bool activar_weapon;
-    SDL_Texture* texture_player;
+  //  SDL_Texture* texture_player;
     WeaponCode equipped_weapon;
+    std::unordered_map<Team , SDL_Texture*> textures_player;
 
     void calcular();
+
+    std::unordered_map<Team, SDL_Texture*> load_claves(const Skins& clave_player);
     
 public:
     explicit PlayerView(const float& x, const float& y, const Skins& clave_player, const float& speed,
                         Camera* camera_reseiver, ManageTexture* manger_texture, GameConfig& config);
+
 
     void update_equip(const PlayerImage player_aux);
 

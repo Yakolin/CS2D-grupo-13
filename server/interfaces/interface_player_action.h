@@ -12,6 +12,7 @@ public:
     virtual void move(const MoveType& move_type) = 0;
     virtual void reload() = 0;
     virtual void shoot(const coordinate_t& mouse_x, const coordinate_t& mouse_y) = 0;
+    virtual void shoot_burst(const coordinate_t& mouse_x, const coordinate_t& mouse_y) = 0;
     virtual void buy_weapon(const WeaponCode& weapon_code) = 0;
     virtual void drop() = 0;
     virtual void change_weapon(const EquipType& equip) = 0;

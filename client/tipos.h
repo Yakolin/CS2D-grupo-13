@@ -158,12 +158,13 @@ struct MedidasSprites {
     int width;
     int height;
 };
-struct infoPlayer {
-    std::string name_game;
+struct InfoPlayer {
+    std::string name_player;
     std::string team;
     int puntos;
-    int vida;
-    int muertes;
+    int deaths;
+    int kills;
+    int collected_money;
 };
 struct TextureData {
     SDL_Texture* texture;
@@ -183,11 +184,6 @@ struct ItemSprite {
     int col;
 };
 
-struct PlayerSummary {
-    int kills;
-    int deaths;
-    int collected_money;
-};
 struct ShopItem {
     SDL_Texture* texture;
     int price;

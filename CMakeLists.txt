@@ -7,7 +7,8 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
 set(CMAKE_PREFIX_PATH "/usr/lib/x86_64-linux-gnu/cmake/Qt5" ${CMAKE_PREFIX_PATH})
-find_package(Qt5 REQUIRED COMPONENTS Widgets)
+find_package(Qt5 REQUIRED COMPONENTS Widgets Charts)
+
 
 
 if (POLICY CMP0135)
@@ -149,6 +150,7 @@ if(CS2D_CLIENT)
         SDL2_image
         yaml-cpp
         SDL2_ttf
+        Qt5::Charts
         ${SDL2_GFX_LIBRARY}
     )
 

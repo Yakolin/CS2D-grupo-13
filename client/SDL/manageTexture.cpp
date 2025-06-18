@@ -55,6 +55,7 @@ ManageTexture::ManageTexture(SDL_Renderer* renderer): renderer(renderer) {
     load(Object::ZONE_BOMBB, "assets/gfx/npc/zoneb.png");   
 
     load(Object::TIMER_BOMB, "assets/gfx/icon/bomba.png");
+    load(Object::BOMB, "assets/gfx/weapons/bomb.png");
     load(Object::MONEY, "assets/gfx/icon/money.png");
     load(Object::MUERTE, "assets/gfx/icon/muerte.png");
     load(Object::TIENDA, "assets/gfx/icon/tienda.png");

@@ -20,7 +20,6 @@ GameConfig::GameConfig():
             SDL_Log("Error al inicializar SDL_ttf: %s", TTF_GetError());
         }
 
-
         load("assets/configView.yaml");
         font_menu = TTF_OpenFont(route_font.c_str(), 15); // 18 es el tamaño
         if (!font_menu) {

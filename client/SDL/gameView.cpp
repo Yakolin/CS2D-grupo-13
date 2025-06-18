@@ -23,6 +23,9 @@ GameView::GameView(
         bomb_activate(false),
         keep_running(true) {
 }
+
+
+
 TerroristSkin toItemTerrorism(const std::string& str) {
     if (str == "Phoenix")
         return TerroristSkin::PHOENIX;
@@ -77,6 +80,9 @@ bool GameView::init_game() {
         throw std::runtime_error(std::string("Error inicializando SDL_image: ") + IMG_GetError());
         return false;
     }
+    SDL_Texture* textura = manger_texture.get(Object::FONDO_ESPERA);
+    SDL_RenderCopy(renderer, textura, nullptr, nullptr);
+    SDL_RenderPresent(renderer);
     return true;
 }
 
@@ -398,7 +404,7 @@ void GameView::render_game() {
     SDL_RenderPresent(renderer);
 }
 
-void GameView::update_game_image() {
+bool GameView::update_game_image() {
     try {
         if (controller.has_game_image(this->snapshot)) {
             bool found = false;
@@ -419,10 +425,13 @@ void GameView::update_game_image() {
                 std::cerr << "Error: No se encontró el jugador con client_id " << snapshot.client_id
                           << " en players_images\n";
             }
+            return true;
         }
+        return false;
     } catch (const ClosedQueue& e) {  // comportamiento esperado
         this->controller.stop();
     }
+    return false;
 }
 
 bool GameView::should_keep_running() { return this->keep_running; }
@@ -434,9 +443,10 @@ void GameView::run() {
 
 void GameView::step() {
     this->process_events();
-    this->update_game_image();
-    this->update_game();
-    this->render_game();
+    if(this->update_game_image()){
+        this->update_game();
+        this->render_game();
+    }
 }
 
 GameView::~GameView() {

@@ -75,7 +75,7 @@ private:
 
     void update_game();
 
-    void update_game_image();
+    bool update_game_image();
 
     void render_game();
 

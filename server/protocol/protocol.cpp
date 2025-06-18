@@ -5,6 +5,7 @@ using ServerSpace::Equip;
 using ServerSpace::MousePosition;
 using ServerSpace::Move;
 using ServerSpace::Shoot;
+using ServerSpace::ShootBurst;
 /*
 using ServerSpace::BuyAmmo;
 */
@@ -115,6 +116,17 @@ std::unique_ptr<Shoot> ServerProtocol::read_shoot(const player_id_t& player_id) 
     this->read_two_byte_data(y);
     return std::make_unique<Shoot>(player_id, x, y);
 }
+
+std::unique_ptr<ServerSpace::ShootBurst> ServerProtocol::read_shoot_burst(
+        const player_id_t& player_id) {
+    coordinate_t x;
+    coordinate_t y;
+    this->read_two_byte_data(x);
+    this->read_two_byte_data(y);
+    return std::make_unique<ShootBurst>(player_id, x, y);
+}
+
+
 /*
 std::unique_ptr<BuyAmmo> ServerProtocol::read_buy_ammo(player_id_t player_id) {
     weapon_type_t weapon_type;

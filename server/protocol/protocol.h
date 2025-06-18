@@ -22,6 +22,7 @@ namespace ServerSpace {
 class Move;
 class BuyWeapon;
 class Shoot;
+class ShootBurst;
 class Equip;
 class MousePosition;
 /*
@@ -70,6 +71,8 @@ public:
     std::unique_ptr<ServerSpace::Move> read_move(const player_id_t& player_id);
     std::unique_ptr<ServerSpace::BuyWeapon> read_buy_weapon(const player_id_t& player_id);
     std::unique_ptr<ServerSpace::Shoot> read_shoot(const player_id_t& player_id);
+    std::unique_ptr<ServerSpace::ShootBurst> read_shoot_burst(const player_id_t& player_id);
+
     std::unique_ptr<ServerSpace::Equip> read_equip(const player_id_t& player_id);
     /*
     std::unique_ptr<ServerSpace::BuyAmmo> read_buy_ammo(player_id_t player_id);

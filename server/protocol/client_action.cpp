@@ -11,6 +11,7 @@ using ServerSpace::MousePosition;
 using ServerSpace::Move;
 using ServerSpace::Reload;
 using ServerSpace::Shoot;
+using ServerSpace::ShootBurst;
 
 
 /*
@@ -61,9 +62,20 @@ Shoot::Shoot(const player_id_t& player_id, const coordinate_t& mouse_x,
              const coordinate_t& mouse_y):
         ClientAction(player_id), ShootCommon(mouse_x, mouse_y) {}
 
+Shoot::~Shoot() {}
+
 void Shoot::action_to(IPlayerAction& player) { player.shoot(this->mouse_x, this->mouse_y); }
 
-Shoot::~Shoot() {}
+
+ShootBurst::ShootBurst(const player_id_t& player_id, const coordinate_t& mouse_x,
+                       const coordinate_t& mouse_y):
+        ClientAction(player_id), ShootCommon(mouse_x, mouse_y) {}
+
+ShootBurst::~ShootBurst() {}
+
+void ShootBurst::action_to(IPlayerAction& player) {
+    player.shoot_burst(this->mouse_x, this->mouse_y);
+}
 
 
 Drop::Drop(const player_id_t& player_id): ClientAction(player_id) {}

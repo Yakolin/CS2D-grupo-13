@@ -340,20 +340,34 @@ std::array<SDL_Point, 4> calculo(const int& lado, const int& angle, const int& a
 SDL_Texture* ManageTexture::create_stencil(const int& ancho, const int& alto, const float& angle,
                                            const float& apertura, const int& intensity) {
 
-    int lado = (ancho + alto);
+    int max_texture_width = 0, max_texture_height = 0;
+    SDL_RendererInfo info;
+    SDL_GetRendererInfo(renderer, &info);
+    max_texture_width = info.max_texture_width;
+    max_texture_height = info.max_texture_height;
+
+    std::cout << "Máximo permitido por GPU: " << max_texture_width << " x " << max_texture_height << std::endl;
+
+
+    int diagonal = std::sqrt(ancho * ancho + alto * alto);
+    int lado = static_cast<int>(diagonal * 1.5); // Aumentar un 50% para cubrir rotaciones
+    std::cout << "Lado de textura: " << lado << std::endl;
+
     SDL_Texture* stencil = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888,
                                              SDL_TEXTUREACCESS_TARGET, lado, lado);
     if (!stencil) {
-        throw std::runtime_error("Error: la textura stencil  no se cargó correctamente.");
+        throw std::runtime_error("Error: la textura stencil no se cargó correctamente.");
     }
+
     SDL_Texture* old_target = SDL_GetRenderTarget(renderer);
     SDL_SetRenderTarget(renderer, stencil);
+
     std::array<SDL_Point, 4> points = calculo(lado, angle, apertura);
 
-    int radio_pequeno = 64;                                 // Ajusta este valor al tamaño deseado
-    SDL_SetTextureBlendMode(stencil, SDL_BLENDMODE_BLEND);  // vuelve tui textura trasparente
+    int radio_pequeno = 64;
+    SDL_SetTextureBlendMode(stencil, SDL_BLENDMODE_BLEND);
 
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, intensity);  // 128 fondo simi trasparente negro
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, intensity);
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
     SDL_RenderClear(renderer);
 
@@ -362,6 +376,7 @@ SDL_Texture* ManageTexture::create_stencil(const int& ancho, const int& alto, co
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
     fillTriangle(renderer, points[0].x, points[0].y, points[1].x, points[1].y, points[2].x,
                  points[2].y);
+
     SDL_SetRenderTarget(renderer, old_target);
 
     return stencil;

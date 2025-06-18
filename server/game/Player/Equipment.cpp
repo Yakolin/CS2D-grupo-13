@@ -80,6 +80,16 @@ void Equipment::shoot(Position& position) {
     }
 }
 
+void Equipment::shoot_burst(Position& position) {
+    if (weapon_in_hand->get_weapon_code() == WeaponCode::BOMB && bomb.lock()) {
+        if (weapon_in_hand->shoot_burst(this->spawneable_zone, this->player_id, position)) {
+            this->change_weapon(EquipType::SECONDARY);
+            bomb.reset();
+        }
+    } else {
+        weapon_in_hand->shoot_burst(this->spawneable_zone, this->player_id, position);
+    }
+}
 std::vector<WeaponImage> Equipment::get_weapons_image() {
     std::vector<WeaponImage> weapons;
     weapons.push_back(primary->get_weapon_image());

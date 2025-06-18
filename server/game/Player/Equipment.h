@@ -45,6 +45,7 @@ public:
     void drop_weapon();
     void reload();
     void shoot(Position& position);
+    void shoot_burst(Position& position);
     bool equip_droppable(const std::shared_ptr<IInteractuable>& droppable);
     void drop_all();
     std::vector<WeaponImage> get_weapons_image();

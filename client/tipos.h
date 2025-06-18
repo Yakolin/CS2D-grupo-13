@@ -85,6 +85,12 @@ enum class Object {
     EXPLOSION,
     BULLET,
 
+    MUERTE,
+    TIMER,
+    TIMER_BOMB,
+    TIENDA,
+    MONEY,
+
     TREE_AZTEC,
     TREE_ENTRENAMIENTO,
     TREE_DESIERTO,
@@ -122,6 +128,7 @@ struct Player {
     std::string skin2;
     InfoGame info;
     std::string map;
+    
 };
 
 struct MedidasSprites {

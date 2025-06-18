@@ -48,19 +48,20 @@ private:
     float interp_time;
     std::unordered_map<WeaponCode, std::unique_ptr<WeaponView>> weapons;
     bool activar_weapon;
-  //  SDL_Texture* texture_player;
+    bool muerto;
     WeaponCode equipped_weapon;
     std::unordered_map<Team , SDL_Texture*> textures_player;
 
     void calcular();
 
     std::unordered_map<Team, SDL_Texture*> load_claves(const Skins& clave_player);
-    
+
+
 public:
     explicit PlayerView(const float& x, const float& y, const Skins& clave_player, const float& speed,
                         Camera* camera_reseiver, ManageTexture* manger_texture, GameConfig& config);
 
-
+    void set_muerto(const bool& new_state);
     void update_equip(const PlayerImage player_aux);
 
 
@@ -78,6 +79,8 @@ public:
     void activate_weapon();
 
     void draw(SDL_Renderer& renderer) override;
+
+    void update_render();
 
     void update(const float& dt);
     void update_view_angle(const int& mause_x, const int& mause_y);

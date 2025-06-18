@@ -12,10 +12,6 @@ FieldOfView::FieldOfView(PlayerView& player, Camera& camera, ManageTexture& mana
     int ancho= config.get_window_width();
     int alto = config.get_window_height();
     texture_fov = manager.create_stencil(ancho, alto, 0.0f, 90.0f ,config.get_intensity());
-   // int diagonal = std::sqrt(ancho * ancho + alto * alto);
-
-   // this->lado = static_cast<int>(diagonal * 1.5);
-    std::cout << "Lado de textura en constructor: " << lado << std::endl;
 }
 
 
@@ -30,7 +26,6 @@ void FieldOfView::draw(SDL_Renderer& renderer) {
     */
     dstRect.x = static_cast<int>(player.getXActual()) - camera.getX() - (lado / 2) + 15;
     dstRect.y = static_cast<int>(player.getYActual()) - camera.getY() - (lado / 2) + 10;
-    printf("dstRect: x=%d, y=%d, w=%d, h=%d\n", dstRect.x, dstRect.y, dstRect.w, dstRect.h);
     float angulo = player.getAnglePlayer() - 90.0f;
     SDL_RenderCopyEx(&renderer, texture_fov, nullptr, &dstRect, angulo, nullptr, SDL_FLIP_NONE);
 }

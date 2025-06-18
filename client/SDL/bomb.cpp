@@ -35,8 +35,7 @@ void Bomb::update_bomb(const BombImage& bombImg) {
 
 
 void Bomb::draw_dropped(SDL_Renderer& renderer){
-    destination_rect.x = static_cast<int>(x) - camera.getX();
-    destination_rect.y = static_cast<int>(y) - camera.getY();
+
     destination_rect.w = config.get_tile_width();
     destination_rect.h = config.get_tile_height();
     SDL_RenderCopyEx(&renderer, texture_bomb, nullptr, &destination_rect, angle, nullptr,

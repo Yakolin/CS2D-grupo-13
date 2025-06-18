@@ -51,7 +51,14 @@ ManageTexture::ManageTexture(SDL_Renderer* renderer): renderer(renderer) {
     load(Object::GRASS, "assets/gfx/backgrounds/gras1.jpg");
 
     load(Object::ZONE_BOMBA, "assets/gfx/npc/zonea.png");
-    load(Object::ZONE_BOMBB, "assets/gfx/npc/zoneb.png");
+    load(Object::ZONE_BOMBB, "assets/gfx/npc/zoneb.png");   
+
+    load(Object::TIMER_BOMB, "assets/gfx/icon/bomba.png");
+    load(Object::MONEY, "assets/gfx/icon/money.png");
+    load(Object::MUERTE, "assets/gfx/icon/muerte.png");
+    load(Object::TIENDA, "assets/gfx/icon/tienda.png");
+    load(Object::TIMER, "assets/gfx/icon/timer.png");
+
    // load(Object::ZONE_COUNTERTERROSIT, "assets/gfx/backgrounds/zonacounter.jpeg");//todo de movento no hay logo de counter
    // load(Object::ZONE_TERRORIST, "assets/gfx/backgrounds/zonaTerrorist.jpeg");
 

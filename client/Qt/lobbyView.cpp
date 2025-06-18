@@ -288,13 +288,13 @@ void LobbyView::section_skins(QVBoxLayout* selection) {
     h_layout->addLayout(ct_column);
     selection->addLayout(h_layout);
     connect(combo_terrorist, &QComboBox::currentTextChanged, [this, tt_img](const QString& skin) {
-        infoPlayer.skin = skin.toStdString();
+        infoPlayer.skin2 = skin.toStdString();
         QPixmap pixmap(this->img_skins_tt.at(skin));  // Recordatorio, Pixmap es la img en path
         tt_img->setPixmap(pixmap.scaled(300, 300, Qt::KeepAspectRatio));
     });
     connect(combo_counter_terrorist, &QComboBox::currentTextChanged,
             [this, ct_img](const QString& skin) {
-                infoPlayer.skin2 = skin.toStdString();
+                infoPlayer.skin = skin.toStdString();
                 // Recordatorio, Pixmap es la img en path
                 QPixmap pixmap(this->img_skins_ct.at(skin));
                 ct_img->setPixmap(pixmap.scaled(300, 300, Qt::KeepAspectRatio));

@@ -170,6 +170,11 @@ void GameView::update_status_game() {
             reset_values(player, x_pixeles, y_pixeles);
             player->update_weapons(player_img.weapons);
             player->update_equip(player_img);
+            if(player_img.health <=0){
+                player->set_muerto(true);
+            }else{
+                player->set_muerto(false);
+            }
 
         } else if (players.find(id) == players.end()) {
 
@@ -187,6 +192,11 @@ void GameView::update_status_game() {
             player_aux->update_view_angle(x_pixel_mouse, y_pixel_mouse);
             reset_values(player_aux, x_pixeles, y_pixeles);
             player_aux->update_weapons(player_img.weapons);
+            if(player_img.health <= 0){
+                player_aux->set_muerto(true);
+            }else{
+                player_aux->set_muerto(false);
+            }
         }
     }
 }
@@ -365,6 +375,7 @@ void GameView::render_game() {
 
     map->draw(*renderer);
     map->draw_weapon_dropped(*renderer);
+    map->draw_zones(*renderer);
     player->draw(*renderer);
     draw_players();
     bomba->draw(*renderer);
@@ -378,7 +389,6 @@ void GameView::render_game() {
             ++it;
         }
     }
-    map->draw_zones(*renderer);
     fov->draw(*renderer);
     if (shop.get_activa()) {
         shop.draw(*renderer);

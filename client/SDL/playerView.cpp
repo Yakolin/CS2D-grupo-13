@@ -1,8 +1,7 @@
 #include "playerView.h"
 
 #include "mapView.h"
-
-
+#include "../tipos.h"
 
 PlayerView::PlayerView(const float& x, const float& y, const Skins& clave_player,
                        const float& speed, Camera* camera_receiver, ManageTexture* manager_texture,
@@ -28,6 +27,7 @@ PlayerView::PlayerView(const float& x, const float& y, const Skins& clave_player
         interp_time(1.0f),
         weapons(),
         activar_weapon(false),
+        muerto(false),
         equipped_weapon(WeaponCode::NONE),
         textures_player(load_claves(clave_player))
 { 
@@ -39,6 +39,8 @@ std::unordered_map<Team, SDL_Texture*> PlayerView::load_claves(const Skins& clav
     text[Team::TT] = manejador->get_texture_tt(clave_player.tt_skin);
     return text;
 }
+
+void PlayerView::set_muerto(const bool& new_state){ muerto = new_state;}
 
 void PlayerView::update_equip(const PlayerImage player_aux){
     this->equipped_weapon = player_aux.equipped_weapon;
@@ -62,6 +64,7 @@ void imprimir_weapons_vec(const std::vector<WeaponImage>& weapons_vec) {
                   << std::endl;
     }
 }
+
 
 void PlayerView::update(const float& deltaTime) { 
 
@@ -165,13 +168,16 @@ void PlayerView::activate_weapon() {
 }
 void PlayerView::draw(SDL_Renderer& renderer) {
 
-    origin_rect = {item.col * width_img, item.fil * height_img, width_img / 2, height_img / 3};
-    SDL_Texture* texture_player = textures_player.at(clave_team); 
-    destination_rect = {static_cast<int>(x_actual) - camera->getX(),  // col=x
-                        static_cast<int>(y_actual) - camera->getY(),  // fil =y
-                        config.get_tile_width(),                      // ancho
-                        config.get_tile_height()};                   // alto
-
+    SDL_Texture* texture_player ;
+    if(!muerto){
+        origin_rect = {item.col * width_img, item.fil * height_img, width_img / 2, height_img / 3};
+        texture_player = textures_player.at(clave_team); 
+    }else{
+        texture_player = manejador->get(Object::MUERTE);
+    }
+    destination_rect = {static_cast<int>(x_actual) - camera->getX(), 
+                        static_cast<int>(y_actual) - camera->getY(),  
+                        config.get_tile_width(),config.get_tile_height()};                   // alto
     SDL_RenderCopyEx(&renderer, texture_player, &origin_rect, &destination_rect, anglePlayer,
                      nullptr, SDL_FLIP_NONE);
 

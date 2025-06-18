@@ -10,6 +10,7 @@ using ClientSpace::Move;
 using ClientSpace::PlantBomb;
 using ClientSpace::Reload;
 using ClientSpace::Shoot;
+using ClientSpace::ShootBurst;
 
 
 Move::Move(MoveType& move_type): MoveCommon(move_type), InterfaceClientAction() {}
@@ -49,6 +50,16 @@ Shoot::Shoot(coordinate_t& mouse_x, coordinate_t& mouse_y):
 Shoot::~Shoot() {}
 
 void Shoot::action(ClientProtocol& protocol) { protocol.send_shoot(this->mouse_x, this->mouse_y); }
+
+
+ShootBurst::ShootBurst(coordinate_t& mouse_x, coordinate_t& mouse_y):
+        ShootCommon(mouse_x, mouse_y), InterfaceClientAction() {}
+
+ShootBurst::~ShootBurst() {}
+
+void ShootBurst::action(ClientProtocol& protocol) {
+    protocol.send_shoot_burst(this->mouse_x, this->mouse_y);
+}
 
 
 PlantBomb::PlantBomb(): InterfaceClientAction() {}

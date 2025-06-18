@@ -37,6 +37,8 @@ private:
     void send_two_byte_data(uint16_t& data);
 
     void send_string(std::string& string);
+    void send_common_shoot(player_command_t& shoot_command, coordinate_t& mouse_x,
+                           coordinate_t& mouse_y);
 
 public:
     explicit ClientProtocol(Socket& socket);
@@ -54,6 +56,7 @@ public:
     void send_buy_ammo(WeaponType& weapon_type, ammo_t& ammo_count);
     void send_reload();
     void send_shoot(coordinate_t& mouse_x, coordinate_t& mouse_y);
+    void send_burst_shoot(coordinate_t& mouse_x, coordinate_t& mouse_y);
     void send_plant_bomb();
     void send_defuse_bomb();
     void send_drop();

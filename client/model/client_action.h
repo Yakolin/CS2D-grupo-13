@@ -54,6 +54,13 @@ public:
     void action(ClientProtocol& protocol) override;
 };
 
+class ShootBurst: public ShootCommon, public InterfaceClientAction {
+public:
+    ShootBurst(coordinate_t& mouse_x, coordinate_t& mouse_y);
+    ~ShootBurst();
+    void action(ClientProtocol& protocol) override;
+};
+
 class PlantBomb: public InterfaceClientAction {
 public:
     PlantBomb();

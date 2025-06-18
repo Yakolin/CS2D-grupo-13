@@ -13,7 +13,8 @@ GameConfig::GameConfig():
     route_font(),
     size_font(),
     blanco(),
-    font_menu(nullptr)
+    font_menu(nullptr),
+    font_hud(nullptr)
     {
         if (TTF_Init() == -1) {
             SDL_Log("Error al inicializar SDL_ttf: %s", TTF_GetError());
@@ -28,6 +29,11 @@ GameConfig::GameConfig():
         }
         font_game =TTF_OpenFont("assets/gfx/fonts/sourcesans.ttf", 20); // 18 es el tamaño
         if (!font_game) {
+            std::cerr << "ERROR: fuente no cargada - " << TTF_GetError() << std::endl;
+            throw std::runtime_error("No se pudo cargar la fuente.");
+        }
+        font_hud =TTF_OpenFont("assets/gfx/fonts/DS-DIGIB.TTF", 30); // 18 es el tamaño
+        if (!font_hud) {
             std::cerr << "ERROR: fuente no cargada - " << TTF_GetError() << std::endl;
             throw std::runtime_error("No se pudo cargar la fuente.");
         }
@@ -78,6 +84,7 @@ SDL_Color GameConfig::get_color_translucent(const ColorTranslucent& clave)  {
 }
 TTF_Font* GameConfig::get_font_menu() { return font_menu; }
 TTF_Font* GameConfig::get_font_game() { return font_game; }
+TTF_Font* GameConfig::get_font_hud() { return font_hud; }
 void GameConfig::load(const std::string& file_path) {
 
     try {
@@ -89,10 +96,6 @@ void GameConfig::load(const std::string& file_path) {
         this->viewport_height = config["camera"]["viewport_logical_height"].as<int>();
         this->route_font = config["fuente"]["route_font_menu"].as<std::string>();
         this->size_font = config["fuente"]["size_fuente"].as<int>();
-        this->blanco.r = config["blanco"]["r"].as<Uint8>();
-        this->blanco.g = config["blanco"]["g"].as<Uint8>();
-        this->blanco.b = config["blanco"]["b"].as<Uint8>();
-        this->blanco.a = config["blanco"]["a"].as<Uint8>();
         this->intensity = config["fov"]["intensity"].as<int>();
 
 
@@ -124,7 +127,6 @@ std::vector<std::vector<char>> GameConfig::load_map(const std::string& archivo) 
     entrada.close();
     return mapa;
 }
-SDL_Color GameConfig::get_blanco() const { return blanco; }
 
 int GameConfig::get_window_width() const { return window_width; }
 

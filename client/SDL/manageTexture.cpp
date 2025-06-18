@@ -58,6 +58,13 @@ ManageTexture::ManageTexture(SDL_Renderer* renderer): renderer(renderer) {
     load(Object::MUERTE, "assets/gfx/icon/muerte.png");
     load(Object::TIENDA, "assets/gfx/icon/tienda.png");
     load(Object::TIMER, "assets/gfx/icon/timer.png");
+    load(Object::VIDA, "assets/gfx/icon/vida.png");
+    load(Object::BALA, "assets/gfx/icon/bullets.png");
+    load(Object::GLOCK, "assets/gfx/icon/glock_k.png");
+    load(Object::AK47, "assets/gfx/icon/ak47_k.png");
+    load(Object::AWP, "assets/gfx/icon/awp_k.png");
+    load(Object::M3, "assets/gfx/icon/m3_k.png");
+    load(Object::SNIKE, "assets/gfx/icon/knife_k.png");
 
    // load(Object::ZONE_COUNTERTERROSIT, "assets/gfx/backgrounds/zonacounter.jpeg");//todo de movento no hay logo de counter
    // load(Object::ZONE_TERRORIST, "assets/gfx/backgrounds/zonaTerrorist.jpeg");

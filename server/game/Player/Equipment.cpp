@@ -37,11 +37,13 @@ void Equipment::change_weapon(const EquipType& equip) {
     }
 }
 void Equipment::buy_weapon_by_code(const WeaponCode& weapon_code, uint16_t money) {
-    if (weapon_factory.price_weapon(weapon_code) > money) {
+    uint16_t price = weapon_factory.price_weapon(weapon_code);
+    if (price > money) {
         std::cout << "Not enoguht money\n";
         return;
     }
     primary = weapon_factory.weapon_create(weapon_code);
+    money -= price;
 }
 void Equipment::reset_equipment() {
     primary = weapon_factory.weapon_create(WeaponCode::NONE);

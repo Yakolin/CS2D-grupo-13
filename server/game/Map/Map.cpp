@@ -17,7 +17,7 @@ void Map::respawn_players() {
             player.second.position = (player.second.player.lock()->get_team() == Team::CT) ?
                                              spawn_CT.get_random_position() :
                                              spawn_TT.get_random_position();
-        } while (collision_manager.is_a_collision(player.second.position) &&
+        } while (collision_manager.is_a_collision(player.second.position) ||
                  std::find(spawneds.begin(), spawneds.end(), player.second.position) !=
                          spawneds.end());
         spawneds.push_back(player.second.position);

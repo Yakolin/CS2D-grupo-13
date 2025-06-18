@@ -184,6 +184,10 @@ TEST(ClientProtocolTest, ReadGameInfoReadsCorrectData) {
     expected_game_info.map_info.walls.push_back(Position(1, 2));
     expected_game_info.map_info.walls.push_back(Position(3, 4));
 
+    // Add boxes for the new protocol
+    expected_game_info.map_info.boxes.push_back(Position(5, 6));
+    expected_game_info.map_info.boxes.push_back(Position(7, 8));
+
     expected_game_info.weapons_purchasables.emplace_back(WeaponCode::AK47, 2700);
     expected_game_info.weapons_purchasables.emplace_back(WeaponCode::M3, 3100);
 
@@ -212,16 +216,23 @@ TEST(ClientProtocolTest, ReadGameInfoReadsCorrectData) {
         send_position(130, 140);
         send_position(150, 160);
 
+        // Walls
         uint16_t wall_count = htons(expected_game_info.map_info.walls.size());
         client_socket.sendall(&wall_count, sizeof(wall_count));
-
         for (const Position& wall: expected_game_info.map_info.walls) {
             send_position(wall.x, wall.y);
         }
 
+        // Boxes (new in protocol)
+        uint16_t box_count = htons(expected_game_info.map_info.boxes.size());
+        client_socket.sendall(&box_count, sizeof(box_count));
+        for (const Position& box: expected_game_info.map_info.boxes) {
+            send_position(box.x, box.y);
+        }
+
+        // Weapons
         uint8_t weapon_count = expected_game_info.weapons_purchasables.size();
         client_socket.sendall(&weapon_count, sizeof(weapon_count));
-
         for (const WeaponInfo& weapon: expected_game_info.weapons_purchasables) {
             uint8_t code = static_cast<uint8_t>(weapon.code);
             uint16_t price = htons(weapon.price);
@@ -258,6 +269,12 @@ TEST(ClientProtocolTest, ReadGameInfoReadsCorrectData) {
     ASSERT_EQ(received_map.walls.size(), expected_map.walls.size());
     for (size_t i = 0; i < expected_map.walls.size(); ++i) {
         assert_position(received_map.walls[i], expected_map.walls[i]);
+    }
+
+    // Assert boxes
+    ASSERT_EQ(received_map.boxes.size(), expected_map.boxes.size());
+    for (size_t i = 0; i < expected_map.boxes.size(); ++i) {
+        assert_position(received_map.boxes[i], expected_map.boxes[i]);
     }
 
     const auto& expected_weapons = expected_game_info.weapons_purchasables;

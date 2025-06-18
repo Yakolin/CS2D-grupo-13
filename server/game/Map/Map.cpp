@@ -68,7 +68,8 @@ void Map::spawn_collider(player_id_t id_spawn, collider_solicitude_t& wanted) {
     end_pos.y = std::max(0.0f, end_pos.y);
     std::unique_ptr<Collider> line =
             std::make_unique<Line>(std::move(player_pos), std::move(end_pos), wanted.width);
-    collider_damage_t collider_damage = {std::move(line), wanted.damage_function};
+    collider_damage_t collider_damage = {std::move(line), wanted.damage_function, wanted.width,
+                                         wanted.code};
     collision_manager.add_damage_collider(id_spawn, collider_damage);
 }
 

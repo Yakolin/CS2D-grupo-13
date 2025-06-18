@@ -7,9 +7,10 @@
 
 class ISpawneableZone {
 public:
-    typedef struct collider_solicitude_t {
+    typedef struct ColliderSolicitude {
         uint8_t width;
         uint8_t distance;
+        WeaponCode code;
         Position& mouse_position;
         std::function<uint8_t(float)> damage_function;
     } collider_solicitude_t;

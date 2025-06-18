@@ -15,8 +15,8 @@ bool M3::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& directi
         auto calculate_damage_func = [this](float distance) {
             return this->calculate_damage(distance);
         };
-        ISpawneableZone::collider_solicitude_t wanted = {specs.width, specs.distance, direction,
-                                                         calculate_damage_func};
+        ISpawneableZone::collider_solicitude_t wanted = {specs.width, specs.distance, this->code,
+                                                         direction, calculate_damage_func};
         spawn.spawn_collider(id, wanted);
     }
     return true;

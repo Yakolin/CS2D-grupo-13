@@ -353,7 +353,12 @@ void ClientProtocol::read_bullets_in_air(std::vector<BulletImage>& bullets_in_ai
         Position initial, end;
         this->read_position(initial);
         this->read_position(end);
-        bullets_in_air.emplace_back(BulletImage(initial, end));
+        uint8_t width;
+        this->read_byte_data(width);
+        weapon_code_t weapon_code;
+        this->read_byte_data(weapon_code);
+        bullets_in_air.emplace_back(
+                BulletImage(initial, end, width, static_cast<WeaponCode>(weapon_code)));
     }
 }
 

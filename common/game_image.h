@@ -42,7 +42,10 @@ class BulletImage {
 public:
     Position initial;
     Position end;
-    BulletImage(const Position& initial, const Position& end): initial(initial), end(end) {}
+    uint8_t width;
+    WeaponCode code;
+    BulletImage(const Position& initial, const Position& end, uint8_t width, WeaponCode code):
+            initial(initial), end(end), width(width), code(code) {}
     ~BulletImage() {}
 };
 

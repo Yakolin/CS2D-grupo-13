@@ -67,10 +67,17 @@ public:
     void action_to(IPlayerAction& player) override;
 };
 class Shoot: public ClientAction, public ShootCommon {
-
 public:
     Shoot(const player_id_t& player_id, const coordinate_t& mouse_x, const coordinate_t& mouse_y);
     ~Shoot();
+    void action_to(IPlayerAction& player) override;
+};
+
+class ShootBurst: public ClientAction, public ShootCommon {
+public:
+    ShootBurst(const player_id_t& player_id, const coordinate_t& mouse_x,
+               const coordinate_t& mouse_y);
+    ~ShootBurst();
     void action_to(IPlayerAction& player) override;
 };
 

@@ -1,6 +1,7 @@
 #include "Awp.h"
 
-Awp::Awp(GameConfig::weapon_config_t specs): FireableWeapon(WeaponCode::AWP, specs) {}
+Awp::Awp(GameConfig::weapon_config_t specs):
+        FireableWeapon(WeaponCode::AWP, std : make_unique<SemiAutomatic>(), specs) {}
 
 Awp::~Awp() {}
 

@@ -3,6 +3,7 @@
 
 #include "../../Config/GameConfig.h"
 #include "../FireableWeapon.h"
+#include "FireMode/SemiAutomatic.h"
 
 class Glock: public FireableWeapon {
 private:
@@ -14,6 +15,7 @@ public:
 
     virtual bool set_on_action(ISpawneableZone& spawn, player_id_t id,
                                Position& direction) override;
+
     virtual bool is_droppable() override;
 };
 

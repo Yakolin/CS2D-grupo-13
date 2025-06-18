@@ -1,6 +1,7 @@
 #include "Glock.h"
 
-Glock::Glock(GameConfig::weapon_config_t specs): FireableWeapon(WeaponCode::GLOCK, specs) {}
+Glock::Glock(GameConfig::weapon_config_t specs):
+        FireableWeapon(WeaponCode::GLOCK, std::make_unique<SemiAutomatic>(), specs) {}
 
 Glock::~Glock() {}
 
@@ -17,6 +18,7 @@ bool Glock::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& dire
     }
     return true;
 }
+
 bool Glock::is_droppable() { return false; }
 
 uint8_t Glock::calculate_damage(float distance) { return specs.damage * distance; }

@@ -13,6 +13,8 @@ bool Knife::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& dire
     return true;
 }
 
+bool Knife::shoot_burst(ISpawneableZone& spawn, player_id_t id, Position& direction) {}
+
 void Knife::reload() { return; }
 WeaponImage Knife::get_weapon_image() { return WeaponImage(code, 0, 0, 0); }
 

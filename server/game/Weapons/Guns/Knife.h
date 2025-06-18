@@ -3,6 +3,7 @@
 
 #include "../../Config/GameConfig.h"
 #include "../Weapon.h"
+#include "FireMode/SemiAutomatic.h"
 
 class Knife: public Weapon {
 public:
@@ -11,6 +12,8 @@ public:
 
     virtual bool set_on_action(ISpawneableZone& spawn, player_id_t id,
                                Position& direction) override;
+
+
     virtual void reload() override;
     virtual void restore_bullets() override {}  // Quiza aca no deberia ir esto... desp lo veo bien
     virtual WeaponImage get_weapon_image() override;

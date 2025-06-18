@@ -35,7 +35,7 @@ void Map::charge_map() {
                                map_info.boxes_pos.end());
 }
 MapInfo Map::get_map_info() {
-    MapConfig::map_data_t& map_info = map_config.get_map_data();
+    const MapConfig::map_data_t& map_info = map_config.get_map_data();
     RectangleInfo bomb_A_info(bomb_A.point_min, bomb_A.point_max);
     RectangleInfo bomb_B_info(bomb_B.point_min, bomb_B.point_max);
     RectangleInfo spawn_TT_info(spawn_TT.point_min, spawn_TT.point_max);
@@ -99,7 +99,7 @@ void Map::defuse_bomb(const player_id_t& player_id) {
     bomb.second->defuse();
 }
 Position Map::get_random_position() {
-    MapConfig::map_data_t& map_info = map_config.get_map_data();
+    const MapConfig::map_data_t& map_info = map_config.get_map_data();
     std::random_device rd;
     std::mt19937 rand(rd());
     std::uniform_int_distribution<int> distx(0, map_info.width - 1);

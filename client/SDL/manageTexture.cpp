@@ -11,6 +11,7 @@ ManageTexture::ManageTexture(SDL_Renderer* renderer): renderer(renderer) {
 
     load(Object::EXPLOSION, "assets/gfx/explosion.png");
     load(Object::BULLET, "assets/gfx/weapons/bullet.png");
+    load(Object::FONDO_ESPERA,"assets/gfx/screens/espera.jpeg");
 
     load_skins_tt(TerroristSkin::PHOENIX, "assets/gfx/terrorist/t2.png");
     load_skins_tt(TerroristSkin::L337_KREW, "assets/gfx/terrorist/t4.png");

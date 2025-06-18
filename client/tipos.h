@@ -68,6 +68,8 @@ enum class Object {
     WALL_ENTRENAMIENTO,
     WALL_DESIERTO,
 
+    FONDO_ESPERA,
+
     GRASS,
     BOX1,
     BOX3,

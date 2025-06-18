@@ -9,6 +9,11 @@ bool Bomb::set_on_action(ISpawneableZone& spawn, player_id_t id,
     state = BombState::ACTIVATED;
     return true;
 }
+
+bool Bomb::shoot_burst(ISpawneableZone& spawn, player_id_t id, Position& position) {
+    return this->set_on_action(spawn, id, position);
+}
+
 void Bomb::defuse() { state = BombState::DESACTIVATED; }
 void Bomb::set_equiped() { state = BombState::EQUIPED; }
 void Bomb::set_unequiped() { state = BombState::DROPPED; }

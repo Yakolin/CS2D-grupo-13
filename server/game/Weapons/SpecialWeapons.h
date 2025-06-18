@@ -14,6 +14,7 @@ public:
     explicit Bomb(Timer& timer): IInteractuable(WeaponCode::BOMB), timer(timer) {}
     virtual bool set_on_action(ISpawneableZone& spawn, player_id_t id,
                                [[maybe_unused]] Position& direction) override;
+    bool shoot_burst(ISpawneableZone& spawn, player_id_t, Position& direction) override;
     virtual void reload() override {}
     void defuse();
     void set_equiped();

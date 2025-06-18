@@ -11,23 +11,25 @@
 #include <utility>
 #include <vector>
 
+#include "Guns/FireMode/FireMode.h"
+
 #include "TimerWeapons.h"
 #include "Weapon.h"
+
 class FireableWeapon: public Weapon {
     max_bullets_t inventory_bullets;
     max_bullets_t magazine;
 
 protected:
-    TimerWeapons timer;
     void reduce_bullets();
     bool have_bullets();
 
 public:
-    FireableWeapon(WeaponCode code, GameConfig::weapon_config_t specs):
-            Weapon(code, specs),
+    FireableWeapon(WeaponCode code, std::unique_ptr<FireMode> fire_mode,
+                   GameConfig::weapon_config_t specs):
+            Weapon(code, fire_mode, specs),
             inventory_bullets(specs.max_b),
-            magazine(specs.current_b),
-            timer(specs.timer_fire) {}
+            magazine(specs.current_b) {}
     virtual bool set_on_action(ISpawneableZone& spawn, player_id_t id,
                                Position& direction) override = 0;
     virtual void reload() override;

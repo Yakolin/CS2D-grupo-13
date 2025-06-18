@@ -9,7 +9,7 @@ bool Awp::is_droppable() { return true; }
 uint8_t Awp::calculate_damage([[maybe_unused]] float distance) { return specs.damage; }
 
 bool Awp::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& direction) {
-    if (have_bullets() && timer.can_shoot()) {
+    if (have_bullets() && timer.elapsed_time()) {
         timer.start();
         reduce_bullets();
         auto calculate_damage_func = [this](float distance) {

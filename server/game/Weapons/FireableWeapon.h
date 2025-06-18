@@ -11,14 +11,15 @@
 #include <utility>
 #include <vector>
 
-#include "TimerWeapons.h"
+#include "../TimerActions.h"
+
 #include "Weapon.h"
 class FireableWeapon: public Weapon {
     max_bullets_t inventory_bullets;
     max_bullets_t magazine;
 
 protected:
-    TimerWeapons timer;
+    TimerActions timer;
     void reduce_bullets();
     bool have_bullets();
 

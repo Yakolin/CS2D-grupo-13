@@ -5,7 +5,7 @@ Glock::Glock(GameConfig::weapon_config_t specs): FireableWeapon(WeaponCode::GLOC
 Glock::~Glock() {}
 
 bool Glock::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& direction) {
-    if (have_bullets() && timer.can_shoot()) {
+    if (have_bullets() && timer.elapsed_time()) {
         timer.start();
         reduce_bullets();
         auto calculate_damage_func = [this](float distance) {

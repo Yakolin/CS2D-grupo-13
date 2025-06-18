@@ -97,7 +97,17 @@ void Map::defuse_bomb(const player_id_t& player_id) {
     if (!(player_entity.position == bomb.first) ||
         player_entity.player.lock()->get_team() == Team::TT)
         return;
-    bomb.second->defuse();
+    if (defuse_timing.get_counting() > 0.5 && planting) {
+        planting = false;
+        return;
+    }
+    if (!planting) {
+        defuse_timing.start();
+        planting = true;
+    }
+    defuse_timing.start_counting();
+    if (defuse_timing.elapsed_time())
+        bomb.second->defuse();
 }
 Position Map::get_random_position() {
     const MapConfig::map_data_t& map_info = map_config.get_map_data();

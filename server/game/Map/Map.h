@@ -30,6 +30,7 @@ private:
     CollisionManager collision_manager;
     std::map<player_id_t, player_entity_t> players_in_map;
     TimerActions defuse_timing, plant_timing;
+    bool defusing = false, planting = false;
     void charge_map();
     Position get_random_position();
 

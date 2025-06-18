@@ -1,0 +1,6 @@
+player:
+  health: 100
+  money: 100
+  points: 0
+  earned_points: 100
+  multiplier_points: 12

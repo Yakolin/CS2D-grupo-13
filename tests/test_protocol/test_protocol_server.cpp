@@ -130,9 +130,11 @@ TEST(ServerProtocolTest, SendGameInfoSendsCorrectData) {
     game_info.map_info.walls.push_back(Position(1, 2));
     game_info.map_info.walls.push_back(Position(3, 4));
 
+    game_info.map_info.boxes.push_back(Position(5, 6));
+    game_info.map_info.boxes.push_back(Position(7, 8));
+
     game_info.weapons_purchasables.push_back(WeaponInfo{WeaponCode::AK47, 2700});
     game_info.weapons_purchasables.push_back(WeaponInfo{WeaponCode::M3, 3100});
-
 
     std::thread client_thread([&]() {
         Socket client_socket("localhost", "9999");
@@ -150,28 +152,42 @@ TEST(ServerProtocolTest, SendGameInfoSendsCorrectData) {
             ASSERT_EQ(ntohs(received_y), expected_y);
         };
 
+        // bomb_A
         recv_position(10, 20);
         recv_position(30, 40);
 
+        // bomb_B
         recv_position(50, 60);
         recv_position(70, 80);
 
+        // spawn_TT
         recv_position(90, 100);
         recv_position(110, 120);
 
+        // spawn_CT
         recv_position(130, 140);
         recv_position(150, 160);
 
-        uint16_t walls_count;
+        // walls
+        length_walls_t walls_count;
         client_socket.recvall(&walls_count, sizeof(walls_count));
         walls_count = ntohs(walls_count);
         ASSERT_EQ(walls_count, game_info.map_info.walls.size());
-
         for (const Position& wall: game_info.map_info.walls) {
             recv_position(wall.x, wall.y);
         }
 
-        uint8_t weapon_count;
+        // boxes
+        length_boxes_t boxes_count;
+        client_socket.recvall(&boxes_count, sizeof(boxes_count));
+        boxes_count = ntohs(boxes_count);
+        ASSERT_EQ(boxes_count, game_info.map_info.boxes.size());
+        for (const Position& box: game_info.map_info.boxes) {
+            recv_position(box.x, box.y);
+        }
+
+        // weapons
+        length_weapons_info_t weapon_count;
         client_socket.recvall(&weapon_count, sizeof(weapon_count));
         ASSERT_EQ(weapon_count, game_info.weapons_purchasables.size());
 
@@ -423,7 +439,7 @@ TEST(ServerProtocolTest, ReadShootBurstReturnCorrectObject) {
 
     // Assert
     ASSERT_EQ(command, PlayerCommandType::SHOOT_BURST);
-    EXPECT_CALL(mock_player, shoot(1, 1)).Times(1);
+    EXPECT_CALL(mock_player, shoot_burst(1, 1)).Times(1);
 
     // Ejecutamos la acción inyectando nuestro mock de jugador
     action->action_to(mock_player);

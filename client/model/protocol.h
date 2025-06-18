@@ -56,7 +56,7 @@ public:
     void send_buy_ammo(WeaponType& weapon_type, ammo_t& ammo_count);
     void send_reload();
     void send_shoot(coordinate_t& mouse_x, coordinate_t& mouse_y);
-    void send_burst_shoot(coordinate_t& mouse_x, coordinate_t& mouse_y);
+    void send_shoot_burst(coordinate_t& mouse_x, coordinate_t& mouse_y);
     void send_plant_bomb();
     void send_defuse_bomb();
     void send_drop();

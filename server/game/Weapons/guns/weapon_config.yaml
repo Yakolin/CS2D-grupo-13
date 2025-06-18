@@ -1,0 +1,45 @@
+weapon:
+  ak47:
+    price: 2700
+    damage: 5
+    fire_rate: 3
+    max_bullets: 90
+    magazine: 30
+    width: 1
+    distance: 15
+    purchasable: true
+    max_burst: 3
+    time_between_shoots: 0.4
+    burst_coldown: 1.8
+  glock:
+    price: 500
+    damage: 1
+    fire_rate: 1
+    max_bullets: 120
+    magazine: 30
+    width: 1
+    distance: 10
+    purchasable: false
+  m3:
+    price: 800
+    damage: 20
+    fire_rate: 1
+    max_bullets: 16
+    magazine: 4
+    width: 3
+    distance: 4
+    purchasable: true
+  awp:
+    price: 3250
+    damage: 250
+    fire_rate: 1
+    max_bullets: 12
+    magazine: 6
+    width: 1
+    distance: 30
+    purchasable: true
+  knife:
+    damage: 25
+    width: 2
+    distance: 1
+    purchasable: false

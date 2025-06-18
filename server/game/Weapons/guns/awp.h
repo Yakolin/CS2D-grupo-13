@@ -1,19 +1,26 @@
 #ifndef AWP_H
 #define AWP_H
 
-#include "../../Config/GameConfig.h"
 #include "../FireableWeapon.h"
+#include "../Weapon.h"
+#include "../fire_mode.h"
 
-class Awp: public FireableWeapon {
+#include "weapon_config.h"
+
+class Awp: public Weapon, public FireableWeapon, public IInteractuable {
 private:
-    uint8_t calculate_damage(float distance);
+    damage_t calculate_damage(float distance);
 
 public:
-    explicit Awp(GameConfig::weapon_config_t specs);
+    explicit Awp();
     ~Awp();
-    virtual bool set_on_action(ISpawneableZone& spawn, player_id_t id,
-                               Position& direction) override;
-    virtual bool is_droppable() override;
+
+    bool set_on_action(ISpawneableZone& spawn, player_id_t id, Position& direction) override;
+
+
+    bool is_droppable() override;
+
+    void reset() override;
 };
 
 #endif  // !AWP_H

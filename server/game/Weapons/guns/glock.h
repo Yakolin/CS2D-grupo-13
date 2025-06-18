@@ -1,20 +1,23 @@
 #ifndef GLOCK_H
 #define GLOCK_H
 
-#include "../../Config/GameConfig.h"
 #include "../FireableWeapon.h"
+#include "../Weapon.h"
+#include "../fire_mode.h"
 
-class Glock: public FireableWeapon {
+#include "weapon_config.h"
+class Glock: public Weapon, public FireableWeapon, public IInteractuable {
 private:
-    uint8_t calculate_damage(float distance);
+    damage_t calculate_damage(float distance);
 
 public:
-    explicit Glock(GameConfig::weapon_config_t specs);
+    explicit Glock();
     ~Glock();
 
-    virtual bool set_on_action(ISpawneableZone& spawn, player_id_t id,
-                               Position& direction) override;
-    virtual bool is_droppable() override;
+    bool set_on_action(ISpawneableZone& spawn, player_id_t id, Position& direction) override;
+    bool is_droppable() override;
+
+    void reset() override;
 };
 
 

@@ -1,6 +1,7 @@
 #include "knife.h"
 
-Knife::Knife(GameConfig::weapon_config_t specs): Weapon(WeaponCode::KNIFE, specs) {}
+
+Knife::Knife(): Weapon(Weapon) {}
 
 Knife::~Knife() {}
 
@@ -13,7 +14,10 @@ bool Knife::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& dire
     return true;
 }
 
-void Knife::reload() { return; }
+void Knife::reload() {}
+
 WeaponImage Knife::get_weapon_image() { return WeaponImage(code, 0, 0, 0); }
 
 bool Knife::is_droppable() { return false; }
+
+void Knife::reset() {}

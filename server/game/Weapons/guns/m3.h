@@ -1,19 +1,28 @@
 #ifndef M3_H
 #define M3_H
 
-#include "../../Config/GameConfig.h"
 #include "../FireableWeapon.h"
+#include "../Weapon.h"
+#include "../fire_mode.h"
 
-class M3: public FireableWeapon {
+#include "weapon_config.h"
+
+class M3: public Weapon, public FireableWeapon, public IInteractuable {
 private:
-    uint8_t calculate_damage(float distance);
+    damage_t calculate_damage(float distance);
 
 public:
-    explicit M3(GameConfig::weapon_config_t specs);
+    explicit M3();
+
     ~M3();
-    virtual bool set_on_action(ISpawneableZone& spawn, player_id_t id,
-                               Position& direction) override;
-    virtual bool is_droppable() override;
+
+    bool set_on_action(ISpawneableZone& spawn, player_id_t id, Position& direction) override;
+
+    bool is_droppable() override;
+
+    void reload() override;
+
+    void reset() override;
 };
 
 #endif  // !M3_H

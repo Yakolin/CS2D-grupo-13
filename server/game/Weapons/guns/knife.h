@@ -1,20 +1,26 @@
 #ifndef KNIFE_H
 #define KNIFE_H
 
-#include "../../Config/GameConfig.h"
 #include "../Weapon.h"
+#include "../fire_mode.h"
 
-class Knife: public Weapon {
+#include "weapon_config.h"
+
+class Knife: public Weapon, public IInteractuable {
 public:
-    explicit Knife(GameConfig::weapon_config_t specs);
+    explicit Knife();
+
     ~Knife();
 
-    virtual bool set_on_action(ISpawneableZone& spawn, player_id_t id,
-                               Position& direction) override;
-    virtual void reload() override;
-    virtual void restore_bullets() override {}  // Quiza aca no deberia ir esto... desp lo veo bien
-    virtual WeaponImage get_weapon_image() override;
-    virtual bool is_droppable() override;
+    bool set_on_action(ISpawneableZone& spawn, player_id_t id, Position& direction) override;
+
+    void reload() override;
+
+    WeaponImage get_weapon_image() override;
+
+    bool is_droppable() override;
+
+    void reset() override;
 };
 
 #endif  // !KNIFE_H

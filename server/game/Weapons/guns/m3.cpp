@@ -1,12 +1,18 @@
 #include "m3.h"
 
-M3::M3(GameConfig::weapon_config_t specs): FireableWeapon(WeaponCode::M3, specs) {}
+M3::M3():
+        Weapon(WeaponConfig::get_instance()["weapon"]["glock"]["damage"].as<damage_t>,
+               std::make_unique<SemiAutomatic>()),
+        FireableWeapon(
+                WeaponConfig::get_instance()["weapon"]["glock"]["max_bullets"].as<bullet_t>,
+                WeaponConfig::get_instance()["weapon"]["glock"]["magazine"].as<magazine_t>,
+                WeaponConfig::get_instance()["weapon"]["glock"]["fire_rate"].as<fire_rate_t>) {}
 
 M3::~M3() {}
 
 bool M3::is_droppable() { return true; }
 
-uint8_t M3::calculate_damage(float distance) { return specs.damage / distance; }
+damage_t M3::calculate_damage(float distance) { return (this->damage / distance); }
 
 bool M3::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& direction) {
     if (reduce_bullets()) {
@@ -19,3 +25,7 @@ bool M3::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& directi
     }
     return true;
 }
+
+void M3::reload() { FireableWeapon::reload(); }
+
+void M3::reset() { FireableWeapon::restore_bullets(); }

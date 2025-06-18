@@ -393,6 +393,44 @@ TEST(ServerProtocolTest, ReadShootReturnCorrectObject) {
     client_thread.join();
 }
 
+TEST(ServerProtocolTest, ReadShootBurstReturnCorrectObject) {
+    MockPlayer mock_player;
+    Socket server_socket("9999");
+    player_id_t player_id = 1;
+    std::thread client_thread([]() {
+        Socket client_socket("localhost", "9999");
+
+        player_command_t command = static_cast<player_command_t>(PlayerCommandType::SHOOT_BURST);
+        client_socket.sendall(reinterpret_cast<char*>(&command), sizeof(command));
+        coordinate_t x = 1;
+        coordinate_t y = 1;
+        ammo_t ammo_count = 10;
+        x = htons(x);
+        y = htons(y);
+        ammo_count = htons(ammo_count);
+        client_socket.sendall(&x, sizeof(coordinate_t));
+        client_socket.sendall(&y, sizeof(coordinate_t));
+        client_socket.sendall(&ammo_count, sizeof(ammo_t));
+    });
+
+    Socket server_client = server_socket.accept();
+    ServerProtocol protocol(server_client);
+
+    // Act
+
+    PlayerCommandType command = protocol.read_player_command();
+    std::unique_ptr<ClientAction> action = protocol.read_shoot_burst(player_id);
+
+    // Assert
+    ASSERT_EQ(command, PlayerCommandType::SHOOT_BURST);
+    EXPECT_CALL(mock_player, shoot(1, 1)).Times(1);
+
+    // Ejecutamos la acción inyectando nuestro mock de jugador
+    action->action_to(mock_player);
+
+    client_thread.join();
+}
+
 
 TEST(ServerProtocolTest, ReadDefuseBombReturnCorrectCommand) {
     // Arrange

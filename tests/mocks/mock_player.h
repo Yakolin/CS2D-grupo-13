@@ -13,6 +13,8 @@ public:
     MOCK_METHOD(void, reload, (), (override));
     MOCK_METHOD(void, shoot, (const coordinate_t& mouse_x, const coordinate_t& mouse_y),
                 (override));
+    MOCK_METHOD(void, shoot_burst, (const coordinate_t& mouse_x, const coordinate_t& mouse_y),
+                (override));
     MOCK_METHOD(void, buy_weapon, (const WeaponCode& weapon_code), (override));
     MOCK_METHOD(void, drop, (), (override));
     MOCK_METHOD(void, change_weapon, (const EquipType& equip), (override));

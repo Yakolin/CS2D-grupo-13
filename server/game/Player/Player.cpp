@@ -17,7 +17,7 @@ void Player::reset(bool full_reset) {
     } else {
         equipment.restore();
     }
-    health = config.health;
+    health = PlayerConfig::get_instance()["player"]["health"].as<health_t>;
 }
 void Player::move(const MoveType& move_type) {
     switch (move_type) {
@@ -38,9 +38,10 @@ void Player::move(const MoveType& move_type) {
 
 void Player::reload() { this->equipment.reload(); }
 
-void Player::shoot(const coordinate_t& mouse_x, const coordinate_t& mouse_y) {
+void Player::shoot(const ShootType& shoot_type, const coordinate_t& mouse_x,
+                   const coordinate_t& mouse_y) {
     Position position(mouse_x, mouse_y);
-    this->equipment.shoot(position);
+    this->equipment.shoot(shoot_type, position);
 }
 
 PlayerImage Player::get_player_image(const Position& position) {
@@ -61,9 +62,14 @@ void Player::change_weapon(const EquipType& equip_type) {
 bool Player::equip(std::shared_ptr<IInteractuable>& droppable) {
     return equipment.equip_droppable(droppable);
 }
+
 void Player::get_points() {
-    this->money += config.earned_points * config.multiplier_points;
-    this->points += config.earned_points;
+    earned_points_t earned_points =
+            PlayerConfig::get_instance()["player"]["earned_points"].as<earned_points_t>;
+    multiplier_points_t multiplier_points =
+            PlayerConfig::get_instance()["player"]["multiplier_points"].as<multiplier_points_t>;
+    this->money += earned_points * multiplier_points;
+    this->points += earned_points;
 }
 void Player::defuse_bomb() { game_zone.defuse_bomb(id); }
 

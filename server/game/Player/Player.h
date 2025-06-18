@@ -11,25 +11,41 @@
 #include "../../../common/player_command_types.h"
 #include "../../../common/utility.h"
 #include "../../interfaces/interface_player_action.h"
-#include "../Config/GameConfig.h"
 #include "../Map/IDroppableZone.h"
 #include "../Map/IGameZone.h"
 
 #include "Equipment.h"
 #include "ICanInteract.h"
+#include "player_config.h"
+
+using points_t = uint16_t;
+using multiplier_points_t = uint16_t;
+using earned_points_t = uint16_t;
+
 class Player: public IPlayerAction, public ICanInteract {
+private:
+    player_id_t id;
+    Team team;
+    Skins skins;
+    Equipment equipment;
+    health_t health;
+    points_t points;
+    money_t money;
+    multiplier_points_t multiplier_points;
+    Position mouse_position;
+    IGameZone& game_zone;
+
+    void drop_on_dead();
 
 public:
-    Player(player_id_t id, Team team, Skins skins, GameConfig::player_config_t& player_config,
-           Equipment&& equipment, IGameZone& game_zone):
+    Player(player_id_t id, Team team, Skins skins, Equipment&& equipment, IGameZone& game_zone):
             id(id),
             team(team),
             skins(skins),
-            config(player_config),
             equipment(std::move(equipment)),
-            health(player_config.health),
-            points(player_config.points),
-            money(player_config.money),
+            health(PlayerConfig::get_instance()["player"]["health"].as<health_t>),
+            points(PlayerConfig::get_instance()["player"]["points"].as<points_t>),
+            money(PlayerConfig::get_instance()["player"]["money"].as<money_t>),
             mouse_position(0, 0),
             game_zone(game_zone) {}
     virtual ~Player() = default;
@@ -46,7 +62,8 @@ public:
     virtual bool equip(std::shared_ptr<IInteractuable>& droppable) override;
     virtual void move(const MoveType& move_type) override;
     virtual void reload() override;
-    virtual void shoot(const coordinate_t& mouse_x, const coordinate_t& mouse_y) override;
+    virtual void shoot(const ShootType& shoot_type, const coordinate_t& mouse_x,
+                       const coordinate_t& mouse_y) override;
     virtual void defuse_bomb() override;
     // Buy
     virtual void buy_weapon(const WeaponCode& weapon_code) override;
@@ -56,19 +73,6 @@ public:
     virtual void watch(const coordinate_t& mouse_x, const coordinate_t& mouse_y) override;
     /*
      */
-private:
-    player_id_t id;
-    Team team;
-    Skins skins;
-    GameConfig::player_config_t& config;
-    Equipment equipment;
-    health_t health;
-    points_t points;
-    money_t money;
-    Position mouse_position;
-    IGameZone& game_zone;
-
-    void drop_on_dead();
 };
 
 #endif  // GAME_PLAYER_H_

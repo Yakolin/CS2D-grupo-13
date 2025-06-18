@@ -11,14 +11,13 @@
 #include "../Weapons/FireableWeapon.h"
 #include "../Weapons/IInteractuable.h"
 #include "../Weapons/SpecialWeapons.h"
-#include "../Weapons/WeaponFactory.h"
+#include "../Weapons/guns/weapon_config.h"
 class Equipment {
 private:
     const player_id_t& player_id;
 
     ISpawneableZone& spawneable_zone;
     IDroppableZone& droppable_zone;
-    WeaponFactory& weapon_factory;
 
     std::shared_ptr<Weapon> primary;
     std::shared_ptr<Weapon> secondary;
@@ -30,7 +29,7 @@ private:
 
 public:
     Equipment(const player_id_t& player_id, ISpawneableZone& spawneable_zone,
-              IDroppableZone& droppable_zone, WeaponFactory& weapon_factory);
+              IDroppableZone& droppable_zone);
     ~Equipment();
 
     Equipment(Equipment&&) = default;
@@ -39,12 +38,12 @@ public:
     Equipment& operator=(const Equipment&) = delete;
 
     void change_weapon(const EquipType& equip_type);
-    void buy_weapon_by_code(const WeaponCode& weapon_code, uint16_t money);
+    void buy_weapon_by_code(const WeaponCode& weapon_code, const money_t money);
     void reset_equipment();
     void restore();
     void drop_weapon();
     void reload();
-    void shoot(Position& position);
+    void shoot(const ShootType& shoot_type, Position& position);
     bool equip_droppable(const std::shared_ptr<IInteractuable>& droppable);
     void drop_all();
     std::vector<WeaponImage> get_weapons_image();

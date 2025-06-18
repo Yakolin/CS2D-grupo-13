@@ -10,6 +10,10 @@ const char  WALL_AZTECT ='#';
 const char  WALL_ENTRENAMIENTO ='#';
 const char  WALL_DESIERTO ='#';
 
+const char  BOX_AZTECT ='=';
+const char  BOX_ENTRENAMIENTO ='+';
+const char  BOX_DESIERTO ='-';
+
 const char  FLOOR_AZTECT ='.';
 const char  FLOOR_ENTRENAMIENTO ='_';
 const char  FLOOR_DESIERTO =' ';
@@ -37,7 +41,6 @@ MapView::MapView(const MapInfo& info, Camera* camera_reseiver,
     ids[FLOOR_ENTRENAMIENTO] = Object::FLOOR_ENTRENAMIENTO;   // piso del entrenamiento
     ids[FLOOR_AZTECT] = Object::FLOOR_AZTEC;           // piso azteca
 
-    ids['='] = get_random_box();
     ids['~'] = Object::WATER;
 
     ids['T'] = Object::ZONE_TERRORIST;
@@ -47,6 +50,10 @@ MapView::MapView(const MapInfo& info, Camera* camera_reseiver,
     ids[TREE_AZTECT] = Object::TREE_AZTEC;
     ids[TREE_ENTRENAMIENTO] = Object::TREE_ENTRENAMIENTO;
     ids[TREE_DESIERTO] = Object::TREE_DESIERTO;
+
+    ids[BOX_AZTECT] = Object::BOX2;
+    ids[BOX_ENTRENAMIENTO] = Object::BOX4;
+    ids[BOX_DESIERTO] = Object::BOX5;
 }
 
 void MapView::update_weapon_dropped( const std::vector<WeaponDropped>& dropped){
@@ -102,27 +109,30 @@ std::vector<std::vector<char>> MapView::completar_mapa(const MapInfo& info_map){
             max_col = p.x;
     }
     
-    char piso = ' ', wall = ' ';
+    char piso = ' ', wall = ' ',box =' ';
 
     switch (info_map.map_name){
         case MapName::DESIERTO:
             piso = FLOOR_DESIERTO;
             wall = WALL_DESIERTO;
+            box = BOX_DESIERTO;
             break;
         case MapName::PUEBLITO_AZTECA:
             piso = FLOOR_AZTECT;
             wall = WALL_AZTECT;
+            box = BOX_AZTECT;
             break;
         case MapName::ZONA_ENTRENAMIENTO:
             piso = FLOOR_ENTRENAMIENTO;
             wall = WALL_ENTRENAMIENTO;
+            box = BOX_ENTRENAMIENTO;
             break;
         default:
             break;
     }
     std::vector<std::vector<char>> mapa(max_fil + 1, std::vector<char>(max_col + 1, piso));
     cargar_coordenadas(mapa,info_map.walls,wall);
-    cargar_coordenadas(mapa,info_map.boxes,BOX);
+    cargar_coordenadas(mapa,info_map.boxes,box);
     //free_positions(mapa, piso, wall,max_fil, max_col);
     //int cantidad_arboles = 5; //todo podria ser configurable
    // load_trees(cantidad_arboles);

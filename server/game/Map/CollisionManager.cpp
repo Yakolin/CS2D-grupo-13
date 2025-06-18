@@ -49,7 +49,7 @@ bool CollisionManager::is_a_collision(const Position& pos) {
 }
 bool CollisionManager::player_in(const Position& pos) {
     for (const auto& player: players_in_map)
-        if (player.second.position == pos)
+        if (player.second.position == pos && !player.second.player.lock()->is_dead())
             return true;
     return false;
 }

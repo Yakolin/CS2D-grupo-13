@@ -19,6 +19,7 @@ enum class PlayerCommandType {
     BUY_AMMO,
     RELOAD,
     SHOOT,
+    SHOOT_BURST,
     PLANT_BOMB,
     DEFUSE_BOMB,
     DROP,

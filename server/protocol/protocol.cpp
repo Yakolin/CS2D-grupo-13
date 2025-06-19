@@ -260,9 +260,6 @@ void ServerProtocol::send_weapons(const PlayerImage& player_image) {
 
         uint8_t magazine = weapon_image.magazine;
         this->send_byte_data(magazine);
-
-        uint8_t inventory_bullets = weapon_image.inventory_bullets;
-        this->send_byte_data(inventory_bullets);
     }
 }
 

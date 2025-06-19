@@ -1,21 +1,28 @@
 #ifndef NULL_WEAPON_H
 #define NULL_WEAPON_H
 
-#include
+#include "../../Config/GameConfig.h"
+#include "../FireableWeapon.h"
+#include "FireMode/SemiAutomatic.h"
 
 class NullWeapon: public Weapon {
 public:
-    NullWeapon(): Weapon(WeaponCode::NONE, std::make_unique <, {0, 0, 0, 0, 0, 0, 0, 0, 0}) {}
+    NullWeapon(): Weapon(WeaponCode::NONE, 0, 0, 0, std ::make_unique<SemiAutomatic>(0)) {}
     ~NullWeapon() = default;
 
-    virtual bool set_on_action([[maybe_unused]] ISpawneableZone& spawn,
-                               [[maybe_unused]] player_id_t id,
-                               [[maybe_unused]] Position& direction) override {
+    bool set_on_action([[maybe_unused]] ISpawneableZone& spawn, [[maybe_unused]] player_id_t id,
+                       [[maybe_unused]] Position& direction) override {
         return false;
     }
+
+    bool shoot_burst([[maybe_unused]] ISpawneableZone& spawn, [[maybe_unused]] player_id_t id,
+                     [[maybe_unused]] Position& direction) override {
+        return false;
+    }
+
+
     void reload() override {}
-    void restore_bullets() override {}
-    WeaponImage get_weapon_image() override { return WeaponImage(WeaponCode::NONE, 0, 0, 0); }
+    WeaponImage get_weapon_image() override { return WeaponImage(WeaponCode::NONE, 0, 0); }
     bool is_droppable() override { return false; }
 };
 

@@ -12,6 +12,7 @@ target_sources(CS2D_server
     Glock.h
     Knife.h
     M3.h
+    NullWeapon.h
 )
 
 add_subdirectory(FireMode/)

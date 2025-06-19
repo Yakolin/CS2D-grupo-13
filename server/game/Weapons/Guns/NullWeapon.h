@@ -5,10 +5,18 @@
 #include "../FireableWeapon.h"
 #include "FireMode/SemiAutomatic.h"
 
-class NullWeapon: public Weapon {
+class NullWeapon: public FireableWeapon {
+
+private:
+    damage_t calculate_damage() override { return 0; }
+
 public:
-    NullWeapon(): Weapon(WeaponCode::NONE, 0, 0, 0, std ::make_unique<SemiAutomatic>(0)) {}
+    NullWeapon():
+            FireableWeapon(WeaponCode::NONE, 0, 0, 0, std ::make_unique<SemiAutomatic>(0), 0, 0) {}
     ~NullWeapon() = default;
+
+
+    void reload() override {}
 
     bool set_on_action([[maybe_unused]] ISpawneableZone& spawn, [[maybe_unused]] player_id_t id,
                        [[maybe_unused]] Position& direction) override {
@@ -20,9 +28,6 @@ public:
         return false;
     }
 
-
-    void reload() override {}
-    WeaponImage get_weapon_image() override { return WeaponImage(WeaponCode::NONE, 0, 0); }
     bool is_droppable() override { return false; }
 };
 

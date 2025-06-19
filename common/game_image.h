@@ -23,6 +23,8 @@ using game_state_t = std::uint8_t;
 using round_time_t = std::uint16_t;
 using round_t = std::uint8_t;
 using money_t = std::uint16_t;
+using bullet_t = std::uint8_t;
+using magazine_t = std::uint8_t;
 
 enum class GameState {
     TIME_TO_BUY,
@@ -64,16 +66,12 @@ public:
 };
 class WeaponImage {
 public:
-    WeaponImage(WeaponCode weapon_code, uint8_t current_bullets, uint8_t magazine,
-                uint8_t inventory_bullets):
-            weapon_code(weapon_code),
-            current_bullets(current_bullets),
-            magazine(magazine),
-            inventory_bullets(inventory_bullets) {}
     WeaponCode weapon_code;
-    uint8_t current_bullets;
-    uint8_t magazine;
-    uint8_t inventory_bullets;
+    bullet_t current_bullets;
+    magazine_t magazine;
+
+    WeaponImage(WeaponCode weapon_code, bullet_t current_bullets, magazine_t magazine):
+            weapon_code(weapon_code), current_bullets(current_bullets), magazine(magazine) {}
 };
 class PlayerImage {
 public:

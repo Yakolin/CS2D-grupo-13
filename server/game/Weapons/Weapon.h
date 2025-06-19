@@ -13,44 +13,41 @@
 #include "Guns/FireMode/FireMode.h"
 
 #include "IInteractuable.h"
+
+using damage_t = uint8_t;
+using range_t = uint16_t;
+using width_t = uint8_t;
+
 class Weapon: public IInteractuable {
 
 protected:
+    damage_t damage;
+    range_t range;
+    width_t width;
     std::unique_ptr<FireMode> fire_mode;
 
+    virtual damage_t calculate_damage() = 0;
+
+    WeaponCode get_weapon_code() { return IInteractuable::get_weapon_code(); }
+
 public:
-    GameConfig::weapon_config_t specs;
-    explicit Weapon(WeaponCode code, std::unique_ptr<FireMode>&& fire_mode,
-                    GameConfig::weapon_config_t specs):
-            IInteractuable(code), fire_mode(std::move(fire_mode)), specs(specs) {}
+    explicit Weapon(WeaponCode code, damage_t damage, range_t range, width_t width,
+                    std::unique_ptr<FireMode>&& fire_mode):
+            IInteractuable(code),
+            damage(damage),
+            range(range),
+            width(width),
+            fire_mode(std::move(fire_mode)) {}
     virtual ~Weapon() = default;
 
     virtual bool set_on_action(ISpawneableZone& spawn, player_id_t id,
                                Position& direction) override = 0;
+
+    virtual bool shoot_burst(ISpawneableZone& spawn, player_id_t id,
+                             Position& direction) override = 0;
     virtual void reload() override = 0;
-    virtual void restore_bullets() = 0;
-    virtual WeaponImage get_weapon_image() = 0;
     virtual bool is_droppable() = 0;
-    virtual bool shoot_burst(ISpawneableZone& spawn, player_id_t id, Position& direction) override {
-        this->fire_mode->fire_burst(spawn, id, direction);
-    }
+    virtual WeaponImage get_weapon_image() = 0;
 };
-
-class NullWeapon: public Weapon {
-public:
-    NullWeapon(): Weapon(WeaponCode::NONE, std::make_unique <, {0, 0, 0, 0, 0, 0, 0, 0, 0}) {}
-    ~NullWeapon() = default;
-
-    virtual bool set_on_action([[maybe_unused]] ISpawneableZone& spawn,
-                               [[maybe_unused]] player_id_t id,
-                               [[maybe_unused]] Position& direction) override {
-        return false;
-    }
-    void reload() override {}
-    void restore_bullets() override {}
-    WeaponImage get_weapon_image() override { return WeaponImage(WeaponCode::NONE, 0, 0, 0); }
-    bool is_droppable() override { return false; }
-};
-
 
 #endif  //  WEAPON_H_

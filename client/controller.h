@@ -44,6 +44,8 @@ public:
 
     void sender_shoot(int x, int y);
 
+    void sender_shoot_burst(int x, int y);
+
     TerroristSkin toItemTerrorism(const std::string& str);
 
     CounterTerroristSkin toItemCounterTerrorism(const std::string& str);

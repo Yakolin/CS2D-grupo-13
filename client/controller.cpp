@@ -58,6 +58,15 @@ void Controller::sender_shoot(int x, int y) {
     send_queue->push(std::move(action));
 }
 
+void Controller::sender_shoot_burst(int x, int y) {
+    std::cout << "Quiero disparar rafaga\n";
+    coordinate_t x_c = static_cast<coordinate_t>(x);
+    coordinate_t y_c = static_cast<coordinate_t>(y);
+    std::unique_ptr<InterfaceClientAction> action =
+            std::make_unique<ClientSpace::ShootBurst>(x_c, y_c);
+    send_queue->push(std::move(action));
+}
+
 void Controller::sender_buy_weapon(WeaponCode code) {
     std::cout << "Quiero comprar arma\n";
     std::unique_ptr<InterfaceClientAction> action = std::make_unique<ClientSpace::BuyWeapon>(code);
@@ -77,7 +86,7 @@ void Controller::sender_drop() {
 void Controller::sender_move(MoveType move) {
     std::unique_ptr<InterfaceClientAction> action = std::make_unique<ClientSpace::Move>(move);
     send_queue->push(std::move(action));
-    //std::cout << "Movimiento enviado (enum como int): " << static_cast<int>(move) << std::endl;
+    // std::cout << "Movimiento enviado (enum como int): " << static_cast<int>(move) << std::endl;
 }
 
 

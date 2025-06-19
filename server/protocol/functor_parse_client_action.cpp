@@ -94,6 +94,9 @@ void ParsePlayerAction::run() {
         case PlayerCommandType::SHOOT:
             this->action = this->protocol.read_shoot(this->player_id);
             break;
+        case PlayerCommandType::SHOOT_BURST:
+            this->action = this->protocol.read_shoot_burst(this->player_id);
+            break;
         case PlayerCommandType::DEFUSE_BOMB:
             this->action = std::make_unique<DefuseBomb>(this->player_id);
             break;

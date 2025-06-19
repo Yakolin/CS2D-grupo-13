@@ -52,7 +52,7 @@ Weapons:
 
 Player:
   health: 100
-  money: 100
+  money: 5000
   points: 0
   earned_points: 100
   multiplier_points: 12
@@ -64,9 +64,9 @@ Timer:
 
 Rounds: 10
 
-RandomWeapons: 
+RandomWeapons:
   max_weapons: 5
-  Weapons:  # Esto va en porcentajes.
+  Weapons: # Esto va en porcentajes.
     Ak47: 35
     M3: 50
     AWP: 10

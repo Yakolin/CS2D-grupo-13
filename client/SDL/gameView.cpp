@@ -1,7 +1,6 @@
 #include "gameView.h"
 int counter2 = 0;
-GameView::GameView(
-        Socket&& skt , const GameInfo& game_info,const Player& info_Player):  
+GameView::GameView(Socket&& skt, const GameInfo& game_info, const Player& info_Player):
         config(),
         controller(std::move(skt)),
         constant_rate_loop([this]() { return this->should_keep_running(); },
@@ -10,20 +9,19 @@ GameView::GameView(
         renderer(init_renderer(ventana, config)),
         camera(config.get_window_width(), config.get_window_height()),
         manger_texture(renderer),
-        player(new PlayerView(11, 4,load_claves(info_Player),200.0f ,&camera, &manger_texture, config)),// !cambiar a 200.0f
+        player(new PlayerView(11, 4, load_claves(info_Player), 200.0f, &camera, &manger_texture,
+                              config)),  // !cambiar a 200.0f
         players(),
         snapshot(),
         map(new MapView(game_info.map_info, &camera, &manger_texture, config)),
         fov(nullptr),
         shop(camera, manger_texture, config),
-        bomba(new Bomb(500,500,camera,manger_texture,config)),
-        hud(config, manger_texture,info_Player.info),
+        bomba(new Bomb(500, 500, camera, manger_texture, config)),
+        hud(config, manger_texture, info_Player.info),
         bullets(),
         activa(false),
         bomb_activate(false),
-        keep_running(true) {
-}
-
+        keep_running(true) {}
 
 
 TerroristSkin toItemTerrorism(const std::string& str) {
@@ -44,8 +42,8 @@ CounterTerroristSkin toItemCounterTerrorism(const std::string& str) {
         return CounterTerroristSkin::SAS;
     return CounterTerroristSkin::GIGN;
 }
-Skins GameView::load_claves(const Player& info_Player){
-    return Skins(toItemCounterTerrorism(info_Player.skin2),toItemTerrorism(info_Player.skin));
+Skins GameView::load_claves(const Player& info_Player) {
+    return Skins(toItemCounterTerrorism(info_Player.skin2), toItemTerrorism(info_Player.skin));
 }
 
 
@@ -95,55 +93,55 @@ void GameView::reset_values(PlayerView* player, const float& x_pixeles, const fl
 }
 
 void print_game_image(const GameImage& image) {
-    
+
     std::cout << "=== Game Image ===\n";
-   std::cout << "Client ID: " << image.client_id << "\n";
+    std::cout << "Client ID: " << image.client_id << "\n";
     std::cout << "--- Players ---\n";
     for (const auto& player: image.players_images) {
         std::cout << "Player ID: " << player.player_id << "\n";
         std::cout << "  Position: (" << player.position.x << ", " << player.position.y << ")\n";
-/*         std::cout << "  Health: " << static_cast<int>(player.health) << "\n";
-        std::cout << "  Points: " << static_cast<int>(player.points) << "\n";
-        std::cout << "  Money: " << player.money << "\n";
-        std::cout << "  Equipped weapon: " << static_cast<int>(player.equipped_weapon) << "\n";
-        std::cout << "  Mouse position: (" << player.mouse_position.x << ", "
-                  << player.mouse_position.y << ")\n";
-        std::cout << "  Team: " << (player.team == Team::CT ? "CT" : "TT") << "\n";
-        std::cout << "  Weapons:\n";
-        for (const auto& weapon: player.weapons) {
-            std::cout << "    WeaponCode: " << static_cast<int>(weapon.weapon_code)
-            << ", Current: " << static_cast<int>(weapon.current_bullets)
-                      << ", Magazine: " << static_cast<int>(weapon.magazine)
-                      << ", Inventory: " << static_cast<int>(weapon.inventory_bullets) << "\n";
-         }*/
+        /*         std::cout << "  Health: " << static_cast<int>(player.health) << "\n";
+                std::cout << "  Points: " << static_cast<int>(player.points) << "\n";
+                std::cout << "  Money: " << player.money << "\n";
+                std::cout << "  Equipped weapon: " << static_cast<int>(player.equipped_weapon) <<
+           "\n"; std::cout << "  Mouse position: (" << player.mouse_position.x << ", "
+                          << player.mouse_position.y << ")\n";
+                std::cout << "  Team: " << (player.team == Team::CT ? "CT" : "TT") << "\n";
+                std::cout << "  Weapons:\n";
+                for (const auto& weapon: player.weapons) {
+                    std::cout << "    WeaponCode: " << static_cast<int>(weapon.weapon_code)
+                    << ", Current: " << static_cast<int>(weapon.current_bullets)
+                              << ", Magazine: " << static_cast<int>(weapon.magazine)
+                              << ", Inventory: " << static_cast<int>(weapon.inventory_bullets) <<
+           "\n";
+                 }*/
     }
 
-/*    
-    for (const auto& bullet: image.bullets_in_air) {
-        std::cout << "  From (" << bullet.initial.x << ", " << bullet.initial.y << ") to ("
-                  << bullet.end.x << ", " << bullet.end.y << ")\n";
-    }
-  */  
+    /*
+        for (const auto& bullet: image.bullets_in_air) {
+            std::cout << "  From (" << bullet.initial.x << ", " << bullet.initial.y << ") to ("
+                      << bullet.end.x << ", " << bullet.end.y << ")\n";
+        }
+      */
     std::cout << "--- Bomb ---\n";
     std::cout << "  Position: (" << image.bomb.position.x << ", " << image.bomb.position.y << ")\n";
     std::cout << "  State: " << static_cast<int>(image.bomb.state) << "\n";
- /* 
-    std::cout << "--- Dropped Weapons ---\n";
-    for (const auto& dropped: image.dropped_things) {
-        std::cout << "  WeaponCode: " << static_cast<int>(dropped.weapon_code) << ", Position: ("
-        << dropped.position.x << ", " << dropped.position.y << ")\n";
-    }
- 
-    std::cout << "--- Game State ---\n";
-    std::cout << "  State: " << static_cast<int>(image.game_state.state) << "\n";
-    std::cout << "  Time: " << image.game_state.time << "\n";
-    std::cout << "  Round: " << static_cast<int>(image.game_state.round) << "\n";
-*/
+    /*
+       std::cout << "--- Dropped Weapons ---\n";
+       for (const auto& dropped: image.dropped_things) {
+           std::cout << "  WeaponCode: " << static_cast<int>(dropped.weapon_code) << ", Position: ("
+           << dropped.position.x << ", " << dropped.position.y << ")\n";
+       }
+
+       std::cout << "--- Game State ---\n";
+       std::cout << "  State: " << static_cast<int>(image.game_state.state) << "\n";
+       std::cout << "  Time: " << image.game_state.time << "\n";
+       std::cout << "  Round: " << static_cast<int>(image.game_state.round) << "\n";
+   */
 }
 
 
-
-void GameView::update_bullets_snapshot(){
+void GameView::update_bullets_snapshot() {
     int tile_width = config.get_tile_width();
     int tile_height = config.get_tile_height();
     for (const BulletImage& bullet: snapshot.bullets_in_air) {
@@ -159,7 +157,7 @@ void GameView::update_bullets_snapshot(){
 
 
 void GameView::update_status_game() {
-    //print_game_image(snapshot);
+    // print_game_image(snapshot);
     int tile_width = config.get_tile_width();
     int tile_height = config.get_tile_height();
     update_bullets_snapshot();
@@ -176,16 +174,16 @@ void GameView::update_status_game() {
             reset_values(player, x_pixeles, y_pixeles);
             player->update_weapons(player_img.weapons);
             player->update_equip(player_img);
-            if(player_img.health <=0){
+            if (player_img.health <= 0) {
                 player->set_muerto(true);
-            }else{
+            } else {
                 player->set_muerto(false);
             }
 
         } else if (players.find(id) == players.end()) {
 
-            PlayerView* nuevo_jugador = new PlayerView(x_pixeles, y_pixeles, player_img.skin, 200.0f,
-                                                       &camera, &manger_texture, config);
+            PlayerView* nuevo_jugador = new PlayerView(x_pixeles, y_pixeles, player_img.skin,
+                                                       200.0f, &camera, &manger_texture, config);
             nuevo_jugador->update_view_angle(player_img.mouse_position.x * 32,
                                              player_img.mouse_position.y * 32);
             nuevo_jugador->update_weapons(player_img.weapons);
@@ -198,9 +196,9 @@ void GameView::update_status_game() {
             player_aux->update_view_angle(x_pixel_mouse, y_pixel_mouse);
             reset_values(player_aux, x_pixeles, y_pixeles);
             player_aux->update_weapons(player_img.weapons);
-            if(player_img.health <= 0){
+            if (player_img.health <= 0) {
                 player_aux->set_muerto(true);
-            }else{
+            } else {
                 player_aux->set_muerto(false);
             }
         }
@@ -261,7 +259,7 @@ void GameView::handle_movements(SDL_Keycode& tecla) {
     if (tecla == SDLK_d || tecla == SDLK_RIGHT)
         controller.sender_move(MoveType::RIGHT);
     player->add_speed(tecla);
-    //player->auxiliar(tecla); //todo comentar
+    // player->auxiliar(tecla); //todo comentar
 }
 
 void GameView::handle_extras(SDL_Keycode& tecla) {
@@ -284,7 +282,16 @@ void GameView::handle_key_down(SDL_Keycode& tecla) {
     handle_extras(tecla);
 }
 
-void GameView::handle_mouse_left_down(int mouseX, int mouseY) {
+void GameView::handle_single_left_click(int mouseX, int mouseY) {
+    if (snapshot.game_state.state == GameState::ROUND_STARTED) {
+        int mousex_tile = -1;
+        int mousey_tile = -1;
+        mouse_position_tiles(mousex_tile, mousey_tile, mouseX, mouseY);
+        controller.sender_shoot(mousex_tile, mousey_tile);
+    }
+}
+
+void GameView::handle_hold_left_click(int mouseX, int mouseY) {
     if (shop.get_activa()) {
         WeaponCode code = shop.calculate_selection(mouseX, mouseY);
         // Realmente esto no deberia de siquiera pasar, casi que es una exception
@@ -312,7 +319,7 @@ void GameView::handle_events(const SDL_Event& event) {
             SDL_Keycode tecla = event.key.keysym.sym;
             handle_key_down(tecla);
         }
-        
+
         if (event.type == SDL_KEYUP) {
             SDL_Keycode tecla = event.key.keysym.sym;
             player->stop_speed(tecla);  // Detiene movimiento
@@ -336,9 +343,18 @@ void GameView::handle_events(const SDL_Event& event) {
             if (event.button.button == SDL_BUTTON_LEFT) {
                 int mouseX = event.button.x;
                 int mouseY = event.button.y;
-                handle_mouse_left_down(mouseX, mouseY);
+                handle_hold_left_click(mouseX, mouseY);
             }
         }
+
+        if (event.type == SDL_MOUSEBUTTONUP) {
+            if (event.button.button == SDL_BUTTON_LEFT) {
+                int mouseX = event.button.x;
+                int mouseY = event.button.y;
+                handle_single_left_click(mouseX, mouseY);
+            }
+        }
+
 
     } catch (const ClosedQueue&
                      e) {  // Si la cola se cierra, significa que el servidor se ha cerrado
@@ -346,7 +362,7 @@ void GameView::handle_events(const SDL_Event& event) {
     }
 }
 
-void GameView::start(const GameInfo& info_game_view ) {
+void GameView::start(const GameInfo& info_game_view) {
 
     this->fov = new FieldOfView(*player, camera, manger_texture, config);
     shop.set_weapons_purchasables(info_game_view.weapons_purchasables);
@@ -365,7 +381,7 @@ void GameView::update_game() {
     this->lastTime = currentTime;
 
     update_status_game();
-    player->update(deltaTime);//! desconetar
+    player->update(deltaTime);  //! desconetar
 
     for (auto& pair: players) {
         if (pair.second != nullptr && pair.second != player) {
@@ -443,7 +459,7 @@ void GameView::run() {
 
 void GameView::step() {
     this->process_events();
-    if(this->update_game_image()){
+    if (this->update_game_image()) {
         this->update_game();
         this->render_game();
     }

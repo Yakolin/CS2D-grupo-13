@@ -83,15 +83,15 @@ private:
     /*
     INPUT HANDLER
     */
-    void handle_mouse_left_down(int mouseX, int mouseY);
+    void handle_single_left_click(int mouseX, int mouseY);
+    void handle_hold_left_click(int mouseX, int mouseY);
     void handle_key_down(SDL_Keycode& tecla);
     void handle_extras(SDL_Keycode& tecla);
     void handle_movements(SDL_Keycode& tecla);
     Skins load_claves(const Player& info_Player);
 
 public:
-    explicit GameView( Socket&& skt, const GameInfo& game_info, const Player& info_game);
-
+    explicit GameView(Socket&& skt, const GameInfo& game_info, const Player& info_game);
 
 
     SDL_Window* init_window(const GameConfig& config);

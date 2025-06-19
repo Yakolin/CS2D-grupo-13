@@ -10,10 +10,12 @@
 #include "Guns/Glock.h"
 #include "Guns/Knife.h"
 #include "Guns/M3.h"
+#include "Guns/NullWeapon.h"
 
 #include "FireableWeapon.h"
 #include "SpecialWeapons.h"
 #include "Weapon.h"
+
 class WeaponFactory {
 private:
     std::map<WeaponCode, GameConfig::WeaponConfig>& weapon_configs;
@@ -22,9 +24,9 @@ private:
 public:
     explicit WeaponFactory(std::map<WeaponCode, GameConfig::WeaponConfig>& weapon_configs):
             weapon_configs(weapon_configs) {}
-    std::shared_ptr<Weapon> create_random_weapon(
+    std::shared_ptr<FireableWeapon> create_random_weapon(
             const GameConfig::dropped_weapons_t& dropped_weapons);
-    std::shared_ptr<Weapon> weapon_create(WeaponCode code);
+    std::shared_ptr<FireableWeapon> weapon_create(WeaponCode code);
     uint16_t price_weapon(WeaponCode code);
 };
 #endif  // WEAPON_FACTORY_H_

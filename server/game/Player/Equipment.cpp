@@ -50,8 +50,8 @@ void Equipment::reset_equipment() {
     bomb.reset();
 }
 void Equipment::restore() {
-    this->primary->restore_bullets();
-    this->secondary->restore_bullets();
+    this->primary->restart();
+    this->secondary->restart();
     // Cuchillo y bomba posiblemente no necesiten esto
 }
 

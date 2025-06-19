@@ -9,9 +9,11 @@
 #include "../Map/IDroppableZone.h"
 #include "../Map/ISpawneableZone.h"
 #include "../Weapons/FireableWeapon.h"
+#include "../Weapons/Guns/NullWeapon.h"
 #include "../Weapons/IInteractuable.h"
 #include "../Weapons/SpecialWeapons.h"
 #include "../Weapons/WeaponFactory.h"
+
 class Equipment {
 private:
     const player_id_t& player_id;
@@ -20,8 +22,8 @@ private:
     IDroppableZone& droppable_zone;
     WeaponFactory& weapon_factory;
 
-    std::shared_ptr<Weapon> primary;
-    std::shared_ptr<Weapon> secondary;
+    std::shared_ptr<FireableWeapon> primary;
+    std::shared_ptr<FireableWeapon> secondary;
     std::shared_ptr<Weapon> knife;
     std::weak_ptr<Bomb> bomb;
     std::shared_ptr<IInteractuable> weapon_in_hand;

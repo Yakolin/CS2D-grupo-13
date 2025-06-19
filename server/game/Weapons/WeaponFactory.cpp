@@ -7,7 +7,7 @@ GameConfig::weapon_config_t WeaponFactory::find_weapon_specs(WeaponCode code) {
     GameConfig::WeaponConfig& config = it->second;
     return config;
 }
-std::shared_ptr<Weapon> WeaponFactory::create_random_weapon(
+std::shared_ptr<FireableWeapon> WeaponFactory::create_random_weapon(
         const GameConfig::dropped_weapons_t& dropped_weapons) {
     std::random_device rd;
     std::mt19937 rand(rd());
@@ -22,7 +22,7 @@ std::shared_ptr<Weapon> WeaponFactory::create_random_weapon(
     else
         return weapon_create(WeaponCode::M3);
 }
-std::shared_ptr<Weapon> WeaponFactory::weapon_create(WeaponCode code) {
+std::shared_ptr<FireableWeapon> WeaponFactory::weapon_create(WeaponCode code) {
     if (code == WeaponCode::NONE)
         return std::make_unique<NullWeapon>();
     GameConfig::weapon_config_t config = find_weapon_specs(code);

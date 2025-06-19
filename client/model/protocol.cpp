@@ -284,11 +284,8 @@ void ClientProtocol::read_weapons(std::vector<WeaponImage>& weapons) {
         uint8_t magazine;
         this->read_byte_data(magazine);
 
-        uint8_t inventory_bullets;
-        this->read_byte_data(inventory_bullets);
-
-        weapons.emplace_back(WeaponImage(static_cast<WeaponCode>(weapon_code), current_bullets,
-                                         magazine, inventory_bullets));
+        weapons.emplace_back(
+                WeaponImage(static_cast<WeaponCode>(weapon_code), current_bullets, magazine));
     }
 }
 

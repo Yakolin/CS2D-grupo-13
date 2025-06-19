@@ -8,7 +8,7 @@ Equipment::Equipment(const player_id_t& player_id, ISpawneableZone& spawneable_z
         weapon_factory(weapon_factory),
         primary(weapon_factory.weapon_create(WeaponCode::NONE)),
         secondary(weapon_factory.weapon_create(WeaponCode::GLOCK)),
-        knife(weapon_factory.weapon_create(WeaponCode::KNIFE)),
+        knife(weapon_factory.create_knife()),
         weapon_in_hand(this->secondary) {}
 
 Equipment::~Equipment() {}
@@ -52,7 +52,6 @@ void Equipment::reset_equipment() {
 void Equipment::restore() {
     this->primary->restart();
     this->secondary->restart();
-    // Cuchillo y bomba posiblemente no necesiten esto
 }
 
 void Equipment::drop_weapon() {
@@ -111,7 +110,7 @@ bool Equipment::equip_droppable(const std::shared_ptr<IInteractuable>& droppable
         return true;
     }
     if (!primary->is_droppable()) {
-        primary = std::static_pointer_cast<Weapon>(droppable);
+        primary = std::static_pointer_cast<FireableWeapon>(droppable);
         return true;
     }
     return false;

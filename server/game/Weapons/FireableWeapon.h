@@ -32,20 +32,20 @@ public:
 
     virtual ~FireableWeapon();
 
-    void reduce_bullets();
+    virtual void reduce_bullets();
 
-    void restart();
+    virtual void restart();
 
     virtual bool set_on_action(ISpawneableZone& spawn, player_id_t id,
                                Position& direction) override;
 
     virtual bool shoot_burst(ISpawneableZone& spawn, player_id_t id, Position& direction) override;
 
-    void reload() override;
+    virtual void reload() override;
 
     virtual bool is_droppable() override = 0;
 
-    WeaponImage get_weapon_image() override;
+    virtual WeaponImage get_weapon_image() override;
 };
 
 

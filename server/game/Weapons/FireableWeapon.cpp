@@ -23,9 +23,10 @@ void FireableWeapon::restart() {
 }
 
 void FireableWeapon::shoot_common(ISpawneableZone& spawn, player_id_t id, Position& direction) {
-    damage_t damage = Weapon::damage;
     ISpawneableZone::collider_solicitude_t wanted = {Weapon::width, Weapon::range, direction,
-                                                     damage};
+                                                     [this]() {
+                                                         return this->calculate_damage();
+                                                     }};  // esto deberia ser darle el daño y listo
     spawn.spawn_collider(id, wanted);
     this->reduce_bullets();
 }
@@ -58,16 +59,6 @@ void FireableWeapon::reload() {
         actual_bullets -= available_bullets;
     }
 }
-
-
-void FireableWeapon::get_fireable_weapon_data(bullet_t& actual_bullets,
-                                              magazine_t& actual_magazine) {
-    actual_bullets = this->actual_bullets;
-    actual_magazine = this->actual_magazine;
-}
-
-
-bool FireableWeapon::have_bullets() { return specs.current_b > 0; }
 
 WeaponImage FireableWeapon::get_weapon_image() {
     return WeaponImage(Weapon::get_weapon_code(), this->actual_bullets, this->actual_magazine);

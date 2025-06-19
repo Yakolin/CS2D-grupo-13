@@ -1,6 +1,6 @@
 #include "SemiAutomatic.h"
 
-SemiAutomatic::SemiAutomatic(fire_rate_t fire_rate): timer(fire_rate) {}
+SemiAutomatic::SemiAutomatic(fire_rate_t fire_rate): fire_rate_timer(fire_rate) {}
 
 SemiAutomatic::~SemiAutomatic() {}
 

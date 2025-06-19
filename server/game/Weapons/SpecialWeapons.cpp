@@ -21,4 +21,4 @@ void Bomb::set_exploted() { state = BombState::EXPLOTED; }
 bool Bomb::is_defused() { return state == BombState::DESACTIVATED; }
 bool Bomb::is_equiped() { return state == BombState::EQUIPED; }
 bool Bomb::is_activate() { return state == BombState::ACTIVATED; }
-WeaponImage Bomb::get_weapon_image() { return WeaponImage(code, 0, 0, 0); }
+WeaponImage Bomb::get_weapon_image() { return WeaponImage(code, 0, 0); }

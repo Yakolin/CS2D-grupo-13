@@ -15,7 +15,7 @@
 #include "IInteractuable.h"
 
 using damage_t = uint8_t;
-using range_t = uint16_t;
+using range_t = uint8_t;  // tal vez deberia ser uint16
 using width_t = uint8_t;
 
 class Weapon: public IInteractuable {

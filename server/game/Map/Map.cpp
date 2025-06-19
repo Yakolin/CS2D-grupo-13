@@ -53,7 +53,9 @@ void Map::move(player_id_t id, const Position& direction) {
 
 std::vector<BulletImage> Map::get_bullets_in_air() { return collision_manager.get_bullets_image(); }
 
-void Map::spawn_collider(player_id_t id_spawn, collider_solicitude_t& wanted) {
+void Map::spawn_collider(
+        player_id_t id_spawn,
+        collider_solicitude_t& wanted) {  // aca deberia estar lo aleatorio del daño
     Position aux = get_position(id_spawn);
     Vector2f player_pos(aux.x, aux.y);
     Vector2f relative_direction(wanted.mouse_position.x - player_pos.x,

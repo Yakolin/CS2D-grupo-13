@@ -10,8 +10,3 @@ Glock::~Glock() {}
 bool Glock::is_droppable() { return false; }
 
 damage_t Glock::calculate_damage() { return (Weapon::damage * Weapon::range); }
-
-WeaponImage Glock::get_weapon_image() {
-    const WeaponCode code = WeaponCode::GLOCK;
-    return FireableWeapon::get_weapon_image(code);
-}

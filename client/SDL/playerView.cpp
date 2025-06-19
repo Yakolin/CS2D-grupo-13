@@ -1,7 +1,8 @@
 #include "playerView.h"
 
-#include "mapView.h"
 #include "../tipos.h"
+
+#include "mapView.h"
 
 PlayerView::PlayerView(const float& x, const float& y, const Skins& clave_player,
                        const float& speed, Camera* camera_receiver, ManageTexture* manager_texture,
@@ -16,7 +17,7 @@ PlayerView::PlayerView(const float& x, const float& y, const Skins& clave_player
         anglePlayer(),
         camera(camera_receiver),
         manejador(manager_texture),
-        clave_team(Team::CT), 
+        clave_team(Team::CT),
         x_actual(x),
         y_actual(y),
         velocity_x(0),
@@ -29,20 +30,19 @@ PlayerView::PlayerView(const float& x, const float& y, const Skins& clave_player
         activar_weapon(false),
         muerto(false),
         equipped_weapon(WeaponCode::NONE),
-        textures_player(load_claves(clave_player))
-{ 
+        textures_player(load_claves(clave_player)) {
     calcular();
 }
-std::unordered_map<Team, SDL_Texture*> PlayerView::load_claves(const Skins& clave_player){
+std::unordered_map<Team, SDL_Texture*> PlayerView::load_claves(const Skins& clave_player) {
     std::unordered_map<Team, SDL_Texture*> text;
     text[Team::CT] = manejador->get_texture_ct(clave_player.ct_skin);
     text[Team::TT] = manejador->get_texture_tt(clave_player.tt_skin);
     return text;
 }
 
-void PlayerView::set_muerto(const bool& new_state){ muerto = new_state;}
+void PlayerView::set_muerto(const bool& new_state) { muerto = new_state; }
 
-void PlayerView::update_equip(const PlayerImage player_aux){
+void PlayerView::update_equip(const PlayerImage player_aux) {
     this->equipped_weapon = player_aux.equipped_weapon;
     this->clave_team = player_aux.team;
 }
@@ -59,14 +59,12 @@ void imprimir_weapons_vec(const std::vector<WeaponImage>& weapons_vec) {
         }
         std::cout << "  WeaponCode: " << static_cast<int>(weapon.weapon_code)
                   << ", Balas actuales: " << static_cast<int>(weapon.current_bullets)
-                  << ", Cargador: " << static_cast<int>(weapon.magazine)
-                  << ", Balas en inventario: " << static_cast<int>(weapon.inventory_bullets)
-                  << std::endl;
+                  << ", Cargador: " << static_cast<int>(weapon.magazine) << std::endl;
     }
 }
 
 
-void PlayerView::update(const float& deltaTime) { 
+void PlayerView::update(const float& deltaTime) {
 
     if (interp_time < interp_duration) {
         interp_time += deltaTime;
@@ -74,7 +72,6 @@ void PlayerView::update(const float& deltaTime) {
         x_actual = prev_pos.x + (target_pos.x - prev_pos.x) * t;
         y_actual = prev_pos.y + (target_pos.y - prev_pos.y) * t;
     }
-    
 }
 bool is_valid_weapon_code(WeaponCode code) {
     switch (code) {
@@ -94,7 +91,7 @@ void PlayerView::update_weapons(const std::vector<WeaponImage>& weapons_vec) {
         std::cout << "El jugador no tiene armas." << std::endl;
         return;
     }
-    //imprimir_weapons_vec(weapons_vec);
+    // imprimir_weapons_vec(weapons_vec);
 
     for (const WeaponImage& weapon_img: weapons_vec) {
         WeaponCode weapon_key = weapon_img.weapon_code;
@@ -103,7 +100,8 @@ void PlayerView::update_weapons(const std::vector<WeaponImage>& weapons_vec) {
             continue;
 
         if (!is_valid_weapon_code(weapon_key)) {
-            std::cerr << "WeaponCode inválido recibido: " << static_cast<int>(weapon_key) << std::endl;
+            std::cerr << "WeaponCode inválido recibido: " << static_cast<int>(weapon_key)
+                      << std::endl;
             continue;
         }
         if (this->weapons.find(weapon_key) != this->weapons.end()) {
@@ -113,16 +111,15 @@ void PlayerView::update_weapons(const std::vector<WeaponImage>& weapons_vec) {
                                                                x_actual, y_actual, anglePlayer);
         }
     }
-    //std::cout << "armas. cargadas ---------" << std::endl;
+    // std::cout << "armas. cargadas ---------" << std::endl;
     /* for (const auto& par : weapons ) {
         std::cout << static_cast<int>(par.first) << std::endl;
     }*/
-    
 }
 
 
 void PlayerView::calcular() {
-    SDL_Texture* texture_player = textures_player.at(clave_team); 
+    SDL_Texture* texture_player = textures_player.at(clave_team);
     SDL_QueryTexture(texture_player, nullptr, nullptr, &width_img, &height_img);
 }
 
@@ -163,21 +160,19 @@ void PlayerView::auxiliar(const SDL_Keycode& tecla) {
 }
 
 
-void PlayerView::activate_weapon() {
-    activar_weapon = true;
-}
+void PlayerView::activate_weapon() { activar_weapon = true; }
 void PlayerView::draw(SDL_Renderer& renderer) {
 
-    SDL_Texture* texture_player ;
-    if(!muerto){
+    SDL_Texture* texture_player;
+    if (!muerto) {
         origin_rect = {item.col * width_img, item.fil * height_img, width_img / 2, height_img / 3};
-        texture_player = textures_player.at(clave_team); 
-    }else{
+        texture_player = textures_player.at(clave_team);
+    } else {
         texture_player = manejador->get(Object::MUERTE);
     }
-    destination_rect = {static_cast<int>(x_actual) - camera->getX(), 
-                        static_cast<int>(y_actual) - camera->getY(),  
-                        config.get_tile_width(),config.get_tile_height()};                   // alto
+    destination_rect = {static_cast<int>(x_actual) - camera->getX(),
+                        static_cast<int>(y_actual) - camera->getY(), config.get_tile_width(),
+                        config.get_tile_height()};  // alto
     SDL_RenderCopyEx(&renderer, texture_player, &origin_rect, &destination_rect, anglePlayer,
                      nullptr, SDL_FLIP_NONE);
 

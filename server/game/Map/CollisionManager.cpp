@@ -126,7 +126,7 @@ void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage&
         return;
     if (nearest.player.lock()) {
         std::cout << "Se detecto un enemigo golpeado\n";
-        uint8_t damage = collider_damage.damage_calculator(min_distance);
+        damage_t damage = collider_damage.damage_calculator();
         std::random_device rd;
         std::mt19937 rand(rd());
         // Esto hay q hacerlo x yaml

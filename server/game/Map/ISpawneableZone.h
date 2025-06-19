@@ -11,7 +11,7 @@ public:
         uint8_t width;
         uint8_t distance;
         Position& mouse_position;
-        std::function<uint8_t(float)> damage_function;
+        std::function<damage_t()> damage_function;
     } collider_solicitude_t;
     virtual void spawn_collider(player_id_t id_spawn, collider_solicitude_t& wanted) = 0;
     virtual bool plant_bomb(const player_id_t& id_spawn) = 0;

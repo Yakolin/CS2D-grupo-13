@@ -21,7 +21,7 @@ typedef struct PlayerEntity {
 
 typedef struct ColliderDamage {
     std::unique_ptr<Collider> collider;
-    std::function<uint8_t(float)> damage_calculator;
+    std::function<damage_t()> damage_calculator;
     // Aca puede estar la probabilidad de daño
 } collider_damage_t;
 

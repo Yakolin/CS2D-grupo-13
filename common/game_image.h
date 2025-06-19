@@ -35,15 +35,7 @@ enum class GameState {
     TT_WIN_GAME,
     CT_WIN_GAME
 };
-enum class PlayerStates {
-    SHOOTING,
-    WALKING,
-    RELOADING,
-    PLANTING,
-    DEFUSING,
-    DYING,
-    CHANGING_WEAPON
-};
+enum class SoundType { SHOOT, WALK, RELOAD, HIT, CHANGE_WEAPON, DROP, DIE, PICK_UP, NONE };
 enum class Team { CT, TT };
 enum class BombState { EQUIPED, DROPPED, ACTIVATED, DESACTIVATED, EXPLOTED };
 class BulletImage {

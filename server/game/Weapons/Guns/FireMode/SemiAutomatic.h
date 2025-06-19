@@ -2,15 +2,19 @@
 #define SEMIAUTOMATIC_H
 
 #include "FireMode.h"
+#include "FireRateClock.h"
 
 class SemiAutomatic: public FireMode {
+private:
+    FireRateClock fire_rate_timer;
+
 public:
-    SemiAutomatic();
+    SemiAutomatic(fire_rate_t fire_rate);
     ~SemiAutomatic();
 
-    bool fire(ISpawneableZone& spawn, player_id_t id, Position& direction) override;
+    bool can_fire() override;
 
-    bool fire_burst(ISpawneableZone& spawn, player_id_t id, Position& direction) override;
+    bool can_fire_burst() override;
 };
 
 

@@ -1,19 +1,42 @@
 #include "Automatic.h"
 
-Automatic::Automatic(const max_burst_t max_burst, const time_between_shoots_t time_between_shoots,
+Automatic::Automatic(const max_burst_t max_burst, const fire_rate_t fire_rate,
                      const burst_coldown_t burst_coldown):
-        bullets_in_burst(0),
-        burst_timer(),
-        shot_timer(),
         max_burst(max_burst),
-        time_between_shoots(time_between_shoots),
-        burst_coldown(burst_coldown) {}
+        shot_timer(fire_rate),
+        burst_timer(burst_coldown),
+        bullets_in_burst(0),
+        in_burst(false) {}
 
 Automatic::~Automatic() {}
 
 
-bool Automatic::fire(ISpawneableZone& spawn, player_id_t id Position& direction) { return true; }
+bool Automatic::can_fire() {
+    if (!this->shot_timer.can_fire()) {
+        return false;
+    }
+    this->shot_timer.start();
+    return true;
+}
 
-bool Automatic::fire_burst(ISpawneableZone& spawn, player_id_t id, Position& position) {
+bool Automatic::can_fire_burst() {
+    if (!in_burst && !burst_timer.can_fire()) {
+        return false;
+    }
+    if (in_burst && !shot_timer.can_fire()) {
+        return false;
+    }
+    if (!in_burst) {
+        in_burst = true;
+        bullets_in_burst = 0;
+    }
+    bullets_in_burst++;
+    shot_timer.start();
+
+    if (bullets_in_burst >= max_burst) {
+        in_burst = false;
+        bullets_in_burst = 0;
+        burst_timer.start();
+    }
     return true;
 }

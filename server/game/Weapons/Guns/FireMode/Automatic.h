@@ -1,27 +1,31 @@
 #ifndef AUTOMATIC_H
 #define AUTOMATIC_H
 
-#include "../BurstClock.h"
 
+#include "BurstClock.h"
 #include "FireMode.h"
+#include "FireRateClock.h"
+
+using bullet_t = uint8_t;
+using max_burst_t = uint8_t;
 
 class Automatic: public FireMode {
 private:
-    int bullets_in_burst;
-    BurstClock burst_timer;
-    BurstClock shot_timer;
     const max_burst_t max_burst;
-    const time_between_shoots_t time_between_shoots;
-    const burst_coldown_t burst_coldown;
+    FireRateClock shot_timer;
+    BurstClock burst_timer;
+
+    bullet_t bullets_in_burst;
+    bool in_burst;
 
 public:
-    Automatic(const max_burst_t max_burst, const time_between_shoots_t time_between_shoots,
+    Automatic(const max_burst_t max_burst, const fire_rate_t fire_rate,
               const burst_coldown_t burst_coldown);
     ~Automatic();
 
-    bool fire(ISpawneableZone& spawn, player_id_t id, Position& direction) override;
+    bool can_fire() override;
 
-    bool fire_burst(ISpawneableZone& spawn, player_id_t id, Position& direction) override;
+    bool can_fire_burst() override;
 };
 
 

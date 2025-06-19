@@ -7,4 +7,5 @@ target_sources(CS2D_server
     FireMode.h
     Automatic.h
     SemiAutomatic.h
+    FireRateClock.h
 )

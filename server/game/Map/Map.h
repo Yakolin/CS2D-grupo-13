@@ -10,7 +10,6 @@
 
 #include "../../../common/game_image.h"
 #include "../../../common/game_info.h"
-#include "../TimerActions.h"
 #include "../Weapons/SpecialWeapons.h"
 #include "../Weapons/Weapon.h"
 
@@ -29,8 +28,6 @@ private:
     std::pair<Position, std::shared_ptr<Bomb>> bomb;
     CollisionManager collision_manager;
     std::map<player_id_t, player_entity_t> players_in_map;
-    TimerActions defuse_timing, plant_timing;
-    bool defusing = false, planting = false;
     void charge_map();
     Position get_random_position();
 
@@ -42,9 +39,7 @@ public:
             map_name(_map_name),
             map_config(map_name),
             bomb(std::make_pair(Position(10, 10), bomb_ptr)),
-            collision_manager(collision_pos, players_in_map, bomb),
-            defuse_timing(600),
-            plant_timing(600) {
+            collision_manager(collision_pos, players_in_map, bomb) {
         charge_map();
     }
     void update_map_state();

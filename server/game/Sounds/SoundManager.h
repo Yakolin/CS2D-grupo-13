@@ -6,7 +6,9 @@
 #include "../../../common/utility.h"
 
 #include "Sound.h"
+#include "SoundShoot.h"
 class SoundManager {
+private:
     std::vector<std::pair<std::shared_ptr<Sound>, Position>> sounds;
 
 public:
@@ -14,10 +16,7 @@ public:
     void emit_sound(std::shared_ptr<Sound> sound, const Position& pos) {
         sounds.push_back(std::make_pair(std::move(sound), pos));
     }
-    std::vector<std::pair<std::shared_ptr<Sound>, Position>> get_emited_sounds() {
-        std::vector<std::pair<std::shared_ptr<Sound>, Position>> aux = this->sounds;
-        this->sounds.clear();
-        return aux;
-    };
+    SoundImage get_sound_image(Position& player_pos);
+    void reset() { sounds.clear(); }
 };
 #endif  // SOUND_MANAGER_H_

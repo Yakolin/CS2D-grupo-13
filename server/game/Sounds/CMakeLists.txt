@@ -4,6 +4,7 @@ target_sources(CS2D_server
     Sound.h 
     SoundShoot.h
     PUBLIC
+    SoundManager.cpp
 
     # .h files
     )

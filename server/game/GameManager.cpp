@@ -56,31 +56,17 @@ void GameManager::reset_round(bool full_reset) {
     map_game.spawn_random_weapons(weapons);
     give_bomb();
 }
-void GameManager::update_heared_sounds(
-        Position& player_pos, std::vector<std::pair<std::shared_ptr<Sound>, Position>>& sounds,
-        std::vector<SoundImage>& heared_sounds) {
-    for (auto& it: sounds) {
-        int dx = player_pos.x - it.second.x;
-        int dy = player_pos.y - it.second.y;
-        float aux_distance = std::sqrt(dx * dx + dy * dy);
-        distance_sound_t distance = static_cast<distance_sound_t>(aux_distance);
-        // Aca podemos poner cierto limite tamb
-        heared_sounds.push_back(SoundImage(it.first->sound, distance));
-    }
-}
 // Decidi que esto se cree cada vez que se pide para evitar datos copiados
 GameImage GameManager::generate_game_image() {
     GameImage game_image;
-    std::vector<std::pair<std::shared_ptr<Sound>, Position>> sounds =
-            sound_manager.get_emited_sounds();
     for (const auto& par: players) {
         shared_ptr<Player> player = par.second;
-        std::vector<SoundImage> heared_sounds;
         Position player_position = map_game.get_position(par.first);
-        update_heared_sounds(player_position, sounds, heared_sounds);
+        SoundImage heared_sounds = sound_manager.get_sound_image(player_position);
         PlayerImage player_image = player->get_player_image(player_position, heared_sounds);
         game_image.players_images.push_back(std::move(player_image));
     }
+    sound_manager.reset();
     game_image.bullets_in_air = map_game.get_bullets_in_air();
     game_image.dropped_things = map_game.get_dropped_things_images();
     game_image.bomb = map_game.get_bomb_image();

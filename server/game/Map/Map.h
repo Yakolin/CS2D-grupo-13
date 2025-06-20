@@ -44,7 +44,7 @@ public:
             map_config(map_name),
             bomb(std::make_pair(Position(10, 10), bomb_ptr)),
             sound_manager(sound_manager),
-            collision_manager(collision_pos, players_in_map, bomb) {
+            collision_manager(collision_pos, players_in_map, bomb, sound_manager) {
         charge_map();
     }
     void update_map_state();

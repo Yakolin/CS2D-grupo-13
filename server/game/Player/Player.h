@@ -40,7 +40,7 @@ public:
     void reset(bool full_reset);
     void change_team(Team new_team) { team = new_team; }
     virtual Team get_team() override { return team; }
-    PlayerImage get_player_image(const Position& position, std::vector<SoundImage>& sounds);
+    PlayerImage get_player_image(const Position& position, SoundImage& sounds);
 
     // Interface
     void damage(uint8_t damage) override;

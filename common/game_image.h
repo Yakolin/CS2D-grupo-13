@@ -13,6 +13,7 @@
 using coordinate_t = std::uint16_t;
 using distance_sound_t = std::uint16_t;
 using health_t = std::uint8_t;
+using deaths_t = std::uint8_t;
 using points_t = std::uint16_t;
 using length_players_images_t = std::uint16_t;
 using length_weapons_images_t = std::uint8_t;
@@ -92,6 +93,7 @@ public:
     player_id_t player_id;
     Position position;
     health_t health;
+    deaths_t deaths;
     points_t points;
     money_t money;
     WeaponCode equipped_weapon;
@@ -101,13 +103,14 @@ public:
     Position mouse_position;
     Skins skin;
     PlayerImage(const player_id_t& player_id, const Position& position, const int& health,
-                const int& points, const money_t money, const WeaponCode equipped_weapon,
-                std::vector<WeaponImage>&& weapons, const Team& team,
-                const Position& mouse_position, const Skins& skin,
+                const int& deaths, const int& points, const money_t money,
+                const WeaponCode equipped_weapon, std::vector<WeaponImage>&& weapons,
+                const Team& team, const Position& mouse_position, const Skins& skin,
                 const std::vector<SoundImage>&& heared_sounds):
             player_id(player_id),
             position(position),
             health(health),
+            deaths(deaths),
             points(points),
             money(money),
             equipped_weapon(equipped_weapon),

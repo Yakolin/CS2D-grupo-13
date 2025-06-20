@@ -8,6 +8,7 @@ void Player::damage(uint8_t damage) {
         health -= damage;
     sound_zone.want_emit_sound(id, std::make_shared<Sound>(SoundType::HIT));
     if (is_dead()) {
+        this->deaths++;
         equipment.drop_all();
         sound_zone.want_emit_sound(id, std::make_shared<Sound>(SoundType::DIE));
     }
@@ -56,7 +57,7 @@ void Player::shoot_burst(const coordinate_t& mouse_x, const coordinate_t& mouse_
 }
 
 PlayerImage Player::get_player_image(const Position& position, std::vector<SoundImage>& sounds) {
-    return PlayerImage(id, Position(position.x, position.y), health, points, money,
+    return PlayerImage(id, Position(position.x, position.y), health, deaths, points, money,
                        equipment.get_equiped_code(), std::move(equipment.get_weapons_image()), team,
                        this->mouse_position, this->skins, std::move(sounds));
 }

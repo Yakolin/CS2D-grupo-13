@@ -289,6 +289,9 @@ void ServerProtocol::send_players_images(std::vector<PlayerImage>& players_image
         health_t health = player_image.health;
         this->send_byte_data(health);
 
+        deaths_t deaths = player_image.deaths;
+        this->send_byte_data(deaths);
+
         points_t points = player_image.points;
         this->send_two_byte_data(points);
 

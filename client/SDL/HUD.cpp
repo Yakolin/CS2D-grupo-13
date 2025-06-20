@@ -60,6 +60,7 @@ PlayerImage HUD::jugador_inicial() {
     return PlayerImage(1,    // player_id
                        pos,  // position
                        100,  // health
+                       0,    // deaths
                        0,    // points
                        0, WeaponCode::NONE, std::move(armas),
                        Team::CT,  // team

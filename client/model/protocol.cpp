@@ -318,6 +318,8 @@ void ClientProtocol::read_player_image(std::vector<PlayerImage>& players_images)
 
         health_t health;
         this->read_byte_data(health);
+        deaths_t deaths;
+        this->read_byte_data(deaths);
 
         points_t points;
         this->read_two_byte_data(points);
@@ -349,10 +351,10 @@ void ClientProtocol::read_player_image(std::vector<PlayerImage>& players_images)
         TerroristSkin tt = static_cast<TerroristSkin>(tt_skin);
         Skins skins(ct, tt);
 
-        players_images.emplace_back(PlayerImage(player_id, position_player, health, points, money,
-                                                static_cast<WeaponCode>(equipped_weapon_code),
-                                                std::move(weapons), team, position_mouse, skins,
-                                                std::move(sounds)));
+        players_images.emplace_back(
+                PlayerImage(player_id, position_player, health, deaths, points, money,
+                            static_cast<WeaponCode>(equipped_weapon_code), std::move(weapons), team,
+                            position_mouse, skins, std::move(sounds)));
     }
 }
 

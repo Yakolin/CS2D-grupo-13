@@ -29,6 +29,7 @@ public:
             config(player_config),
             equipment(std::move(equipment)),
             health(player_config.health),
+            deaths(0),
             points(player_config.points),
             money(player_config.money),
             mouse_position(0, 0),
@@ -66,6 +67,7 @@ private:
     GameConfig::player_config_t& config;
     Equipment equipment;
     health_t health;
+    deaths_t deaths;
     points_t points;
     money_t money;
     Position mouse_position;

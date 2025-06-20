@@ -29,8 +29,9 @@ void CollisionManager::check_weapon_stepped(PlayerEntity& player) {
     auto it = dropped_things.find(player.position);
     if (it == dropped_things.end())
         return;
-    if (player.player.lock() && player.player.lock()->equip(it->second))
+    if (player.player.lock() && player.player.lock()->equip(it->second)) {
         dropped_things.erase(it);
+    }
 }
 
 void CollisionManager::add_bullet_image(const Vector2f& initial_pos, const Vector2f& final_pos,
@@ -73,6 +74,7 @@ bool CollisionManager::check_bullet_wall(const Vector2f& initial_pos, const Vect
         current_pos.y += step * direction.y;
         traveled += step;
     }
+    // Aca podriamos hacer ruidos de chocar con paredes
     return false;
 }
 
@@ -135,8 +137,9 @@ void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage&
         std::uniform_int_distribution<uint8_t> dist(0, 4);
         int random_num = dist(rand);
         if (!nearest.player.lock()->is_dead()) {
-            if (random_num != 0)
+            if (random_num != 0) {
                 nearest.player.lock()->damage(damage);
+            }
             if (nearest.player.lock()->is_dead()) {
                 std::cout << "Se murio el otro jugador, felicidades :)\n";
                 player_caster.player.lock()->get_points();

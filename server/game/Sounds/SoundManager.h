@@ -7,15 +7,15 @@
 
 #include "Sound.h"
 class SoundManager {
-    std::vector<std::pair<Sound, Position>> sounds;
+    std::vector<std::pair<std::shared_ptr<Sound>, Position>> sounds;
 
 public:
     SoundManager() = default;
-    void emit_sound(const Sound& sound, const Position& pos) {
-        sounds.push_back(std::make_pair(sound, pos));
+    void emit_sound(std::shared_ptr<Sound>& sound, const Position& pos) {
+        sounds.push_back(std::make_pair(std::move(sound), pos));
     }
-    std::vector<std::pair<Sound, Position>> get_emited_sounds() {
-        std::vector<std::pair<Sound, Position>> aux = this->sounds;
+    std::vector<std::pair<std::shared_ptr<Sound>, Position>> get_emited_sounds() {
+        std::vector<std::pair<std::shared_ptr<Sound>, Position>> aux = this->sounds;
         this->sounds.clear();
         return aux;
     };

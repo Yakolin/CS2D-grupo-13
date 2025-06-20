@@ -3,9 +3,8 @@
 
 #include "Sound.h"
 class SoundShoot: public Sound {
-    WeaponCode code;
-
 public:
+    WeaponCode code;
     explicit SoundShoot(WeaponCode code): Sound(SoundType::SHOOT), code(code) {}
 };
 #endif  // SOUND_SHOOT_H_

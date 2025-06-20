@@ -5,6 +5,7 @@
 #include <random>
 
 #include "../Config/GameConfig.h"
+#include "../Sounds/SoundManager.h"
 #include "Guns/Ak47.h"
 #include "Guns/Awp.h"
 #include "Guns/Glock.h"
@@ -18,10 +19,12 @@ class WeaponFactory {
 private:
     std::map<WeaponCode, GameConfig::WeaponConfig>& weapon_configs;
     GameConfig::weapon_config_t find_weapon_specs(WeaponCode code);
+    SoundManager& sound_manager;
 
 public:
-    explicit WeaponFactory(std::map<WeaponCode, GameConfig::WeaponConfig>& weapon_configs):
-            weapon_configs(weapon_configs) {}
+    explicit WeaponFactory(std::map<WeaponCode, GameConfig::WeaponConfig>& weapon_configs,
+                           SoundManager& sound_manager):
+            weapon_configs(weapon_configs), sound_manager(sound_manager) {}
     std::shared_ptr<Weapon> create_random_weapon(
             const GameConfig::dropped_weapons_t& dropped_weapons);
     std::shared_ptr<Weapon> weapon_create(WeaponCode code);

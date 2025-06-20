@@ -37,7 +37,8 @@ void Equipment::change_weapon(const EquipType& equip) {
         default:
             return;
     }
-    sound_zone.want_emit_sound(player_id, Sound(SoundType::CHANGE_WEAPON));
+    std::shared_ptr<Sound> sound = std::make_shared<Sound>(SoundType::CHANGE_WEAPON);
+    sound_zone.want_emit_sound(player_id, sound);
 }
 void Equipment::buy_weapon_by_code(const WeaponCode& weapon_code, uint16_t money) {
     uint16_t price = weapon_factory.price_weapon(weapon_code);
@@ -67,7 +68,8 @@ void Equipment::drop_weapon() {
         if (this->weapon_in_hand == this->primary) {
             std::shared_ptr<IInteractuable> dropped = this->weapon_in_hand;
             this->droppable_zone.drop(this->player_id, dropped);
-            sound_zone.want_emit_sound(player_id, Sound(SoundType::DROP));
+            std::shared_ptr<Sound> sound = std::make_shared<Sound>(SoundType::DROP);
+            sound_zone.want_emit_sound(player_id, sound);
             this->new_weapon_in_hand(this->secondary);
             this->primary = std::make_shared<NullWeapon>();
         }
@@ -84,7 +86,6 @@ void Equipment::shoot(Position& position) {
         }
     } else {
         weapon_in_hand->set_on_action(this->spawneable_zone, this->player_id, position);
-        sound_zone.want_emit_sound(player_id, Sound(SoundType::SHOOT));
     }
 }
 
@@ -106,12 +107,14 @@ bool Equipment::equip_droppable(const std::shared_ptr<IInteractuable>& droppable
     if (droppable->get_weapon_code() == WeaponCode::BOMB) {
         std::weak_ptr<Bomb> casted_bomb = std::static_pointer_cast<Bomb>(droppable);
         equip_bomb(casted_bomb);
-        sound_zone.want_emit_sound(player_id, Sound(SoundType::PICK_UP));
+        std::shared_ptr<Sound> sound = std::make_shared<Sound>(SoundType::PICK_UP);
+        sound_zone.want_emit_sound(player_id, sound);
         return true;
     }
     if (!primary->is_droppable()) {
         primary = std::static_pointer_cast<Weapon>(droppable);
-        sound_zone.want_emit_sound(player_id, Sound(SoundType::PICK_UP));
+        std::shared_ptr<Sound> sound = std::make_shared<Sound>(SoundType::PICK_UP);
+        sound_zone.want_emit_sound(player_id, sound);
         return true;
     }
     return false;
@@ -128,6 +131,7 @@ void Equipment::drop_all() {
         droppable_zone.drop(player_id, dropped);
         bomb.reset();
     }
-    sound_zone.want_emit_sound(player_id, Sound(SoundType::DROP));
+    std::shared_ptr<Sound> sound = std::make_shared<Sound>(SoundType::DROP);
+    sound_zone.want_emit_sound(player_id, sound);
 }
 WeaponCode Equipment::get_equiped_code() { return weapon_in_hand->get_weapon_code(); }

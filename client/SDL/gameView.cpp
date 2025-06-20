@@ -68,8 +68,8 @@ void print_game_image(const GameImage& image) {
     /*
     std::cout << "=== Game Image ===\n";
     std::cout << "--- Players ---\n";
-    */
     std::cout << "Client ID: " << image.client_id << "\n";
+    */
     for (const auto& player: image.players_images) {
         /*
         std::cout << "Player ID: " << player.player_id << "\n";
@@ -90,10 +90,15 @@ void print_game_image(const GameImage& image) {
            "\n";
                  }
         */
-        for (const auto& sound: player.heared_sounds) {
-            std::cout << "Escuche:\n";
+        for (const auto& sound: player.heared_sounds.common_sounds) {
+            std::cout << "Escuche comun:\n";
             std::cout << "Sound: " << static_cast<int>(sound.type) << " A :" << sound.distance
                       << std::endl;
+        }
+        for (const auto& sound: player.heared_sounds.shoot_sounds) {
+            std::cout << "Escuche shoot:\n";
+            std::cout << "Sound: " << static_cast<int>(sound.type) << " A :" << sound.distance
+                      << "del arma: " << static_cast<int>(sound.code) << std::endl;
         }
     }
 

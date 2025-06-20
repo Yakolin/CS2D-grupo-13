@@ -291,16 +291,34 @@ void ClientProtocol::read_weapons(std::vector<WeaponImage>& weapons) {
                                          magazine, inventory_bullets));
     }
 }
-void ClientProtocol::read_sounds(std::vector<SoundImage>& sounds) {
+void ClientProtocol::read_sound(sound_type_t& type, distance_sound_t& distance) {
+    this->read_byte_data(type);
+    this->read_two_byte_data(distance);
+}
+void ClientProtocol::read_shoot_sounds(std::vector<SoundShootImage>& sounds) {
+    length_heared_sounds_t length_sounds;
+    this->read_byte_data(length_sounds);
+    for (length_heared_sounds_t i = 0; i < length_sounds; i++) {
+        distance_sound_t distance;
+        weapon_code_t code;
+        this->read_two_byte_data(distance);
+        this->read_byte_data(code);
+        sounds.emplace_back(SoundShootImage(distance, static_cast<WeaponCode>(code)));
+    }
+}
+void ClientProtocol::read_common_sounds(std::vector<SoundCommonImage>& sounds) {
     length_heared_sounds_t length_sounds;
     this->read_byte_data(length_sounds);
     for (length_heared_sounds_t i = 0; i < length_sounds; i++) {
         sound_type_t type;
-        this->read_byte_data(type);
         distance_sound_t distance;
-        this->read_two_byte_data(distance);
-        sounds.emplace_back(SoundImage(static_cast<SoundType>(type), distance));
+        this->read_sound(type, distance);
+        sounds.emplace_back(SoundCommonImage(static_cast<SoundType>(type), distance));
     }
+}
+void ClientProtocol::read_sound_image(SoundImage& sounds) {
+    this->read_common_sounds(sounds.common_sounds);
+    this->read_shoot_sounds(sounds.shoot_sounds);
 }
 void ClientProtocol::read_player_image(std::vector<PlayerImage>& players_images) {
     length_players_images_t length_players_images;
@@ -333,8 +351,8 @@ void ClientProtocol::read_player_image(std::vector<PlayerImage>& players_images)
         std::vector<WeaponImage> weapons;
         this->read_weapons(weapons);
 
-        std::vector<SoundImage> sounds;
-        this->read_sounds(sounds);
+        SoundImage sounds;
+        this->read_sound_image(sounds);
 
         team_t team_raw;
         this->read_byte_data(team_raw);

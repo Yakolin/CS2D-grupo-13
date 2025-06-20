@@ -54,7 +54,7 @@ PlayerImage HUD::jugador_inicial() {
     Position pos = {100, 100};
     Position mouse = {110, 110};
     std::vector<WeaponImage> armas;
-    std::vector<SoundImage> sonidos;
+    SoundImage sonidos;
     armas.emplace_back(WeaponCode::GLOCK, 20, 20, 60);  // Arma básica
 
     return PlayerImage(1,    // player_id

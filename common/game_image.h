@@ -11,6 +11,7 @@
 #include "utility.h"
 
 using coordinate_t = std::uint16_t;
+using distance_t = std::uint16_t;
 using health_t = std::uint8_t;
 using points_t = std::uint16_t;
 using length_players_images_t = std::uint16_t;
@@ -38,6 +39,13 @@ enum class GameState {
 enum class SoundType { SHOOT, WALK, RELOAD, HIT, CHANGE_WEAPON, DROP, DIE, PICK_UP, NONE };
 enum class Team { CT, TT };
 enum class BombState { EQUIPED, DROPPED, ACTIVATED, DESACTIVATED, EXPLOTED };
+class SoundImage {
+    SoundType type = SoundType::NONE;
+    distance_t distance = 0;
+
+public:
+    SoundImage(SoundType type, distance_t distance): type(type), distance(distance) {}
+};
 class BulletImage {
 public:
     Position initial;

@@ -57,10 +57,11 @@ void GameManager::reset_round(bool full_reset) {
     give_bomb();
 }
 void GameManager::update_heared_sounds(Position& player_pos, std::vector<Sound>& sounds,
-                                       std::vector<SoundImage> heared_sounds) {
+                                       std::vector<SoundImage>& heared_sounds) {
     for (auto& sound: sounds) {
-        Position aux(player_pos.x - sound.pos.x, player_pos.y - sound.pos.y);
-        float aux_distance = std::sqrt(aux.x * aux.x + aux.y * aux.y);
+        int dx = player_pos.x - sound.pos.x;
+        int dy = player_pos.y - sound.pos.y;
+        float aux_distance = std::sqrt(dx * dx + dy * dy);
         distance_sound_t distance = static_cast<distance_sound_t>(aux_distance);
         // Aca podemos poner cierto limite tamb
         heared_sounds.push_back(SoundImage(sound.sound, distance));

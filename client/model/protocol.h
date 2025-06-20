@@ -27,6 +27,7 @@ private:
     void read_client_id(player_id_t& player_id);
     void read_position(Position& position);
     void read_weapons(std::vector<WeaponImage>& weapons);
+    void read_sounds(std::vector<SoundImage>& sounds);
     void read_player_image(std::vector<PlayerImage>& players_image);
     void read_bullets_in_air(std::vector<BulletImage>& bullets_in_air);
     void read_bomb(BombImage& game_image);

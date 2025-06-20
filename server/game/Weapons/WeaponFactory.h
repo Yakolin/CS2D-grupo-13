@@ -19,12 +19,10 @@ class WeaponFactory {
 private:
     std::map<WeaponCode, GameConfig::WeaponConfig>& weapon_configs;
     GameConfig::weapon_config_t find_weapon_specs(WeaponCode code);
-    SoundManager& sound_manager;
 
 public:
-    explicit WeaponFactory(std::map<WeaponCode, GameConfig::WeaponConfig>& weapon_configs,
-                           SoundManager& sound_manager):
-            weapon_configs(weapon_configs), sound_manager(sound_manager) {}
+    explicit WeaponFactory(std::map<WeaponCode, GameConfig::WeaponConfig>& weapon_configs):
+            weapon_configs(weapon_configs) {}
     std::shared_ptr<Weapon> create_random_weapon(
             const GameConfig::dropped_weapons_t& dropped_weapons);
     std::shared_ptr<Weapon> weapon_create(WeaponCode code);

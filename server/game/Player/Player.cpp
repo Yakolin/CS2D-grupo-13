@@ -6,10 +6,10 @@ void Player::damage(uint8_t damage) {
         health = 0;
     else
         health -= damage;
-    sound_zone.want_emit_sound(id, SoundType::HIT);
+    sound_zone.want_emit_sound(id, Sound(SoundType::HIT));
     if (is_dead()) {
         equipment.drop_all();
-        sound_zone.want_emit_sound(id, SoundType::DIE);
+        sound_zone.want_emit_sound(id, Sound(SoundType::DIE));
     }
 }
 bool Player::is_dead() { return health == 0; }
@@ -39,7 +39,7 @@ void Player::move(const MoveType& move_type) {
             break;
     }
     if (game_zone.move(id, pos))
-        sound_zone.want_emit_sound(id, SoundType::WALK);
+        sound_zone.want_emit_sound(id, Sound(SoundType::WALK));
 }
 
 void Player::reload() { this->equipment.reload(); }

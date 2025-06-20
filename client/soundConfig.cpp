@@ -48,8 +48,6 @@ bool SoundConfig::loadMusic(const Music& id, const std::string& filepath) {
 post: reprodice una musica por defecto en bucle -1 pero se puede pasar un numeros de reproduccion.
 */
 void SoundConfig::playMusic(const Music& id, int loops = -1) {
-	std::cout << "Reproduciendo música: " << static_cast<int>(id) << std::endl;
-
     auto it = musics.find(id);
     if (it == musics.end()) {
         std::cerr << "No se encontró la música con ID: " << static_cast<int>(id) << std::endl;

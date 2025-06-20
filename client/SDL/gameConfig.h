@@ -37,7 +37,9 @@ public:
     GameConfig();
 
 
-    SDL_Color get_color(const Color &clave);
+    void get_dimension(SDL_Texture* texture_player, int& width_img, int& height_img);
+
+    SDL_Color get_color(const Color& clave);
 
     int get_window_width() const;
 

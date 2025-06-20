@@ -69,7 +69,15 @@ enum class Weapon {
     M3,
     NONE
 };
+
+enum class CursorContext {
+    NORMAL,
+    ENEMY,
+    ALLY
+};
+
 enum class Object {
+    MOUSE,
     STONE,
     WALL_AZTEC,
     WALL_ENTRENAMIENTO,
@@ -203,10 +211,6 @@ struct WeaponData {
     std::string name;
     int price;
     std::string descripcion;
-};
-struct Rankings {
-    int ranking_terrorists;
-    int ranking_counter_terrorists;
 };
 struct TextureInfo{
     SDL_Texture* textura;

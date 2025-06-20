@@ -51,7 +51,6 @@ public:
 
 private:
     std::map<int, InfoPlayer> scores;
-    Rankings ranking_group;
 };
 
 #endif  // SCOREBOARD_H

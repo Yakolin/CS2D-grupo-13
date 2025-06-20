@@ -13,9 +13,12 @@ HUD::HUD(GameConfig& config, ManageTexture& manager, const InfoGame& info_game):
         bomb(bomba_inicial()),
         time(0),
         game_state(estado_juego_inicial()),
-        weapon_used(Object::GLOCK)
+        weapon_used(Object::GLOCK),
+        mouse(config,manager.get(Object::MOUSE))
 
-{
+
+{ 
+    
     SDL_Texture* icono_vida = texture_manager.get(Object::VIDA);
     SDL_Texture* icono_dinero = texture_manager.get(Object::MONEY);
     SDL_Texture* icono_timer_bomb = texture_manager.get(Object::TIMER_BOMB);
@@ -49,7 +52,25 @@ HUD::HUD(GameConfig& config, ManageTexture& manager, const InfoGame& info_game):
     load_text(TextView::TEAM, x_centro, fila2_y);
     load_text(TextView::AMMO, x_izquierda, fila2_y, icono_bullet);
 }
+void HUD::updateMouseSprite(const CursorContext& context) {
+    switch (context) {
+        case CursorContext::ENEMY:
+            mouse.set_item(1, 0);  // Sprite rojo
+            break;
+        case CursorContext::ALLY:
+            mouse.set_item(0, 1);  // Sprite verde
+            break;
+        case CursorContext::NORMAL:
+            mouse.set_item(0, 0);  // Sprite normal
+            break;
+        // ...
+    }
+}
 
+
+void HUD::update_mouse(const int& x, const int& y){
+    mouse.set_pos(x,y);
+}
 PlayerImage HUD::jugador_inicial() {
     Position pos = {100, 100};
     Position mouse = {110, 110};
@@ -167,6 +188,7 @@ Object convertir_a_imagen(WeaponCode code) {
     }
 }
 
+
 /*
     Aca deberias de hacer 2 funciones.
 
@@ -175,6 +197,8 @@ Object convertir_a_imagen(WeaponCode code) {
 
 */
 void HUD::update() {
+
+
 
     TTF_Font* font = config.get_font_hud();
 
@@ -213,7 +237,9 @@ void HUD::update() {
     load_info(TextView::TEAM, player.team == Team::CT ? "CT" : "TT", Color::AMARILLO, font);
 }
 
+
 void HUD::render(SDL_Renderer& renderer) {
+    mouse.draw(renderer);
     for (auto& [clave, item]: texts) {
         if (clave == TextView::BOMB && player.team == Team::CT) {
             continue;  // No dibujar el icono de bomba si es CT

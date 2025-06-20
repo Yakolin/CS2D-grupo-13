@@ -62,6 +62,7 @@ private:
 
     void handle_events(const SDL_Event& evento);
 
+    void handle_sprite_mouse(const int& mousex, const int& mousey);
 
     void update_bullets_snapshot();
 

@@ -268,6 +268,18 @@ void GameView::handle_mouse_left_down(int mouseX, int mouseY) {
 }
 
 
+/*void GameView::handle_sprite_mouse(const int& mousex, const int& mousey){
+    int tile_mousex=0;
+    int tile_mousey=0;
+    mouse_position_tiles(tile_mousex,tile_mousey,mousex,mousey);
+    for (auto& [id, player] : this->players){
+        int tile_playerx= player->getXActual()/ config.get_tile_width();
+        int tile_playery= player->getYActual() / config.get_tile_height();
+        if(tile_mousex == tile_playerx && tile_mousey == tile_playery){
+            
+        }
+    }
+}*/
 void GameView::handle_events(const SDL_Event& event) {
     try {
         if (event.type == SDL_QUIT) {
@@ -296,6 +308,8 @@ void GameView::handle_events(const SDL_Event& event) {
         if (event.type == SDL_MOUSEMOTION) {  // para mover mouse
             int mouseX = event.motion.x;
             int mouseY = event.motion.y;
+            hud.update_mouse(mouseX,mouseY);
+         //   printf("mouse  x %i y %i\n",mouseX,mouseY);
             player->update_view_angle(mouseX, mouseY);
             controller.sender_pos_mouse(mouseX, mouseY);
         }

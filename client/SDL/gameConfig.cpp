@@ -61,6 +61,10 @@ GameConfig::GameConfig():
 
 }
 
+void GameConfig::get_dimension(SDL_Texture* texture_player, int& width_img, int& height_img) {
+    SDL_QueryTexture(texture_player, nullptr, nullptr, &width_img, &height_img);
+}
+
 SDL_Color GameConfig::get_color(const Color& clave) {
 
     auto it = colores.find(clave);

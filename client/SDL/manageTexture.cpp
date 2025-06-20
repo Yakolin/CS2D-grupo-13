@@ -66,10 +66,9 @@ ManageTexture::ManageTexture(SDL_Renderer* renderer): renderer(renderer) {
     load(Object::AWP, "assets/gfx/icon/awp_k.png");
     load(Object::M3, "assets/gfx/icon/m3_k.png");
     load(Object::SNIKE, "assets/gfx/icon/knife_k.png");
+    load(Object::MOUSE, "assets/gfx/pointer.png");
 
-    // load(Object::ZONE_COUNTERTERROSIT, "assets/gfx/backgrounds/zonacounter.jpeg");//todo de
-    // movento no hay logo de counter load(Object::ZONE_TERRORIST,
-    // "assets/gfx/backgrounds/zonaTerrorist.jpeg");
+
 }
 
 /*
@@ -118,7 +117,6 @@ SDL_Texture* ManageTexture::create_texture_rect(const SDL_Rect& rect, const SDL_
         SDL_RenderCopy(renderer, text, nullptr, &destino);
     }
     SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
-    // SDL_SetRenderDrawColor(renderer,255, 0, 0, 50);
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
     SDL_RenderFillRect(renderer, nullptr);  // llena todo el target
     SDL_SetRenderTarget(renderer, render_anterior);
@@ -240,7 +238,7 @@ void ManageTexture::load(const Object& id, const std::string& filePath) {
         throw std::runtime_error("Error creando textura: " + std::string(SDL_GetError()));
     }
     textures[id] = texture;
-    ////std::cout << "[LOAD TEXTURE] Textura cargada con éxito: " << filePath << std::endl;
+    std::cout << "[LOAD TEXTURE] Textura cargada con éxito: " << filePath << std::endl;
 }
 
 void ManageTexture::load_skins_tt(const TerroristSkin& id, const std::string& filePath) {
@@ -359,19 +357,9 @@ std::array<SDL_Point, 4> calculo(const int& lado, const int& angle, const int& a
 SDL_Texture* ManageTexture::create_stencil(const int& ancho, const int& alto, const float& angle,
                                            const float& apertura, const int& intensity) {
 
-    int max_texture_width = 0, max_texture_height = 0;
-    SDL_RendererInfo info;
-    SDL_GetRendererInfo(renderer, &info);
-    max_texture_width = info.max_texture_width;
-    max_texture_height = info.max_texture_height;
-
-    std::cout << "Máximo permitido por GPU: " << max_texture_width << " x " << max_texture_height
-              << std::endl;
-
 
     int diagonal = std::sqrt(ancho * ancho + alto * alto);
     int lado = static_cast<int>(diagonal * 1.5);  // Aumentar un 50% para cubrir rotaciones
-    std::cout << "Lado de textura: " << lado << std::endl;
 
     SDL_Texture* stencil = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888,
                                              SDL_TEXTUREACCESS_TARGET, lado, lado);
@@ -487,7 +475,7 @@ SDL_Texture* ManageTexture::get_weapon(const WeaponCode& id) const {
 SDL_Texture* ManageTexture::get(const Object& id) const {
     auto it = textures.find(id);
     if (it != textures.end()) {
-        // std::cout << "se encontró la textura para Object: " << static_cast<int>(id) << std::endl;
+       // std::cout << "se encontró la textura para Object: " << static_cast<int>(id) << std::endl;
         return it->second;
     }
     std::cout << "No se encontró la textura para Object: " << static_cast<int>(id) << std::endl;

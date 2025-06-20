@@ -8,7 +8,7 @@
 #include <QWidget>
 #include <QtCharts/qchartview.h>
 
-ScoreBoard::ScoreBoard(): scores(), ranking_group() {
+ScoreBoard::ScoreBoard(): scores() {
     scores[1] = {"player1", "CT", 10, 2, 100, 100};
     scores[2] = {"player2", "TT", 5, 1, 50, 90};
     scores[3] = {"player3", "CT", 8, 3, 80, 75};
@@ -20,8 +20,6 @@ ScoreBoard::ScoreBoard(): scores(), ranking_group() {
     scores[9] = {"player9", "CT", 11, 5, 130, 88};
     scores[10] = {"player10", "TT", 3, 0, 30, 65};
 
-    ranking_group.ranking_counter_terrorists = 34;
-    ranking_group.ranking_terrorists = 12;
 }
 
 void ScoreBoard::add_table(QGridLayout* layout, const int& fil, const int& col) {
@@ -140,17 +138,6 @@ void ScoreBoard::add_filtered_tables(QGridLayout* layout) {
     layout->addWidget(tt_table, 1, 1);
 }
 
-void ScoreBoard::add_ranking(QGridLayout* layout, const int& fil, const int& col) {
-    QFormLayout* rankingGroups = new QFormLayout;
-
-    QLabel* label_terrorists = new QLabel(QString::number(ranking_group.ranking_terrorists));
-    rankingGroups->addRow(new QLabel("Terrorists:"), label_terrorists);
-
-    QLabel* label_counter_terrorists = new QLabel(QString::number(ranking_group.ranking_counter_terrorists));
-    rankingGroups->addRow(new QLabel("Counter-terrorists:"), label_counter_terrorists);
-
-    layout->addLayout(rankingGroups, fil, col); // fila 0, columna 0
-}
 
 QChartView* ScoreBoard::grafico_pie(QWidget* parent) {
     // Sumar puntos por equipo

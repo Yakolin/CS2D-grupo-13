@@ -31,7 +31,8 @@ PlayerView::PlayerView(const float& x, const float& y, const Skins& clave_player
         equipped_weapon(WeaponCode::NONE),
         textures_player(load_claves(clave_player))
 { 
-    calcular();
+    SDL_Texture* texture_player = textures_player.at(clave_team); 
+    config.get_dimension(texture_player,width_img,height_img );
 }
 std::unordered_map<Team, SDL_Texture*> PlayerView::load_claves(const Skins& clave_player){
     std::unordered_map<Team, SDL_Texture*> text;
@@ -45,24 +46,6 @@ void PlayerView::set_muerto(const bool& new_state){ muerto = new_state;}
 void PlayerView::update_equip(const PlayerImage player_aux){
     this->equipped_weapon = player_aux.equipped_weapon;
     this->clave_team = player_aux.team;
-}
-
-void imprimir_weapons_vec(const std::vector<WeaponImage>& weapons_vec) {
-    if (weapons_vec.empty()) {
-        std::cout << "El vector de armas está vacío." << std::endl;
-        return;
-    }
-    for (const WeaponImage& weapon: weapons_vec) {
-        if (weapon.weapon_code == WeaponCode::NONE) {
-            std::cout << "  (Arma vacía / NONE, se salta)" << std::endl;
-            continue;
-        }
-        std::cout << "  WeaponCode: " << static_cast<int>(weapon.weapon_code)
-                  << ", Balas actuales: " << static_cast<int>(weapon.current_bullets)
-                  << ", Cargador: " << static_cast<int>(weapon.magazine)
-                  << ", Balas en inventario: " << static_cast<int>(weapon.inventory_bullets)
-                  << std::endl;
-    }
 }
 
 
@@ -121,11 +104,6 @@ void PlayerView::update_weapons(const std::vector<WeaponImage>& weapons_vec) {
 }
 
 
-void PlayerView::calcular() {
-    SDL_Texture* texture_player = textures_player.at(clave_team); 
-    SDL_QueryTexture(texture_player, nullptr, nullptr, &width_img, &height_img);
-}
-
 
 void PlayerView::add_speed(const SDL_Keycode& tecla) {
     if (tecla == SDLK_w || tecla == SDLK_UP) {
@@ -174,6 +152,7 @@ void PlayerView::draw(SDL_Renderer& renderer) {
         texture_player = textures_player.at(clave_team); 
     }else{
         texture_player = manejador->get(Object::MUERTE);
+    
     }
     destination_rect = {static_cast<int>(x_actual) - camera->getX(), 
                         static_cast<int>(y_actual) - camera->getY(),  

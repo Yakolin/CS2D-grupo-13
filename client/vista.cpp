@@ -153,6 +153,7 @@ bool Vista::init_game( SDL_Window*& ventana, SDL_Renderer*& renderer, const Game
         printf("No se pudo inicializar SDL_mixer: %s\n", Mix_GetError());
         return 1;
     }
+    SDL_ShowCursor(SDL_DISABLE);
     Mix_Init(MIX_INIT_MP3 | MIX_INIT_OGG);
 
     if (!(IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG) & (IMG_INIT_PNG | IMG_INIT_JPG))) {
@@ -198,7 +199,7 @@ void Vista::showGame(){
         gameView.start(info_game_view);
         gameView.run();
     } catch (const QuitGameException& e) {  
-    } catch (const LibError& e) {          
+        free_components(ventana,renderer);       
     } catch (const std::exception& e) {
         std::cerr << "Excepción atrapada en vista: " << e.what() << std::endl;
         free_components(ventana,renderer);
@@ -206,8 +207,6 @@ void Vista::showGame(){
         std::cerr << "Excepción desconocida en vista " << std::endl;
         free_components(ventana,renderer);
     }
-    free_components(ventana,renderer);
-
 }
 
 void Vista::showScoreboard(){

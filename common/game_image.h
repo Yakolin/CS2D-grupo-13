@@ -11,13 +11,14 @@
 #include "utility.h"
 
 using coordinate_t = std::uint16_t;
-using distance_t = std::uint16_t;
+using distance_sound_t = std::uint16_t;
 using health_t = std::uint8_t;
 using points_t = std::uint16_t;
 using length_players_images_t = std::uint16_t;
 using length_weapons_images_t = std::uint8_t;
 using length_bullets_in_air_t = std::uint16_t;
 using length_weapons_dropped_t = std::uint8_t;
+using length_heared_sounds_t = std::uint8_t;
 using bomb_state_t = std::uint8_t;
 using team_t = std::uint8_t;
 using game_state_t = std::uint8_t;
@@ -41,10 +42,11 @@ enum class Team { CT, TT };
 enum class BombState { EQUIPED, DROPPED, ACTIVATED, DESACTIVATED, EXPLOTED };
 class SoundImage {
     SoundType type = SoundType::NONE;
-    distance_t distance = 0;
+    distance_sound_t distance = 0;
 
 public:
-    SoundImage(SoundType type, distance_t distance): type(type), distance(distance) {}
+    SoundImage() = default;
+    SoundImage(SoundType type, distance_sound_t distance): type(type), distance(distance) {}
 };
 class BulletImage {
 public:
@@ -95,13 +97,15 @@ public:
     money_t money;
     WeaponCode equipped_weapon;
     std::vector<WeaponImage> weapons;
+    std::vector<SoundImage> heared_sounds;
     Team team;
     Position mouse_position;
     Skins skin;
     PlayerImage(const player_id_t& player_id, const Position& position, const int& health,
                 const int& points, const money_t money, const WeaponCode equipped_weapon,
                 std::vector<WeaponImage>&& weapons, const Team& team,
-                const Position& mouse_position, const Skins& skin):
+                const Position& mouse_position, const Skins& skin,
+                const std::vector<SoundImage>&& heared_sounds):
             player_id(player_id),
             position(position),
             health(health),
@@ -109,6 +113,7 @@ public:
             money(money),
             equipped_weapon(equipped_weapon),
             weapons(std::move(weapons)),
+            heared_sounds(heared_sounds),
             team(team),
             mouse_position(mouse_position),
             skin(skin) {}

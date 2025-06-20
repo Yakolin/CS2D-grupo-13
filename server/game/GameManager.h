@@ -68,6 +68,7 @@ public:
     ~GameManager();
     GameImage get_frame();
     GameInfo get_game_info();
+    void update_heared_sounds(PlayerImage& player_image, std::vector<Sound>& sounds);
     void start_game();
     void stop_game();
     virtual void process(ClientAction& action) override;

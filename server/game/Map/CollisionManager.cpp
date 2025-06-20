@@ -101,6 +101,8 @@ void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage&
     PlayerEntity player_caster = players_in_map[caster];
     Vector2f end = collider_damage.collider->get_end();
     Vector2f origin = collider_damage.collider->get_start();
+    std::shared_ptr<Sound> sound = std::make_shared<SoundShoot>(collider_damage.code);
+    sound_manager.emit_sound(sound, player_caster.position);
     check_damage_players(caster, collider_damage, players_affected);
     if (players_affected.empty()) {
         // Si no se detecto ningun jugador, revisamos si hay un muro entre medio

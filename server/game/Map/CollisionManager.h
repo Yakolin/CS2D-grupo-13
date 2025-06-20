@@ -12,6 +12,7 @@
 #include "../Colliders/Colliders.h"
 #include "../Player/ICanInteract.h"
 #include "../Sounds/SoundManager.h"
+#include "../Sounds/SoundShoot.h"
 #include "../Weapons/IInteractuable.h"
 #include "../Weapons/SpecialWeapons.h"
 typedef struct PlayerEntity {

@@ -30,9 +30,10 @@ void GameManager::process(ClientAction& action) {
 }
 
 std::shared_ptr<Player> GameManager::create_player(const player_id_t& id, Team team, Skins& skins) {
-    Equipment equipment(id, map_game, map_game, weapon_factory);
-    shared_ptr<Player> player = std::make_shared<Player>(
-            id, team, skins, game_config.get_player_config(), std::move(equipment), map_game);
+    Equipment equipment(id, map_game, map_game, map_game, weapon_factory);
+    shared_ptr<Player> player =
+            std::make_shared<Player>(id, team, skins, game_config.get_player_config(),
+                                     std::move(equipment), map_game, map_game);
     return player;
 }
 

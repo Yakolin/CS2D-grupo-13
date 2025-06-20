@@ -14,6 +14,7 @@
 #include "../Config/GameConfig.h"
 #include "../Map/IDroppableZone.h"
 #include "../Map/IGameZone.h"
+#include "../Map/ISoundZone.h"
 
 #include "Equipment.h"
 #include "ICanInteract.h"
@@ -21,7 +22,7 @@ class Player: public IPlayerAction, public ICanInteract {
 
 public:
     Player(player_id_t id, Team team, Skins skins, GameConfig::player_config_t& player_config,
-           Equipment&& equipment, IGameZone& game_zone):
+           Equipment&& equipment, IGameZone& game_zone, ISoundZone& sound_zone):
             id(id),
             team(team),
             skins(skins),
@@ -31,7 +32,8 @@ public:
             points(player_config.points),
             money(player_config.money),
             mouse_position(0, 0),
-            game_zone(game_zone) {}
+            game_zone(game_zone),
+            sound_zone(sound_zone) {}
     virtual ~Player() = default;
     bool dead();
     void reset(bool full_reset);
@@ -68,6 +70,7 @@ private:
     money_t money;
     Position mouse_position;
     IGameZone& game_zone;
+    ISoundZone& sound_zone;
 
     void drop_on_dead();
 };

@@ -6,8 +6,11 @@ void Player::damage(uint8_t damage) {
         health = 0;
     else
         health -= damage;
-    if (is_dead())
+    sound_zone.want_emit_sound(id, SoundType::HIT);
+    if (is_dead()) {
         equipment.drop_all();
+        sound_zone.want_emit_sound(id, SoundType::DIE);
+    }
 }
 bool Player::is_dead() { return health == 0; }
 
@@ -20,20 +23,23 @@ void Player::reset(bool full_reset) {
     health = config.health;
 }
 void Player::move(const MoveType& move_type) {
+    Position pos(0, 0);
     switch (move_type) {
         case MoveType::RIGHT:
-            game_zone.move(id, Position(1, 0));
+            pos = Position(1, 0);
             break;
         case MoveType::LEFT:
-            game_zone.move(id, Position(-1, 0));
+            pos = Position(-1, 0);
             break;
         case MoveType::UP:
-            game_zone.move(id, Position(0, 1));
+            pos = Position(0, 1);
             break;
         case MoveType::DOWN:
-            game_zone.move(id, Position(0, -1));
+            pos = Position(0, -1);
             break;
     }
+    if (game_zone.move(id, pos))
+        sound_zone.want_emit_sound(id, SoundType::WALK);
 }
 
 void Player::reload() { this->equipment.reload(); }
@@ -69,6 +75,7 @@ bool Player::equip(std::shared_ptr<IInteractuable>& droppable) {
 void Player::get_points() {
     this->money += config.earned_points * config.multiplier_points;
     this->points += config.earned_points;
+    // Sonido de ganar puntos...
 }
 void Player::defuse_bomb() { game_zone.defuse_bomb(id); }
 

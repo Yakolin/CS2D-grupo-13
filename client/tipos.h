@@ -27,6 +27,13 @@ enum class Color {
 };
 
 
+enum class Music{
+    SALA_ESPERA,
+    JUEGO
+};
+
+
+
 enum class ColorTranslucent {
     ROJO,
     VERDE,

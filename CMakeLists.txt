@@ -138,6 +138,7 @@ if(CS2D_CLIENT)
     target_include_directories(CS2D_client PRIVATE 
         ${libSDL2pp_SOURCE_DIR}
         ${SDL2_image_SOURCE_DIR}/include
+        ${SDL2_mixer_SOURCE_DIR}/include
         )
 
 
@@ -149,6 +150,7 @@ if(CS2D_CLIENT)
         Qt5::Widgets
         SDL2_image
         yaml-cpp
+        SDL2_mixer  
         SDL2_ttf
         Qt5::Charts
         ${SDL2_GFX_LIBRARY}

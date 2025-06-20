@@ -237,7 +237,7 @@ QChartView* ScoreBoard::graficoBarrasEquipo(const std::string& equipo, QWidget* 
 int ScoreBoard::show_scores_game() {
     QWidget* info_ranking = new QWidget();
     info_ranking->setWindowTitle("Scores");
-    info_ranking->resize(800, 800);
+    info_ranking->resize(800, 500);
     QGridLayout* mainLayout = new QGridLayout(info_ranking);
     add_filtered_tables(mainLayout);
     mainLayout->addWidget(graficoBarrasEquipo("CT", info_ranking), 2, 0);

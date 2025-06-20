@@ -10,11 +10,6 @@ fuente:
   route_font_menu: "assets/gfx/fonts/cs_regular.ttf"
   size_fuente: 10
 
-blanco:
-  r: 255
-  g: 255
-  b: 255
-  a: 255
-
 fov:
   intensity: 128
+

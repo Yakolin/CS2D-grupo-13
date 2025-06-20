@@ -21,12 +21,14 @@ target_sources(CS2D_client
     SDL/manageTexture.cpp
     Qt/menuView.cpp
     vista.cpp
+    soundConfig.cpp
     SDL/HUD.cpp
     PUBLIC
     
     SDL/gameView.h
     Qt/ButtonsCreator.h
     Qt/StackNavigator.h
+    soundConfig.h
     SDL/mapView.h
     SDL/playerView.h
     SDL/gameConfig.h

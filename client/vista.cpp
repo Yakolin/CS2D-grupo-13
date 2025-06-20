@@ -130,31 +130,83 @@ bool Vista::showLobby(){
     return true;
 }
 
+
+
+bool Vista::init_game( SDL_Window*& ventana, SDL_Renderer*& renderer, const GameConfig& config) {
+    
+    ventana = SDL_CreateWindow(
+            "Mapa", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, config.get_window_width(),
+            config.get_window_height(), SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+    if (!ventana) {
+        throw std::runtime_error(std::string("Error al crear la ventana: ") + SDL_GetError());
+    }
+    renderer = SDL_CreateRenderer(ventana, -1, SDL_RENDERER_ACCELERATED);
+    if (!renderer) {
+        throw std::runtime_error(std::string("Error al crear el renderer: ") + SDL_GetError());
+    }
+    SDL_RenderSetLogicalSize(renderer, config.get_viewpost_width(), config.get_viewpost_height());
+    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+        throw std::runtime_error(std::string("Error al inicializar SDL: ") + SDL_GetError());
+        return false;
+    }
+    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
+        printf("No se pudo inicializar SDL_mixer: %s\n", Mix_GetError());
+        return 1;
+    }
+    Mix_Init(MIX_INIT_MP3 | MIX_INIT_OGG);
+
+    if (!(IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG) & (IMG_INIT_PNG | IMG_INIT_JPG))) {
+        throw std::runtime_error(std::string("Error inicializando SDL_image: ") + IMG_GetError());
+        return false;
+    }
+    return true;
+}
+
+void Vista::free_components( SDL_Window* ventana, SDL_Renderer* renderer){
+    if (renderer)
+        SDL_DestroyRenderer(renderer);
+
+    if (ventana)
+        SDL_DestroyWindow(ventana);
+    Mix_CloseAudio();
+    TTF_Quit();
+    IMG_Quit();
+    SDL_Quit();
+}
+
 void Vista::showGame(){
 
     GameInfo info_game_view = protocolo.read_game_info();
-   // imprimir_game_info(info_game_view); // todo sacar cualdo moleste
     std::cout << "Mapa bx: " << info_game_view.map_info.boxes.size() << std::endl;
-  //  std::cout << "Mapa: " << info_game.map << std::endl;
 
-    dibujar_mapa(info_game_view.map_info,40,40);
+    //dibujar_mapa(info_game_view.map_info,40,40);
     Acknowledge ack = Acknowledge::READY;
-    protocolo.send_acknowledge(ack);  // tal vez esto se tenga que mandar luego de
-                                      // chequear que game info esta bien
-    try {
-        GameView gameView(std::move(skt), info_game_view, info_game);
-        if (!gameView.init_game())
-            throw std::runtime_error(std::string("Error a inicializar game"));
+    protocolo.send_acknowledge(ack); 
+    SDL_Window* ventana = nullptr;
+    SDL_Renderer* renderer = nullptr;
+    GameConfig config;
+    if( !init_game(ventana,renderer,config))
+        throw std::runtime_error(std::string("Error a inicializar game"));
 
+    ManageTexture manger_texture(renderer);
+    SDL_Texture* textura = manger_texture.get(Object::FONDO_ESPERA);
+    SDL_RenderCopy(renderer, textura, nullptr, nullptr);
+    SDL_RenderPresent(renderer);
+
+    try {   
+        GameView gameView(std::move(skt), info_game_view, info_game, ventana, renderer,manger_texture,config);
         gameView.start(info_game_view);
         gameView.run();
-    } catch (const QuitGameException& e) {  // no pongo mensaje porque es el comportamiento esperado
-    } catch (const LibError& e) {           // no pongo mensaje porque es el comportamiento esperado
+    } catch (const QuitGameException& e) {  
+    } catch (const LibError& e) {          
     } catch (const std::exception& e) {
         std::cerr << "Excepción atrapada en vista: " << e.what() << std::endl;
+        free_components(ventana,renderer);
     } catch (...) {
         std::cerr << "Excepción desconocida en vista " << std::endl;
+        free_components(ventana,renderer);
     }
+    free_components(ventana,renderer);
 
 }
 
@@ -168,4 +220,6 @@ void Vista::showScoreboard(){
 }
 
 
-Vista::~Vista() {}
+Vista::~Vista() {
+    
+}

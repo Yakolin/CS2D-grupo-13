@@ -1,17 +1,19 @@
 #ifndef SOUND_MANAGER_H_
 #define SOUND_MANAGER_H_
+#include <map>
 #include <memory>
-#include <vector>
 
 #include "Sound.h"
 class SoundManager {
-    std::vector<Sound> sounds;
+    std::map<Sound, Position> sounds;
 
 public:
     SoundManager() = default;
-    void emit_sound(Sound sound) { sounds.push_back(sound); }
-    std::vector<Sound> get_emited_sounds() {
-        std::vector<Sound> aux = this->sounds;
+    void emit_sound(const Sound& sound, const Position& pos) {
+        sounds.insert(std::make_pair(sound, pos));
+    }
+    std::map<Sound, Position> get_emited_sounds() {
+        std::map<Sound, Position> aux = this->sounds;
         this->sounds.clear();
         return aux;
     };

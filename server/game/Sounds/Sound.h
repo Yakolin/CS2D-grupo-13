@@ -5,9 +5,8 @@ class Sound {
 
 public:
     SoundType sound;
-    Position pos;
     Sound(): sound(SoundType::NONE) {}
-    Sound(SoundType sound, const Position& pos): sound(sound), pos(pos) {}
+    Sound(SoundType sound): sound(sound) {}
     virtual ~Sound() = default;
 };
 #endif  // SOUND_H_

@@ -45,7 +45,7 @@ MapInfo Map::get_map_info() {
     return MapInfo(map_name, bomb_A_info, bomb_B_info, spawn_TT_info, spawn_CT_info,
                    map_info.walls_pos, map_info.boxes_pos);
 }
-void Map::move(player_id_t id, const Position& direction) {
+bool Map::move(player_id_t id, const Position& direction) {
     if (collision_manager.check_movement(id, direction))
         return;
     throw MapException("Can´t found players in the map to move");

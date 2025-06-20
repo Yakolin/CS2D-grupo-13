@@ -7,7 +7,7 @@
 
 class ISoundZone {
 public:
-    virtual void want_emit_sound(const player_id_t& id, SoundType sound) = 0;
+    virtual void want_emit_sound(const player_id_t& id, Sound& sound) = 0;
     virtual ~ISoundZone() = default;
 };
 

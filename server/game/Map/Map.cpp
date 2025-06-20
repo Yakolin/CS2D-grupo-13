@@ -131,7 +131,7 @@ void Map::remove_player([[maybe_unused]] player_id_t id) {
         throw MapException("Player not found in the map to remove");
     players_in_map.erase(id);
 }
-void Map::want_emit_sound(const player_id_t& id, SoundType sound) {
+void Map::want_emit_sound(const player_id_t& id, Sound& sound) {
     Position player_pos = get_position(id);
-    sound_manager.emit_sound(Sound(sound, player_pos));
+    sound_manager.emit_sound(sound, player_pos);
 }

@@ -8,7 +8,7 @@
 #include <vector>
 #include <SDL2/SDL.h>
 #include <yaml-cpp/yaml.h>
-
+#include "../soundConfig.h"
 #include <SDL2/SDL_ttf.h>
 #include <unordered_map>
 class GameConfig {
@@ -22,7 +22,6 @@ private:
     int viewport_height;
     std::string route_font;
     int size_font;
-    SDL_Color blanco;
     TTF_Font* font_menu;
     TTF_Font* font_game;
     TTF_Font* font_hud;

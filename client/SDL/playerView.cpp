@@ -192,11 +192,8 @@ void PlayerView::update_view_angle(const int& mouse_x, const int& mouse_y) {
     int jugador_centro_x = destination_rect.x;
     int jugador_centro_y = destination_rect.y;
 
-    // Ángulo en radianes (hacia el mouse)
     float angulo = std::atan2(mouse_x - jugador_centro_x,
                               -(mouse_y - jugador_centro_y));  // Esto esta bien
-
-    // Convertir a grados
     anglePlayer = angulo * 180.0f / M_PI;
 }
 

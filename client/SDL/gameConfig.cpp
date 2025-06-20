@@ -12,7 +12,6 @@ GameConfig::GameConfig():
     viewport_height(0),
     route_font(),
     size_font(),
-    blanco(),
     font_menu(nullptr),
     font_hud(nullptr)
     {

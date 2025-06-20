@@ -30,12 +30,3 @@ void FieldOfView::draw(SDL_Renderer& renderer) {
     SDL_RenderCopyEx(&renderer, texture_fov, nullptr, &dstRect, angulo, nullptr, SDL_FLIP_NONE);
 }
 
-
-void FieldOfView::actualizarStencil(const int nuevo_ancho, const int nuevo_alto,
-                                    const float apertura) {
-    if (texture_fov)
-        SDL_DestroyTexture(texture_fov);
-
-    texture_fov = manager.create_stencil(nuevo_ancho, nuevo_alto, 0.0f,
-                                         apertura, config.get_intensity());  // ángulo 0, solo para la forma
-}

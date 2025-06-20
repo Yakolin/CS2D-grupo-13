@@ -8,7 +8,7 @@ int Client::run() {
     try {
         if (vista.showLobby()) {
             vista.showGame();
-            vista.showScoreboard();
+          //  vista.showScoreboard();
         }
     } catch (const std::exception& e) {
         std::cerr << "Excepción atrapada: " << e.what() << std::endl;

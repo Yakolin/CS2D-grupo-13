@@ -8,7 +8,7 @@
 #include <stdexcept>
 #include <string>
 #include <vector>
-
+#include "SDL/manageTexture.h"
 #include "../common/game_image.h"
 #include "../common/game_info.h"
 #include "../common/liberror.h"
@@ -35,9 +35,14 @@ private:
     LobbyCommandType opcionElegida;
     Player info_game;
 
+    bool init_game(SDL_Window*& ventana, SDL_Renderer*& renderer,const GameConfig& config);
+
+    void free_components(SDL_Window* ventana, SDL_Renderer* renderer);
+
 public:
     explicit Vista(int& argc, char* argv[]);
     bool showLobby();
+
     void showGame();
     void showScoreboard();
     ~Vista();

@@ -1,15 +1,18 @@
 #include "gameView.h"
+#include <SDL_mixer.h>
+
 int counter2 = 0;
 GameView::GameView(
-        Socket&& skt , const GameInfo& game_info,const Player& info_Player):  
-        config(),
+        Socket&& skt , const GameInfo& game_info,const Player& info_Player,SDL_Window* ventana, SDL_Renderer* renderer, ManageTexture& manger_texture,  GameConfig& config):  
+        config_sound(),
+        config(config),
         controller(std::move(skt)),
         constant_rate_loop([this]() { return this->should_keep_running(); },
                            [this]() { this->step(); }),
-        ventana(init_window(config)),
-        renderer(init_renderer(ventana, config)),
+        ventana(ventana),
+        renderer(renderer),
         camera(config.get_window_width(), config.get_window_height()),
-        manger_texture(renderer),
+        manger_texture(manger_texture),
         player(new PlayerView(11, 4,load_claves(info_Player),200.0f ,&camera, &manger_texture, config)),// !cambiar a 200.0f
         players(),
         snapshot(),
@@ -21,7 +24,9 @@ GameView::GameView(
         bullets(),
         activa(false),
         bomb_activate(false),
-        keep_running(true) {
+        keep_running(true) 
+{
+    config_sound.playMusic(Music::SALA_ESPERA,-1);
 }
 
 
@@ -48,43 +53,6 @@ Skins GameView::load_claves(const Player& info_Player){
     return Skins(toItemCounterTerrorism(info_Player.skin2),toItemTerrorism(info_Player.skin));
 }
 
-
-SDL_Window* GameView::init_window(const GameConfig& config) {
-    SDL_Window* window_game = SDL_CreateWindow(
-            "Mapa", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, config.get_window_width(),
-            config.get_window_height(), SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
-    if (!window_game) {
-        throw std::runtime_error(std::string("Error al crear la window_game: ") + SDL_GetError());
-    }
-    return window_game;
-}
-
-SDL_Renderer* GameView::init_renderer(SDL_Window* window, GameConfig& config) {
-
-    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-    if (!renderer) {
-        throw std::runtime_error(std::string("Error al crear el renderer: ") + SDL_GetError());
-    }
-    SDL_RenderSetLogicalSize(renderer, config.get_viewpost_width(), config.get_viewpost_height());
-    return renderer;
-}
-
-
-bool GameView::init_game() {
-    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
-        throw std::runtime_error(std::string("Error al inicializar SDL: ") + SDL_GetError());
-        return false;
-    }
-
-    if (!(IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG) & (IMG_INIT_PNG | IMG_INIT_JPG))) {
-        throw std::runtime_error(std::string("Error inicializando SDL_image: ") + IMG_GetError());
-        return false;
-    }
-    SDL_Texture* textura = manger_texture.get(Object::FONDO_ESPERA);
-    SDL_RenderCopy(renderer, textura, nullptr, nullptr);
-    SDL_RenderPresent(renderer);
-    return true;
-}
 
 void GameView::reset_values(PlayerView* player, const float& x_pixeles, const float& y_pixeles) {
 
@@ -444,6 +412,8 @@ void GameView::run() {
 void GameView::step() {
     this->process_events();
     if(this->update_game_image()){
+        if(!config_sound.get_state_game()) {config_sound.stopMusic();}
+        config_sound.set_start_game(true);
         this->update_game();
         this->render_game();
     }
@@ -466,14 +436,4 @@ GameView::~GameView() {
         delete fov;
 
     this->manger_texture.clear();
-
-    if (renderer)
-        SDL_DestroyRenderer(renderer);
-
-    if (ventana)
-        SDL_DestroyWindow(ventana);
-
-    TTF_Quit();
-    IMG_Quit();
-    SDL_Quit();
 }

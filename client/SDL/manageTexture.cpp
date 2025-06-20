@@ -56,7 +56,7 @@ ManageTexture::ManageTexture(SDL_Renderer* renderer): renderer(renderer) {
     load(Object::BOMB, "assets/gfx/weapons/bomb.png");
     load(Object::TIMER_BOMB, "assets/gfx/icon/bomba.png");
     load(Object::MONEY, "assets/gfx/icon/money.png");
-    load(Object::MUERTE, "assets/gfx/icon/muerte.png");
+    load(Object::MUERTE, "assets/gfx/icon/sangre.png");
     load(Object::TIENDA, "assets/gfx/icon/tienda.png");
     load(Object::TIMER, "assets/gfx/icon/timer.png");
     load(Object::VIDA, "assets/gfx/icon/vida.png");
@@ -224,7 +224,7 @@ SDL_Texture* ManageTexture::render_menu_texture(
 }
 
 void ManageTexture::load(const Object& id, const std::string& filePath) {
-    std::cout << "[LOAD TEXTURE] Intentando cargar: " << filePath << std::endl;
+    //std::cout << "[LOAD TEXTURE] Intentando cargar: " << filePath << std::endl;
 
     SDL_Surface* surface = IMG_Load(filePath.c_str());
     if (!surface) {
@@ -240,7 +240,7 @@ void ManageTexture::load(const Object& id, const std::string& filePath) {
         throw std::runtime_error("Error creando textura: " + std::string(SDL_GetError()));
     }
     textures[id] = texture;
-    std::cout << "[LOAD TEXTURE] Textura cargada con éxito: " << filePath << std::endl;
+    ////std::cout << "[LOAD TEXTURE] Textura cargada con éxito: " << filePath << std::endl;
 }
 
 void ManageTexture::load_skins_tt(const TerroristSkin& id, const std::string& filePath) {
@@ -275,25 +275,25 @@ void ManageTexture::load_skins_ct(const CounterTerroristSkin& id, const std::str
 
 SDL_Texture* ManageTexture::get_texture_ct(const CounterTerroristSkin& id) const {
 
-    std::cout << "[DEBUG] Buscando textura CT para id: " << static_cast<int>(id) << std::endl;
+   // std::cout << "[DEBUG] Buscando textura CT para id: " << static_cast<int>(id) << std::endl;
     auto it = texture_skin_ct.find(id);
     if (it != texture_skin_ct.end()) {
         std::cout << "[DEBUG] Textura encontrada para CT id: " << static_cast<int>(id) << std::endl;
         return it->second;
     }
-    std::cerr << "[ERROR] No se encontró textura para CT id: " << static_cast<int>(id) << std::endl;
+   // std::cerr << "[ERROR] No se encontró textura para CT id: " << static_cast<int>(id) << std::endl;
     return nullptr;
 }
 
 SDL_Texture* ManageTexture::get_texture_tt(const TerroristSkin& id) const {
 
-    std::cout << "[DEBUG] Buscando textura TT para id: " << static_cast<int>(id) << std::endl;
+   // std::cout << "[DEBUG] Buscando textura TT para id: " << static_cast<int>(id) << std::endl;
     auto it = texture_skin_tt.find(id);
     if (it != texture_skin_tt.end()) {
         std::cout << "[DEBUG] Textura encontrada para TT id: " << static_cast<int>(id) << std::endl;
         return it->second;
     }
-    std::cerr << "[ERROR] No se encontró textura para TT id: " << static_cast<int>(id) << std::endl;
+   // std::cerr << "[ERROR] No se encontró textura para TT id: " << static_cast<int>(id) << std::endl;
     return nullptr;
 }
 

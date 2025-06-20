@@ -265,7 +265,17 @@ void ServerProtocol::send_weapons(const PlayerImage& player_image) {
         this->send_byte_data(inventory_bullets);
     }
 }
-
+void ServerProtocol::send_sounds(const PlayerImage& player_image) {
+    length_heared_sounds_t length_sounds = player_image.heared_sounds.size();
+    std::vector<SoundImage> sounds_images = player_image.heared_sounds;
+    this->send_byte_data(length_sounds);
+    for (const SoundImage& sound_image: sounds_images) {
+        sound_type_t type = static_cast<sound_type_t>(sound_image.type);
+        this->send_byte_data(type);
+        distance_sound_t distance = sound_image.distance;
+        this->send_two_byte_data(distance);
+    }
+}
 void ServerProtocol::send_players_images(std::vector<PlayerImage>& players_images) {
     length_players_images_t length_players = players_images.size();
     this->send_two_byte_data(length_players);
@@ -289,6 +299,8 @@ void ServerProtocol::send_players_images(std::vector<PlayerImage>& players_image
         this->send_byte_data(equipped_weapon_code);
 
         this->send_weapons(player_image);
+
+        this->send_sounds(player_image);
 
         team_t team = static_cast<team_t>(player_image.team);
         this->send_byte_data(team);

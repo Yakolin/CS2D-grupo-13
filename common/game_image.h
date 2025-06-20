@@ -41,10 +41,9 @@ enum class SoundType { SHOOT, WALK, RELOAD, HIT, CHANGE_WEAPON, DROP, DIE, PICK_
 enum class Team { CT, TT };
 enum class BombState { EQUIPED, DROPPED, ACTIVATED, DESACTIVATED, EXPLOTED };
 class SoundImage {
+public:
     SoundType type = SoundType::NONE;
     distance_sound_t distance = 0;
-
-public:
     SoundImage() = default;
     SoundImage(SoundType type, distance_sound_t distance): type(type), distance(distance) {}
 };

@@ -47,7 +47,7 @@ private:
     void send_position(const Position& position);
 
     void send_weapons(const PlayerImage& player_image);
-
+    void send_sounds(const PlayerImage& player_image);
     void send_client_id(player_id_t& player_id);
     void send_players_images(std::vector<PlayerImage>& players_images);
     void send_bullets_in_air(std::vector<BulletImage>& bullets_in_image);

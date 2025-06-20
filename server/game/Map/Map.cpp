@@ -45,7 +45,7 @@ MapInfo Map::get_map_info() {
     return MapInfo(map_name, bomb_A_info, bomb_B_info, spawn_TT_info, spawn_CT_info,
                    map_info.walls_pos, map_info.boxes_pos);
 }
-void Map::move(player_id_t id, const Position& direction) {
+bool Map::move(player_id_t id, const Position& direction) {
     if (collision_manager.check_movement(id, direction))
         return;
     throw MapException("Can´t found players in the map to move");
@@ -130,4 +130,8 @@ void Map::remove_player([[maybe_unused]] player_id_t id) {
     if (players_in_map.find(id) == players_in_map.end())
         throw MapException("Player not found in the map to remove");
     players_in_map.erase(id);
+}
+void Map::want_emit_sound(const player_id_t& id, SoundType sound) {
+    Position player_pos = get_position(id);
+    sound_manager.emit_sound(Sound(sound, player_pos));
 }

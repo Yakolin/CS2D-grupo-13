@@ -17,10 +17,11 @@
 #include "CollisionManager.h"
 #include "IDroppableZone.h"
 #include "IGameZone.h"
+#include "ISoundZone.h"
 #include "ISpawneableZone.h"
 #include "MapConfig.h"
 #include "MapExeption.h"
-class Map: public IGameZone, public ISpawneableZone, public IDroppableZone {
+class Map: public IGameZone, public ISpawneableZone, public IDroppableZone, public ISoundZone {
 private:
     MapName map_name;
     MapConfig map_config;
@@ -43,7 +44,7 @@ public:
             map_config(map_name),
             bomb(std::make_pair(Position(10, 10), bomb_ptr)),
             sound_manager(sound_manager),
-            collision_manager(collision_pos, players_in_map, bomb, sound_manager) {
+            collision_manager(collision_pos, players_in_map, bomb) {
         charge_map();
     }
     void update_map_state();
@@ -59,10 +60,11 @@ public:
     }
     BombImage get_bomb_image() { return BombImage(bomb.first, bomb.second->get_state()); }
     virtual void defuse_bomb(const player_id_t& player_id) override;
-    void move(player_id_t id, const Position& direction) override;
+    bool move(player_id_t id, const Position& direction) override;
     void spawn_random_weapons(const std::vector<std::shared_ptr<IInteractuable>>& weapons);
     void spawn_collider(player_id_t id_spawn, collider_solicitude_t& wanted) override;
     void drop(const player_id_t& player_id, std::shared_ptr<IInteractuable>& droppable) override;
+    virtual void want_emit_sound(const player_id_t& id, SoundType sound) override;
     virtual bool plant_bomb(const player_id_t& id_spawn) override;
 };
 

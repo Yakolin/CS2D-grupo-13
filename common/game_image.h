@@ -8,10 +8,10 @@
 
 #include "game_info.h"
 #include "player_command_types.h"
+#include "sound_image.h"
 #include "utility.h"
 
 using coordinate_t = std::uint16_t;
-using distance_sound_t = std::uint16_t;
 using health_t = std::uint8_t;
 using deaths_t = std::uint8_t;
 using points_t = std::uint16_t;
@@ -38,16 +38,9 @@ enum class GameState {
     TT_WIN_GAME,
     CT_WIN_GAME
 };
-enum class SoundType { SHOOT, WALK, RELOAD, HIT, CHANGE_WEAPON, DROP, DIE, PICK_UP, NONE };
 enum class Team { CT, TT };
 enum class BombState { EQUIPED, DROPPED, ACTIVATED, DESACTIVATED, EXPLOTED };
-class SoundImage {
-public:
-    SoundType type = SoundType::NONE;
-    distance_sound_t distance = 0;
-    SoundImage() = default;
-    SoundImage(SoundType type, distance_sound_t distance): type(type), distance(distance) {}
-};
+
 class BulletImage {
 public:
     Position initial;
@@ -98,7 +91,7 @@ public:
     money_t money;
     WeaponCode equipped_weapon;
     std::vector<WeaponImage> weapons;
-    std::vector<SoundImage> heared_sounds;
+    SoundImage heared_sounds;
     Team team;
     Position mouse_position;
     Skins skin;
@@ -106,7 +99,7 @@ public:
                 const int& deaths, const int& points, const money_t money,
                 const WeaponCode equipped_weapon, std::vector<WeaponImage>&& weapons,
                 const Team& team, const Position& mouse_position, const Skins& skin,
-                const std::vector<SoundImage>&& heared_sounds):
+                SoundImage&& heared_sounds):
             player_id(player_id),
             position(position),
             health(health),
@@ -115,7 +108,7 @@ public:
             money(money),
             equipped_weapon(equipped_weapon),
             weapons(std::move(weapons)),
-            heared_sounds(heared_sounds),
+            heared_sounds(std::move(heared_sounds)),
             team(team),
             mouse_position(mouse_position),
             skin(skin) {}

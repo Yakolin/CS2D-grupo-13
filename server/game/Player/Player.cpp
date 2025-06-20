@@ -6,12 +6,10 @@ void Player::damage(uint8_t damage) {
         health = 0;
     else
         health -= damage;
-    std::shared_ptr<Sound> sound = std::make_shared<Sound>(SoundType::HIT);
-    sound_zone.want_emit_sound(id, sound);
+    sound_zone.want_emit_sound(id, std::make_shared<Sound>(SoundType::HIT));
     if (is_dead()) {
         equipment.drop_all();
-        std::shared_ptr<Sound> sound = std::make_shared<Sound>(SoundType::DIE);
-        sound_zone.want_emit_sound(id, sound);
+        sound_zone.want_emit_sound(id, std::make_shared<Sound>(SoundType::DIE));
     }
 }
 bool Player::is_dead() { return health == 0; }
@@ -41,8 +39,7 @@ void Player::move(const MoveType& move_type) {
             break;
     }
     if (game_zone.move(id, pos)) {
-        std::shared_ptr<Sound> sound = std::make_shared<Sound>(SoundType::WALK);
-        sound_zone.want_emit_sound(id, sound);
+        sound_zone.want_emit_sound(id, std::make_shared<Sound>(SoundType::WALK));
     }
 }
 

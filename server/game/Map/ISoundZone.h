@@ -8,7 +8,7 @@
 #include "../Sounds/Sound.h"
 class ISoundZone {
 public:
-    virtual void want_emit_sound(const player_id_t& id, std::shared_ptr<Sound>& sound) = 0;
+    virtual void want_emit_sound(const player_id_t& id, std::shared_ptr<Sound> sound) = 0;
     virtual ~ISoundZone() = default;
 };
 

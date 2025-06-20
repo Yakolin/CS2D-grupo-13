@@ -11,7 +11,7 @@ class SoundManager {
 
 public:
     SoundManager() = default;
-    void emit_sound(std::shared_ptr<Sound>& sound, const Position& pos) {
+    void emit_sound(std::shared_ptr<Sound> sound, const Position& pos) {
         sounds.push_back(std::make_pair(std::move(sound), pos));
     }
     std::vector<std::pair<std::shared_ptr<Sound>, Position>> get_emited_sounds() {

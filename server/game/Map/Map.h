@@ -64,7 +64,7 @@ public:
     void spawn_random_weapons(const std::vector<std::shared_ptr<IInteractuable>>& weapons);
     void spawn_collider(player_id_t id_spawn, collider_solicitude_t& wanted) override;
     void drop(const player_id_t& player_id, std::shared_ptr<IInteractuable>& droppable) override;
-    virtual void want_emit_sound(const player_id_t& id, std::shared_ptr<Sound>& sound) override;
+    virtual void want_emit_sound(const player_id_t& id, std::shared_ptr<Sound> sound) override;
     virtual bool plant_bomb(const player_id_t& id_spawn) override;
 };
 

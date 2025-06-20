@@ -47,7 +47,7 @@ MapInfo Map::get_map_info() {
 }
 bool Map::move(player_id_t id, const Position& direction) {
     if (collision_manager.check_movement(id, direction))
-        return;
+        return true;
     throw MapException("Can´t found players in the map to move");
 }
 

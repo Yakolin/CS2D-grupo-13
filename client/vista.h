@@ -8,7 +8,7 @@
 #include <stdexcept>
 #include <string>
 #include <vector>
-#include "SDL/manageTexture.h"
+
 #include "../common/game_image.h"
 #include "../common/game_info.h"
 #include "../common/liberror.h"
@@ -17,6 +17,7 @@
 #include "Qt/menuView.h"
 #include "Qt/scoreBoard.h"
 #include "SDL/gameView.h"
+#include "SDL/manageTexture.h"
 #include "SDL/mapView.h"
 #include "SDL/quit_game_exception.h"
 #include "model/protocol.h"
@@ -35,7 +36,7 @@ private:
     LobbyCommandType opcionElegida;
     Player info_game;
 
-    bool init_game(SDL_Window*& ventana, SDL_Renderer*& renderer,const GameConfig& config);
+    bool init_game(SDL_Window*& ventana, SDL_Renderer*& renderer, const GameConfig& config);
 
     void free_components(SDL_Window* ventana, SDL_Renderer* renderer);
 
@@ -44,8 +45,9 @@ public:
     bool showLobby();
 
     std::map<player_id_t, InfoPlayer> showGame();
-    
+
     void showScoreboard(const std::map<player_id_t, InfoPlayer>& table);
+
     ~Vista();
 
 private:

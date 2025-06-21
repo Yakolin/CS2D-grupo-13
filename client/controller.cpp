@@ -2,8 +2,8 @@
 
 #define MAX_QUEUE_SIZE 100000
 
-Controller::Controller(Socket&& skt):
-        skt(std::move(skt)),
+Controller::Controller(Socket& skt):
+        skt(skt),
         send_queue(std::make_shared<Queue<std::unique_ptr<InterfaceClientAction>>>(MAX_QUEUE_SIZE)),
         recv_queue(std::make_shared<Queue<GameImage>>(MAX_QUEUE_SIZE)),
         sender(this->skt, this->send_queue),
@@ -98,8 +98,6 @@ void Controller::start() {
 void Controller::stop() {
     this->receiver.stop();
     this->sender.stop();
-    this->skt.shutdown(2);
-    this->skt.close();
     this->receiver.join();
     this->sender.join();
 }

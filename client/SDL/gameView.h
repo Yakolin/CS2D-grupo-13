@@ -68,8 +68,6 @@ private:
     int press_start_x, press_start_y;
     bool blocking_mouse_motion;
 
-    std::map<player_id_t, InfoPlayer> get_info_players_map();
-
 
     void handle_equip_type(const SDL_Keycode& tecla);
 
@@ -115,7 +113,7 @@ private:
     Skins load_claves(const Player& info_Player);
 
 public:
-    explicit GameView(Socket&& skt, const GameInfo& game_info, const Player& info_game,
+    explicit GameView(Socket& skt, const GameInfo& game_info, const Player& info_game,
                       SDL_Window* ventana, SDL_Renderer* renderer, ManageTexture& manger_texture,
                       GameConfig& config);
 
@@ -125,10 +123,11 @@ public:
     */
     void start(const GameInfo& info_game_view);
 
-    std::map<player_id_t, InfoPlayer> run();
+    void run();
 
     void reset_values(PlayerView* player, const float& x_pixeles, const float& y_pixeles);
 
+    std::map<player_id_t, InfoPlayer> get_info_players_map();
 
     ~GameView();
 };

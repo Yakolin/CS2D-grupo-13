@@ -5,12 +5,12 @@
 
 int counter2 = 0;
 
-GameView::GameView(Socket&& skt, const GameInfo& game_info, const Player& info_Player,
+GameView::GameView(Socket& skt, const GameInfo& game_info, const Player& info_Player,
                    SDL_Window* ventana, SDL_Renderer* renderer, ManageTexture& manger_texture,
                    GameConfig& config):
         config_sound(),
         config(config),
-        controller(std::move(skt)),
+        controller(skt),
         constant_rate_loop([this]() { return this->should_keep_running(); },
                            [this]() { this->step(); }),
         ventana(ventana),
@@ -149,15 +149,15 @@ void GameView::update_bullets_snapshot() {
     }
 }
 
-void GameView::update_sounds(const PlayerImage& player){
+void GameView::update_sounds(const PlayerImage& player) {
 
-    for (const auto& sound : player.heared_sounds.common_sounds) {
-        Uint16 angle = 0;  
+    for (const auto& sound: player.heared_sounds.common_sounds) {
+        Uint16 angle = 0;
         Uint8 distance = static_cast<Uint8>(sound.distance);
         config_sound.play_effect_with_position(sound.type, angle, distance);
     }
 
-    for (const auto& shoot_sound : player.heared_sounds.shoot_sounds) {
+    for (const auto& shoot_sound: player.heared_sounds.shoot_sounds) {
         Uint16 angle = 0;
         Uint8 distance = static_cast<Uint8>(shoot_sound.distance);
         config_sound.play_shoot_with_position(shoot_sound.code, angle, distance);
@@ -360,6 +360,10 @@ void GameView::handle_events(const SDL_Event& event) {
             this->keep_running = false;
             throw QuitGameException("Juego cerrado por el usuario");
         }
+        if (this->snapshot.game_state.state == GameState::GAME_ENDED) {
+            this->controller.stop();
+            this->keep_running = false;
+        }
         if (event.type == SDL_KEYDOWN) {
             SDL_Keycode tecla = event.key.keysym.sym;
             handle_key_down(tecla);
@@ -372,8 +376,8 @@ void GameView::handle_events(const SDL_Event& event) {
             if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
                 update_window();
                 this->map->update_map_dimensions();
-               // printf("Nuevo mapa width: %d, height: %d\n", map->getMapWidth(),
-                       map->getMapHeight();
+                // printf("Nuevo mapa width: %d, height: %d\n", map->getMapWidth(),
+                map->getMapHeight();
             }
         }
         if (event.type == SDL_MOUSEMOTION && !this->blocking_mouse_motion) {
@@ -496,14 +500,14 @@ bool GameView::update_game_image() {
 bool GameView::should_keep_running() { return this->keep_running; }
 
 std::map<player_id_t, InfoPlayer> GameView::get_info_players_map() {
-    
+
     std::map<player_id_t, InfoPlayer> info_map;
-    for (const auto& player : snapshot.players_images) {
+    for (const auto& player: snapshot.players_images) {
         InfoPlayer info;
         info.team = (player.team == Team::CT) ? "CT" : "TT";
         info.puntos = player.points;
         info.deaths = player.deaths;
-        info.kills = player.points + player.deaths; 
+        info.kills = player.points + player.deaths;
         info.collected_money = player.money;
         info_map[player.player_id] = info;
     }
@@ -511,11 +515,9 @@ std::map<player_id_t, InfoPlayer> GameView::get_info_players_map() {
     return info_map;
 }
 
-std::map<player_id_t, InfoPlayer> GameView::run() {
+void GameView::run() {
     this->controller.start();
     this->constant_rate_loop.execute();
-    std::cout << "[DEBUG] snapshot.players_images.size(): " << snapshot.players_images.size() << "\n";
-    return get_info_players_map();
 }
 
 void GameView::step() {

@@ -1,4 +1,3 @@
-#include <iomanip>
 #include "vista.h"
 
 #include <QApplication>
@@ -7,6 +6,7 @@
 #include <QStackedWidget>
 #include <QTabWidget>
 #include <QVBoxLayout>
+#include <iomanip>
 
 Vista::Vista(int& argc, char* argv[]):
         argc(argc),
@@ -17,23 +17,32 @@ Vista::Vista(int& argc, char* argv[]):
         info_game() {}
 
 void imprimir_game_info(const GameInfo& game_info) {
-    
+
     auto to_string_map = [](MapName map) -> const char* {
         switch (map) {
-            case MapName::DESIERTO: return "Desierto";
-            case MapName::PUEBLITO_AZTECA: return "Pueblito Azteca";
-            case MapName::ZONA_ENTRENAMIENTO: return "Zona de Entrenamiento";
-            default: return "Desconocido";
+            case MapName::DESIERTO:
+                return "Desierto";
+            case MapName::PUEBLITO_AZTECA:
+                return "Pueblito Azteca";
+            case MapName::ZONA_ENTRENAMIENTO:
+                return "Zona de Entrenamiento";
+            default:
+                return "Desconocido";
         }
     };
 
     auto to_string_weapon = [](WeaponCode code) -> const char* {
         switch (code) {
-            case WeaponCode::KNIFE: return "Cuchillo";
-            case WeaponCode::GLOCK: return "Pistola";
-            case WeaponCode::AWP : return "Rifle";
-            case WeaponCode::AK47 : return "Francotirador";
-            default: return "Desconocida";
+            case WeaponCode::KNIFE:
+                return "Cuchillo";
+            case WeaponCode::GLOCK:
+                return "Pistola";
+            case WeaponCode::AWP:
+                return "Rifle";
+            case WeaponCode::AK47:
+                return "Francotirador";
+            default:
+                return "Desconocida";
         }
     };
 
@@ -46,24 +55,23 @@ void imprimir_game_info(const GameInfo& game_info) {
     std::cout << "==== INFORMACIÓN DEL JUEGO ====" << std::endl;
     std::cout << "Mapa: " << to_string_map(mapa.map_name) << std::endl;
 
-    std::cout << "Zona Bomba A: " << to_string_pos(mapa.bomb_A.pos_min)
-              << " hasta " << to_string_pos(mapa.bomb_A.pos_max) << std::endl;
+    std::cout << "Zona Bomba A: " << to_string_pos(mapa.bomb_A.pos_min) << " hasta "
+              << to_string_pos(mapa.bomb_A.pos_max) << std::endl;
 
-    std::cout << "Zona Bomba B: " << to_string_pos(mapa.bomb_B.pos_min)
-              << " hasta " << to_string_pos(mapa.bomb_B.pos_max) << std::endl;
+    std::cout << "Zona Bomba B: " << to_string_pos(mapa.bomb_B.pos_min) << " hasta "
+              << to_string_pos(mapa.bomb_B.pos_max) << std::endl;
 
-    std::cout << "Spawn Terrorista: " << to_string_pos(mapa.spawn_TT.pos_min)
-              << " hasta " << to_string_pos(mapa.spawn_TT.pos_max) << std::endl;
+    std::cout << "Spawn Terrorista: " << to_string_pos(mapa.spawn_TT.pos_min) << " hasta "
+              << to_string_pos(mapa.spawn_TT.pos_max) << std::endl;
 
-    std::cout << "Spawn Antiterrorista: " << to_string_pos(mapa.spawn_CT.pos_min)
-              << " hasta " << to_string_pos(mapa.spawn_CT.pos_max) << std::endl;
+    std::cout << "Spawn Antiterrorista: " << to_string_pos(mapa.spawn_CT.pos_min) << " hasta "
+              << to_string_pos(mapa.spawn_CT.pos_max) << std::endl;
 
     std::cout << "Paredes (" << mapa.walls.size() << "):" << std::endl;
-    for (const auto& pos : mapa.walls)
-        std::cout << " - " << to_string_pos(pos) << std::endl;
+    for (const auto& pos: mapa.walls) std::cout << " - " << to_string_pos(pos) << std::endl;
 
     std::cout << "Armas comprables (" << game_info.weapons_purchasables.size() << "):" << std::endl;
-    for (const auto& arma : game_info.weapons_purchasables)
+    for (const auto& arma: game_info.weapons_purchasables)
         std::cout << " - " << to_string_weapon(arma.code) << ": $" << arma.price << std::endl;
 
     std::cout << "================================" << std::endl;
@@ -72,11 +80,11 @@ void imprimir_game_info(const GameInfo& game_info) {
 void dibujar_mapa(const MapInfo& mapa, int ancho, int alto) {
     std::vector<std::string> grid(alto, std::string(ancho, '.'));
 
-    for (const auto& wall : mapa.walls) {
+    for (const auto& wall: mapa.walls) {
         grid[wall.y][wall.x] = '#';
     }
 
-    for (const auto& box : mapa.boxes) {
+    for (const auto& box: mapa.boxes) {
         grid[box.y][box.x] = 'B';
     }
 
@@ -105,13 +113,13 @@ void dibujar_mapa(const MapInfo& mapa, int ancho, int alto) {
     }
 
     // Imprimir
-    for (const auto& fila : grid) {
+    for (const auto& fila: grid) {
         std::cout << fila << '\n';
     }
 }
 
 
-bool Vista::showLobby(){
+bool Vista::showLobby() {
     QApplication app(argc, argv);
     MenuView menu(nullptr, protocolo);
     menu.show();
@@ -132,18 +140,16 @@ bool Vista::showLobby(){
 }
 
 
+bool Vista::init_game(SDL_Window*& ventana, SDL_Renderer*& renderer, const GameConfig& config) {
 
-
-bool Vista::init_game( SDL_Window*& ventana, SDL_Renderer*& renderer, const GameConfig& config) {
-    
     if (SDL_Init(SDL_INIT_VIDEO) != 0) {
         throw std::runtime_error(std::string("Error al inicializar SDL: ") + SDL_GetError());
         return false;
     }
 
-    ventana = SDL_CreateWindow(
-            "Mapa", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, config.get_window_width(),
-            config.get_window_height(), SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+    ventana = SDL_CreateWindow("Mapa", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+                               config.get_window_width(), config.get_window_height(),
+                               SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
     if (!ventana) {
         throw std::runtime_error(std::string("Error al crear la ventana: ") + SDL_GetError());
     }
@@ -167,7 +173,7 @@ bool Vista::init_game( SDL_Window*& ventana, SDL_Renderer*& renderer, const Game
 }
 
 
-void Vista::free_components( SDL_Window* ventana, SDL_Renderer* renderer){
+void Vista::free_components(SDL_Window* ventana, SDL_Renderer* renderer) {
     if (renderer)
         SDL_DestroyRenderer(renderer);
 
@@ -179,18 +185,18 @@ void Vista::free_components( SDL_Window* ventana, SDL_Renderer* renderer){
     SDL_Quit();
 }
 
-std::map<player_id_t, InfoPlayer> Vista::showGame(){
+std::map<player_id_t, InfoPlayer> Vista::showGame() {
 
     GameInfo info_game_view = protocolo.read_game_info();
     std::cout << "Mapa bx: " << info_game_view.map_info.boxes.size() << std::endl;
 
-    //dibujar_mapa(info_game_view.map_info,40,40);
+    // dibujar_mapa(info_game_view.map_info,40,40);
     Acknowledge ack = Acknowledge::READY;
-    protocolo.send_acknowledge(ack); 
+    protocolo.send_acknowledge(ack);
     SDL_Window* ventana = nullptr;
     SDL_Renderer* renderer = nullptr;
     GameConfig config;
-    if( !init_game(ventana,renderer,config))
+    if (!init_game(ventana, renderer, config))
         throw std::runtime_error(std::string("Error a inicializar game"));
 
     ManageTexture manger_texture(renderer);
@@ -198,32 +204,40 @@ std::map<player_id_t, InfoPlayer> Vista::showGame(){
     SDL_RenderCopy(renderer, textura, nullptr, nullptr);
     SDL_RenderPresent(renderer);
     std::map<player_id_t, InfoPlayer> table;
-    try {   
-        GameView gameView(std::move(skt), info_game_view, info_game, ventana, renderer,manger_texture,config);
-        table = gameView.run();
-    } catch (const QuitGameException& e) {  
-        free_components(ventana,renderer);       
+    GameView gameView(skt, info_game_view, info_game, ventana, renderer, manger_texture, config);
+    try {
+        gameView.run();
+    } catch (const QuitGameException& e) {
+        table = gameView.get_info_players_map();
+        free_components(ventana, renderer);
     } catch (const std::exception& e) {
         std::cerr << "Excepción atrapada en vista: " << e.what() << std::endl;
-        free_components(ventana,renderer);
+        free_components(ventana, renderer);
     } catch (...) {
         std::cerr << "Excepción desconocida en vista " << std::endl;
-        free_components(ventana,renderer);
+        free_components(ventana, renderer);
     }
-    //imprimir_tabla_jugadores(table);
+    // imprimir_tabla_jugadores(table);
     return table;
 }
 
-void Vista::showScoreboard(const std::map<player_id_t, InfoPlayer>& table ){
-
+void Vista::showScoreboard(const std::map<player_id_t, InfoPlayer>& table) {
     QApplication app(argc, argv);
     ScoreBoard score(table);
-    score.show_scores_game();
-    app.exec();
 
+    QMessageBox msgBox;
+    msgBox.setWindowTitle("Título");
+    msgBox.setText("¿Querés continuar?");
+    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    msgBox.setDefaultButton(QMessageBox::Yes);
+    int ret = msgBox.exec();
+    if (ret == QMessageBox::Yes) {
+        score.show_scores_game();
+        app.exec();
+    }
 }
 
-
 Vista::~Vista() {
-    
+    this->skt.shutdown(2);
+    this->skt.close();
 }

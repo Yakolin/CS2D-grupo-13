@@ -24,7 +24,7 @@
 
 class Controller {
 private:
-    Socket skt;
+    Socket& skt;
     std::shared_ptr<Queue<std::unique_ptr<InterfaceClientAction>>> send_queue;
     std::shared_ptr<Queue<GameImage>> recv_queue;
     Sender sender;
@@ -32,7 +32,7 @@ private:
 
 
 public:
-    explicit Controller(Socket&& skt);
+    explicit Controller(Socket& skt);
 
     /*
     pre:

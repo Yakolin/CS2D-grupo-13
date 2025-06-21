@@ -63,8 +63,14 @@ HUD::HUD(GameConfig& config, ManageTexture& manager, const InfoGame& info_game):
 
     load_state_win();
 }
+/*
+void HUD::load(const TextView& key_text,const Object& key_texture, const int& x, const int& y){
 
+    SDL_Texture* icono = texture_manager.get(key_texture);
+    load_text(key_text,x, y, icono);
+}
 
+*/
 void HUD::load_state_win() {
 
     TTF_Font* font = config.get_font_game();

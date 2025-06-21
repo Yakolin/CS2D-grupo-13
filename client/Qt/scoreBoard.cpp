@@ -10,17 +10,7 @@
 #include <QtCharts/qchartview.h>
 
 
-ScoreBoard::ScoreBoard(): scores() {
-    scores[1] = {"player1", "CT", 10, 2, 100, 100};
-    scores[2] = {"player2", "TT", 5, 1, 50, 90};
-    scores[3] = {"player3", "CT", 8, 3, 80, 75};
-    scores[4] = {"player4", "TT", 12, 4, 120, 60};
-    scores[5] = {"player5", "CT", 7, 2, 90, 80};
-    scores[6] = {"player6", "TT", 6, 3, 60, 85};
-    scores[7] = {"player7", "CT", 9, 1, 110, 95};
-    scores[8] = {"player8", "TT", 4, 2, 40, 70};
-    scores[9] = {"player9", "CT", 11, 5, 130, 88};
-    scores[10] = {"player10", "TT", 3, 0, 30, 65};
+ScoreBoard::ScoreBoard(const std::map<player_id_t, InfoPlayer>& table): scores(table) {
 }
 
 void ScoreBoard::add_table(QGridLayout* layout, const int& fil, const int& col) {
@@ -30,7 +20,7 @@ void ScoreBoard::add_table(QGridLayout* layout, const int& fil, const int& col) 
     int fila = 0;
     for (const auto& [id, summary]: scores) {
         table->setItem(fila, 0, new QTableWidgetItem(QString::number(id)));
-        table->setItem(fila, 1, new QTableWidgetItem(QString::fromStdString(summary.name_player)));
+        //table->setItem(fila, 1, new QTableWidgetItem(QString::fromStdString(summary.name_player)));
         table->setItem(fila, 2, new QTableWidgetItem(QString::number(summary.puntos)));
         table->setItem(fila, 3, new QTableWidgetItem(QString::number(summary.deaths)));
         fila++;
@@ -88,7 +78,7 @@ void ScoreBoard::add_filtered_tables(QGridLayout* layout) {
     QTableWidget* ct_table = new QTableWidget(0, 4);
     QTableWidget* tt_table = new QTableWidget(0, 4);
 
-    QStringList headers = {"Player ID", "Name", "Points", "Deaths"};
+    QStringList headers = {"Player ID", "Points", "Deaths"};
     ct_table->setHorizontalHeaderLabels(headers);
     tt_table->setHorizontalHeaderLabels(headers);
 
@@ -108,8 +98,7 @@ void ScoreBoard::add_filtered_tables(QGridLayout* layout) {
         if (table) {
             int row = table->rowCount() - 1;
             table->setItem(row, 0, new QTableWidgetItem(QString::number(id)));
-            table->setItem(row, 1,
-                           new QTableWidgetItem(QString::fromStdString(summary.name_player)));
+          //  table->setItem(row, 1,new QTableWidgetItem(QString::fromStdString(summary.name_player)));
             table->setItem(row, 2, new QTableWidgetItem(QString::number(summary.puntos)));
             table->setItem(row, 3, new QTableWidgetItem(QString::number(summary.deaths)));
         }

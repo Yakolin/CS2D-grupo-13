@@ -1,3 +1,4 @@
+#include <iomanip>
 #include "vista.h"
 
 #include <QApplication>
@@ -132,6 +133,7 @@ bool Vista::showLobby(){
 
 
 
+
 bool Vista::init_game( SDL_Window*& ventana, SDL_Renderer*& renderer, const GameConfig& config) {
     
     if (SDL_Init(SDL_INIT_VIDEO) != 0) {
@@ -177,7 +179,7 @@ void Vista::free_components( SDL_Window* ventana, SDL_Renderer* renderer){
     SDL_Quit();
 }
 
-void Vista::showGame(){
+std::map<player_id_t, InfoPlayer> Vista::showGame(){
 
     GameInfo info_game_view = protocolo.read_game_info();
     std::cout << "Mapa bx: " << info_game_view.map_info.boxes.size() << std::endl;
@@ -195,10 +197,10 @@ void Vista::showGame(){
     SDL_Texture* textura = manger_texture.get(Object::FONDO_ESPERA);
     SDL_RenderCopy(renderer, textura, nullptr, nullptr);
     SDL_RenderPresent(renderer);
-
+    std::map<player_id_t, InfoPlayer> table;
     try {   
         GameView gameView(std::move(skt), info_game_view, info_game, ventana, renderer,manger_texture,config);
-        gameView.run();
+        table = gameView.run();
     } catch (const QuitGameException& e) {  
         free_components(ventana,renderer);       
     } catch (const std::exception& e) {
@@ -208,12 +210,14 @@ void Vista::showGame(){
         std::cerr << "Excepción desconocida en vista " << std::endl;
         free_components(ventana,renderer);
     }
+    //imprimir_tabla_jugadores(table);
+    return table;
 }
 
-void Vista::showScoreboard(){
+void Vista::showScoreboard(const std::map<player_id_t, InfoPlayer>& table ){
 
     QApplication app(argc, argv);
-    ScoreBoard score;
+    ScoreBoard score(table);
     score.show_scores_game();
     app.exec();
 

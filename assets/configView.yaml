@@ -6,10 +6,6 @@ camera:
   viewport_logical_width: 700
   viewport_logical_height: 500
 
-fuente:
-  route_font_menu: "assets/gfx/fonts/cs_regular.ttf"
-  size_fuente: 10
-
 fov:
   intensity: 128
 

@@ -11,9 +11,9 @@ effect:
   PICK_UP: assets/sfx/items/pickup.wav
 
 shoot:
-    GLOCK: assets/sfx/weapons/glock18.wav
-    AK47: assets/sfx/weapons/ak47.wav
-    M3: assets/sfx/weapons/m3.wav
-    AWP: assets/sfx/weapons/awp.wav
-    KNIFE: assets/sfx/weapons/knife_slash.wav
-    BOMB: assets/sfx/weapons/c4_explode.wav
+  GLOCK: assets/sfx/weapons/glock18.wav
+  AK47: assets/sfx/weapons/ak47.wav
+  M3: assets/sfx/weapons/m3.wav
+  AWP: assets/sfx/weapons/awp.wav
+  KNIFE: assets/sfx/weapons/knife_slash.wav
+  BOMB: assets/sfx/weapons/c4_explode.wav

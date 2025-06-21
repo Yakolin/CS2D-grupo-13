@@ -43,8 +43,9 @@ public:
     explicit Vista(int& argc, char* argv[]);
     bool showLobby();
 
-    void showGame();
-    void showScoreboard();
+    std::map<player_id_t, InfoPlayer> showGame();
+    
+    void showScoreboard(const std::map<player_id_t, InfoPlayer>& table);
     ~Vista();
 
 private:

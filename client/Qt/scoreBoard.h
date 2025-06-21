@@ -27,7 +27,7 @@ using namespace QtCharts;
 
 class ScoreBoard {
 public:
-    ScoreBoard();
+    ScoreBoard(const std::map<player_id_t, InfoPlayer>& table);
 
 
     /*
@@ -53,7 +53,7 @@ public:
     ~ScoreBoard();
 
 private:
-    std::map<int, InfoPlayer> scores;
+    std::map<player_id_t, InfoPlayer> scores;
 };
 
 #endif  // SCOREBOARD_H

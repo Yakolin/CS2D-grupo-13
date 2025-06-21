@@ -68,6 +68,8 @@ private:
     int press_start_x, press_start_y;
     bool blocking_mouse_motion;
 
+    std::map<player_id_t, InfoPlayer> get_info_players_map();
+
 
     void handle_equip_type(const SDL_Keycode& tecla);
 
@@ -123,7 +125,7 @@ public:
     */
     void start(const GameInfo& info_game_view);
 
-    void run();
+    std::map<player_id_t, InfoPlayer> run();
 
     void reset_values(PlayerView* player, const float& x_pixeles, const float& y_pixeles);
 

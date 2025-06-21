@@ -495,9 +495,27 @@ bool GameView::update_game_image() {
 
 bool GameView::should_keep_running() { return this->keep_running; }
 
-void GameView::run() {
+std::map<player_id_t, InfoPlayer> GameView::get_info_players_map() {
+    
+    std::map<player_id_t, InfoPlayer> info_map;
+    for (const auto& player : snapshot.players_images) {
+        InfoPlayer info;
+        info.team = (player.team == Team::CT) ? "CT" : "TT";
+        info.puntos = player.points;
+        info.deaths = player.deaths;
+        info.kills = player.points + player.deaths; 
+        info.collected_money = player.money;
+        info_map[player.player_id] = info;
+    }
+
+    return info_map;
+}
+
+std::map<player_id_t, InfoPlayer> GameView::run() {
     this->controller.start();
     this->constant_rate_loop.execute();
+    std::cout << "[DEBUG] snapshot.players_images.size(): " << snapshot.players_images.size() << "\n";
+    return get_info_players_map();
 }
 
 void GameView::step() {

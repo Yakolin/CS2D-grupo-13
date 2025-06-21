@@ -35,6 +35,7 @@ WeaponCode shootFromString(const std::string& str) {
     if (str == "GLOCK") return WeaponCode::GLOCK;
     if (str == "AK47") return WeaponCode::AK47;
     if (str == "AWP") return WeaponCode::AWP;
+    if (str == "M3") return WeaponCode::M3;
     if (str == "KNIFE") return WeaponCode::KNIFE;
     if (str == "BOMB") return WeaponCode::BOMB;
     throw std::invalid_argument("WeaponCode desconocido: " + str);
@@ -45,15 +46,15 @@ void SoundConfig::loadFromYAML(const std::string& filepath) {
     YAML::Node config = YAML::LoadFile(filepath);
 
     if (config["shoot"]) {
-        for (const auto& node : config["effects"]) {
+        for (const auto& node : config["shoot"]) {
             std::string key = node.first.as<std::string>();
             std::string path = node.second.as<std::string>();
 			WeaponCode id = shootFromString(key);
 			load_shoot(id, path);
         }
     }
-	if (config["effects"]) {
-        for (const auto& node : config["effects"]) {
+	if (config["effect"]) {
+        for (const auto& node : config["effect"]) {
             std::string key = node.first.as<std::string>();
             std::string path = node.second.as<std::string>();
 			SoundType id = soundTypeFromString(key);
@@ -83,16 +84,19 @@ void SoundConfig::load_effect(const SoundType& id, const std::string& filepath) 
 		return ;
 	}
 	effects[id] = chunk;
+    std::cout << "effecto cargada correctamente con ID: " << static_cast<int>(id) << std::endl;
+
 }
 
 void SoundConfig::load_shoot(const WeaponCode& id, const std::string& filepath) {
 	
 	Mix_Chunk* chunk = Mix_LoadWAV(filepath.c_str());
 	if (!chunk) {
-		SDL_Log("No se pudo cargar efecto %s: %s", filepath.c_str(), Mix_GetError());
+		SDL_Log("No se pudo cargar shoot %s: %s", filepath.c_str(), Mix_GetError());
 		return ;
 	}
 	shoots[id] = chunk;
+    std::cout << "shoot cargada correctamente con ID: " << static_cast<int>(id) << std::endl;
 }
 
 void SoundConfig::load_music(const Music& id, const std::string& filepath) {

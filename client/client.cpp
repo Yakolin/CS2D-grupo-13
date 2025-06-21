@@ -1,16 +1,17 @@
+#include <iomanip>
 #include "client.h"
 
 Client::Client(int& argc, char* argv[]): vista(argc, argv) {}
 
 
+
 int Client::run() {
 
     try {
-        /*
-         */
         if (vista.showLobby()) {
-            vista.showGame();
-            vista.showScoreboard();
+            std::map<player_id_t, InfoPlayer> table = vista.showGame();
+          //  imprimir_tabla_jugadores(table);
+            vista.showScoreboard(table);
         }
     } catch (const std::exception& e) {
         std::cerr << "Excepción atrapada: " << e.what() << std::endl;

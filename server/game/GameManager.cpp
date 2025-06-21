@@ -30,9 +30,10 @@ void GameManager::process(ClientAction& action) {
 }
 
 std::shared_ptr<Player> GameManager::create_player(const player_id_t& id, Team team, Skins& skins) {
-    Equipment equipment(id, map_game, map_game, weapon_factory);
-    shared_ptr<Player> player = std::make_shared<Player>(
-            id, team, skins, game_config.get_player_config(), std::move(equipment), map_game);
+    Equipment equipment(id, map_game, map_game, map_game, weapon_factory);
+    shared_ptr<Player> player =
+            std::make_shared<Player>(id, team, skins, game_config.get_player_config(),
+                                     std::move(equipment), map_game, map_game);
     return player;
 }
 
@@ -61,8 +62,11 @@ GameImage GameManager::generate_game_image() {
     for (const auto& par: players) {
         shared_ptr<Player> player = par.second;
         Position player_position = map_game.get_position(par.first);
-        game_image.players_images.push_back(std::move(player->get_player_image(player_position)));
+        SoundImage heared_sounds = sound_manager.get_sound_image(player_position);
+        PlayerImage player_image = player->get_player_image(player_position, heared_sounds);
+        game_image.players_images.push_back(std::move(player_image));
     }
+    sound_manager.reset();
     game_image.bullets_in_air = map_game.get_bullets_in_air();
     game_image.dropped_things = map_game.get_dropped_things_images();
     game_image.bomb = map_game.get_bomb_image();

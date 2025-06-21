@@ -30,21 +30,24 @@
 #include "renderizable.h"
 #include "shopping.h"
 #include "text.h"
+#include "../soundConfig.h"
 
 #define HOLD_THRESHOLD_MS 200
 #define BURST_INTERVALS_MS 100
-
+  
 using hold_mouse_t = std::uint32_t;
+
 class GameView {
 
 private:
-    GameConfig config;
+    SoundConfig config_sound;
+    GameConfig& config;
     Controller controller;
     ConstantRateLoop constant_rate_loop;
     SDL_Window* ventana;
     SDL_Renderer* renderer;
     Camera camera;
-    ManageTexture manger_texture;
+    ManageTexture& manger_texture;
     PlayerView* player;
     std::map<player_id_t, PlayerView*> players;
     GameImage snapshot;
@@ -72,6 +75,8 @@ private:
     void update_mouse_hold();
 
     void handle_events(const SDL_Event& evento);
+  
+    void handle_sprite_mouse(const int& mousex, const int& mousey);
 
     void update_bullets_snapshot();
 
@@ -87,10 +92,11 @@ private:
 
     void update_game();
 
-
     bool update_game_image();
 
     void render_game();
+
+    void update_window();
 
 
     /*
@@ -104,23 +110,14 @@ private:
     Skins load_claves(const Player& info_Player);
 
 public:
-    explicit GameView(Socket&& skt, const GameInfo& game_info, const Player& info_game);
+    explicit GameView( Socket&& skt, const GameInfo& game_info, const Player& info_game,SDL_Window* ventana, 
+        SDL_Renderer* renderer,  ManageTexture& manger_texture, GameConfig& config);
 
-
-    SDL_Window* init_window(const GameConfig& config);
-
-    SDL_Renderer* init_renderer(SDL_Window* window, GameConfig& config);
-
-    /*
-    pre:  width y height deben ser mayores que 0.
-    post: devuelve true si la unicializacion salio bien de ventana y renderer.
-    */
-    bool init_game();
     /*
     pre:
     post:
     */
-    void start(const GameInfo& info_game_view /*, const Player& info_game*/);
+    void start(const GameInfo& info_game_view );
 
     void run();
 

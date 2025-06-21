@@ -1,14 +1,22 @@
 #include "gameView.h"
+
+#include <SDL_mixer.h>
+
+
 int counter2 = 0;
-GameView::GameView(Socket&& skt, const GameInfo& game_info, const Player& info_Player):
-        config(),
+
+GameView::GameView(Socket&& skt, const GameInfo& game_info, const Player& info_Player,
+                   SDL_Window* ventana, SDL_Renderer* renderer, ManageTexture& manger_texture,
+                   GameConfig& config):
+        config_sound(),
+        config(config),
         controller(std::move(skt)),
         constant_rate_loop([this]() { return this->should_keep_running(); },
                            [this]() { this->step(); }),
-        ventana(init_window(config)),
-        renderer(init_renderer(ventana, config)),
+        ventana(ventana),
+        renderer(renderer),
         camera(config.get_window_width(), config.get_window_height()),
-        manger_texture(renderer),
+        manger_texture(manger_texture),
         player(new PlayerView(11, 4, load_claves(info_Player), 200.0f, &camera, &manger_texture,
                               config)),  // !cambiar a 200.0f
         players(),
@@ -27,8 +35,10 @@ GameView::GameView(Socket&& skt, const GameInfo& game_info, const Player& info_P
         last_burst_time(0),
         press_start_x(0),
         press_start_y(0),
-        blocking_mouse_motion(false) {}
-
+        blocking_mouse_motion(false),
+        keep_running(true) {
+    config_sound.playMusic(Music::SALA_ESPERA, -1);
+}
 
 TerroristSkin toItemTerrorism(const std::string& str) {
     if (str == "Phoenix")
@@ -52,44 +62,6 @@ Skins GameView::load_claves(const Player& info_Player) {
     return Skins(toItemCounterTerrorism(info_Player.skin2), toItemTerrorism(info_Player.skin));
 }
 
-
-SDL_Window* GameView::init_window(const GameConfig& config) {
-    SDL_Window* window_game = SDL_CreateWindow(
-            "Mapa", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, config.get_window_width(),
-            config.get_window_height(), SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
-    if (!window_game) {
-        throw std::runtime_error(std::string("Error al crear la window_game: ") + SDL_GetError());
-    }
-    return window_game;
-}
-
-SDL_Renderer* GameView::init_renderer(SDL_Window* window, GameConfig& config) {
-
-    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-    if (!renderer) {
-        throw std::runtime_error(std::string("Error al crear el renderer: ") + SDL_GetError());
-    }
-    SDL_RenderSetLogicalSize(renderer, config.get_viewpost_width(), config.get_viewpost_height());
-    return renderer;
-}
-
-
-bool GameView::init_game() {
-    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
-        throw std::runtime_error(std::string("Error al inicializar SDL: ") + SDL_GetError());
-        return false;
-    }
-
-    if (!(IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG) & (IMG_INIT_PNG | IMG_INIT_JPG))) {
-        throw std::runtime_error(std::string("Error inicializando SDL_image: ") + IMG_GetError());
-        return false;
-    }
-    SDL_Texture* textura = manger_texture.get(Object::FONDO_ESPERA);
-    SDL_RenderCopy(renderer, textura, nullptr, nullptr);
-    SDL_RenderPresent(renderer);
-    return true;
-}
-
 void GameView::reset_values(PlayerView* player, const float& x_pixeles, const float& y_pixeles) {
 
     player->setPrevPos(player->getXActual(), player->getYActual());
@@ -99,14 +71,19 @@ void GameView::reset_values(PlayerView* player, const float& x_pixeles, const fl
 }
 
 void print_game_image(const GameImage& image) {
-
     std::cout << "=== Game Image ===\n";
     std::cout << "Client ID: " << image.client_id << "\n";
+    /*
+    std::cout << "=== Game Image ===\n";
     std::cout << "--- Players ---\n";
+    std::cout << "Client ID: " << image.client_id << "\n";
+    */
     for (const auto& player: image.players_images) {
+        /*
         std::cout << "Player ID: " << player.player_id << "\n";
         std::cout << "  Position: (" << player.position.x << ", " << player.position.y << ")\n";
         /*         std::cout << "  Health: " << static_cast<int>(player.health) << "\n";
+                 std::cout << "  Health: " << static_cast<int>(player.health) << "\n";
                 std::cout << "  Points: " << static_cast<int>(player.points) << "\n";
                 std::cout << "  Money: " << player.money << "\n";
                 std::cout << "  Equipped weapon: " << static_cast<int>(player.equipped_weapon) <<
@@ -121,6 +98,18 @@ void print_game_image(const GameImage& image) {
                               << ", Inventory: " << static_cast<int>(weapon.inventory_bullets) <<
            "\n";
                  }*/
+                 }
+        */
+        for (const auto& sound: player.heared_sounds.common_sounds) {
+            std::cout << "Escuche comun:\n";
+            std::cout << "Sound: " << static_cast<int>(sound.type) << " A :" << sound.distance
+                      << std::endl;
+        }
+        for (const auto& sound: player.heared_sounds.shoot_sounds) {
+            std::cout << "Escuche shoot:\n";
+            std::cout << "Sound: " << static_cast<int>(sound.type) << " A :" << sound.distance
+                      << "del arma: " << static_cast<int>(sound.code) << std::endl;
+        }
     }
 
     /*
@@ -128,10 +117,10 @@ void print_game_image(const GameImage& image) {
             std::cout << "  From (" << bullet.initial.x << ", " << bullet.initial.y << ") to ("
                       << bullet.end.x << ", " << bullet.end.y << ")\n";
         }
+        std::cout << "--- Bomb ---\n";
+        std::cout << "  Position: (" << image.bomb.position.x << ", " << image.bomb.position.y <<
+       ")\n"; std::cout << "  State: " << static_cast<int>(image.bomb.state) << "\n";
       */
-    std::cout << "--- Bomb ---\n";
-    std::cout << "  Position: (" << image.bomb.position.x << ", " << image.bomb.position.y << ")\n";
-    std::cout << "  State: " << static_cast<int>(image.bomb.state) << "\n";
     /*
        std::cout << "--- Dropped Weapons ---\n";
        for (const auto& dropped: image.dropped_things) {
@@ -163,7 +152,7 @@ void GameView::update_bullets_snapshot() {
 
 
 void GameView::update_status_game() {
-    // print_game_image(snapshot);
+    print_game_image(snapshot);
     int tile_width = config.get_tile_width();
     int tile_height = config.get_tile_height();
     update_bullets_snapshot();
@@ -214,7 +203,7 @@ void GameView::update_status_game() {
 void GameView::draw_players() {
     for (auto& pair: this->players) {
         PlayerView* player = pair.second;
-        if (player) {
+        if (player && fov->is_in_fov(*player)) {
             player->draw(*renderer);
         }
     }
@@ -265,7 +254,8 @@ void GameView::handle_movements(SDL_Keycode& tecla) {
     if (tecla == SDLK_d || tecla == SDLK_RIGHT)
         controller.sender_move(MoveType::RIGHT);
     player->add_speed(tecla);
-    // player->auxiliar(tecla); //todo comentar
+   // player->auxiliar(tecla); //todo comentar
+
 }
 
 void GameView::handle_extras(SDL_Keycode& tecla) {
@@ -328,6 +318,27 @@ void GameView::update_mouse_hold() {
     }
 }
 
+/*void GameView::handle_sprite_mouse(const int& mousex, const int& mousey){
+    int tile_mousex=0;
+    int tile_mousey=0;
+    mouse_position_tiles(tile_mousex,tile_mousey,mousex,mousey);
+    for (auto& [id, player] : this->players){
+        int tile_playerx= player->getXActual()/ config.get_tile_width();
+        int tile_playery= player->getYActual() / config.get_tile_height();
+        if(tile_mousex == tile_playerx && tile_mousey == tile_playery){
+            
+        }
+    }
+}*/
+
+void GameView::update_window(){
+    if(!config_sound.get_state_game()){
+        SDL_Texture* textura = manger_texture.get(Object::FONDO_ESPERA);
+        SDL_RenderCopy(renderer, textura, nullptr, nullptr);
+        SDL_RenderPresent(renderer);
+    }
+}
+
 void GameView::handle_events(const SDL_Event& event) {
     try {
         if (event.type == SDL_QUIT) {
@@ -348,6 +359,7 @@ void GameView::handle_events(const SDL_Event& event) {
 
         if (event.type == SDL_WINDOWEVENT) {  // LA PANTALLA
             if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
+                update_window();
                 this->map->update_map_dimensions();
                 printf("Nuevo mapa width: %d, height: %d\n", map->getMapWidth(),
                        map->getMapHeight());
@@ -357,6 +369,7 @@ void GameView::handle_events(const SDL_Event& event) {
         if (event.type == SDL_MOUSEMOTION && !this->blocking_mouse_motion) {
             int mouseX = event.motion.x;
             int mouseY = event.motion.y;
+            hud.update_mouse(mouseX,mouseY);
             player->update_view_angle(mouseX, mouseY);
             controller.sender_pos_mouse(mouseX, mouseY);
         }
@@ -469,7 +482,7 @@ bool GameView::update_game_image() {
             }
             if (found) {
                 hud.load(snapshot.players_images[index_player_id], snapshot.bomb,
-                         snapshot.game_state.time, snapshot.game_state);
+                        snapshot.game_state.time, snapshot.game_state);
             } else {
                 std::cerr << "Error: No se encontró el jugador con client_id " << snapshot.client_id
                           << " en players_images\n";
@@ -493,6 +506,10 @@ void GameView::run() {
 void GameView::step() {
     this->process_events();
     if (this->update_game_image()) {
+        if (!config_sound.get_state_game()) {
+            config_sound.stopMusic();
+        }
+        config_sound.set_start_game(true);
         this->update_game();
         this->render_game();
     }
@@ -515,14 +532,4 @@ GameView::~GameView() {
         delete fov;
 
     this->manger_texture.clear();
-
-    if (renderer)
-        SDL_DestroyRenderer(renderer);
-
-    if (ventana)
-        SDL_DestroyWindow(ventana);
-
-    TTF_Quit();
-    IMG_Quit();
-    SDL_Quit();
 }

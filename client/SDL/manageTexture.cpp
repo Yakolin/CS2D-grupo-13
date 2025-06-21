@@ -11,7 +11,7 @@ ManageTexture::ManageTexture(SDL_Renderer* renderer): renderer(renderer) {
 
     load(Object::EXPLOSION, "assets/gfx/explosion.png");
     load(Object::BULLET, "assets/gfx/weapons/bullet.png");
-    load(Object::FONDO_ESPERA,"assets/gfx/screens/espera.jpeg");
+    load(Object::FONDO_ESPERA, "assets/gfx/screens/espera.jpeg");
 
     load_skins_tt(TerroristSkin::PHOENIX, "assets/gfx/terrorist/t2.png");
     load_skins_tt(TerroristSkin::L337_KREW, "assets/gfx/terrorist/t4.png");
@@ -28,15 +28,19 @@ ManageTexture::ManageTexture(SDL_Renderer* renderer): renderer(renderer) {
     load_weapons(WeaponCode::KNIFE, "assets/gfx/weapons/knife.png", renderer);
     load_weapons(WeaponCode::GLOCK, "assets/gfx/weapons/glock.png", renderer);
 
-    
+
     load(Object::WALL_AZTEC, "assets/gfx/backgrounds/nuke.png");
     load(Object::WALL_DESIERTO, "assets/gfx/backgrounds/dust.png");
     load(Object::WALL_ENTRENAMIENTO, "assets/gfx/backgrounds/stone1.jpg");
 
+    load(Object::CT, "assets/gfx/icon/ct.png");
+    load(Object::TT, "assets/gfx/icon/tt.png");
+
+
     load(Object::FLOOR_AZTEC, "assets/gfx/blockglas.PNG");
     load(Object::FLOOR_DESIERTO, "assets/gfx/backgrounds/sand1.jpg");
     load(Object::FLOOR_ENTRENAMIENTO, "assets/gfx/backgrounds/sand1-night.jpg");
-    
+
     load(Object::TREE_AZTEC, "assets/gfx/sprites/palmr1.png");
     load(Object::TREE_DESIERTO, "assets/gfx/sprites/palmr.png");
     load(Object::TREE_ENTRENAMIENTO, "assets/gfx/sprites/plant1r.png");
@@ -52,11 +56,11 @@ ManageTexture::ManageTexture(SDL_Renderer* renderer): renderer(renderer) {
     load(Object::GRASS, "assets/gfx/backgrounds/gras1.jpg");
 
     load(Object::ZONE_BOMBA, "assets/gfx/npc/zonea.png");
-    load(Object::ZONE_BOMBB, "assets/gfx/npc/zoneb.png");   
-
+    load(Object::ZONE_BOMBB, "assets/gfx/npc/zoneb.png");
+    load(Object::BOMB, "assets/gfx/weapons/bomb.png");
     load(Object::TIMER_BOMB, "assets/gfx/icon/bomba.png");
     load(Object::MONEY, "assets/gfx/icon/money.png");
-    load(Object::MUERTE, "assets/gfx/icon/muerte.png");
+    load(Object::MUERTE, "assets/gfx/icon/sangre.png");
     load(Object::TIENDA, "assets/gfx/icon/tienda.png");
     load(Object::TIMER, "assets/gfx/icon/timer.png");
     load(Object::VIDA, "assets/gfx/icon/vida.png");
@@ -66,9 +70,8 @@ ManageTexture::ManageTexture(SDL_Renderer* renderer): renderer(renderer) {
     load(Object::AWP, "assets/gfx/icon/awp_k.png");
     load(Object::M3, "assets/gfx/icon/m3_k.png");
     load(Object::SNIKE, "assets/gfx/icon/knife_k.png");
+    load(Object::MOUSE, "assets/gfx/pointer.png");
 
-   // load(Object::ZONE_COUNTERTERROSIT, "assets/gfx/backgrounds/zonacounter.jpeg");//todo de movento no hay logo de counter
-   // load(Object::ZONE_TERRORIST, "assets/gfx/backgrounds/zonaTerrorist.jpeg");
 
 }
 
@@ -76,9 +79,11 @@ ManageTexture::ManageTexture(SDL_Renderer* renderer): renderer(renderer) {
 pre:
 post: dibuja una imagen arriba de un rectangulo textura y lo retorna
 */
-SDL_Texture* ManageTexture::create_texture_rect(const SDL_Rect& rect,const SDL_Color& color,const Object& zone) {
+SDL_Texture* ManageTexture::create_texture_rect(const SDL_Rect& rect, const SDL_Color& color,
+                                                const Object& zone) {
 
-    SDL_Texture* textura = SDL_CreateTexture(renderer,SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET,rect.w, rect.h);
+    SDL_Texture* textura = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888,
+                                             SDL_TEXTUREACCESS_TARGET, rect.w, rect.h);
     SDL_SetTextureBlendMode(textura, SDL_BLENDMODE_BLEND);
 
     if (!textura) {
@@ -94,7 +99,7 @@ SDL_Texture* ManageTexture::create_texture_rect(const SDL_Rect& rect,const SDL_C
     if (zone == Object::ZONE_BOMBA || zone == Object::ZONE_BOMBB) {
         SDL_Texture* text = get(zone);
         SDL_SetTextureBlendMode(text, SDL_BLENDMODE_BLEND);
-        int w_text = 1, h_text = 1; 
+        int w_text = 1, h_text = 1;
 
         if (SDL_QueryTexture(text, nullptr, nullptr, &w_text, &h_text) != 0) {
             SDL_Log("Error obteniendo dimensiones de textura: %s", SDL_GetError());
@@ -116,7 +121,6 @@ SDL_Texture* ManageTexture::create_texture_rect(const SDL_Rect& rect,const SDL_C
         SDL_RenderCopy(renderer, text, nullptr, &destino);
     }
     SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
-   // SDL_SetRenderDrawColor(renderer,255, 0, 0, 50);
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
     SDL_RenderFillRect(renderer, nullptr);  // llena todo el target
     SDL_SetRenderTarget(renderer, render_anterior);
@@ -178,11 +182,13 @@ std::vector<std::string> split(const std::string& s, char delimiter) {
 }
 SDL_Rect rect(const int& x, const int& y, const int& w, const int& h) { return {x, y, w, h}; }
 
-SDL_Texture* ManageTexture::render_menu_texture(const std::unordered_map<WeaponCode, ShopItem>& items, const SDL_Rect& menu_rect,
+SDL_Texture* ManageTexture::render_menu_texture(
+        const std::unordered_map<WeaponCode, ShopItem>& items, const SDL_Rect& menu_rect,
         TTF_Font* font) {
 
 
-    SDL_Texture* menuTexture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, menu_rect.w, menu_rect.h);
+    SDL_Texture* menuTexture = SDL_CreateTexture(
+            renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, menu_rect.w, menu_rect.h);
     SDL_SetTextureBlendMode(menuTexture, SDL_BLENDMODE_BLEND);  // Blend mode correcto
     SDL_SetRenderTarget(renderer, menuTexture);
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 128);  // Fondo semi-transparente
@@ -220,7 +226,7 @@ SDL_Texture* ManageTexture::render_menu_texture(const std::unordered_map<WeaponC
 }
 
 void ManageTexture::load(const Object& id, const std::string& filePath) {
-    std::cout << "[LOAD TEXTURE] Intentando cargar: " << filePath << std::endl;
+    //std::cout << "[LOAD TEXTURE] Intentando cargar: " << filePath << std::endl;
 
     SDL_Surface* surface = IMG_Load(filePath.c_str());
     if (!surface) {
@@ -236,7 +242,6 @@ void ManageTexture::load(const Object& id, const std::string& filePath) {
         throw std::runtime_error("Error creando textura: " + std::string(SDL_GetError()));
     }
     textures[id] = texture;
-    std::cout << "[LOAD TEXTURE] Textura cargada con éxito: " << filePath << std::endl;
 }
 
 void ManageTexture::load_skins_tt(const TerroristSkin& id, const std::string& filePath) {
@@ -270,26 +275,26 @@ void ManageTexture::load_skins_ct(const CounterTerroristSkin& id, const std::str
 }
 
 SDL_Texture* ManageTexture::get_texture_ct(const CounterTerroristSkin& id) const {
-    
-    std::cout << "[DEBUG] Buscando textura CT para id: " << static_cast<int>(id) << std::endl;
+
+   // std::cout << "[DEBUG] Buscando textura CT para id: " << static_cast<int>(id) << std::endl;
     auto it = texture_skin_ct.find(id);
     if (it != texture_skin_ct.end()) {
         std::cout << "[DEBUG] Textura encontrada para CT id: " << static_cast<int>(id) << std::endl;
         return it->second;
     }
-    std::cerr << "[ERROR] No se encontró textura para CT id: " << static_cast<int>(id) << std::endl;
+   // std::cerr << "[ERROR] No se encontró textura para CT id: " << static_cast<int>(id) << std::endl;
     return nullptr;
 }
 
 SDL_Texture* ManageTexture::get_texture_tt(const TerroristSkin& id) const {
-    
-    std::cout << "[DEBUG] Buscando textura TT para id: " << static_cast<int>(id) << std::endl;
+
+   // std::cout << "[DEBUG] Buscando textura TT para id: " << static_cast<int>(id) << std::endl;
     auto it = texture_skin_tt.find(id);
     if (it != texture_skin_tt.end()) {
         std::cout << "[DEBUG] Textura encontrada para TT id: " << static_cast<int>(id) << std::endl;
         return it->second;
     }
-    std::cerr << "[ERROR] No se encontró textura para TT id: " << static_cast<int>(id) << std::endl;
+   // std::cerr << "[ERROR] No se encontró textura para TT id: " << static_cast<int>(id) << std::endl;
     return nullptr;
 }
 
@@ -355,43 +360,25 @@ std::array<SDL_Point, 4> calculo(const int& lado, const int& angle, const int& a
 SDL_Texture* ManageTexture::create_stencil(const int& ancho, const int& alto, const float& angle,
                                            const float& apertura, const int& intensity) {
 
-    int max_texture_width = 0, max_texture_height = 0;
-    SDL_RendererInfo info;
-    SDL_GetRendererInfo(renderer, &info);
-    max_texture_width = info.max_texture_width;
-    max_texture_height = info.max_texture_height;
-
-    std::cout << "Máximo permitido por GPU: " << max_texture_width << " x " << max_texture_height << std::endl;
-
 
     int diagonal = std::sqrt(ancho * ancho + alto * alto);
-    int lado = static_cast<int>(diagonal * 1.5); // Aumentar un 50% para cubrir rotaciones
-    std::cout << "Lado de textura: " << lado << std::endl;
-
+    int lado = static_cast<int>(diagonal * 1.5); 
     SDL_Texture* stencil = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888,
                                              SDL_TEXTUREACCESS_TARGET, lado, lado);
     if (!stencil) {
         throw std::runtime_error("Error: la textura stencil no se cargó correctamente.");
     }
-
     SDL_Texture* old_target = SDL_GetRenderTarget(renderer);
     SDL_SetRenderTarget(renderer, stencil);
-
     std::array<SDL_Point, 4> points = calculo(lado, angle, apertura);
-
-    int radio_pequeno = 64;
     SDL_SetTextureBlendMode(stencil, SDL_BLENDMODE_BLEND);
-
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, intensity);
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
     SDL_RenderClear(renderer);
-
-    filledCircleRGBA(renderer, points[0].x, points[0].y, radio_pequeno, 0, 0, 0, 0);
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
     fillTriangle(renderer, points[0].x, points[0].y, points[1].x, points[1].y, points[2].x,
                  points[2].y);
-
     SDL_SetRenderTarget(renderer, old_target);
 
     return stencil;
@@ -482,7 +469,7 @@ SDL_Texture* ManageTexture::get_weapon(const WeaponCode& id) const {
 SDL_Texture* ManageTexture::get(const Object& id) const {
     auto it = textures.find(id);
     if (it != textures.end()) {
-        // std::cout << "se encontró la textura para Object: " << static_cast<int>(id) << std::endl;
+       // std::cout << "se encontró la textura para Object: " << static_cast<int>(id) << std::endl;
         return it->second;
     }
     std::cout << "No se encontró la textura para Object: " << static_cast<int>(id) << std::endl;
@@ -508,13 +495,10 @@ void ManageTexture::clear() {
     for (auto& pair: textures_text) {
         SDL_DestroyTexture(pair.second.texture);
     }
-    for (auto& kv : textures)
-        SDL_DestroyTexture(kv.second);
+    for (auto& kv: textures) SDL_DestroyTexture(kv.second);
     textures.clear();
-    for (auto& kv : texture_skin_tt)
-        SDL_DestroyTexture(kv.second);
+    for (auto& kv: texture_skin_tt) SDL_DestroyTexture(kv.second);
 
-    for (auto& kv : texture_skin_ct)
-        SDL_DestroyTexture(kv.second);
+    for (auto& kv: texture_skin_ct) SDL_DestroyTexture(kv.second);
     textures_text.clear();
 }

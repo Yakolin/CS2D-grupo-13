@@ -17,7 +17,7 @@ void Map::respawn_players() {
             player.second.position = (player.second.player.lock()->get_team() == Team::CT) ?
                                              spawn_CT.get_random_position() :
                                              spawn_TT.get_random_position();
-        } while (collision_manager.is_a_collision(player.second.position) &&
+        } while (collision_manager.is_a_collision(player.second.position) ||
                  std::find(spawneds.begin(), spawneds.end(), player.second.position) !=
                          spawneds.end());
         spawneds.push_back(player.second.position);
@@ -45,9 +45,9 @@ MapInfo Map::get_map_info() {
     return MapInfo(map_name, bomb_A_info, bomb_B_info, spawn_TT_info, spawn_CT_info,
                    map_info.walls_pos, map_info.boxes_pos);
 }
-void Map::move(player_id_t id, const Position& direction) {
+bool Map::move(player_id_t id, const Position& direction) {
     if (collision_manager.check_movement(id, direction))
-        return;
+        return true;
     throw MapException("Can´t found players in the map to move");
 }
 
@@ -108,8 +108,8 @@ Position Map::get_random_position() {
     int x = distx(rand);
     int y = disty(rand);
     Position pos(x, y);
-    while (collision_manager.is_a_collision(pos) && spawn_CT.is_in(pos) && spawn_TT.is_in(pos) &&
-           bomb_A.is_in(pos) && bomb_B.is_in(pos)) {
+    while (collision_manager.is_a_collision(pos) || spawn_CT.is_in(pos) || spawn_TT.is_in(pos) ||
+           bomb_A.is_in(pos) || bomb_B.is_in(pos)) {
         x = distx(rand);
         y = disty(rand);
         pos.x = x;
@@ -130,4 +130,8 @@ void Map::remove_player([[maybe_unused]] player_id_t id) {
     if (players_in_map.find(id) == players_in_map.end())
         throw MapException("Player not found in the map to remove");
     players_in_map.erase(id);
+}
+void Map::want_emit_sound(const player_id_t& id, std::shared_ptr<Sound> sound) {
+    Position player_pos = get_position(id);
+    sound_manager.emit_sound(std::move(sound), player_pos);
 }

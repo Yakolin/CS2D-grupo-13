@@ -7,6 +7,7 @@ Glock::Glock(GameConfig::weapon_config_t specs):
 
 Glock::~Glock() {}
 
+
 bool Glock::is_droppable() { return false; }
 
 damage_t Glock::calculate_damage(float distance) { return (Weapon::damage * distance); }

@@ -9,7 +9,7 @@
 
 enum class GameMenu { CREATE, JOIN, HELP, EXIT, NONE };
 
-enum class TextView { HEALTH, AMMO, TIME, POINTS, TEAM, BOMB, MONEY, WEAPON, BULLETS, NONE };
+enum class TextView { HEALTH, AMMO, TIME, POINTS, TEAM, BOMB, MONEY, WEAPON, BULLETS, NONE,BUY ,WIN_TT , WIN_CT};
 
 enum class Color {
     ROJO,
@@ -25,6 +25,13 @@ enum class Color {
     VIOLETA,
     ROSADO
 };
+
+
+enum class Music{
+    SALA_ESPERA,
+    JUEGO
+};
+
 
 
 enum class ColorTranslucent {
@@ -62,7 +69,19 @@ enum class Weapon {
     M3,
     NONE
 };
+
+enum class CursorContext {
+    NORMAL,
+    ENEMY,
+    ALLY
+};
+
 enum class Object {
+
+    TT,
+    CT,
+
+    MOUSE,
     STONE,
     WALL_AZTEC,
     WALL_ENTRENAMIENTO,
@@ -158,12 +177,13 @@ struct MedidasSprites {
     int width;
     int height;
 };
-struct infoPlayer {
-    std::string name_game;
+struct InfoPlayer {
+    std::string name_player;
     std::string team;
     int puntos;
-    int vida;
-    int muertes;
+    int deaths;
+    int kills;
+    int collected_money;
 };
 struct TextureData {
     SDL_Texture* texture;
@@ -183,11 +203,6 @@ struct ItemSprite {
     int col;
 };
 
-struct PlayerSummary {
-    int kills;
-    int deaths;
-    int collected_money;
-};
 struct ShopItem {
     SDL_Texture* texture;
     int price;
@@ -200,10 +215,6 @@ struct WeaponData {
     std::string name;
     int price;
     std::string descripcion;
-};
-struct Rankings {
-    int ranking_terrorists;
-    int ranking_counter_terrorists;
 };
 struct TextureInfo{
     SDL_Texture* textura;

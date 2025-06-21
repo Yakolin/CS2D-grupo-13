@@ -7,7 +7,8 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
 set(CMAKE_PREFIX_PATH "/usr/lib/x86_64-linux-gnu/cmake/Qt5" ${CMAKE_PREFIX_PATH})
-find_package(Qt5 REQUIRED COMPONENTS Widgets)
+find_package(Qt5 REQUIRED COMPONENTS Widgets Charts Multimedia)
+
 
 
 if (POLICY CMP0135)
@@ -137,6 +138,7 @@ if(CS2D_CLIENT)
     target_include_directories(CS2D_client PRIVATE 
         ${libSDL2pp_SOURCE_DIR}
         ${SDL2_image_SOURCE_DIR}/include
+        ${SDL2_mixer_SOURCE_DIR}/include
         )
 
 
@@ -148,7 +150,10 @@ if(CS2D_CLIENT)
         Qt5::Widgets
         SDL2_image
         yaml-cpp
+        Qt5::Multimedia
+        SDL2_mixer  
         SDL2_ttf
+        Qt5::Charts
         ${SDL2_GFX_LIBRARY}
     )
 

@@ -34,8 +34,20 @@ MenuView::MenuView(QWidget* parent, ClientProtocol& protocol):
     stack.addWidget(page_play);
     lobby.play_game(page_play);
     connect(&lobby, &LobbyView::opcionElegida, this, &MenuView::opcionElegida);
+    // Sonido
+    start_music();
 }
-
+void MenuView::start_music() {
+    this->music = new QMediaPlayer(this);
+    this->playlist = new QMediaPlaylist(this);
+    QString path = QDir::current().absoluteFilePath("assets/sfx/menu.wav");
+    QUrl url = QUrl::fromLocalFile(path);
+    playlist->addMedia(url);
+    playlist->setPlaybackMode(QMediaPlaylist::Loop);
+    music->setPlaylist(playlist);
+    music->setVolume(15);
+    music->play();
+}
 void MenuView::add_buttons_menu(QVBoxLayout* menu_layout) {
     QVBoxLayout* buttons_layout = new QVBoxLayout();
     QLabel* img_icono = new QLabel();

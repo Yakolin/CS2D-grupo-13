@@ -8,15 +8,18 @@
 
 #include "game_info.h"
 #include "player_command_types.h"
+#include "sound_image.h"
 #include "utility.h"
 
 using coordinate_t = std::uint16_t;
 using health_t = std::uint8_t;
+using deaths_t = std::uint8_t;
 using points_t = std::uint16_t;
 using length_players_images_t = std::uint16_t;
 using length_weapons_images_t = std::uint8_t;
 using length_bullets_in_air_t = std::uint16_t;
 using length_weapons_dropped_t = std::uint8_t;
+using length_heared_sounds_t = std::uint8_t;
 using bomb_state_t = std::uint8_t;
 using team_t = std::uint8_t;
 using game_state_t = std::uint8_t;
@@ -37,14 +40,17 @@ enum class GameState {
     TT_WIN_GAME,
     CT_WIN_GAME
 };
-
 enum class Team { CT, TT };
 enum class BombState { EQUIPED, DROPPED, ACTIVATED, DESACTIVATED, EXPLOTED };
+
 class BulletImage {
 public:
     Position initial;
     Position end;
-    BulletImage(const Position& initial, const Position& end): initial(initial), end(end) {}
+    uint8_t width;
+    WeaponCode code;
+    BulletImage(const Position& initial, const Position& end, uint8_t width, WeaponCode code):
+            initial(initial), end(end), width(width), code(code) {}
     ~BulletImage() {}
 };
 
@@ -78,24 +84,29 @@ public:
     player_id_t player_id;
     Position position;
     health_t health;
+    deaths_t deaths;
     points_t points;
     money_t money;
     WeaponCode equipped_weapon;
     std::vector<WeaponImage> weapons;
+    SoundImage heared_sounds;
     Team team;
     Position mouse_position;
     Skins skin;
     PlayerImage(const player_id_t& player_id, const Position& position, const int& health,
-                const int& points, const money_t money, const WeaponCode equipped_weapon,
-                std::vector<WeaponImage>&& weapons, const Team& team,
-                const Position& mouse_position, const Skins& skin):
+                const int& deaths, const int& points, const money_t money,
+                const WeaponCode equipped_weapon, std::vector<WeaponImage>&& weapons,
+                const Team& team, const Position& mouse_position, const Skins& skin,
+                SoundImage&& heared_sounds):
             player_id(player_id),
             position(position),
             health(health),
+            deaths(deaths),
             points(points),
             money(money),
             equipped_weapon(equipped_weapon),
             weapons(std::move(weapons)),
+            heared_sounds(std::move(heared_sounds)),
             team(team),
             mouse_position(mouse_position),
             skin(skin) {}

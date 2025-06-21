@@ -12,7 +12,6 @@ GameConfig::GameConfig():
     viewport_height(0),
     route_font(),
     size_font(),
-    blanco(),
     font_menu(nullptr),
     font_hud(nullptr)
     {
@@ -26,7 +25,7 @@ GameConfig::GameConfig():
             std::cerr << "ERROR: fuente no cargada - " << TTF_GetError() << std::endl;
             throw std::runtime_error("No se pudo cargar la fuente del menu.");
         }
-        font_game =TTF_OpenFont("assets/gfx/fonts/sourcesans.ttf", 20); // 18 es el tamaño
+        font_game =TTF_OpenFont("assets/gfx/fonts/sourcesans.ttf", 30); // 18 es el tamaño
         if (!font_game) {
             std::cerr << "ERROR: fuente no cargada - " << TTF_GetError() << std::endl;
             throw std::runtime_error("No se pudo cargar la fuente.");
@@ -60,6 +59,10 @@ GameConfig::GameConfig():
     };
 
 
+}
+
+void GameConfig::get_dimension(SDL_Texture* texture_player, int& width_img, int& height_img) {
+    SDL_QueryTexture(texture_player, nullptr, nullptr, &width_img, &height_img);
 }
 
 SDL_Color GameConfig::get_color(const Color& clave) {

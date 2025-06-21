@@ -1,84 +1,225 @@
 #include "scoreBoard.h"
 
 #include <QFormLayout>
+#include <QGridLayout>
 #include <QHeaderView>
 #include <QLabel>
 #include <QTableWidget>
-#include <QVBoxLayout>
 #include <QWidget>
-#include <map>
-#include <string>
-ScoreBoard::ScoreBoard(): scores(), ranking_group() {
-    scores["player1"] = {10, 2, 100};
-    scores["player2"] = {5, 1, 50};
-    scores["player3"] = {8, 3, 80};
-    scores["player4"] = {12, 4, 120};
-    scores["player5"] = {15, 5, 150};
-    scores["player6"] = {20, 6, 200};
-    scores["player7"] = {25, 7, 250};
-    scores["player8"] = {30, 8, 300};
-    scores["player9"] = {35, 9, 350};
-    scores["player10"] = {40, 10, 400};
 
-    ranking_group.ranking_counter_terrorists = 34;
-    ranking_group.ranking_terrorists = 12;
+#include <QtCharts/qchartview.h>
+
+
+ScoreBoard::ScoreBoard(): scores() {
+    scores[1] = {"player1", "CT", 10, 2, 100, 100};
+    scores[2] = {"player2", "TT", 5, 1, 50, 90};
+    scores[3] = {"player3", "CT", 8, 3, 80, 75};
+    scores[4] = {"player4", "TT", 12, 4, 120, 60};
+    scores[5] = {"player5", "CT", 7, 2, 90, 80};
+    scores[6] = {"player6", "TT", 6, 3, 60, 85};
+    scores[7] = {"player7", "CT", 9, 1, 110, 95};
+    scores[8] = {"player8", "TT", 4, 2, 40, 70};
+    scores[9] = {"player9", "CT", 11, 5, 130, 88};
+    scores[10] = {"player10", "TT", 3, 0, 30, 65};
 }
 
+void ScoreBoard::add_table(QGridLayout* layout, const int& fil, const int& col) {
+    QTableWidget* table = new QTableWidget(scores.size(), 6);
+    table->setHorizontalHeaderLabels({"Player ID", "Name", "Points", "Deaths"});
 
-void ScoreBoard::add_table(QVBoxLayout* scores_table) {
-
-    QTableWidget* table = new QTableWidget(scores.size(), 4);
-    // table->verticalHeader()->setVisible(false);
-    table->setHorizontalHeaderLabels({"Player", "Kill", "Dead", "Collected Money"});
-
-    int fil = 0;
-    for (const auto& [player_name, summary]: scores) {
-
-        table->setItem(fil, 0, new QTableWidgetItem(QString::fromStdString(player_name)));
-        table->setItem(fil, 1,
-                       new QTableWidgetItem(QString::fromStdString(std::to_string(summary.kills))));
-        table->setItem(
-                fil, 2,
-                new QTableWidgetItem(QString::fromStdString(std::to_string(summary.deaths))));
-        table->setItem(fil, 3,
-                       new QTableWidgetItem(
-                               QString::fromStdString(std::to_string(summary.collected_money))));
-        fil++;
+    int fila = 0;
+    for (const auto& [id, summary]: scores) {
+        table->setItem(fila, 0, new QTableWidgetItem(QString::number(id)));
+        table->setItem(fila, 1, new QTableWidgetItem(QString::fromStdString(summary.name_player)));
+        table->setItem(fila, 2, new QTableWidgetItem(QString::number(summary.puntos)));
+        table->setItem(fila, 3, new QTableWidgetItem(QString::number(summary.deaths)));
+        fila++;
     }
+    table->verticalHeader()->setVisible(false);
     table->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    scores_table->addWidget(table);
+    layout->addWidget(table, fil, col, 1, -1);  // filas 1, columna 0, colspan = toda la fila
 }
 
-void ScoreBoard::add_ranking(QVBoxLayout* scores_table) {
 
-    QFormLayout* ranking_groups = new QFormLayout;
+void ScoreBoard::add_chart(QGridLayout* layout, const int& fil, const int& col) {
+    QtCharts::QBarSeries* series = new QtCharts::QBarSeries();
 
-    QLabel* label_terrorists =
-            new QLabel(QString::fromStdString(std::to_string(ranking_group.ranking_terrorists)));
-    ranking_groups->addRow(new QLabel("terrorists: "), label_terrorists);
+    QStringList categories;
+    QtCharts::QBarSet* set = new QtCharts::QBarSet("Puntos");
 
-    QLabel* label_counter_terrorists = new QLabel(
-            QString::fromStdString(std::to_string(ranking_group.ranking_counter_terrorists)));
-    ranking_groups->addRow(new QLabel("counter-terrorists: "), label_counter_terrorists);
+    for (const auto& [id, summary]: scores) {
+        categories << QString::fromStdString(summary.name_player);
+        *set << summary.puntos;
+    }
 
-    scores_table->addLayout(ranking_groups);
+    series->append(set);
+
+    QtCharts::QChart* chart = new QtCharts::QChart();
+    chart->addSeries(series);
+    chart->setTitle("Puntos por jugador");
+    chart->setAnimationOptions(QtCharts::QChart::SeriesAnimations);
+
+    QtCharts::QBarCategoryAxis* axisX = new QtCharts::QBarCategoryAxis();
+    axisX->append(categories);
+    chart->addAxis(axisX, Qt::AlignBottom);
+    series->attachAxis(axisX);
+
+    QtCharts::QValueAxis* axisY = new QtCharts::QValueAxis();
+    chart->addAxis(axisY, Qt::AlignLeft);
+    series->attachAxis(axisY);
+
+    QtCharts::QChartView* chartView = new QtCharts::QChartView(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
+
+    layout->addWidget(chartView, fil, col, 1, -1);  // debajo de todo
 }
+
+void style(QTableWidget* table) {
+    table->setStyleSheet(
+            "QTableWidget {"
+            "  background-color: rgb(36, 36, 36); color: rgb(255, 255, 255); font-size: 14px;      \
+   font-weight: bold;border-radius: 25px;padding: 8px 16px; border: 2px solid rgb(0, 132, 255);"
+            "}"
+            "QHeaderView::section {background-color:rgb(36, 36, 36) ; color: rgb(255, 255, 255); "
+            "font-size: 14px;}");
+}
+void ScoreBoard::add_filtered_tables(QGridLayout* layout) {
+
+    QTableWidget* ct_table = new QTableWidget(0, 4);
+    QTableWidget* tt_table = new QTableWidget(0, 4);
+
+    QStringList headers = {"Player ID", "Name", "Points", "Deaths"};
+    ct_table->setHorizontalHeaderLabels(headers);
+    tt_table->setHorizontalHeaderLabels(headers);
+
+    // Filtrar el mapa `scores` por equipo
+    for (const auto& [id, summary]: scores) {
+        QTableWidget* table = nullptr;
+        if (summary.team == "CT") {
+            int row = ct_table->rowCount();
+            ct_table->insertRow(row);
+            table = ct_table;
+        } else if (summary.team == "TT") {
+            int row = tt_table->rowCount();
+            tt_table->insertRow(row);
+            table = tt_table;
+        }
+        style(table);
+        if (table) {
+            int row = table->rowCount() - 1;
+            table->setItem(row, 0, new QTableWidgetItem(QString::number(id)));
+            table->setItem(row, 1,
+                           new QTableWidgetItem(QString::fromStdString(summary.name_player)));
+            table->setItem(row, 2, new QTableWidgetItem(QString::number(summary.puntos)));
+            table->setItem(row, 3, new QTableWidgetItem(QString::number(summary.deaths)));
+        }
+    }
+
+    ct_table->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    tt_table->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ct_table->verticalHeader()->setVisible(false);
+    tt_table->verticalHeader()->setVisible(false);
+    // Etiquetas
+    QLabel* ct_label = new QLabel("Counter-Terrorists");
+    QLabel* tt_label = new QLabel("Terrorists");
+    ct_label->setStyleSheet(LOBBY_LABEL_STYLE2);
+    tt_label->setStyleSheet(LOBBY_LABEL_STYLE2);
+
+    // Mostrar tablas en el layout
+    layout->addWidget(ct_label, 0, 0);
+    layout->addWidget(ct_table, 1, 0);
+    layout->addWidget(tt_label, 0, 1);
+    layout->addWidget(tt_table, 1, 1);
+}
+
+
+QChartView* ScoreBoard::grafico_pie(QWidget* parent) {
+    // Sumar puntos por equipo
+    int puntos_ct = 0;
+    int puntos_tt = 0;
+    for (const auto& [id, summary]: scores) {
+        if (summary.team == "CT") {
+            puntos_ct += summary.puntos;
+        } else if (summary.team == "TT") {
+            puntos_tt += summary.puntos;
+        }
+    }
+
+    QtCharts::QPieSeries* series = new QtCharts::QPieSeries();
+    series->append("CT", puntos_ct);
+    series->append("TT", puntos_tt);
+
+    QtCharts::QChart* chart = new QtCharts::QChart();
+    chart->addSeries(series);
+    chart->setTitle("Distribución de puntos por equipo");
+    chart->setAnimationOptions(QtCharts::QChart::SeriesAnimations);
+
+    QChartView* chartView = new QChartView(chart, parent);
+    chartView->setRenderHint(QPainter::Antialiasing);
+    return chartView;
+}
+
+QChartView* ScoreBoard::graficoBarrasEquipo(const std::string& equipo, QWidget* parent) {
+    using namespace QtCharts;
+    QBarSet* deathsSet = new QBarSet("Deaths");
+    QBarSet* pointsSet = new QBarSet("Points");
+
+    int totalDeaths = 0, totalPoints = 0;
+
+    for (const auto& [id, summary]: scores) {
+        if (summary.team == equipo) {
+            totalDeaths += summary.deaths;
+            totalPoints += summary.puntos;
+        }
+    }
+
+    *deathsSet << totalDeaths;
+    *pointsSet << totalPoints;
+
+    QBarSeries* series = new QBarSeries();
+    series->append(deathsSet);
+    series->append(pointsSet);
+
+    QChart* chart = new QChart();
+    chart->addSeries(series);
+    chart->setTitle(QString::fromStdString("Estadísticas de equipo ") +
+                    QString::fromStdString(equipo));
+    chart->setAnimationOptions(QChart::SeriesAnimations);
+
+    QStringList categories;
+    categories << QString::fromStdString(equipo);
+    QBarCategoryAxis* axisX = new QBarCategoryAxis();
+    axisX->append(categories);
+    chart->addAxis(axisX, Qt::AlignBottom);
+    series->attachAxis(axisX);
+
+
+    QValueAxis* axisY = new QValueAxis();
+    axisY->setTitleText("Valor");
+    chart->addAxis(axisY, Qt::AlignLeft);
+    series->attachAxis(axisY);
+
+
+    QChartView* chartView = new QChartView(chart, parent);
+    chartView->setRenderHint(QPainter::Antialiasing);
+
+    return chartView;
+}
+
 
 int ScoreBoard::show_scores_game() {
-
     QWidget* info_ranking = new QWidget();
+    info_ranking->setStyleSheet("QWidget { background-color: rgb(36, 36, 36); color: rgb(255, 255, "
+                                "255); font-size: 14px;}");
     info_ranking->setWindowTitle("Scores");
-    info_ranking->setStyleSheet("background-color:rgb(160, 188, 194);");
     info_ranking->resize(800, 500);
-
-    QVBoxLayout* scores_table = new QVBoxLayout(info_ranking);
-
-    add_table(scores_table);
-    add_ranking(scores_table);
-
-    info_ranking->setLayout(scores_table);
+    QGridLayout* mainLayout = new QGridLayout(info_ranking);
+    add_filtered_tables(mainLayout);
+    mainLayout->addWidget(graficoBarrasEquipo("CT", info_ranking), 2, 0);
+    mainLayout->addWidget(graficoBarrasEquipo("TT", info_ranking), 2, 1);
+    // (Opcional) Gráfico pie al centro o en una 3ra columna
+    // mainLayout->addWidget(grafico_pie(info_ranking), 2, 2);
     info_ranking->show();
-
     return 0;
 }
 

@@ -99,6 +99,8 @@ private:
 
     void update_window();
 
+    void update_sounds(const PlayerImage& player);
+
 
     /*
     INPUT HANDLER

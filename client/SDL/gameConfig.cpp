@@ -10,8 +10,6 @@ GameConfig::GameConfig():
     tile_height(32),
     viewport_width(0),
     viewport_height(0),
-    route_font(),
-    size_font(),
     font_menu(nullptr),
     font_hud(nullptr)
     {
@@ -20,21 +18,9 @@ GameConfig::GameConfig():
         }
 
         load("assets/configView.yaml");
-        font_menu = TTF_OpenFont(route_font.c_str(), 15); // 18 es el tamaño
-        if (!font_menu) {
-            std::cerr << "ERROR: fuente no cargada - " << TTF_GetError() << std::endl;
-            throw std::runtime_error("No se pudo cargar la fuente del menu.");
-        }
-        font_game =TTF_OpenFont("assets/gfx/fonts/sourcesans.ttf", 30); // 18 es el tamaño
-        if (!font_game) {
-            std::cerr << "ERROR: fuente no cargada - " << TTF_GetError() << std::endl;
-            throw std::runtime_error("No se pudo cargar la fuente.");
-        }
-        font_hud =TTF_OpenFont("assets/gfx/fonts/DS-DIGIB.TTF", 30); // 18 es el tamaño
-        if (!font_hud) {
-            std::cerr << "ERROR: fuente no cargada - " << TTF_GetError() << std::endl;
-            throw std::runtime_error("No se pudo cargar la fuente.");
-        }
+        load_font("assets/gfx/fonts/cs_regular.ttf",font_menu,15);
+        load_font("assets/gfx/fonts/sourcesans.ttf",font_game,30);
+        load_font("assets/gfx/fonts/DS-DIGIB.TTF",font_hud,30);
         colores = {
         {Color::ROJO,     {255,   0,   0, 255}},{Color::VERDE,    {  0, 255,   0, 255}},
         {Color::AZUL,     {  0,   0, 255, 255}},{Color::BLANCO,   {255, 255, 255, 255}},
@@ -57,8 +43,12 @@ GameConfig::GameConfig():
         {ColorTranslucent::VIOLETA,  {138, 43, 226, 50}},
         {ColorTranslucent::ROSADO,   {255, 192, 203, 50}},
     };
-
-
+}
+void GameConfig::load_font(const std::string& route, TTF_Font*& font, const int& size){
+    font =TTF_OpenFont(route.c_str(), size); 
+    if (!font) {
+        throw std::runtime_error("No se pudo cargar la fuente.");
+    }
 }
 
 void GameConfig::get_dimension(SDL_Texture* texture_player, int& width_img, int& height_img) {
@@ -87,6 +77,7 @@ SDL_Color GameConfig::get_color_translucent(const ColorTranslucent& clave)  {
 TTF_Font* GameConfig::get_font_menu() { return font_menu; }
 TTF_Font* GameConfig::get_font_game() { return font_game; }
 TTF_Font* GameConfig::get_font_hud() { return font_hud; }
+
 void GameConfig::load(const std::string& file_path) {
 
     try {
@@ -96,8 +87,6 @@ void GameConfig::load(const std::string& file_path) {
         this->window_height = config["window"]["height"].as<int>();
         this->viewport_width = config["camera"]["viewport_logical_width"].as<int>();
         this->viewport_height = config["camera"]["viewport_logical_height"].as<int>();
-        this->route_font = config["fuente"]["route_font_menu"].as<std::string>();
-        this->size_font = config["fuente"]["size_fuente"].as<int>();
         this->intensity = config["fov"]["intensity"].as<int>();
 
 
@@ -141,7 +130,3 @@ int GameConfig::get_tile_height() const { return tile_height; }
 int GameConfig::get_viewpost_height() const { return viewport_height; }
 
 int GameConfig::get_viewpost_width() const { return viewport_width; }
-
-int GameConfig::get_size_font() const { return size_font; }
-
-std::string GameConfig::get_route_font() const { return route_font; }

@@ -32,7 +32,6 @@ public:
 
     int getH();
 
-    SDL_Rect* getRect();
 };
 
 #endif  // CAMERA_H

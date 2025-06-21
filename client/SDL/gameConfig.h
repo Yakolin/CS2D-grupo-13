@@ -20,8 +20,6 @@ private:
     int tile_height;
     int viewport_width;
     int viewport_height;
-    std::string route_font;
-    int size_font;
     TTF_Font* font_menu;
     TTF_Font* font_game;
     TTF_Font* font_hud;
@@ -31,6 +29,8 @@ private:
     
     
     void load(const std::string& file_path);
+
+    void load_font(const std::string& route, TTF_Font*& font, const int& size);
 
 
 public:

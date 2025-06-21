@@ -36,6 +36,3 @@ int Camera::getY() { return this->camera.y; }
 int Camera::getW() { return this->camera.w; }
 
 int Camera::getH() { return this->camera.h; }
-
-
-SDL_Rect* Camera::getRect() { return &camera; }

@@ -198,7 +198,6 @@ void Vista::showGame(){
 
     try {   
         GameView gameView(std::move(skt), info_game_view, info_game, ventana, renderer,manger_texture,config);
-        gameView.start(info_game_view);
         gameView.run();
     } catch (const QuitGameException& e) {  
         free_components(ventana,renderer);       

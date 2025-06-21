@@ -1,0 +1,19 @@
+music:
+  SALA_ESPERA: assets/sfx/sala_fixed.wav
+
+effect:
+  WALK: assets/sfx/player/pl_step1.wav
+  RELOAD: assets/sfx/items/ammo.wav
+  HIT: assets/sfx/player/hit1.wav
+  CHANGE_WEAPON: assets/sfx/weapons/c4_disarm.wav
+  DROP: assets/sfx/items/drop.wav
+  DIE: assets/sfx/player/die1.wav
+  PICK_UP: assets/sfx/items/pickup.wav
+
+shoot:
+    GLOCK: assets/sfx/weapons/glock18.wav
+    AK47: assets/sfx/weapons/ak47.wav
+    M3: assets/sfx/weapons/m3.wav
+    AWP: assets/sfx/weapons/awp.wav
+    KNIFE: assets/sfx/weapons/knife_slash.wav
+    BOMB: assets/sfx/weapons/c4_explode.wav

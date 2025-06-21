@@ -22,7 +22,7 @@ GameView::GameView(Socket&& skt, const GameInfo& game_info, const Player& info_P
         players(),
         snapshot(),
         map(new MapView(game_info.map_info, &camera, &manger_texture, config)),
-        fov(nullptr),
+        fov(new FieldOfView(*player, camera, manger_texture, config)),
         shop(camera, manger_texture, config),
         bomba(new Bomb(500, 500, camera, manger_texture, config)),
         hud(config, manger_texture, info_Player.info),
@@ -36,7 +36,9 @@ GameView::GameView(Socket&& skt, const GameInfo& game_info, const Player& info_P
         press_start_x(0),
         press_start_y(0),
         blocking_mouse_motion(false) {
-    config_sound.playMusic(Music::SALA_ESPERA, -1);
+
+    shop.set_weapons_purchasables(game_info.weapons_purchasables);
+    config_sound.play_music(Music::SALA_ESPERA, -1);
 }
 
 TerroristSkin toItemTerrorism(const std::string& str) {
@@ -147,8 +149,22 @@ void GameView::update_bullets_snapshot() {
     }
 }
 
+void GameView::update_sounds(const PlayerImage& player){
 
+    for (const auto& sound : player.heared_sounds.common_sounds) {
+        Uint16 angle = 0;  
+        Uint8 distance = static_cast<Uint8>(sound.distance);
+        config_sound.play_effect_with_position(sound.type, angle, distance);
+    }
+
+    for (const auto& shoot_sound : player.heared_sounds.shoot_sounds) {
+        Uint16 angle = 0;
+        Uint8 distance = static_cast<Uint8>(shoot_sound.distance);
+        config_sound.play_shoot_with_position(shoot_sound.code, angle, distance);
+    }
+}
 void GameView::update_status_game() {
+
     print_game_image(snapshot);
     int tile_width = config.get_tile_width();
     int tile_height = config.get_tile_height();
@@ -171,6 +187,7 @@ void GameView::update_status_game() {
             } else {
                 player->set_muerto(false);
             }
+            update_sounds(player_img);
 
         } else if (players.find(id) == players.end()) {
 
@@ -186,6 +203,7 @@ void GameView::update_status_game() {
             int x_pixel_mouse = player_img.mouse_position.x * config.get_tile_width();
             int y_pixel_mouse = player_img.mouse_position.y * config.get_tile_height();
             player_aux->update_view_angle(x_pixel_mouse, y_pixel_mouse);
+
             reset_values(player_aux, x_pixeles, y_pixeles);
             player_aux->update_weapons(player_img.weapons);
             if (player_img.health <= 0) {
@@ -342,26 +360,22 @@ void GameView::handle_events(const SDL_Event& event) {
             this->keep_running = false;
             throw QuitGameException("Juego cerrado por el usuario");
         }
-
         if (event.type == SDL_KEYDOWN) {
             SDL_Keycode tecla = event.key.keysym.sym;
             handle_key_down(tecla);
         }
-
         if (event.type == SDL_KEYUP) {
             SDL_Keycode tecla = event.key.keysym.sym;
             player->stop_speed(tecla);  // Detiene movimiento
         }
-
         if (event.type == SDL_WINDOWEVENT) {  // LA PANTALLA
             if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
                 update_window();
                 this->map->update_map_dimensions();
-                printf("Nuevo mapa width: %d, height: %d\n", map->getMapWidth(),
-                       map->getMapHeight());
+               // printf("Nuevo mapa width: %d, height: %d\n", map->getMapWidth(),
+                       map->getMapHeight();
             }
         }
-
         if (event.type == SDL_MOUSEMOTION && !this->blocking_mouse_motion) {
             int mouseX = event.motion.x;
             int mouseY = event.motion.y;
@@ -369,44 +383,31 @@ void GameView::handle_events(const SDL_Event& event) {
             player->update_view_angle(mouseX, mouseY);
             controller.sender_pos_mouse(mouseX, mouseY);
         }
-
         if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
             left_mouse_pressed = true;
             mouse_press_start_time = SDL_GetTicks();
             last_burst_time = 0;
             press_start_x = event.button.x;
             press_start_y = event.button.y;
-
-
             if (shop.get_activa()) {
                 auto code = shop.calculate_selection(press_start_x, press_start_y);
                 if (code != WeaponCode::NONE)
                     controller.sender_buy_weapon(code);
             }
         }
-
         if (event.type == SDL_MOUSEBUTTONUP && event.button.button == SDL_BUTTON_LEFT) {
             this->blocking_mouse_motion = false;
             bool was_pressed = left_mouse_pressed;
             left_mouse_pressed = false;
-
             hold_mouse_t held = SDL_GetTicks() - mouse_press_start_time;
             if (was_pressed && held < HOLD_THRESHOLD_MS) {
                 handle_single_left_click(event.button.x, event.button.y);
             }
         }
-
-
     } catch (const ClosedQueue&
                      e) {  // Si la cola se cierra, significa que el servidor se ha cerrado
         this->controller.stop();
     }
-}
-
-void GameView::start(const GameInfo& info_game_view) {
-
-    this->fov = new FieldOfView(*player, camera, manger_texture, config);
-    shop.set_weapons_purchasables(info_game_view.weapons_purchasables);
 }
 
 void GameView::process_events() {
@@ -503,7 +504,7 @@ void GameView::step() {
     this->process_events();
     if (this->update_game_image()) {
         if (!config_sound.get_state_game()) {
-            config_sound.stopMusic();
+            config_sound.stop_music();
         }
         config_sound.set_start_game(true);
         this->update_game();

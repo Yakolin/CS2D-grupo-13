@@ -35,8 +35,7 @@ GameView::GameView(Socket&& skt, const GameInfo& game_info, const Player& info_P
         last_burst_time(0),
         press_start_x(0),
         press_start_y(0),
-        blocking_mouse_motion(false),
-        keep_running(true) {
+        blocking_mouse_motion(false) {
     config_sound.playMusic(Music::SALA_ESPERA, -1);
 }
 
@@ -82,7 +81,7 @@ void print_game_image(const GameImage& image) {
         /*
         std::cout << "Player ID: " << player.player_id << "\n";
         std::cout << "  Position: (" << player.position.x << ", " << player.position.y << ")\n";
-        /*         std::cout << "  Health: " << static_cast<int>(player.health) << "\n";
+                std::cout << "  Health: " << static_cast<int>(player.health) << "\n";
                  std::cout << "  Health: " << static_cast<int>(player.health) << "\n";
                 std::cout << "  Points: " << static_cast<int>(player.points) << "\n";
                 std::cout << "  Money: " << player.money << "\n";
@@ -98,8 +97,6 @@ void print_game_image(const GameImage& image) {
                               << ", Inventory: " << static_cast<int>(weapon.inventory_bullets) <<
            "\n";
                  }*/
-                 }
-        */
         for (const auto& sound: player.heared_sounds.common_sounds) {
             std::cout << "Escuche comun:\n";
             std::cout << "Sound: " << static_cast<int>(sound.type) << " A :" << sound.distance
@@ -132,7 +129,7 @@ void print_game_image(const GameImage& image) {
        std::cout << "  State: " << static_cast<int>(image.game_state.state) << "\n";
        std::cout << "  Time: " << image.game_state.time << "\n";
        std::cout << "  Round: " << static_cast<int>(image.game_state.round) << "\n";
-   */
+    */
 }
 
 
@@ -254,8 +251,7 @@ void GameView::handle_movements(SDL_Keycode& tecla) {
     if (tecla == SDLK_d || tecla == SDLK_RIGHT)
         controller.sender_move(MoveType::RIGHT);
     player->add_speed(tecla);
-   // player->auxiliar(tecla); //todo comentar
-
+    // player->auxiliar(tecla); //todo comentar
 }
 
 void GameView::handle_extras(SDL_Keycode& tecla) {
@@ -326,13 +322,13 @@ void GameView::update_mouse_hold() {
         int tile_playerx= player->getXActual()/ config.get_tile_width();
         int tile_playery= player->getYActual() / config.get_tile_height();
         if(tile_mousex == tile_playerx && tile_mousey == tile_playery){
-            
+
         }
     }
 }*/
 
-void GameView::update_window(){
-    if(!config_sound.get_state_game()){
+void GameView::update_window() {
+    if (!config_sound.get_state_game()) {
         SDL_Texture* textura = manger_texture.get(Object::FONDO_ESPERA);
         SDL_RenderCopy(renderer, textura, nullptr, nullptr);
         SDL_RenderPresent(renderer);
@@ -369,7 +365,7 @@ void GameView::handle_events(const SDL_Event& event) {
         if (event.type == SDL_MOUSEMOTION && !this->blocking_mouse_motion) {
             int mouseX = event.motion.x;
             int mouseY = event.motion.y;
-            hud.update_mouse(mouseX,mouseY);
+            hud.update_mouse(mouseX, mouseY);
             player->update_view_angle(mouseX, mouseY);
             controller.sender_pos_mouse(mouseX, mouseY);
         }
@@ -482,7 +478,7 @@ bool GameView::update_game_image() {
             }
             if (found) {
                 hud.load(snapshot.players_images[index_player_id], snapshot.bomb,
-                        snapshot.game_state.time, snapshot.game_state);
+                         snapshot.game_state.time, snapshot.game_state);
             } else {
                 std::cerr << "Error: No se encontró el jugador con client_id " << snapshot.client_id
                           << " en players_images\n";

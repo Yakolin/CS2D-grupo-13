@@ -14,11 +14,11 @@ HUD::HUD(GameConfig& config, ManageTexture& manager, const InfoGame& info_game):
         time(0),
         game_state(estado_juego_inicial()),
         weapon_used(Object::GLOCK),
-        mouse(config,manager.get(Object::MOUSE))
+        mouse(config, manager.get(Object::MOUSE))
 
 
-{ 
-    
+{
+
     SDL_Texture* icono_vida = texture_manager.get(Object::VIDA);
     SDL_Texture* icono_dinero = texture_manager.get(Object::MONEY);
     SDL_Texture* icono_timer_bomb = texture_manager.get(Object::TIMER_BOMB);
@@ -34,8 +34,8 @@ HUD::HUD(GameConfig& config, ManageTexture& manager, const InfoGame& info_game):
 
     int margen_lateral = 30;
     int x_izquierda = margen_lateral + margen_lateral;
-    int x_centro = (ancho / 2) - margen_lateral ;
-    int y_centro = (alto / 2) - margen_lateral ;
+    int x_centro = (ancho / 2) - margen_lateral;
+    int y_centro = (alto / 2) - margen_lateral;
     int x_derecha = ancho - margen_lateral - margen_lateral * 1;
 
     int margen_y = 30;
@@ -57,16 +57,15 @@ HUD::HUD(GameConfig& config, ManageTexture& manager, const InfoGame& info_game):
     load_text(TextView::HEALTH, x_derecha, fila2_y, icono_vida);
     load_text(TextView::TEAM, x_centro, fila2_y);
     load_text(TextView::AMMO, x_izquierda, fila2_y, icono_bullet);
-    
-    load_text(TextView::WIN_TT, x_centro-10, y_centro, icono_tt);
-    load_text(TextView::WIN_CT, x_centro-70, y_centro, icono_ct);
+
+    load_text(TextView::WIN_TT, x_centro - 10, y_centro, icono_tt);
+    load_text(TextView::WIN_CT, x_centro - 70, y_centro, icono_ct);
 
     load_state_win();
-
 }
 
 
-void HUD::load_state_win(){
+void HUD::load_state_win() {
 
     TTF_Font* font = config.get_font_game();
     load_info(TextView::WIN_CT, "Counter-Terrorist WIN!!", Color::AZUL, font);
@@ -84,20 +83,18 @@ void HUD::updateMouseSprite(const CursorContext& context) {
         case CursorContext::NORMAL:
             mouse.set_item(0, 0);  // Sprite normal
             break;
-        // ...
+            // ...
     }
 }
 
 
-void HUD::update_mouse(const int& x, const int& y){
-    mouse.set_pos(x,y);
-}
+void HUD::update_mouse(const int& x, const int& y) { mouse.set_pos(x, y); }
 PlayerImage HUD::jugador_inicial() {
     Position pos = {100, 100};
     Position mouse = {110, 110};
     std::vector<WeaponImage> armas;
     SoundImage sonidos;
-    armas.emplace_back(WeaponCode::GLOCK, 20, 20, 60);  // Arma básica
+    armas.emplace_back(WeaponCode::GLOCK, 20, 60);  // Arma básica
 
     return PlayerImage(1,    // player_id
                        pos,  // position
@@ -244,7 +241,7 @@ void HUD::update() {
     for (auto weapon: player.weapons) {
         if (weapon.weapon_code == player.equipped_weapon) {
             balas = weapon.current_bullets;
-            inventory_bullets = weapon.inventory_bullets;
+            inventory_bullets = weapon.magazine;
             break;
         }
     }
@@ -257,7 +254,6 @@ void HUD::update() {
     load_info(TextView::MONEY, std::to_string(player.money), Color::AMARILLO, font);
     load_info(TextView::TEAM, player.team == Team::CT ? "CT" : "TT", Color::AMARILLO, font);
     load_info(TextView::BUY, "  ", Color::VERDE, font);
-
 }
 
 
@@ -265,23 +261,21 @@ void HUD::render(SDL_Renderer& renderer) {
 
     mouse.draw(renderer);
     for (auto& [clave, item]: texts) {
-        if (clave == TextView::BOMB && player.team == Team::CT) 
-            continue; 
-        if(clave == TextView::BUY && game_state.state != GameState::TIME_TO_BUY)
+        if (clave == TextView::BOMB && player.team == Team::CT)
             continue;
-        if(clave == TextView::WIN_CT || clave == TextView::WIN_TT)
+        if (clave == TextView::BUY && game_state.state != GameState::TIME_TO_BUY)
+            continue;
+        if (clave == TextView::WIN_CT || clave == TextView::WIN_TT)
             continue;
         item.draw(renderer);
-    } 
-    if(game_state.state == GameState::TT_WIN_GAME || game_state.state == GameState::TT_WIN_ROUND ){
+    }
+    if (game_state.state == GameState::TT_WIN_GAME || game_state.state == GameState::TT_WIN_ROUND) {
         HUDItem item1 = texts.at(TextView::WIN_TT);
         item1.draw(renderer);
     }
 
-    if(game_state.state == GameState::CT_WIN_GAME || game_state.state == GameState::CT_WIN_ROUND ){
+    if (game_state.state == GameState::CT_WIN_GAME || game_state.state == GameState::CT_WIN_ROUND) {
         HUDItem item1 = texts.at(TextView::WIN_CT);
         item1.draw(renderer);
     }
-
-                
 }

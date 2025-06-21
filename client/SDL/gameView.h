@@ -15,6 +15,7 @@
 #include "../../common/constant_rate_loop.h"
 #include "../../common/game_image.h"
 #include "../controller.h"
+#include "../soundConfig.h"
 #include "../tipos.h"
 
 #include "HUD.h"
@@ -30,11 +31,11 @@
 #include "renderizable.h"
 #include "shopping.h"
 #include "text.h"
-#include "../soundConfig.h"
+
 
 #define HOLD_THRESHOLD_MS 200
 #define BURST_INTERVALS_MS 100
-  
+
 using hold_mouse_t = std::uint32_t;
 
 class GameView {
@@ -75,7 +76,7 @@ private:
     void update_mouse_hold();
 
     void handle_events(const SDL_Event& evento);
-  
+
     void handle_sprite_mouse(const int& mousex, const int& mousey);
 
     void update_bullets_snapshot();
@@ -110,14 +111,15 @@ private:
     Skins load_claves(const Player& info_Player);
 
 public:
-    explicit GameView( Socket&& skt, const GameInfo& game_info, const Player& info_game,SDL_Window* ventana, 
-        SDL_Renderer* renderer,  ManageTexture& manger_texture, GameConfig& config);
+    explicit GameView(Socket&& skt, const GameInfo& game_info, const Player& info_game,
+                      SDL_Window* ventana, SDL_Renderer* renderer, ManageTexture& manger_texture,
+                      GameConfig& config);
 
     /*
     pre:
     post:
     */
-    void start(const GameInfo& info_game_view );
+    void start(const GameInfo& info_game_view);
 
     void run();
 

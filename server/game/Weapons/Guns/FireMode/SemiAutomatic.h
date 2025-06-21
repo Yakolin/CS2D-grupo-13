@@ -6,11 +6,11 @@
 
 class SemiAutomatic: public FireMode {
 private:
-    FireRateClock fire_rate_timer;
+    FireRateClock timer;
     bool already_fired;
 
 public:
-    SemiAutomatic(fire_rate_t fire_rate);
+    SemiAutomatic(timer_fire_t timer_fire);
     ~SemiAutomatic();
 
     bool can_fire() override;

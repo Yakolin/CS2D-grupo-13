@@ -3,7 +3,7 @@
 
 #include <chrono>
 
-using burst_coldown_t = float;
+using burst_coldown_t = uint16_t;
 
 class BurstClock {
 private:
@@ -27,7 +27,7 @@ public:
         }
 
         auto now = std::chrono::steady_clock::now();
-        auto elapsed = std::chrono::duration_cast<std::chrono::seconds>(now - last_burst_time);
+        auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - last_burst_time);
 
         return elapsed.count() >= burst_cooldown;
     }

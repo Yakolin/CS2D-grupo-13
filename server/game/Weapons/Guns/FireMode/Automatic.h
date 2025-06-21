@@ -19,7 +19,7 @@ private:
     bool in_burst;
 
 public:
-    Automatic(const max_burst_t max_burst, const fire_rate_t fire_rate,
+    Automatic(const max_burst_t max_burst, const timer_fire_t timer_fire,
               const burst_coldown_t burst_coldown);
     ~Automatic();
 

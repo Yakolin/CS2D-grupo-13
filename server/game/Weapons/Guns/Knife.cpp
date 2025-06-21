@@ -2,7 +2,7 @@
 
 Knife::Knife(GameConfig::weapon_config_t specs):
         Weapon(WeaponCode::KNIFE, specs.damage, specs.distance, specs.width,
-               std::make_unique<SemiAutomatic>(static_cast<fire_rate_t>(specs.fire_rate))) {}
+               std::make_unique<SemiAutomatic>(static_cast<timer_fire_t>(specs.timer_fire))) {}
 
 Knife::~Knife() {}
 

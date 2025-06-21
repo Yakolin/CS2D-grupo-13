@@ -2,26 +2,26 @@
 
 #include <iostream>
 
-SemiAutomatic::SemiAutomatic(fire_rate_t fire_rate):
-        fire_rate_timer(fire_rate), already_fired(false) {}
+SemiAutomatic::SemiAutomatic(timer_fire_t timer_fire): timer(timer_fire), already_fired(false) {}
 
 SemiAutomatic::~SemiAutomatic() {}
 
 
 bool SemiAutomatic::can_fire() {
     this->already_fired = false;
-    if (!this->fire_rate_timer.can_fire()) {
+    if (!this->timer.can_fire()) {
         return false;
     }
+    this->timer.start();
     return true;
 }
 
 bool SemiAutomatic::can_fire_burst() {
     if (this->already_fired)
         return false;
-    if (!fire_rate_timer.can_fire())
+    if (!timer.can_fire())
         return false;
-    fire_rate_timer.start();
+    timer.start();
     this->already_fired = true;
     return true;
 }

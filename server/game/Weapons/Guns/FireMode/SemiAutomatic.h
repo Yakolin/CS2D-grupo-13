@@ -7,6 +7,7 @@
 class SemiAutomatic: public FireMode {
 private:
     FireRateClock fire_rate_timer;
+    bool already_fired;
 
 public:
     SemiAutomatic(fire_rate_t fire_rate);

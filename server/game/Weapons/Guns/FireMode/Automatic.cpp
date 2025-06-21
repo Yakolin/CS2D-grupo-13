@@ -1,5 +1,7 @@
 #include "Automatic.h"
 
+#include <iostream>
+
 Automatic::Automatic(const max_burst_t max_burst, const fire_rate_t fire_rate,
                      const burst_coldown_t burst_coldown):
         max_burst(max_burst),
@@ -30,6 +32,7 @@ bool Automatic::can_fire_burst() {
         in_burst = true;
         bullets_in_burst = 0;
     }
+    std::cout << "Estoy disparando en rafaga para una automatica" << std::endl;
     bullets_in_burst++;
     shot_timer.start();
 

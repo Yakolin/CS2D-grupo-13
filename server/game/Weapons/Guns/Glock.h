@@ -7,7 +7,7 @@
 
 class Glock: public FireableWeapon {
 private:
-    damage_t calculate_damage() override;
+    damage_t calculate_damage(float distance) override;
 
 public:
     explicit Glock(GameConfig::weapon_config_t specs);

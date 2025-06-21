@@ -7,11 +7,12 @@
 
 class ISpawneableZone {
 public:
-    typedef struct collider_solicitude_t {
+    typedef struct ColliderSolicitude {
         uint8_t width;
         uint8_t distance;
+        WeaponCode code;
         Position& mouse_position;
-        std::function<damage_t()> damage_function;
+        std::function<damage_t(float)> damage_function;
     } collider_solicitude_t;
     virtual void spawn_collider(player_id_t id_spawn, collider_solicitude_t& wanted) = 0;
     virtual bool plant_bomb(const player_id_t& id_spawn) = 0;

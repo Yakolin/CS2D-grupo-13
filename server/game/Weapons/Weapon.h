@@ -26,7 +26,7 @@ protected:
     width_t width;
     std::unique_ptr<FireMode> fire_mode;
 
-    virtual damage_t calculate_damage() = 0;
+    virtual damage_t calculate_damage(float distance) = 0;
 
     WeaponCode get_weapon_code() { return IInteractuable::get_weapon_code(); }
 

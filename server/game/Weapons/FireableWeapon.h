@@ -23,7 +23,7 @@ protected:
     bullet_t actual_bullets;
     magazine_t actual_magazine;
 
-    virtual damage_t calculate_damage() override = 0;
+    virtual damage_t calculate_damage(float distance) override = 0;
 
 public:
     FireableWeapon(WeaponCode weapon_code, damage_t damage, range_t range, width_t width,

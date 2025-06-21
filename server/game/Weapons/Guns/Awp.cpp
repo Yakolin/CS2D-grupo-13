@@ -9,4 +9,4 @@ Awp::~Awp() {}
 
 bool Awp::is_droppable() { return true; }
 
-damage_t Awp::calculate_damage() { return Weapon::damage; }
+damage_t Awp::calculate_damage([[maybe_unused]] float distance) { return Weapon::damage; }

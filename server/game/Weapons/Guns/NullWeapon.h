@@ -8,7 +8,7 @@
 class NullWeapon: public FireableWeapon {
 
 private:
-    damage_t calculate_damage() override { return 0; }
+    damage_t calculate_damage(float distance [[maybe_unused]]) override { return 0; }
 
 public:
     NullWeapon():

@@ -8,7 +8,7 @@
 class Ak47: public FireableWeapon {
 
 private:
-    damage_t calculate_damage() override;
+    damage_t calculate_damage(float distance) override;
 
 public:
     explicit Ak47(GameConfig::weapon_config_t specs);

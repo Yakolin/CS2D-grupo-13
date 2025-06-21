@@ -6,12 +6,14 @@ Knife::Knife(GameConfig::weapon_config_t specs):
 
 Knife::~Knife() {}
 
-damage_t Knife::calculate_damage() { return Weapon::damage; }
+damage_t Knife::calculate_damage(float distance [[maybe_unused]]) { return Weapon::damage; }
 
 bool Knife::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& direction) {
     if (this->fire_mode->can_fire()) {
+        WeaponCode weapon_code = this->get_weapon_code();
         ISpawneableZone::collider_solicitude_t wanted = {
-                this->width, this->range, direction, [this]() { return this->calculate_damage(); }};
+                Weapon::width, Weapon::range, weapon_code, direction,
+                [this](float value) { return this->calculate_damage(value); }};
 
         spawn.spawn_collider(id, wanted);
         return true;
@@ -21,8 +23,10 @@ bool Knife::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& dire
 
 bool Knife::shoot_burst(ISpawneableZone& spawn, player_id_t id, Position& direction) {
     if (this->fire_mode->can_fire_burst()) {
+        WeaponCode weapon_code = this->get_weapon_code();
         ISpawneableZone::collider_solicitude_t wanted = {
-                this->width, this->range, direction, [this]() { return this->calculate_damage(); }};
+                Weapon::width, Weapon::range, weapon_code, direction,
+                [this](float value) { return this->calculate_damage(value); }};
 
         spawn.spawn_collider(id, wanted);
         return true;

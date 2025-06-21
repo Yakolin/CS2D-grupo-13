@@ -23,13 +23,14 @@ void FireableWeapon::restart() {
 }
 
 void FireableWeapon::shoot_common(ISpawneableZone& spawn, player_id_t id, Position& direction) {
-    ISpawneableZone::collider_solicitude_t wanted = {Weapon::width, Weapon::range, direction,
-                                                     [this]() {
-                                                         return this->calculate_damage();
-                                                     }};  // esto deberia ser darle el daño y listo
+    WeaponCode weapon_code = this->get_weapon_code();
+    ISpawneableZone::collider_solicitude_t wanted = {
+            Weapon::width, Weapon::range, weapon_code, direction,
+            [this](float value) { return this->calculate_damage(value); }};
     spawn.spawn_collider(id, wanted);
     this->reduce_bullets();
 }
+
 
 bool FireableWeapon::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& direction) {
     if (this->actual_bullets > 0) {

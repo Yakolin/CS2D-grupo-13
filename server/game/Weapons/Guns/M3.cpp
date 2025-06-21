@@ -8,6 +8,6 @@ M3::M3(GameConfig::weapon_config_t specs):
 M3::~M3() {}
 
 
-damage_t M3::calculate_damage() { return (std::round(Weapon::damage / Weapon::range)); }
+damage_t M3::calculate_damage(float distance) { return (std::round(Weapon::damage / distance)); }
 
 bool M3::is_droppable() { return true; }

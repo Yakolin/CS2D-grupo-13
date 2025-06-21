@@ -8,7 +8,7 @@
 class Knife: public Weapon {
 
 private:
-    damage_t calculate_damage() override;
+    damage_t calculate_damage(float distance) override;
 
 public:
     explicit Knife(GameConfig::weapon_config_t specs);

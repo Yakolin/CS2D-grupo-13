@@ -21,9 +21,11 @@ typedef struct PlayerEntity {
 
 typedef struct ColliderDamage {
     std::unique_ptr<Collider> collider;
-    std::function<damage_t()> damage_calculator;
-    // Aca puede estar la probabilidad de daño
+    std::function<damage_t(float)> damage_calculator;
+    width_t width;
+    WeaponCode code;
 } collider_damage_t;
+
 
 class CollisionManager {
     std::vector<Position>& collision_pos;
@@ -39,6 +41,7 @@ class CollisionManager {
                               std::vector<PlayerEntity>& players_affected);
     bool check_bullet_wall(const Vector2f& initial_pos, const Vector2f& final_pos);
     void check_weapon_stepped(PlayerEntity& player);
+
     void check_damage_collider(player_id_t caster, ColliderDamage& collider);
     void check_bomb_stepped(PlayerEntity& player);
 

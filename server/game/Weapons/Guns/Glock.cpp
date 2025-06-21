@@ -9,4 +9,4 @@ Glock::~Glock() {}
 
 bool Glock::is_droppable() { return false; }
 
-damage_t Glock::calculate_damage() { return (Weapon::damage * Weapon::range); }
+damage_t Glock::calculate_damage(float distance) { return (Weapon::damage * distance); }

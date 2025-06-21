@@ -7,7 +7,7 @@ Ak47::Ak47(GameConfig::weapon_config_t specs):
                        specs.current_b) {}
 
 
-damage_t Ak47::calculate_damage() { return (Weapon::damage * Weapon::range); }
+damage_t Ak47::calculate_damage(float distance) { return (Weapon::damage * distance); }
 
 Ak47::~Ak47() {}
 

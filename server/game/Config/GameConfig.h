@@ -23,6 +23,7 @@ using max_bullets_t = uint8_t;
 using current_bullets_t = uint8_t;
 using width_t = uint8_t;
 using distance_t = uint8_t;
+using burst_coldown_t = uint16_t;
 
 
 // Player
@@ -36,6 +37,7 @@ public:
         damage_t damage;
         fire_rate_t fire_rate;
         timer_fire_t timer_fire;
+        burst_coldown_t burst_coldown;
         max_bullets_t max_b;
         current_bullets_t current_b;
         width_t width;

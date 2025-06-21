@@ -23,16 +23,16 @@ void GameConfig::load_weapons(const YAML::Node& config) {
         std::string name = weapon.first.as<std::string>();
         WeaponCode code = weapon_name_to_code(name);
         YAML::Node data = weapon.second;
-        bool purchasable = data["purchasable"].as<bool>();
         WeaponConfig weapon_config{data["price"].as<price_t>(),
                                    data["damage"].as<damage_t>(),
                                    data["fire_rate"].as<fire_rate_t>(),
                                    data["timer_fire"].as<timer_fire_t>(),
+                                   data["burst_coldown"].as<burst_coldown_t>(),
                                    data["max_bullets"].as<max_bullets_t>(),
                                    data["magazine"].as<max_bullets_t>(),
                                    data["width"].as<width_t>(),
                                    data["distance"].as<distance_t>(),
-                                   purchasable};
+                                   data["purchasable"].as<bool>()};
         weapon_configs[code] = weapon_config;
     }
 }

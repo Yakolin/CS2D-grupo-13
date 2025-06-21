@@ -4,6 +4,7 @@ Weapons:
     damage: 5
     fire_rate: 3
     timer_fire: 400
+    burst_coldown: 1250
     max_bullets: 90
     magazine: 30
     width: 1
@@ -14,6 +15,7 @@ Weapons:
     damage: 1
     fire_rate: 1
     timer_fire: 600
+    burst_coldown: 0
     max_bullets: 120
     magazine: 30
     width: 1
@@ -24,6 +26,7 @@ Weapons:
     damage: 20
     fire_rate: 1
     timer_fire: 800
+    burst_coldown: 0
     max_bullets: 16
     magazine: 4
     width: 3
@@ -34,6 +37,7 @@ Weapons:
     damage: 250
     fire_rate: 1
     timer_fire: 1200
+    burst_coldown: 0
     max_bullets: 12
     magazine: 6
     width: 1
@@ -44,6 +48,7 @@ Weapons:
     damage: 25
     fire_rate: 1
     timer_fire: 800 # Aca hay un error, el knife ni usa esto
+    burst_coldown: 0
     max_bullets: 0
     magazine: 0
     width: 2

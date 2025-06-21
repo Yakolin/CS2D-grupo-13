@@ -30,6 +30,8 @@ protected:
 private:
     std::vector<QWidget*> history;
     QStackedWidget stack;
+    QMediaPlayer* music;
+    QMediaPlaylist* playlist;
     QWidget menu;
     LobbyView lobby;
     ButtonsCreator buttons_creator;
@@ -39,6 +41,7 @@ private:
     post:
     */
     void add_buttons_menu(QVBoxLayout* layout);
+    void start_music();
 
 public:
     MenuView(QWidget* parent, ClientProtocol& protocol);

@@ -5,6 +5,7 @@
 #include <random>
 
 #include "../Config/GameConfig.h"
+#include "../Sounds/SoundManager.h"
 #include "Guns/Ak47.h"
 #include "Guns/Awp.h"
 #include "Guns/Glock.h"

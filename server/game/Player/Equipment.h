@@ -7,6 +7,7 @@
 
 #include "../../../common/player_command_types.h"
 #include "../Map/IDroppableZone.h"
+#include "../Map/ISoundZone.h"
 #include "../Map/ISpawneableZone.h"
 #include "../Weapons/FireableWeapon.h"
 #include "../Weapons/IInteractuable.h"
@@ -18,6 +19,7 @@ private:
 
     ISpawneableZone& spawneable_zone;
     IDroppableZone& droppable_zone;
+    ISoundZone& sound_zone;
     WeaponFactory& weapon_factory;
 
     std::shared_ptr<Weapon> primary;
@@ -30,7 +32,8 @@ private:
 
 public:
     Equipment(const player_id_t& player_id, ISpawneableZone& spawneable_zone,
-              IDroppableZone& droppable_zone, WeaponFactory& weapon_factory);
+              IDroppableZone& droppable_zone, ISoundZone& sound_zone,
+              WeaponFactory& weapon_factory);
     ~Equipment();
 
     Equipment(Equipment&&) = default;

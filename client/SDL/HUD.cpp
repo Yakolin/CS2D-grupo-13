@@ -96,15 +96,18 @@ PlayerImage HUD::jugador_inicial() {
     Position pos = {100, 100};
     Position mouse = {110, 110};
     std::vector<WeaponImage> armas;
+    SoundImage sonidos;
     armas.emplace_back(WeaponCode::GLOCK, 20, 20, 60);  // Arma básica
 
     return PlayerImage(1,    // player_id
                        pos,  // position
                        100,  // health
+                       0,    // deaths
                        0,    // points
                        0, WeaponCode::NONE, std::move(armas),
                        Team::CT,  // team
-                       mouse, Skins(CounterTerroristSkin::GIGN, TerroristSkin::GUERRILLA));
+                       mouse, Skins(CounterTerroristSkin::GIGN, TerroristSkin::GUERRILLA),
+                       std::move(sonidos));
 }
 
 BombImage HUD::bomba_inicial() { return BombImage(Position{0, 0}, BombState::DROPPED); }

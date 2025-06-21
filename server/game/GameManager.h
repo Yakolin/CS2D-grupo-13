@@ -14,6 +14,7 @@
 #include "Config/GameConfig.h"
 #include "Map/Map.h"
 #include "Player/Player.h"
+#include "Sounds/SoundManager.h"
 #include "Weapons/WeaponFactory.h"
 
 #include "GameException.h"
@@ -45,6 +46,8 @@ private:
     std::shared_ptr<Bomb> bomb;
     // Map
     Map map_game;
+    // Sound
+    SoundManager sound_manager;
 
     std::shared_ptr<Player> create_player(const player_id_t& id, Team team, Skins& skins);
     shared_ptr<Player> find_player(const player_id_t& player_id);
@@ -61,7 +64,7 @@ public:
             timer(game_config.get_timer_config()),
             weapon_factory(game_config.get_weapon_config()),
             bomb(std::make_shared<Bomb>(timer)),
-            map_game(map_name, bomb) {}
+            map_game(map_name, bomb, sound_manager) {}
     ~GameManager();
     GameImage get_frame();
     GameInfo get_game_info();

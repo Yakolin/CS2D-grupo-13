@@ -12,6 +12,7 @@ using weapon_code_t = std::uint8_t;
 using weapon_type_t = std::uint8_t;
 using equip_type_t = std::uint8_t;
 using coordinate_t = uint16_t;
+using sound_type_t = std::uint8_t;
 
 enum class PlayerCommandType {
     MOVE,

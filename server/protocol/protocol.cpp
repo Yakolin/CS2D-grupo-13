@@ -265,7 +265,35 @@ void ServerProtocol::send_weapons(const PlayerImage& player_image) {
         this->send_byte_data(inventory_bullets);
     }
 }
-
+void ServerProtocol::send_sound(sound_type_t type, distance_sound_t distance) {
+    this->send_byte_data(type);
+    this->send_two_byte_data(distance);
+}
+void ServerProtocol::send_shoot_sounds(const PlayerImage& player_image) {
+    length_heared_sounds_t length_shoot_sounds = player_image.heared_sounds.shoot_sounds.size();
+    std::vector<SoundShootImage> shoot_sounds_images = player_image.heared_sounds.shoot_sounds;
+    this->send_byte_data(length_shoot_sounds);
+    for (const SoundShootImage& shoot: shoot_sounds_images) {
+        distance_sound_t distance = shoot.distance;
+        this->send_two_byte_data(distance);
+        weapon_code_t code = static_cast<weapon_code_t>(shoot.code);
+        this->send_byte_data(code);
+    }
+}
+void ServerProtocol::send_common_sounds(const PlayerImage& player_image) {
+    length_heared_sounds_t length_sounds = player_image.heared_sounds.common_sounds.size();
+    std::vector<SoundCommonImage> sounds_images = player_image.heared_sounds.common_sounds;
+    this->send_byte_data(length_sounds);
+    for (const SoundCommonImage& common: sounds_images) {
+        sound_type_t type = static_cast<sound_type_t>(common.type);
+        distance_sound_t distance = common.distance;
+        this->send_sound(type, distance);
+    }
+}
+void ServerProtocol::send_sound_image(const PlayerImage& player_image) {
+    this->send_common_sounds(player_image);
+    this->send_shoot_sounds(player_image);
+}
 void ServerProtocol::send_players_images(std::vector<PlayerImage>& players_images) {
     length_players_images_t length_players = players_images.size();
     this->send_two_byte_data(length_players);
@@ -279,6 +307,9 @@ void ServerProtocol::send_players_images(std::vector<PlayerImage>& players_image
         health_t health = player_image.health;
         this->send_byte_data(health);
 
+        deaths_t deaths = player_image.deaths;
+        this->send_byte_data(deaths);
+
         points_t points = player_image.points;
         this->send_two_byte_data(points);
 
@@ -289,6 +320,8 @@ void ServerProtocol::send_players_images(std::vector<PlayerImage>& players_image
         this->send_byte_data(equipped_weapon_code);
 
         this->send_weapons(player_image);
+
+        this->send_sound_image(player_image);
 
         team_t team = static_cast<team_t>(player_image.team);
         this->send_byte_data(team);

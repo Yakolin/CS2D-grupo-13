@@ -291,7 +291,35 @@ void ClientProtocol::read_weapons(std::vector<WeaponImage>& weapons) {
                                          magazine, inventory_bullets));
     }
 }
-
+void ClientProtocol::read_sound(sound_type_t& type, distance_sound_t& distance) {
+    this->read_byte_data(type);
+    this->read_two_byte_data(distance);
+}
+void ClientProtocol::read_shoot_sounds(std::vector<SoundShootImage>& sounds) {
+    length_heared_sounds_t length_sounds;
+    this->read_byte_data(length_sounds);
+    for (length_heared_sounds_t i = 0; i < length_sounds; i++) {
+        distance_sound_t distance;
+        weapon_code_t code;
+        this->read_two_byte_data(distance);
+        this->read_byte_data(code);
+        sounds.emplace_back(SoundShootImage(distance, static_cast<WeaponCode>(code)));
+    }
+}
+void ClientProtocol::read_common_sounds(std::vector<SoundCommonImage>& sounds) {
+    length_heared_sounds_t length_sounds;
+    this->read_byte_data(length_sounds);
+    for (length_heared_sounds_t i = 0; i < length_sounds; i++) {
+        sound_type_t type;
+        distance_sound_t distance;
+        this->read_sound(type, distance);
+        sounds.emplace_back(SoundCommonImage(static_cast<SoundType>(type), distance));
+    }
+}
+void ClientProtocol::read_sound_image(SoundImage& sounds) {
+    this->read_common_sounds(sounds.common_sounds);
+    this->read_shoot_sounds(sounds.shoot_sounds);
+}
 void ClientProtocol::read_player_image(std::vector<PlayerImage>& players_images) {
     length_players_images_t length_players_images;
     this->read_two_byte_data(length_players_images);
@@ -308,6 +336,8 @@ void ClientProtocol::read_player_image(std::vector<PlayerImage>& players_images)
 
         health_t health;
         this->read_byte_data(health);
+        deaths_t deaths;
+        this->read_byte_data(deaths);
 
         points_t points;
         this->read_two_byte_data(points);
@@ -320,6 +350,9 @@ void ClientProtocol::read_player_image(std::vector<PlayerImage>& players_images)
 
         std::vector<WeaponImage> weapons;
         this->read_weapons(weapons);
+
+        SoundImage sounds;
+        this->read_sound_image(sounds);
 
         team_t team_raw;
         this->read_byte_data(team_raw);
@@ -336,9 +369,10 @@ void ClientProtocol::read_player_image(std::vector<PlayerImage>& players_images)
         TerroristSkin tt = static_cast<TerroristSkin>(tt_skin);
         Skins skins(ct, tt);
 
-        players_images.emplace_back(PlayerImage(player_id, position_player, health, points, money,
-                                                static_cast<WeaponCode>(equipped_weapon_code),
-                                                std::move(weapons), team, position_mouse, skins));
+        players_images.emplace_back(
+                PlayerImage(player_id, position_player, health, deaths, points, money,
+                            static_cast<WeaponCode>(equipped_weapon_code), std::move(weapons), team,
+                            position_mouse, skins, std::move(sounds)));
     }
 }
 

@@ -4,21 +4,24 @@
 #include <QTableWidget>
 #include <QVBoxLayout>
 #include <map>
-#include <QtCharts/QChartView>
-#include <QtCharts/QStackedBarSeries>
-
 #include <string>
-#include <QtCharts/QChartView>
-#include <QtCharts/QChart>
+
+#include <QtCharts/QBarCategoryAxis>
 #include <QtCharts/QBarSeries>
 #include <QtCharts/QBarSet>
-#include <QtCharts/QBarCategoryAxis>
+#include <QtCharts/QChart>
+#include <QtCharts/QChartView>
+#include <QtCharts/QHorizontalStackedBarSeries>
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QPieSeries>
 #include <QtCharts/QScatterSeries>
+#include <QtCharts/QStackedBarSeries>
 #include <QtCharts/QValueAxis>
-#include <QtCharts/QHorizontalStackedBarSeries>
+
 #include "../tipos.h"
+
+#include "ButtonsCreator.h"
+
 
 using namespace QtCharts;
 

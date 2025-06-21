@@ -30,6 +30,11 @@
 #include "renderizable.h"
 #include "shopping.h"
 #include "text.h"
+
+#define HOLD_THRESHOLD_MS 200
+#define BURST_INTERVALS_MS 100
+
+using hold_mouse_t = std::uint32_t;
 class GameView {
 
 private:
@@ -53,13 +58,20 @@ private:
     bool activa;
     bool bomb_activate;
     std::atomic<bool> keep_running;
+    bool left_mouse_pressed;
+    hold_mouse_t mouse_press_start_time;
+    hold_mouse_t last_burst_time;
+    int press_start_x, press_start_y;
+    bool blocking_mouse_motion;
+
 
     void handle_equip_type(const SDL_Keycode& tecla);
 
     void mouse_position_tiles(int& posx, int& posy, const int& mousex, const int& mousey);
 
-    void handle_events(const SDL_Event& evento);
+    void update_mouse_hold();
 
+    void handle_events(const SDL_Event& evento);
 
     void update_bullets_snapshot();
 
@@ -75,6 +87,7 @@ private:
 
     void update_game();
 
+
     bool update_game_image();
 
     void render_game();
@@ -83,8 +96,8 @@ private:
     /*
     INPUT HANDLER
     */
+    void send_burst();
     void handle_single_left_click(int mouseX, int mouseY);
-    void handle_hold_left_click(int mouseX, int mouseY);
     void handle_key_down(SDL_Keycode& tecla);
     void handle_extras(SDL_Keycode& tecla);
     void handle_movements(SDL_Keycode& tecla);

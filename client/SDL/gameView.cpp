@@ -21,7 +21,13 @@ GameView::GameView(Socket&& skt, const GameInfo& game_info, const Player& info_P
         bullets(),
         activa(false),
         bomb_activate(false),
-        keep_running(true) {}
+        keep_running(true),
+        left_mouse_pressed(false),
+        mouse_press_start_time(0),
+        last_burst_time(0),
+        press_start_x(0),
+        press_start_y(0),
+        blocking_mouse_motion(false) {}
 
 
 TerroristSkin toItemTerrorism(const std::string& str) {
@@ -291,21 +297,36 @@ void GameView::handle_single_left_click(int mouseX, int mouseY) {
     }
 }
 
-void GameView::handle_hold_left_click(int mouseX, int mouseY) {
-    if (shop.get_activa()) {
-        WeaponCode code = shop.calculate_selection(mouseX, mouseY);
-        // Realmente esto no deberia de siquiera pasar, casi que es una exception
-        if (code != WeaponCode::NONE)
-            controller.sender_buy_weapon(code);
-    }
+
+void GameView::send_burst() {
     if (snapshot.game_state.state == GameState::ROUND_STARTED) {
-        int mousex_tile = -1;
-        int mousey_tile = -1;
-        mouse_position_tiles(mousex_tile, mousey_tile, mouseX, mouseY);
-        controller.sender_shoot(mousex_tile, mousey_tile);
+        int tx = -1, ty = -1;
+        mouse_position_tiles(tx, ty, press_start_x, press_start_y);
+        controller.sender_shoot_burst(tx, ty);
+        this->blocking_mouse_motion = true;
     }
 }
 
+void GameView::update_mouse_hold() {
+    if (!left_mouse_pressed)
+        return;
+
+    hold_mouse_t now = SDL_GetTicks();
+    hold_mouse_t held = now - mouse_press_start_time;
+    if (held < HOLD_THRESHOLD_MS)
+        return;
+
+    if (last_burst_time == 0) {
+        last_burst_time = now;
+        send_burst();
+        return;
+    }
+
+    if (now - last_burst_time >= BURST_INTERVALS_MS) {
+        last_burst_time = now;
+        send_burst();
+    }
+}
 
 void GameView::handle_events(const SDL_Event& event) {
     try {
@@ -324,6 +345,7 @@ void GameView::handle_events(const SDL_Event& event) {
             SDL_Keycode tecla = event.key.keysym.sym;
             player->stop_speed(tecla);  // Detiene movimiento
         }
+
         if (event.type == SDL_WINDOWEVENT) {  // LA PANTALLA
             if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
                 this->map->update_map_dimensions();
@@ -332,26 +354,36 @@ void GameView::handle_events(const SDL_Event& event) {
             }
         }
 
-        if (event.type == SDL_MOUSEMOTION) {  // para mover mouse
+        if (event.type == SDL_MOUSEMOTION && !this->blocking_mouse_motion) {
             int mouseX = event.motion.x;
             int mouseY = event.motion.y;
             player->update_view_angle(mouseX, mouseY);
             controller.sender_pos_mouse(mouseX, mouseY);
         }
 
-        if (event.type == SDL_MOUSEBUTTONDOWN) {
-            if (event.button.button == SDL_BUTTON_LEFT) {
-                int mouseX = event.button.x;
-                int mouseY = event.button.y;
-                handle_hold_left_click(mouseX, mouseY);
+        if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
+            left_mouse_pressed = true;
+            mouse_press_start_time = SDL_GetTicks();
+            last_burst_time = 0;
+            press_start_x = event.button.x;
+            press_start_y = event.button.y;
+
+
+            if (shop.get_activa()) {
+                auto code = shop.calculate_selection(press_start_x, press_start_y);
+                if (code != WeaponCode::NONE)
+                    controller.sender_buy_weapon(code);
             }
         }
 
-        if (event.type == SDL_MOUSEBUTTONUP) {
-            if (event.button.button == SDL_BUTTON_LEFT) {
-                int mouseX = event.button.x;
-                int mouseY = event.button.y;
-                handle_single_left_click(mouseX, mouseY);
+        if (event.type == SDL_MOUSEBUTTONUP && event.button.button == SDL_BUTTON_LEFT) {
+            this->blocking_mouse_motion = false;
+            bool was_pressed = left_mouse_pressed;
+            left_mouse_pressed = false;
+
+            hold_mouse_t held = SDL_GetTicks() - mouse_press_start_time;
+            if (was_pressed && held < HOLD_THRESHOLD_MS) {
+                handle_single_left_click(event.button.x, event.button.y);
             }
         }
 
@@ -373,6 +405,7 @@ void GameView::process_events() {
     while (SDL_PollEvent(&event)) {
         this->handle_events(event);
     }
+    update_mouse_hold();
 }
 
 void GameView::update_game() {

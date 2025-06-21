@@ -9,9 +9,9 @@ FieldOfView::FieldOfView(PlayerView& player, Camera& camera, ManageTexture& mana
         lado(2000),
         texture_fov(nullptr),
         config(config_game) {
-    int ancho= config.get_window_width();
+    int ancho = config.get_window_width();
     int alto = config.get_window_height();
-    texture_fov = manager.create_stencil(ancho, alto, 0.0f, 90.0f ,config.get_intensity());
+    texture_fov = manager.create_stencil(ancho, alto, 0.0f, 90.0f, config.get_intensity());
 }
 
 
@@ -32,7 +32,6 @@ void FieldOfView::draw(SDL_Renderer& renderer) {
 
 
 bool FieldOfView::is_in_fov(const PlayerView& other) {
-    
     float x1 = player.getXActual();
     float y1 = player.getYActual();
 
@@ -42,13 +41,15 @@ bool FieldOfView::is_in_fov(const PlayerView& other) {
     float dx = x2 - x1;
     float dy = y2 - y1;
 
-    float player_angle = player.getAnglePlayer();  // in degrees
-    float angle_to_other = std::atan2(dy, dx) * 180.0f / M_PI;
+    float player_angle = player.getAnglePlayer();
+    float angle_to_other = std::atan2(-dy, -dx) * 180.0f / M_PI - 90.0f;
+    if (angle_to_other < 0.0f)
+        angle_to_other += 360.0f;
 
     float angle_diff = std::fmod((angle_to_other - player_angle + 360.0f), 360.0f);
-    if (angle_diff < 180.0f) angle_diff -= 360.0f;
+    if (angle_diff > 180.0f)
+        angle_diff -= 360.0f;
 
-    float fov_half_angle = 90.0f / 2.0f;  // 45° to each side
+    float fov_half_angle = 90.0f / 2.0f;
     return std::abs(angle_diff) <= fov_half_angle;
 }
-

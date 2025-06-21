@@ -45,7 +45,7 @@ void Player::shoot(const coordinate_t& mouse_x, const coordinate_t& mouse_y) {
 
 void Player::shoot_burst(const coordinate_t& mouse_x, const coordinate_t& mouse_y) {
     Position position(mouse_x, mouse_y);
-    this->equipment.shoot(position);
+    this->equipment.shoot_burst(position);
 }
 
 PlayerImage Player::get_player_image(const Position& position) {

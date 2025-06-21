@@ -237,6 +237,16 @@ void Vista::showScoreboard(const std::map<player_id_t, InfoPlayer>& table) {
     }
 }
 
+void Vista::reset() {
+    this->opcionElegida = LobbyCommandType::NONE;
+    this->info_game.info.name_game = "";
+    this->info_game.info.name_player = "";
+    this->info_game.map = "";
+    this->info_game.skin2 = "";
+    this->info_game.skin = "";
+    this->info_game.team = "";
+}
+
 Vista::~Vista() {
     this->skt.shutdown(2);
     this->skt.close();

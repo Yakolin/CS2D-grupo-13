@@ -13,6 +13,7 @@ int Client::run() {
             if (running) {
                 std::map<player_id_t, InfoPlayer> table = vista.showGame();
                 vista.showScoreboard(table);
+                this->vista.reset();
             }
         }
     } catch (const std::exception& e) {

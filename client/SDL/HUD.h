@@ -15,11 +15,11 @@
 class HUDItem {
 public:
     Text texto;
-    SDL_Texture* icono; 
+    SDL_Texture* icono;
     SDL_Rect icono_rect;
 
-    HUDItem(Text text, SDL_Texture* icono = nullptr, SDL_Rect rect = {})
-        : texto(std::move(text)), icono(icono), icono_rect(rect) {}
+    HUDItem(Text text, SDL_Texture* icono = nullptr, SDL_Rect rect = {}):
+            texto(std::move(text)), icono(icono), icono_rect(rect) {}
 
     void draw(SDL_Renderer& renderer) {
         if (icono) {
@@ -37,21 +37,17 @@ private:
     GameConfig& config;
 
 public:
-    Mouse(GameConfig& config,SDL_Texture* textura):
-    info_mouse(),
-    item_mouse({0,0}),
-    pos_mouse({0,0}),
-    config(config)
-{
-    info_mouse.textura = textura;
-    config.get_dimension(info_mouse.textura,info_mouse.medidas.w,info_mouse.medidas.h);
-}
+    Mouse(GameConfig& config, SDL_Texture* textura):
+            info_mouse(), item_mouse({0, 0}), pos_mouse({0, 0}), config(config) {
+        info_mouse.textura = textura;
+        config.get_dimension(info_mouse.textura, info_mouse.medidas.w, info_mouse.medidas.h);
+    }
 
-    void set_pos(const int& x, const int& y){
+    void set_pos(const int& x, const int& y) {
         pos_mouse.x = x;
         pos_mouse.y = y;
     }
-    void set_item(const int& x, const int& y){
+    void set_item(const int& x, const int& y) {
         item_mouse.col = x;
         item_mouse.fil = y;
     }
@@ -59,8 +55,9 @@ public:
         int ancho = info_mouse.medidas.w;
         int alto = info_mouse.medidas.h;
 
-        SDL_Rect src = {item_mouse.col * ancho,item_mouse.fil * alto,ancho / 2,alto / 2};
-        SDL_Rect dst = {pos_mouse.x,pos_mouse.y,config.get_tile_width(),config.get_tile_height()};
+        SDL_Rect src = {item_mouse.col * ancho, item_mouse.fil * alto, ancho / 2, alto / 2};
+        SDL_Rect dst = {pos_mouse.x, pos_mouse.y, config.get_tile_width(),
+                        config.get_tile_height()};
         SDL_RenderCopyEx(&renderer, info_mouse.textura, &src, &dst, 0.0f, nullptr, SDL_FLIP_NONE);
     }
 };
@@ -72,7 +69,7 @@ private:
     std::map<TextView, HUDItem> texts;
     PlayerImage player;
     BombImage bomb;
-    uint8_t time;
+    uint16_t time;
     GameStateImage game_state;
     Object weapon_used;
     Mouse mouse;
@@ -91,9 +88,9 @@ private:
     void load_state_win();
 
 public:
-    HUD(GameConfig& config, ManageTexture& manager,const InfoGame& info_game);
+    HUD(GameConfig& config, ManageTexture& manager, const InfoGame& info_game);
 
-    void updateMouseSprite(const CursorContext& context) ;
+    void updateMouseSprite(const CursorContext& context);
 
     void update_mouse(const int& x, const int& y);
     void load(PlayerImage& player, BombImage& bomb, uint16_t& time, GameStateImage& game_state);

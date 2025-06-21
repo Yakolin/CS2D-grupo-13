@@ -30,10 +30,9 @@ PlayerView::PlayerView(const float& x, const float& y, const Skins& clave_player
         activar_weapon(false),
         muerto(false),
         equipped_weapon(WeaponCode::NONE),
-        textures_player(load_claves(clave_player))
-{ 
-    SDL_Texture* texture_player = textures_player.at(clave_team); 
-    config.get_dimension(texture_player,width_img,height_img );
+        textures_player(load_claves(clave_player)) {
+    SDL_Texture* texture_player = textures_player.at(clave_team);
+    config.get_dimension(texture_player, width_img, height_img);
 }
 std::unordered_map<Team, SDL_Texture*> PlayerView::load_claves(const Skins& clave_player) {
     std::unordered_map<Team, SDL_Texture*> text;
@@ -42,9 +41,9 @@ std::unordered_map<Team, SDL_Texture*> PlayerView::load_claves(const Skins& clav
     return text;
 }
 
-Team PlayerView::get_clave_team(){return clave_team;}
+Team PlayerView::get_clave_team() { return clave_team; }
 
-void PlayerView::set_muerto(const bool& new_state){ muerto = new_state;}
+void PlayerView::set_muerto(const bool& new_state) { muerto = new_state; }
 
 void PlayerView::update_equip(const PlayerImage player_aux) {
     this->equipped_weapon = player_aux.equipped_weapon;
@@ -106,7 +105,6 @@ void PlayerView::update_weapons(const std::vector<WeaponImage>& weapons_vec) {
 }
 
 
-
 void PlayerView::add_speed(const SDL_Keycode& tecla) {
     if (tecla == SDLK_w || tecla == SDLK_UP) {
         setVelY(-speed_player);
@@ -152,7 +150,9 @@ void PlayerView::draw(SDL_Renderer& renderer) {
         texture_player = textures_player.at(clave_team);
     } else {
         texture_player = manejador->get(Object::MUERTE);
-    
+        int tex_width, tex_height;
+        SDL_QueryTexture(texture_player, nullptr, nullptr, &tex_width, &tex_height);
+        origin_rect = {0, 0, tex_width, tex_height};
     }
     destination_rect = {static_cast<int>(x_actual) - camera->getX(),
                         static_cast<int>(y_actual) - camera->getY(), config.get_tile_width(),

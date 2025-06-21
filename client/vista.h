@@ -48,6 +48,8 @@ public:
 
     void showScoreboard(const std::map<player_id_t, InfoPlayer>& table);
 
+    void reset();
+
     ~Vista();
 
 private:

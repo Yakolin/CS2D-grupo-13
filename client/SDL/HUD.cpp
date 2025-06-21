@@ -149,6 +149,7 @@ void HUD::load(PlayerImage& player, BombImage& bomb, uint16_t& time, GameStateIm
     this->time = time;
     update();
 }
+
 std::string get_weapon_str(WeaponCode weapon) {
     switch (weapon) {
         case WeaponCode::GLOCK:
@@ -264,7 +265,8 @@ void HUD::update() {
 
 
 void HUD::render(SDL_Renderer& renderer) {
-
+    std::cout << "Precio:" << this->player.money << std::endl;
+    std::cout << "Tiempo:" << this->time << std::endl;
     mouse.draw(renderer);
     for (auto& [clave, item]: texts) {
         if (clave == TextView::BOMB && player.team == Team::CT)

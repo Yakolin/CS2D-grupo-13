@@ -41,6 +41,8 @@ std::unordered_map<Team, SDL_Texture*> PlayerView::load_claves(const Skins& clav
     return text;
 }
 
+Team PlayerView::get_clave_team(){return clave_team;}
+
 void PlayerView::set_muerto(const bool& new_state){ muerto = new_state;}
 
 void PlayerView::update_equip(const PlayerImage player_aux){
@@ -182,8 +184,8 @@ void PlayerView::setXActual(float x) { x_actual = x; }
 void PlayerView::setYActual(float y) { y_actual = y; }
 
 
-float PlayerView::getXActual() { return x_actual; }
-float PlayerView::getYActual() { return y_actual; }
+float PlayerView::getXActual() const { return x_actual; }
+float PlayerView::getYActual() const { return y_actual; }
 
 
 void PlayerView::setSpeed(float speed) { speed_player = speed; }

@@ -33,6 +33,10 @@ ManageTexture::ManageTexture(SDL_Renderer* renderer): renderer(renderer) {
     load(Object::WALL_DESIERTO, "assets/gfx/backgrounds/dust.png");
     load(Object::WALL_ENTRENAMIENTO, "assets/gfx/backgrounds/stone1.jpg");
 
+    load(Object::CT, "assets/gfx/icon/ct.png");
+    load(Object::TT, "assets/gfx/icon/tt.png");
+
+
     load(Object::FLOOR_AZTEC, "assets/gfx/blockglas.PNG");
     load(Object::FLOOR_DESIERTO, "assets/gfx/backgrounds/sand1.jpg");
     load(Object::FLOOR_ENTRENAMIENTO, "assets/gfx/backgrounds/sand1-night.jpg");
@@ -238,7 +242,6 @@ void ManageTexture::load(const Object& id, const std::string& filePath) {
         throw std::runtime_error("Error creando textura: " + std::string(SDL_GetError()));
     }
     textures[id] = texture;
-    std::cout << "[LOAD TEXTURE] Textura cargada con éxito: " << filePath << std::endl;
 }
 
 void ManageTexture::load_skins_tt(const TerroristSkin& id, const std::string& filePath) {
@@ -359,32 +362,23 @@ SDL_Texture* ManageTexture::create_stencil(const int& ancho, const int& alto, co
 
 
     int diagonal = std::sqrt(ancho * ancho + alto * alto);
-    int lado = static_cast<int>(diagonal * 1.5);  // Aumentar un 50% para cubrir rotaciones
-
+    int lado = static_cast<int>(diagonal * 1.5); 
     SDL_Texture* stencil = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888,
                                              SDL_TEXTUREACCESS_TARGET, lado, lado);
     if (!stencil) {
         throw std::runtime_error("Error: la textura stencil no se cargó correctamente.");
     }
-
     SDL_Texture* old_target = SDL_GetRenderTarget(renderer);
     SDL_SetRenderTarget(renderer, stencil);
-
     std::array<SDL_Point, 4> points = calculo(lado, angle, apertura);
-
-    int radio_pequeno = 64;
     SDL_SetTextureBlendMode(stencil, SDL_BLENDMODE_BLEND);
-
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, intensity);
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
     SDL_RenderClear(renderer);
-
-    filledCircleRGBA(renderer, points[0].x, points[0].y, radio_pequeno, 0, 0, 0, 0);
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
     fillTriangle(renderer, points[0].x, points[0].y, points[1].x, points[1].y, points[2].x,
                  points[2].y);
-
     SDL_SetRenderTarget(renderer, old_target);
 
     return stencil;

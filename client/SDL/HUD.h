@@ -88,7 +88,7 @@ private:
     void load_info(const TextView& clave, const std::string text, Color color_id, TTF_Font* font);
     Mouse init_mouse(ManageTexture& manager, GameConfig& config);
 
-
+    void load_state_win();
 
 public:
     HUD(GameConfig& config, ManageTexture& manager,const InfoGame& info_game);
@@ -96,7 +96,7 @@ public:
     void updateMouseSprite(const CursorContext& context) ;
 
     void update_mouse(const int& x, const int& y);
-    void load(PlayerImage& player, BombImage& bomb, uint8_t time, GameStateImage game_state);
+    void load(PlayerImage& player, BombImage& bomb, uint16_t& time, GameStateImage& game_state);
     void update();
     void render(SDL_Renderer& renderer);
 };

@@ -82,6 +82,8 @@ private:
 
     void render_game();
 
+    void update_window();
+
 
     /*
     INPUT HANDLER

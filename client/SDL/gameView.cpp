@@ -178,7 +178,7 @@ void GameView::update_status_game() {
 void GameView::draw_players() {
     for (auto& pair: this->players) {
         PlayerView* player = pair.second;
-        if (player) {
+        if (player && fov->is_in_fov(*player)) {
             player->draw(*renderer);
         }
     }
@@ -229,7 +229,7 @@ void GameView::handle_movements(SDL_Keycode& tecla) {
     if (tecla == SDLK_d || tecla == SDLK_RIGHT)
         controller.sender_move(MoveType::RIGHT);
     player->add_speed(tecla);
-    //player->auxiliar(tecla); //todo comentar
+   // player->auxiliar(tecla); //todo comentar
 }
 
 void GameView::handle_extras(SDL_Keycode& tecla) {
@@ -280,6 +280,14 @@ void GameView::handle_mouse_left_down(int mouseX, int mouseY) {
         }
     }
 }*/
+
+void GameView::update_window(){
+    if(!config_sound.get_state_game()){
+        SDL_Texture* textura = manger_texture.get(Object::FONDO_ESPERA);
+        SDL_RenderCopy(renderer, textura, nullptr, nullptr);
+        SDL_RenderPresent(renderer);
+    }
+}
 void GameView::handle_events(const SDL_Event& event) {
     try {
         if (event.type == SDL_QUIT) {
@@ -299,6 +307,7 @@ void GameView::handle_events(const SDL_Event& event) {
         }
         if (event.type == SDL_WINDOWEVENT) {  // LA PANTALLA
             if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
+                update_window();
                 this->map->update_map_dimensions();
                 printf("Nuevo mapa width: %d, height: %d\n", map->getMapWidth(),
                        map->getMapHeight());
@@ -309,7 +318,6 @@ void GameView::handle_events(const SDL_Event& event) {
             int mouseX = event.motion.x;
             int mouseY = event.motion.y;
             hud.update_mouse(mouseX,mouseY);
-         //   printf("mouse  x %i y %i\n",mouseX,mouseY);
             player->update_view_angle(mouseX, mouseY);
             controller.sender_pos_mouse(mouseX, mouseY);
         }
@@ -402,7 +410,7 @@ bool GameView::update_game_image() {
             }
             if (found) {
                 hud.load(snapshot.players_images[index_player_id], snapshot.bomb,
-                         snapshot.game_state.time, snapshot.game_state);
+                        snapshot.game_state.time, snapshot.game_state);
             } else {
                 std::cerr << "Error: No se encontró el jugador con client_id " << snapshot.client_id
                           << " en players_images\n";

@@ -25,22 +25,28 @@ HUD::HUD(GameConfig& config, ManageTexture& manager, const InfoGame& info_game):
     SDL_Texture* icono_timer = texture_manager.get(Object::TIMER);
     SDL_Texture* icono_bullet = texture_manager.get(Object::BALA);
     SDL_Texture* icono_weapon = texture_manager.get(weapon_used);
+    SDL_Texture* icono_buy = texture_manager.get(Object::TIENDA);
 
+    SDL_Texture* icono_tt = texture_manager.get(Object::TT);
+    SDL_Texture* icono_ct = texture_manager.get(Object::CT);
     int ancho = config.get_window_width();
     int alto = config.get_window_height();
 
     int margen_lateral = 30;
     int x_izquierda = margen_lateral + margen_lateral;
-    int x_centro = (ancho / 2) - margen_lateral * 3;
+    int x_centro = (ancho / 2) - margen_lateral ;
+    int y_centro = (alto / 2) - margen_lateral ;
     int x_derecha = ancho - margen_lateral - margen_lateral * 1;
 
     int margen_y = 30;
     int fila1_y = alto - margen_y - 40;
     int fila2_y = alto - margen_y;
 
+
     // Texto superior (centrado arriba)
-    load_text(TextView::TIME, x_derecha - 80, 20, icono_timer);
+    load_text(TextView::TIME, x_centro, 20, icono_timer);
     load_text(TextView::BOMB, x_izquierda, 20, icono_timer_bomb);
+    load_text(TextView::BUY, x_derecha, 20, icono_buy);
 
     // Fila inferior 1
     load_text(TextView::WEAPON, x_izquierda, fila1_y, icono_weapon);
@@ -51,7 +57,22 @@ HUD::HUD(GameConfig& config, ManageTexture& manager, const InfoGame& info_game):
     load_text(TextView::HEALTH, x_derecha, fila2_y, icono_vida);
     load_text(TextView::TEAM, x_centro, fila2_y);
     load_text(TextView::AMMO, x_izquierda, fila2_y, icono_bullet);
+    
+    load_text(TextView::WIN_TT, x_centro-10, y_centro, icono_tt);
+    load_text(TextView::WIN_CT, x_centro-70, y_centro, icono_ct);
+
+    load_state_win();
+
 }
+
+
+void HUD::load_state_win(){
+
+    TTF_Font* font = config.get_font_game();
+    load_info(TextView::WIN_CT, "Counter-Terrorist WIN!!", Color::AZUL, font);
+    load_info(TextView::WIN_TT, "Terrorist WIN!!", Color::NARANJA, font);
+}
+
 void HUD::updateMouseSprite(const CursorContext& context) {
     switch (context) {
         case CursorContext::ENEMY:
@@ -115,7 +136,7 @@ void HUD::load_info(const TextView& clave, const std::string text, Color color_i
     }
 }
 
-void HUD::load(PlayerImage& player, BombImage& bomb, uint8_t time, GameStateImage game_state) {
+void HUD::load(PlayerImage& player, BombImage& bomb, uint16_t& time, GameStateImage& game_state) {
     this->player = player;
     this->bomb = bomb;
     this->game_state = game_state;
@@ -148,22 +169,22 @@ std::string get_bomb_state(BombImage& bomb) {
     std::string bomb_state_str;
     switch (bomb.state) {
         case BombState::EQUIPED:
-            bomb_state_str = " Bomba: EQUIPADA";
+            bomb_state_str = " EQUIPADA";
             break;
         case BombState::DROPPED:
-            bomb_state_str = " Bomba: EN SUELO";
+            bomb_state_str = " EN SUELO";
             break;
         case BombState::ACTIVATED:
-            bomb_state_str = " Bomba: ACTIVADA";
+            bomb_state_str = " ACTIVADA";
             break;
         case BombState::DESACTIVATED:
-            bomb_state_str = " Bomba: DESACTIVADA";
+            bomb_state_str = " DESACTIVADA";
             break;
         case BombState::EXPLOTED:
-            bomb_state_str = " Bomba: EXPLOTÓ";
+            bomb_state_str = " EXPLOTÓ";
             break;
         default:
-            bomb_state_str = " Bomba: ???";
+            bomb_state_str = " ???";
             break;
     }
     return bomb_state_str;
@@ -197,9 +218,6 @@ Object convertir_a_imagen(WeaponCode code) {
 
 */
 void HUD::update() {
-
-
-
     TTF_Font* font = config.get_font_hud();
 
     if (!player.weapons.empty()) {
@@ -235,15 +253,32 @@ void HUD::update() {
     load_info(TextView::POINTS, "PUNTOS : " + std::to_string(player.points), Color::AMARILLO, font);
     load_info(TextView::MONEY, std::to_string(player.money), Color::AMARILLO, font);
     load_info(TextView::TEAM, player.team == Team::CT ? "CT" : "TT", Color::AMARILLO, font);
+    load_info(TextView::BUY, "  ", Color::VERDE, font);
+
 }
 
 
 void HUD::render(SDL_Renderer& renderer) {
+
     mouse.draw(renderer);
     for (auto& [clave, item]: texts) {
-        if (clave == TextView::BOMB && player.team == Team::CT) {
-            continue;  // No dibujar el icono de bomba si es CT
-        }
+        if (clave == TextView::BOMB && player.team == Team::CT) 
+            continue; 
+        if(clave == TextView::BUY && game_state.state != GameState::TIME_TO_BUY)
+            continue;
+        if(clave == TextView::WIN_CT || clave == TextView::WIN_TT)
+            continue;
         item.draw(renderer);
+    } 
+    if(game_state.state == GameState::TT_WIN_GAME || game_state.state == GameState::TT_WIN_ROUND ){
+        HUDItem item1 = texts.at(TextView::WIN_TT);
+        item1.draw(renderer);
     }
+
+    if(game_state.state == GameState::CT_WIN_GAME || game_state.state == GameState::CT_WIN_ROUND ){
+        HUDItem item1 = texts.at(TextView::WIN_CT);
+        item1.draw(renderer);
+    }
+
+                
 }

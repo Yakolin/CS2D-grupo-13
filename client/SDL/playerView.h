@@ -85,6 +85,7 @@ public:
     void update(const float& dt);
     void update_view_angle(const int& mause_x, const int& mause_y);
 
+    Team get_clave_team();
     float getSpeed() const;
     std::string getRutaPlayer() const;
     int getWidthImg() const;   // todo no inicializadas
@@ -101,8 +102,8 @@ public:
     void setXActual(float x);
     void setYActual(float y);
     void setSpeed(float newSpeed);
-    float getXActual();
-    float getYActual();
+    float getXActual() const;
+    float getYActual()const ;
 
 
 };

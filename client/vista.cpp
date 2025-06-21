@@ -134,6 +134,11 @@ bool Vista::showLobby(){
 
 bool Vista::init_game( SDL_Window*& ventana, SDL_Renderer*& renderer, const GameConfig& config) {
     
+    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+        throw std::runtime_error(std::string("Error al inicializar SDL: ") + SDL_GetError());
+        return false;
+    }
+
     ventana = SDL_CreateWindow(
             "Mapa", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, config.get_window_width(),
             config.get_window_height(), SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
@@ -145,10 +150,6 @@ bool Vista::init_game( SDL_Window*& ventana, SDL_Renderer*& renderer, const Game
         throw std::runtime_error(std::string("Error al crear el renderer: ") + SDL_GetError());
     }
     SDL_RenderSetLogicalSize(renderer, config.get_viewpost_width(), config.get_viewpost_height());
-    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
-        throw std::runtime_error(std::string("Error al inicializar SDL: ") + SDL_GetError());
-        return false;
-    }
     if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
         printf("No se pudo inicializar SDL_mixer: %s\n", Mix_GetError());
         return 1;
@@ -162,6 +163,7 @@ bool Vista::init_game( SDL_Window*& ventana, SDL_Renderer*& renderer, const Game
     }
     return true;
 }
+
 
 void Vista::free_components( SDL_Window* ventana, SDL_Renderer* renderer){
     if (renderer)

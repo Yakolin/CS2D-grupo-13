@@ -25,7 +25,7 @@ GameConfig::GameConfig():
             std::cerr << "ERROR: fuente no cargada - " << TTF_GetError() << std::endl;
             throw std::runtime_error("No se pudo cargar la fuente del menu.");
         }
-        font_game =TTF_OpenFont("assets/gfx/fonts/sourcesans.ttf", 20); // 18 es el tamaño
+        font_game =TTF_OpenFont("assets/gfx/fonts/sourcesans.ttf", 30); // 18 es el tamaño
         if (!font_game) {
             std::cerr << "ERROR: fuente no cargada - " << TTF_GetError() << std::endl;
             throw std::runtime_error("No se pudo cargar la fuente.");

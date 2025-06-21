@@ -9,7 +9,7 @@
 
 enum class GameMenu { CREATE, JOIN, HELP, EXIT, NONE };
 
-enum class TextView { HEALTH, AMMO, TIME, POINTS, TEAM, BOMB, MONEY, WEAPON, BULLETS, NONE };
+enum class TextView { HEALTH, AMMO, TIME, POINTS, TEAM, BOMB, MONEY, WEAPON, BULLETS, NONE,BUY ,WIN_TT , WIN_CT};
 
 enum class Color {
     ROJO,
@@ -77,6 +77,10 @@ enum class CursorContext {
 };
 
 enum class Object {
+
+    TT,
+    CT,
+
     MOUSE,
     STONE,
     WALL_AZTEC,

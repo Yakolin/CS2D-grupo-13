@@ -70,9 +70,9 @@ void GameView::reset_values(PlayerView* player, const float& x_pixeles, const fl
 }
 
 void print_game_image(const GameImage& image) {
+    /*
     std::cout << "=== Game Image ===\n";
     std::cout << "Client ID: " << image.client_id << "\n";
-    /*
     std::cout << "=== Game Image ===\n";
     std::cout << "--- Players ---\n";
     std::cout << "Client ID: " << image.client_id << "\n";

@@ -118,9 +118,11 @@ bool GameManager::check_round_finished() {
         }
     }
     if (all_ct_dead) {
+        game_stats.state = GameState::TT_WIN_ROUND;
         game_stats.rounds_TT++;
         return true;
     } else if (all_tt_dead) {
+        game_stats.state = GameState::CT_WIN_ROUND;
         game_stats.rounds_CT++;
         return true;
     }

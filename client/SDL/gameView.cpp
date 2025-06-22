@@ -155,10 +155,10 @@ void GameView::handle_bomb_sound() {
     switch (state) {
         case BombState::ACTIVATED:
             break;
-        case BombState::DESACTIVATED :
+        case BombState::DESACTIVATED:
             break;
-        case BombState::EXPLOTED :
-            config_sound.play_sound(EffectType::EXPLOSION,0);
+        case BombState::EXPLOTED:
+            config_sound.play_sound(EffectType::EXPLOSION, 0);
             break;
         default:
             break;
@@ -168,16 +168,16 @@ void GameView::handle_state_game() {
     GameState state = snapshot.game_state.state;
     switch (state) {
         case GameState::CT_WIN_GAME:
-            config_sound.play_sound(EffectType::WIN_CT,0);
+            config_sound.play_sound(EffectType::WIN_CT, 0);
             break;
-        case GameState::TT_WIN_GAME :
-            config_sound.play_sound(EffectType::WIN_TT,0);
+        case GameState::TT_WIN_GAME:
+            config_sound.play_sound(EffectType::WIN_TT, 0);
             break;
-        case GameState::CT_WIN_ROUND :
-            config_sound.play_sound(EffectType::WIN_CT,0);
+        case GameState::CT_WIN_ROUND:
+            config_sound.play_sound(EffectType::WIN_CT, 0);
             break;
-        case GameState::TT_WIN_ROUND :
-            config_sound.play_sound(EffectType::WIN_TT,0);
+        case GameState::TT_WIN_ROUND:
+            config_sound.play_sound(EffectType::WIN_TT, 0);
             break;
         default:
             break;
@@ -186,7 +186,7 @@ void GameView::handle_state_game() {
 
 void GameView::update_sounds(const PlayerImage& player) {
 
-    Uint16 angle =  this->player->getAnglePlayer();
+    Uint16 angle = this->player->getAnglePlayer();
     for (const auto& sound: player.heared_sounds.common_sounds) {
         Uint8 distance = static_cast<Uint8>(sound.distance);
         config_sound.play_effect_with_position(sound.type, angle, distance);
@@ -196,8 +196,8 @@ void GameView::update_sounds(const PlayerImage& player) {
         Uint8 distance = static_cast<Uint8>(shoot_sound.distance);
         config_sound.play_shoot_with_position(shoot_sound.code, angle, distance);
     }
-    handle_bomb_sound();
-    handle_state_game();
+    // handle_bomb_sound();
+    // handle_state_game();
 }
 void GameView::update_status_game() {
 

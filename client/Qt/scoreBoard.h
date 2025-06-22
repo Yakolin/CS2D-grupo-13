@@ -29,31 +29,26 @@ class ScoreBoard {
 public:
     ScoreBoard(const std::map<player_id_t, InfoPlayer>& table);
 
-
-    /*
-    pre: recibe un mapa cargado con los puntajes de los jugadores y un QVBoxLayout
-    post: crea una tabla con los puntajes de los jugadores y lo apila en el QVBoxLayout
-    */
-    void add_table(QGridLayout* scores_table, const int& fil, const int& col);
-
-    void add_filtered_tables(QGridLayout* layout);
-
-    void add_ranking(QGridLayout* scores_table, const int& fil, const int& col);
-
-    QChartView* grafico_pie(QWidget* parent);
-    QChartView* graficoBarrasEquipo(const std::string& equipo, QWidget* parent);
-    QChartView* graficoBarrasApiladasEquipo(const std::string& equipo, QWidget* parent);
-    /*
-    pre: recibe un mapa cargado con los puntajes de los jugadores y un ranking de los equipos
-    post: muestra los puntajes del juego
-    */
-    void add_chart(QGridLayout* layout, const int& fil, const int& col);
     int show_scores_game();
 
     ~ScoreBoard();
 
 private:
     std::map<player_id_t, InfoPlayer> scores;
+
+    void filter_table(std::map<player_id_t, InfoPlayer>& cts,std::map<player_id_t, InfoPlayer>& tts);
+
+    /*
+    pre: recibe un mapa cargado con los puntajes de los jugadores y un QVBoxLayout
+    post: crea una tabla con los puntajes de los jugadores y lo apila en el QVBoxLayout
+    */
+    QWidget* add_table(std::map<player_id_t, InfoPlayer>& score_table,const QString& title) ;
+
+    QChartView* graficoBarrasEquipo(const std::string& equipo, QWidget* parent) ;
+    
+    void staly_chart( QChart* chart,QBarCategoryAxis* axisX, QValueAxis* axisY);
+
+    void style(QTableWidget* table);
 };
 
 #endif  // SCOREBOARD_H

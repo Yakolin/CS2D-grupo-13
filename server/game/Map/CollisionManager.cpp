@@ -7,7 +7,6 @@ bool CollisionManager::check_movement(player_id_t id, const Position& next_posit
     if (it == players_in_map.end())
         return false;
     Position destino = it->second.position + next_position;
-    // Aca los destinos son distintos porque la matriz esta "invertida" con respecto a los vectores
     if (is_a_collision(destino) || player_in(destino))
         return false;
     it->second.position += next_position;
@@ -109,6 +108,17 @@ void CollisionManager::find_nearest(const std::vector<PlayerEntity>& players_aff
         }
     }
 }
+void CollisionManager::damage_nearest(PlayerEntity& nearest, PlayerEntity& caster, damage_t damage,
+                                      chance_hit_t chance_hit) {
+    if (nearest.player.lock()) {
+        if (!nearest.player.lock()->is_dead()) {
+            if (hit(chance_hit))
+                nearest.player.lock()->damage(damage);
+            if (nearest.player.lock()->is_dead())
+                caster.player.lock()->give_points();
+        }
+    }
+}
 void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage& collider_damage) {
     std::vector<PlayerEntity> players_affected;
     PlayerEntity player_caster = players_in_map[caster];
@@ -133,17 +143,11 @@ void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage&
     // Ya detectado el mas cercano, revisamos si hay un muro entre medio
     if (check_bullet_wall(origin, pos_nearest, collider_damage))
         return;
-    if (nearest.player.lock()) {
-        damage_t damage = collider_damage.damage_calculator(min_distance);
-        if (!nearest.player.lock()->is_dead()) {
-            if (hit(collider_damage.chance_hit))
-                nearest.player.lock()->damage(damage);
-            if (nearest.player.lock()->is_dead())
-                player_caster.player.lock()->give_points();
-        }
-        add_bullet_image(origin, end, collider_damage);
-    }
+    damage_t damage = collider_damage.damage_calculator(min_distance);
+    damage_nearest(nearest, player_caster, damage, collider_damage.chance_hit);
+    add_bullet_image(origin, end, collider_damage);
 }
+
 
 void CollisionManager::check_damage() {
     for (auto& collider: damages_collider) check_damage_collider(collider.first, collider.second);

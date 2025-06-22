@@ -57,9 +57,10 @@ void Player::shoot_burst(const coordinate_t& mouse_x, const coordinate_t& mouse_
 }
 
 PlayerImage Player::get_player_image(const Position& position, SoundImage& sounds) {
-    return PlayerImage(id, Position(position.x, position.y), health, deaths, points, money,
-                       equipment.get_equiped_code(), std::move(equipment.get_weapons_image()), team,
-                       this->mouse_position, this->skins, std::move(sounds));
+    return PlayerImage(id, Position(position.x, position.y), health, deaths, kills, points, money,
+                       collected_money, equipment.get_equiped_code(),
+                       std::move(equipment.get_weapons_image()), team, this->mouse_position,
+                       this->skins, std::move(sounds));
 }
 
 void Player::buy_weapon(const WeaponCode& weapon_code) {

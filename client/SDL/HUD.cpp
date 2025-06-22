@@ -102,8 +102,11 @@ PlayerImage HUD::jugador_inicial() {
                        pos,  // position
                        100,  // health
                        0,    // deaths
+                       0,    // kills
                        0,    // points
-                       0, WeaponCode::NONE, std::move(armas),
+                       0,    // money
+                       0,    // collected money
+                       WeaponCode::NONE, std::move(armas),
                        Team::CT,  // team
                        mouse, Skins(CounterTerroristSkin::GIGN, TerroristSkin::GUERRILLA),
                        std::move(sonidos));
@@ -122,8 +125,6 @@ void HUD::load_text(const TextView& clave, const int& x, const int& y, SDL_Textu
     HUDItem item(text_obj, icono, rect_icono);
     texts.insert({clave, item});
 }
-
-
 
 
 void HUD::load(PlayerImage& player, BombImage& bomb, uint16_t& time, GameStateImage& game_state) {
@@ -182,13 +183,19 @@ std::string get_bomb_state(BombImage& bomb) {
 }
 
 Object convertir_a_imagen(WeaponCode code) {
-    if (code == WeaponCode::AK47) return Object::AK47;
-    if (code == WeaponCode::AWP) return Object::AWP;
-    if (code == WeaponCode::GLOCK) return Object::GLOCK;
-    if (code == WeaponCode::KNIFE)  return Object::SNIKE;
-    if (code == WeaponCode::BOMB) return Object::BOMB;
-    if (code == WeaponCode::M3) return Object::M3;
-        throw std::invalid_argument("WeaponCode desconocido");
+    if (code == WeaponCode::AK47)
+        return Object::AK47;
+    if (code == WeaponCode::AWP)
+        return Object::AWP;
+    if (code == WeaponCode::GLOCK)
+        return Object::GLOCK;
+    if (code == WeaponCode::KNIFE)
+        return Object::SNIKE;
+    if (code == WeaponCode::BOMB)
+        return Object::BOMB;
+    if (code == WeaponCode::M3)
+        return Object::M3;
+    throw std::invalid_argument("WeaponCode desconocido");
 }
 
 void HUD::load_info(const TextView& clave, const std::string text, Color color_id, TTF_Font* font) {
@@ -197,8 +204,8 @@ void HUD::load_info(const TextView& clave, const std::string text, Color color_i
     auto it = texts.find(clave);
 
     if (it != texts.end()) {
-        SDL_SetTextureColorMod(it->second.icono, color.r, color.g, color.b);  
-        SDL_SetTextureAlphaMod(it->second.icono, color.a); // trasparencia
+        SDL_SetTextureColorMod(it->second.icono, color.r, color.g, color.b);
+        SDL_SetTextureAlphaMod(it->second.icono, color.a);  // trasparencia
         it->second.texto.updateText(text, font, color);
     } else {
         std::cerr << "Clave no encontrada en texts: " << static_cast<int>(clave) << std::endl;
@@ -247,7 +254,7 @@ void HUD::update() {
 
 
 void HUD::render(SDL_Renderer& renderer) {
-    
+
     mouse.draw(renderer);
     for (auto& [clave, item]: texts) {
         if (clave == TextView::BOMB && player.team == Team::CT)

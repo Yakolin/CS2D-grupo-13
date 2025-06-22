@@ -85,8 +85,10 @@ public:
     Position position;
     health_t health;
     deaths_t deaths;
+    deaths_t kills;
     points_t points;
     money_t money;
+    money_t collected_money;
     WeaponCode equipped_weapon;
     std::vector<WeaponImage> weapons;
     SoundImage heared_sounds;
@@ -94,16 +96,18 @@ public:
     Position mouse_position;
     Skins skin;
     PlayerImage(const player_id_t& player_id, const Position& position, const int& health,
-                const int& deaths, const int& points, const money_t money,
-                const WeaponCode equipped_weapon, std::vector<WeaponImage>&& weapons,
-                const Team& team, const Position& mouse_position, const Skins& skin,
-                SoundImage&& heared_sounds):
+                const int& deaths, const int& kills, const int& points, const money_t money,
+                const money_t collected_money, const WeaponCode equipped_weapon,
+                std::vector<WeaponImage>&& weapons, const Team& team,
+                const Position& mouse_position, const Skins& skin, SoundImage&& heared_sounds):
             player_id(player_id),
             position(position),
             health(health),
             deaths(deaths),
+            kills(kills),
             points(points),
             money(money),
+            collected_money(collected_money),
             equipped_weapon(equipped_weapon),
             weapons(std::move(weapons)),
             heared_sounds(std::move(heared_sounds)),

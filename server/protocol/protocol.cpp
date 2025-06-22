@@ -306,12 +306,15 @@ void ServerProtocol::send_players_images(std::vector<PlayerImage>& players_image
 
         deaths_t deaths = player_image.deaths;
         this->send_byte_data(deaths);
-
+        deaths_t kills = player_image.kills;
+        this->send_byte_data(kills);
         points_t points = player_image.points;
         this->send_two_byte_data(points);
 
         money_t money = player_image.money;
         this->send_two_byte_data(money);
+        money_t collected_money = player_image.collected_money;
+        this->send_two_byte_data(collected_money);
         weapon_code_t equipped_weapon_code =
                 static_cast<weapon_code_t>(player_image.equipped_weapon);
         this->send_byte_data(equipped_weapon_code);

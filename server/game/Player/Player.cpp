@@ -16,11 +16,10 @@ void Player::damage(uint8_t damage) {
 bool Player::is_dead() { return health == 0; }
 
 void Player::reset(bool full_reset) {
-    if (full_reset || health == 0) {
+    if (full_reset || health == 0)
         equipment.reset_equipment();
-    } else {
+    else
         equipment.restore();
-    }
     health = config.health;
 }
 void Player::move(const MoveType& move_type) {
@@ -75,9 +74,12 @@ void Player::change_weapon(const EquipType& equip_type) {
 bool Player::equip(std::shared_ptr<IInteractuable>& droppable) {
     return equipment.equip_droppable(droppable);
 }
-void Player::give_points() {
+void Player::give_money() {
     this->money += config.earned_points * config.multiplier_points;
     this->collected_money += config.earned_points * config.multiplier_points;
+}
+void Player::give_points() {
+    give_money();
     this->points += config.earned_points;
     this->kills += 1;
     // Sonido de ganar puntos...

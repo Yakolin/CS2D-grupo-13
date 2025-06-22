@@ -51,11 +51,14 @@ void Equipment::reset_equipment() {
     primary = weapon_factory.weapon_create(WeaponCode::NONE);
     secondary = weapon_factory.weapon_create(WeaponCode::NONE);
     secondary = weapon_factory.weapon_create(WeaponCode::GLOCK);
+    change_weapon(EquipType::SECONDARY);
     bomb.reset();
 }
 void Equipment::restore() {
     this->primary->restart();
     this->secondary->restart();
+    change_weapon(EquipType::SECONDARY);
+    bomb.reset();
 }
 
 void Equipment::drop_weapon() {

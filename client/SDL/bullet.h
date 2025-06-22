@@ -11,12 +11,13 @@ private:
     Coordenada current;  // Posición actual de la bala
     Coordenada end;      // Destino de la bala
     Coordenada camera;
+    int width;
     SDL_Texture* texture;
     Uint32 start_time;
     Uint32 end_time = 50;  // Aca es en ms
 
 public:
-    Bullet(const Coordenada& start, const Coordenada& end, SDL_Texture* texture);
+    Bullet(const Coordenada& start, const Coordenada& end, int width, SDL_Texture* texture);
 
     void draw(SDL_Renderer& renderer) override;
 

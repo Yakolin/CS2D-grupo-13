@@ -26,6 +26,8 @@ using std::string;
 class GameManager: public InterfaceGameManager {
 
     typedef struct GameStats {
+        uint8_t players_tt;
+        uint8_t players_ct;
         uint8_t rounds_TT;
         uint8_t rounds_CT;
         GameState state;
@@ -35,7 +37,7 @@ private:
     // Configs
     string game_name;
     GameConfig game_config;
-    game_stats_t game_stats = {0, 0, GameState::NONE};
+    game_stats_t game_stats = {0, 0, 0, 0, GameState::NONE};
     int round = 1;
     bool game_started = false;
 
@@ -56,6 +58,9 @@ private:
     void give_bomb();
     void reset_round(bool full_reset);
     bool check_round_finished();
+    void update_teams_count(Team from);
+    void handle_empty_team();
+    bool enough_players_teams();
     void change_teams();
 
 public:

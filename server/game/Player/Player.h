@@ -30,8 +30,10 @@ public:
             equipment(std::move(equipment)),
             health(player_config.health),
             deaths(0),
+            kills(0),
             points(player_config.points),
             money(player_config.money),
+            collected_money(player_config.money),
             mouse_position(0, 0),
             game_zone(game_zone),
             sound_zone(sound_zone) {}
@@ -43,7 +45,7 @@ public:
     PlayerImage get_player_image(const Position& position, SoundImage& sounds);
 
     // Interface
-    void damage(uint8_t damage) override;
+    virtual void damage(uint8_t damage) override;
     virtual bool is_dead() override;
 
     virtual bool equip(std::shared_ptr<IInteractuable>& droppable) override;
@@ -68,8 +70,10 @@ private:
     Equipment equipment;
     health_t health;
     deaths_t deaths;
+    deaths_t kills;
     points_t points;
     money_t money;
+    money_t collected_money;
     Position mouse_position;
     IGameZone& game_zone;
     ISoundZone& sound_zone;

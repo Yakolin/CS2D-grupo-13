@@ -63,7 +63,7 @@ PlayerImage Player::get_player_image(const Position& position, SoundImage& sound
 }
 
 void Player::buy_weapon(const WeaponCode& weapon_code) {
-    equipment.buy_weapon_by_code(weapon_code, money);
+    equipment.buy_weapon_by_code(weapon_code, this->money);
 }
 
 void Player::drop() { this->equipment.drop_weapon(); }

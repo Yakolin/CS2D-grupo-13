@@ -4,7 +4,7 @@ Weapons:
     damage: 5
     fire_rate: 3
     timer_fire: 400
-    burst_coldown: 1250
+    burst_coldown: 700
     max_bullets: 30
     magazine: 90
     width: 1
@@ -72,7 +72,7 @@ Timer:
   time_bomb: 25
   time_ending: 5
 
-Rounds: 2
+Rounds: 3
 
 RandomWeapons:
   max_weapons: 5

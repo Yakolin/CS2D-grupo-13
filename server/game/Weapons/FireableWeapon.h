@@ -41,7 +41,7 @@ public:
 
     virtual bool shoot_burst(ISpawneableZone& spawn, player_id_t id, Position& direction) override;
 
-    virtual void reload() override;
+    virtual bool reload() override;
 
     virtual bool is_droppable() override = 0;
 

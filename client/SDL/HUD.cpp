@@ -248,8 +248,7 @@ void HUD::update() {
     load_info(TextView::MONEY, std::to_string(player.money), Color::AMARILLO, font);
     load_info(TextView::TEAM, player.team == Team::CT ? "CT" : "TT", Color::AMARILLO, font);
     load_info(TextView::BUY, "  ", Color::VERDE, font);
-    load_info(TextView::ROUND, "ROUND: " + std::to_string(game_state.round + 1), Color::AMARILLO,
-              font);
+    load_info(TextView::ROUND, "ROUND: " + std::to_string(game_state.round), Color::AMARILLO, font);
 }
 
 

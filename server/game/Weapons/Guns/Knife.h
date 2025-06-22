@@ -18,7 +18,7 @@ public:
 
     bool shoot_burst(ISpawneableZone& spawn, player_id_t id, Position& direction) override;
 
-    void reload() override;
+    bool reload() override;
 
     WeaponImage get_weapon_image() override;  // esto deberia salir de weapon y estar especifico
                                               // para cada caso, seria KnifeImage por ej

@@ -58,6 +58,7 @@ public:
     virtual void buy_weapon(const WeaponCode& weapon_code) override;
     virtual void drop() override;
     virtual void change_weapon(const EquipType& equip_type) override;
+    void give_money();
     virtual void give_points() override;
     virtual void watch(const coordinate_t& mouse_x, const coordinate_t& mouse_y) override;
     /*

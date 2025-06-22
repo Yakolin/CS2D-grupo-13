@@ -74,9 +74,12 @@ void Player::change_weapon(const EquipType& equip_type) {
 bool Player::equip(std::shared_ptr<IInteractuable>& droppable) {
     return equipment.equip_droppable(droppable);
 }
-void Player::give_points() {
+void Player::give_money() {
     this->money += config.earned_points * config.multiplier_points;
     this->collected_money += config.earned_points * config.multiplier_points;
+}
+void Player::give_points() {
+    give_money();
     this->points += config.earned_points;
     this->kills += 1;
     // Sonido de ganar puntos...

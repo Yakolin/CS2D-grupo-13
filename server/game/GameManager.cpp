@@ -72,7 +72,11 @@ void GameManager::handle_empty_team() {
     }
 }
 void GameManager::reset_round(bool full_reset) {
-    for (const auto& player: players) player.second->reset(full_reset);
+    for (const auto& player: players) {
+        player.second->reset(full_reset);
+        // Le damos dinero x cada ronda
+        player.second->give_money();
+    }
     if (!enough_players_teams())
         handle_empty_team();
     map_game.respawn_players();

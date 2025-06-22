@@ -124,8 +124,6 @@ void HUD::load_text(const TextView& clave, const int& x, const int& y, SDL_Textu
 }
 
 
-
-
 void HUD::load(PlayerImage& player, BombImage& bomb, uint16_t& time, GameStateImage& game_state) {
     this->player = player;
     this->bomb = bomb;
@@ -182,13 +180,19 @@ std::string get_bomb_state(BombImage& bomb) {
 }
 
 Object convertir_a_imagen(WeaponCode code) {
-    if (code == WeaponCode::AK47) return Object::AK47;
-    if (code == WeaponCode::AWP) return Object::AWP;
-    if (code == WeaponCode::GLOCK) return Object::GLOCK;
-    if (code == WeaponCode::KNIFE)  return Object::SNIKE;
-    if (code == WeaponCode::BOMB) return Object::BOMB;
-    if (code == WeaponCode::M3) return Object::M3;
-        throw std::invalid_argument("WeaponCode desconocido");
+    if (code == WeaponCode::AK47)
+        return Object::AK47;
+    if (code == WeaponCode::AWP)
+        return Object::AWP;
+    if (code == WeaponCode::GLOCK)
+        return Object::GLOCK;
+    if (code == WeaponCode::KNIFE)
+        return Object::SNIKE;
+    if (code == WeaponCode::BOMB)
+        return Object::BOMB;
+    if (code == WeaponCode::M3)
+        return Object::M3;
+    throw std::invalid_argument("WeaponCode desconocido");
 }
 
 void HUD::load_info(const TextView& clave, const std::string text, Color color_id, TTF_Font* font) {
@@ -197,8 +201,8 @@ void HUD::load_info(const TextView& clave, const std::string text, Color color_i
     auto it = texts.find(clave);
 
     if (it != texts.end()) {
-        SDL_SetTextureColorMod(it->second.icono, color.r, color.g, color.b);  
-        SDL_SetTextureAlphaMod(it->second.icono, color.a); // trasparencia
+        SDL_SetTextureColorMod(it->second.icono, color.r, color.g, color.b);
+        SDL_SetTextureAlphaMod(it->second.icono, color.a);  // trasparencia
         it->second.texto.updateText(text, font, color);
     } else {
         std::cerr << "Clave no encontrada en texts: " << static_cast<int>(clave) << std::endl;
@@ -241,13 +245,12 @@ void HUD::update() {
     load_info(TextView::MONEY, std::to_string(player.money), Color::AMARILLO, font);
     load_info(TextView::TEAM, player.team == Team::CT ? "CT" : "TT", Color::AMARILLO, font);
     load_info(TextView::BUY, "  ", Color::VERDE, font);
-    load_info(TextView::ROUND, "ROUND: " + std::to_string(game_state.round + 1), Color::AMARILLO,
-              font);
+    load_info(TextView::ROUND, "ROUND: " + std::to_string(game_state.round), Color::AMARILLO, font);
 }
 
 
 void HUD::render(SDL_Renderer& renderer) {
-    
+
     mouse.draw(renderer);
     for (auto& [clave, item]: texts) {
         if (clave == TextView::BOMB && player.team == Team::CT)

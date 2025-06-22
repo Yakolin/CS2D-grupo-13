@@ -124,19 +124,7 @@ void HUD::load_text(const TextView& clave, const int& x, const int& y, SDL_Textu
 }
 
 
-void HUD::load_info(const TextView& clave, const std::string text, Color color_id, TTF_Font* font) {
 
-    SDL_Color color = config.get_color(color_id);
-    auto it = texts.find(clave);
-
-    if (it != texts.end()) {
-        SDL_SetTextureColorMod(it->second.icono, color.r, color.g, color.b);  // Aplica tinte
-        SDL_SetTextureAlphaMod(it->second.icono, color.a);
-        it->second.texto.updateText(text, font, color);
-    } else {
-        std::cerr << "Clave no encontrada en texts: " << static_cast<int>(clave) << std::endl;
-    }
-}
 
 void HUD::load(PlayerImage& player, BombImage& bomb, uint16_t& time, GameStateImage& game_state) {
     this->player = player;
@@ -194,32 +182,29 @@ std::string get_bomb_state(BombImage& bomb) {
 }
 
 Object convertir_a_imagen(WeaponCode code) {
-    switch (code) {
-        case WeaponCode::AK47:
-            return Object::AK47;
-        case WeaponCode::AWP:
-            return Object::AWP;
-        case WeaponCode::GLOCK:
-            return Object::GLOCK;
-        case WeaponCode::KNIFE:
-            return Object::SNIKE;
-        case WeaponCode::BOMB:
-            return Object::BOMB;
-        case WeaponCode::M3:
-            return Object::M3;
-        default:
-            throw std::invalid_argument("WeaponCode desconocido");
+    if (code == WeaponCode::AK47) return Object::AK47;
+    if (code == WeaponCode::AWP) return Object::AWP;
+    if (code == WeaponCode::GLOCK) return Object::GLOCK;
+    if (code == WeaponCode::KNIFE)  return Object::SNIKE;
+    if (code == WeaponCode::BOMB) return Object::BOMB;
+    if (code == WeaponCode::M3) return Object::M3;
+        throw std::invalid_argument("WeaponCode desconocido");
+}
+
+void HUD::load_info(const TextView& clave, const std::string text, Color color_id, TTF_Font* font) {
+
+    SDL_Color color = config.get_color(color_id);
+    auto it = texts.find(clave);
+
+    if (it != texts.end()) {
+        SDL_SetTextureColorMod(it->second.icono, color.r, color.g, color.b);  
+        SDL_SetTextureAlphaMod(it->second.icono, color.a); // trasparencia
+        it->second.texto.updateText(text, font, color);
+    } else {
+        std::cerr << "Clave no encontrada en texts: " << static_cast<int>(clave) << std::endl;
     }
 }
 
-
-/*
-    Aca deberias de hacer 2 funciones.
-
-    Una que encuentre y dibuje el arma equipada //Puede ser como el original y resaltarla con color
-    Otra que dibuje las demas en el inventario
-
-*/
 void HUD::update() {
     TTF_Font* font = config.get_font_hud();
 
@@ -236,7 +221,6 @@ void HUD::update() {
             texts.at(TextView::WEAPON).icono = texture_manager.get(weapon_used);
         }
         load_info(TextView::WEAPON, get_weapon_str(weapon->weapon_code), Color::AMARILLO, font);
-        // Faltan las demas armas aca!
     }
     int balas = 0;
     int inventory_bullets = 0;
@@ -262,8 +246,7 @@ void HUD::update() {
 
 
 void HUD::render(SDL_Renderer& renderer) {
-    std::cout << "Precio:" << this->player.money << std::endl;
-    std::cout << "Tiempo:" << this->time << std::endl;
+    
     mouse.draw(renderer);
     for (auto& [clave, item]: texts) {
         if (clave == TextView::BOMB && player.team == Team::CT)

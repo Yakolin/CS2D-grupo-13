@@ -6,9 +6,6 @@ SoundConfig::SoundConfig():
 	musics(),
 	start_game(false)
 {
-
-	//loadMusic(Music::SALA_ESPERA,"assets/sfx/sala_fixed.wav");
-	//loadMusic(Music::JUEGO,"");
 	loadFromYAML("assets/music.yaml");
 
 }
@@ -35,6 +32,7 @@ EffectType sound_from_string(const std::string& str) {
     if (str == "EXPLOSION") return EffectType::EXPLOSION;
     if (str == "WIN_CT") return EffectType::WIN_CT;
     if (str == "WIN_TT") return EffectType::WIN_TT;
+    if (str == "ACTIVATION") return EffectType::ACTIVATION;
     throw std::invalid_argument("Tipo de effecto desconocido: " + str);
 }
 

@@ -19,6 +19,7 @@ target_sources(CS2D_client
     SDL/text.cpp
     Qt/scoreBoard.cpp
     SDL/manageTexture.cpp
+    SDL/managerEvent.cpp
     Qt/menuView.cpp
     vista.cpp
     soundConfig.cpp
@@ -44,6 +45,7 @@ target_sources(CS2D_client
     controller.h
     Qt/lobbyView.h
     SDL/manageTexture.h
+    SDL/managerEvent.h
     Qt/menuView.h
     SDL/renderizable.h
     tipos.h

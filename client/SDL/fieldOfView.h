@@ -1,5 +1,6 @@
-#ifndef FIELDOFDVIEW_H
-#define FIELDOFVIEW_H
+#ifndef FIELD_OF_VIEW_H
+#define FIELD_OF_VIEW_H
+
 #include "camera.h"
 #include "gameConfig.h"
 #include "manageTexture.h"
@@ -31,5 +32,4 @@ public:
     bool is_in_fov(const PlayerView& other);
 };
 
-
-#endif  // FIELDOFVIEW_H
+#endif // FIELD_OF_VIEW_H

@@ -1,5 +1,9 @@
-#include <string>
 
+#ifndef HUD_H
+#define HUD_H
+
+
+#include <string>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 
@@ -83,7 +87,6 @@ private:
     void load_text(const TextView& clave, const int& x, const int& y, SDL_Texture* icono = nullptr);
 
     void load_info(const TextView& clave, const std::string text, Color color_id, TTF_Font* font);
-    Mouse init_mouse(ManageTexture& manager, GameConfig& config);
 
     void load_state_win();
 
@@ -97,3 +100,4 @@ public:
     void update();
     void render(SDL_Renderer& renderer);
 };
+#endif // HUD_H

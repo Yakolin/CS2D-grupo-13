@@ -46,9 +46,7 @@ MapInfo Map::get_map_info() {
                    map_info.walls_pos, map_info.boxes_pos);
 }
 bool Map::move(player_id_t id, const Position& direction) {
-    if (collision_manager.check_movement(id, direction))
-        return true;
-    return false;
+    return collision_manager.check_movement(id, direction);
 }
 
 std::vector<BulletImage> Map::get_bullets_in_air() { return collision_manager.get_bullets_image(); }

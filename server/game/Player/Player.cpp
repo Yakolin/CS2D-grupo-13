@@ -76,6 +76,7 @@ bool Player::equip(std::shared_ptr<IInteractuable>& droppable) {
 }
 void Player::get_points() {
     this->money += config.earned_points * config.multiplier_points;
+    this->collected_money += config.earned_points * config.multiplier_points;
     this->points += config.earned_points;
     // Sonido de ganar puntos...
 }

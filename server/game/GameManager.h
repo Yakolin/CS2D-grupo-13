@@ -36,7 +36,7 @@ private:
     string game_name;
     GameConfig game_config;
     game_stats_t game_stats = {0, 0, GameState::NONE};
-    int round = 0;
+    int round = 1;
     bool game_started = false;
 
     // Players

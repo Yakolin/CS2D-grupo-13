@@ -32,16 +32,16 @@ HUD::HUD(GameConfig& config, ManageTexture& manager, const InfoGame& info_game):
     int ancho = config.get_window_width();
     int alto = config.get_window_height();
 
-    int margen_lateral = 30; //todo hacer constante
-    int margen_y = 30; //todo hacer constante
+    int margen_lateral = 30;  // todo hacer constante
+    int margen_y = 30;        // todo hacer constante
     int x_izquierda = margen_lateral + margen_lateral;
     int x_centro = (ancho / 2) - margen_lateral;
     int y_centro = (alto / 2) - margen_lateral;
     int x_derecha = ancho - margen_lateral - margen_lateral * 1;
 
     int fila1_y = margen_y;
-    int fila2_y = margen_y*2;
-    int fila3_y = alto - margen_y*2;
+    int fila2_y = margen_y * 2;
+    int fila3_y = alto - margen_y * 2;
     int fila4_y = alto - margen_y;
 
 
@@ -56,7 +56,7 @@ HUD::HUD(GameConfig& config, ManageTexture& manager, const InfoGame& info_game):
     load_text(TextView::AMMO, x_izquierda, fila4_y, icono_bullet);
     load_text(TextView::WIN_TT, x_centro - 10, y_centro, icono_tt);
     load_text(TextView::WIN_CT, x_centro - 70, y_centro, icono_ct);
-    load_text(TextView::ROUND, x_izquierda ,fila2_y);
+    load_text(TextView::ROUND, x_izquierda, fila2_y);
 
     load_state_win();
 }
@@ -241,7 +241,8 @@ void HUD::update() {
     load_info(TextView::MONEY, std::to_string(player.money), Color::AMARILLO, font);
     load_info(TextView::TEAM, player.team == Team::CT ? "CT" : "TT", Color::AMARILLO, font);
     load_info(TextView::BUY, "  ", Color::VERDE, font);
-    load_info(TextView::ROUND, "ROUND: " + std::to_string(game_state.round+1), Color::AMARILLO, font);
+    load_info(TextView::ROUND, "ROUND: " + std::to_string(game_state.round + 1), Color::AMARILLO,
+              font);
 }
 
 

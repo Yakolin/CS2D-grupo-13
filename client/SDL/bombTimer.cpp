@@ -27,16 +27,15 @@ void BombTimer::update(SoundConfig& sonido) {
         mostrar_flash = true;
         tiempo_ultimo_flash = ahora;
     }
-
-
     if (mostrar_flash && ahora - tiempo_ultimo_flash >= tiempo_flash_ms) {
         mostrar_flash = false;
     }
 }
 
 float BombTimer::calcular_intervalo_pip(float tiempo_restante) const {
-    float intervalo = (tiempo_restante / duracion_total_s) * 1.0f;  
-    return std::max(0.2f, intervalo);
+    float intervalo = (tiempo_restante / duracion_total_s) * 2.0f; 
+    return std::max(0.4f, intervalo);  
+
 }
 
 bool BombTimer::debe_dibujar_flash() const {

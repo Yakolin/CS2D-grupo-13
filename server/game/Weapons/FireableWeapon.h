@@ -27,8 +27,8 @@ protected:
 
 public:
     FireableWeapon(WeaponCode weapon_code, damage_t damage, range_t range, width_t width,
-                   std::unique_ptr<FireMode>&& fire_mode, bullet_t max_bullets,
-                   magazine_t max_magazine);
+                   chance_hit_t chance_hit, std::unique_ptr<FireMode>&& fire_mode,
+                   bullet_t max_bullets, magazine_t max_magazine);
 
     virtual ~FireableWeapon();
 

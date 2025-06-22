@@ -12,7 +12,8 @@ private:
 
 public:
     NullWeapon():
-            FireableWeapon(WeaponCode::NONE, 0, 0, 0, std ::make_unique<SemiAutomatic>(0), 0, 0) {}
+            FireableWeapon(WeaponCode::NONE, 0, 0, 0, 0, std ::make_unique<SemiAutomatic>(0), 0,
+                           0) {}
     ~NullWeapon() = default;
 
 

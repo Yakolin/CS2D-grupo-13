@@ -3,7 +3,7 @@
 
 Ak47::Ak47(GameConfig::weapon_config_t specs):
         FireableWeapon(
-                WeaponCode::AK47, specs.damage, specs.distance, specs.width,
+                WeaponCode::AK47, specs.damage, specs.distance, specs.width, specs.chance_hit,
                 std::make_unique<Automatic>(specs.fire_rate, specs.timer_fire, specs.burst_coldown),
                 specs.max_b, specs.current_b) {}
 

@@ -1,9 +1,10 @@
 #include "FireableWeapon.h"
 
 FireableWeapon::FireableWeapon(WeaponCode weapon_code, damage_t damage, range_t range,
-                               width_t width, std::unique_ptr<FireMode>&& fire_mode,
-                               bullet_t max_bullets, magazine_t max_magazine):
-        Weapon(weapon_code, damage, range, width, std::move(fire_mode)),
+                               width_t width, chance_hit_t chance_hit,
+                               std::unique_ptr<FireMode>&& fire_mode, bullet_t max_bullets,
+                               magazine_t max_magazine):
+        Weapon(weapon_code, damage, range, width, chance_hit, std::move(fire_mode)),
         max_bullets(max_bullets),
         max_magazine(max_magazine),
         actual_bullets(max_bullets),
@@ -25,8 +26,9 @@ void FireableWeapon::restart() {
 void FireableWeapon::shoot_common(ISpawneableZone& spawn, player_id_t id, Position& direction) {
     WeaponCode weapon_code = this->get_weapon_code();
     ISpawneableZone::collider_solicitude_t wanted = {
-            Weapon::width, Weapon::range, weapon_code, direction,
-            [this](float value) { return this->calculate_damage(value); }};
+            Weapon::width,      Weapon::range,
+            Weapon::chance_hit, weapon_code,
+            direction,          [this](float value) { return this->calculate_damage(value); }};
     spawn.spawn_collider(id, wanted);
     this->reduce_bullets();
 }

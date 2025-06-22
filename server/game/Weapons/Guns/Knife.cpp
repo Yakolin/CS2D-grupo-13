@@ -1,7 +1,7 @@
 #include "Knife.h"
 
 Knife::Knife(GameConfig::weapon_config_t specs):
-        Weapon(WeaponCode::KNIFE, specs.damage, specs.distance, specs.width,
+        Weapon(WeaponCode::KNIFE, specs.damage, specs.distance, specs.width, specs.chance_hit,
                std::make_unique<SemiAutomatic>(static_cast<timer_fire_t>(specs.timer_fire))) {}
 
 Knife::~Knife() {}
@@ -12,8 +12,9 @@ bool Knife::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& dire
     if (this->fire_mode->can_fire()) {
         WeaponCode weapon_code = this->get_weapon_code();
         ISpawneableZone::collider_solicitude_t wanted = {
-                Weapon::width, Weapon::range, weapon_code, direction,
-                [this](float value) { return this->calculate_damage(value); }};
+                Weapon::width,      Weapon::range,
+                Weapon::chance_hit, weapon_code,
+                direction,          [this](float value) { return this->calculate_damage(value); }};
 
         spawn.spawn_collider(id, wanted);
         return true;
@@ -25,8 +26,9 @@ bool Knife::shoot_burst(ISpawneableZone& spawn, player_id_t id, Position& direct
     if (this->fire_mode->can_fire_burst()) {
         WeaponCode weapon_code = this->get_weapon_code();
         ISpawneableZone::collider_solicitude_t wanted = {
-                Weapon::width, Weapon::range, weapon_code, direction,
-                [this](float value) { return this->calculate_damage(value); }};
+                Weapon::width,      Weapon::range,
+                Weapon::chance_hit, weapon_code,
+                direction,          [this](float value) { return this->calculate_damage(value); }};
 
         spawn.spawn_collider(id, wanted);
         return true;

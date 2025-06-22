@@ -24,19 +24,20 @@ protected:
     damage_t damage;
     range_t range;
     width_t width;
+    chance_hit_t chance_hit;
     std::unique_ptr<FireMode> fire_mode;
 
     virtual damage_t calculate_damage(float distance) = 0;
-
     WeaponCode get_weapon_code() { return IInteractuable::get_weapon_code(); }
 
 public:
     explicit Weapon(WeaponCode code, damage_t damage, range_t range, width_t width,
-                    std::unique_ptr<FireMode>&& fire_mode):
+                    chance_hit_t chance_hit, std::unique_ptr<FireMode>&& fire_mode):
             IInteractuable(code),
             damage(damage),
             range(range),
             width(width),
+            chance_hit(chance_hit),
             fire_mode(std::move(fire_mode)) {}
     virtual ~Weapon() = default;
 

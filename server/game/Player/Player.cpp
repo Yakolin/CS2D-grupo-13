@@ -16,11 +16,10 @@ void Player::damage(uint8_t damage) {
 bool Player::is_dead() { return health == 0; }
 
 void Player::reset(bool full_reset) {
-    if (full_reset || health == 0) {
+    if (full_reset || health == 0)
         equipment.reset_equipment();
-    } else {
+    else
         equipment.restore();
-    }
     health = config.health;
 }
 void Player::move(const MoveType& move_type) {

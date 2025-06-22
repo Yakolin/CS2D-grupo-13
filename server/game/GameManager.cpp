@@ -39,13 +39,42 @@ std::shared_ptr<Player> GameManager::create_player(const player_id_t& id, Team t
 
 void GameManager::add_player(const player_id_t& id, Skins& skins) {
     Team team = ((players.size() + 1) % 2 == 0) ? Team::CT : Team::TT;
+    if (team == Team::CT)
+        game_stats.players_ct++;
+    else
+        game_stats.players_tt--;
     shared_ptr<Player> player = create_player(id, team, skins);
     players.insert(make_pair(id, player));
     map_game.add_player(id, player);  // Player es un ICanInteract
 }
-
+bool GameManager::enough_players_teams() {
+    return game_stats.players_tt > 0 && game_stats.players_ct > 0;
+}
+void GameManager::update_teams_count(Team from) {
+    if (from == Team::CT) {
+        game_stats.players_ct--;
+        game_stats.players_tt++;
+    } else {
+        game_stats.players_ct++;
+        game_stats.players_tt--;
+    }
+}
+void GameManager::handle_empty_team() {
+    if (game_stats.players_tt == 0) {}
+    Team from = (game_stats.players_tt == 0) ? Team::CT : Team::TT;
+    Team to = (from == Team::CT) ? Team::TT : Team::CT;
+    for (auto& it: players) {
+        if (it.second->get_team() == from) {
+            it.second->change_team(to);
+            update_teams_count(from);
+            break;
+        }
+    }
+}
 void GameManager::reset_round(bool full_reset) {
     for (const auto& player: players) player.second->reset(full_reset);
+    if (!enough_players_teams())
+        handle_empty_team();
     map_game.respawn_players();
     std::vector<std::shared_ptr<IInteractuable>> weapons;
     for (int i = 0; i < game_config.get_max_dropped_weapons(); i++) {
@@ -96,19 +125,15 @@ void GameManager::give_bomb() {
     player_selected->equip(casted_bomb);
 }
 void GameManager::start_game() {
-    if (players.size() < 1) {
-        std::cout << "El juego no tiene suficientes jugadores\n";
+    if (players.size() < 1)
         return;
-    }
     timer.round_start();
     reset_round(false);
     give_bomb();
     game_started = true;
 }
 
-
 bool GameManager::has_players() { return (this->players.size() > 0); }
-
 
 bool GameManager::has_ended() {
     return (this->game_stats.state == GameState::CT_WIN_GAME ||
@@ -158,6 +183,7 @@ void GameManager::change_teams() {
 }
 GameImage GameManager::get_frame() {
     if (round == game_config.get_max_rounds()) {
+        std::cout << "Termino el juego\n";
         game_stats.state = (game_stats.rounds_TT > game_stats.rounds_CT) ? GameState::TT_WIN_GAME :
                                                                            GameState::CT_WIN_GAME;
         return generate_game_image();
@@ -167,8 +193,10 @@ GameImage GameManager::get_frame() {
     } else if (timer.get_state() != TimerState::ENDING_TIME) {
         game_stats.state = GameState::ROUND_STARTED;
         bool round_finished = check_round_finished();
-        if (round_finished)
+        if (round_finished) {
+            std::cout << "Termino la ronda\n";
             timer.round_end();
+        }
     }
     // Si ya termino el tiempo ending
     if (timer.get_state() == TimerState::ENDING_TIME && timer.get_time_round() == 0) {
@@ -196,6 +224,10 @@ void GameManager::remove_player(
     std::shared_ptr<Player> player = find_player(player_id);
     // Esto es para matarlo antes de que se vaya, evitamos tener que hacer mas metodos sobre la
     // bomba y demas.
+    if (player->get_team() == Team::CT)
+        game_stats.players_ct--;
+    else
+        game_stats.players_tt--;
     player->damage(200);  // Quiza un metodo kill sea mejor que esto...
     players.erase(player_id);
     map_game.remove_player(player_id);

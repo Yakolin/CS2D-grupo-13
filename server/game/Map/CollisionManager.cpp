@@ -14,7 +14,7 @@ bool CollisionManager::check_movement(player_id_t id, const Position& next_posit
             check_bomb_stepped(it->second);
         check_weapon_stepped(it->second);
     }
-    return true;
+    return false;
 }
 void CollisionManager::check_bomb_stepped(PlayerEntity& player) {
     if (!(player.position == bomb.first))

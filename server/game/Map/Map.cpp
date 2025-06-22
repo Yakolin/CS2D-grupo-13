@@ -48,7 +48,7 @@ MapInfo Map::get_map_info() {
 bool Map::move(player_id_t id, const Position& direction) {
     if (collision_manager.check_movement(id, direction))
         return true;
-    throw MapException("Can´t found players in the map to move");
+    return false;
 }
 
 std::vector<BulletImage> Map::get_bullets_in_air() { return collision_manager.get_bullets_image(); }

@@ -20,31 +20,26 @@
 #include "../tipos.h"
 class ManageTexture {
 public:
-    SDL_Texture* render_menu_texture(const std::unordered_map<WeaponCode, ShopItem>& items, const SDL_Rect& menu_rect,
-        TTF_Font* font);
-
-    SDL_Texture* create_texture_rect(const SDL_Rect& rect,const SDL_Color& color,const Object& zone);
+   
 
     explicit ManageTexture(SDL_Renderer* renderer);
 
-    void drawHealthBar(int x, int y, int width, int height, float healthPercent);
+    void draw(SDL_Texture* textura);
 
-    void load(const Object& id, const std::string& filePath);
+    SDL_Texture* render_menu_texture(const std::unordered_map<WeaponCode, ShopItem>& items, const SDL_Rect& menu_rect,
+            TTF_Font* font);
 
-    void load_skins_tt(const TerroristSkin& id, const std::string& filePath);
-
-    void load_skins_ct(const CounterTerroristSkin& id, const std::string& filePath);
+    SDL_Texture* create_texture_rect(const SDL_Rect& rect,const SDL_Color& color,const Object& zone);
 
     SDL_Texture* get_texture_ct(const CounterTerroristSkin& id) const;
 
     SDL_Texture* get_texture_tt(const TerroristSkin& id) const;
 
-    void fillTriangle(SDL_Renderer* renderer, int x0, int y0, int x1, int y1, int x2, int y2);
+    void fillTriangle( int x0, int y0, int x1, int y1, int x2, int y2);
 
     SDL_Texture* create_stencil(const int& ancho, const int& alto, const float& angle,
                                 const float& apertura,const int& intensity);
 
-    bool load_weapons(const WeaponCode& id, const std::string& filePath, SDL_Renderer* renderer);
 
     SDL_Texture* get_weapon(const WeaponCode& id) const;
 
@@ -77,6 +72,15 @@ private:
 
     void render_text(const SDL_Rect& rect, const std::string& text, const SDL_Color& color,
                      TTF_Font* font);
+
+    
+    void load(const Object& id, const std::string& filePath);
+
+    void load_skins_tt(const TerroristSkin& id, const std::string& filePath);
+
+    void load_skins_ct(const CounterTerroristSkin& id, const std::string& filePath);
+
+    bool load_weapons(const WeaponCode& id, const std::string& filePath);
 };
 
 #endif

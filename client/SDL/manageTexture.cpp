@@ -21,12 +21,12 @@ ManageTexture::ManageTexture(SDL_Renderer* renderer): renderer(renderer) {
     load_skins_ct(CounterTerroristSkin::GSG9, "assets/gfx/counterTerrorist/ct4.png");
     load_skins_ct(CounterTerroristSkin::SAS, "assets/gfx/counterTerrorist/ct3.png");
     load_skins_ct(CounterTerroristSkin::GIGN, "assets/gfx/counterTerrorist/ct1.png");
-    load_weapons(WeaponCode::BOMB, "assets/gfx/weapons/bomb.png", renderer);
-    load_weapons(WeaponCode::AK47, "assets/gfx/weapons/ak47v.png", renderer);
-    load_weapons(WeaponCode::AWP, "assets/gfx/weapons/awpv.png", renderer);
-    load_weapons(WeaponCode::M3, "assets/gfx/weapons/m3v.png", renderer);
-    load_weapons(WeaponCode::KNIFE, "assets/gfx/weapons/knife.png", renderer);
-    load_weapons(WeaponCode::GLOCK, "assets/gfx/weapons/glock.png", renderer);
+    load_weapons(WeaponCode::BOMB, "assets/gfx/weapons/bomb.png");
+    load_weapons(WeaponCode::AK47, "assets/gfx/weapons/ak47v.png");
+    load_weapons(WeaponCode::AWP, "assets/gfx/weapons/awpv.png");
+    load_weapons(WeaponCode::M3, "assets/gfx/weapons/m3v.png");
+    load_weapons(WeaponCode::KNIFE, "assets/gfx/weapons/knife.png");
+    load_weapons(WeaponCode::GLOCK, "assets/gfx/weapons/glock.png");
 
 
     load(Object::WALL_AZTEC, "assets/gfx/backgrounds/nuke.png");
@@ -72,9 +72,12 @@ ManageTexture::ManageTexture(SDL_Renderer* renderer): renderer(renderer) {
     load(Object::SNIKE, "assets/gfx/icon/knife_k.png");
     load(Object::MOUSE, "assets/gfx/pointer.png");
 
-
 }
 
+void ManageTexture::draw(SDL_Texture* textura){
+    SDL_RenderCopy( renderer,textura, nullptr, nullptr);
+    SDL_RenderPresent(renderer);
+}
 /*
 pre:
 post: dibuja una imagen arriba de un rectangulo textura y lo retorna
@@ -299,7 +302,7 @@ SDL_Texture* ManageTexture::get_texture_tt(const TerroristSkin& id) const {
 }
 
 
-void ManageTexture::fillTriangle(SDL_Renderer* renderer, int x0, int y0, int x1, int y1, int x2,
+void ManageTexture::fillTriangle( int x0, int y0, int x1, int y1, int x2,
                                  int y2) {
     // Ordenar los puntos por Y
     if (y1 < y0) {
@@ -377,7 +380,7 @@ SDL_Texture* ManageTexture::create_stencil(const int& ancho, const int& alto, co
     SDL_RenderClear(renderer);
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
-    fillTriangle(renderer, points[0].x, points[0].y, points[1].x, points[1].y, points[2].x,
+    fillTriangle( points[0].x, points[0].y, points[1].x, points[1].y, points[2].x,
                  points[2].y);
     SDL_SetRenderTarget(renderer, old_target);
 
@@ -385,8 +388,7 @@ SDL_Texture* ManageTexture::create_stencil(const int& ancho, const int& alto, co
 }
 
 
-bool ManageTexture::load_weapons(const WeaponCode& id, const std::string& filePath,
-                                 SDL_Renderer* renderer) {
+bool ManageTexture::load_weapons(const WeaponCode& id, const std::string& filePath) {
 
     SDL_Surface* surface = IMG_Load(filePath.c_str());
     if (!surface) {

@@ -30,12 +30,8 @@ GameView::GameView(Socket& skt, const GameInfo& game_info, const Player& info_Pl
         activa(false),
         bomb_activate(false),
         keep_running(true),
-        left_mouse_pressed(false),
-        mouse_press_start_time(0),
-        last_burst_time(0),
-        press_start_x(0),
-        press_start_y(0),
-        blocking_mouse_motion(false) {
+        events(controller,config,camera,*player,players,snapshot,*map,*fov,*bomba,shop,hud,keep_running,config_sound,manger_texture)
+{
 
     shop.set_weapons_purchasables(game_info.weapons_purchasables);
     config_sound.play_music(Music::SALA_ESPERA, -1);
@@ -151,42 +147,51 @@ void GameView::update_bullets_snapshot() {
 
 
 void GameView::handle_bomb_sound() {
+    
     BombState state = snapshot.bomb.state;
-    switch (state) {
-        case BombState::ACTIVATED:
-            break;
-        case BombState::DESACTIVATED:
-            break;
-        case BombState::EXPLOTED:
-            config_sound.play_sound(EffectType::EXPLOSION, 0);
-            break;
-        default:
-            break;
+    if (state == BombState::ACTIVATED) {
+        config_sound.play_sound(EffectType::ACTIVATION, 0);
+    } else if (state == BombState::DESACTIVATED) {
+        // No hacer nada
+    } else if (state == BombState::EXPLOTED && !config_sound.get_bomb_sound()) {
+        config_sound.set_bomb(true);
+        config_sound.play_sound(EffectType::EXPLOSION, 0);
+    } else {
+        // No hacer nada
     }
+
 }
 void GameView::handle_state_game() {
     GameState state = snapshot.game_state.state;
-    switch (state) {
-        case GameState::CT_WIN_GAME:
-            config_sound.play_sound(EffectType::WIN_CT, 0);
-            break;
-        case GameState::TT_WIN_GAME:
-            config_sound.play_sound(EffectType::WIN_TT, 0);
-            break;
-        case GameState::CT_WIN_ROUND:
-            config_sound.play_sound(EffectType::WIN_CT, 0);
-            break;
-        case GameState::TT_WIN_ROUND:
-            config_sound.play_sound(EffectType::WIN_TT, 0);
-            break;
-        default:
-            break;
+
+    std::cout << "[DEBUG] Estado actual del juego: " << static_cast<int>(state) << std::endl;
+
+    if (state == GameState::ROUND_STARTED) {
+        std::cout << "[DEBUG] ROUND_STARTED: reseteando sonidos." << std::endl;
+        config_sound.set_bomb(false);
+        config_sound.set_round(false);
+    }
+    if (config_sound.get_round_sound()) {
+        std::cout << "[DEBUG] Ya se reprodujo el sonido de ronda. Saliendo." << std::endl;
+        return;
+    }
+    if (state == GameState::CT_WIN_GAME || state == GameState::CT_WIN_ROUND) {
+        std::cout << "[DEBUG] CT ganó. Reproduciendo sonido WIN_CT." << std::endl;
+        config_sound.play_sound(EffectType::WIN_CT, 0);
+        config_sound.set_round(true);
+    } else if (state == GameState::TT_WIN_GAME || state == GameState::TT_WIN_ROUND) {
+        std::cout << "[DEBUG] TT ganó. Reproduciendo sonido WIN_TT." << std::endl;
+        config_sound.play_sound(EffectType::WIN_TT, 0);
+        config_sound.set_round(true);
+    } else {
+        std::cout << "[DEBUG] Ninguna condición de victoria detectada." << std::endl;
     }
 }
 
+
 void GameView::update_sounds(const PlayerImage& player) {
 
-    Uint16 angle = this->player->getAnglePlayer();
+    Uint16 angle =  this->player->getAnglePlayer();
     for (const auto& sound: player.heared_sounds.common_sounds) {
         Uint8 distance = static_cast<Uint8>(sound.distance);
         config_sound.play_effect_with_position(sound.type, angle, distance);
@@ -196,9 +201,10 @@ void GameView::update_sounds(const PlayerImage& player) {
         Uint8 distance = static_cast<Uint8>(shoot_sound.distance);
         config_sound.play_shoot_with_position(shoot_sound.code, angle, distance);
     }
-    // handle_bomb_sound();
-    // handle_state_game();
+    handle_bomb_sound();
+    handle_state_game();
 }
+
 void GameView::update_status_game() {
 
     print_game_image(snapshot);
@@ -207,6 +213,7 @@ void GameView::update_status_game() {
     update_bullets_snapshot();
     bomba->update_bomb(snapshot.bomb);
     this->map->update_weapon_dropped(snapshot.dropped_things);
+
 
     for (PlayerImage& player_img: this->snapshot.players_images) {
         player_id_t id = player_img.player_id;
@@ -249,6 +256,7 @@ void GameView::update_status_game() {
             }
         }
     }
+
 }
 
 void GameView::draw_players() {
@@ -260,202 +268,12 @@ void GameView::draw_players() {
     }
 }
 
-void GameView::handle_equip_type(const SDL_Keycode& tecla) {
-    switch (tecla) {
-        case SDLK_1:
-            controller.sender_equip(EquipType::PRIMARY);
-            break;
-        case SDLK_2:
-            controller.sender_equip(EquipType::SECONDARY);
-            break;
-        case SDLK_3:
-            controller.sender_equip(EquipType::KNIFE);
-            break;
-        case SDLK_4:
-            controller.sender_equip(EquipType::BOMB);
-            break;
-    }
-}
-
-void GameView::mouse_position_tiles(int& posx, int& posy, const int& mousex, const int& mousey) {
-    const int TILE_SIZE = 32;
-
-    int camX = camera.getX();
-    int camY = camera.getY();
-    int mapPixelX = mousex + camX;
-    int mapPixelY = mousey + camY;
-
-    posx = mapPixelX / TILE_SIZE;
-    posy = mapPixelY / TILE_SIZE;
-
-    if (posx >= 0 && posx < 50 && posy >= 0 && posy < 50) {
-        printf("Estás sobre el tile (%d, %d)\n", posx, posy);
-    } else {
-        printf("El mouse está fuera del mapa.\n");
-    }
-}
-
-void GameView::handle_movements(SDL_Keycode& tecla) {
-    if (tecla == SDLK_w || tecla == SDLK_UP)
-        controller.sender_move(MoveType::DOWN);
-    if (tecla == SDLK_s || tecla == SDLK_DOWN)
-        controller.sender_move(MoveType::UP);
-    if (tecla == SDLK_a || tecla == SDLK_LEFT)
-        controller.sender_move(MoveType::LEFT);
-    if (tecla == SDLK_d || tecla == SDLK_RIGHT)
-        controller.sender_move(MoveType::RIGHT);
-    player->add_speed(tecla);
-    // player->auxiliar(tecla); //todo comentar
-}
-
-void GameView::handle_extras(SDL_Keycode& tecla) {
-    if (tecla == SDLK_g)
-        controller.sender_drop();
-    if (tecla == SDLK_r)
-        controller.sender_reload();
-    if (tecla == SDLK_e)
-        controller.sender_defuse();
-}
-
-void GameView::handle_key_down(SDL_Keycode& tecla) {
-    if (snapshot.game_state.state != GameState::TIME_TO_BUY)
-        shop.desactivate_shop();
-    if (tecla == SDLK_b && snapshot.game_state.state == GameState::TIME_TO_BUY) {
-        shop.activate_shop();
-    }
-    handle_movements(tecla);
-    handle_equip_type(tecla);
-    handle_extras(tecla);
-}
-
-void GameView::handle_single_left_click(int mouseX, int mouseY) {
-    if (snapshot.game_state.state == GameState::ROUND_STARTED) {
-        int mousex_tile = -1;
-        int mousey_tile = -1;
-        mouse_position_tiles(mousex_tile, mousey_tile, mouseX, mouseY);
-        controller.sender_shoot(mousex_tile, mousey_tile);
-    }
-}
-
-
-void GameView::send_burst() {
-    if (snapshot.game_state.state == GameState::ROUND_STARTED) {
-        int tx = -1, ty = -1;
-        mouse_position_tiles(tx, ty, press_start_x, press_start_y);
-        controller.sender_shoot_burst(tx, ty);
-        this->blocking_mouse_motion = true;
-    }
-}
-
-void GameView::update_mouse_hold() {
-    if (!left_mouse_pressed)
-        return;
-
-    hold_mouse_t now = SDL_GetTicks();
-    hold_mouse_t held = now - mouse_press_start_time;
-    if (held < HOLD_THRESHOLD_MS)
-        return;
-
-    if (last_burst_time == 0) {
-        last_burst_time = now;
-        send_burst();
-        return;
-    }
-
-    if (now - last_burst_time >= BURST_INTERVALS_MS) {
-        last_burst_time = now;
-        send_burst();
-    }
-}
-
-/*void GameView::handle_sprite_mouse(const int& mousex, const int& mousey){
-    int tile_mousex=0;
-    int tile_mousey=0;
-    mouse_position_tiles(tile_mousex,tile_mousey,mousex,mousey);
-    for (auto& [id, player] : this->players){
-        int tile_playerx= player->getXActual()/ config.get_tile_width();
-        int tile_playery= player->getYActual() / config.get_tile_height();
-        if(tile_mousex == tile_playerx && tile_mousey == tile_playery){
-
-        }
-    }
-}*/
-
-void GameView::update_window() {
-    if (!config_sound.get_state_game()) {
-        SDL_Texture* textura = manger_texture.get(Object::FONDO_ESPERA);
-        SDL_RenderCopy(renderer, textura, nullptr, nullptr);
-        SDL_RenderPresent(renderer);
-    }
-}
-
-void GameView::handle_events(const SDL_Event& event) {
-    try {
-        if (event.type == SDL_QUIT) {
-            this->controller.stop();
-            this->keep_running = false;
-            throw QuitGameException("Juego cerrado por el usuario");
-        }
-        if (this->snapshot.game_state.state == GameState::GAME_ENDED) {
-            this->controller.stop();
-            this->keep_running = false;
-        }
-        if (event.type == SDL_KEYDOWN) {
-            SDL_Keycode tecla = event.key.keysym.sym;
-            handle_key_down(tecla);
-        }
-        if (event.type == SDL_KEYUP) {
-            SDL_Keycode tecla = event.key.keysym.sym;
-            player->stop_speed(tecla);  // Detiene movimiento
-        }
-        if (event.type == SDL_WINDOWEVENT) {  // LA PANTALLA
-            if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
-                update_window();
-                this->map->update_map_dimensions();
-                // printf("Nuevo mapa width: %d, height: %d\n", map->getMapWidth(),
-                map->getMapHeight();
-            }
-        }
-        if (event.type == SDL_MOUSEMOTION && !this->blocking_mouse_motion) {
-            int mouseX = event.motion.x;
-            int mouseY = event.motion.y;
-            hud.update_mouse(mouseX, mouseY);
-            player->update_view_angle(mouseX, mouseY);
-            controller.sender_pos_mouse(mouseX, mouseY);
-        }
-        if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
-            left_mouse_pressed = true;
-            mouse_press_start_time = SDL_GetTicks();
-            last_burst_time = 0;
-            press_start_x = event.button.x;
-            press_start_y = event.button.y;
-            if (shop.get_activa()) {
-                auto code = shop.calculate_selection(press_start_x, press_start_y);
-                if (code != WeaponCode::NONE)
-                    controller.sender_buy_weapon(code);
-            }
-        }
-        if (event.type == SDL_MOUSEBUTTONUP && event.button.button == SDL_BUTTON_LEFT) {
-            this->blocking_mouse_motion = false;
-            bool was_pressed = left_mouse_pressed;
-            left_mouse_pressed = false;
-            hold_mouse_t held = SDL_GetTicks() - mouse_press_start_time;
-            if (was_pressed && held < HOLD_THRESHOLD_MS) {
-                handle_single_left_click(event.button.x, event.button.y);
-            }
-        }
-    } catch (const ClosedQueue&
-                     e) {  // Si la cola se cierra, significa que el servidor se ha cerrado
-        this->controller.stop();
-    }
-}
-
 void GameView::process_events() {
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
-        this->handle_events(event);
+        this->events.handle_events(event);
     }
-    update_mouse_hold();
+    events.update_mouse_hold();
 }
 
 void GameView::update_game() {
@@ -569,20 +387,14 @@ void GameView::step() {
 }
 
 GameView::~GameView() {
-    for (auto& p: players) {
+    for (auto& p: players) 
         delete p.second;
-    }
     players.clear();
-
     delete player;
     player = nullptr;
-
     if (map)
         delete map;
-
-
     if (fov)
         delete fov;
-
     this->manger_texture.clear();
 }

@@ -95,7 +95,8 @@ enum class EffectType {
     EXPLOSION,
     PIP,
     WIN_CT,
-    WIN_TT
+    WIN_TT,
+    ACTIVATION
 };
 enum class Object {
 

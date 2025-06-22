@@ -17,7 +17,7 @@
 #include "../controller.h"
 #include "../soundConfig.h"
 #include "../tipos.h"
-
+#include "managerEvent.h"
 #include "HUD.h"
 #include "bomb.h"
 #include "bullet.h"
@@ -32,11 +32,6 @@
 #include "shopping.h"
 #include "text.h"
 
-
-#define HOLD_THRESHOLD_MS 200
-#define BURST_INTERVALS_MS 100
-
-using hold_mouse_t = std::uint32_t;
 
 class GameView {
 
@@ -62,22 +57,10 @@ private:
     bool activa;
     bool bomb_activate;
     std::atomic<bool> keep_running;
-    bool left_mouse_pressed;
-    hold_mouse_t mouse_press_start_time;
-    hold_mouse_t last_burst_time;
-    int press_start_x, press_start_y;
-    bool blocking_mouse_motion;
+    ManagerEvent events;
 
-
-    void handle_equip_type(const SDL_Keycode& tecla);
-
-    void mouse_position_tiles(int& posx, int& posy, const int& mousex, const int& mousey);
 
     void update_mouse_hold();
-
-    void handle_events(const SDL_Event& evento);
-
-    void handle_sprite_mouse(const int& mousex, const int& mousey);
 
     void update_bullets_snapshot();
 
@@ -97,8 +80,6 @@ private:
 
     void render_game();
 
-    void update_window();
-
     void update_sounds(const PlayerImage& player);
 
 
@@ -106,10 +87,7 @@ private:
     INPUT HANDLER
     */
     void send_burst();
-    void handle_single_left_click(int mouseX, int mouseY);
-    void handle_key_down(SDL_Keycode& tecla);
-    void handle_extras(SDL_Keycode& tecla);
-    void handle_movements(SDL_Keycode& tecla);
+
     Skins load_claves(const Player& info_Player);
 
     /* sonud handeler */
@@ -122,11 +100,6 @@ public:
                       SDL_Window* ventana, SDL_Renderer* renderer, ManageTexture& manger_texture,
                       GameConfig& config);
 
-    /*
-    pre:
-    post:
-    */
-    void start(const GameInfo& info_game_view);
 
     void run();
 

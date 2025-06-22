@@ -20,6 +20,8 @@ shoot:
 
 soundView:
   EXPLOSION: assets/sfx/weapons/c4_explode.wav
+  ACTIVATION: assets/sfx/weapons/mine_activate.wav
   #PIP: assets/sfx/weapons/glock18.wav
   WIN_CT: assets/sfx/radio/ctwin.ogg
   WIN_TT: assets/sfx/radio/terwin.ogg
+ # START_ROUND: assets/sfx/radio/terwin.ogg

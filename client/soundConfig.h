@@ -14,6 +14,8 @@ private:
 	std::map<WeaponCode, Mix_Chunk*> shoots;
 	std::map<Music, Mix_Music*> musics;
 	std::map<EffectType, Mix_Chunk*> sounds;
+    bool bomb_explode;
+    bool finish_round;
     bool start_game;
 
     void loadFromYAML(const std::string& filepath);
@@ -27,6 +29,14 @@ private:
 public:
 
     SoundConfig();
+
+    void set_bomb(const bool& state);
+
+    void set_round(const bool& state);
+
+    bool get_bomb_sound();
+
+    bool get_round_sound();
 
     void load_sound(const EffectType& id, const std::string& filepath) ;
     

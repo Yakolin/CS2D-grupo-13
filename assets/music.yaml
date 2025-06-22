@@ -17,3 +17,9 @@ shoot:
   AWP: assets/sfx/weapons/awp.wav
   KNIFE: assets/sfx/weapons/knife_slash.wav
   BOMB: assets/sfx/weapons/c4_explode.wav
+
+soundView:
+  EXPLOSION: assets/sfx/weapons/c4_explode.wav
+  #PIP: assets/sfx/weapons/glock18.wav
+  WIN_CT: assets/sfx/radio/ctwin.ogg
+  WIN_TT: assets/sfx/radio/terwin.ogg

@@ -13,6 +13,7 @@ private:
 	std::map<SoundType, Mix_Chunk*> effects;
 	std::map<WeaponCode, Mix_Chunk*> shoots;
 	std::map<Music, Mix_Music*> musics;
+	std::map<EffectType, Mix_Chunk*> sounds;
     bool start_game;
 
     void loadFromYAML(const std::string& filepath);
@@ -26,6 +27,8 @@ private:
 public:
 
     SoundConfig();
+
+    void load_sound(const EffectType& id, const std::string& filepath) ;
     
     void play_effect_with_position(const SoundType& id, Uint16 angle, Uint8 distance) ;
 
@@ -60,6 +63,8 @@ public:
     post: reproduce el efecto de sonido correspondiente con la cantidad de repeticiones indicada por loops
     */
     void play_effect(const SoundType& id, int loops);
+
+    void play_sound(const EffectType& id, int loops ) ;
 
     /*
     pre: el id debe existir en el mapa musics

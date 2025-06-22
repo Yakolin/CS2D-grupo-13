@@ -9,7 +9,22 @@
 
 enum class GameMenu { CREATE, JOIN, HELP, EXIT, NONE };
 
-enum class TextView { HEALTH, AMMO, TIME, POINTS, TEAM, BOMB, MONEY, WEAPON, BULLETS, NONE,BUY ,WIN_TT , WIN_CT};
+enum class TextView { 
+    HEALTH,
+    AMMO,
+    TIME,
+    POINTS,
+    TEAM,
+    BOMB,
+    MONEY,
+    WEAPON,
+    BULLETS,
+    NONE,
+    BUY ,
+    WIN_TT ,
+    WIN_CT, 
+    ROUND
+};
 
 enum class Color {
     ROJO,
@@ -76,6 +91,12 @@ enum class CursorContext {
     ALLY
 };
 
+enum class EffectType {
+    EXPLOSION,
+    PIP,
+    WIN_CT,
+    WIN_TT
+};
 enum class Object {
 
     TT,
@@ -88,6 +109,7 @@ enum class Object {
     WALL_DESIERTO,
 
     FONDO_ESPERA,
+    ROUND,
 
     GRASS,
     BOX1,

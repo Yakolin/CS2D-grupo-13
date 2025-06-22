@@ -22,13 +22,20 @@ SoundType soundTypeFromString(const std::string& str) {
     if (str == "DIE") return SoundType::DIE;
     if (str == "PICK_UP") return SoundType::PICK_UP;
 
-    throw std::invalid_argument("Tipo de efecto desconocido: " + str);
+    throw std::invalid_argument("Tipo de sonido desconocido: " + str);
 }
 
 Music musicFromString(const std::string& str) {
     if (str == "SALA_ESPERA") return Music::SALA_ESPERA;
     if (str == "JUEGO") return Music::JUEGO;
     throw std::invalid_argument("Tipo de música desconocido: " + str);
+}
+
+EffectType sound_from_string(const std::string& str) {
+    if (str == "EXPLOSION") return EffectType::EXPLOSION;
+    if (str == "WIN_CT") return EffectType::WIN_CT;
+    if (str == "WIN_TT") return EffectType::WIN_TT;
+    throw std::invalid_argument("Tipo de effecto desconocido: " + str);
 }
 
 WeaponCode shootFromString(const std::string& str) {
@@ -69,6 +76,14 @@ void SoundConfig::loadFromYAML(const std::string& filepath) {
 			load_music(id, path);
         }
     }
+    if (config["soundView"]) {
+        for (const auto& node : config["soundView"]) {
+            std::string key = node.first.as<std::string>();
+            std::string path = node.second.as<std::string>();
+			EffectType id = sound_from_string(key);
+			load_sound(id, path);
+        }
+    }
 }
 
 
@@ -84,8 +99,15 @@ void SoundConfig::load_effect(const SoundType& id, const std::string& filepath) 
 		return ;
 	}
 	effects[id] = chunk;
-    std::cout << "effecto cargada correctamente con ID: " << static_cast<int>(id) << std::endl;
-
+}
+void SoundConfig::load_sound(const EffectType& id, const std::string& filepath) {
+	
+	Mix_Chunk* chunk = Mix_LoadWAV(filepath.c_str());
+	if (!chunk) {
+		SDL_Log("No se pudo cargar efecto %s: %s", filepath.c_str(), Mix_GetError());
+		return ;
+	}
+	sounds[id] = chunk;
 }
 
 void SoundConfig::load_shoot(const WeaponCode& id, const std::string& filepath) {
@@ -114,6 +136,12 @@ void SoundConfig::play_effect(const SoundType& id, int loops ) {
 	
 	if (effects.find(id) != effects.end()) {
 		Mix_PlayChannel(-1, effects[id], loops);
+	}
+}
+void SoundConfig::play_sound(const EffectType& id, int loops ) {
+	
+	if (sounds.find(id) != sounds.end()) {
+		Mix_PlayChannel(-1, sounds[id], loops);
 	}
 }
 void SoundConfig::play_effect_with_position(const SoundType& id, Uint16 angle, Uint8 distance) {

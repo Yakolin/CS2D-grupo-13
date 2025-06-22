@@ -112,6 +112,11 @@ private:
     void handle_movements(SDL_Keycode& tecla);
     Skins load_claves(const Player& info_Player);
 
+    /* sonud handeler */
+    void handle_bomb_sound();
+
+    void handle_state_game();
+
 public:
     explicit GameView(Socket& skt, const GameInfo& game_info, const Player& info_game,
                       SDL_Window* ventana, SDL_Renderer* renderer, ManageTexture& manger_texture,

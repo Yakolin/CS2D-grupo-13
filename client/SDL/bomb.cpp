@@ -68,24 +68,18 @@ void Bomb::draw(SDL_Renderer& renderer) {
 
     switch (state) {
         case BombState::EQUIPED:
-            // std::cout << "La bomba está equipada.\n";
-            // draw_dropped(renderer);
             break;
         case BombState::DROPPED:
-            // std::cout << "La bomba fue soltada.\n";
             draw_dropped(renderer);
             break;
         case BombState::ACTIVATED:
-            // std::cout << "La bomba está activada.\n";
             draw_dropped(renderer);
             break;
         case BombState::DESACTIVATED:
-            // std::cout << "La bomba fue desactivada.\n";
             draw_dropped(renderer);
             break;
         case BombState::EXPLOTED:
             draw_activate(renderer);
-            // std::cout << "La bomba explotó.\n";
             break;
         default:
             break;

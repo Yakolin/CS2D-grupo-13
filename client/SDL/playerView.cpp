@@ -148,15 +148,20 @@ void PlayerView::draw(SDL_Renderer& renderer) {
     if (!muerto) {
         origin_rect = {item.col * width_img, item.fil * height_img, width_img / 2, height_img / 3};
         texture_player = textures_player.at(clave_team);
+        destination_rect = {static_cast<int>(x_actual) - camera->getX(),
+                            static_cast<int>(y_actual) - camera->getY(), 
+                            config.get_tile_width(),
+                            config.get_tile_height()};  
     } else {
         texture_player = manejador->get(Object::MUERTE);
         int tex_width, tex_height;
         SDL_QueryTexture(texture_player, nullptr, nullptr, &tex_width, &tex_height);
         origin_rect = {0, 0, tex_width, tex_height};
+        destination_rect = {static_cast<int>(x_actual) - camera->getX(),
+                            static_cast<int>(y_actual) - camera->getY(), 
+                            config.get_tile_width()*2,
+                            config.get_tile_height()*2};  
     }
-    destination_rect = {static_cast<int>(x_actual) - camera->getX(),
-                        static_cast<int>(y_actual) - camera->getY(), config.get_tile_width(),
-                        config.get_tile_height()};  // alto
     SDL_RenderCopyEx(&renderer, texture_player, &origin_rect, &destination_rect, anglePlayer,
                      nullptr, SDL_FLIP_NONE);
 

@@ -29,9 +29,8 @@ void CollisionManager::check_weapon_stepped(PlayerEntity& player) {
     auto it = dropped_things.find(player.position);
     if (it == dropped_things.end())
         return;
-    if (player.player.lock() && player.player.lock()->equip(it->second)) {
+    if (player.player.lock() && player.player.lock()->equip(it->second))
         dropped_things.erase(it);
-    }
 }
 
 void CollisionManager::add_bullet_image(const Vector2f& initial_pos, const Vector2f& final_pos,
@@ -85,17 +84,31 @@ std::vector<BulletImage> CollisionManager::get_bullets_image() {
     return bullets_image_aux;
 }
 
-void CollisionManager::check_damage_players(player_id_t caster, ColliderDamage& collider_damage,
-                                            std::vector<PlayerEntity>& players_affected) {
-    for (auto& player: players_in_map) {
-        if (player.first == caster)
-            continue;
-        if (!collider_damage.collider->is_in(player.second.position))
-            continue;
-        players_affected.push_back(player.second);
+void CollisionManager::find_players_in(player_id_t caster, ColliderDamage& collider_damage,
+                                       std::vector<PlayerEntity>& players_affected) {
+    for (auto& player: players_in_map)
+        if (player.first != caster && collider_damage.collider->is_in(player.second.position))
+            players_affected.push_back(player.second);
+}
+bool CollisionManager::hit(const chance_hit_t chance_hit) {
+    std::random_device rd;
+    std::mt19937 rand(rd());
+    std::uniform_int_distribution<uint8_t> dist(0, 100);
+    return dist(rand) <= chance_hit;
+}
+void CollisionManager::find_nearest(const std::vector<PlayerEntity>& players_affected,
+                                    const Vector2f& origin, PlayerEntity& nearest,
+                                    Vector2f& pos_nearest, float& min_distance) {
+    for (auto& player: players_affected) {
+        Vector2f new_pos(player.position.x, player.position.y);
+        float aux = origin.distance(new_pos);
+        if (aux < min_distance) {
+            min_distance = aux;
+            pos_nearest = new_pos;
+            nearest = player;
+        }
     }
 }
-
 void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage& collider_damage) {
     std::vector<PlayerEntity> players_affected;
     PlayerEntity player_caster = players_in_map[caster];
@@ -103,7 +116,7 @@ void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage&
     Vector2f origin = collider_damage.collider->get_start();
     sound_manager.emit_sound(std::make_shared<SoundShoot>(collider_damage.code),
                              player_caster.position);
-    check_damage_players(caster, collider_damage, players_affected);
+    find_players_in(caster, collider_damage, players_affected);
     if (players_affected.empty()) {
         // Si no se detecto ningun jugador, revisamos si hay un muro entre medio
         if (check_bullet_wall(origin, end, collider_damage))
@@ -115,35 +128,18 @@ void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage&
     PlayerEntity nearest = players_affected[0];
     Vector2f pos_nearest(nearest.position.x, nearest.position.y);
     float min_distance = origin.distance(pos_nearest);
-    for (auto& player: players_affected) {
-        if (!player.player.lock())
-            continue;
-        Vector2f new_pos(player.position.x, player.position.y);
-        float aux = origin.distance(new_pos);
-        if (aux < min_distance) {
-            min_distance = aux;
-            pos_nearest = new_pos;
-            nearest = player;
-        }
-    }
+    find_nearest(players_affected, origin, nearest, pos_nearest, min_distance);
     // Aca buscamos de todos los detectados, que son a lo sumo 10, el mas cercano
     // Ya detectado el mas cercano, revisamos si hay un muro entre medio
     if (check_bullet_wall(origin, pos_nearest, collider_damage))
         return;
     if (nearest.player.lock()) {
         damage_t damage = collider_damage.damage_calculator(min_distance);
-        std::random_device rd;
-        std::mt19937 rand(rd());
-        // Esto hay q hacerlo x yaml
-        std::uniform_int_distribution<uint8_t> dist(0, 4);
-        int random_num = dist(rand);
         if (!nearest.player.lock()->is_dead()) {
-            if (random_num != 0) {
+            if (hit(collider_damage.chance_hit))
                 nearest.player.lock()->damage(damage);
-            }
-            if (nearest.player.lock()->is_dead()) {
+            if (nearest.player.lock()->is_dead())
                 player_caster.player.lock()->give_points();
-            }
         }
         add_bullet_image(origin, end, collider_damage);
     }

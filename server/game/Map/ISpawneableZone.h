@@ -10,6 +10,7 @@ public:
     typedef struct ColliderSolicitude {
         uint8_t width;
         uint8_t distance;
+        uint8_t chance_hit;
         WeaponCode code;
         Position& mouse_position;
         std::function<damage_t(float)> damage_function;

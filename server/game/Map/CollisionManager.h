@@ -24,6 +24,7 @@ typedef struct ColliderDamage {
     std::unique_ptr<Collider> collider;
     std::function<damage_t(float)> damage_calculator;
     width_t width;
+    chance_hit_t chance_hit;
     WeaponCode code;
 } collider_damage_t;
 
@@ -37,11 +38,14 @@ class CollisionManager {
     std::vector<BulletImage> bullets_image;
     SoundManager& sound_manager;
     bool player_in(const Position& pos);
+    bool hit(const chance_hit_t chance_hit);
     void add_bullet_image(const Vector2f& initial_pos, const Vector2f& final_pos,
                           const ColliderDamage& collider_info);
     Position get_hit_pos(Position& initial, Position& end);
-    void check_damage_players(player_id_t caster, ColliderDamage& collider_damage,
-                              std::vector<PlayerEntity>& players_affected);
+    void find_nearest(const std::vector<PlayerEntity>& players_affected, const Vector2f& origin,
+                      PlayerEntity& nearest, Vector2f& pos_nearest, float& min_distance);
+    void find_players_in(player_id_t caster, ColliderDamage& collider_damage,
+                         std::vector<PlayerEntity>& players_affected);
     bool check_bullet_wall(const Vector2f& initial_pos, const Vector2f& final_pos,
                            const ColliderDamage& collider_info);
     void check_weapon_stepped(PlayerEntity& player);

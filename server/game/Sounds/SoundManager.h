@@ -11,6 +11,11 @@ class SoundManager {
 private:
     std::vector<std::pair<std::shared_ptr<Sound>, Position>> sounds;
 
+    std::vector<SoundCommonImage> common_sounds;
+    std::vector<SoundShootImage> shoot_sounds;
+    void handle_type(std::pair<std::shared_ptr<Sound>, Position>& sound_pair,
+                     distance_sound_t distance);
+
 public:
     SoundManager() = default;
     void emit_sound(std::shared_ptr<Sound> sound, const Position& pos) {

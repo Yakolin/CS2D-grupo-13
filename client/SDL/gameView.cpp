@@ -281,6 +281,15 @@ void GameView::draw_players() {
         }
     }
 }
+void GameView::draw_timer_bomb(){
+
+    if (bomba_timer.debe_dibujar_flash()) {
+        SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+        SDL_SetRenderDrawColor(renderer, 255, 0, 0, 80); 
+        SDL_Rect pantalla = {0, 0, config.get_window_width(), config.get_window_height()};
+        SDL_RenderFillRect(renderer, &pantalla);
+    }
+}
 
 void GameView::process_events() {
     SDL_Event event;
@@ -333,6 +342,7 @@ void GameView::render_game() {
     }
     // map->render_objet(*renderer);
     hud.render(*renderer);
+    draw_timer_bomb();
     SDL_RenderPresent(renderer);
 }
 

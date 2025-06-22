@@ -59,6 +59,8 @@ private:
     ManagerEvent events;
     BombTimer bomba_timer;
 
+    void draw_timer_bomb();
+
     void delete_players_death();
 
 

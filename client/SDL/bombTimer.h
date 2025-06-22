@@ -1,21 +1,23 @@
-#include <SDL_stdinc.h>
-#include "../tipos.h"
+#pragma once
+
+#include <SDL2/SDL.h>
 #include "../soundConfig.h"
-#ifndef BOMB_TIMER_H
-#define BOMB_TIMER_H
 
 class BombTimer {
-
-    Uint32 tiempo_inicio_ms;
-    int duracion_total_s;
+private:
+    Uint32 tiempo_inicio_ms = 0;
+    int duracion_total_s = 0;
     Uint32 ultimo_pip_ms = 0;
 
+    bool mostrar_flash = false;
+    Uint32 tiempo_flash_ms = 100; 
+    Uint32 tiempo_ultimo_flash = 0;
+
 public:
-
-    void start(int segundos_restantes) ;
-
+    void start(int segundos_restantes);
     void update(SoundConfig& sonido);
+    bool debe_dibujar_flash() const;
 
-    float calcular_intervalo_pip(float tiempo_restante);
+private:
+    float calcular_intervalo_pip(float tiempo_restante) const;
 };
-#endif  // BOMB_TIMER_H

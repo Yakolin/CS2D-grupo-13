@@ -41,10 +41,8 @@ void Equipment::change_weapon(const EquipType& equip) {
 }
 void Equipment::buy_weapon_by_code(const WeaponCode& weapon_code, money_t& money) {
     money_t price = weapon_factory.price_weapon(weapon_code);
-    if (price > money) {
-        std::cout << "Not enoguht money\n";
+    if (price > money)
         return;
-    }
     primary = weapon_factory.weapon_create(weapon_code);
     money -= price;
     // sound_zone.want_emit_sound(player_id, SoundType::BUY);
@@ -119,6 +117,7 @@ bool Equipment::equip_droppable(const std::shared_ptr<IInteractuable>& droppable
     }
     if (!primary->is_droppable()) {
         primary = std::static_pointer_cast<FireableWeapon>(droppable);
+        sound_zone.want_emit_sound(player_id, std::make_shared<Sound>(SoundType::PICK_UP));
         return true;
     }
     return false;

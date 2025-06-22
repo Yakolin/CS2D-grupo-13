@@ -8,13 +8,13 @@ bool CollisionManager::check_movement(player_id_t id, const Position& next_posit
         return false;
     Position destino = it->second.position + next_position;
     // Aca los destinos son distintos porque la matriz esta "invertida" con respecto a los vectores
-    if (!is_a_collision(destino) && !player_in(destino)) {
-        it->second.position += next_position;
-        if (it->second.player.lock()->get_team() == Team::TT)
-            check_bomb_stepped(it->second);
-        check_weapon_stepped(it->second);
-    }
-    return false;
+    if (is_a_collision(destino) || player_in(destino))
+        return false;
+    it->second.position += next_position;
+    if (it->second.player.lock()->get_team() == Team::TT)
+        check_bomb_stepped(it->second);
+    check_weapon_stepped(it->second);
+    return true;
 }
 void CollisionManager::check_bomb_stepped(PlayerEntity& player) {
     if (!(player.position == bomb.first))

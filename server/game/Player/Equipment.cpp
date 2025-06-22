@@ -16,9 +16,10 @@ Equipment::Equipment(const player_id_t& player_id, ISpawneableZone& spawneable_z
 Equipment::~Equipment() {}
 
 void Equipment::new_weapon_in_hand(const std::shared_ptr<IInteractuable>& weapon) {
-    if (!weapon || weapon->get_weapon_code() == WeaponCode::NONE)
+    if (!weapon || weapon->get_weapon_code() == WeaponCode::NONE || this->weapon_in_hand == weapon)
         return;
     this->weapon_in_hand = weapon;
+    sound_zone.want_emit_sound(player_id, std::make_shared<Sound>(SoundType::CHANGE_WEAPON));
 }
 
 void Equipment::change_weapon(const EquipType& equip) {
@@ -37,7 +38,6 @@ void Equipment::change_weapon(const EquipType& equip) {
         default:
             return;
     }
-    sound_zone.want_emit_sound(player_id, std::make_shared<Sound>(SoundType::CHANGE_WEAPON));
 }
 void Equipment::buy_weapon_by_code(const WeaponCode& weapon_code, money_t& money) {
     money_t price = weapon_factory.price_weapon(weapon_code);

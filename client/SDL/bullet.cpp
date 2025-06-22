@@ -4,8 +4,8 @@
 #include <iostream>
 
 
-Bullet::Bullet(const Coordenada& start, const Coordenada& end, SDL_Texture* texture):
-        current(start), end(end), texture(texture), start_time(SDL_GetTicks()) {}
+Bullet::Bullet(const Coordenada& start, const Coordenada& end, int width, SDL_Texture* texture):
+        current(start), end(end), width(width), texture(texture), start_time(SDL_GetTicks()) {}
 
 
 void Bullet::draw(SDL_Renderer& renderer) {

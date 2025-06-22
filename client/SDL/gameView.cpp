@@ -30,8 +30,8 @@ GameView::GameView(Socket& skt, const GameInfo& game_info, const Player& info_Pl
         activa(false),
         bomb_activate(false),
         keep_running(true),
-        events(controller,config,camera,*player,players,snapshot,*map,*fov,*bomba,shop,hud,keep_running,config_sound,manger_texture)
-{
+        events(controller, config, camera, *player, players, snapshot, *map, *fov, *bomba, shop,
+               hud, keep_running, config_sound, manger_texture) {
 
     shop.set_weapons_purchasables(game_info.weapons_purchasables);
     config_sound.play_music(Music::SALA_ESPERA, -1);
@@ -140,14 +140,14 @@ void GameView::update_bullets_snapshot() {
         Coordenada end = {static_cast<float>(bullet.end.x * tile_width),
                           static_cast<float>(bullet.end.y * tile_height)};
 
-        Bullet bullet_aux(init, end, manger_texture.get(Object::BULLET));
+        Bullet bullet_aux(init, end, bullet.width, manger_texture.get(Object::BULLET));
         this->bullets.push_back(bullet_aux);
     }
 }
 
 
 void GameView::handle_bomb_sound() {
-    
+
     BombState state = snapshot.bomb.state;
     if (state == BombState::ACTIVATED) {
         config_sound.play_sound(EffectType::ACTIVATION, 0);
@@ -159,7 +159,6 @@ void GameView::handle_bomb_sound() {
     } else {
         // No hacer nada
     }
-
 }
 void GameView::handle_state_game() {
     GameState state = snapshot.game_state.state;
@@ -191,7 +190,7 @@ void GameView::handle_state_game() {
 
 void GameView::update_sounds(const PlayerImage& player) {
 
-    Uint16 angle =  this->player->getAnglePlayer();
+    Uint16 angle = this->player->getAnglePlayer();
     for (const auto& sound: player.heared_sounds.common_sounds) {
         Uint8 distance = static_cast<Uint8>(sound.distance);
         config_sound.play_effect_with_position(sound.type, angle, distance);
@@ -256,7 +255,6 @@ void GameView::update_status_game() {
             }
         }
     }
-
 }
 
 void GameView::draw_players() {
@@ -387,8 +385,7 @@ void GameView::step() {
 }
 
 GameView::~GameView() {
-    for (auto& p: players) 
-        delete p.second;
+    for (auto& p: players) delete p.second;
     players.clear();
     delete player;
     player = nullptr;

@@ -54,8 +54,10 @@ HUD::HUD(GameConfig& config, ManageTexture& manager, const InfoGame& info_game):
     load_text(TextView::HEALTH, x_derecha, fila4_y, icono_vida);
     load_text(TextView::TEAM, x_centro, fila4_y);
     load_text(TextView::AMMO, x_izquierda, fila4_y, icono_bullet);
-    load_text(TextView::WIN_TT, x_centro - 10, y_centro, icono_tt);
-    load_text(TextView::WIN_CT, x_centro - 70, y_centro, icono_ct);
+    load_text(TextView::WIN_GAME_TT, x_centro - 120, y_centro, icono_tt);
+    load_text(TextView::WIN_GAME_CT, x_centro - 120, y_centro, icono_ct);
+    load_text(TextView::WIN_ROUND_TT, x_centro - 120, y_centro, icono_tt);
+    load_text(TextView::WIN_ROUND_CT, x_centro - 120, y_centro, icono_ct);
     load_text(TextView::ROUND, x_izquierda, fila2_y);
 
     load_state_win();
@@ -71,8 +73,10 @@ void HUD::load(const TextView& key_text,const Object& key_texture, const int& x,
 void HUD::load_state_win() {
 
     TTF_Font* font = config.get_font_game();
-    load_info(TextView::WIN_CT, "Counter-Terrorist WIN!!", Color::AZUL, font);
-    load_info(TextView::WIN_TT, "Terrorist WIN!!", Color::NARANJA, font);
+    load_info(TextView::WIN_ROUND_CT, "Counter-Terrorist WIN THE ROUND!!", Color::AZUL, font);
+    load_info(TextView::WIN_ROUND_TT, "Terrorist WIN THE ROUND!!", Color::NARANJA, font);
+    load_info(TextView::WIN_GAME_CT, "Counter-Terrorist WIN THE GAME!!", Color::AZUL, font);
+    load_info(TextView::WIN_GAME_TT, "Terrorist WIN THE GAME!!", Color::NARANJA, font);
 }
 
 void HUD::updateMouseSprite(const CursorContext& context) {
@@ -205,7 +209,7 @@ void HUD::load_info(const TextView& clave, const std::string text, Color color_i
 
     if (it != texts.end()) {
         SDL_SetTextureColorMod(it->second.icono, color.r, color.g, color.b);
-        SDL_SetTextureAlphaMod(it->second.icono, color.a);  // trasparencia
+        // SDL_SetTextureAlphaMod(it->second.icono, color.a);  // trasparencia
         it->second.texto.updateText(text, font, color);
     } else {
         std::cerr << "Clave no encontrada en texts: " << static_cast<int>(clave) << std::endl;
@@ -260,17 +264,25 @@ void HUD::render(SDL_Renderer& renderer) {
             continue;
         if (clave == TextView::BUY && game_state.state != GameState::TIME_TO_BUY)
             continue;
-        if (clave == TextView::WIN_CT || clave == TextView::WIN_TT)
+        if (clave == TextView::WIN_GAME_CT || clave == TextView::WIN_ROUND_CT ||
+            clave == TextView::WIN_GAME_TT || clave == TextView::WIN_ROUND_TT)
             continue;
         item.draw(renderer);
     }
-    if (game_state.state == GameState::TT_WIN_GAME || game_state.state == GameState::TT_WIN_ROUND) {
-        HUDItem item1 = texts.at(TextView::WIN_TT);
+    if (game_state.state == GameState::TT_WIN_GAME) {
+        HUDItem item1 = texts.at(TextView::WIN_GAME_TT);
         item1.draw(renderer);
     }
-
-    if (game_state.state == GameState::CT_WIN_GAME || game_state.state == GameState::CT_WIN_ROUND) {
-        HUDItem item1 = texts.at(TextView::WIN_CT);
+    if (game_state.state == GameState::TT_WIN_ROUND) {
+        HUDItem item1 = texts.at(TextView::WIN_ROUND_TT);
+        item1.draw(renderer);
+    }
+    if (game_state.state == GameState::CT_WIN_GAME) {
+        HUDItem item1 = texts.at(TextView::WIN_GAME_CT);
+        item1.draw(renderer);
+    }
+    if (game_state.state == GameState::CT_WIN_ROUND) {
+        HUDItem item1 = texts.at(TextView::WIN_ROUND_CT);
         item1.draw(renderer);
     }
 }

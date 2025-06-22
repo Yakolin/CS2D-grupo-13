@@ -9,7 +9,7 @@
 
 enum class GameMenu { CREATE, JOIN, HELP, EXIT, NONE };
 
-enum class TextView { 
+enum class TextView {
     HEALTH,
     AMMO,
     TIME,
@@ -20,9 +20,11 @@ enum class TextView {
     WEAPON,
     BULLETS,
     NONE,
-    BUY ,
-    WIN_TT ,
-    WIN_CT, 
+    BUY,
+    WIN_GAME_TT,
+    WIN_GAME_CT,
+    WIN_ROUND_TT,
+    WIN_ROUND_CT,
     ROUND
 };
 
@@ -42,11 +44,7 @@ enum class Color {
 };
 
 
-enum class Music{
-    SALA_ESPERA,
-    JUEGO
-};
-
+enum class Music { SALA_ESPERA, JUEGO };
 
 
 enum class ColorTranslucent {
@@ -85,19 +83,9 @@ enum class Weapon {
     NONE
 };
 
-enum class CursorContext {
-    NORMAL,
-    ENEMY,
-    ALLY
-};
+enum class CursorContext { NORMAL, ENEMY, ALLY };
 
-enum class EffectType {
-    EXPLOSION,
-    PIP,
-    WIN_CT,
-    WIN_TT,
-    ACTIVATION
-};
+enum class EffectType { EXPLOSION, PIP, WIN_CT, WIN_TT, ACTIVATION };
 enum class Object {
 
     TT,
@@ -193,7 +181,6 @@ struct Player {
     std::string skin2;
     InfoGame info;
     std::string map;
-    
 };
 
 struct MedidasSprites {
@@ -239,7 +226,7 @@ struct WeaponData {
     int price;
     std::string descripcion;
 };
-struct TextureInfo{
+struct TextureInfo {
     SDL_Texture* textura;
     SDL_Rect medidas;
 };

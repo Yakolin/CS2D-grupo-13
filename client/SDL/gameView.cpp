@@ -147,39 +147,47 @@ void GameView::update_bullets_snapshot() {
 
 
 void GameView::handle_bomb_sound() {
+    
     BombState state = snapshot.bomb.state;
-    switch (state) {
-        case BombState::ACTIVATED:
-            config_sound.play_sound(EffectType::ACTIVATION,0);
-            break;
-        case BombState::DESACTIVATED :
-            break;
-        case BombState::EXPLOTED :
-            config_sound.play_sound(EffectType::EXPLOSION,0);
-            break;
-        default:
-            break;
+    if (state == BombState::ACTIVATED) {
+        config_sound.play_sound(EffectType::ACTIVATION, 0);
+    } else if (state == BombState::DESACTIVATED) {
+        // No hacer nada
+    } else if (state == BombState::EXPLOTED && !config_sound.get_bomb_sound()) {
+        config_sound.set_bomb(true);
+        config_sound.play_sound(EffectType::EXPLOSION, 0);
+    } else {
+        // No hacer nada
     }
+
 }
 void GameView::handle_state_game() {
     GameState state = snapshot.game_state.state;
-    switch (state) {
-        case GameState::CT_WIN_GAME:
-            config_sound.play_sound(EffectType::WIN_CT,0);
-            break;
-        case GameState::TT_WIN_GAME :
-            config_sound.play_sound(EffectType::WIN_TT,0);
-            break;
-        case GameState::CT_WIN_ROUND :
-            config_sound.play_sound(EffectType::WIN_CT,0);
-            break;
-        case GameState::TT_WIN_ROUND :
-            config_sound.play_sound(EffectType::WIN_TT,0);
-            break;
-        default:
-            break;
+
+    std::cout << "[DEBUG] Estado actual del juego: " << static_cast<int>(state) << std::endl;
+
+    if (state == GameState::ROUND_STARTED) {
+        std::cout << "[DEBUG] ROUND_STARTED: reseteando sonidos." << std::endl;
+        config_sound.set_bomb(false);
+        config_sound.set_round(false);
+    }
+    if (config_sound.get_round_sound()) {
+        std::cout << "[DEBUG] Ya se reprodujo el sonido de ronda. Saliendo." << std::endl;
+        return;
+    }
+    if (state == GameState::CT_WIN_GAME || state == GameState::CT_WIN_ROUND) {
+        std::cout << "[DEBUG] CT ganó. Reproduciendo sonido WIN_CT." << std::endl;
+        config_sound.play_sound(EffectType::WIN_CT, 0);
+        config_sound.set_round(true);
+    } else if (state == GameState::TT_WIN_GAME || state == GameState::TT_WIN_ROUND) {
+        std::cout << "[DEBUG] TT ganó. Reproduciendo sonido WIN_TT." << std::endl;
+        config_sound.play_sound(EffectType::WIN_TT, 0);
+        config_sound.set_round(true);
+    } else {
+        std::cout << "[DEBUG] Ninguna condición de victoria detectada." << std::endl;
     }
 }
+
 
 void GameView::update_sounds(const PlayerImage& player) {
 
@@ -193,9 +201,10 @@ void GameView::update_sounds(const PlayerImage& player) {
         Uint8 distance = static_cast<Uint8>(shoot_sound.distance);
         config_sound.play_shoot_with_position(shoot_sound.code, angle, distance);
     }
-    //handle_bomb_sound();
-   // handle_state_game();
+    handle_bomb_sound();
+    handle_state_game();
 }
+
 void GameView::update_status_game() {
 
     print_game_image(snapshot);
@@ -204,6 +213,7 @@ void GameView::update_status_game() {
     update_bullets_snapshot();
     bomba->update_bomb(snapshot.bomb);
     this->map->update_weapon_dropped(snapshot.dropped_things);
+
 
     for (PlayerImage& player_img: this->snapshot.players_images) {
         player_id_t id = player_img.player_id;
@@ -246,6 +256,7 @@ void GameView::update_status_game() {
             }
         }
     }
+
 }
 
 void GameView::draw_players() {

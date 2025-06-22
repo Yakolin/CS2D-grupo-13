@@ -4,11 +4,19 @@
 SoundConfig::SoundConfig():
 	effects(),
 	musics(),
+    bomb_explode(false),
+    finish_round(false),
 	start_game(false)
 {
 	loadFromYAML("assets/music.yaml");
-
 }
+
+void SoundConfig::set_bomb(const bool& state){ bomb_explode = state;}
+void SoundConfig::set_round(const bool& state){ finish_round = state;}
+bool SoundConfig::get_bomb_sound(){ return bomb_explode;}
+bool SoundConfig::get_round_sound(){ return finish_round;}
+
+
 SoundType soundTypeFromString(const std::string& str) {
     if (str == "SHOOT") return SoundType::SHOOT;
     if (str == "WALK") return SoundType::WALK;

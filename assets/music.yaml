@@ -24,3 +24,4 @@ soundView:
   #PIP: assets/sfx/weapons/glock18.wav
   WIN_CT: assets/sfx/radio/ctwin.ogg
   WIN_TT: assets/sfx/radio/terwin.ogg
+ # START_ROUND: assets/sfx/radio/terwin.ogg

@@ -107,14 +107,16 @@ QWidget* ScoreBoard::add_table(std::map<player_id_t, InfoPlayer>& score_table, c
     layout->addWidget(title_table);
     title_table->setStyleSheet(LOBBY_LABEL_STYLE2);
 
-    QTableWidget* table = new QTableWidget(score_table.size(), 3);
-    table->setHorizontalHeaderLabels({"Player ID", "Deaths","Points"});
+    QTableWidget* table = new QTableWidget(score_table.size(), 5);
+    table->setHorizontalHeaderLabels({"Player ID", "Deaths","Kills","collected_money","Points"});
     
     int fila = 0;
     for (const auto& [id, summary]: score_table) {
         table->setItem(fila, 0, new QTableWidgetItem(QString::number(id)));
         table->setItem(fila, 1, new QTableWidgetItem(QString::number(summary.deaths)));
-        table->setItem(fila, 2, new QTableWidgetItem(QString::number(summary.puntos)));
+        table->setItem(fila, 2, new QTableWidgetItem(QString::number(summary.kills)));
+        table->setItem(fila, 3, new QTableWidgetItem(QString::number(summary.collected_money)));
+        table->setItem(fila, 4, new QTableWidgetItem(QString::number(summary.puntos)));
         fila++;
     }
 
@@ -142,7 +144,7 @@ int ScoreBoard::show_scores_game() {
     std::map<player_id_t, InfoPlayer> tts;
     filter_table(cts,tts);
 
-    info_ranking->resize(800, 500);
+    info_ranking->resize(900, 500);
     QGridLayout* mainLayout = new QGridLayout(info_ranking);
     mainLayout->addWidget(add_table(cts,"Rankig Counter-Terrorist"),0,0);
     mainLayout->addWidget(add_table(tts,"Ranking Terrorist"),0,1);

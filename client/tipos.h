@@ -96,7 +96,8 @@ enum class EffectType {
     PIP,
     WIN_CT,
     WIN_TT,
-    ACTIVATION
+    ACTIVATION,
+    DESACTIVATED
 };
 enum class Object {
 

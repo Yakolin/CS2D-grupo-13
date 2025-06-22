@@ -1,6 +1,7 @@
 #include "gameView.h"
 
 #include <SDL_mixer.h>
+#include <unordered_set>
 
 
 int counter2 = 0;
@@ -8,8 +9,8 @@ int counter2 = 0;
 GameView::GameView(Socket& skt, const GameInfo& game_info, const Player& info_Player,
                    SDL_Window* ventana, SDL_Renderer* renderer, ManageTexture& manger_texture,
                    GameConfig& config):
-        config_sound(),
         config(config),
+        config_sound(config.get_volumen()),
         controller(skt),
         constant_rate_loop([this]() { return this->should_keep_running(); },
                            [this]() { this->step(); }),
@@ -17,7 +18,7 @@ GameView::GameView(Socket& skt, const GameInfo& game_info, const Player& info_Pl
         renderer(renderer),
         camera(config.get_window_width(), config.get_window_height()),
         manger_texture(manger_texture),
-        player(new PlayerView(11, 4, load_claves(info_Player), 200.0f, &camera, &manger_texture,
+        player(new PlayerView(11, 4, load_claves(info_Player), 50.0f, &camera, &manger_texture,
                               config)),  // !cambiar a 200.0f
         players(),
         snapshot(),
@@ -38,21 +39,15 @@ GameView::GameView(Socket& skt, const GameInfo& game_info, const Player& info_Pl
 }
 
 TerroristSkin toItemTerrorism(const std::string& str) {
-    if (str == "Phoenix")
-        return TerroristSkin::PHOENIX;
-    if (str == "L337 Krew")
-        return TerroristSkin::L337_KREW;
-    if (str == "Arctic Avenger")
-        return TerroristSkin::ARCTIC_AVENGER;
+    if (str == "Phoenix") return TerroristSkin::PHOENIX;
+    if (str == "L337 Krew") return TerroristSkin::L337_KREW;
+    if (str == "Arctic Avenger") return TerroristSkin::ARCTIC_AVENGER;
     return TerroristSkin::GUERRILLA;
 }
 CounterTerroristSkin toItemCounterTerrorism(const std::string& str) {
-    if (str == "Seal Force")
-        return CounterTerroristSkin::SEAL;
-    if (str == "German GSG-9")
-        return CounterTerroristSkin::GSG9;
-    if (str == "UK SAS")
-        return CounterTerroristSkin::SAS;
+    if (str == "Seal Force") return CounterTerroristSkin::SEAL;
+    if (str == "German GSG-9") return CounterTerroristSkin::GSG9;
+    if (str == "UK SAS") return CounterTerroristSkin::SAS;
     return CounterTerroristSkin::GIGN;
 }
 Skins GameView::load_claves(const Player& info_Player) {
@@ -150,41 +145,31 @@ void GameView::handle_bomb_sound() {
     
     BombState state = snapshot.bomb.state;
     if (state == BombState::ACTIVATED) {
-        config_sound.play_sound(EffectType::ACTIVATION, 0);
+        config_sound.play_sound(EffectType::PIP, 0);
     } else if (state == BombState::DESACTIVATED) {
-        // No hacer nada
+        config_sound.play_sound(EffectType::DESACTIVATED, 0);
     } else if (state == BombState::EXPLOTED && !config_sound.get_bomb_sound()) {
         config_sound.set_bomb(true);
         config_sound.play_sound(EffectType::EXPLOSION, 0);
-    } else {
-        // No hacer nada
     }
-
 }
+
 void GameView::handle_state_game() {
     GameState state = snapshot.game_state.state;
 
-    std::cout << "[DEBUG] Estado actual del juego: " << static_cast<int>(state) << std::endl;
-
     if (state == GameState::ROUND_STARTED) {
-        std::cout << "[DEBUG] ROUND_STARTED: reseteando sonidos." << std::endl;
         config_sound.set_bomb(false);
         config_sound.set_round(false);
+        config_sound.set_bomb(false);
     }
-    if (config_sound.get_round_sound()) {
-        std::cout << "[DEBUG] Ya se reprodujo el sonido de ronda. Saliendo." << std::endl;
-        return;
-    }
+    if (config_sound.get_round_sound()) return;
+
     if (state == GameState::CT_WIN_GAME || state == GameState::CT_WIN_ROUND) {
-        std::cout << "[DEBUG] CT ganó. Reproduciendo sonido WIN_CT." << std::endl;
         config_sound.play_sound(EffectType::WIN_CT, 0);
         config_sound.set_round(true);
     } else if (state == GameState::TT_WIN_GAME || state == GameState::TT_WIN_ROUND) {
-        std::cout << "[DEBUG] TT ganó. Reproduciendo sonido WIN_TT." << std::endl;
         config_sound.play_sound(EffectType::WIN_TT, 0);
         config_sound.set_round(true);
-    } else {
-        std::cout << "[DEBUG] Ninguna condición de victoria detectada." << std::endl;
     }
 }
 
@@ -201,11 +186,34 @@ void GameView::update_sounds(const PlayerImage& player) {
         Uint8 distance = static_cast<Uint8>(shoot_sound.distance);
         config_sound.play_shoot_with_position(shoot_sound.code, angle, distance);
     }
-    handle_bomb_sound();
     handle_state_game();
 }
 
+void GameView::delete_players_death(){
+
+    std::unordered_set<player_id_t> jugadores_vivos;
+    for (const auto& player_img : snapshot.players_images) {
+        jugadores_vivos.insert(player_img.player_id);
+    }
+
+    auto it = players.begin();
+    while (it != players.end()) {
+        if (jugadores_vivos.find(it->first) == jugadores_vivos.end()) {
+            delete it->second; 
+            it = players.erase(it); 
+        } else {
+            ++it; 
+        }
+    }
+
+}
+
 void GameView::update_status_game() {
+
+    if(snapshot.game_state.state == GameState::GAME_ENDED){
+        this->keep_running = false;
+        controller.stop();
+    }
 
     print_game_image(snapshot);
     int tile_width = config.get_tile_width();
@@ -213,6 +221,11 @@ void GameView::update_status_game() {
     update_bullets_snapshot();
     bomba->update_bomb(snapshot.bomb);
     this->map->update_weapon_dropped(snapshot.dropped_things);
+
+    if(!config_sound.get_bomb_sound() && snapshot.bomb.state == BombState::ACTIVATED ){
+        config_sound.set_bomb(true);
+        bomba_timer.start(snapshot.game_state.time); 
+    }
 
 
     for (PlayerImage& player_img: this->snapshot.players_images) {
@@ -256,6 +269,7 @@ void GameView::update_status_game() {
             }
         }
     }
+    delete_players_death();
 
 }
 
@@ -283,6 +297,7 @@ void GameView::update_game() {
 
     update_status_game();
     player->update(deltaTime);  //! desconetar
+    bomba_timer.update(config_sound);
 
     for (auto& pair: players) {
         if (pair.second != nullptr && pair.second != player) {
@@ -361,8 +376,8 @@ std::map<player_id_t, InfoPlayer> GameView::get_info_players_map() {
         info.team = (player.team == Team::CT) ? "CT" : "TT";
         info.puntos = player.points;
         info.deaths = player.deaths;
-        info.kills = player.points + player.deaths;
-        info.collected_money = player.money;
+        info.kills = player.kills;
+        info.collected_money = player.collected_money;
         info_map[player.player_id] = info;
     }
 

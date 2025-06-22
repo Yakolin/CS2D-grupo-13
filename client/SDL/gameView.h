@@ -31,13 +31,12 @@
 #include "renderizable.h"
 #include "shopping.h"
 #include "text.h"
-
-
+#include "bombTimer.h"
 class GameView {
 
 private:
-    SoundConfig config_sound;
     GameConfig& config;
+    SoundConfig config_sound;
     Controller controller;
     ConstantRateLoop constant_rate_loop;
     SDL_Window* ventana;
@@ -58,6 +57,9 @@ private:
     bool bomb_activate;
     std::atomic<bool> keep_running;
     ManagerEvent events;
+    BombTimer bomba_timer;
+
+    void delete_players_death();
 
 
     void update_mouse_hold();

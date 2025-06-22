@@ -6,16 +6,13 @@ Client::Client(int& argc, char* argv[]): vista(argc, argv) {}
 
 
 int Client::run() {
-    bool running = true;
+
     try {
-        while (running) {
-            running = vista.showLobby();
-            if (running) {
-                std::map<player_id_t, InfoPlayer> table = vista.showGame();
-                vista.showScoreboard(table);
-                this->vista.reset();
-            }
+        if (vista.showLobby()) {
+            std::map<player_id_t, InfoPlayer> table = vista.showGame();
+            vista.showScoreboard(table);
         }
+        
     } catch (const std::exception& e) {
         std::cerr << "Excepción atrapada: " << e.what() << std::endl;
     } catch (...) {

@@ -88,6 +88,7 @@ void GameConfig::load(const std::string& file_path) {
         this->viewport_width = config["camera"]["viewport_logical_width"].as<int>();
         this->viewport_height = config["camera"]["viewport_logical_height"].as<int>();
         this->intensity = config["fov"]["intensity"].as<int>();
+        this->volumen_game = config["volumen"].as<int>();
 
 
     } catch (const YAML::Exception& e) {
@@ -95,7 +96,10 @@ void GameConfig::load(const std::string& file_path) {
     }
 }
 
+
+
 int GameConfig::get_intensity(){return intensity;}
+int GameConfig::get_volumen(){return volumen_game;}
 
 std::vector<std::vector<char>> GameConfig::load_map(const std::string& archivo) {
 

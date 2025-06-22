@@ -9,6 +9,7 @@ target_sources(CS2D_client
     SDL/gameConfig.cpp
     SDL/mapView.cpp
     SDL/bomb.cpp
+    SDL/bombTimer.cpp
     SDL/bullet.cpp
     SDL/fieldOfView.cpp
     SDL/playerView.cpp
@@ -35,6 +36,7 @@ target_sources(CS2D_client
     SDL/gameConfig.h
     SDL/fieldOfView.h
     SDL/bomb.h
+    SDL/bombTimer.h
     SDL/shopping.h
     SDL/weaponView.h
     SDL/camera.h

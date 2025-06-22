@@ -26,6 +26,7 @@ private:
     std::unordered_map<Color, SDL_Color> colores;
     int intensity;
     std::unordered_map<ColorTranslucent, SDL_Color> translucent_colors;
+    int volumen_game;
     
     
     void load(const std::string& file_path);
@@ -64,6 +65,8 @@ public:
     std::string get_route_font() const;
 
     int get_intensity();
+
+    int get_volumen();
 
     std::vector<std::vector<char>> load_map(const std::string& archivo);
 

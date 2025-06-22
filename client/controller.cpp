@@ -98,6 +98,8 @@ void Controller::start() {
 void Controller::stop() {
     this->receiver.stop();
     this->sender.stop();
+    this->skt.shutdown(2);
+    this->skt.close();
     this->receiver.join();
     this->sender.join();
 }

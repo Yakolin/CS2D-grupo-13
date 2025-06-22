@@ -145,6 +145,5 @@ void Vista::reset() {
 }
 
 Vista::~Vista() {
-    this->skt.shutdown(2);
-    this->skt.close();
+    
 }

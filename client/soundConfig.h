@@ -18,6 +18,7 @@ private:
     bool finish_round;
     bool start_game;
 
+
     void loadFromYAML(const std::string& filepath);
 
     /*
@@ -28,7 +29,7 @@ private:
 
 public:
 
-    SoundConfig();
+    SoundConfig(const int& volumen);
 
     void set_bomb(const bool& state);
 

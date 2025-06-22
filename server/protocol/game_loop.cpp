@@ -61,6 +61,10 @@ void GameLoop::run() {
 }
 
 void GameLoop::step() {
+    if (!this->game.has_players() || this->game.has_ended()) {
+        this->stop();
+        return;
+    }
     try {
         std::unique_ptr<ClientAction> action;
         while (this->recv_queue->try_pop(action)) {
@@ -108,8 +112,6 @@ void GameLoop::broadcast(GameImage& game_image) {
 }
 
 void GameLoop::stop() {
-    try {
-        this->recv_queue->close();
-    } catch (const QueueAlreadyClosed& e) {}
+    this->recv_queue->close();
     Thread::stop();
 }

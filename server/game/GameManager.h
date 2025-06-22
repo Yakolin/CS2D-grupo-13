@@ -69,6 +69,8 @@ public:
     GameImage get_frame();
     GameInfo get_game_info();
     void start_game();
+    bool has_players();
+    bool has_ended();
     void stop_game();
     virtual void process(ClientAction& action) override;
     virtual void add_player(const player_id_t& player_id, Skins& skins) override;

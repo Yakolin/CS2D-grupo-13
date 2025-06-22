@@ -31,6 +31,7 @@ void GameConfig::load_weapons(const YAML::Node& config) {
                                    data["max_bullets"].as<max_bullets_t>(),
                                    data["magazine"].as<max_bullets_t>(),
                                    data["width"].as<width_t>(),
+                                   data["chance_hit"].as<chance_hit_t>(),
                                    data["distance"].as<distance_t>(),
                                    data["purchasable"].as<bool>()};
         weapon_configs[code] = weapon_config;

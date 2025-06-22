@@ -8,6 +8,7 @@ Weapons:
     max_bullets: 30
     magazine: 90
     width: 1
+    chance_hit: 60
     distance: 15
     purchasable: true
   Glock:
@@ -19,6 +20,7 @@ Weapons:
     max_bullets: 30
     magazine: 120
     width: 1
+    chance_hit: 70
     distance: 10
     purchasable: false
   M3:
@@ -30,6 +32,7 @@ Weapons:
     max_bullets: 16
     magazine: 4
     width: 3
+    chance_hit: 80
     distance: 4
     purchasable: true
   AWP:
@@ -41,6 +44,7 @@ Weapons:
     max_bullets: 6
     magazine: 12
     width: 1
+    chance_hit: 70
     distance: 30
     purchasable: true
   Knife:
@@ -52,6 +56,7 @@ Weapons:
     max_bullets: 0
     magazine: 0
     width: 2
+    chance_hit: 90
     distance: 1
     purchasable: false
 
@@ -63,11 +68,11 @@ Player:
   multiplier_points: 12
 Timer:
   time_buy: 5
-  time_round: 50
+  time_round: 2
   time_bomb: 25
   time_ending: 5
 
-Rounds: 10
+Rounds: 2
 
 RandomWeapons:
   max_weapons: 5

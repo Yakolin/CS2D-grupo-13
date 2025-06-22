@@ -22,6 +22,7 @@ using timer_fire_t = uint16_t;
 using max_bullets_t = uint8_t;
 using current_bullets_t = uint8_t;
 using width_t = uint8_t;
+using chance_hit_t = uint8_t;
 using distance_t = uint8_t;
 using burst_coldown_t = uint16_t;
 
@@ -41,6 +42,7 @@ public:
         max_bullets_t max_b;
         current_bullets_t current_b;
         width_t width;
+        chance_hit_t chance_hit;
         distance_t distance;
         bool purchasable;
     } weapon_config_t;

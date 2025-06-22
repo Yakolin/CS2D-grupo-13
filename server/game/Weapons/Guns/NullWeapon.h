@@ -17,7 +17,7 @@ public:
     ~NullWeapon() = default;
 
 
-    void reload() override {}
+    bool reload() override { return false; }
 
     bool set_on_action([[maybe_unused]] ISpawneableZone& spawn, [[maybe_unused]] player_id_t id,
                        [[maybe_unused]] Position& direction) override {

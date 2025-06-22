@@ -15,7 +15,7 @@ public:
     virtual bool set_on_action(ISpawneableZone& spawn, player_id_t id,
                                [[maybe_unused]] Position& direction) override;
     bool shoot_burst(ISpawneableZone& spawn, player_id_t, Position& direction) override;
-    virtual void reload() override {}
+    virtual bool reload() override { return false; }
     void defuse();
     void set_equiped();
     void set_unequiped();

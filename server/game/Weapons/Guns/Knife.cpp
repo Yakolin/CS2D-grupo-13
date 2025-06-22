@@ -36,7 +36,7 @@ bool Knife::shoot_burst(ISpawneableZone& spawn, player_id_t id, Position& direct
     return false;
 }
 
-void Knife::reload() {};
+bool Knife::reload() { return false; };
 
 WeaponImage Knife::get_weapon_image() { return WeaponImage(code, 0, 0); }
 

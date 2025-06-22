@@ -71,7 +71,12 @@ void Equipment::drop_weapon() {
     }
 }
 
-void Equipment::reload() { this->weapon_in_hand->reload(); }
+void Equipment::reload() {
+    if (this->weapon_in_hand->reload()) {
+        this->sound_zone.want_emit_sound(this->player_id,
+                                         std::make_shared<Sound>(SoundType::RELOAD));
+    }
+}
 
 void Equipment::shoot(Position& position) {
     if (weapon_in_hand->get_weapon_code() == WeaponCode::BOMB && bomb.lock()) {

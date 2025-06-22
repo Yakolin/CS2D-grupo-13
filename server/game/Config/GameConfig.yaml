@@ -5,8 +5,8 @@ Weapons:
     fire_rate: 3
     timer_fire: 400
     burst_coldown: 1250
-    max_bullets: 90
-    magazine: 30
+    max_bullets: 30
+    magazine: 90
     width: 1
     distance: 15
     purchasable: true
@@ -16,8 +16,8 @@ Weapons:
     fire_rate: 1
     timer_fire: 600
     burst_coldown: 0
-    max_bullets: 120
-    magazine: 30
+    max_bullets: 30
+    magazine: 120
     width: 1
     distance: 10
     purchasable: false
@@ -38,8 +38,8 @@ Weapons:
     fire_rate: 1
     timer_fire: 1200
     burst_coldown: 0
-    max_bullets: 12
-    magazine: 6
+    max_bullets: 6
+    magazine: 12
     width: 1
     distance: 30
     purchasable: true

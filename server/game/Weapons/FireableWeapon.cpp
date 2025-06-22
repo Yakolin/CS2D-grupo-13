@@ -53,11 +53,12 @@ bool FireableWeapon::shoot_burst(ISpawneableZone& spawn, player_id_t id, Positio
 }
 
 void FireableWeapon::reload() {
-    if (actual_bullets > 0 && actual_magazine < max_magazine) {
-        magazine_t needed_bullets = max_magazine - actual_magazine;
-        magazine_t available_bullets = std::min(needed_bullets, actual_bullets);
-        actual_magazine += available_bullets;
-        actual_bullets -= available_bullets;
+    if (this->actual_magazine > 0 && this->actual_bullets < this->max_bullets) {
+        bullet_t needed_bullets = this->max_bullets - this->actual_bullets;
+        bullet_t bullets_to_reload = std::min(needed_bullets, this->actual_magazine);
+
+        this->actual_bullets += bullets_to_reload;
+        this->actual_magazine -= bullets_to_reload;
     }
 }
 

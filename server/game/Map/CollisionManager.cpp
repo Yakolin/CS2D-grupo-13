@@ -131,7 +131,6 @@ void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage&
     if (check_bullet_wall(origin, pos_nearest, collider_damage))
         return;
     if (nearest.player.lock()) {
-        std::cout << "Se detecto un enemigo golpeado\n";
         damage_t damage = collider_damage.damage_calculator(min_distance);
         std::random_device rd;
         std::mt19937 rand(rd());
@@ -143,8 +142,7 @@ void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage&
                 nearest.player.lock()->damage(damage);
             }
             if (nearest.player.lock()->is_dead()) {
-                std::cout << "Se murio el otro jugador, felicidades :)\n";
-                player_caster.player.lock()->get_points();
+                player_caster.player.lock()->give_points();
             }
         }
         add_bullet_image(origin, end, collider_damage);

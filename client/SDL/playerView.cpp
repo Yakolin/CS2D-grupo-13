@@ -45,7 +45,7 @@ Team PlayerView::get_clave_team() { return clave_team; }
 
 void PlayerView::set_muerto(const bool& new_state) { muerto = new_state; }
 
-void PlayerView::update_equip(const PlayerImage player_aux) {
+void PlayerView::update_equip(const PlayerImage& player_aux) {
     this->equipped_weapon = player_aux.equipped_weapon;
     this->clave_team = player_aux.team;
 }
@@ -78,7 +78,6 @@ void PlayerView::update_weapons(const std::vector<WeaponImage>& weapons_vec) {
         std::cout << "El jugador no tiene armas." << std::endl;
         return;
     }
-    // imprimir_weapons_vec(weapons_vec);
 
     for (const WeaponImage& weapon_img: weapons_vec) {
         WeaponCode weapon_key = weapon_img.weapon_code;
@@ -98,10 +97,6 @@ void PlayerView::update_weapons(const std::vector<WeaponImage>& weapons_vec) {
                                                                x_actual, y_actual, anglePlayer);
         }
     }
-    // std::cout << "armas. cargadas ---------" << std::endl;
-    /* for (const auto& par : weapons ) {
-        std::cout << static_cast<int>(par.first) << std::endl;
-    }*/
 }
 
 
@@ -127,21 +122,10 @@ void PlayerView::stop_speed(const SDL_Keycode& tecla) {
         setVelX(0);
     }
 }
-void PlayerView::auxiliar(const SDL_Keycode& tecla) {
-
-    if (tecla == SDLK_w || tecla == SDLK_UP) {  // arriba
-        y_actual -= speed_player;
-    } else if (tecla == SDLK_a || tecla == SDLK_LEFT) {  // izquierda
-        x_actual -= speed_player;
-    } else if (tecla == SDLK_d || tecla == SDLK_RIGHT) {  // derecha
-        x_actual += speed_player;
-    } else if (tecla == SDLK_s || tecla == SDLK_DOWN) {  // abajo
-        y_actual += speed_player;
-    }
-}
 
 
 void PlayerView::activate_weapon() { activar_weapon = true; }
+
 void PlayerView::draw(SDL_Renderer& renderer) {
 
     SDL_Texture* texture_player;

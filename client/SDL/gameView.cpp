@@ -248,7 +248,7 @@ void GameView::update_status_game() {
         } else if (players.find(id) == players.end()) {
 
             PlayerView* nuevo_jugador = new PlayerView(x_pixeles, y_pixeles, player_img.skin,
-                                                       200.0f, &camera, &manger_texture, config);
+                                                       50.0f, &camera, &manger_texture, config);
             nuevo_jugador->update_view_angle(player_img.mouse_position.x * 32,
                                              player_img.mouse_position.y * 32);
             nuevo_jugador->update_weapons(player_img.weapons);
@@ -259,7 +259,7 @@ void GameView::update_status_game() {
             int x_pixel_mouse = player_img.mouse_position.x * config.get_tile_width();
             int y_pixel_mouse = player_img.mouse_position.y * config.get_tile_height();
             player_aux->update_view_angle(x_pixel_mouse, y_pixel_mouse);
-
+            player_aux->update_equip(player_img);
             reset_values(player_aux, x_pixeles, y_pixeles);
             player_aux->update_weapons(player_img.weapons);
             if (player_img.health <= 0) {

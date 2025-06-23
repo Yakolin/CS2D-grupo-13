@@ -38,6 +38,8 @@ bool Knife::shoot_burst(ISpawneableZone& spawn, player_id_t id, Position& direct
 
 bool Knife::reload() { return false; };
 
+bool Knife::have_bullets() { return false; }
+
 WeaponImage Knife::get_weapon_image() { return WeaponImage(code, 0, 0); }
 
 bool Knife::is_droppable() { return false; }

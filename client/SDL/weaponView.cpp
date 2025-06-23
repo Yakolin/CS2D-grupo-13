@@ -30,7 +30,7 @@ void WeaponView::draw_dropped(SDL_Renderer& renderer) {
 }
 void WeaponView::update(const int& x_player, const int& y_player, const float& angle, const WeaponCode& code) {
 
-    if(code == WeaponCode::KNIFE || code == WeaponCode::AWP){
+    if(code == WeaponCode::KNIFE || code == WeaponCode::AWP || code == WeaponCode::M3){
         destination_rect.w = 40;
         destination_rect.h = 40;
     }else{

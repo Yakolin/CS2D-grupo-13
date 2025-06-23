@@ -45,37 +45,24 @@ Music musicFromString(const std::string& str) {
 }
 
 EffectType sound_from_string(const std::string& str) {
-    if (str == "EXPLOSION")
-        return EffectType::EXPLOSION;
-    if (str == "WIN_CT")
-        return EffectType::WIN_CT;
-    if (str == "WIN_TT")
-        return EffectType::WIN_TT;
-    if (str == "ACTIVATION")
-        return EffectType::ACTIVATION;
-    if (str == "DESACTIVATED")
-        return EffectType::DESACTIVATED;
-    if (str == "PIP")
-        return EffectType::PIP;
+    if (str == "EXPLOSION") return EffectType::EXPLOSION;
+    if (str == "WIN_CT") return EffectType::WIN_CT;
+    if (str == "WIN_TT") return EffectType::WIN_TT;
+    if (str == "ACTIVATION") return EffectType::ACTIVATION;
+    if (str == "DESACTIVATED") return EffectType::DESACTIVATED;
+    if (str == "PIP") return EffectType::PIP;
     throw std::invalid_argument("Tipo de effecto desconocido: " + str);
 }
 
 WeaponCode shootFromString(const std::string& str) {
-    if (str == "GLOCK")
-        return WeaponCode::GLOCK;
-    if (str == "AK47")
-        return WeaponCode::AK47;
-    if (str == "AWP")
-        return WeaponCode::AWP;
-    if (str == "M3")
-        return WeaponCode::M3;
-    if (str == "KNIFE")
-        return WeaponCode::KNIFE;
-    if (str == "BOMB")
-        return WeaponCode::BOMB;
+    if (str == "GLOCK") return WeaponCode::GLOCK;
+    if (str == "AK47") return WeaponCode::AK47;
+    if (str == "AWP") return WeaponCode::AWP;
+    if (str == "M3") return WeaponCode::M3;
+    if (str == "KNIFE") return WeaponCode::KNIFE;
+    if (str == "BOMB") return WeaponCode::BOMB;
     throw std::invalid_argument("WeaponCode desconocido: " + str);
 }
-
 
 void SoundConfig::loadFromYAML(const std::string& filepath) {
     YAML::Node config = YAML::LoadFile(filepath);
@@ -146,7 +133,6 @@ void SoundConfig::load_shoot(const WeaponCode& id, const std::string& filepath) 
         return;
     }
     shoots[id] = chunk;
-    std::cout << "shoot cargada correctamente con ID: " << static_cast<int>(id) << std::endl;
 }
 
 void SoundConfig::load_music(const Music& id, const std::string& filepath) {
@@ -157,7 +143,6 @@ void SoundConfig::load_music(const Music& id, const std::string& filepath) {
         return;
     }
     musics[id] = music;
-    std::cout << "Música cargada correctamente con ID: " << static_cast<int>(id) << std::endl;
 }
 
 void SoundConfig::play_effect(const SoundType& id, int loops) {

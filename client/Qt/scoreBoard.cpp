@@ -48,22 +48,29 @@ QChartView* ScoreBoard::graficoBarrasEquipo(const std::string& equipo, QWidget* 
     using namespace QtCharts;
     QBarSet* deathsSet = new QBarSet("Deaths");
     QBarSet* pointsSet = new QBarSet("Points");
+    QBarSet* killssSet = new QBarSet("Kills");
+    QBarSet* moneysSet = new QBarSet("Collected_money");
 
-    int totalDeaths = 0, totalPoints = 0;
+    int totalDeaths = 0, totalPoints = 0, totalkills = 0, totalmoney = 0;
 
     for (const auto& [id, summary]: scores) {
         if (summary.team == equipo) {
             totalDeaths += summary.deaths;
             totalPoints += summary.puntos;
+            totalkills += summary.kills;
+            totalmoney += summary.collected_money;
         }
     }
-
     *deathsSet << totalDeaths;
     *pointsSet << totalPoints;
+    *killssSet << totalkills;
+    *moneysSet << totalmoney;
 
     QBarSeries* series = new QBarSeries();
     series->append(deathsSet);
     series->append(pointsSet);
+    series->append(killssSet);
+    series->append(moneysSet);
 
     QChart* chart = new QChart();
     chart->addSeries(series);
@@ -134,8 +141,6 @@ QWidget* ScoreBoard::add_table(std::map<player_id_t, InfoPlayer>& score_table, c
 }
 
 int ScoreBoard::show_scores_game() {
-    std::cout << "entro a estadisticas \n";
-
     QWidget* info_ranking = new QWidget();
     info_ranking->setStyleSheet("QWidget { background-color: rgb(36, 36, 36); color: rgb(255, 255, "
                                 "255); font-size: 14px;}");
@@ -145,7 +150,7 @@ int ScoreBoard::show_scores_game() {
     std::map<player_id_t, InfoPlayer> tts;
     filter_table(cts,tts);
 
-    info_ranking->resize(900, 500);
+    info_ranking->resize(1000, 500);
     QGridLayout* mainLayout = new QGridLayout(info_ranking);
     mainLayout->addWidget(add_table(cts,"Rankig Counter-Terrorist"),0,0);
     mainLayout->addWidget(add_table(tts,"Ranking Terrorist"),0,1);

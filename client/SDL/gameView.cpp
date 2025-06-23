@@ -19,7 +19,7 @@ GameView::GameView(Socket& skt, const GameInfo& game_info, const Player& info_Pl
         camera(config.get_window_width(), config.get_window_height()),
         manger_texture(manger_texture),
         player(new PlayerView(11, 4, load_claves(info_Player), 50.0f, &camera, &manger_texture,
-                              config)),  // !cambiar a 200.0f
+                              config)),  
         players(),
         snapshot(),
         map(new MapView(game_info.map_info, &camera, &manger_texture, config)),
@@ -51,7 +51,7 @@ CounterTerroristSkin toItemCounterTerrorism(const std::string& str) {
     return CounterTerroristSkin::GIGN;
 }
 Skins GameView::load_claves(const Player& info_Player) {
-    return Skins(toItemCounterTerrorism(info_Player.skin2), toItemTerrorism(info_Player.skin));
+    return Skins(toItemCounterTerrorism(info_Player.skin_ct), toItemTerrorism(info_Player.skin_tt));
 }
 
 void GameView::reset_values(PlayerView* player, const float& x_pixeles, const float& y_pixeles) {
@@ -70,8 +70,8 @@ void print_game_image(const GameImage& image) {
     std::cout << "--- Players ---\n";
     std::cout << "Client ID: " << image.client_id << "\n";
     */
-    for (const auto& player: image.players_images) {
-        /*
+  /*  for (const auto& player: image.players_images) {
+        
         std::cout << "Player ID: " << player.player_id << "\n";
         std::cout << "  Position: (" << player.position.x << ", " << player.position.y << ")\n";
                 std::cout << "  Health: " << static_cast<int>(player.health) << "\n";
@@ -90,7 +90,7 @@ void print_game_image(const GameImage& image) {
                               << ", Inventory: " << static_cast<int>(weapon.inventory_bullets) <<
            "\n";
                  }*/
-        for (const auto& sound: player.heared_sounds.common_sounds) {
+     /*   for (const auto& sound: player.heared_sounds.common_sounds) {
             std::cout << "Escuche comun:\n";
             std::cout << "Sound: " << static_cast<int>(sound.type) << " A :" << sound.distance
                       << std::endl;
@@ -101,8 +101,6 @@ void print_game_image(const GameImage& image) {
                       << "del arma: " << static_cast<int>(sound.code) << std::endl;
         }
     }
-
-    /*
         for (const auto& bullet: image.bullets_in_air) {
             std::cout << "  From (" << bullet.initial.x << ", " << bullet.initial.y << ") to ("
                       << bullet.end.x << ", " << bullet.end.y << ")\n";
@@ -117,12 +115,12 @@ void print_game_image(const GameImage& image) {
            std::cout << "  WeaponCode: " << static_cast<int>(dropped.weapon_code) << ", Position: ("
            << dropped.position.x << ", " << dropped.position.y << ")\n";
        }
-
+*/
        std::cout << "--- Game State ---\n";
        std::cout << "  State: " << static_cast<int>(image.game_state.state) << "\n";
        std::cout << "  Time: " << image.game_state.time << "\n";
        std::cout << "  Round: " << static_cast<int>(image.game_state.round) << "\n";
-    */
+    
 }
 
 
@@ -210,9 +208,12 @@ void GameView::delete_players_death(){
 
 void GameView::update_status_game() {
 
-    if(snapshot.game_state.state == GameState::GAME_ENDED){
+    if(snapshot.game_state.state == GameState::GAME_ENDED 
+        || snapshot.game_state.state == GameState::CT_WIN_GAME 
+        || snapshot.game_state.state == GameState::TT_WIN_GAME){
         this->keep_running = false;
         controller.stop();
+        throw GameFinishExeption("La partida ha finalizado.");
     }
 
     print_game_image(snapshot);
@@ -340,7 +341,6 @@ void GameView::render_game() {
     if (shop.get_activa()) {
         shop.draw(*renderer);
     }
-    // map->render_objet(*renderer);
     hud.render(*renderer);
     draw_timer_bomb();
     SDL_RenderPresent(renderer);

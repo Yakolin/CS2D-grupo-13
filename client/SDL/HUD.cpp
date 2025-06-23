@@ -187,18 +187,12 @@ std::string get_bomb_state(BombImage& bomb) {
 }
 
 Object convertir_a_imagen(WeaponCode code) {
-    if (code == WeaponCode::AK47)
-        return Object::AK47;
-    if (code == WeaponCode::AWP)
-        return Object::AWP;
-    if (code == WeaponCode::GLOCK)
-        return Object::GLOCK;
-    if (code == WeaponCode::KNIFE)
-        return Object::SNIKE;
-    if (code == WeaponCode::BOMB)
-        return Object::BOMB;
-    if (code == WeaponCode::M3)
-        return Object::M3;
+    if (code == WeaponCode::AK47) return Object::AK47;
+    if (code == WeaponCode::AWP) return Object::AWP;
+    if (code == WeaponCode::GLOCK) return Object::GLOCK;
+    if (code == WeaponCode::KNIFE) return Object::SNIKE;
+    if (code == WeaponCode::BOMB) return Object::BOMB;
+    if (code == WeaponCode::M3) return Object::M3;
     throw std::invalid_argument("WeaponCode desconocido");
 }
 
@@ -209,7 +203,6 @@ void HUD::load_info(const TextView& clave, const std::string text, Color color_i
 
     if (it != texts.end()) {
         SDL_SetTextureColorMod(it->second.icono, color.r, color.g, color.b);
-        // SDL_SetTextureAlphaMod(it->second.icono, color.a);  // trasparencia
         it->second.texto.updateText(text, font, color);
     } else {
         std::cerr << "Clave no encontrada en texts: " << static_cast<int>(clave) << std::endl;

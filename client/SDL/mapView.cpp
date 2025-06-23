@@ -7,8 +7,8 @@ const char  TREE_ENTRENAMIENTO ='Z';
 const char  TREE_DESIERTO ='M';
 
 const char  WALL_AZTECT ='#';
-const char  WALL_ENTRENAMIENTO ='#';
-const char  WALL_DESIERTO ='#';
+const char  WALL_ENTRENAMIENTO ='?';
+const char  WALL_DESIERTO ='}';
 
 const char  BOX_AZTECT ='=';
 const char  BOX_ENTRENAMIENTO ='+';
@@ -17,7 +17,7 @@ const char  BOX_DESIERTO ='-';
 const char  FLOOR_AZTECT ='.';
 const char  FLOOR_ENTRENAMIENTO ='_';
 const char  FLOOR_DESIERTO =' ';
-const char  BOX ='=';
+
 
 MapView::MapView(const MapInfo& info, Camera* camera_reseiver,
                  ManageTexture* manejador, GameConfig& config):
@@ -40,11 +40,6 @@ MapView::MapView(const MapInfo& info, Camera* camera_reseiver,
     ids[FLOOR_DESIERTO] = Object::FLOOR_DESIERTO;        // piso del desierto
     ids[FLOOR_ENTRENAMIENTO] = Object::FLOOR_ENTRENAMIENTO;   // piso del entrenamiento
     ids[FLOOR_AZTECT] = Object::FLOOR_AZTEC;           // piso azteca
-
-    ids['~'] = Object::WATER;
-
-    ids['T'] = Object::ZONE_TERRORIST;
-    ids['C'] = Object::ZONE_COUNTERTERROSIT;
 
     // Árboles según mapa
     ids[TREE_AZTECT] = Object::TREE_AZTEC;
@@ -84,14 +79,7 @@ void MapView::free_positions( std::vector<std::vector<char>> mapa, const char& p
         }
     }
 }*/
-void MapView::load_trees(int& size_objet) {
-    size_objet = std::min(size_objet, static_cast<int>(this->libres.size()));
 
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::shuffle(this->libres.begin(), this->libres.end(), gen);
-
-}
 
 void MapView::cargar_coordenadas(std::vector<std::vector<char>>& map,const std::vector<Position>& walls, const char& objet) {
 
@@ -133,10 +121,6 @@ std::vector<std::vector<char>> MapView::completar_mapa(const MapInfo& info_map){
     std::vector<std::vector<char>> mapa(max_fil + 1, std::vector<char>(max_col + 1, piso));
     cargar_coordenadas(mapa,info_map.walls,wall);
     cargar_coordenadas(mapa,info_map.boxes,box);
-    //free_positions(mapa, piso, wall,max_fil, max_col);
-    //int cantidad_arboles = 5; //todo podria ser configurable
-   // load_trees(cantidad_arboles);
-
     return mapa;
 }
 

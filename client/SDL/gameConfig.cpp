@@ -18,9 +18,12 @@ GameConfig::GameConfig():
         }
 
         load("assets/configView.yaml");
+        this->viewport_width = window_width;
+        this->viewport_height = window_height;
         load_font("assets/gfx/fonts/cs_regular.ttf",font_menu,15);
         load_font("assets/gfx/fonts/sourcesans.ttf",font_game,30);
         load_font("assets/gfx/fonts/DS-DIGIB.TTF",font_hud,30);
+
         colores = {
         {Color::ROJO,     {255,   0,   0, 255}},{Color::VERDE,    {  0, 255,   0, 255}},
         {Color::AZUL,     {  0,   0, 255, 255}},{Color::BLANCO,   {255, 255, 255, 255}},
@@ -59,7 +62,6 @@ SDL_Color GameConfig::get_color(const Color& clave) {
 
     auto it = colores.find(clave);
     if (it != colores.end()) {
-       // std::cout << "se encontró la textura para Object: " << static_cast<int>(clave) << std::endl;
         return it->second;
     }
     throw std::runtime_error("Textura no encontrada.");
@@ -69,7 +71,6 @@ SDL_Color GameConfig::get_color_translucent(const ColorTranslucent& clave)  {
 
     auto it = translucent_colors.find(clave);
     if (it != translucent_colors.end()) {
-       // std::cout << "se encontró la textura para Object: " << static_cast<int>(clave) << std::endl;
         return it->second;
     }
     throw std::runtime_error("Textura no encontrada.");
@@ -85,18 +86,12 @@ void GameConfig::load(const std::string& file_path) {
 
         this->window_width = config["window"]["width"].as<int>();
         this->window_height = config["window"]["height"].as<int>();
-        this->viewport_width = config["camera"]["viewport_logical_width"].as<int>();
-        this->viewport_height = config["camera"]["viewport_logical_height"].as<int>();
         this->intensity = config["fov"]["intensity"].as<int>();
         this->volumen_game = config["volumen"].as<int>();
-
-
     } catch (const YAML::Exception& e) {
         throw std::runtime_error("Error al leer archivo YAML: " + std::string(e.what()));
     }
 }
-
-
 
 int GameConfig::get_intensity(){return intensity;}
 int GameConfig::get_volumen(){return volumen_game;}

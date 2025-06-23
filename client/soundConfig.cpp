@@ -8,7 +8,6 @@ SoundConfig::SoundConfig(const int& volumen):
     Mix_AllocateChannels(12);
     loadFromYAML("assets/music.yaml");
 }
-
 void SoundConfig::set_bomb(const bool& state) { bomb_explode = state; }
 void SoundConfig::set_round(const bool& state) { finish_round = state; }
 bool SoundConfig::get_bomb_sound() { return bomb_explode; }

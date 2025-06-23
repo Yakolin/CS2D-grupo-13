@@ -148,19 +148,15 @@ void GameView::update_bullets_snapshot() {
 void GameView::handle_bomb_sound() {
 
     BombState state = snapshot.bomb.state;
-    if (state == BombState::ACTIVATED) {
-        config_sound.play_sound(EffectType::PIP, 0);
-    } else if (state == BombState::DESACTIVATED) {
+    if (last_state_bomb != BombState::DESACTIVATED && state == BombState::DESACTIVATED) {
         config_sound.play_sound(EffectType::DESACTIVATED, 0);
-    } else if (state == BombState::EXPLOTED && !config_sound.get_bomb_sound()) {
-        config_sound.set_bomb(true);
+    } else if (last_state_bomb != BombState::EXPLOTED && state == BombState::EXPLOTED) {
         config_sound.play_sound(EffectType::EXPLOSION, 0);
     }
 }
 
 void GameView::handle_state_game() {
     GameState state = snapshot.game_state.state;
-
     if (state == GameState::ROUND_STARTED)
         config_sound.set_round(false);
     if (snapshot.bomb.state != BombState::ACTIVATED) {
@@ -233,8 +229,8 @@ void GameView::update_status_game() {
         config_sound.set_bomb(true);
         bomba_timer.start(snapshot.game_state.time);
     }
-
-
+    handle_bomb_sound();
+    last_state_bomb = snapshot.bomb.state;
     for (PlayerImage& player_img: this->snapshot.players_images) {
         player_id_t id = player_img.player_id;
 

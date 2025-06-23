@@ -43,7 +43,7 @@ void Equipment::buy_weapon_by_code(const WeaponCode& weapon_code, money_t& money
     money_t price = weapon_factory.price_weapon(weapon_code);
     if (price > money)
         return;
-    if (primary) {
+    if (primary->code != WeaponCode::NONE) {
         std::shared_ptr<IInteractuable> dropped = this->primary;
         droppable_zone.drop(player_id, dropped);
     }

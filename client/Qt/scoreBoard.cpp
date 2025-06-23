@@ -146,7 +146,7 @@ int ScoreBoard::show_scores_game() {
     filter_table(cts,tts);
 
     info_ranking->resize(900, 500);
-    QGridLayout* mainLayout = new QGridLayout();
+    QGridLayout* mainLayout = new QGridLayout(info_ranking);
     mainLayout->addWidget(add_table(cts,"Rankig Counter-Terrorist"),0,0);
     mainLayout->addWidget(add_table(tts,"Ranking Terrorist"),0,1);
     mainLayout->addWidget(graficoBarrasEquipo("CT", info_ranking), 2, 0);

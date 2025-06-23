@@ -31,7 +31,7 @@ public:
 
     void draw_dropped(SDL_Renderer& renderer);
 
-    void update(const int& x_player, const int& y_player, const float& angle);
+    void update(const int& x_player, const int& y_player, const float& angle,const WeaponCode& code);
 
     void setUsed(bool used);
 

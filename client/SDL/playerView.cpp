@@ -78,20 +78,17 @@ void PlayerView::update_weapons(const std::vector<WeaponImage>& weapons_vec) {
         std::cout << "El jugador no tiene armas." << std::endl;
         return;
     }
-
     for (const WeaponImage& weapon_img: weapons_vec) {
         WeaponCode weapon_key = weapon_img.weapon_code;
-
         if (weapon_key == WeaponCode::NONE)
             continue;
-
         if (!is_valid_weapon_code(weapon_key)) {
             std::cerr << "WeaponCode inválido recibido: " << static_cast<int>(weapon_key)
                       << std::endl;
             continue;
         }
         if (this->weapons.find(weapon_key) != this->weapons.end()) {
-            weapons[weapon_key]->update(x_actual, y_actual, anglePlayer);
+            weapons[weapon_key]->update(x_actual, y_actual, anglePlayer,weapon_key);
         } else {
             weapons[weapon_key] = std::make_unique<WeaponView>(*camera, *manejador, weapon_key,
                                                                x_actual, y_actual, anglePlayer);
@@ -151,7 +148,7 @@ void PlayerView::draw(SDL_Renderer& renderer) {
 
     if (this->equipped_weapon != WeaponCode::NONE) {
         WeaponView& weapon_view = *weapons[equipped_weapon];
-        weapon_view.update(static_cast<int>(x_actual), static_cast<int>(y_actual), anglePlayer);
+        weapon_view.update(static_cast<int>(x_actual), static_cast<int>(y_actual), anglePlayer, equipped_weapon);
         weapon_view.draw(renderer);
     }
 }

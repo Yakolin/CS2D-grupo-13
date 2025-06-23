@@ -39,6 +39,7 @@ private:
     GameConfig game_config;
     game_stats_t game_stats = {0, 0, 0, 0, GameState::NONE};
     int round = 1;
+    int max_rounds;
     bool game_started = false;
 
     // Players
@@ -55,7 +56,9 @@ private:
     shared_ptr<Player> find_player(const player_id_t& player_id);
 
     GameImage generate_game_image();
+    void change_rounds_wins();
     void give_bomb();
+    void give_money_team(Team team);
     void reset_round(bool full_reset);
     bool check_round_finished();
     void update_teams_count(Team from);
@@ -66,6 +69,7 @@ private:
 public:
     explicit GameManager(const string& _game_name, const MapName& map_name):
             game_name(_game_name),
+            max_rounds(game_config.get_max_rounds()),
             timer(game_config.get_timer_config()),
             weapon_factory(game_config.get_weapon_config()),
             bomb(std::make_shared<Bomb>(timer)),

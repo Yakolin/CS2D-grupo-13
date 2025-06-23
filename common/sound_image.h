@@ -3,7 +3,7 @@
 #include "game_info.h"
 #include "player_command_types.h"
 #include "utility.h"
-enum class SoundType { SHOOT, WALK, RELOAD, HIT, CHANGE_WEAPON, DROP, DIE, PICK_UP, NONE };
+enum class SoundType { SHOOT, WALK, RELOAD, HIT, CHANGE_WEAPON, DROP, DIE, PICK_UP, NONE, BUY };
 using distance_sound_t = std::uint16_t;
 
 class SoundCommonImage {

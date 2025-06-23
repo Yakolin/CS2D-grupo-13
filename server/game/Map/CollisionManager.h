@@ -38,7 +38,7 @@ class CollisionManager {
     std::vector<BulletImage> bullets_image;
     SoundManager& sound_manager;
     bool player_in(const Position& pos);
-    bool hit(const chance_hit_t chance_hit);
+    bool hit(const chance_hit_t chance_hit, distance_t distance);
     void add_bullet_image(const Vector2f& initial_pos, const Vector2f& final_pos,
                           const ColliderDamage& collider_info);
     Position get_hit_pos(Position& initial, Position& end);
@@ -47,7 +47,7 @@ class CollisionManager {
     void find_players_in(player_id_t caster, ColliderDamage& collider_damage,
                          std::vector<PlayerEntity>& players_affected);
     void damage_nearest(PlayerEntity& nearest, PlayerEntity& caster, damage_t damage,
-                        chance_hit_t chance_hit);
+                        chance_hit_t chance_hit, distance_t distance);
     bool check_bullet_wall(const Vector2f& initial_pos, const Vector2f& final_pos,
                            const ColliderDamage& collider_info);
     void check_weapon_stepped(PlayerEntity& player);

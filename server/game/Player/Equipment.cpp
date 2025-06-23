@@ -43,10 +43,14 @@ void Equipment::buy_weapon_by_code(const WeaponCode& weapon_code, money_t& money
     money_t price = weapon_factory.price_weapon(weapon_code);
     if (price > money)
         return;
+    if (primary->code != WeaponCode::NONE) {
+        std::shared_ptr<IInteractuable> dropped = this->primary;
+        droppable_zone.drop(player_id, dropped);
+    }
     primary = weapon_factory.weapon_create(weapon_code);
     money -= price;
     this->change_weapon(EquipType::PRIMARY);
-    // sound_zone.want_emit_sound(player_id, SoundType::BUY);
+    sound_zone.want_emit_sound(player_id, std::make_shared<Sound>(SoundType::BUY));
 }
 void Equipment::reset_equipment() {
     primary = weapon_factory.weapon_create(WeaponCode::NONE);
@@ -56,14 +60,17 @@ void Equipment::reset_equipment() {
     bomb.reset();
 }
 void Equipment::restore() {
-    this->primary->restart();
+    if (primary->code != WeaponCode::NONE) {
+        this->primary->restart();
+        change_weapon(EquipType::PRIMARY);
+    } else {
+        change_weapon(EquipType::SECONDARY);
+    }
     this->secondary->restart();
-    change_weapon(EquipType::SECONDARY);
     bomb.reset();
 }
 
 void Equipment::drop_weapon() {
-    change_weapon(EquipType::PRIMARY);
     if (this->weapon_in_hand) {
         if (this->weapon_in_hand == this->primary) {
             std::shared_ptr<IInteractuable> dropped = this->weapon_in_hand;

@@ -24,7 +24,7 @@ Weapons:
     distance: 10
     purchasable: false
   M3:
-    price: 800
+    price: 1700
     damage: 50
     fire_rate: 1
     timer_fire: 800
@@ -36,7 +36,7 @@ Weapons:
     distance: 4
     purchasable: true
   AWP:
-    price: 3250
+    price: 4750
     damage: 250
     fire_rate: 1
     timer_fire: 1200

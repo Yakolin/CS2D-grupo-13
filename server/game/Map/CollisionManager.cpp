@@ -48,10 +48,9 @@ bool CollisionManager::is_a_collision(const Position& pos) {
     return std::find(collision_pos.begin(), collision_pos.end(), pos) != collision_pos.end();
 }
 bool CollisionManager::player_in(const Position& pos) {
-    for (const auto& player: players_in_map)
-        if (player.second.position == pos && !player.second.player.lock()->is_dead())
-            return true;
-    return false;
+    return std::any_of(players_in_map.begin(), players_in_map.end(), [&pos](const auto& player) {
+        return player.second.player.lock()->is_dead();
+    });
 }
 bool CollisionManager::check_bullet_wall(const Vector2f& initial_pos, const Vector2f& final_pos,
                                          const ColliderDamage& collider_info) {
@@ -101,7 +100,7 @@ bool CollisionManager::hit(const chance_hit_t chance_hit, distance_t distance) {
 void CollisionManager::find_nearest(const std::vector<PlayerEntity>& players_affected,
                                     const Vector2f& origin, PlayerEntity& nearest,
                                     Vector2f& pos_nearest, float& min_distance) {
-    for (auto& player: players_affected) {
+    for (const auto& player: players_affected) {
         Vector2f new_pos(player.position.x, player.position.y);
         float aux = origin.distance(new_pos);
         if (aux < min_distance) {

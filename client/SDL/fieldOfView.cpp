@@ -33,7 +33,7 @@ void FieldOfView::draw(SDL_Renderer& renderer) {
 
 bool FieldOfView::is_in_fov(PlayerView& other) {
     if (player.get_clave_team() == other.get_clave_team())
-        return false;
+        return true;
     float x1 = player.getXActual();
     float y1 = player.getYActual();
 

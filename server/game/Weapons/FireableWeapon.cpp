@@ -35,7 +35,7 @@ void FireableWeapon::shoot_common(ISpawneableZone& spawn, player_id_t id, Positi
 
 
 bool FireableWeapon::set_on_action(ISpawneableZone& spawn, player_id_t id, Position& direction) {
-    if (this->actual_bullets > 0) {
+    if (this->have_bullets()) {
         if (this->fire_mode->can_fire()) {  // esto DEBE disparar solo una bala
             this->shoot_common(spawn, id, direction);
             return true;
@@ -45,7 +45,7 @@ bool FireableWeapon::set_on_action(ISpawneableZone& spawn, player_id_t id, Posit
 }
 
 bool FireableWeapon::shoot_burst(ISpawneableZone& spawn, player_id_t id, Position& direction) {
-    if (this->actual_bullets > 0) {
+    if (this->have_bullets()) {
         if (this->fire_mode->can_fire_burst()) {
             this->shoot_common(spawn, id, direction);
             return true;
@@ -65,6 +65,8 @@ bool FireableWeapon::reload() {
     }
     return false;
 }
+
+bool FireableWeapon::have_bullets() { return this->actual_bullets > 0; }
 
 WeaponImage FireableWeapon::get_weapon_image() {
     return WeaponImage(Weapon::get_weapon_code(), this->actual_bullets, this->actual_magazine);

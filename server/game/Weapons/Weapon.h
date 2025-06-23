@@ -47,6 +47,7 @@ public:
     virtual bool shoot_burst(ISpawneableZone& spawn, player_id_t id,
                              Position& direction) override = 0;
     virtual bool reload() override = 0;
+    virtual bool have_bullets() override = 0;
     virtual bool is_droppable() = 0;
     virtual WeaponImage get_weapon_image() = 0;
 };

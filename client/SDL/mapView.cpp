@@ -17,6 +17,7 @@ const char  BOX_DESIERTO ='-';
 const char  FLOOR_AZTECT ='.';
 const char  FLOOR_ENTRENAMIENTO ='_';
 const char  FLOOR_DESIERTO =' ';
+const int CANT_UMBRELLA =3;
 
 
 MapView::MapView(const MapInfo& info, Camera* camera_reseiver,
@@ -41,13 +42,15 @@ MapView::MapView(const MapInfo& info, Camera* camera_reseiver,
     ids[FLOOR_ENTRENAMIENTO] = Object::FLOOR_ENTRENAMIENTO;   // piso del entrenamiento
     ids[FLOOR_AZTECT] = Object::FLOOR_AZTEC;           // piso azteca
 
-    // Árboles según mapa
     ids[TREE_AZTECT] = Object::TREE_AZTEC;
     ids[TREE_ENTRENAMIENTO] = Object::TREE_ENTRENAMIENTO;
     ids[TREE_DESIERTO] = Object::TREE_DESIERTO;
 
     ids[BOX_AZTECT] = Object::BOX2;
     ids[BOX_ENTRENAMIENTO] = Object::BOX4;
+    ids[BOX_DESIERTO] = Object::BOX5;
+
+    ids[BOX_DESIERTO] = Object::BOX5;
     ids[BOX_DESIERTO] = Object::BOX5;
 }
 
@@ -66,19 +69,6 @@ void  MapView::draw_weapon_dropped(SDL_Renderer& renderer){
         weapon.draw_dropped(renderer);
     }
 }
-
-
-/*
-void MapView::free_positions( std::vector<std::vector<char>> mapa, const char& piso,const char& wall, const int& max_fil, const int& max_col){
-    for (int y = 0; y <= max_fil; ++y) {
-        for (int x = 0; x <= max_col; ++x) {
-            if (mapa[y][x] == piso && mapa[y][x] == wall) {
-                this->libres.push_back(Position{static_cast<coordinate_t>(x), static_cast<coordinate_t>(y)});
- 
-            }
-        }
-    }
-}*/
 
 
 void MapView::cargar_coordenadas(std::vector<std::vector<char>>& map,const std::vector<Position>& walls, const char& objet) {
@@ -149,18 +139,6 @@ void MapView::update_limites(Coordenada& pos_start, Coordenada& pos_end) {
     pos_end.y = std::min(static_cast<int>(pos_end.y), (int)mapa.size());
 }
 
-Object MapView::get_random_box() {
-    static const std::vector<Object> opciones = {
-        Object::BOX1, Object::BOX3, Object::BOX2, Object::BOX4, Object::BOX5, Object::BOX6
-    };
-
-    static std::random_device rd;
-    static std::mt19937 gen(rd());
-    std::uniform_int_distribution<> distrib(0, opciones.size() - 1);
-
-    return opciones[distrib(gen)];
-}
-
 void MapView::draw(SDL_Renderer& renderer) {
 
     Coordenada start;
@@ -181,8 +159,17 @@ void MapView::draw(SDL_Renderer& renderer) {
     }
 }
 
+void MapView::free_positions( const int& max_fil, const int& max_col, char piso){
+    for (int y = 0; y <= max_fil; ++y) {
+        for (int x = 0; x <= max_col; ++x) {
+            if (mapa[y][x] == piso ) {
+                this->libres.push_back(Position{static_cast<coordinate_t>(x), static_cast<coordinate_t>(y)});
+            }
+        }
+    }
+}
+/*
 void MapView::render_objet(SDL_Renderer& renderer){
-    MapName map = MapName::PUEBLITO_AZTECA;
     char objet= TREE_AZTECT;
 
     for (size_t i = 0; i < 5 && i < libres.size(); i++) {
@@ -194,7 +181,7 @@ void MapView::render_objet(SDL_Renderer& renderer){
             config.get_tile_height()*3
         };
 
-        switch (map) {
+        switch () {
             case MapName::DESIERTO:
                 objet = TREE_DESIERTO;
                 break;
@@ -214,7 +201,7 @@ void MapView::render_objet(SDL_Renderer& renderer){
             SDL_RenderCopy(&renderer, tex, nullptr, &destRect);
         }
     }
-}
+}*/
 
 TextureInfo MapView::load_zone_texture(const RectangleInfo& rectangle,const Object& zone, const SDL_Color& color){
 

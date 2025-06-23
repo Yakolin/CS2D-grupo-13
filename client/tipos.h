@@ -116,7 +116,8 @@ enum class Object {
     BOX4,
     BOX5,
     BOX6,
-    PLAYER,
+    PARASOL1,
+    PARASOL2,
 
     WATER,
     VIDA,

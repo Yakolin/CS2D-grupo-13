@@ -32,24 +32,26 @@ private:
     ManageTexture* manejador;
     std::map<char, Object> ids;
     std::vector<Position> libres;
+    std::vector<Position> position_umbrellas;
     std::vector<WeaponView> weapon_dropped;
     std::unordered_map<Object, TextureInfo > zones;
 
     void update_limites(Coordenada & pos_start, Coordenada & pos_end);
 
-    Object get_random_box();
+    void free_positions(const int& max_fil, const int& max_col, char piso);
 
-    void cargar_coordenadas(std::vector<std::vector<char>>& map,const std::vector<Position>& walls, const char& objet);
+    void cargar_coordenadas(std::vector<std::vector<char>>& map, const std::vector<Position>& walls,
+                            const char& objet);
 
     std::vector<std::vector<char>> completar_mapa(const MapInfo& info_map);
-    void free_positions(std::vector<std::vector<char>> mapa, const char& piso, const char& wall,
-                        const int& max_fil, const int& max_col);
+
 
     TextureInfo load_zone_texture(const RectangleInfo& rectangle, const Object& zone,const SDL_Color& color);
-    void load_trees(int& size_objet);
 
     void draw_zone(const Object& clave, SDL_Renderer& renderer);
+
 public:
+
     explicit MapView(const MapInfo& info, Camera* camera_reseiver,
                      ManageTexture* manejador, GameConfig& config);
     ~MapView();
@@ -68,6 +70,7 @@ public:
     std::unordered_map<Object, TextureInfo> load_zones(const MapInfo& info);
 
     int getMapWidth();
+
     int getMapHeight();
 
     void update_weapon_dropped(const std::vector<WeaponDropped>& dropped);

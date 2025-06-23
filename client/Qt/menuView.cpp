@@ -24,7 +24,6 @@ MenuView::MenuView(QWidget* parent, ClientProtocol& protocol):
     // Esta layout es para los botones de play y exit
     QVBoxLayout* menu_layout = new QVBoxLayout(&menu);
     add_buttons_menu(menu_layout);
-    main_layout->addLayout(menu_layout);
     QTabWidget* page_play = new QTabWidget();
     page_play->setStyleSheet(PAGE_PLAY_STYLE);
     // Estos son los botones de volver aca, al menu

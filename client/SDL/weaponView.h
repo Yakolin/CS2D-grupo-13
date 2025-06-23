@@ -7,6 +7,7 @@
 
 #include "../../common/game_image.h"
 #include "../tipos.h"
+
 #include "bullet.h"
 #include "camera.h"
 #include "manageTexture.h"
@@ -19,7 +20,7 @@ private:
     float angleWeapon;
     bool is_used;
     Camera& camera;
-    
+
 
 public:
     explicit WeaponView(Camera& camera, ManageTexture& managertexture, const WeaponCode& clave,
@@ -31,7 +32,8 @@ public:
 
     void draw_dropped(SDL_Renderer& renderer);
 
-    void update(const int& x_player, const int& y_player, const float& angle,const WeaponCode& code);
+    void update(const int& x_player, const int& y_player, const float& angle,
+                const WeaponCode& code);
 
     void setUsed(bool used);
 

@@ -3,9 +3,9 @@
 #include <QWidget>
 class StackNavigator {
 public:
-  virtual void add_widget(QWidget *page) = 0;
-  virtual void go_to(QWidget *destine) = 0;
-  virtual void back() = 0;
-  virtual ~StackNavigator() {}
+    virtual void add_widget(QWidget* page) = 0;
+    virtual void go_to(QWidget* destine) = 0;
+    virtual void back() = 0;
+    virtual ~StackNavigator() {}
 };
 #endif

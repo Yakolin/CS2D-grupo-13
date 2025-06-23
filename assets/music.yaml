@@ -1,5 +1,6 @@
 music:
   SALA_ESPERA: assets/sfx/sala_fixed.wav
+  JUEGO: assets/sfx/game.mp3
 
 effect:
   WALK: assets/sfx/player/pl_step1.wav

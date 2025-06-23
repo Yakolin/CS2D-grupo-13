@@ -88,7 +88,7 @@ void PlayerView::update_weapons(const std::vector<WeaponImage>& weapons_vec) {
             continue;
         }
         if (this->weapons.find(weapon_key) != this->weapons.end()) {
-            weapons[weapon_key]->update(x_actual, y_actual, anglePlayer,weapon_key);
+            weapons[weapon_key]->update(x_actual, y_actual, anglePlayer, weapon_key);
         } else {
             weapons[weapon_key] = std::make_unique<WeaponView>(*camera, *manejador, weapon_key,
                                                                x_actual, y_actual, anglePlayer);
@@ -130,25 +130,24 @@ void PlayerView::draw(SDL_Renderer& renderer) {
         origin_rect = {item.col * width_img, item.fil * height_img, width_img / 2, height_img / 3};
         texture_player = textures_player.at(clave_team);
         destination_rect = {static_cast<int>(x_actual) - camera->getX(),
-                            static_cast<int>(y_actual) - camera->getY(), 
-                            config.get_tile_width(),
-                            config.get_tile_height()};  
+                            static_cast<int>(y_actual) - camera->getY(), config.get_tile_width(),
+                            config.get_tile_height()};
     } else {
         texture_player = manejador->get(Object::MUERTE);
         int tex_width, tex_height;
         SDL_QueryTexture(texture_player, nullptr, nullptr, &tex_width, &tex_height);
         origin_rect = {0, 0, tex_width, tex_height};
         destination_rect = {static_cast<int>(x_actual) - camera->getX(),
-                            static_cast<int>(y_actual) - camera->getY(), 
-                            config.get_tile_width()*2,
-                            config.get_tile_height()*2};  
+                            static_cast<int>(y_actual) - camera->getY(),
+                            config.get_tile_width() * 2, config.get_tile_height() * 2};
     }
     SDL_RenderCopyEx(&renderer, texture_player, &origin_rect, &destination_rect, anglePlayer,
                      nullptr, SDL_FLIP_NONE);
 
     if (this->equipped_weapon != WeaponCode::NONE) {
         WeaponView& weapon_view = *weapons[equipped_weapon];
-        weapon_view.update(static_cast<int>(x_actual), static_cast<int>(y_actual), anglePlayer, equipped_weapon);
+        weapon_view.update(static_cast<int>(x_actual), static_cast<int>(y_actual), anglePlayer,
+                           equipped_weapon);
         weapon_view.draw(renderer);
     }
 }

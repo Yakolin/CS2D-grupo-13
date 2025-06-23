@@ -19,48 +19,6 @@
 #include "../../common/player_command_types.h"
 #include "../tipos.h"
 class ManageTexture {
-public:
-   
-
-    explicit ManageTexture(SDL_Renderer* renderer);
-
-    void draw(SDL_Texture* textura);
-
-    SDL_Texture* render_menu_texture(const std::unordered_map<WeaponCode, ShopItem>& items, const SDL_Rect& menu_rect,
-            TTF_Font* font);
-
-    SDL_Texture* create_texture_rect(const SDL_Rect& rect,const SDL_Color& color,const Object& zone);
-
-    SDL_Texture* get_texture_ct(const CounterTerroristSkin& id) const;
-
-    SDL_Texture* get_texture_tt(const TerroristSkin& id) const;
-
-    void fillTriangle( int x0, int y0, int x1, int y1, int x2, int y2);
-
-    SDL_Texture* create_stencil(const int& ancho, const int& alto, const float& angle,
-                                const float& apertura,const int& intensity);
-
-    SDL_Texture* crear_cono(SDL_Point p_inicial, SDL_Point p_final, double apertura_grados,
-                            int paso);
-
-
-    SDL_Texture* get_weapon(const WeaponCode& id) const;
-
-    bool load_texture_text(const TextView& id, TTF_Font* fuente, SDL_Color& color,
-                           const std::string& text);
-
-    SDL_Texture* get_texture_text(const TextView& id) const;
-
-    SDL_Rect get_rect(const TextView& id) const;
-
-    SDL_Texture* get(const Object& id) const;
-
-    void remove(const TextView& id);
-
-    void clear();
-
-    void calculate_dimensions(int& width_img, int& height_img, const Object& clave);
-
 
 private:
     SDL_Renderer* renderer;
@@ -76,7 +34,7 @@ private:
     void render_text(const SDL_Rect& rect, const std::string& text, const SDL_Color& color,
                      TTF_Font* font);
 
-    
+
     void load(const Object& id, const std::string& filePath);
 
     void load_skins_tt(const TerroristSkin& id, const std::string& filePath);
@@ -84,6 +42,43 @@ private:
     void load_skins_ct(const CounterTerroristSkin& id, const std::string& filePath);
 
     bool load_weapons(const WeaponCode& id, const std::string& filePath);
+
+public:
+    explicit ManageTexture(SDL_Renderer* renderer);
+
+    void draw(SDL_Texture* textura);
+
+    SDL_Texture* render_menu_texture(const std::unordered_map<WeaponCode, ShopItem>& items,
+                                     const SDL_Rect& menu_rect, TTF_Font* font);
+
+    SDL_Texture* create_texture_rect(const SDL_Rect& rect, const SDL_Color& color,
+                                     const Object& zone);
+
+    SDL_Texture* get_texture_ct(const CounterTerroristSkin& id) const;
+
+    SDL_Texture* get_texture_tt(const TerroristSkin& id) const;
+
+    void fillTriangle(int x0, int y0, int x1, int y1, int x2, int y2);
+
+    SDL_Texture* create_stencil(const int& ancho, const int& alto, const float& angle,
+                                const float& apertura, const int& intensity);
+
+    SDL_Texture* get_weapon(const WeaponCode& id) const;
+
+    bool load_texture_text(const TextView& id, TTF_Font* fuente, SDL_Color& color,
+                           const std::string& text);
+
+    SDL_Texture* get_texture_text(const TextView& id) const;
+
+    SDL_Rect get_rect(const TextView& id) const;
+
+    SDL_Texture* get(const Object& id) const;
+
+    void remove(const TextView& id);
+
+    void calculate_dimensions(int& width_img, int& height_img, const Object& clave);
+
+    ~ManageTexture();
 };
 
 #endif

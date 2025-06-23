@@ -1,6 +1,7 @@
 #ifndef CLIENT_H
 #define CLIENT_H
 #include <iostream>
+#include <map>
 
 #include "vista.h"
 
@@ -11,8 +12,6 @@ private:
 
 public:
     explicit Client(int& argc, char* argv[]);
-
-
     int run();
     ~Client();
 };

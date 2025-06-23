@@ -6,6 +6,7 @@
 #include <QLabel>
 #include <QTableWidget>
 #include <QWidget>
+
 #include <QtCharts/qchartview.h>
 
 
@@ -22,7 +23,7 @@ void ScoreBoard::style(QTableWidget* table) {
             "font-size: 14px;}");
 }
 
-void ScoreBoard::staly_chart( QChart* chart,QBarCategoryAxis* axisX, QValueAxis* axisY){
+void ScoreBoard::staly_chart(QChart* chart, QBarCategoryAxis* axisX, QValueAxis* axisY) {
 
     chart->setBackgroundBrush(QBrush(Qt::black));
     chart->setPlotAreaBackgroundBrush(QBrush(Qt::black));
@@ -44,12 +45,12 @@ void ScoreBoard::staly_chart( QChart* chart,QBarCategoryAxis* axisX, QValueAxis*
 }
 
 QChartView* ScoreBoard::graficoBarrasEquipo(const std::string& equipo, QWidget* parent) {
-    
+
     using namespace QtCharts;
     QBarSet* deathsSet = new QBarSet("Deaths");
     QBarSet* pointsSet = new QBarSet("Points");
     QBarSet* killssSet = new QBarSet("Kills");
-    QBarSet* moneysSet = new QBarSet("Collected_money");
+    QBarSet* moneysSet = new QBarSet("Money");
 
     int totalDeaths = 0, totalPoints = 0, totalkills = 0, totalmoney = 0;
 
@@ -89,25 +90,27 @@ QChartView* ScoreBoard::graficoBarrasEquipo(const std::string& equipo, QWidget* 
     chart->addAxis(axisY, Qt::AlignLeft);
     series->attachAxis(axisY);
 
-    staly_chart(chart,axisX,axisY);
+    staly_chart(chart, axisX, axisY);
     QChartView* chartView = new QChartView(chart, parent);
     chartView->setRenderHint(QPainter::Antialiasing);
     return chartView;
 }
 
-void ScoreBoard::filter_table(std::map<player_id_t, InfoPlayer>& cts,std::map<player_id_t, InfoPlayer>& tts){
-    
-    for( const auto& [id, summary]: scores){
-        if(summary.team == "CT"){
+void ScoreBoard::filter_table(std::map<player_id_t, InfoPlayer>& cts,
+                              std::map<player_id_t, InfoPlayer>& tts) {
+
+    for (const auto& [id, summary]: scores) {
+        if (summary.team == "CT") {
             cts[id] = summary;
-        }else{
+        } else {
             tts[id] = summary;
         }
     }
 }
 
-QWidget* ScoreBoard::add_table(std::map<player_id_t, InfoPlayer>& score_table, const QString& title) {
-    
+QWidget* ScoreBoard::add_table(std::map<player_id_t, InfoPlayer>& score_table,
+                               const QString& title) {
+
     QVBoxLayout* layout = new QVBoxLayout;
     QLabel* title_table = new QLabel(title);
     title_table->setAlignment(Qt::AlignCenter);
@@ -115,8 +118,8 @@ QWidget* ScoreBoard::add_table(std::map<player_id_t, InfoPlayer>& score_table, c
     title_table->setStyleSheet(LOBBY_LABEL_STYLE2);
 
     QTableWidget* table = new QTableWidget(score_table.size(), 5);
-    table->setHorizontalHeaderLabels({"Player ID", "Deaths","Kills","collected_money","Points"});
-    
+    table->setHorizontalHeaderLabels({"Player ID", "Deaths", "Kills", "Money", "Points"});
+
     int fila = 0;
     for (const auto& [id, summary]: score_table) {
         table->setItem(fila, 0, new QTableWidgetItem(QString::number(id)));
@@ -148,12 +151,12 @@ int ScoreBoard::show_scores_game() {
 
     std::map<player_id_t, InfoPlayer> cts;
     std::map<player_id_t, InfoPlayer> tts;
-    filter_table(cts,tts);
+    filter_table(cts, tts);
 
     info_ranking->resize(1000, 500);
     QGridLayout* mainLayout = new QGridLayout(info_ranking);
-    mainLayout->addWidget(add_table(cts,"Rankig Counter-Terrorist"),0,0);
-    mainLayout->addWidget(add_table(tts,"Ranking Terrorist"),0,1);
+    mainLayout->addWidget(add_table(cts, "Rankig Counter-Terrorist"), 0, 0);
+    mainLayout->addWidget(add_table(tts, "Ranking Terrorist"), 0, 1);
     mainLayout->addWidget(graficoBarrasEquipo("CT", info_ranking), 2, 0);
     mainLayout->addWidget(graficoBarrasEquipo("TT", info_ranking), 2, 1);
     info_ranking->show();

@@ -2,9 +2,10 @@
 #define PLAYERVIEW_H
 #include <iostream>
 #include <map>
+#include <memory>
 #include <string>
 #include <vector>
-#include <memory>
+
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_render.h>
@@ -15,6 +16,7 @@
 #include "../../common/game_info.h"
 #include "../../common/player_command_types.h"
 #include "../tipos.h"
+
 #include "bullet.h"
 #include "camera.h"
 #include "gameConfig.h"
@@ -50,17 +52,18 @@ private:
     bool activar_weapon;
     bool muerto;
     WeaponCode equipped_weapon;
-    std::unordered_map<Team , SDL_Texture*> textures_player;
+    std::unordered_map<Team, SDL_Texture*> textures_player;
 
     std::unordered_map<Team, SDL_Texture*> load_claves(const Skins& clave_player);
 
 
 public:
-    explicit PlayerView(const float& x, const float& y, const Skins& clave_player, const float& speed,
-                        Camera* camera_reseiver, ManageTexture* manger_texture, GameConfig& config);
+    explicit PlayerView(const float& x, const float& y, const Skins& clave_player,
+                        const float& speed, Camera* camera_reseiver, ManageTexture* manger_texture,
+                        GameConfig& config);
 
     void set_muerto(const bool& new_state);
-    
+
     void update_equip(const PlayerImage& player_aux);
 
     void setPrevPos(const float& new_x, const float& new_y);
@@ -85,7 +88,7 @@ public:
 
     Team get_clave_team();
     float getSpeed() const;
-    int getWidthImg() const;  
+    int getWidthImg() const;
     int getHeightImg() const;
     float getAnglePlayer() const;
     void setVelX(float vx);
@@ -99,11 +102,9 @@ public:
     void setYActual(float y);
     void setSpeed(float newSpeed);
     float getXActual() const;
-    float getYActual()const ;
+    float getYActual() const;
 
     ~PlayerView();
-
-
 };
 
 #endif  // PLAYERVIEW_H

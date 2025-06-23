@@ -3,41 +3,31 @@
 #define HOLD_THRESHOLD_MS 200
 #define BURST_INTERVALS_MS 100
 
-ManagerEvent::ManagerEvent(Controller& controller,
-                        GameConfig& config,
-                        Camera& camera,
-                        PlayerView& player,
-                        std::map<player_id_t, PlayerView*>& players,
-                        GameImage& snapshot,
-                        MapView& map,
-                        FieldOfView& fov,
-                        Bomb& bomba,
-                        Shopping& shop,
-                        HUD& hud,
-                        std::atomic<bool>& keep_running,
-                        SoundConfig& sound,
-                        ManageTexture& manger_texture): 
-    controller(controller),
-    config(config),
-    camera(camera),
-    player(player),
-    players(players),
-    snapshot(snapshot),
-    map(map),
-    fov(fov),
-    shop(shop),
-    bomba(bomba),
-    hud(hud),
-    keep_running(keep_running),
-    left_mouse_pressed(false),
-    mouse_press_start_time(0),
-    last_burst_time(0),
-    press_start_x(0),
-    press_start_y(0),
-    blocking_mouse_motion(false),
-    config_sound(sound),
-    manger_texture(manger_texture)
-{}
+ManagerEvent::ManagerEvent(Controller& controller, GameConfig& config, Camera& camera,
+                           PlayerView& player, std::map<player_id_t, PlayerView*>& players,
+                           GameImage& snapshot, MapView& map, FieldOfView& fov, Bomb& bomba,
+                           Shopping& shop, HUD& hud, std::atomic<bool>& keep_running,
+                           SoundConfig& sound, ManageTexture& manger_texture):
+        controller(controller),
+        config(config),
+        camera(camera),
+        player(player),
+        players(players),
+        snapshot(snapshot),
+        map(map),
+        fov(fov),
+        shop(shop),
+        bomba(bomba),
+        hud(hud),
+        keep_running(keep_running),
+        left_mouse_pressed(false),
+        mouse_press_start_time(0),
+        last_burst_time(0),
+        press_start_x(0),
+        press_start_y(0),
+        blocking_mouse_motion(false),
+        config_sound(sound),
+        manger_texture(manger_texture) {}
 
 void ManagerEvent::handle_equip_type(const SDL_Keycode& tecla) {
     switch (tecla) {
@@ -56,7 +46,8 @@ void ManagerEvent::handle_equip_type(const SDL_Keycode& tecla) {
     }
 }
 
-void ManagerEvent::mouse_position_tiles(int& posx, int& posy, const int& mousex, const int& mousey) {
+void ManagerEvent::mouse_position_tiles(int& posx, int& posy, const int& mousex,
+                                        const int& mousey) {
     const int TILE_SIZE = 32;
 
     int camX = camera.getX();
@@ -66,12 +57,6 @@ void ManagerEvent::mouse_position_tiles(int& posx, int& posy, const int& mousex,
 
     posx = mapPixelX / TILE_SIZE;
     posy = mapPixelY / TILE_SIZE;
-
-    if (posx >= 0 && posx < 50 && posy >= 0 && posy < 50) {
-        printf("Estás sobre el tile (%d, %d)\n", posx, posy);
-    } else {
-        printf("El mouse está fuera del mapa.\n");
-    }
 }
 
 void ManagerEvent::handle_movements(SDL_Keycode& tecla) {
@@ -84,7 +69,6 @@ void ManagerEvent::handle_movements(SDL_Keycode& tecla) {
     if (tecla == SDLK_d || tecla == SDLK_RIGHT)
         controller.sender_move(MoveType::RIGHT);
     player.add_speed(tecla);
-    // player->auxiliar(tecla); //todo comentar
 }
 
 void ManagerEvent::handle_extras(SDL_Keycode& tecla) {
@@ -153,18 +137,6 @@ void ManagerEvent::update_window() {
     }
 }
 
-/*void GameView::handle_sprite_mouse(const int& mousex, const int& mousey){
-    int tile_mousex=0;
-    int tile_mousey=0;
-    mouse_position_tiles(tile_mousex,tile_mousey,mousex,mousey);
-    for (auto& [id, player] : this->players){
-        int tile_playerx= player->getXActual()/ config.get_tile_width();
-        int tile_playery= player->getYActual() / config.get_tile_height();
-        if(tile_mousex == tile_playerx && tile_mousey == tile_playery){
-
-        }
-    }
-}*/
 
 void ManagerEvent::handle_events(const SDL_Event& event) {
     try {
@@ -189,7 +161,6 @@ void ManagerEvent::handle_events(const SDL_Event& event) {
             if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
                 update_window();
                 this->map.update_map_dimensions();
-                // printf("Nuevo mapa width: %d, height: %d\n", map->getMapWidth(),
                 map.getMapHeight();
             }
         }

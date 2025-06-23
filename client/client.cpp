@@ -12,7 +12,7 @@ int Client::run() {
             std::map<player_id_t, InfoPlayer> table = vista.showGame();
             vista.showScoreboard(table);
         }
-        
+
     } catch (const std::exception& e) {
         std::cerr << "Excepción atrapada: " << e.what() << std::endl;
     } catch (...) {

@@ -4,6 +4,7 @@
 
 
 #include <string>
+
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 
@@ -100,4 +101,4 @@ public:
     void update();
     void render(SDL_Renderer& renderer);
 };
-#endif // HUD_H
+#endif  // HUD_H

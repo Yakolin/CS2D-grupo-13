@@ -2,6 +2,7 @@
 #define SOUND_CONFIG_H
 #include <iostream>
 #include <map>
+#include <string>
 
 #include <SDL2/SDL.h>
 #include <SDL_mixer.h>
@@ -31,7 +32,7 @@ private:
     void set_position(const int& channel, const Uint16& angle, const Uint8& distance);
 
 public:
-    SoundConfig(const int& volumen);
+    SoundConfig(const int& volumen, const int& volumen_music);
 
     void set_bomb(const bool& state);
 

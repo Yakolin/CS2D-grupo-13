@@ -10,8 +10,8 @@
 #include <SDL_surface.h>
 #include <SDL_video.h>
 
-#include "../../common/utility.h"
 #include "../../common/game_info.h"
+#include "../../common/utility.h"
 #include "../tipos.h"
 
 #include "camera.h"
@@ -24,7 +24,7 @@ class MapView: public Renderizable {
 
 
 private:
-    GameConfig & config;
+    GameConfig& config;
     std::vector<std::vector<char>> mapa;
     int width_map;
     int height_map;
@@ -34,9 +34,9 @@ private:
     std::vector<Position> libres;
     std::vector<Position> position_umbrellas;
     std::vector<WeaponView> weapon_dropped;
-    std::unordered_map<Object, TextureInfo > zones;
+    std::unordered_map<Object, TextureInfo> zones;
 
-    void update_limites(Coordenada & pos_start, Coordenada & pos_end);
+    void update_limites(Coordenada& pos_start, Coordenada& pos_end);
 
     void free_positions(const int& max_fil, const int& max_col, char piso);
 
@@ -46,14 +46,14 @@ private:
     std::vector<std::vector<char>> completar_mapa(const MapInfo& info_map);
 
 
-    TextureInfo load_zone_texture(const RectangleInfo& rectangle, const Object& zone,const SDL_Color& color);
+    TextureInfo load_zone_texture(const RectangleInfo& rectangle, const Object& zone,
+                                  const SDL_Color& color);
 
     void draw_zone(const Object& clave, SDL_Renderer& renderer);
 
 public:
-
-    explicit MapView(const MapInfo& info, Camera* camera_reseiver,
-                     ManageTexture* manejador, GameConfig& config);
+    explicit MapView(const MapInfo& info, Camera* camera_reseiver, ManageTexture* manejador,
+                     GameConfig& config);
     ~MapView();
 
     void update_map_dimensions();
@@ -76,6 +76,6 @@ public:
     void update_weapon_dropped(const std::vector<WeaponDropped>& dropped);
 
     void draw_zones(SDL_Renderer& renderer);
-    };
+};
 
 #endif  // MAPVIEW_H

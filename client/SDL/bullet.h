@@ -20,9 +20,11 @@ private:
                             double apertura_grados, int paso);
 
 public:
-    Bullet(const Coordenada& start, const Coordenada& end,const  int& width,const WeaponCode& code );
+    Bullet(const Coordenada& start, const Coordenada& end, const int& width,
+           const WeaponCode& code);
 
-    void calculate_values(SDL_Rect& destination_rect, double& angulo, SDL_Point& center,const SDL_Point& p_init, const SDL_Point& p_end);
+    void calculate_values(SDL_Rect& destination_rect, double& angulo, SDL_Point& center,
+                          const SDL_Point& p_init, const SDL_Point& p_end);
 
     void draw(SDL_Renderer& renderer) override;
 
@@ -37,6 +39,5 @@ public:
     bool finalizado();
 
     void set_camera(const Coordenada& camera) { this->camera = camera; }
-
 };
 #endif  // BULLET_H

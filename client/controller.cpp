@@ -1,6 +1,7 @@
 #include "controller.h"
 
 #define MAX_QUEUE_SIZE 100000
+const int SIZE_TILES = 32;
 
 Controller::Controller(Socket& skt):
         skt(skt),
@@ -29,28 +30,27 @@ CounterTerroristSkin Controller::toItemCounterTerrorism(const std::string& str) 
 }
 void Controller::sender_pos_mouse(int x, int y) {
 
-    int tile_size = 32;
-    coordinate_t col = static_cast<coordinate_t>(x / tile_size);
-    coordinate_t fil = static_cast<coordinate_t>(y / tile_size);
+    coordinate_t col = static_cast<coordinate_t>(x / SIZE_TILES);
+    coordinate_t fil = static_cast<coordinate_t>(y / SIZE_TILES);
     std::unique_ptr<InterfaceClientAction> action =
             std::make_unique<ClientSpace::MousePosition>(col, fil);
     send_queue->push(std::move(action));
 }
 
 void Controller::sender_equip(EquipType equip) {
-    std::cout << "Quiero cambiar equipo\n";
+
     std::unique_ptr<InterfaceClientAction> action = std::make_unique<ClientSpace::Equip>(equip);
     send_queue->push(std::move(action));
 }
 
 void Controller::sender_reload() {
-    std::cout << "Quiero recargar\n";
+
     std::unique_ptr<InterfaceClientAction> action = std::make_unique<ClientSpace::Reload>();
     send_queue->push(std::move(action));
 }
 
 void Controller::sender_shoot(int x, int y) {
-    std::cout << "Quiero disparar\n";
+
     coordinate_t x_c = static_cast<coordinate_t>(x);
     coordinate_t y_c = static_cast<coordinate_t>(y);
     std::unique_ptr<InterfaceClientAction> action = std::make_unique<ClientSpace::Shoot>(x_c, y_c);
@@ -58,7 +58,7 @@ void Controller::sender_shoot(int x, int y) {
 }
 
 void Controller::sender_shoot_burst(int x, int y) {
-    std::cout << "Quiero disparar rafaga\n";
+
     coordinate_t x_c = static_cast<coordinate_t>(x);
     coordinate_t y_c = static_cast<coordinate_t>(y);
     std::unique_ptr<InterfaceClientAction> action =
@@ -67,7 +67,7 @@ void Controller::sender_shoot_burst(int x, int y) {
 }
 
 void Controller::sender_buy_weapon(WeaponCode code) {
-    std::cout << "Quiero comprar arma\n";
+
     std::unique_ptr<InterfaceClientAction> action = std::make_unique<ClientSpace::BuyWeapon>(code);
     send_queue->push(std::move(action));
 }
@@ -76,7 +76,7 @@ void Controller::sender_defuse() {
     send_queue->push(std::move(action));
 }
 void Controller::sender_drop() {
-    std::cout << "Quiero tirar arma\n";
+
     std::unique_ptr<InterfaceClientAction> action = std::make_unique<ClientSpace::Drop>();
     send_queue->push(std::move(action));
 }

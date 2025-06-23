@@ -71,11 +71,10 @@ ManageTexture::ManageTexture(SDL_Renderer* renderer): renderer(renderer) {
     load(Object::M3, "assets/gfx/icon/m3_k.png");
     load(Object::SNIKE, "assets/gfx/icon/knife_k.png");
     load(Object::MOUSE, "assets/gfx/pointer.png");
-
 }
 
-void ManageTexture::draw(SDL_Texture* textura){
-    SDL_RenderCopy( renderer,textura, nullptr, nullptr);
+void ManageTexture::draw(SDL_Texture* textura) {
+    SDL_RenderCopy(renderer, textura, nullptr, nullptr);
     SDL_RenderPresent(renderer);
 }
 /*
@@ -131,19 +130,20 @@ SDL_Texture* ManageTexture::create_texture_rect(const SDL_Rect& rect, const SDL_
 
 void ManageTexture::render_text(const SDL_Rect& rect, const std::string& text,
                                 const SDL_Color& color, TTF_Font* font) {
-    if (!font) 
+    if (!font)
         throw std::runtime_error(std::string("Font es nullptr - ") + TTF_GetError());
-    if (text.empty()) 
+    if (text.empty())
         throw std::runtime_error("Intentando renderizar texto vacío");
-    
+
     SDL_Surface* surface = TTF_RenderText_Blended(font, text.c_str(), color);
-    if (!surface) 
+    if (!surface)
         throw std::runtime_error(std::string("Error renderizando texto: ") + TTF_GetError());
 
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
     if (!texture) {
         SDL_FreeSurface(surface);
-        throw std::runtime_error(std::string("Error creando textura desde superficie: ") + SDL_GetError());
+        throw std::runtime_error(std::string("Error creando textura desde superficie: ") +
+                                 SDL_GetError());
     }
     SDL_Rect textRect = {rect.x + rect.w + 10, rect.y, surface->w, surface->h};
     SDL_RenderCopy(renderer, texture, nullptr, &textRect);
@@ -248,38 +248,32 @@ void ManageTexture::load_skins_tt(const TerroristSkin& id, const std::string& fi
 void ManageTexture::load_skins_ct(const CounterTerroristSkin& id, const std::string& filePath) {
 
     SDL_Surface* surface = IMG_Load(filePath.c_str());
-    if (!surface) 
+    if (!surface)
         throw std::runtime_error("Error cargando imagen: " + std::string(IMG_GetError()));
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_FreeSurface(surface);
-    if (!texture) 
+    if (!texture)
         throw std::runtime_error("Error creando textura: " + std::string(SDL_GetError()));
     texture_skin_ct[id] = texture;
 }
 
 SDL_Texture* ManageTexture::get_texture_ct(const CounterTerroristSkin& id) const {
-
     auto it = texture_skin_ct.find(id);
     if (it != texture_skin_ct.end()) {
-        std::cout << "[DEBUG] Textura encontrada para CT id: " << static_cast<int>(id) << std::endl;
         return it->second;
     }
-    return nullptr;
+    throw std::runtime_error("No se encontró textura para el CT skin solicitado");
 }
 
 SDL_Texture* ManageTexture::get_texture_tt(const TerroristSkin& id) const {
-
     auto it = texture_skin_tt.find(id);
     if (it != texture_skin_tt.end()) {
-        std::cout << "[DEBUG] Textura encontrada para TT id: " << static_cast<int>(id) << std::endl;
         return it->second;
     }
-    return nullptr;
+    throw std::runtime_error("No se encontró textura para el TT skin solicitado");
 }
 
-
-void ManageTexture::fillTriangle( int x0, int y0, int x1, int y1, int x2,
-                                 int y2) {
+void ManageTexture::fillTriangle(int x0, int y0, int x1, int y1, int x2, int y2) {
     if (y1 < y0) {
         std::swap(y0, y1);
         std::swap(x0, x1);
@@ -340,7 +334,7 @@ SDL_Texture* ManageTexture::create_stencil(const int& ancho, const int& alto, co
 
 
     int diagonal = std::sqrt(ancho * ancho + alto * alto);
-    int lado = static_cast<int>(diagonal * 1.5); 
+    int lado = static_cast<int>(diagonal * 1.5);
     SDL_Texture* stencil = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888,
                                              SDL_TEXTUREACCESS_TARGET, lado, lado);
     if (!stencil) {
@@ -355,28 +349,22 @@ SDL_Texture* ManageTexture::create_stencil(const int& ancho, const int& alto, co
     SDL_RenderClear(renderer);
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
-    fillTriangle( points[0].x, points[0].y, points[1].x, points[1].y, points[2].x,
-                 points[2].y);
+    fillTriangle(points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y);
     SDL_SetRenderTarget(renderer, old_target);
 
     return stencil;
 }
 
-
-
 bool ManageTexture::load_weapons(const WeaponCode& id, const std::string& filePath) {
-
     SDL_Surface* surface = IMG_Load(filePath.c_str());
-    if (!surface) {
-        std::cerr << "Error cargando imagen: " << IMG_GetError() << std::endl;
-        return false;
-    }
+    if (!surface)
+        throw std::runtime_error("Error cargando imagen '" + filePath + "': " + IMG_GetError());
+
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_FreeSurface(surface);
-    if (!texture) {
-        std::cerr << "Error creando textura de weapon: " << SDL_GetError() << std::endl;
-        return false;
-    }
+    if (!texture)
+        throw std::runtime_error("Error creando textura desde imagen '" + filePath +
+                                 "': " + SDL_GetError());
 
     textures_weapons[id] = texture;
     return true;
@@ -437,9 +425,9 @@ SDL_Texture* ManageTexture::get_weapon(const WeaponCode& id) const {
     }
     std::ostringstream oss;
     oss << "Textura no encontrada para el arma solicitada: " << static_cast<int>(id);
-    std::cerr << oss.str() << std::endl; 
+    std::cerr << oss.str() << std::endl;
 
-    throw std::runtime_error(oss.str());  
+    throw std::runtime_error(oss.str());
 }
 
 SDL_Texture* ManageTexture::get(const Object& id) const {
@@ -459,15 +447,24 @@ void ManageTexture::remove(const TextView& id) {
     }
 }
 
-void ManageTexture::clear() {
-
+ManageTexture::~ManageTexture() {
     for (auto& pair: textures_text) {
         SDL_DestroyTexture(pair.second.texture);
     }
-    for (auto& kv: textures) SDL_DestroyTexture(kv.second);
-    textures.clear();
-    for (auto& kv: texture_skin_tt) SDL_DestroyTexture(kv.second);
-
-    for (auto& kv: texture_skin_ct) SDL_DestroyTexture(kv.second);
     textures_text.clear();
+
+    for (auto& kv: textures) {
+        SDL_DestroyTexture(kv.second);
+    }
+    textures.clear();
+
+    for (auto& kv: texture_skin_tt) {
+        SDL_DestroyTexture(kv.second);
+    }
+    texture_skin_tt.clear();
+
+    for (auto& kv: texture_skin_ct) {
+        SDL_DestroyTexture(kv.second);
+    }
+    texture_skin_ct.clear();
 }

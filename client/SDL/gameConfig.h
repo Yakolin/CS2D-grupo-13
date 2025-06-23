@@ -3,16 +3,17 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-#include "../tipos.h"
 #include <unordered_map>
 #include <vector>
+
 #include <SDL2/SDL.h>
-#include <yaml-cpp/yaml.h>
-#include "../soundConfig.h"
 #include <SDL2/SDL_ttf.h>
-#include <unordered_map>
+#include <yaml-cpp/yaml.h>
+
+#include "../soundConfig.h"
+#include "../tipos.h"
 class GameConfig {
-    
+
 private:
     int window_width;
     int window_height;
@@ -27,8 +28,9 @@ private:
     int intensity;
     std::unordered_map<ColorTranslucent, SDL_Color> translucent_colors;
     int volumen_game;
-    
-    
+    int volumen_game_music;
+
+
     void load(const std::string& file_path);
 
     void load_font(const std::string& route, TTF_Font*& font, const int& size);
@@ -58,21 +60,15 @@ public:
 
     int get_viewpost_width() const;
 
-
-    int get_size_font() const;
-
-
-    std::string get_route_font() const;
-
     int get_intensity();
 
     int get_volumen();
 
+    int get_volumen_music();
+
     std::vector<std::vector<char>> load_map(const std::string& archivo);
 
-    SDL_Color get_blanco() const;
-
-    SDL_Color get_color_translucent(const ColorTranslucent& clave) ;
+    SDL_Color get_color_translucent(const ColorTranslucent& clave);
 
     TTF_Font* get_font_menu();
 

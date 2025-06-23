@@ -1,9 +1,13 @@
 #ifndef MANAGEREVENT_H
 #define MANAGEREVENT_H
 #include <SDL2/SDL.h>
-#include "../controller.h"
-#include "../../common/socket.h"
+
+#include "../../common/constant_rate_loop.h"
 #include "../../common/game_image.h"
+#include "../../common/socket.h"
+#include "../controller.h"
+#include "../soundConfig.h"
+#include "../tipos.h"
 
 #include "HUD.h"
 #include "bomb.h"
@@ -11,19 +15,15 @@
 #include "camera.h"
 #include "fieldOfView.h"
 #include "gameConfig.h"
+#include "managerEvent.h"
 #include "mapView.h"
 #include "playerView.h"
 #include "quit_game_exception.h"
 #include "renderizable.h"
 #include "shopping.h"
 #include "text.h"
-#include "../soundConfig.h"
-#include "managerEvent.h"
-#include "../../common/constant_rate_loop.h"
-
-#include "../tipos.h"
 using hold_mouse_t = std::uint32_t;
-class ManagerEvent{
+class ManagerEvent {
 
 private:
     Controller& controller;
@@ -65,20 +65,11 @@ private:
     void mouse_position_tiles(int& posx, int& posy, const int& mousex, const int& mousey);
 
 public:
-    explicit ManagerEvent(Controller& controller,
-                    GameConfig& config, 
-                    Camera& camera,
-                    PlayerView& player,
-                    std::map<player_id_t, PlayerView*>& players,
-                    GameImage& snapshot,
-                    MapView& map,
-                    FieldOfView& fov,
-                    Bomb& bomba,
-                    Shopping& shop,
-                    HUD& hud,
-                    std::atomic<bool>& keep_running,
-                    SoundConfig& sound,
-                    ManageTexture& manger_texture);
+    explicit ManagerEvent(Controller& controller, GameConfig& config, Camera& camera,
+                          PlayerView& player, std::map<player_id_t, PlayerView*>& players,
+                          GameImage& snapshot, MapView& map, FieldOfView& fov, Bomb& bomba,
+                          Shopping& shop, HUD& hud, std::atomic<bool>& keep_running,
+                          SoundConfig& sound, ManageTexture& manger_texture);
 
     void stop();
 
@@ -87,12 +78,7 @@ public:
     void update_mouse_hold();
 
     void handle_events(const SDL_Event& evento);
-
-
 };
-
-
-
 
 
 #endif  // MANAGEREVENT_H

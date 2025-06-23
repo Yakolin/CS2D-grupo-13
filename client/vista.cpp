@@ -17,8 +17,6 @@ Vista::Vista(int& argc, char* argv[]):
         info_game() {}
 
 
-
-
 bool Vista::showLobby() {
     QApplication app(argc, argv);
     MenuView menu(nullptr, protocolo);
@@ -136,6 +134,4 @@ void Vista::showScoreboard(const std::map<player_id_t, InfoPlayer>& table) {
     }
 }
 
-Vista::~Vista() {
-    
-}
+Vista::~Vista() {}

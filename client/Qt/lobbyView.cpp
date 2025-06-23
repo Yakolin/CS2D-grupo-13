@@ -10,7 +10,9 @@ LobbyView::LobbyView(StackNavigator& stack_navigator, ClientProtocol& protocol):
         img_maps(),
         list_games(new QListWidget(this)) {
 
-    options_map << "Desierto" << "Pueblito Azteca" << "Zona de Entrenamiento";
+    options_map << "Desierto"
+                << "Pueblito Azteca"
+                << "Zona de Entrenamiento";
     img_maps["Desierto"] = "assets/"
                            "gfx/screens/dust2.jpg";
     img_maps["Pueblito Azteca"] = ""
@@ -23,7 +25,10 @@ LobbyView::LobbyView(StackNavigator& stack_navigator, ClientProtocol& protocol):
 
 // Falta agregar las skins
 void LobbyView::set_skins_ct() {
-    this->options_skins_ct << "Phoenix" << "L337 Krew" << "Arctic Avenger" << "Guerrilla";
+    this->options_skins_ct << "Phoenix"
+                           << "L337 Krew"
+                           << "Arctic Avenger"
+                           << "Guerrilla";
     this->img_skins_ct["Phoenix"] = "assets/gfx/npc/poe.png";
     this->img_skins_ct["L337 Krew"] = "assets/gfx/npc/kreew.png";
     this->img_skins_ct["Arctic Avenger"] = "assets/gfx/npc/artic.png";
@@ -31,7 +36,10 @@ void LobbyView::set_skins_ct() {
 }
 
 void LobbyView::set_skins_tt() {
-    this->options_skins_tt << "Seal Force" << "German GSG-9" << "UK SAS" << "French GIGN";
+    this->options_skins_tt << "Seal Force"
+                           << "German GSG-9"
+                           << "UK SAS"
+                           << "French GIGN";
     this->img_skins_tt["Seal Force"] = "assets/gfx/npc/urban}.png";
     this->img_skins_tt["German GSG-9"] = "assets/gfx/npc/gs.png";
     this->img_skins_tt["UK SAS"] = "assets/gfx/npc/sas.png";

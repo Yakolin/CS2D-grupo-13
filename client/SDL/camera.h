@@ -31,7 +31,6 @@ public:
     int getW();
 
     int getH();
-
 };
 
 #endif  // CAMERA_H

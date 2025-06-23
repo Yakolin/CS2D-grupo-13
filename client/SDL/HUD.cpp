@@ -187,12 +187,18 @@ std::string get_bomb_state(BombImage& bomb) {
 }
 
 Object convertir_a_imagen(WeaponCode code) {
-    if (code == WeaponCode::AK47) return Object::AK47;
-    if (code == WeaponCode::AWP) return Object::AWP;
-    if (code == WeaponCode::GLOCK) return Object::GLOCK;
-    if (code == WeaponCode::KNIFE) return Object::SNIKE;
-    if (code == WeaponCode::BOMB) return Object::BOMB;
-    if (code == WeaponCode::M3) return Object::M3;
+    if (code == WeaponCode::AK47)
+        return Object::AK47;
+    if (code == WeaponCode::AWP)
+        return Object::AWP;
+    if (code == WeaponCode::GLOCK)
+        return Object::GLOCK;
+    if (code == WeaponCode::KNIFE)
+        return Object::SNIKE;
+    if (code == WeaponCode::BOMB)
+        return Object::BOMB;
+    if (code == WeaponCode::M3)
+        return Object::M3;
     throw std::invalid_argument("WeaponCode desconocido");
 }
 

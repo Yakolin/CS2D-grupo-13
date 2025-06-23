@@ -49,12 +49,11 @@ public:
     bool explosion_finished();
     ~Bomb();
 
-    void draw(SDL_Renderer& renderer) override ;
+    void draw(SDL_Renderer& renderer) override;
 
     void set_pos(int& new_x, int& new_y);
 
     void update_bomb(const BombImage& bombImg);
-
 };
 
 #endif  // BOMB_H

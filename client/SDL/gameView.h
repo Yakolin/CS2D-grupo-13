@@ -17,21 +17,23 @@
 #include "../controller.h"
 #include "../soundConfig.h"
 #include "../tipos.h"
-#include "managerEvent.h"
+
 #include "HUD.h"
 #include "bomb.h"
+#include "bombTimer.h"
 #include "bullet.h"
 #include "camera.h"
 #include "fieldOfView.h"
 #include "gameConfig.h"
 #include "manageTexture.h"
+#include "managerEvent.h"
 #include "mapView.h"
 #include "playerView.h"
 #include "quit_game_exception.h"
 #include "renderizable.h"
 #include "shopping.h"
 #include "text.h"
-#include "bombTimer.h"
+
 class GameView {
 
 private:
@@ -51,6 +53,7 @@ private:
     FieldOfView* fov;
     Shopping shop;
     Bomb* bomba;
+    BombState last_state_bomb = BombState::DROPPED;
     HUD hud;
     std::vector<Bullet> bullets;
     bool activa;

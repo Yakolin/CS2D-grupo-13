@@ -1,19 +1,22 @@
 #ifndef SOUND_CONFIG_H
 #define SOUND_CONFIG_H
-#include <yaml-cpp/yaml.h>
-#include <SDL_mixer.h>
-#include "../common/sound_image.h"
 #include <iostream>
 #include <map>
-#include <SDL2/SDL.h>     
+
+#include <SDL2/SDL.h>
+#include <SDL_mixer.h>
+#include <yaml-cpp/yaml.h>
+
+#include "../common/sound_image.h"
+
 #include "tipos.h"
 
 class SoundConfig {
 private:
-	std::map<SoundType, Mix_Chunk*> effects;
-	std::map<WeaponCode, Mix_Chunk*> shoots;
-	std::map<Music, Mix_Music*> musics;
-	std::map<EffectType, Mix_Chunk*> sounds;
+    std::map<SoundType, Mix_Chunk*> effects;
+    std::map<WeaponCode, Mix_Chunk*> shoots;
+    std::map<Music, Mix_Music*> musics;
+    std::map<EffectType, Mix_Chunk*> sounds;
     bool bomb_explode;
     bool finish_round;
     bool start_game;
@@ -28,7 +31,6 @@ private:
     void set_position(const int& channel, const Uint16& angle, const Uint8& distance);
 
 public:
-
     SoundConfig(const int& volumen);
 
     void set_bomb(const bool& state);
@@ -39,11 +41,11 @@ public:
 
     bool get_round_sound();
 
-    void load_sound(const EffectType& id, const std::string& filepath) ;
-    
-    void play_effect_with_position(const SoundType& id, Uint16 angle, Uint8 distance) ;
+    void load_sound(const EffectType& id, const std::string& filepath);
 
-    void play_shoot_with_position(const WeaponCode& id, Uint16 angle, Uint8 distance) ;
+    void play_effect_with_position(const SoundType& id, Uint16 angle, Uint8 distance);
+
+    void play_shoot_with_position(const WeaponCode& id, Uint16 angle, Uint8 distance);
     /*
     pre: recibe un booleano válido
     post: actualiza el estado interno del juego
@@ -67,15 +69,16 @@ public:
     */
     void load_music(const Music& id, const std::string& filepath);
 
-    void load_shoot(const WeaponCode& id, const std::string& filepath) ;
+    void load_shoot(const WeaponCode& id, const std::string& filepath);
 
     /*
     pre: el id debe existir en el mapa effects
-    post: reproduce el efecto de sonido correspondiente con la cantidad de repeticiones indicada por loops
+    post: reproduce el efecto de sonido correspondiente con la cantidad de repeticiones indicada por
+    loops
     */
     void play_effect(const SoundType& id, int loops);
 
-    void play_sound(const EffectType& id, int loops ) ;
+    void play_sound(const EffectType& id, int loops);
 
     /*
     pre: el id debe existir en el mapa musics

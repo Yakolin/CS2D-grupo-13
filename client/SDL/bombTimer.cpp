@@ -2,40 +2,32 @@
 
 #include <algorithm>
 
-void BombTimer::start(int segundos_restantes) {
-    duracion_total_s = segundos_restantes;
-    tiempo_inicio_ms = SDL_GetTicks();
-    ultimo_pip_ms = 0;
-    mostrar_flash = false;
-    tiempo_ultimo_flash = 0;
+void BombTimer::start(int segundos) {
+    tiempo_anterior = segundos;
+    this->timer_start = true;
 }
 
-void BombTimer::update(SoundConfig& sonido) {
-    Uint32 ahora = SDL_GetTicks();
-    Uint32 tiempo_pasado_ms = ahora - tiempo_inicio_ms;
-    float tiempo_restante = duracion_total_s - (tiempo_pasado_ms / 1000.0f);
-
-    if (tiempo_restante <= 0)
+void BombTimer::update(SoundConfig& sonido, int restante) {
+    if (restante == 0 || !timer_start) {
+        mostrar_flash = false;
         return;
-
-    float intervalo = calcular_intervalo_pip(tiempo_restante);
-    Uint32 intervalo_ms = static_cast<Uint32>(intervalo * 1000);
-
-    if (ahora - ultimo_pip_ms >= intervalo_ms) {
+    }
+    Uint32 ahora = SDL_GetTicks();
+    Uint32 delta = ahora - ultimo_pip_ms;
+    float interval = std::max(10, restante * 100);
+    if (delta >= interval) {
         sonido.play_sound(EffectType::PIP, 0);
         ultimo_pip_ms = ahora;
-
         mostrar_flash = true;
+        tiempo_anterior = restante;
         tiempo_ultimo_flash = ahora;
     }
-    if (mostrar_flash && ahora - tiempo_ultimo_flash >= tiempo_flash_ms) {
+    if (delta < interval)
         mostrar_flash = false;
-    }
 }
-
-float BombTimer::calcular_intervalo_pip(float tiempo_restante) const {
-    float intervalo = (tiempo_restante / duracion_total_s) * 2.0f;
-    return std::max(0.4f, intervalo);
+void BombTimer::stop() {
+    timer_start = false;
+    mostrar_flash = false;
 }
 
 bool BombTimer::debe_dibujar_flash() const { return mostrar_flash; }

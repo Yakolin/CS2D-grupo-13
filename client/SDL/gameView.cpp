@@ -20,7 +20,7 @@ GameView::GameView(Socket& skt, const GameInfo& game_info, const Player& info_Pl
         camera(config.get_window_width(), config.get_window_height()),
         manger_texture(manger_texture),
         player(new PlayerView(11, 4, load_claves(info_Player), 50.0f, &camera, &manger_texture,
-                              config)),  
+                              config)),
         players(),
         snapshot(),
         map(new MapView(game_info.map_info, &camera, &manger_texture, config)),
@@ -77,57 +77,56 @@ void print_game_image(const GameImage& image) {
     std::cout << "--- Players ---\n";
     std::cout << "Client ID: " << image.client_id << "\n";
     */
-  /*  for (const auto& player: image.players_images) {
-        
-        std::cout << "Player ID: " << player.player_id << "\n";
-        std::cout << "  Position: (" << player.position.x << ", " << player.position.y << ")\n";
-                std::cout << "  Health: " << static_cast<int>(player.health) << "\n";
-                 std::cout << "  Health: " << static_cast<int>(player.health) << "\n";
-                std::cout << "  Points: " << static_cast<int>(player.points) << "\n";
-                std::cout << "  Money: " << player.money << "\n";
-                std::cout << "  Equipped weapon: " << static_cast<int>(player.equipped_weapon) <<
-           "\n"; std::cout << "  Mouse position: (" << player.mouse_position.x << ", "
-                          << player.mouse_position.y << ")\n";
-                std::cout << "  Team: " << (player.team == Team::CT ? "CT" : "TT") << "\n";
-                std::cout << "  Weapons:\n";
-                for (const auto& weapon: player.weapons) {
-                    std::cout << "    WeaponCode: " << static_cast<int>(weapon.weapon_code)
-                    << ", Current: " << static_cast<int>(weapon.current_bullets)
-                              << ", Magazine: " << static_cast<int>(weapon.magazine)
-                              << ", Inventory: " << static_cast<int>(weapon.inventory_bullets) <<
-           "\n";
-                 }*/
-     /*   for (const auto& sound: player.heared_sounds.common_sounds) {
-            std::cout << "Escuche comun:\n";
-            std::cout << "Sound: " << static_cast<int>(sound.type) << " A :" << sound.distance
-                      << std::endl;
-        }
-        for (const auto& sound: player.heared_sounds.shoot_sounds) {
-            std::cout << "Escuche shoot:\n";
-            std::cout << "Sound: " << static_cast<int>(sound.type) << " A :" << sound.distance
-                      << "del arma: " << static_cast<int>(sound.code) << std::endl;
-        }
-    }
-        for (const auto& bullet: image.bullets_in_air) {
-            std::cout << "  From (" << bullet.initial.x << ", " << bullet.initial.y << ") to ("
-                      << bullet.end.x << ", " << bullet.end.y << ")\n";
-        }
-        std::cout << "--- Bomb ---\n";
-        std::cout << "  Position: (" << image.bomb.position.x << ", " << image.bomb.position.y <<
-       ")\n"; std::cout << "  State: " << static_cast<int>(image.bomb.state) << "\n";
-      */
+    /*  for (const auto& player: image.players_images) {
+
+          std::cout << "Player ID: " << player.player_id << "\n";
+          std::cout << "  Position: (" << player.position.x << ", " << player.position.y << ")\n";
+                  std::cout << "  Health: " << static_cast<int>(player.health) << "\n";
+                   std::cout << "  Health: " << static_cast<int>(player.health) << "\n";
+                  std::cout << "  Points: " << static_cast<int>(player.points) << "\n";
+                  std::cout << "  Money: " << player.money << "\n";
+                  std::cout << "  Equipped weapon: " << static_cast<int>(player.equipped_weapon) <<
+             "\n"; std::cout << "  Mouse position: (" << player.mouse_position.x << ", "
+                            << player.mouse_position.y << ")\n";
+                  std::cout << "  Team: " << (player.team == Team::CT ? "CT" : "TT") << "\n";
+                  std::cout << "  Weapons:\n";
+                  for (const auto& weapon: player.weapons) {
+                      std::cout << "    WeaponCode: " << static_cast<int>(weapon.weapon_code)
+                      << ", Current: " << static_cast<int>(weapon.current_bullets)
+                                << ", Magazine: " << static_cast<int>(weapon.magazine)
+                                << ", Inventory: " << static_cast<int>(weapon.inventory_bullets) <<
+             "\n";
+                   }*/
+    /*   for (const auto& sound: player.heared_sounds.common_sounds) {
+           std::cout << "Escuche comun:\n";
+           std::cout << "Sound: " << static_cast<int>(sound.type) << " A :" << sound.distance
+                     << std::endl;
+       }
+       for (const auto& sound: player.heared_sounds.shoot_sounds) {
+           std::cout << "Escuche shoot:\n";
+           std::cout << "Sound: " << static_cast<int>(sound.type) << " A :" << sound.distance
+                     << "del arma: " << static_cast<int>(sound.code) << std::endl;
+       }
+   }
+       for (const auto& bullet: image.bullets_in_air) {
+           std::cout << "  From (" << bullet.initial.x << ", " << bullet.initial.y << ") to ("
+                     << bullet.end.x << ", " << bullet.end.y << ")\n";
+       }
+    */
+    std::cout << "--- Bomb ---\n";
+    std::cout << "  Position: (" << image.bomb.position.x << ", " << image.bomb.position.y << ")\n";
+    std::cout << "  State: " << static_cast<int>(image.bomb.state) << "\n";
     /*
        std::cout << "--- Dropped Weapons ---\n";
        for (const auto& dropped: image.dropped_things) {
            std::cout << "  WeaponCode: " << static_cast<int>(dropped.weapon_code) << ", Position: ("
            << dropped.position.x << ", " << dropped.position.y << ")\n";
        }
-*/
        std::cout << "--- Game State ---\n";
        std::cout << "  State: " << static_cast<int>(image.game_state.state) << "\n";
        std::cout << "  Time: " << image.game_state.time << "\n";
        std::cout << "  Round: " << static_cast<int>(image.game_state.round) << "\n";
-    
+*/
 }
 
 
@@ -149,23 +148,20 @@ void GameView::update_bullets_snapshot() {
 void GameView::handle_bomb_sound() {
 
     BombState state = snapshot.bomb.state;
-    if (state == BombState::ACTIVATED) {
-        config_sound.play_sound(EffectType::PIP, 0);
-    } else if (state == BombState::DESACTIVATED) {
+    if (last_state_bomb != BombState::DESACTIVATED && state == BombState::DESACTIVATED) {
         config_sound.play_sound(EffectType::DESACTIVATED, 0);
-    } else if (state == BombState::EXPLOTED && !config_sound.get_bomb_sound()) {
-        config_sound.set_bomb(true);
+    } else if (last_state_bomb != BombState::EXPLOTED && state == BombState::EXPLOTED) {
         config_sound.play_sound(EffectType::EXPLOSION, 0);
     }
 }
 
 void GameView::handle_state_game() {
     GameState state = snapshot.game_state.state;
-
-    if (state == GameState::ROUND_STARTED) {
-        config_sound.set_bomb(false);
+    if (state == GameState::ROUND_STARTED)
         config_sound.set_round(false);
+    if (snapshot.bomb.state != BombState::ACTIVATED) {
         config_sound.set_bomb(false);
+        bomba_timer.stop();
     }
     if (config_sound.get_round_sound())
         return;
@@ -215,27 +211,26 @@ void GameView::delete_players_death() {
 
 void GameView::update_status_game() {
 
-    if(snapshot.game_state.state == GameState::GAME_ENDED 
-        || snapshot.game_state.state == GameState::CT_WIN_GAME 
-        || snapshot.game_state.state == GameState::TT_WIN_GAME){
+    if (snapshot.game_state.state == GameState::GAME_ENDED ||
+        snapshot.game_state.state == GameState::CT_WIN_GAME ||
+        snapshot.game_state.state == GameState::TT_WIN_GAME) {
         this->keep_running = false;
         controller.stop();
         throw GameFinishExeption("La partida ha finalizado.");
     }
 
-    print_game_image(snapshot);
+    // print_game_image(snapshot);
     int tile_width = config.get_tile_width();
     int tile_height = config.get_tile_height();
     update_bullets_snapshot();
     bomba->update_bomb(snapshot.bomb);
     this->map->update_weapon_dropped(snapshot.dropped_things);
-
     if (!config_sound.get_bomb_sound() && snapshot.bomb.state == BombState::ACTIVATED) {
         config_sound.set_bomb(true);
         bomba_timer.start(snapshot.game_state.time);
     }
-
-
+    handle_bomb_sound();
+    last_state_bomb = snapshot.bomb.state;
     for (PlayerImage& player_img: this->snapshot.players_images) {
         player_id_t id = player_img.player_id;
 
@@ -255,8 +250,8 @@ void GameView::update_status_game() {
 
         } else if (players.find(id) == players.end()) {
 
-            PlayerView* nuevo_jugador = new PlayerView(x_pixeles, y_pixeles, player_img.skin,
-                                                       50.0f, &camera, &manger_texture, config);
+            PlayerView* nuevo_jugador = new PlayerView(x_pixeles, y_pixeles, player_img.skin, 50.0f,
+                                                       &camera, &manger_texture, config);
             nuevo_jugador->update_view_angle(player_img.mouse_position.x * 32,
                                              player_img.mouse_position.y * 32);
             nuevo_jugador->update_weapons(player_img.weapons);
@@ -314,7 +309,7 @@ void GameView::update_game() {
 
     update_status_game();
     player->update(deltaTime);  //! desconetar
-    bomba_timer.update(config_sound);
+    bomba_timer.update(config_sound, snapshot.game_state.time);
 
     for (auto& pair: players) {
         if (pair.second != nullptr && pair.second != player) {

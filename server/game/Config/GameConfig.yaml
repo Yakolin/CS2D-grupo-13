@@ -3,7 +3,7 @@ Weapons:
     price: 2700
     damage: 5
     fire_rate: 3
-    timer_fire: 400
+    timer_fire: 200
     burst_coldown: 700
     max_bullets: 30
     magazine: 90

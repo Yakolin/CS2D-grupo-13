@@ -17,8 +17,8 @@ Weapons:
     fire_rate: 1
     timer_fire: 400
     burst_coldown: 0
-    max_bullets: 1
-    magazine: 1
+    max_bullets: 120
+    magazine: 30
     width: 1
     chance_hit: 80
     distance: 10
@@ -68,7 +68,7 @@ Player:
   multiplier_points: 6
 Timer:
   time_buy: 5
-  time_round: 50
+  time_round: 250
   time_bomb: 25
   time_ending: 5
 

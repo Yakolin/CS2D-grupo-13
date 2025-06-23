@@ -89,11 +89,13 @@ void CollisionManager::find_players_in(player_id_t caster, ColliderDamage& colli
         if (player.first != caster && collider_damage.collider->is_in(player.second.position))
             players_affected.push_back(player.second);
 }
-bool CollisionManager::hit(const chance_hit_t chance_hit) {
+bool CollisionManager::hit(const chance_hit_t chance_hit, distance_t distance) {
     std::random_device rd;
     std::mt19937 rand(rd());
     std::uniform_int_distribution<uint8_t> dist(0, 100);
-    return dist(rand) <= chance_hit;
+    distance_t aux = distance / 2;
+    aux = (aux == 0) ? 1 : aux;
+    return dist(rand) <= chance_hit / aux;
 }
 void CollisionManager::find_nearest(const std::vector<PlayerEntity>& players_affected,
                                     const Vector2f& origin, PlayerEntity& nearest,
@@ -109,10 +111,10 @@ void CollisionManager::find_nearest(const std::vector<PlayerEntity>& players_aff
     }
 }
 void CollisionManager::damage_nearest(PlayerEntity& nearest, PlayerEntity& caster, damage_t damage,
-                                      chance_hit_t chance_hit) {
+                                      chance_hit_t chance_hit, distance_t distance) {
     if (nearest.player.lock()) {
         if (!nearest.player.lock()->is_dead()) {
-            if (hit(chance_hit))
+            if (hit(chance_hit, distance))
                 nearest.player.lock()->damage(damage);
             if (nearest.player.lock()->is_dead())
                 caster.player.lock()->give_points();
@@ -144,7 +146,7 @@ void CollisionManager::check_damage_collider(player_id_t caster, ColliderDamage&
     if (check_bullet_wall(origin, pos_nearest, collider_damage))
         return;
     damage_t damage = collider_damage.damage_calculator(min_distance);
-    damage_nearest(nearest, player_caster, damage, collider_damage.chance_hit);
+    damage_nearest(nearest, player_caster, damage, collider_damage.chance_hit, min_distance);
     add_bullet_image(origin, end, collider_damage);
 }
 

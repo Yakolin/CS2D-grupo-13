@@ -5,6 +5,7 @@
 SoundConfig::SoundConfig(const int& volumen):
         effects(), musics(), bomb_explode(false), finish_round(false), start_game(false) {
     Mix_Volume(-1, volumen);
+    Mix_AllocateChannels(12);
     loadFromYAML("assets/music.yaml");
 }
 

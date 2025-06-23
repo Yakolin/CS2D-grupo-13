@@ -15,14 +15,24 @@ bool SoundConfig::get_round_sound() { return finish_round; }
 
 
 SoundType soundTypeFromString(const std::string& str) {
-    if (str == "SHOOT") return SoundType::SHOOT;
-    if (str == "WALK") return SoundType::WALK;
-    if (str == "RELOAD") return SoundType::RELOAD;
-    if (str == "HIT") return SoundType::HIT;
-    if (str == "CHANGE_WEAPON") return SoundType::CHANGE_WEAPON;
-    if (str == "DROP") return SoundType::DROP;
-    if (str == "DIE") return SoundType::DIE;
-    if (str == "PICK_UP") return SoundType::PICK_UP;
+    if (str == "SHOOT")
+        return SoundType::SHOOT;
+    if (str == "WALK")
+        return SoundType::WALK;
+    if (str == "RELOAD")
+        return SoundType::RELOAD;
+    if (str == "HIT")
+        return SoundType::HIT;
+    if (str == "CHANGE_WEAPON")
+        return SoundType::CHANGE_WEAPON;
+    if (str == "DROP")
+        return SoundType::DROP;
+    if (str == "DIE")
+        return SoundType::DIE;
+    if (str == "PICK_UP")
+        return SoundType::PICK_UP;
+    if (str == "BUY")
+        return SoundType::BUY;
     throw std::invalid_argument("Tipo de sonido desconocido: " + str);
 }
 
@@ -35,22 +45,34 @@ Music musicFromString(const std::string& str) {
 }
 
 EffectType sound_from_string(const std::string& str) {
-    if (str == "EXPLOSION") return EffectType::EXPLOSION;
-    if (str == "WIN_CT") return EffectType::WIN_CT;
-    if (str == "WIN_TT") return EffectType::WIN_TT;
-    if (str == "ACTIVATION") return EffectType::ACTIVATION;
-    if (str == "DESACTIVATED") return EffectType::DESACTIVATED;
-    if (str == "PIP") return EffectType::PIP;
+    if (str == "EXPLOSION")
+        return EffectType::EXPLOSION;
+    if (str == "WIN_CT")
+        return EffectType::WIN_CT;
+    if (str == "WIN_TT")
+        return EffectType::WIN_TT;
+    if (str == "ACTIVATION")
+        return EffectType::ACTIVATION;
+    if (str == "DESACTIVATED")
+        return EffectType::DESACTIVATED;
+    if (str == "PIP")
+        return EffectType::PIP;
     throw std::invalid_argument("Tipo de effecto desconocido: " + str);
 }
 
 WeaponCode shootFromString(const std::string& str) {
-    if (str == "GLOCK") return WeaponCode::GLOCK;
-    if (str == "AK47") return WeaponCode::AK47;
-    if (str == "AWP") return WeaponCode::AWP;
-    if (str == "M3") return WeaponCode::M3;
-    if (str == "KNIFE") return WeaponCode::KNIFE;
-    if (str == "BOMB") return WeaponCode::BOMB;
+    if (str == "GLOCK")
+        return WeaponCode::GLOCK;
+    if (str == "AK47")
+        return WeaponCode::AK47;
+    if (str == "AWP")
+        return WeaponCode::AWP;
+    if (str == "M3")
+        return WeaponCode::M3;
+    if (str == "KNIFE")
+        return WeaponCode::KNIFE;
+    if (str == "BOMB")
+        return WeaponCode::BOMB;
     throw std::invalid_argument("WeaponCode desconocido: " + str);
 }
 

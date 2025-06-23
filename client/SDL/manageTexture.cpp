@@ -23,7 +23,7 @@ ManageTexture::ManageTexture(SDL_Renderer* renderer): renderer(renderer) {
     load_skins_ct(CounterTerroristSkin::GIGN, "assets/gfx/counterTerrorist/ct1.png");
     load_weapons(WeaponCode::BOMB, "assets/gfx/weapons/bomb.png");
     load_weapons(WeaponCode::AK47, "assets/gfx/weapons/ak47v.png");
-    load_weapons(WeaponCode::AWP, "assets/gfx/weapons/awpv.png");
+    load_weapons(WeaponCode::AWP, "assets/gfx/weapons/awp.png");
     load_weapons(WeaponCode::M3, "assets/gfx/weapons/m3v.png");
     load_weapons(WeaponCode::KNIFE, "assets/gfx/weapons/knife.png");
     load_weapons(WeaponCode::GLOCK, "assets/gfx/weapons/glock.png");
@@ -35,8 +35,6 @@ ManageTexture::ManageTexture(SDL_Renderer* renderer): renderer(renderer) {
 
     load(Object::CT, "assets/gfx/icon/ct.png");
     load(Object::TT, "assets/gfx/icon/tt.png");
-
-
     load(Object::FLOOR_AZTEC, "assets/gfx/blockglas.PNG");
     load(Object::FLOOR_DESIERTO, "assets/gfx/backgrounds/sand1.jpg");
     load(Object::FLOOR_ENTRENAMIENTO, "assets/gfx/backgrounds/sand1-night.jpg");
@@ -106,7 +104,6 @@ SDL_Texture* ManageTexture::create_texture_rect(const SDL_Rect& rect, const SDL_
 
         if (SDL_QueryTexture(text, nullptr, nullptr, &w_text, &h_text) != 0) {
             SDL_Log("Error obteniendo dimensiones de textura: %s", SDL_GetError());
-            // continuar con w_text = h_text = 1
         }
 
         float scale_x = static_cast<float>(rect.w) / w_text;
@@ -132,32 +129,22 @@ SDL_Texture* ManageTexture::create_texture_rect(const SDL_Rect& rect, const SDL_
 
 void ManageTexture::render_text(const SDL_Rect& rect, const std::string& text,
                                 const SDL_Color& color, TTF_Font* font) {
-    if (!font) {
-        std::cerr << "Error: font es nullptr - " << TTF_GetError() << std::endl;
-        return;
-    }
-
-    if (text.empty()) {
-        std::cerr << "Advertencia: intentando renderizar texto vacío" << std::endl;
-        return;
-    }
-
+    if (!font) 
+        throw std::runtime_error(std::string("Font es nullptr - ") + TTF_GetError());
+    if (text.empty()) 
+        throw std::runtime_error("Intentando renderizar texto vacío");
+    
     SDL_Surface* surface = TTF_RenderText_Blended(font, text.c_str(), color);
-    if (!surface) {
-        std::cerr << "Error renderizando texto: " << TTF_GetError() << std::endl;
-        return;
-    }
+    if (!surface) 
+        throw std::runtime_error(std::string("Error renderizando texto: ") + TTF_GetError());
 
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
     if (!texture) {
-        std::cerr << "Error creando textura desde superficie: " << SDL_GetError() << std::endl;
         SDL_FreeSurface(surface);
-        return;
+        throw std::runtime_error(std::string("Error creando textura desde superficie: ") + SDL_GetError());
     }
-
     SDL_Rect textRect = {rect.x + rect.w + 10, rect.y, surface->w, surface->h};
     SDL_RenderCopy(renderer, texture, nullptr, &textRect);
-
     SDL_FreeSurface(surface);
     SDL_DestroyTexture(texture);
 }
@@ -229,19 +216,14 @@ SDL_Texture* ManageTexture::render_menu_texture(
 }
 
 void ManageTexture::load(const Object& id, const std::string& filePath) {
-    //std::cout << "[LOAD TEXTURE] Intentando cargar: " << filePath << std::endl;
 
     SDL_Surface* surface = IMG_Load(filePath.c_str());
     if (!surface) {
-        std::cerr << "[ERROR] No se pudo cargar la imagen: " << filePath << "\n"
-                  << "Motivo: " << IMG_GetError() << std::endl;
         throw std::runtime_error("Error cargando imagen: " + std::string(IMG_GetError()));
     }
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_FreeSurface(surface);
     if (!texture) {
-        std::cerr << "[ERROR] No se pudo crear textura desde: " << filePath << "\n"
-                  << "Motivo: " << SDL_GetError() << std::endl;
         throw std::runtime_error("Error creando textura: " + std::string(SDL_GetError()));
     }
     textures[id] = texture;
@@ -260,51 +242,42 @@ void ManageTexture::load_skins_tt(const TerroristSkin& id, const std::string& fi
     }
     texture_skin_tt[id] = texture;
 }
+
 void ManageTexture::load_skins_ct(const CounterTerroristSkin& id, const std::string& filePath) {
 
     SDL_Surface* surface = IMG_Load(filePath.c_str());
-    if (!surface) {
+    if (!surface) 
         throw std::runtime_error("Error cargando imagen: " + std::string(IMG_GetError()));
-    }
-
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_FreeSurface(surface);
-
-    if (!texture) {
+    if (!texture) 
         throw std::runtime_error("Error creando textura: " + std::string(SDL_GetError()));
-    }
-
     texture_skin_ct[id] = texture;
 }
 
 SDL_Texture* ManageTexture::get_texture_ct(const CounterTerroristSkin& id) const {
 
-   // std::cout << "[DEBUG] Buscando textura CT para id: " << static_cast<int>(id) << std::endl;
     auto it = texture_skin_ct.find(id);
     if (it != texture_skin_ct.end()) {
         std::cout << "[DEBUG] Textura encontrada para CT id: " << static_cast<int>(id) << std::endl;
         return it->second;
     }
-   // std::cerr << "[ERROR] No se encontró textura para CT id: " << static_cast<int>(id) << std::endl;
     return nullptr;
 }
 
 SDL_Texture* ManageTexture::get_texture_tt(const TerroristSkin& id) const {
 
-   // std::cout << "[DEBUG] Buscando textura TT para id: " << static_cast<int>(id) << std::endl;
     auto it = texture_skin_tt.find(id);
     if (it != texture_skin_tt.end()) {
         std::cout << "[DEBUG] Textura encontrada para TT id: " << static_cast<int>(id) << std::endl;
         return it->second;
     }
-   // std::cerr << "[ERROR] No se encontró textura para TT id: " << static_cast<int>(id) << std::endl;
     return nullptr;
 }
 
 
 void ManageTexture::fillTriangle( int x0, int y0, int x1, int y1, int x2,
                                  int y2) {
-    // Ordenar los puntos por Y
     if (y1 < y0) {
         std::swap(y0, y1);
         std::swap(x0, x1);
@@ -455,14 +428,8 @@ SDL_Rect ManageTexture::get_rect(const TextView& id) const {
 }
 SDL_Texture* ManageTexture::get_weapon(const WeaponCode& id) const {
     auto it = textures_weapons.find(id);
-    // std::cout << "se encontró la textura para Weapon: " << static_cast<int>(id) << std::endl;
     if (it != textures_weapons.end()) {
         return it->second;
-    }
-    std::cout << "No se encontró la textura para Weapon: " << static_cast<int>(id) << std::endl;
-    std::cout << "Claves disponibles: ";
-    for (const auto& pair: textures) {
-        std::cout << static_cast<int>(pair.first) << " ";
     }
     throw std::runtime_error("Textura no encontrada para el arma solicitada.");
 }
@@ -471,15 +438,8 @@ SDL_Texture* ManageTexture::get_weapon(const WeaponCode& id) const {
 SDL_Texture* ManageTexture::get(const Object& id) const {
     auto it = textures.find(id);
     if (it != textures.end()) {
-       // std::cout << "se encontró la textura para Object: " << static_cast<int>(id) << std::endl;
         return it->second;
     }
-    std::cout << "No se encontró la textura para Object: " << static_cast<int>(id) << std::endl;
-    std::cout << "Claves disponibles: ";
-    for (const auto& pair: textures) {
-        std::cout << static_cast<int>(pair.first) << " ";
-    }
-    std::cout << std::endl;
     throw std::runtime_error("Textura no encontrada.");
     return nullptr;
 }

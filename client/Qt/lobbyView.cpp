@@ -106,7 +106,8 @@ void imprimirPlayer(const Player& p) {
     std::cout << "Nombre del jugador: " << p.info.name_player << std::endl;
     std::cout << "Nombre del juego: " << p.info.name_game << std::endl;
     std::cout << "Equipo: " << p.team << std::endl;
-    std::cout << "Skin: " << p.skin << std::endl;
+    std::cout << "Skin: tt " << p.skin_tt << std::endl;
+    std::cout << "Skin ct: " << p.skin_ct << std::endl;
     std::cout << "Mapa: " << p.map << std::endl;
 }
 
@@ -143,15 +144,15 @@ FUNCIONES DE UTILIDAD
 */
 void LobbyView::function_join() {
 
-    Skins skins(get_skin_counter(infoPlayer.skin2), get_skin_terrorist(infoPlayer.skin));
+    Skins skins(get_skin_counter(infoPlayer.skin_ct), get_skin_terrorist(infoPlayer.skin_tt));
     protocol.send_join_game(JoinGame(infoPlayer.info.name_game, skins));
     emit opcionElegida(LobbyCommandType::JOIN_GAME, infoPlayer);
 }
 
 void LobbyView::function_create() {
-    std::cout << "envio nombre create partida: " << infoPlayer.info.name_game << std::endl;
+
     MapName map_name(get_map(infoPlayer.map));
-    Skins skins(get_skin_counter(infoPlayer.skin2), get_skin_terrorist(infoPlayer.skin));
+    Skins skins(get_skin_counter(infoPlayer.skin_ct), get_skin_terrorist(infoPlayer.skin_tt));
     protocol.send_create_game(CreateGame(infoPlayer.info.name_game, map_name, skins));
     emit opcionElegida(LobbyCommandType::CREATE_GAME, infoPlayer);
 }
@@ -161,7 +162,6 @@ void LobbyView::update_join_list() {
     list_games->clear();
     for (const std::string& partida: list) {
         list_games->addItem(QString::fromStdString(partida));
-        qDebug() << "Partida añadida:" << QString::fromStdString(partida);
     }
 }
 /*
@@ -287,18 +287,20 @@ void LobbyView::section_skins(QVBoxLayout* selection) {
     h_layout->addStretch(1);
     h_layout->addLayout(ct_column);
     selection->addLayout(h_layout);
+
     connect(combo_terrorist, &QComboBox::currentTextChanged, [this, tt_img](const QString& skin) {
-        infoPlayer.skin2 = skin.toStdString();
+        infoPlayer.skin_tt = skin.toStdString();
         QPixmap pixmap(this->img_skins_tt.at(skin));  // Recordatorio, Pixmap es la img en path
         tt_img->setPixmap(pixmap.scaled(300, 300, Qt::KeepAspectRatio));
     });
     connect(combo_counter_terrorist, &QComboBox::currentTextChanged,
             [this, ct_img](const QString& skin) {
-                infoPlayer.skin = skin.toStdString();
+                infoPlayer.skin_ct = skin.toStdString();
                 // Recordatorio, Pixmap es la img en path
                 QPixmap pixmap(this->img_skins_ct.at(skin));
                 ct_img->setPixmap(pixmap.scaled(300, 300, Qt::KeepAspectRatio));
             });
+
     // Aca seteamos la primera img
     QPixmap ct_default(img_skins_ct.begin()->second);
     ct_img->setPixmap(ct_default.scaled(300, 300, Qt::KeepAspectRatio));
@@ -357,7 +359,6 @@ void LobbyView::configure_window_join(QWidget* window_join) {
     QWidget* formWidget = new QWidget(window_join);
     this->list_games = create_item(window_join, options);
     connect(this->list_games, &QListWidget::itemClicked, [this, options](QListWidgetItem* item) {
-        qDebug() << item->text();
         infoPlayer.info.name_game = item->text().toStdString();
     });
     //

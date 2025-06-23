@@ -9,7 +9,7 @@ effect:
   DROP: assets/sfx/items/drop.wav
   DIE: assets/sfx/player/die1.wav
   PICK_UP: assets/sfx/items/pickup.wav
-  BUY: assets/sfx/wpm_moveselect.wav
+  BUY: assets/sfx/wpn_moveselect.wav
 
 shoot:
   GLOCK: assets/sfx/weapons/glock18.wav

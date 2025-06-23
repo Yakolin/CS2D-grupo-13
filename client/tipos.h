@@ -186,8 +186,8 @@ struct Claves_skins {
 
 struct Player {
     std::string team;
-    std::string skin;
-    std::string skin2;
+    std::string skin_ct;
+    std::string skin_tt;
     InfoGame info;
     std::string map;
 };

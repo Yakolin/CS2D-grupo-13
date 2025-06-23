@@ -134,6 +134,7 @@ QWidget* ScoreBoard::add_table(std::map<player_id_t, InfoPlayer>& score_table, c
 }
 
 int ScoreBoard::show_scores_game() {
+    std::cout << "entro a estadisticas \n";
 
     QWidget* info_ranking = new QWidget();
     info_ranking->setStyleSheet("QWidget { background-color: rgb(36, 36, 36); color: rgb(255, 255, "
@@ -145,7 +146,7 @@ int ScoreBoard::show_scores_game() {
     filter_table(cts,tts);
 
     info_ranking->resize(900, 500);
-    QGridLayout* mainLayout = new QGridLayout(info_ranking);
+    QGridLayout* mainLayout = new QGridLayout();
     mainLayout->addWidget(add_table(cts,"Rankig Counter-Terrorist"),0,0);
     mainLayout->addWidget(add_table(tts,"Ranking Terrorist"),0,1);
     mainLayout->addWidget(graficoBarrasEquipo("CT", info_ranking), 2, 0);

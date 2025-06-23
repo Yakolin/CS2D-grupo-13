@@ -108,6 +108,8 @@ std::map<player_id_t, InfoPlayer> Vista::showGame() {
     } catch (const QuitGameException& e) {
         table = gameView.get_info_players_map();
         free_components(ventana, renderer);
+    } catch (const GameFinishExeption& e) {
+        free_components(ventana, renderer);
     } catch (const std::exception& e) {
         std::cerr << "Excepción atrapada en vista: " << e.what() << std::endl;
         free_components(ventana, renderer);
@@ -132,16 +134,6 @@ void Vista::showScoreboard(const std::map<player_id_t, InfoPlayer>& table) {
         score.show_scores_game();
         app.exec();
     }
-}
-
-void Vista::reset() {
-    this->opcionElegida = LobbyCommandType::NONE;
-    this->info_game.info.name_game = "";
-    this->info_game.info.name_player = "";
-    this->info_game.map = "";
-    this->info_game.skin2 = "";
-    this->info_game.skin = "";
-    this->info_game.team = "";
 }
 
 Vista::~Vista() {

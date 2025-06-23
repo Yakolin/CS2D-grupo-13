@@ -2,10 +2,6 @@ window:
   width: 700
   height: 500
 
-camera:
-  viewport_logical_width: 700
-  viewport_logical_height: 500
-
 fov:
   intensity: 128
 

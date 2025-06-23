@@ -195,7 +195,7 @@ void GameManager::change_teams() {
     change_rounds_wins();
 }
 GameImage GameManager::get_frame() {
-    if (round == max_rounds) {
+    if (round - 1 == max_rounds) {
         if (game_stats.rounds_TT == game_stats.rounds_CT) {
             max_rounds++;
         } else {

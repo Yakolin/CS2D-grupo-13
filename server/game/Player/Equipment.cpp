@@ -45,6 +45,7 @@ void Equipment::buy_weapon_by_code(const WeaponCode& weapon_code, money_t& money
         return;
     primary = weapon_factory.weapon_create(weapon_code);
     money -= price;
+    this->change_weapon(EquipType::PRIMARY);
     // sound_zone.want_emit_sound(player_id, SoundType::BUY);
 }
 void Equipment::reset_equipment() {

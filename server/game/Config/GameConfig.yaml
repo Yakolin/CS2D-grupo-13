@@ -68,7 +68,7 @@ Player:
   multiplier_points: 6
 Timer:
   time_buy: 5
-  time_round: 250
+  time_round: 50
   time_bomb: 25
   time_ending: 5
 

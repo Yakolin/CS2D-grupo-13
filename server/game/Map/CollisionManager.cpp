@@ -86,7 +86,8 @@ std::vector<BulletImage> CollisionManager::get_bullets_image() {
 void CollisionManager::find_players_in(player_id_t caster, ColliderDamage& collider_damage,
                                        std::vector<PlayerEntity>& players_affected) {
     for (auto& player: players_in_map)
-        if (player.first != caster && collider_damage.collider->is_in(player.second.position))
+        if (player.first != caster && !player.second.player.lock()->is_dead() &&
+            collider_damage.collider->is_in(player.second.position))
             players_affected.push_back(player.second);
 }
 bool CollisionManager::hit(const chance_hit_t chance_hit, distance_t distance) {

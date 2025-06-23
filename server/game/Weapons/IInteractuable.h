@@ -11,6 +11,7 @@ public:
     virtual bool shoot_burst(ISpawneableZone& spawn, player_id_t, Position& direction) = 0;
     WeaponCode get_weapon_code() { return code; }
     virtual bool reload() = 0;
+    virtual bool have_bullets() = 0;
     virtual ~IInteractuable() = default;
 };
 

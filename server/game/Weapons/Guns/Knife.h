@@ -20,6 +20,8 @@ public:
 
     bool reload() override;
 
+    bool have_bullets() override;
+
     WeaponImage get_weapon_image() override;  // esto deberia salir de weapon y estar especifico
                                               // para cada caso, seria KnifeImage por ej
 

@@ -43,6 +43,8 @@ public:
 
     virtual bool reload() override;
 
+    virtual bool have_bullets() override;
+
     virtual bool is_droppable() override = 0;
 
     virtual WeaponImage get_weapon_image() override;

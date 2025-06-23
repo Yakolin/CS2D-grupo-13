@@ -90,13 +90,20 @@ void Equipment::reload() {
 }
 
 void Equipment::shoot(Position& position) {
-    if (weapon_in_hand->get_weapon_code() == WeaponCode::BOMB && bomb.lock()) {
-        if (weapon_in_hand->set_on_action(this->spawneable_zone, this->player_id, position)) {
-            this->change_weapon(EquipType::SECONDARY);
-            bomb.reset();
+    if (this->weapon_in_hand->have_bullets()) {
+        if (weapon_in_hand->get_weapon_code() == WeaponCode::BOMB && bomb.lock()) {
+            if (weapon_in_hand->set_on_action(this->spawneable_zone, this->player_id, position)) {
+                this->change_weapon(EquipType::SECONDARY);
+                bomb.reset();
+            }
+        } else {
+            weapon_in_hand->set_on_action(this->spawneable_zone, this->player_id, position);
         }
     } else {
-        weapon_in_hand->set_on_action(this->spawneable_zone, this->player_id, position);
+        if (this->weapon_in_hand->reload()) {
+            this->sound_zone.want_emit_sound(this->player_id,
+                                             std::make_shared<Sound>(SoundType::RELOAD));
+        }
     }
 }
 

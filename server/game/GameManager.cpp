@@ -145,13 +145,16 @@ void GameManager::start_game() {
 
 bool GameManager::has_players() { return (this->players.size() > 0); }
 
+bool GameManager::has_enough_players() { return (this->players.size() != 1); }
+
 bool GameManager::has_ended() {
     return (this->game_stats.state == GameState::CT_WIN_GAME ||
             this->game_stats.state == GameState::TT_WIN_GAME ||
             this->game_stats.state == GameState::GAME_ENDED);
 }
 
-void GameManager::stop_game() {}
+void GameManager::stop_game() { this->game_stats.state = GameState::GAME_ENDED; }
+
 bool GameManager::check_round_finished() {
     bool all_ct_dead = true;
     bool all_tt_dead = true;

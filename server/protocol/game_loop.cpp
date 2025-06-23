@@ -54,26 +54,39 @@ bool GameLoop::all_players_ready() {
 
 bool GameLoop::waiting_for_players() { return !this->game_started; }
 
+void GameLoop::end_game() {
+    GameImage game_image;
+    game_image.game_state = GameStateImage(GameState::GAME_ENDED, 0, 0);
+    this->game.stop_game();
+    this->broadcast(
+            game_image);  // solo habra un jugador y es el caso en el que no era single player
+}
+
 void GameLoop::run() {
     this->game_started = true;
-    game.start_game();  // esto debe de llamarse posiblemente
+    game.start_game();
     this->constant_rate_loop.execute();
 }
 
 void GameLoop::step() {
+    if (!this->game.has_enough_players() && this->max_players != 1) {
+        this->end_game();
+    }
+
     if (!this->game.has_players() || this->game.has_ended()) {
         this->stop();
         return;
     }
     try {
-        std::unique_ptr<ClientAction> action;
-        while (this->recv_queue->try_pop(action)) {
-            game.process(*action);
+        if (!this->game.has_ended()) {
+            std::unique_ptr<ClientAction> action;
+            while (this->recv_queue->try_pop(action)) {
+                game.process(*action);
+            }
+            contador++;
+            GameImage game_image = this->game.get_frame();
+            this->broadcast(game_image);
         }
-        contador++;
-        // std::cout << "Recibi, clientAction \nContador: " << contador << std::endl;
-        GameImage game_image = this->game.get_frame();
-        this->broadcast(game_image);
     } catch (const ClosedQueue& e) {
         this->stop();
     } catch (const std::runtime_error& e) {

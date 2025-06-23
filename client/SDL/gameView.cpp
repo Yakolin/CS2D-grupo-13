@@ -13,13 +13,16 @@ GameView::GameView(Socket& skt, const GameInfo& game_info, const Player& info_Pl
         config(config),
         config_sound(config.get_volumen(), config.get_volumen_music()),
         controller(skt),
-        constant_rate_loop([this]() { return this->should_keep_running(); },
-                           [this]() { this->step(); }),
+        constant_rate_loop([this]() {
+    return this->should_keep_running(); },
+                           [this]() {
+    this->step(); }),
         ventana(ventana),
         renderer(renderer),
         camera(config.get_window_width(), config.get_window_height()),
         manger_texture(manger_texture),
         player(new PlayerView(11, 4, load_claves(info_Player), 50.0f, &camera, &manger_texture,
+                              config)),
                               config)),
         players(),
         snapshot(),
@@ -51,6 +54,67 @@ void GameView::reset_values(PlayerView* player, const float& x_pixeles, const fl
     player->setInterpTime(0.0f);
     player->setInterpDuration(0.1f);
 }
+
+void print_game_image(const GameImage& image) {
+    /*
+    std::cout << "=== Game Image ===\n";
+    std::cout << "Client ID: " << image.client_id << "\n";
+    std::cout << "=== Game Image ===\n";
+    std::cout << "--- Players ---\n";
+    std::cout << "Client ID: " << image.client_id << "\n";
+    */
+    /*  for (const auto& player: image.players_images) {
+
+          std::cout << "Player ID: " << player.player_id << "\n";
+          std::cout << "  Position: (" << player.position.x << ", " << player.position.y << ")\n";
+                  std::cout << "  Health: " << static_cast<int>(player.health) << "\n";
+                   std::cout << "  Health: " << static_cast<int>(player.health) << "\n";
+                  std::cout << "  Points: " << static_cast<int>(player.points) << "\n";
+                  std::cout << "  Money: " << player.money << "\n";
+                  std::cout << "  Equipped weapon: " << static_cast<int>(player.equipped_weapon) <<
+             "\n"; std::cout << "  Mouse position: (" << player.mouse_position.x << ", "
+                            << player.mouse_position.y << ")\n";
+                  std::cout << "  Team: " << (player.team == Team::CT ? "CT" : "TT") << "\n";
+                  std::cout << "  Weapons:\n";
+                  for (const auto& weapon: player.weapons) {
+                      std::cout << "    WeaponCode: " << static_cast<int>(weapon.weapon_code)
+                      << ", Current: " << static_cast<int>(weapon.current_bullets)
+                                << ", Magazine: " << static_cast<int>(weapon.magazine)
+                                << ", Inventory: " << static_cast<int>(weapon.inventory_bullets) <<
+             "\n";
+                   }*/
+    /*   for (const auto& sound: player.heared_sounds.common_sounds) {
+           std::cout << "Escuche comun:\n";
+           std::cout << "Sound: " << static_cast<int>(sound.type) << " A :" << sound.distance
+                     << std::endl;
+       }
+       for (const auto& sound: player.heared_sounds.shoot_sounds) {
+           std::cout << "Escuche shoot:\n";
+           std::cout << "Sound: " << static_cast<int>(sound.type) << " A :" << sound.distance
+                     << "del arma: " << static_cast<int>(sound.code) << std::endl;
+       }
+   }
+       for (const auto& bullet: image.bullets_in_air) {
+           std::cout << "  From (" << bullet.initial.x << ", " << bullet.initial.y << ") to ("
+                     << bullet.end.x << ", " << bullet.end.y << ")\n";
+       }
+       std::cout << "--- Bomb ---\n";
+       std::cout << "  Position: (" << image.bomb.position.x << ", " << image.bomb.position.y <<
+      ")\n"; std::cout << "  State: " << static_cast<int>(image.bomb.state) << "\n";
+     */
+    /*
+       std::cout << "--- Dropped Weapons ---\n";
+       for (const auto& dropped: image.dropped_things) {
+           std::cout << "  WeaponCode: " << static_cast<int>(dropped.weapon_code) << ", Position: ("
+           << dropped.position.x << ", " << dropped.position.y << ")\n";
+       }
+*/
+    std::cout << "--- Game State ---\n";
+    std::cout << "  State: " << static_cast<int>(image.game_state.state) << "\n";
+    std::cout << "  Time: " << image.game_state.time << "\n";
+    std::cout << "  Round: " << static_cast<int>(image.game_state.round) << "\n";
+}
+
 
 void GameView::update_bullets_snapshot() {
     int tile_width = config.get_tile_width();
@@ -133,8 +197,7 @@ void GameView::delete_players_death() {
 
 void GameView::update_status_game() {
 
-    if (snapshot.game_state.state == GameState::GAME_ENDED ||
-        snapshot.game_state.state == GameState::CT_WIN_GAME ||
+    if (snapshot.game_state.state == GameState::CT_WIN_GAME ||
         snapshot.game_state.state == GameState::TT_WIN_GAME) {
         this->keep_running = false;
         controller.stop();
@@ -171,6 +234,8 @@ void GameView::update_status_game() {
 
         } else if (players.find(id) == players.end()) {
 
+            PlayerView* nuevo_jugador = new PlayerView(x_pixeles, y_pixeles, player_img.skin, 50.0f,
+                                                       &camera, &manger_texture, config);
             PlayerView* nuevo_jugador = new PlayerView(x_pixeles, y_pixeles, player_img.skin, 50.0f,
                                                        &camera, &manger_texture, config);
             nuevo_jugador->update_view_angle(player_img.mouse_position.x * 32,

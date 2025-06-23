@@ -36,6 +36,7 @@ private:
 
     max_players_t read_max_players_from_config(
             const std::string& path = "server/protocol/server_config.yaml");
+    void end_game();
     void step();
     void broadcast(GameImage& game_image);
 

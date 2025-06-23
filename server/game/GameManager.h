@@ -79,6 +79,7 @@ public:
     GameInfo get_game_info();
     void start_game();
     bool has_players();
+    bool has_enough_players();  // es decir es distinto de uno
     bool has_ended();
     void stop_game();
     virtual void process(ClientAction& action) override;

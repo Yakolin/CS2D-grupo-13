@@ -140,14 +140,10 @@ void ManagerEvent::update_window() {
 
 void ManagerEvent::handle_events(const SDL_Event& event) {
     try {
-        if (event.type == SDL_QUIT) {
+        if (event.type == SDL_QUIT || this->snapshot.game_state.state == GameState::GAME_ENDED) {
             this->controller.stop();
             this->keep_running = false;
             throw QuitGameException("Juego cerrado por el usuario");
-        }
-        if (this->snapshot.game_state.state == GameState::GAME_ENDED) {
-            this->controller.stop();
-            this->keep_running = false;
         }
         if (event.type == SDL_KEYDOWN) {
             SDL_Keycode tecla = event.key.keysym.sym;

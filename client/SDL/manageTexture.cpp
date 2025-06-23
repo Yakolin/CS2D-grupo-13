@@ -43,8 +43,8 @@ ManageTexture::ManageTexture(SDL_Renderer* renderer): renderer(renderer) {
     load(Object::TREE_DESIERTO, "assets/gfx/sprites/palmr.png");
     load(Object::TREE_ENTRENAMIENTO, "assets/gfx/sprites/plant1r.png");
 
-    load(Object::PARASOL1, "assets/gfx/sprites/de_votage/umbrella1.png");
-    load(Object::PARASOL2, "assets/gfx/sprites/de_votage/umbrella2.png");
+    load(Object::PARASOL1, "assets/gfx/sprites/de_vantage/umbrella1.png");
+    load(Object::PARASOL2, "assets/gfx/sprites/de_vantage/umbrella2.png");
     load(Object::STONE, "assets/gfx/backgrounds/stone1.jpg");
     load(Object::WATER, "assets/gfx/backgrounds/water4.jpg");
     load(Object::BOX1, "assets/gfx/backgrounds/b1.jpeg");
@@ -428,14 +428,18 @@ SDL_Rect ManageTexture::get_rect(const TextView& id) const {
     }
     return SDL_Rect{0, 0, 0, 0};
 }
+
 SDL_Texture* ManageTexture::get_weapon(const WeaponCode& id) const {
     auto it = textures_weapons.find(id);
     if (it != textures_weapons.end()) {
         return it->second;
     }
-    throw std::runtime_error("Textura no encontrada para el arma solicitada.");
-}
+    std::ostringstream oss;
+    oss << "Textura no encontrada para el arma solicitada: " << static_cast<int>(id);
+    std::cerr << oss.str() << std::endl; 
 
+    throw std::runtime_error(oss.str());  
+}
 
 SDL_Texture* ManageTexture::get(const Object& id) const {
     auto it = textures.find(id);

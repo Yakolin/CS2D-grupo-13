@@ -29,7 +29,7 @@ public:
      */
     void actualizarStencil(const int nuevo_ancho, const int nuevo_alto, const float apertura);
 
-    bool is_in_fov(const PlayerView& other);
+    bool is_in_fov(PlayerView& other);
 };
 
-#endif // FIELD_OF_VIEW_H
+#endif  // FIELD_OF_VIEW_H

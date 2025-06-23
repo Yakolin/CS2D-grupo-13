@@ -177,7 +177,7 @@ std::string get_bomb_state(BombImage& bomb) {
             bomb_state_str = " DESACTIVADA";
             break;
         case BombState::EXPLOTED:
-            bomb_state_str = " EXPLOTÓ";
+            bomb_state_str = " EXPLOTO";
             break;
         default:
             bomb_state_str = " ???";

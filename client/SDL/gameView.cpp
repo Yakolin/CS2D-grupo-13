@@ -1,7 +1,8 @@
 #include "gameView.h"
 
-#include <SDL_mixer.h>
 #include <unordered_set>
+
+#include <SDL_mixer.h>
 
 
 int counter2 = 0;
@@ -39,15 +40,21 @@ GameView::GameView(Socket& skt, const GameInfo& game_info, const Player& info_Pl
 }
 
 TerroristSkin toItemTerrorism(const std::string& str) {
-    if (str == "Phoenix") return TerroristSkin::PHOENIX;
-    if (str == "L337 Krew") return TerroristSkin::L337_KREW;
-    if (str == "Arctic Avenger") return TerroristSkin::ARCTIC_AVENGER;
+    if (str == "Phoenix")
+        return TerroristSkin::PHOENIX;
+    if (str == "L337 Krew")
+        return TerroristSkin::L337_KREW;
+    if (str == "Arctic Avenger")
+        return TerroristSkin::ARCTIC_AVENGER;
     return TerroristSkin::GUERRILLA;
 }
 CounterTerroristSkin toItemCounterTerrorism(const std::string& str) {
-    if (str == "Seal Force") return CounterTerroristSkin::SEAL;
-    if (str == "German GSG-9") return CounterTerroristSkin::GSG9;
-    if (str == "UK SAS") return CounterTerroristSkin::SAS;
+    if (str == "Seal Force")
+        return CounterTerroristSkin::SEAL;
+    if (str == "German GSG-9")
+        return CounterTerroristSkin::GSG9;
+    if (str == "UK SAS")
+        return CounterTerroristSkin::SAS;
     return CounterTerroristSkin::GIGN;
 }
 Skins GameView::load_claves(const Player& info_Player) {
@@ -162,7 +169,8 @@ void GameView::handle_state_game() {
         config_sound.set_round(false);
         config_sound.set_bomb(false);
     }
-    if (config_sound.get_round_sound()) return;
+    if (config_sound.get_round_sound())
+        return;
 
     if (state == GameState::CT_WIN_GAME || state == GameState::CT_WIN_ROUND) {
         config_sound.play_sound(EffectType::WIN_CT, 0);
@@ -189,28 +197,27 @@ void GameView::update_sounds(const PlayerImage& player) {
     handle_state_game();
 }
 
-void GameView::delete_players_death(){
+void GameView::delete_players_death() {
 
     std::unordered_set<player_id_t> jugadores_vivos;
-    for (const auto& player_img : snapshot.players_images) {
+    for (const auto& player_img: snapshot.players_images) {
         jugadores_vivos.insert(player_img.player_id);
     }
 
     auto it = players.begin();
     while (it != players.end()) {
         if (jugadores_vivos.find(it->first) == jugadores_vivos.end()) {
-            delete it->second; 
-            it = players.erase(it); 
+            delete it->second;
+            it = players.erase(it);
         } else {
-            ++it; 
+            ++it;
         }
     }
-
 }
 
 void GameView::update_status_game() {
 
-    if(snapshot.game_state.state == GameState::GAME_ENDED){
+    if (snapshot.game_state.state == GameState::GAME_ENDED) {
         this->keep_running = false;
         controller.stop();
     }
@@ -222,9 +229,9 @@ void GameView::update_status_game() {
     bomba->update_bomb(snapshot.bomb);
     this->map->update_weapon_dropped(snapshot.dropped_things);
 
-    if(!config_sound.get_bomb_sound() && snapshot.bomb.state == BombState::ACTIVATED ){
+    if (!config_sound.get_bomb_sound() && snapshot.bomb.state == BombState::ACTIVATED) {
         config_sound.set_bomb(true);
-        bomba_timer.start(snapshot.game_state.time); 
+        bomba_timer.start(snapshot.game_state.time);
     }
 
 
@@ -281,11 +288,11 @@ void GameView::draw_players() {
         }
     }
 }
-void GameView::draw_timer_bomb(){
+void GameView::draw_timer_bomb() {
 
     if (bomba_timer.debe_dibujar_flash()) {
         SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
-        SDL_SetRenderDrawColor(renderer, 255, 0, 0, 80); 
+        SDL_SetRenderDrawColor(renderer, 255, 0, 0, 80);
         SDL_Rect pantalla = {0, 0, config.get_window_width(), config.get_window_height()};
         SDL_RenderFillRect(renderer, &pantalla);
     }

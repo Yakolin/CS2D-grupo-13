@@ -56,6 +56,7 @@ private:
 
     GameImage generate_game_image();
     void give_bomb();
+    void give_money_team(Team team);
     void reset_round(bool full_reset);
     bool check_round_finished();
     void update_teams_count(Team from);

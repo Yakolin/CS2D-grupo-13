@@ -71,12 +71,13 @@ void GameManager::handle_empty_team() {
         }
     }
 }
+void GameManager::give_money_team(Team team) {
+    for (auto& it: players)
+        if (it.second->get_team() == team)
+            it.second->give_money();
+}
 void GameManager::reset_round(bool full_reset) {
-    for (const auto& player: players) {
-        player.second->reset(full_reset);
-        // Le damos dinero x cada ronda
-        player.second->give_money();
-    }
+    for (const auto& player: players) player.second->reset(full_reset);
     if (!enough_players_teams())
         handle_empty_team();
     map_game.respawn_players();
@@ -170,11 +171,13 @@ bool GameManager::check_round_finished() {
     if (bomb->is_defused() || (time_end && !bomb->is_activate())) {
         game_stats.rounds_CT++;
         game_stats.state = GameState::CT_WIN_ROUND;
+        give_money_team(Team::CT);
         return true;
     } else if (time_end && !bomb->is_defused()) {
         bomb->set_exploted();
         game_stats.rounds_TT++;
         game_stats.state = GameState::TT_WIN_ROUND;
+        give_money_team(Team::TT);
         return true;
     }
     return false;
@@ -187,7 +190,6 @@ void GameManager::change_teams() {
 }
 GameImage GameManager::get_frame() {
     if (round == game_config.get_max_rounds()) {
-        std::cout << "Termino el juego\n";
         game_stats.state = (game_stats.rounds_TT > game_stats.rounds_CT) ? GameState::TT_WIN_GAME :
                                                                            GameState::CT_WIN_GAME;
         return generate_game_image();
@@ -198,7 +200,6 @@ GameImage GameManager::get_frame() {
         game_stats.state = GameState::ROUND_STARTED;
         bool round_finished = check_round_finished();
         if (round_finished) {
-            std::cout << "Termino la ronda\n";
             timer.round_end();
         }
     }

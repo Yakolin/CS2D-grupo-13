@@ -80,6 +80,22 @@ void ManagerEvent::handle_extras(SDL_Keycode& tecla) {
         controller.sender_defuse();
 }
 
+void manejarCursor(CursorContext contexto) {
+    switch (contexto) {
+        case CursorContext::NORMAL:
+            std::cout << "Cursor normal.\n";
+            break;
+        case CursorContext::ENEMY:
+            std::cout << "Cursor enemigo.\n";
+            break;
+        case CursorContext::ALLY:
+            std::cout << "Cursor aliado.\n";
+            break;
+        default:
+            break;
+    }
+}
+
 void ManagerEvent::handle_key_down(SDL_Keycode& tecla) {
     if (snapshot.game_state.state != GameState::TIME_TO_BUY)
         shop.desactivate_shop();
@@ -180,6 +196,7 @@ void ManagerEvent::handle_events(const SDL_Event& event) {
             }
         }
         if (event.type == SDL_MOUSEBUTTONUP && event.button.button == SDL_BUTTON_LEFT) {
+            config_sound.play_sound(EffectType::MOUSE,0);
             this->blocking_mouse_motion = false;
             bool was_pressed = left_mouse_pressed;
             left_mouse_pressed = false;

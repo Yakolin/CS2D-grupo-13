@@ -36,7 +36,7 @@ private:
     LobbyCommandType opcionElegida;
     Player info_game;
 
-    bool init_game(SDL_Window*& ventana, SDL_Renderer*& renderer, const GameConfig& config);
+    void init_game(SDL_Window*& ventana, SDL_Renderer*& renderer, const GameConfig& config);
 
     void free_components(SDL_Window* ventana, SDL_Renderer* renderer);
 

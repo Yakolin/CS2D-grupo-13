@@ -59,6 +59,8 @@ EffectType sound_from_string(const std::string& str) {
         return EffectType::DESACTIVATED;
     if (str == "PIP")
         return EffectType::PIP;
+    if (str == "MOUSE")
+        return EffectType::MOUSE;
     throw std::invalid_argument("Tipo de effecto desconocido: " + str);
 }
 

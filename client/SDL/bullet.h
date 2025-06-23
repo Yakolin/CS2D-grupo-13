@@ -26,6 +26,9 @@ public:
     void calculate_values(SDL_Rect& destination_rect, double& angulo, SDL_Point& center,
                           const SDL_Point& p_init, const SDL_Point& p_end);
 
+    void draw(SDL_Renderer& renderer, SDL_Texture* texture, SDL_Rect destination_rect,
+              double angulo, SDL_Point center);
+
     void draw(SDL_Renderer& renderer) override;
 
     float get_currentX();

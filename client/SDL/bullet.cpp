@@ -24,6 +24,9 @@ void Bullet::calculate_values(SDL_Rect& destination_rect, double& angulo, SDL_Po
     center = {0, longitud};
 }
 
+void Bullet::draw(SDL_Renderer& renderer, SDL_Texture* texture,SDL_Rect destination_rect,double angulo,  SDL_Point center){
+    SDL_RenderCopyEx(&renderer, texture, nullptr, &destination_rect, angulo, &center,SDL_FLIP_NONE);
+}
 void Bullet::draw(SDL_Renderer& renderer) {
 
     if (code == WeaponCode::M3) {
@@ -35,8 +38,7 @@ void Bullet::draw(SDL_Renderer& renderer) {
         SDL_Rect destination_rect;
         calculate_values(destination_rect, angulo, center, p_init, p_end);
         SDL_Texture* texture = crear_cono(&renderer, p_init, p_end, 45, 1);
-        SDL_RenderCopyEx(&renderer, texture, nullptr, &destination_rect, angulo, &center,
-                         SDL_FLIP_NONE);
+        draw(renderer, texture, destination_rect, angulo, center);
 
     } else {
         SDL_RenderDrawLine(&renderer, static_cast<int>(current.x - camera.x),

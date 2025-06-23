@@ -38,36 +38,31 @@ bool Vista::showLobby() {
 }
 
 
-bool Vista::init_game(SDL_Window*& ventana, SDL_Renderer*& renderer, const GameConfig& config) {
-
-    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+void Vista::init_game(SDL_Window*& ventana, SDL_Renderer*& renderer, const GameConfig& config) {
+    if (SDL_Init(SDL_INIT_VIDEO) != 0) 
         throw std::runtime_error(std::string("Error al inicializar SDL: ") + SDL_GetError());
-        return false;
-    }
 
     ventana = SDL_CreateWindow("Mapa", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-                               config.get_window_width(), config.get_window_height(),
-                               SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
-    if (!ventana) {
+                              config.get_window_width(), config.get_window_height(),
+                              SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+    if (!ventana) 
         throw std::runtime_error(std::string("Error al crear la ventana: ") + SDL_GetError());
-    }
     renderer = SDL_CreateRenderer(ventana, -1, SDL_RENDERER_ACCELERATED);
-    if (!renderer) {
+    if (!renderer) 
         throw std::runtime_error(std::string("Error al crear el renderer: ") + SDL_GetError());
-    }
     SDL_RenderSetLogicalSize(renderer, config.get_viewpost_width(), config.get_viewpost_height());
-    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
-        printf("No se pudo inicializar SDL_mixer: %s\n", Mix_GetError());
-        return 1;
-    }
-    SDL_ShowCursor(SDL_DISABLE);
-    Mix_Init(MIX_INIT_MP3 | MIX_INIT_OGG);
 
-    if (!(IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG) & (IMG_INIT_PNG | IMG_INIT_JPG))) {
+    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) 
+        throw std::runtime_error(std::string("No se pudo inicializar SDL_mixer: ") + Mix_GetError());
+    
+    SDL_ShowCursor(SDL_DISABLE);
+
+    if (!(Mix_Init(MIX_INIT_MP3 | MIX_INIT_OGG) & (MIX_INIT_MP3 | MIX_INIT_OGG))) 
+        throw std::runtime_error(std::string("Error inicializando SDL_mixer: ") + Mix_GetError());
+
+    if (!(IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG) & (IMG_INIT_PNG | IMG_INIT_JPG))) 
         throw std::runtime_error(std::string("Error inicializando SDL_image: ") + IMG_GetError());
-        return false;
-    }
-    return true;
+
 }
 
 
@@ -92,8 +87,7 @@ std::map<player_id_t, InfoPlayer> Vista::showGame() {
     SDL_Window* ventana = nullptr;
     SDL_Renderer* renderer = nullptr;
     GameConfig config;
-    if (!init_game(ventana, renderer, config))
-        throw std::runtime_error(std::string("Error a inicializar game"));
+    init_game(ventana, renderer, config);
 
     ManageTexture manger_texture(renderer);
     SDL_Texture* textura = manger_texture.get(Object::FONDO_ESPERA);

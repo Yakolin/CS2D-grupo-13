@@ -27,3 +27,4 @@ soundView:
   PIP: assets/sfx/weapons/c4.wav
   WIN_CT: assets/sfx/radio/ctwin.ogg
   WIN_TT: assets/sfx/radio/terwin.ogg
+  MOUSE: assets/sfx/wpn_select.wav

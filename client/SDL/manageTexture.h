@@ -40,6 +40,9 @@ public:
     SDL_Texture* create_stencil(const int& ancho, const int& alto, const float& angle,
                                 const float& apertura,const int& intensity);
 
+    SDL_Texture* crear_cono(SDL_Point p_inicial, SDL_Point p_final, double apertura_grados,
+                            int paso);
+
 
     SDL_Texture* get_weapon(const WeaponCode& id) const;
 

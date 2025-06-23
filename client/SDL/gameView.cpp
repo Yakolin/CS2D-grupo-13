@@ -139,7 +139,7 @@ void GameView::update_bullets_snapshot() {
         Coordenada end = {static_cast<float>(bullet.end.x * tile_width),
                           static_cast<float>(bullet.end.y * tile_height)};
 
-        Bullet bullet_aux(init, end, bullet.width, manger_texture.get(Object::BULLET));
+        Bullet bullet_aux(init, end, bullet.width, bullet.code);
         this->bullets.push_back(bullet_aux);
     }
 }

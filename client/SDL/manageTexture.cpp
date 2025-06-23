@@ -363,6 +363,7 @@ SDL_Texture* ManageTexture::create_stencil(const int& ancho, const int& alto, co
 }
 
 
+
 bool ManageTexture::load_weapons(const WeaponCode& id, const std::string& filePath) {
 
     SDL_Surface* surface = IMG_Load(filePath.c_str());

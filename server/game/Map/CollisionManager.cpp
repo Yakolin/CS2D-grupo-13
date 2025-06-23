@@ -57,7 +57,7 @@ bool CollisionManager::check_bullet_wall(const Vector2f& initial_pos, const Vect
     Vector2f direction(final_pos.x - initial_pos.x, final_pos.y - initial_pos.y);
     direction.normalize();
     float distance = initial_pos.distance(final_pos);
-    float step = 0.2;
+    float step = 0.5;
     float traveled = 0;
     Vector2f current_pos = initial_pos;
     while (traveled <= distance) {

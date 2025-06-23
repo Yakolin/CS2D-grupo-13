@@ -52,8 +52,6 @@ private:
     WeaponCode equipped_weapon;
     std::unordered_map<Team , SDL_Texture*> textures_player;
 
-    void calcular();
-
     std::unordered_map<Team, SDL_Texture*> load_claves(const Skins& clave_player);
 
 
@@ -62,34 +60,33 @@ public:
                         Camera* camera_reseiver, ManageTexture* manger_texture, GameConfig& config);
 
     void set_muerto(const bool& new_state);
-    void update_equip(const PlayerImage player_aux);
-
+    
+    void update_equip(const PlayerImage& player_aux);
 
     void setPrevPos(const float& new_x, const float& new_y);
+
     void setTargetPos(const float& new_x, const float& new_y);
-    ~PlayerView();
+
     void setInterpDuration(const float& duration);
+
     void add_speed(const SDL_Keycode& tecla);
 
     void stop_speed(const SDL_Keycode& tecla);
 
-    void auxiliar(const SDL_Keycode& tecla);
-
     void update_weapons(const std::vector<WeaponImage>& weapons_vec);
+
     void activate_weapon();
 
     void draw(SDL_Renderer& renderer) override;
 
-    void update_render();
-
     void update(const float& dt);
+
     void update_view_angle(const int& mause_x, const int& mause_y);
 
     Team get_clave_team();
     float getSpeed() const;
-    std::string getRutaPlayer() const;
-    int getWidthImg() const;   // todo no inicializadas
-    int getHeightImg() const;  // todo no incializadas no usar
+    int getWidthImg() const;  
+    int getHeightImg() const;
     float getAnglePlayer() const;
     void setVelX(float vx);
     void setVelY(float vy);
@@ -98,12 +95,13 @@ public:
     void setInterpTime(const float& time);
     int pasar_pixeles_x(const float& tile_x);
     int pasar_pixeles_y(const float& tile_y);
-
     void setXActual(float x);
     void setYActual(float y);
     void setSpeed(float newSpeed);
     float getXActual() const;
     float getYActual()const ;
+
+    ~PlayerView();
 
 
 };

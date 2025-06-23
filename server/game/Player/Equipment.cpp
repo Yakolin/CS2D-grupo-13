@@ -60,12 +60,13 @@ void Equipment::reset_equipment() {
     bomb.reset();
 }
 void Equipment::restore() {
-    if (primary) {
+    if (primary->code != WeaponCode::NONE) {
         this->primary->restart();
         change_weapon(EquipType::PRIMARY);
+    } else {
+        change_weapon(EquipType::SECONDARY);
     }
     this->secondary->restart();
-    change_weapon(EquipType::SECONDARY);
     bomb.reset();
 }
 

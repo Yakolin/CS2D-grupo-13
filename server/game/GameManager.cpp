@@ -65,7 +65,6 @@ void GameManager::update_teams_count(Team from) {
     }
 }
 void GameManager::handle_empty_team() {
-    if (game_stats.players_tt == 0) {}
     Team from = (game_stats.players_tt == 0) ? Team::CT : Team::TT;
     Team to = (from == Team::CT) ? Team::TT : Team::CT;
     for (auto& it: players) {
@@ -83,8 +82,6 @@ void GameManager::give_money_team(Team team) {
 }
 void GameManager::reset_round(bool full_reset) {
     for (const auto& player: players) player.second->reset(full_reset);
-    if (!enough_players_teams())
-        handle_empty_team();
     map_game.respawn_players();
     std::vector<std::shared_ptr<IInteractuable>> weapons;
     for (int i = 0; i < game_config.get_max_dropped_weapons(); i++) {
@@ -167,12 +164,14 @@ bool GameManager::check_round_finished() {
         }
     }
     bool time_end = timer.get_time_round() == 0;
-    if (all_tt_dead || bomb->is_defused() || (time_end && !bomb->is_activate())) {
+
+    if ((all_tt_dead && bomb->is_defused()) || (all_tt_dead && !bomb->is_activate()) ||
+        (time_end && !bomb->is_activate()) || (game_stats.players_tt == 0)) {
         game_stats.rounds_CT++;
         game_stats.state = GameState::CT_WIN_ROUND;
         give_money_team(Team::CT);
         return true;
-    } else if (all_ct_dead || (time_end && !bomb->is_defused())) {
+    } else if (all_ct_dead || (time_end && !bomb->is_defused()) || game_stats.players_ct == 0) {
         if (time_end && !bomb->is_defused())
             bomb->set_exploted();
         game_stats.rounds_TT++;
@@ -212,6 +211,8 @@ GameImage GameManager::get_frame() {
     // Si ya termino el tiempo ending
     if (timer.get_state() == TimerState::ENDING_TIME && timer.get_time_round() == 0) {
         round++;
+        if (!enough_players_teams())
+            handle_empty_team();
         bool full_reset = false;
         // Quiza no deberia ser asi, es decir, / 2 ??
         if (round - 1 == game_config.get_max_rounds() / 2) {

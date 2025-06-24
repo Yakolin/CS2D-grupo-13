@@ -41,7 +41,8 @@ std::vector<std::string> GamesMonitor::list_games() {
     std::lock_guard<std::mutex> lock(mutex);
     std::vector<std::string> game_names;
     for (const auto& game: games) {
-        game_names.push_back(game.first);
+        if (!game.second->is_full())
+            game_names.push_back(game.first);
     }
     return game_names;
 }

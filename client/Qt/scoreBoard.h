@@ -27,13 +27,16 @@ using namespace QtCharts;
 
 class ScoreBoard {
 public:
-    explicit ScoreBoard(const std::map<player_id_t, InfoPlayer>& table);
+    explicit ScoreBoard(const EndGameInfo& end_game_info);
 
     int show_scores_game();
 
     ~ScoreBoard();
 
+    QString state_to_qt_string();
+
 private:
+    GameState game_state;
     std::map<player_id_t, InfoPlayer> scores;
 
     void filter_table(std::map<player_id_t, InfoPlayer>& cts,

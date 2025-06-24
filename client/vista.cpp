@@ -39,30 +39,30 @@ bool Vista::showLobby() {
 
 
 void Vista::init_game(SDL_Window*& ventana, SDL_Renderer*& renderer, const GameConfig& config) {
-    if (SDL_Init(SDL_INIT_VIDEO) != 0) 
+    if (SDL_Init(SDL_INIT_VIDEO) != 0)
         throw std::runtime_error(std::string("Error al inicializar SDL: ") + SDL_GetError());
 
     ventana = SDL_CreateWindow("Mapa", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-                              config.get_window_width(), config.get_window_height(),
-                              SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
-    if (!ventana) 
+                               config.get_window_width(), config.get_window_height(),
+                               SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+    if (!ventana)
         throw std::runtime_error(std::string("Error al crear la ventana: ") + SDL_GetError());
     renderer = SDL_CreateRenderer(ventana, -1, SDL_RENDERER_ACCELERATED);
-    if (!renderer) 
+    if (!renderer)
         throw std::runtime_error(std::string("Error al crear el renderer: ") + SDL_GetError());
     SDL_RenderSetLogicalSize(renderer, config.get_viewpost_width(), config.get_viewpost_height());
 
-    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) 
-        throw std::runtime_error(std::string("No se pudo inicializar SDL_mixer: ") + Mix_GetError());
-    
+    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+        throw std::runtime_error(std::string("No se pudo inicializar SDL_mixer: ") +
+                                 Mix_GetError());
+
     SDL_ShowCursor(SDL_DISABLE);
 
-    if (!(Mix_Init(MIX_INIT_MP3 | MIX_INIT_OGG) & (MIX_INIT_MP3 | MIX_INIT_OGG))) 
+    if (!(Mix_Init(MIX_INIT_MP3 | MIX_INIT_OGG) & (MIX_INIT_MP3 | MIX_INIT_OGG)))
         throw std::runtime_error(std::string("Error inicializando SDL_mixer: ") + Mix_GetError());
 
-    if (!(IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG) & (IMG_INIT_PNG | IMG_INIT_JPG))) 
+    if (!(IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG) & (IMG_INIT_PNG | IMG_INIT_JPG)))
         throw std::runtime_error(std::string("Error inicializando SDL_image: ") + IMG_GetError());
-
 }
 
 
@@ -78,7 +78,7 @@ void Vista::free_components(SDL_Window* ventana, SDL_Renderer* renderer) {
     SDL_Quit();
 }
 
-std::map<player_id_t, InfoPlayer> Vista::showGame() {
+EndGameInfo Vista::showGame() {
 
     GameInfo info_game_view = protocolo.read_game_info();
     std::cout << "Mapa bx: " << info_game_view.map_info.boxes.size() << std::endl;
@@ -93,15 +93,15 @@ std::map<player_id_t, InfoPlayer> Vista::showGame() {
     SDL_Texture* textura = manger_texture.get(Object::FONDO_ESPERA);
     SDL_RenderCopy(renderer, textura, nullptr, nullptr);
     SDL_RenderPresent(renderer);
-    std::map<player_id_t, InfoPlayer> table;
+    EndGameInfo end_game_info;
     GameView gameView(skt, info_game_view, info_game, ventana, renderer, manger_texture, config);
     try {
         gameView.run();
     } catch (const QuitGameException& e) {
-        table = gameView.get_info_players_map();
+        end_game_info = gameView.get_info_players_map();
         free_components(ventana, renderer);
     } catch (const GameFinishExeption& e) {
-        table = gameView.get_info_players_map();
+        end_game_info = gameView.get_info_players_map();
         free_components(ventana, renderer);
     } catch (const std::exception& e) {
         std::cerr << "Excepción atrapada en vista: " << e.what() << std::endl;
@@ -110,12 +110,12 @@ std::map<player_id_t, InfoPlayer> Vista::showGame() {
         std::cerr << "Excepción desconocida en vista " << std::endl;
         free_components(ventana, renderer);
     }
-    return table;
+    return end_game_info;
 }
 
-void Vista::showScoreboard(const std::map<player_id_t, InfoPlayer>& table) {
+void Vista::showScoreboard(const EndGameInfo& end_game_info) {
     QApplication app(argc, argv);
-    ScoreBoard score(table);
+    ScoreBoard score(end_game_info);
 
     QMessageBox msgBox;
     msgBox.setWindowTitle("Pregunta");

@@ -131,15 +131,15 @@ void GameView::delete_players_death() {
     }
 }
 
-void GameView::finish_game(){
-     if (snapshot.game_state.state == GameState::CT_WIN_GAME ||
+void GameView::finish_game() {
+    if (snapshot.game_state.state == GameState::CT_WIN_GAME ||
         snapshot.game_state.state == GameState::TT_WIN_GAME) {
         this->keep_running = false;
         controller.stop();
         throw GameFinishExeption("La partida ha finalizado.");
     }
 }
-void GameView::update_status_game() { 
+void GameView::update_status_game() {
 
     int tile_width = config.get_tile_width();
     int tile_height = config.get_tile_height();
@@ -301,8 +301,8 @@ bool GameView::update_game_image() {
 
 bool GameView::should_keep_running() { return this->keep_running; }
 
-std::map<player_id_t, InfoPlayer> GameView::get_info_players_map() {
-
+EndGameInfo GameView::get_info_players_map() {
+    EndGameInfo game_info;
     std::map<player_id_t, InfoPlayer> info_map;
     for (const auto& player: snapshot.players_images) {
         InfoPlayer info;
@@ -313,8 +313,9 @@ std::map<player_id_t, InfoPlayer> GameView::get_info_players_map() {
         info.collected_money = player.collected_money;
         info_map[player.player_id] = info;
     }
-
-    return info_map;
+    game_info.winner = snapshot.game_state.state;
+    game_info.info_players = info_map;
+    return game_info;
 }
 
 void GameView::run() {

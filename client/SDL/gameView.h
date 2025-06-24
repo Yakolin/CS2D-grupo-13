@@ -114,7 +114,7 @@ public:
 
     void reset_values(PlayerView* player, const float& x_pixeles, const float& y_pixeles);
 
-    std::map<player_id_t, InfoPlayer> get_info_players_map();
+    EndGameInfo get_info_players_map();
 
     ~GameView();
 };

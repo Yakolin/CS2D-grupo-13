@@ -10,7 +10,8 @@
 #include <QtCharts/qchartview.h>
 
 
-ScoreBoard::ScoreBoard(const std::map<player_id_t, InfoPlayer>& table): scores(table) {}
+ScoreBoard::ScoreBoard(const EndGameInfo& end_game_info):
+        game_state(end_game_info.winner), scores(end_game_info.info_players) {}
 
 
 void ScoreBoard::style(QTableWidget* table) {
@@ -143,6 +144,25 @@ QWidget* ScoreBoard::add_table(std::map<player_id_t, InfoPlayer>& score_table,
     return container;
 }
 
+QString ScoreBoard::state_to_qt_string() {
+    QString result = "Resultado: ";
+    switch (this->game_state) {
+        case GameState::CT_WIN_GAME:
+            result += "Counter-Terrorist WIN THE GAME!!";
+            break;
+        case GameState::TT_WIN_GAME:
+            result += "Terrorist WIN THE GAME!!";
+            break;
+        case GameState::GAME_ENDED:
+            result += "El juego se quedo sin los jugadores necesarios";
+            break;
+        default:
+            break;
+    }
+    return result;
+}
+
+
 int ScoreBoard::show_scores_game() {
     QWidget* info_ranking = new QWidget();
     info_ranking->setStyleSheet("QWidget { background-color: rgb(36, 36, 36); color: rgb(255, 255, "
@@ -154,11 +174,21 @@ int ScoreBoard::show_scores_game() {
     filter_table(cts, tts);
 
     info_ranking->resize(1000, 500);
+    QVBoxLayout* layout = new QVBoxLayout(info_ranking);
     QGridLayout* mainLayout = new QGridLayout(info_ranking);
+
     mainLayout->addWidget(add_table(cts, "Rankig Counter-Terrorist"), 0, 0);
     mainLayout->addWidget(add_table(tts, "Ranking Terrorist"), 0, 1);
     mainLayout->addWidget(graficoBarrasEquipo("CT", info_ranking), 2, 0);
     mainLayout->addWidget(graficoBarrasEquipo("TT", info_ranking), 2, 1);
+
+    QLabel* label = new QLabel(this->state_to_qt_string());
+    label->setStyleSheet(LOBBY_LABEL_STYLE2);
+
+    layout->addLayout(mainLayout);
+    layout->setAlignment(Qt::AlignCenter);
+
+
     info_ranking->show();
     return 0;
 }

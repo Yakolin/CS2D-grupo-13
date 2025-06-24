@@ -3,6 +3,7 @@
 #include <iostream>
 #include <map>
 
+#include "tipos.h"
 #include "vista.h"
 
 class Client {

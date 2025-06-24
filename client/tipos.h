@@ -1,9 +1,11 @@
 #ifndef TIPOS_H
 #define TIPOS_H
+#include <map>
 #include <string>
 
 #include <SDL2/SDL.h>
 
+#include "../common/game_image.h"
 #include "../common/game_info.h"
 #include "../common/player_command_types.h"
 
@@ -83,10 +85,10 @@ enum class Weapon {
     NONE
 };
 
-enum class CursorContext { NORMAL, ENEMY, ALLY,CARGANDO };
+enum class CursorContext { NORMAL, ENEMY, ALLY, CARGANDO };
 
 
-enum class EffectType { EXPLOSION, PIP, WIN_CT, WIN_TT, ACTIVATION, DESACTIVATED,MOUSE };
+enum class EffectType { EXPLOSION, PIP, WIN_CT, WIN_TT, ACTIVATION, DESACTIVATED, MOUSE };
 
 enum class Object {
 
@@ -198,6 +200,12 @@ struct InfoPlayer {
     int kills;
     int collected_money;
 };
+
+struct EndGameInfo {
+    GameState winner;
+    std::map<player_id_t, InfoPlayer> info_players;
+};
+
 struct TextureData {
     SDL_Texture* texture;
     int width;

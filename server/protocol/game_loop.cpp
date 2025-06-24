@@ -55,7 +55,7 @@ bool GameLoop::all_players_ready() {
 bool GameLoop::waiting_for_players() { return !this->game_started; }
 
 void GameLoop::end_game() {
-    GameImage game_image;
+    GameImage game_image = this->game.get_frame();
     game_image.game_state = GameStateImage(GameState::GAME_ENDED, 0, 0);
     this->game.stop_game();
     this->broadcast(

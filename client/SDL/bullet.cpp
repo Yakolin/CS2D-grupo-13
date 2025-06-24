@@ -30,7 +30,9 @@ void Bullet::draw(SDL_Renderer& renderer, SDL_Texture* texture, SDL_Rect destina
                      SDL_FLIP_NONE);
 }
 void Bullet::draw(SDL_Renderer& renderer) {
-
+    if (code == WeaponCode::KNIFE) {
+        return;
+    }
     if (code == WeaponCode::M3) {
         SDL_Point p_init = {static_cast<int>(current.x), static_cast<int>(current.y)};
         SDL_Point p_end = {static_cast<int>(end.x), static_cast<int>(end.y)};

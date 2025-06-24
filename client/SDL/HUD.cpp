@@ -255,6 +255,9 @@ void HUD::render(SDL_Renderer& renderer) {
 
     mouse.draw(renderer);
     for (auto& [clave, item]: texts) {
+        if (clave == TextView::AMMO && (player.equipped_weapon == WeaponCode::KNIFE ||
+                                        player.equipped_weapon == WeaponCode::BOMB))
+            continue;
         if (clave == TextView::BOMB && player.team == Team::CT)
             continue;
         if (clave == TextView::BUY && game_state.state != GameState::TIME_TO_BUY)

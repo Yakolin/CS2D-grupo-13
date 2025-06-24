@@ -43,7 +43,7 @@ private:
 
 public:
     Mouse(GameConfig& config, SDL_Texture* textura):
-            info_mouse(), item_mouse({0, 0}), pos_mouse({0, 0}), config(config) {
+            info_mouse(), item_mouse({1, 1}), pos_mouse({0, 0}), config(config) {
         info_mouse.textura = textura;
         config.get_dimension(info_mouse.textura, info_mouse.medidas.w, info_mouse.medidas.h);
     }

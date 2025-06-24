@@ -175,19 +175,18 @@ int ScoreBoard::show_scores_game() {
 
     info_ranking->resize(1000, 500);
     QVBoxLayout* layout = new QVBoxLayout(info_ranking);
-    QGridLayout* mainLayout = new QGridLayout(info_ranking);
-
-    mainLayout->addWidget(add_table(cts, "Rankig Counter-Terrorist"), 0, 0);
+    QGridLayout* mainLayout = new QGridLayout; 
+    mainLayout->addWidget(add_table(cts, "Ranking Counter-Terrorist"), 0, 0);
     mainLayout->addWidget(add_table(tts, "Ranking Terrorist"), 0, 1);
     mainLayout->addWidget(graficoBarrasEquipo("CT", info_ranking), 2, 0);
     mainLayout->addWidget(graficoBarrasEquipo("TT", info_ranking), 2, 1);
 
     QLabel* label = new QLabel(this->state_to_qt_string());
     label->setStyleSheet(LOBBY_LABEL_STYLE2);
+    label->setAlignment(Qt::AlignCenter); 
 
+    layout->addWidget(label);
     layout->addLayout(mainLayout);
-    layout->setAlignment(Qt::AlignCenter);
-
 
     info_ranking->show();
     return 0;

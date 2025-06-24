@@ -83,7 +83,7 @@ enum class Weapon {
     NONE
 };
 
-enum class CursorContext { NORMAL, ENEMY, ALLY };
+enum class CursorContext { NORMAL, ENEMY, ALLY,CARGANDO };
 
 
 enum class EffectType { EXPLOSION, PIP, WIN_CT, WIN_TT, ACTIVATION, DESACTIVATED,MOUSE };

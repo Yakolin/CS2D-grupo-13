@@ -190,13 +190,13 @@ void ManagerEvent::handle_events(const SDL_Event& event) {
             press_start_x = event.button.x;
             press_start_y = event.button.y;
             if (shop.get_activa()) {
+                config_sound.play_sound(EffectType::MOUSE,0);
                 auto code = shop.calculate_selection(press_start_x, press_start_y);
                 if (code != WeaponCode::NONE)
                     controller.sender_buy_weapon(code);
             }
         }
         if (event.type == SDL_MOUSEBUTTONUP && event.button.button == SDL_BUTTON_LEFT) {
-            config_sound.play_sound(EffectType::MOUSE,0);
             this->blocking_mouse_motion = false;
             bool was_pressed = left_mouse_pressed;
             left_mouse_pressed = false;

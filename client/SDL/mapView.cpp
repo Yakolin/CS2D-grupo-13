@@ -51,8 +51,6 @@ MapView::MapView(const MapInfo& info, Camera* camera_reseiver, ManageTexture* ma
     ids[BOX_ENTRENAMIENTO] = Object::BOX4;
     ids[BOX_DESIERTO] = Object::BOX5;
 
-    ids[BOX_DESIERTO] = Object::BOX5;
-    ids[BOX_DESIERTO] = Object::BOX5;
 }
 
 void MapView::update_weapon_dropped(const std::vector<WeaponDropped>& dropped) {
@@ -170,40 +168,7 @@ void MapView::free_positions(const int& max_fil, const int& max_col, char piso) 
         }
     }
 }
-/*
-void MapView::render_objet(SDL_Renderer& renderer){
-    char objet= TREE_AZTECT;
 
-    for (size_t i = 0; i < 5 && i < libres.size(); i++) {
-        Position p = libres.at(i);
-        SDL_Rect destRect = {
-            (p.x * config.get_tile_width()) - static_cast<int>(camera->getX()),
-            (p.y * config.get_tile_height()) - static_cast<int>(camera->getY()),
-            config.get_tile_width()*3,
-            config.get_tile_height()*3
-        };
-
-        switch () {
-            case MapName::DESIERTO:
-                objet = TREE_DESIERTO;
-                break;
-            case MapName::PUEBLITO_AZTECA:
-                objet = TREE_AZTECT;
-                break;
-            case MapName::ZONA_ENTRENAMIENTO:
-                objet = TREE_ENTRENAMIENTO;
-                break;
-            default:
-                break;
-        }
-
-        auto it = ids.find(objet);
-        if (it != ids.end()) {
-            SDL_Texture* tex = manejador->get(it->second);
-            SDL_RenderCopy(&renderer, tex, nullptr, &destRect);
-        }
-    }
-}*/
 
 TextureInfo MapView::load_zone_texture(const RectangleInfo& rectangle, const Object& zone,
                                        const SDL_Color& color) {

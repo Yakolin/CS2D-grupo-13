@@ -19,7 +19,7 @@ GameView::GameView(Socket& skt, const GameInfo& game_info, const Player& info_Pl
         renderer(renderer),
         camera(config.get_window_width(), config.get_window_height()),
         manger_texture(manger_texture),
-        player(new PlayerView(11, 4, load_claves(info_Player), 50.0f, &camera, &manger_texture,
+        player(new PlayerView(11, 4, load_claves(info_Player), 59.0f, &camera, &manger_texture,
                               config)),
         players(),
         snapshot(),
@@ -33,8 +33,9 @@ GameView::GameView(Socket& skt, const GameInfo& game_info, const Player& info_Pl
         bomb_activate(false),
         keep_running(true),
         events(controller, config, camera, *player, players, snapshot, *map, *fov, *bomba, shop,
-               hud, keep_running, config_sound, manger_texture) {
-
+               hud, keep_running, config_sound, manger_texture) 
+{
+    hud.updateMouseSprite(CursorContext::CARGANDO);
     shop.set_weapons_purchasables(game_info.weapons_purchasables);
     config_sound.play_music(Music::SALA_ESPERA, -1);
 }
@@ -259,7 +260,7 @@ void GameView::render_game() {
             ++it;
         }
     }
-    // map->render_objet(*renderer);
+    map->render_objet(*renderer);
     fov->draw(*renderer);
     if (shop.get_activa()) {
         shop.draw(*renderer);
@@ -326,6 +327,7 @@ void GameView::step() {
     this->process_events();
     if (this->update_game_image()) {
         if (!config_sound.get_state_game()) {
+            hud.updateMouseSprite(CursorContext::NORMAL);
             config_sound.stop_music();
             config_sound.play_music(Music::JUEGO, -1);
         }

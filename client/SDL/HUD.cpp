@@ -56,20 +56,13 @@ HUD::HUD(GameConfig& config, ManageTexture& manager, const InfoGame& info_game):
     load_text(TextView::AMMO, x_izquierda, fila4_y, icono_bullet);
     load_text(TextView::WIN_GAME_TT, x_centro - 120, y_centro, icono_tt);
     load_text(TextView::WIN_GAME_CT, x_centro - 120, y_centro, icono_ct);
-    load_text(TextView::WIN_ROUND_TT, x_centro - 120, y_centro, icono_tt);
-    load_text(TextView::WIN_ROUND_CT, x_centro - 120, y_centro, icono_ct);
+    load_text(TextView::WIN_ROUND_TT, x_centro - 140, y_centro, icono_tt);
+    load_text(TextView::WIN_ROUND_CT, x_centro - 140, y_centro, icono_ct);
     load_text(TextView::ROUND, x_izquierda, fila2_y);
 
     load_state_win();
 }
-/*
-void HUD::load(const TextView& key_text,const Object& key_texture, const int& x, const int& y){
 
-    SDL_Texture* icono = texture_manager.get(key_texture);
-    load_text(key_text,x, y, icono);
-}
-
-*/
 void HUD::load_state_win() {
 
     TTF_Font* font = config.get_font_game();
@@ -82,13 +75,16 @@ void HUD::load_state_win() {
 void HUD::updateMouseSprite(const CursorContext& context) {
     switch (context) {
         case CursorContext::ENEMY:
-            mouse.set_item(1, 0);  // Sprite rojo
+            mouse.set_item(0, 1);  // Sprite rojo
             break;
         case CursorContext::ALLY:
-            mouse.set_item(0, 1);  // Sprite verde
+            mouse.set_item(1, 0);  // Sprite verde
             break;
         case CursorContext::NORMAL:
             mouse.set_item(0, 0);  // Sprite normal
+            break;
+        case CursorContext::CARGANDO:
+            mouse.set_item(1, 1);  // Sprite cargando
             break;
     }
 }

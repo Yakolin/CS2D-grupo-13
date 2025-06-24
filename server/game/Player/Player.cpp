@@ -2,7 +2,7 @@
 
 #include <memory>
 void Player::damage(uint8_t damage) {
-    if (damage > health)
+    if (damage >= health)
         health = 0;
     else
         health -= damage;

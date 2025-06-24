@@ -55,9 +55,9 @@ HUD::HUD(GameConfig& config, ManageTexture& manager, const InfoGame& info_game):
     load_text(TextView::TEAM, x_centro, fila4_y);
     load_text(TextView::AMMO, x_izquierda, fila4_y, icono_bullet);
     load_text(TextView::WIN_GAME_TT, x_centro - 120, y_centro, icono_tt);
-    load_text(TextView::WIN_GAME_CT, x_centro - 120, y_centro, icono_ct);
+    load_text(TextView::WIN_GAME_CT, x_centro - 140, y_centro, icono_ct);
     load_text(TextView::WIN_ROUND_TT, x_centro - 140, y_centro, icono_tt);
-    load_text(TextView::WIN_ROUND_CT, x_centro - 140, y_centro, icono_ct);
+    load_text(TextView::WIN_ROUND_CT, x_centro - 160, y_centro, icono_ct);
     load_text(TextView::ROUND, x_izquierda, fila2_y);
 
     load_state_win();

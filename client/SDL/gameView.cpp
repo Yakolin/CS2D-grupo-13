@@ -131,14 +131,15 @@ void GameView::delete_players_death() {
     }
 }
 
-void GameView::update_status_game() {
-
-    if (snapshot.game_state.state == GameState::CT_WIN_GAME ||
+void GameView::finish_game(){
+     if (snapshot.game_state.state == GameState::CT_WIN_GAME ||
         snapshot.game_state.state == GameState::TT_WIN_GAME) {
         this->keep_running = false;
         controller.stop();
         throw GameFinishExeption("La partida ha finalizado.");
     }
+}
+void GameView::update_status_game() { 
 
     int tile_width = config.get_tile_width();
     int tile_height = config.get_tile_height();
@@ -332,6 +333,7 @@ void GameView::step() {
         config_sound.set_start_game(true);
         this->update_game();
         this->render_game();
+        finish_game();
     }
 }
 

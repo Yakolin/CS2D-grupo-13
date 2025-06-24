@@ -71,6 +71,8 @@ private:
 
     void update_bullets_snapshot();
 
+    void finish_game();
+
     void update_status_game();
 
     void draw_players();

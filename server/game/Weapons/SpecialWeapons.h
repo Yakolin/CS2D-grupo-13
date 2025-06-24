@@ -16,7 +16,7 @@ public:
                                [[maybe_unused]] Position& direction) override;
     bool shoot_burst(ISpawneableZone& spawn, player_id_t, Position& direction) override;
     virtual bool reload() override { return false; }
-    virtual bool have_bullets() override { return false; }
+    virtual bool have_bullets() override { return true; }
     void defuse();
     void set_equiped();
     void set_unequiped();

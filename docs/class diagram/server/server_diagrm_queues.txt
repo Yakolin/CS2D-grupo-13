@@ -4,30 +4,45 @@ skinparam nodesep 60
 skinparam ranksep 60
 skinparam classFontSize 14
 skinparam classFontStyle bold
-skinparam classAttributeIconSize 0
 skinparam ArrowColor #333333
 
-class Server{}
+class Server{
+ run() : void
+}
 
 class Acceptor{
  acceptor : Socket
 }
 
-class GamesMonitor{}
+class GameLoop {
+ constant_rate_loop : ConstantRateLoop
+ game : GameManager
+}
+
+class GamesMonitor{
+ create_game(player_id : const player_id_t& , create_game : const CreateGame&, recv_queue : Queue<ClientAction>>>& ,
+                     send_queue : Queue<GameImage>&, game_info : GameInfo&) : bool
+ join_game(player_id : player_id_t&,join_game : const JoinGame&, recv_queue : Queue<ClientAction>&,
+                   send_queue : Queue<GameImage>>&, game_info : GameInfo&) : bool
+ list_games() : vector<String>
+}
 
 class ClientHandler{
  player_id : player_id_t
  client : Socket
  send_queue : Queue<GameImage>
+ start() : void
 }
 
 class Receiver{
- recv_queue : Queue<ClientAction> 
+ recv_queue : Queue<ClientAction>
+  -run_lobby() : void
+  -run_game() : void
 }
 
 class Sender{
  client_id : player_id_t
- send_queue : &Queue<GameImage>
+ send_queue : Queue<GameImage>&
 }
 
 abstract class Thread{
@@ -36,14 +51,22 @@ abstract class Thread{
  {abstract} stop() : void
 }
 
-
+class ServerProtocol{
+ client : &Socket
+}
 
 
 Thread <|-- Acceptor
 Thread <|-- Sender
 Thread <|-- Receiver
+Thread <|-- GameLoop
 ClientHandler *-- Receiver
 ClientHandler *-- Sender
 Acceptor *-- Server
+Receiver *-- ServerProtocol
+Sender *-- ServerProtocol
+Acceptor *-- GamesMonitor
+Receiver o-- GamesMonitor
+GamesMonitor "1" *-- "n" GameLoop
 
 @enduml

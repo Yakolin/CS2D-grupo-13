@@ -166,23 +166,15 @@ bool GameManager::check_round_finished() {
                 all_tt_dead = false;
         }
     }
-    if (all_ct_dead) {
-        game_stats.state = GameState::TT_WIN_ROUND;
-        game_stats.rounds_TT++;
-        return true;
-    } else if (all_tt_dead) {
-        game_stats.state = GameState::CT_WIN_ROUND;
-        game_stats.rounds_CT++;
-        return true;
-    }
     bool time_end = timer.get_time_round() == 0;
-    if (bomb->is_defused() || (time_end && !bomb->is_activate())) {
+    if (all_tt_dead || bomb->is_defused() || (time_end && !bomb->is_activate())) {
         game_stats.rounds_CT++;
         game_stats.state = GameState::CT_WIN_ROUND;
         give_money_team(Team::CT);
         return true;
-    } else if (time_end && !bomb->is_defused()) {
-        bomb->set_exploted();
+    } else if (all_ct_dead || (time_end && !bomb->is_defused())) {
+        if (time_end && !bomb->is_defused())
+            bomb->set_exploted();
         game_stats.rounds_TT++;
         game_stats.state = GameState::TT_WIN_ROUND;
         give_money_team(Team::TT);

@@ -49,7 +49,7 @@ bool CollisionManager::is_a_collision(const Position& pos) {
 }
 bool CollisionManager::player_in(const Position& pos) {
     return std::any_of(players_in_map.begin(), players_in_map.end(), [&pos](const auto& player) {
-        return player.second.player.lock()->is_dead();
+        return !player.second.player.lock()->is_dead() && player.second.position == pos;
     });
 }
 bool CollisionManager::check_bullet_wall(const Vector2f& initial_pos, const Vector2f& final_pos,

@@ -20,6 +20,8 @@ void Player::reset(bool full_reset) {
         equipment.reset_equipment();
     else
         equipment.restore();
+    if (full_reset)
+        this->money = config.money;
     health = config.health;
 }
 void Player::move(const MoveType& move_type) {

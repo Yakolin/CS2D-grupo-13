@@ -33,8 +33,7 @@ GameView::GameView(Socket& skt, const GameInfo& game_info, const Player& info_Pl
         bomb_activate(false),
         keep_running(true),
         events(controller, config, camera, *player, players, snapshot, *map, *fov, *bomba, shop,
-               hud, keep_running, config_sound, manger_texture) 
-{
+               hud, keep_running, config_sound, manger_texture) {
     hud.updateMouseSprite(CursorContext::CARGANDO);
     shop.set_weapons_purchasables(game_info.weapons_purchasables);
     config_sound.play_music(Music::SALA_ESPERA, -1);
@@ -260,7 +259,6 @@ void GameView::render_game() {
             ++it;
         }
     }
-    map->render_objet(*renderer);
     fov->draw(*renderer);
     if (shop.get_activa()) {
         shop.draw(*renderer);

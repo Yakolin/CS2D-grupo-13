@@ -24,8 +24,10 @@ void Bullet::calculate_values(SDL_Rect& destination_rect, double& angulo, SDL_Po
     center = {0, longitud};
 }
 
-void Bullet::draw(SDL_Renderer& renderer, SDL_Texture* texture,SDL_Rect destination_rect,double angulo,  SDL_Point center){
-    SDL_RenderCopyEx(&renderer, texture, nullptr, &destination_rect, angulo, &center,SDL_FLIP_NONE);
+void Bullet::draw(SDL_Renderer& renderer, SDL_Texture* texture, SDL_Rect destination_rect,
+                  double angulo, SDL_Point center) {
+    SDL_RenderCopyEx(&renderer, texture, nullptr, &destination_rect, angulo, &center,
+                     SDL_FLIP_NONE);
 }
 void Bullet::draw(SDL_Renderer& renderer) {
 
@@ -41,6 +43,7 @@ void Bullet::draw(SDL_Renderer& renderer) {
         draw(renderer, texture, destination_rect, angulo, center);
 
     } else {
+        SDL_SetRenderDrawColor(&renderer, 255, 255, 0, 255);
         SDL_RenderDrawLine(&renderer, static_cast<int>(current.x - camera.x),
                            static_cast<int>(current.y - camera.y),
                            static_cast<int>(end.x - camera.x), static_cast<int>(end.y - camera.y));
@@ -68,7 +71,7 @@ SDL_Texture* Bullet::crear_cono(SDL_Renderer* renderer, SDL_Point p_inicial, SDL
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
     SDL_RenderClear(renderer);
     SDL_Point centro_local = {0, alto / 2};
-    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+    SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);
     double apertura_rad = apertura_grados * M_PI / 180.0;
     for (double a = -apertura_rad / 2; a <= apertura_rad / 2; a += paso * M_PI / 180.0) {
         int x = centro_local.x + cos(a) * longitud;

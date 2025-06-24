@@ -101,6 +101,7 @@ std::map<player_id_t, InfoPlayer> Vista::showGame() {
         table = gameView.get_info_players_map();
         free_components(ventana, renderer);
     } catch (const GameFinishExeption& e) {
+        table = gameView.get_info_players_map();
         free_components(ventana, renderer);
     } catch (const std::exception& e) {
         std::cerr << "Excepción atrapada en vista: " << e.what() << std::endl;

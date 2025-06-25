@@ -1,0 +1,24 @@
+@startuml
+
+actor Mateo
+
+Mateo -> CreateGame : new(game_name : string, map_name : MapName, skins : Skins)
+CreateGame --> Mateo : create_game :CreateGame
+
+Mateo -> ClientProtocol : send_create_game(create_game)
+Mateo -> ClientProtocol : read_game_info()
+ClientProtocol -> ServerProtocol : send(create_game)
+
+Receiver -> ServerProtocol : read_lobby_command() 
+ServerProtocol --> Receiver : CREATE_GAME : LobbyCommandType
+Receiver -> ServerProtocol : read_create_game()
+ServerProtocol --> Receiver : create_game : CreateGame
+
+Receiver -> GamesMonitor : create_game(client_id : player_id_t, create_game : const CreateGame, game_info : GameInfo&)
+GamesMonitor -> GamesMonitor : add_game()
+GamesMonitor --> Receiver : true
+Receiver -> ServerProtocol : send_game_info(game_info)
+ServerProtocol -> ClientProtocol : send(game_info)
+ClientProtocol --> Mateo : game_info : GameInfo
+
+@enduml

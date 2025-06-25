@@ -20,10 +20,26 @@ class Move{
 class BuyWeapon{
  weapon_code : WeaponCode
 }
-class Shoot{mouse_x : coordinate_t, mouse_y : coordinate_t}
-class ShootBurst{mouse_x : coordinate_t, mouse_y : coordinate_t}
-class Equip{}
-class MousePosition{}
+
+class Shoot{
+ mouse_x : coordinate_t
+ mouse_y : coordinate_t
+}
+
+class ShootBurst{
+ mouse_x : coordinate_t
+ mouse_y : coordinate_t
+}
+
+class Equip{
+ equip_type : EquipType
+}
+class MousePosition{
+  mouse_x : coordinate_t
+  mouse_y : coordinate_t
+}
+
+interface IPlayerAction{}
 
 ClientAction <|-- Move
 ClientAction <|-- BuyWeapon
@@ -31,9 +47,10 @@ ClientAction <|-- Shoot
 ClientAction <|-- ShootBurst
 ClientAction <|-- Equip
 ClientAction <|-- MousePosition
+ClientAction --> IPlayerAction
 
 
 ServerProtocol --> ClientAction
-
+IPlayerAction <|.. Player
 
 @enduml

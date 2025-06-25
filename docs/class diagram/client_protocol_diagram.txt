@@ -1,0 +1,73 @@
+@startuml
+skinparam linetype ortho
+skinparam nodesep 60
+skinparam ranksep 60
+skinparam classFontSize 14
+skinparam classFontStyle bold
+skinparam ArrowColor #333333
+
+
+interface InterfaceClientAction{
+ {abstract} action(ClientProtocol) : void
+}
+
+class ClientProtocol{}
+
+class Move{
+
+}
+class BuyWeapon{
+
+}
+
+class Shoot{
+
+}
+
+class ShootBurst{
+}
+
+class Equip{
+
+}
+class MousePosition{
+}
+
+class Controller{
+ skt : &Socket
+ recv_queue : Queue<GameImage>
+ send_queue : Queue<InterfaceClientAction>
+}
+
+class Receiver{
+ recv_queue : Queue<GameImage>&
+}
+class Sender{
+ send_queue : Queue<InterfaceClientAction>&
+}
+
+abstract class Thread{
+ {abstract} start() : void
+ {abstract} run() : void
+ {abstract} stop() : void
+}
+
+
+Thread <|-- Receiver
+Thread <|-- Sender
+
+InterfaceClientAction <|.. Move
+InterfaceClientAction <|.. MousePosition
+InterfaceClientAction <|.. BuyWeapon
+InterfaceClientAction <|.. Shoot
+InterfaceClientAction <|.. ShootBurst
+InterfaceClientAction <|.. Equip
+InterfaceClientAction --> ClientProtocol
+
+Controller *-- Receiver
+Controller *-- Sender
+Receiver *-- ClientProtocol
+Sender *-- ClientProtocol
+
+
+@enduml

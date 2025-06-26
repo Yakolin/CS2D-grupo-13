@@ -17,6 +17,8 @@ class Acceptor{
 class GameLoop {
  constant_rate_loop : ConstantRateLoop
  game : GameManager
+ send_queues : map<client_id, Queue<GameImage>>
+ 
 }
 
 class GamesMonitor{
@@ -68,5 +70,4 @@ Sender *-- ServerProtocol
 Acceptor *-- GamesMonitor
 Receiver o-- GamesMonitor
 GamesMonitor "1" *-- "n" GameLoop
-
 @enduml

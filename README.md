@@ -1,6 +1,16 @@
 # CS2D
 
+Remake del juego [CS2D](https://store.steampowered.com/app/666220/CS2D/). Realizado en C++ con SDL2pp y Qt.
+
+![Logo del CS2D](assets/gfx/cs2d.png)
+
 Repositorio del grupo 13 de la materia Taller de Programación Catedra Veiga
+
+# Integrantes
+
+- **Maria Fernanda Gareca**
+- **Yaco Santamarina**
+- **Mateo Riat Sapulia**
 
 # Compilacion con make
 
@@ -27,12 +37,6 @@ make all
 
 make clean
 ```
-
-# Desarrolladores
-
-- **Maria Fernanda Gareca**
-- **Yaco Santamarina**
-- **Mateo Riat Sapulia**
 
 Clasicos all y clean que realizan las operaciones de limpieza y all, en este caso, corre los tests con valgrind
 

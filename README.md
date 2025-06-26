@@ -8,9 +8,9 @@ Grupo 13 de la materia Taller de Programación Catedra Veiga
 
 # Integrantes
 
-- **Maria Fernanda Gareca**
-- **Yaco Santamarina**
-- **Mateo Riat Sapulia**
+- **[Maria Fernanda Gareca](https://github.com/fernandagareca)**
+- **[Yaco Santamarina](https://github.com/Yakolin)**
+- **[Mateo Riat Sapulia](https://github.com/Mriat30)**
 
 # Compilacion con make
 

@@ -12,20 +12,9 @@ run-tests: compile-debug
 run-client:  
 	cd "$(CURDIR)" && ./build/CS2D_client 127.0.0.1 7777
 
-run-client2:  
-	cd "$(CURDIR)" && ./build/CS2D_client 127.0.0.1 8080
-
-run-client3:
-	cd "$(CURDIR)" && ./build/CS2D_client 127.0.0.1 5048
 
 valgrind-client:
 	cd "$(CURDIR)" && valgrind ./build/CS2D_client 127.0.0.1 7777
-
-valgrind-client2:
-	cd "$(CURDIR)" && valgrind ./build/CS2D_client 127.0.0.1 8080
-
-valgrind-client3:
-	cd "$(CURDIR)" && valgrind ./build/CS2D_client 127.0.0.1 5048
 
 run-server: 
 

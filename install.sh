@@ -40,6 +40,10 @@ if [ ! -f build/CS2D_client ] || [ ! -f build/CS2D_server ]; then
     exit 1
 fi
 
+# Assets
+
+sudo cp -r assets/* "$DATA_DIR"
+
 #Config del server
 sudo cp -r server/game/Map/Maps/* "$CONFIG_DIR/server_config/maps"
 sudo cp -r server/game/Config/GameConfig.yaml "$CONFIG_DIR/server_config"

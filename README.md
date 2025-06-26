@@ -4,7 +4,7 @@ Remake del juego [CS2D](https://store.steampowered.com/app/666220/CS2D/). Realiz
 
 ![Logo del CS2D](assets/gfx/cs2d.png)
 
-Repositorio del grupo 13 de la materia Taller de Programación Catedra Veiga
+Grupo 13 de la materia Taller de Programación Catedra Veiga
 
 # Integrantes
 
@@ -86,12 +86,25 @@ Una vez hecho el paso anterior simplemente los jugadores se podran conectar al l
 CS2D_client <ip_server> <n_puerto>
 ```
 
+# Desinstalacion
+
+Para desinstalar el juego simplemente ejecutar en el mismo directorio que el instalador la siguiente linea
+
+```
+./uninstall.sh
+```
+
 # Creditos
 
 Para las clases Socket, Resolver, ResolverError, LibError, Thread y Queue, utilizamos código provisto por la cátedra, el mismo se encuentra en los siguientes repositorios.
 
 - **[Sockets](https://github.com/eldipa/hands-on-sockets-in-cpp)**
 - **[Threads y Queue](https://github.com/eldipa/hands-on-threads)**
+
+# Agradecimientos
+
+Queremos agradacer a los docentes de la materia por darnos las herramientas para llevar esto a cabo. En especial a nuestras correctas, [Abril](https://github.com/Pandamos) y [Nathalia](https://github.com/nathencinoza).
+Por ultimo agradecer a [Martin](https://github.com/eldipa) docente a cargo del desarrollo de los trabajos
 
 # Documentacion
 

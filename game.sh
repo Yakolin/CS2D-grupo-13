@@ -4,7 +4,7 @@ NAME="CS2D"
 EXEC_DIR="/usr/bin"
 DATA_DIR="/var/$NAME"
 CONFIG_DIR="/etc/$NAME"
-REPO="git@github.com:Yakolin/CS2D-grupo-13.git"
+REPO="https://github.com/Yakolin/CS2D-grupo-13.git"
 DIR="CS2D-grupo-13"
 
 GREEN='\033[0;32m'
@@ -30,9 +30,24 @@ echo -e "${GREEN}Instalando dependencias del juego...${NC}"
 sudo apt install -y \
   libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev libsdl2-mixer-dev \
   qtbase5-dev qt5-qmake qtmultimedia5-dev \
+  libqt5charts5-dev \
+  libsdl2-gfx-dev \
   libyaml-cpp-dev \
   libopusfile-dev libxmp-dev libfluidsynth-dev fluidsynth \
   libwavpack-dev libfreetype6-dev
+
+# Instalación explícita por si hiciera falta
+sudo apt-get install -y libsdl2-mixer-dev
+
+# Dependencias multimedia adicionales para Qt y GStreamer
+sudo apt install -y \
+  gstreamer1.0-plugins-base \
+  gstreamer1.0-plugins-good \
+  gstreamer1.0-plugins-bad \
+  gstreamer1.0-plugins-ugly \
+  gstreamer1.0-libav \
+  gstreamer1.0-plugins-base-apps \
+  libqt5multimedia5-plugins
 
 printf '%*s\n' "$(tput cols)" | tr ' ' '-'
 

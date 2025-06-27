@@ -1,0 +1,81 @@
+@startuml
+skinparam linetype ortho
+skinparam nodesep 60
+skinparam ranksep 60
+skinparam classFontSize 14
+skinparam classFontStyle bold
+skinparam classAttributeIconSize 0
+skinparam ArrowColor #333333
+top to bottom direction
+
+interface IPlayerAction{
+}
+
+
+interface ICanInteract{
+}
+interface IDroppableZone {
+
+}
+interface IGameZone {
+
+}
+interface ISoundZone{
+
+}
+interface ISpawneableZone{
+
+}
+abstract IInteractuable
+
+
+
+class Equipment{
+ shared_ptr<IInteractuable> weapon_in_hand
+}
+
+abstract Weapon 
+class Bomb
+abstract FireableWeapon 
+
+class GameManager{
+process()
+ get_frame()
+ get_game_info()
+}
+class GameConfig{
+}
+class Timer{
+}
+class Map{
+}
+class SoundManager{
+}
+
+class Player{
+}
+class Bomb{
+}
+GameManager *--> GameConfig
+
+GameManager *--> Map
+GameManager *--> Timer
+GameManager *--> SoundManager
+GameManager "1"*-->"n" Player
+GameManager *--> Bomb
+Player ..|> IPlayerAction
+Player ..|> ICanInteract
+Map ..|> IDroppableZone
+Map ..|> ISoundZone
+Map ..|> ISpawneableZone
+Map ..|> IGameZone
+Map *-- CollisionManager
+Bomb --|> IInteractuable
+Weapon --|> IInteractuable
+Weapon --|> FireableWeapon 
+Equipment "1"*-->"2" FireableWeapon 
+Equipment "1"*-->"1" Weapon
+Equipment ..> Bomb : <weak_ptr>
+Map ..> Bomb : <shared_ptr>
+Player *--> Equipment
+@enduml

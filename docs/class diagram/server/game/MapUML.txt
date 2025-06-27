@@ -1,0 +1,53 @@
+@startuml
+skinparam linetype ortho
+skinparam nodesep 60
+skinparam ranksep 60
+skinparam classFontSize 14
+skinparam classFontStyle bold
+skinparam classAttributeIconSize 0
+skinparam ArrowColor #333333
+top to bottom direction
+
+interface IDroppableZone {
+{abstract} drop()
+{abstract} plant_bomb()
+}
+interface IGameZone {
+{abstract} move()
+defuse_bomb()
+}
+interface ISoundZone{
+{abstract} want_emit_sound()
+}
+interface ISpawneableZone{
+{abstract} spawn_collider()
+{abstract} plant_bomb()
+}
+
+
+class Map{
+private:
+    Rectangle spawn_CT, spawn_TT, bomb_A, bomb_B;
+    pair<Position, shared_ptr<Bomb>> bomb;
+    SoundManager& sound_manager;
+charge_map()
+--
+public:
+get_map_info()
+respawn_players()
+update_map_state()
+}
+class CollisionManager{
+check_movement()
+add_damage_collider()
+}
+interface ICanInteract
+
+Map "1" o--> "n" ICanInteract : players_in_map 
+
+Map ..|> IDroppableZone
+Map ..|> ISoundZone
+Map ..|> ISpawneableZone
+Map ..|> IGameZone
+Map *--> CollisionManager
+@enduml

@@ -1,0 +1,32 @@
+@startuml
+GameLoop -> GameManager : get_game_info()
+GameManager --> GameLoop : GameInfo : info
+GameLoop -> GameManager : start_game()
+
+loop mientras haya acciones
+GameLoop -> GameManager : process(ClientAction& action)
+GameManager -> GameManager : shared_ptr<Player> : find_player(player_id_t)
+GameManager -> ClientAction : action_to(IPlayerAction& player)
+ClientAction -> IPlayerAction : polimorfic action
+end 
+
+GameLoop -> GameManager : get_frame() 
+
+GameManager -> GameManager : check_round_finish()
+alt si el juego termino 
+GameManager --> GameLoop : GameImage : generate_game_image()
+else
+GameManager -> Map : update_map_state()
+Map -> CollisionManager : check_damage()
+
+loop por cada jugador 
+GameManager -> Player : get_player_image()
+Player --> GameManager : PlayerImage : get_player_image()
+end
+GameManager -> Map : get_map_image()
+Map --> GameManager : MapImage : get_map_image()
+
+GameManager --> GameLoop : GameImage : generate_game_image()
+
+end
+@enduml

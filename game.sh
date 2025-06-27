@@ -1,7 +1,6 @@
 #!/bin/bash
 
 NAME="CS2D"
-DESKTOP_DIR="$HOME/Desktop"
 EXEC_DIR="/usr/bin"
 DATA_DIR="/var/$NAME"
 CONFIG_DIR="/etc/$NAME"
@@ -74,7 +73,4 @@ sudo cp server/game/Config/GameConfig.yaml "$CONFIG_DIR/server_config"
 sudo cp server/protocol/server_config.yaml "$CONFIG_DIR/server_config"
 
 printf '%*s\n' "$(tput cols)" | tr ' ' '-'
-echo -e "${BLUE}Creando ejecutables en $DESKTOP_DIR.${NC}"
-sudo cp ./client.sh "$DESKTOP_DIR"
-sudo cp ./server.sh "$DESKTOP_DIR"
 echo -e "${GREEN}Instalación completa.${NC}"

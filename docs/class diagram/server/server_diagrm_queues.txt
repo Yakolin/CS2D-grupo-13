@@ -1,65 +1,73 @@
 @startuml
+skinparam linetype ortho
+skinparam nodesep 60
+skinparam ranksep 60
+skinparam classFontSize 14
+skinparam classFontStyle bold
+skinparam ArrowColor #333333
+
+class Server{
+ run() : void
+}
+
 class Acceptor{
- Socket acceptor
+ acceptor : Socket
 }
-abstract class Thread{}
-abstract class Handler{
- #Socket socket
- #player_id_t player_id
+
+class GameLoop {
+ constant_rate_loop : ConstantRateLoop
+ game : GameManager
+ send_queues : map<client_id, Queue<GameImage>>
+ 
 }
-class LobbyHandler{}
-class PlayerHandler{}
-class LobbyLoop{
- shared_ptr<Queue<unique_ptr<InterfaceLobbyAction>>> recv_queue
+
+class GamesMonitor{
+ create_game(player_id : const player_id_t& , create_game : const CreateGame&, recv_queue : Queue<ClientAction>>>& ,
+                     send_queue : Queue<GameImage>&, game_info : GameInfo&) : bool
+ join_game(player_id : player_id_t&,join_game : const JoinGame&, recv_queue : Queue<ClientAction>&,
+                   send_queue : Queue<GameImage>>&, game_info : GameInfo&) : bool
+ list_games() : vector<String>
 }
-class GameLoop{
- shared_ptr<Queue<unique_ptr<InterfacePlayerAction>>> recv_queue
+
+class ClientHandler{
+ player_id : player_id_t
+ client : Socket
+ send_queue : Queue<GameImage>
+ start() : void
 }
-class GameMonitor{}
-abstract class Receiver{
- #player_id_t &player_id
- #ServerProtocol protocol
- #bool closed
+
+class Receiver{
+ recv_queue : Queue<ClientAction>
+  -run_lobby() : void
+  -run_game() : void
 }
-abstract class Sender{
- #ServerProtocol protocol
- #bool closed
+
+class Sender{
+ client_id : player_id_t
+ send_queue : Queue<GameImage>&
 }
-class LobbySender{}
-class LobbyReceiver{
-  shared_ptr<Queue<unique_ptr<InterfaceLobbyAction>>> &recv_queue
+
+abstract class Thread{
+ {abstract} start() : void
+ {abstract} run() : void
+ {abstract} stop() : void
 }
-class PlayerSender{}
-class PlayerReceiver{
-  shared_ptr<Queue<unique_ptr<InterfacePlayerAction>>> recv_queue
-}
-interface InterfaceGameMonitor{
- void {abstract} create()
- void {abstract} join()
- void {abstract} list_games()
+
+class ServerProtocol{
+ client : &Socket
 }
 
 
 Thread <|-- Acceptor
-Thread <|-- LobbyLoop
-Thread <|-- GameLoop
-Thread <|-- Receiver
 Thread <|-- Sender
-Receiver <|-- LobbyReceiver
-Receiver <|-- PlayerReceiver
-Sender <|-- LobbySender
-Sender <|-- PlayerSender
-Handler <|-- LobbyHandler
-Handler <|-- PlayerHandler
-Acceptor *-- LobbyLoop
-LobbyLoop *-- GameMonitor
-LobbyLoop "1" --> "n" LobbyHandler
-Acceptor "1" *-- "n" LobbyHandler
-GameMonitor "1" *-- "n" GameLoop
-LobbyHandler *-- LobbyReceiver
-LobbyHandler *-- LobbySender
-PlayerHandler *-- PlayerReceiver
-PlayerHandler *-- PlayerSender
-GameLoop "1" *-- "n" PlayerHandler
-InterfaceGameMonitor <|.. GameMonitor
+Thread <|-- Receiver
+Thread <|-- GameLoop
+ClientHandler *-- Receiver
+ClientHandler *-- Sender
+Acceptor *-- Server
+Receiver *-- ServerProtocol
+Sender *-- ServerProtocol
+Acceptor *-- GamesMonitor
+Receiver o-- GamesMonitor
+GamesMonitor "1" *-- "n" GameLoop
 @enduml

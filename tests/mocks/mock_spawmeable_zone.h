@@ -1,0 +1,15 @@
+#ifndef MOCK_SPAWMEABLE_ZONE_H
+#define MOCK_SPAWMEABLE_ZONE_H
+
+#include <gmock/gmock.h>
+
+#include "../../../server/game/Map/ISpawneableZone.h"
+
+class MockISpawneableZone: public ISpawneableZone {
+public:
+    MOCK_METHOD(void, spawn_collider, (player_id_t id_spawn, collider_solicitude_t& wanted),
+                (override));
+};
+
+
+#endif  // !MOCK_SPAWMEABLE_ZONE_H

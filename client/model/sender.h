@@ -24,6 +24,8 @@ public:
     ~Sender() override;
 
     void run() override;
+
+    void stop() override;
 };
 
 #endif  // !SENDER_H

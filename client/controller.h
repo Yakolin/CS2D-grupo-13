@@ -1,41 +1,75 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
+
 #include <fstream>
 #include <iostream>
 #include <memory>
 #include <sstream>
 #include <stdexcept>
 #include <string>
+#include <utility>
 #include <vector>
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 
+#include "../common/game_image.h"
+#include "../common/game_info.h"
 #include "../common/queue.h"
 #include "../common/socket.h"
 #include "model/client_action.h"
+#include "model/receiver.h"
 #include "model/sender.h"
 
 #include "tipos.h"
+
 class Controller {
 private:
-    std::shared_ptr<Queue<std::unique_ptr<InterfaceClientAction>>>& send_queue;
+    Socket& skt;
+    std::shared_ptr<Queue<std::unique_ptr<InterfaceClientAction>>> send_queue;
+    std::shared_ptr<Queue<GameImage>> recv_queue;
+    Sender sender;
+    Receiver receiver;
+
 
 public:
-    explicit Controller(std::shared_ptr<Queue<std::unique_ptr<InterfaceClientAction>>>& send_queue);
+    explicit Controller(Socket& skt);
 
     /*
     pre:
-    post: envia las cordenadas del mause en pixeles , puedes castear con las dimenciones del mapa
+    post: envía las coordenadas del mouse en píxeles, puedes castearlas con las dimensiones del mapa
     */
+    void sender_equip(EquipType equip);
+
+    void sender_reload();
+
+    void sender_shoot(int x, int y);
+
+    void sender_shoot_burst(int x, int y);
+
+    TerroristSkin toItemTerrorism(const std::string& str);
+
+    CounterTerroristSkin toItemCounterTerrorism(const std::string& str);
+
     void sender_pos_mouse(int x, int y);
+
+    void sender_drop();
+
+    void sender_defuse();
+
+    void sender_buy_weapon(WeaponCode code);
+    void stop();
+
+    bool is_valid_weapon_code(WeaponCode code);
+
     /*
     pre:
-    post:envia el mov del jugaodor
+    post: envía el movimiento del jugador
     */
-    void sender_mov_player(SDL_Keycode tecla);
+    void sender_move(MoveType move);
 
+    bool has_game_image(GameImage& snapshot);
 
-    void run();
+    void start();
 
     ~Controller();
 };

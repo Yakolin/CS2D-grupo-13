@@ -4,12 +4,15 @@
 #include <memory>
 
 #include "../../common/client_common_action.h"
+#include "../../common/game_info.h"
+#include "../../common/lobby_action.h"
 #include "../../common/lobby_types.h"
 #include "../interfaces/interface_games_monitor.h"
 
 #include "client_action.h"
 #include "games_monitor.h"
 #include "protocol.h"
+
 
 class ParseAction {
 protected:
@@ -32,6 +35,7 @@ private:
     std::shared_ptr<Queue<GameImage>>& send_queue;
     InterfaceGamesMonitor& games_monitor;
     bool& in_lobby;
+    void read_ack(const std::string& game_name);
 
 public:
     ParseLobbyAction(player_id_t& player_id, ServerProtocol& protocol, LobbyCommandType& command,

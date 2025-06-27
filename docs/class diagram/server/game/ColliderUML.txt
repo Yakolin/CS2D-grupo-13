@@ -1,0 +1,32 @@
+@startuml
+skinparam linetype ortho
+skinparam nodesep 60
+skinparam ranksep 60
+skinparam classFontSize 14
+skinparam classFontStyle bold
+skinparam classAttributeIconSize 0
+skinparam ArrowColor #333333
+
+interface Collider{
+is_in()
+get_end()
+get_start()
+}
+
+class Line{
+    Vector2f start;
+    Vector2f end;
+    uint8_t width;
+}
+class Rectangle{
+    Position point_min;
+    Position point_max;
+}
+
+class Vector2f{
+float x
+float y
+}
+Line ..|> Collider
+Rectangle ..|> Collider
+@enduml

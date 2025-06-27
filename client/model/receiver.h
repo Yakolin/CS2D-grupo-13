@@ -22,6 +22,8 @@ public:
     ~Receiver() override;
 
     void run() override;
+
+    void stop() override;
 };
 
 #endif  // !RECEIVER_H

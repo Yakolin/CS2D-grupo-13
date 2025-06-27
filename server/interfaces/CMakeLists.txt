@@ -6,4 +6,5 @@ target_sources(CS2D_server
     interface_game.h
     interface_games_monitor.h
     interface_player_action.h
+    ../../common/game_info.h
 )

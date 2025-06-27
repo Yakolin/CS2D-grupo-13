@@ -12,12 +12,20 @@ run-tests: compile-debug
 run-client:  
 	cd "$(CURDIR)" && ./build/CS2D_client 127.0.0.1 7777
 
+
+valgrind-client:
+	cd "$(CURDIR)" && valgrind ./build/CS2D_client 127.0.0.1 7777
+
 run-server: 
 
 	./build/CS2D_server 7777
 
+valgrind-server:
+	valgrind --leak-check=full --show-leak-kinds=all ./build/CS2D_server 7777
+
+
 valgrind-debug: compile-debug
-	valgrind ./build/CS2D_tests
+	valgrind --leak-check=full --show-leak-kinds=all ./build/CS2D_tests
 
 all: clean valgrind-debug
 

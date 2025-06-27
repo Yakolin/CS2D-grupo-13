@@ -1,0 +1,44 @@
+@startuml
+
+
+class Vista {
+    bool showLobby();
+    EndGameInfo showGame();
+    void showScoreboard(const EndGameInfo& table);
+}
+
+
+
+class Controller{
+    Sender 
+    Reseiver
+    }
+
+
+class GameView{
+}
+
+class MenuView{}
+
+class LobbyView{}
+
+class ScoreBoard{}
+
+
+
+GameView *--> Controller
+
+
+
+
+Client *--> Vista
+
+Vista ..|> GameView
+Vista ..|> ScoreBoard
+Vista ..|> MenuView
+
+MenuView *--> LobbyView
+
+
+
+@enduml

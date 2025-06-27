@@ -1,10 +1,8 @@
 #include "functor_parse_client_action.h"
-/*
+
 using ServerSpace::DefuseBomb;
 using ServerSpace::Drop;
-using ServerSpace::PlantBomb;
 using ServerSpace::Reload;
-*/
 
 ParseLobbyAction::ParseLobbyAction(
         player_id_t& player_id, ServerProtocol& protocol, LobbyCommandType& command,
@@ -20,27 +18,42 @@ ParseLobbyAction::ParseLobbyAction(
 
 ParseLobbyAction::~ParseLobbyAction() {}
 
+void ParseLobbyAction::read_ack(const std::string& game_name) {
+    Acknowledge ack = this->protocol.read_acknowledge();
+    if (ack == Acknowledge::READY) {
+        this->games_monitor.player_ready(this->player_id, game_name);
+    } else {
+        throw std::runtime_error("Error en el lobby: ACK ERROR");
+    }
+    this->in_lobby = false;
+}
+
 void ParseLobbyAction::run() {
     switch (this->command) {
         case LobbyCommandType::CREATE_GAME: {
-            std::string game_name = this->protocol.read_create_game();
-            if (this->games_monitor.create_game(this->player_id, game_name, this->recv_queue,
-                                                this->send_queue)) {
-                this->in_lobby = false;
+            CreateGame create_game = this->protocol.read_create_game();
+            GameInfo game_info;
+            if (this->games_monitor.create_game(this->player_id, create_game, this->recv_queue,
+                                                this->send_queue, game_info)) {
+                protocol.send_game_info(game_info);
+                this->read_ack(create_game.game_name);
             }
             break;
         }
         case LobbyCommandType::JOIN_GAME: {
-            std::string game_name = this->protocol.read_join_game();
-            if (this->games_monitor.join_game(this->player_id, game_name, this->recv_queue,
-                                              this->send_queue)) {
-                this->in_lobby = false;
+            JoinGame join_game = this->protocol.read_join_game();
+            GameInfo game_info;
+            if (this->games_monitor.join_game(this->player_id, join_game, this->recv_queue,
+                                              this->send_queue, game_info)) {
+                protocol.send_game_info(game_info);
+                this->read_ack(join_game.game_name);
             }
             break;
         }
         case LobbyCommandType::LIST_GAMES: {
             std::vector<std::string> list_games = this->games_monitor.list_games();
-            this->protocol.send_list_games(list_games);
+            ListGame games(list_games);
+            this->protocol.send_list_games(games);
             break;
         }
         case LobbyCommandType::EXIT_GAME: {
@@ -72,32 +85,30 @@ void ParsePlayerAction::run() {
         case PlayerCommandType::MOVE:
             this->action = this->protocol.read_move(this->player_id);
             break;
-            /*
-            case PlayerCommandType::BUY_WEAPON:
+        case PlayerCommandType::BUY_WEAPON:
             this->action = this->protocol.read_buy_weapon(this->player_id);
             break;
-            case PlayerCommandType::BUY_AMMO:
-                this->action = this->protocol.read_buy_ammo(this->player_id);
-                break;
-            case PlayerCommandType::RELOAD:
+        case PlayerCommandType::RELOAD:
             this->action = std::make_unique<Reload>(this->player_id);
-                break;
-                case PlayerCommandType::SHOOT:
-                this->action = this->protocol.read_shoot(this->player_id);
-                break;
-                case PlayerCommandType::PLANT_BOMB:
-                this->action = std::make_unique<PlantBomb>(this->player_id);
-                break;
-                case PlayerCommandType::DEFUSE_BOMB:
-                this->action = std::make_unique<DefuseBomb>(this->player_id);
-                break;
-                case PlayerCommandType::DROP:
-                this->action = std::make_unique<Drop>(this->player_id);
-                break;
-                case PlayerCommandType::EQUIP:
-                this->action = this->protocol.read_equip(this->player_id);
-                break;
-                */
+            break;
+        case PlayerCommandType::SHOOT:
+            this->action = this->protocol.read_shoot(this->player_id);
+            break;
+        case PlayerCommandType::SHOOT_BURST:
+            this->action = this->protocol.read_shoot_burst(this->player_id);
+            break;
+        case PlayerCommandType::DEFUSE_BOMB:
+            this->action = std::make_unique<DefuseBomb>(this->player_id);
+            break;
+        case PlayerCommandType::DROP:
+            this->action = std::make_unique<Drop>(this->player_id);
+            break;
+        case PlayerCommandType::EQUIP:
+            this->action = this->protocol.read_equip(this->player_id);
+            break;
+        case PlayerCommandType::WATCH:
+            this->action = this->protocol.read_mouse_position(this->player_id);
+            break;
         default:
             throw std::runtime_error("PlayerCommandType no soportado");
     }

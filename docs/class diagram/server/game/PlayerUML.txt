@@ -1,0 +1,49 @@
+@startuml
+skinparam linetype ortho
+skinparam nodesep 60
+skinparam ranksep 60
+skinparam classFontSize 14
+skinparam classFontStyle bold
+skinparam classAttributeIconSize 0
+skinparam ArrowColor #333333
+
+interface IPlayerAction{
+    {abstract} void move(const MoveType& move_type)
+    {abstract} void reload()
+   {abstract} void shoot(const coordinate_t& mouse_x, const coordinate_t& mouse_y)
+   {abstract} void shoot_burst(const coordinate_t& mouse_x, const coordinate_t& mouse_y)
+{abstract} void buy_weapon(const WeaponCode& weapon_code)
+{abstract} void drop()
+{abstract} void change_weapon(const EquipType& equip)
+{abstract} void watch(const coordinate_t& mouse_x, const coordinate_t& mouse_y)
+{abstract} void defuse_bomb()
+}
+
+
+interface ICanInteract{
+{abstract} void damage(uint8_t damage) 
+{abstract} bool is_dead() 
+{abstract} bool equip(std::shared_ptr<IInteractuable>& droppable)
+{abstract} Team get_team()
+{abstract} void give_points()
+
+}
+
+class Player {
+    IGameZone& game_zone;
+    ISoundZone& sound_zone;
+
+    void drop_on_dead()
+    PlayerImage get_player_image(const Position& position, SoundImage& sounds)
+    void change_team(Team new_team)
+}
+
+class Equipment{
+}
+
+
+Player ..|> IPlayerAction
+Player ..|> ICanInteract
+Player *--> Equipment
+
+@enduml

@@ -1,0 +1,71 @@
+@startuml
+skinparam linetype ortho
+skinparam nodesep 60
+skinparam ranksep 60
+skinparam classFontSize 14
+skinparam classFontStyle bold
+skinparam classAttributeIconSize 0
+skinparam ArrowColor #333333
+
+abstract IInteractuable { 
+WeaponCode code;
+
+{abstract} bool set_on_action(ISpawneableZone& spawn, player_id_t id, Position& direction)
+{abstract} bool shoot_burst(ISpawneableZone& spawn, player_id_t id, Position& direction)
+{abstract} bool reload()
+{abstract} bool have_bullets()
+}
+
+
+abstract FireableWeapon {
+void reduce_bullets()
+void restart()
+}
+
+class Equipment{
+
+    ISpawneableZone& spawneable_zone;
+    IDroppableZone& droppable_zone;
+    ISoundZone& sound_zone;
+    WeaponFactory& weapon_factory;
+ shared_ptr<IInteractuable> weapon_in_hand
+
+void change_weapon(const EquipType& equip_type)
+void buy_weapon_by_code(const WeaponCode& weapon_code, money_t& money)
+void reset_equipment()
+}
+
+abstract Weapon {
+protected: 
+    damage_t damage;
+    range_t range;
+    width_t width;
+    chance_hit_t chance_hit;
+    std::unique_ptr<FireMode> fire_mode;
+
+{abstract} damage_t calculate_damage(float distance)
+}
+
+class Bomb
+class Ak47
+class Glock
+class M3
+class Knife
+class AWP
+class NullWeapon
+
+
+Bomb --|> IInteractuable
+Weapon --|> IInteractuable
+FireableWeapon  --|> Weapon
+Equipment "1"*-->"2" FireableWeapon 
+Equipment "1"*-->"1" Weapon
+Equipment ..> Bomb : <weak_ptr>
+Ak47 --|> FireableWeapon
+AWP --|> FireableWeapon
+Glock --|> FireableWeapon
+M3 --|> FireableWeapon
+NullWeapon --|> FireableWeapon
+Knife --|> Weapon
+
+@enduml

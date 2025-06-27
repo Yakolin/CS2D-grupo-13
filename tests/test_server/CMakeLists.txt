@@ -1,0 +1,46 @@
+target_sources(CS2D_tests
+    PRIVATE
+    test_server.cpp
+    ../../server/server.cpp
+    ../../server/acceptor.cpp
+    ../../server/protocol/games_monitor.cpp
+    ../../server/protocol/client_handler.cpp
+    ../../server/protocol/receiver.cpp
+    ../../server/protocol/sender.cpp
+    ../../server/protocol/game_loop.cpp
+    ../../server/game/Colliders/Colliders.cpp
+    ../../server/game/Map/CollisionManager.cpp
+    ../../server/game/Player/Equipment.cpp
+    ../../server/game/Weapons/FireableWeapon.cpp
+    ../../server/game/Weapons/SpecialWeapons.cpp
+    ../../server/game/GameManager.cpp
+    ../../server/game/Map/Map.cpp
+    ../../server/game/Map/MapConfig.cpp
+    ../../server/game/Player/Player.cpp
+    ../../server/game/Config/GameConfig.cpp
+    ../../server/game/Weapons/WeaponFactory.cpp
+    ../../common/socket.cpp
+
+    PUBLIC
+    ../../server/server.h
+    ../../server/acceptor.h
+    ../../server/protocol/games_monitor.h
+    ../../server/protocol/client_handler.h
+    ../../server/protocol/receiver.h
+    ../../server/protocol/sender.h
+    ../../server/protocol/game_loop.h
+    ../../server/game/Map/CollisionManager.h
+    ../../server/game/Colliders/Colliders.h
+    ../../server/game/Player/Equipment.h
+    ../../server/game/Weapons/FireableWeapon.h
+    ../../server/game/GameException.h
+    ../../server/game/GameManager.h
+    ../../server/game/Map/Map.h
+    ../../server/game/Map/MapConfig.h
+    ../../server/game/Player/Player.h
+    ../../server/game/Weapons/SpecialWeapons.h
+    ../../server/game/Weapons/Weapon.h
+    ../../common/socket.h
+    ../../server/game/Config/GameConfig.h
+    ../../server/game/Weapons/WeaponFactory.h
+)

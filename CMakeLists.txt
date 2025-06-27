@@ -1,10 +1,14 @@
 cmake_minimum_required(VERSION 3.16.3)
+list(APPEND CMAKE_PREFIX_PATH "/usr/lib/x86_64-linux-gnu/cmake/yaml-cpp")
+find_package(yaml-cpp REQUIRED)
+
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
 set(CMAKE_PREFIX_PATH "/usr/lib/x86_64-linux-gnu/cmake/Qt5" ${CMAKE_PREFIX_PATH})
-find_package(Qt5 REQUIRED COMPONENTS Widgets)
+find_package(Qt5 REQUIRED COMPONENTS Widgets Charts Multimedia)
+
 
 
 if (POLICY CMP0135)
@@ -105,12 +109,16 @@ if(CS2D_CLIENT OR CS2D_EDITOR)
 
     FetchContent_MakeAvailable(SDL2 SDL2_image SDL2_mixer SDL2_ttf libSDL2pp)
     find_package(SDL2_image REQUIRED)
+    find_package(SDL2 REQUIRED)
+    find_library(SDL2_GFX_LIBRARY SDL2_gfx REQUIRED)
+
 
 endif()
 
 # Program section
 # ---------------
 if(CS2D_CLIENT)
+
     # HEY!! TODO XXX: Change the name of the executable to the one you like!
     add_executable(CS2D_client)
     # para que me deje compilar las rutas correctamente
@@ -130,16 +138,23 @@ if(CS2D_CLIENT)
     target_include_directories(CS2D_client PRIVATE 
         ${libSDL2pp_SOURCE_DIR}
         ${SDL2_image_SOURCE_DIR}/include
+        ${SDL2_mixer_SOURCE_DIR}/include
         )
 
 
     # Link the CS2D_common lib target
-     # Incluir Qt (Widgets)
+    # Incluir Qt (Widgets)
     target_link_libraries(CS2D_client
         CS2D_common
         SDL2pp::SDL2pp
         Qt5::Widgets
         SDL2_image
+        yaml-cpp
+        Qt5::Multimedia
+        SDL2_mixer  
+        SDL2_ttf
+        Qt5::Charts
+        ${SDL2_GFX_LIBRARY}
     )
 
 endif()
@@ -165,6 +180,7 @@ if(CS2D_SERVER)
     target_link_libraries(CS2D_server 
         CS2D_common
         Threads::Threads
+        yaml-cpp
     )
 
 endif()
@@ -222,5 +238,6 @@ if(CS2D_TESTS)
     target_link_libraries(CS2D_tests
         CS2D_common
         GTest::gmock_main
+        yaml-cpp
     )
 endif()

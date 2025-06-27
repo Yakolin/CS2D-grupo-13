@@ -4,30 +4,56 @@ target_sources(CS2D_client
     client.cpp
     controller.cpp
     main.cpp
-    lobbyView.cpp
-    gameView.cpp
-    mapView.cpp
-    playerView.cpp
-    scoreBoard.cpp
-    manageTexture.cpp
-    menuView.cpp
+    Qt/lobbyView.cpp
+    SDL/gameView.cpp
+    SDL/gameConfig.cpp
+    SDL/mapView.cpp
+    SDL/bomb.cpp
+    SDL/bombTimer.cpp
+    SDL/bullet.cpp
+    SDL/fieldOfView.cpp
+    SDL/playerView.cpp
+    SDL/shopping.cpp
+    SDL/weaponView.cpp
+    Qt/ButtonsCreator.cpp
+    SDL/camera.cpp
+    SDL/text.cpp
+    Qt/scoreBoard.cpp
+    SDL/manageTexture.cpp
+    SDL/managerEvent.cpp
+    Qt/menuView.cpp
     vista.cpp
+    soundConfig.cpp
+    SDL/HUD.cpp
     PUBLIC
     
-    gameView.h
-    lobbyView.h
-    mapView.h
-    playerView.h
-    scoreBoard.h
+    SDL/gameView.h
+    Qt/ButtonsCreator.h
+    Qt/StackNavigator.h
+    soundConfig.h
+    SDL/mapView.h
+    SDL/playerView.h
+    SDL/gameConfig.h
+    SDL/fieldOfView.h
+    SDL/bomb.h
+    SDL/bombTimer.h
+    SDL/shopping.h
+    SDL/weaponView.h
+    SDL/camera.h
+    SDL/bullet.h
+    SDL/text.h
+    Qt/scoreBoard.h
     client.h
     controller.h
-    lobbyView.h
-    manageTexture.h
-    menuView.h
-    renderizable.h
+    Qt/lobbyView.h
+    SDL/manageTexture.h
+    SDL/managerEvent.h
+    Qt/menuView.h
+    SDL/renderizable.h
     tipos.h
     vista.h
-
+    SDL/HUD.h
+    SDL/quit_game_exception.h
     )
 
 add_subdirectory(model/)

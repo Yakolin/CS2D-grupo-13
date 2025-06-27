@@ -1,0 +1,10 @@
+window:
+  width: 700
+  height: 500
+
+fov:
+  intensity: 128
+
+volumen_effects: 50
+
+volumen_music: 32

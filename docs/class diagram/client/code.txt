@@ -1,0 +1,124 @@
+@startuml
+
+
+class Vista {
+    ClientProtocol protocolo;
+    socket skt 
+}
+
+
+
+class Controller{
+    Sender 
+    Reseiver
+    }
+
+class MapaView{
+    PlayerView player
+    *Camera
+    draw(&renderer);
+}
+
+class PlayerView{
+    *Camera
+    draw(&renderer);
+    }
+
+class GameView{
+    Controller controller;
+    SDL_Renderer* renderer
+    CoundCofig sound_config;
+    GameConfig config;
+    reder();
+}
+
+class MenuView{}
+
+class LobbyView{}
+
+class ScoreBoard{}
+
+interface Renderizador{
+     draw(&renderer);
+}
+
+class TextureManager{
+    SDL_Render renderer;
+}
+
+class WeaponView{
+    *camera
+    draw(&renderer);
+    }
+
+class Bullet{
+    *camera
+    draw();
+}
+
+class HUD{}
+
+class GameConfig{}
+
+class SoundConfig{}
+
+class ManagerEvent{}
+
+class FOV{
+    *camera
+    draw(&renderer);
+}
+
+class Shopping{
+    *camera
+    draw(&renderer);
+}
+
+Renderizador <|-- MapaView
+Renderizador <|-- PlayerView
+Renderizador <|-- WeaponView
+Renderizador <|-- Bullet
+Renderizador <|-- FOV
+Renderizador <|-- Shopping
+
+
+
+PlayerView --> TextureManager
+MapaView --> TextureManager
+HUD --> TextureManager
+WeaponView --> TextureManager
+FOV --> TextureManager
+
+PlayerView --> GameConfig
+MapaView --> GameConfig
+HUD --> GameConfig
+WeaponView --> GameConfig
+
+
+
+
+
+Client *--> Vista
+
+Vista ..|> GameView
+Vista ..|> ScoreBoard
+Vista ..|> MenuView
+Vista *--> ClientProtocol
+
+MenuView --> LobbyView
+
+GameView *--> MapaView
+GameView *--> PlayerView
+GameView *--> Controller
+GameView *--> Shopping
+GameView *--> GameConfig
+GameView *--> HUD
+GameView *--> SoundConfig
+GameView *--> ManagerEvent
+GameView *--> FOV
+GameView *--> Bullet
+
+
+
+
+@enduml

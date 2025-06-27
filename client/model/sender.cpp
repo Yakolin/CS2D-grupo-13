@@ -13,12 +13,12 @@ void Sender::run() {
             std::unique_ptr<InterfaceClientAction> client_action = this->send_queue->pop();
             client_action->action(this->protocol);
         }
-    } catch (ClosedQueue& e) {
-        closed = true;
     } catch (const ConnectionClosedException& e) {  // el cliente podria cerrar la conexion
         closed = true;
-    } catch (...) {
-        std::cerr << "Something went wrong and an unknown exception was caught." << std::endl;
+        this->send_queue->close();
+    } catch (const ClosedQueue& e) {
         closed = true;
     }
 }
+
+void Sender::stop() { this->send_queue->close(); }

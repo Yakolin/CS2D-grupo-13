@@ -7,6 +7,7 @@
 #include <utility>
 #include <vector>
 
+#include "../../common/lobby_action.h"
 #include "../interfaces/interface_games_monitor.h"
 
 #include "game_loop.h"
@@ -20,19 +21,23 @@ public:
     GamesMonitor();
     ~GamesMonitor();
 
-    bool create_game(player_id_t player_id, const std::string& game_name,
+    bool create_game(player_id_t& player_id, const CreateGame& create_game,
                      std::shared_ptr<Queue<std::unique_ptr<ClientAction>>>& recv_queue,
-                     std::shared_ptr<Queue<GameImage>>& send_queue) override;
+                     std::shared_ptr<Queue<GameImage>>& send_queue, GameInfo& game_info) override;
 
-    bool join_game(player_id_t player_id, const std::string& game_name,
+    bool join_game(player_id_t& player_id, const JoinGame& join_game,
                    std::shared_ptr<Queue<std::unique_ptr<ClientAction>>>& recv_queue,
-                   std::shared_ptr<Queue<GameImage>>& send_queue) override;
+                   std::shared_ptr<Queue<GameImage>>& send_queue, GameInfo& game_info) override;
 
     std::vector<std::string> list_games() override;
+
+    void player_ready(player_id_t& player_id, const std::string& game_name) override;
 
     void reap();
 
     void clear();
+
+    bool has_active_games();
 };
 
 #endif  // !GAMES_MONITOR_H

@@ -35,6 +35,7 @@ public:
              InterfaceGamesMonitor& games_monitor);
     ~Receiver();
     void run() override;
+    void stop() override;
 };
 
 #endif  // !RECEIVER_H

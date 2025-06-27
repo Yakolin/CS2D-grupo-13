@@ -1,0 +1,43 @@
+@startuml
+skinparam linetype ortho
+skinparam nodesep 60
+skinparam ranksep 60
+skinparam classFontSize 14
+skinparam classFontStyle bold
+skinparam classAttributeIconSize 0
+skinparam ArrowColor #333333
+
+interface InterfaceGameManager {
+
+{abstract} void process(ClientAction& action)
+{abstract} void add_player(const player_id_t& player_id, Skins& skins)
+}
+class GameManager{
+ GameImage generate_game_image()
+ GameImage get_frame()
+ GameInfo get_game_info()
+}
+class GameConfig{
+}
+class Timer{
+}
+class Map{
+}
+class SoundManager{
+}
+class Player{
+}
+class Bomb{
+}
+class WeaponFactory{
+}
+GameManager *-- GameConfig
+
+GameManager *--> Map
+GameManager *--> WeaponFactory
+GameManager *--> Timer
+GameManager *--> SoundManager
+GameManager "1"*-->"n" Player
+GameManager o--> Bomb
+GameManager ..|> InterfaceGameManager
+@enduml

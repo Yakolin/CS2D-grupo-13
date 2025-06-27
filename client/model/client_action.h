@@ -12,69 +12,52 @@ public:
     virtual void action(ClientProtocol& protocol) = 0;
 };
 
-/*
-    LOBBY ACTIONS
-*/
-
-namespace ClientSpace {
-
-class CreateGame: public CreateGameCommon, public InterfaceClientAction {
-public:
-    CreateGame(const std::string& game_name);
-    ~CreateGame();
-    void action(ClientProtocol& protocol) override;
-};
-
-class JoinGame: public JoinGameCommon, public InterfaceClientAction {
-public:
-    JoinGame(const std::string& game_name);
-    ~JoinGame();
-    void action(ClientProtocol& protocol) override;
-};
-
-class ListGames: public InterfaceClientAction {
-public:
-    ListGames();
-    ~ListGames();
-    void action(ClientProtocol& protocol) override;
-};
 
 /*
     PLAYER ACTIONS
 */
 
+namespace ClientSpace {
+
 class Move: public MoveCommon, public InterfaceClientAction {
 public:
-    Move(MoveType move_type);
+    Move(MoveType& move_type);
     ~Move();
     void action(ClientProtocol& protocol) override;
 };
 
 class BuyWeapon: public BuyWeaponCommon, public InterfaceClientAction {
 public:
-    BuyWeapon(WeaponCode weapon_code);
+    BuyWeapon(WeaponCode& weapon_code);
     ~BuyWeapon();
     void action(ClientProtocol& protocol) override;
 };
 
 class BuyAmmo: public BuyAmmoCommon, public InterfaceClientAction {
 public:
-    BuyAmmo(WeaponType weapon_type, ammo_t ammo_count);
+    BuyAmmo(WeaponType& weapon_type, ammo_t& ammo_count);
     ~BuyAmmo();
     void action(ClientProtocol& protocol) override;
 };
 
 class Reload: public InterfaceClientAction {
 public:
-    Reload(WeaponType weapon_type);
+    Reload();
     ~Reload();
     void action(ClientProtocol& protocol) override;
 };
 
-class Shoot: public InterfaceClientAction {
+class Shoot: public ShootCommon, public InterfaceClientAction {
 public:
-    Shoot(WeaponType weapon_type, ammo_t ammo_count);
+    Shoot(coordinate_t& mouse_x, coordinate_t& mouse_y);
     ~Shoot();
+    void action(ClientProtocol& protocol) override;
+};
+
+class ShootBurst: public ShootCommon, public InterfaceClientAction {
+public:
+    ShootBurst(coordinate_t& mouse_x, coordinate_t& mouse_y);
+    ~ShootBurst();
     void action(ClientProtocol& protocol) override;
 };
 
@@ -101,8 +84,15 @@ public:
 
 class Equip: public EquipCommon, public InterfaceClientAction {
 public:
-    Equip();
+    Equip(EquipType& equip_type);
     ~Equip();
+    void action(ClientProtocol& protocol) override;
+};
+
+class MousePosition: public MousePositionCommon, public InterfaceClientAction {
+public:
+    MousePosition(coordinate_t& mouse_x, coordinate_t& mouse_y);
+    ~MousePosition();
     void action(ClientProtocol& protocol) override;
 };
 

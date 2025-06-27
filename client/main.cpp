@@ -2,7 +2,7 @@
 #include <iostream>
 
 #include "client.h"
-#include "lobbyView.h"
+
 
 const int ERROR_CLIENT = 1;
 
@@ -11,7 +11,16 @@ int main(int argc, char* argv[]) {
         std::cout << "no hay suficientes argumentos, enviar hostname puerto\n";
         return ERROR_CLIENT;
     }
+    try {
 
-    Client client(argc, argv);
-    return client.run();
+        Client client(argc, argv);
+        client.run();
+
+    } catch (const std::exception& e) {
+        std::cerr << "Excepción atrapada: " << e.what() << std::endl;
+    } catch (...) {
+        std::cerr << "Excepción desconocida atrapada." << std::endl;
+    }
+
+    return 0;
 }

@@ -14,17 +14,24 @@ void Acceptor::run() {
             Socket peer = socket_acceptor.accept();
             std::cout << "un client se conecto\n";
             this->client_id_counter++;
-            this->reap();
+            try {
+                this->reap();
+            } catch (const std::runtime_error& e) {
+                std::cerr << "Error en el reap" << e.what() << '\n';
+            }
+            std::cout << "client id: " << this->client_id_counter << '\n';
             clients.emplace(this->client_id_counter,
                             std::make_unique<ClientHandler>(this->client_id_counter,
                                                             std::move(peer), this->games_monitor));
             clients[this->client_id_counter]->start();
-            this->reap();  // cambie de lugar las llamadas  este era el lugar de crash
+            std::cout << "client " << this->client_id_counter << " started\n";
         }
     } catch (const std::runtime_error& e) {
-        std::cerr << e.what() << '\n';
+        std::cerr << "Error en el acceptor" << e.what() << '\n';
     } catch (const LibError& e) {}
 }
+
+bool Acceptor::has_clients() { return !this->clients.empty(); }
 
 void Acceptor::stop() {
     this->socket_acceptor.shutdown(2);
@@ -37,20 +44,21 @@ void Acceptor::reap() {
     for (auto it = clients.begin(); it != clients.end();) {
         auto client = it->second.get();
         if (!client->is_alive()) {
+            client->join();
             it = clients.erase(it);
         } else {
 
             ++it;
         }
     }
+    std::cout << "client id: " << this->client_id_counter << '\n';
 }
 
 void Acceptor::clear() {
     this->games_monitor.clear();
     for (auto& [id, client]: clients) {
-        if (client->is_alive()) {
-            client->stop();
-        }
+        client->stop();
+        client->join();
     }
     clients.clear();
 }

@@ -1,0 +1,82 @@
+Weapons:
+  Ak47:
+    price: 2700
+    damage: 5
+    fire_rate: 3
+    timer_fire: 200
+    burst_coldown: 700
+    max_bullets: 30
+    magazine: 90
+    width: 1
+    chance_hit: 85
+    distance: 15
+    purchasable: true
+  Glock:
+    price: 500
+    damage: 1
+    fire_rate: 1
+    timer_fire: 400
+    burst_coldown: 0
+    max_bullets: 30
+    magazine: 120
+    width: 1
+    chance_hit: 80
+    distance: 10
+    purchasable: false
+  M3:
+    price: 1700
+    damage: 50
+    fire_rate: 1
+    timer_fire: 800
+    burst_coldown: 0
+    max_bullets: 4
+    magazine: 16
+    width: 3
+    chance_hit: 90
+    distance: 4
+    purchasable: true
+  AWP:
+    price: 4750
+    damage: 250
+    fire_rate: 1
+    timer_fire: 1200
+    burst_coldown: 0
+    max_bullets: 6
+    magazine: 12
+    width: 1
+    chance_hit: 80
+    distance: 30
+    purchasable: true
+  Knife:
+    price: 0
+    damage: 25
+    fire_rate: 1
+    timer_fire: 800 # Aca hay un error, el knife ni usa esto
+    burst_coldown: 0
+    max_bullets: 0
+    magazine: 0
+    width: 2
+    chance_hit: 100
+    distance: 1
+    purchasable: false
+
+Player:
+  health: 100
+  money: 0
+  points: 0
+  earned_points: 100
+  multiplier_points: 15
+Timer:
+  time_buy: 2
+  time_round: 120
+  time_bomb: 25
+  time_ending: 5
+
+Rounds: 4
+
+RandomWeapons:
+  max_weapons: 5
+  Weapons: # Esto va en porcentajes.
+    Ak47: 35
+    M3: 50
+    AWP: 10

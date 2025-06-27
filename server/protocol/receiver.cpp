@@ -29,12 +29,14 @@ void Receiver::run_lobby() {
         }
 
     } catch (const ConnectionClosedException& e) {
+        std::cout << "The client closed the connection" << std::endl;
+        this->stop();
     } catch (const std::runtime_error& e) {
         std::cerr << "Error en el lobby: " << e.what() << std::endl;
-        this->closed = true;
+        this->stop();
     } catch (...) {
         std::cerr << "Something went wrong and an unknown exception was caught." << std::endl;
-        this->closed = true;
+        this->stop();
     }
 }
 
@@ -45,16 +47,25 @@ void Receiver::run_game() {
             std::unique_ptr<ClientAction> action;
             ParsePlayerAction parser(this->player_id, this->protocol, command, action);
             parser();
-            if (!this->closed) {
+            if (!this->closed && this->recv_queue) {
                 this->recv_queue->push(std::move(action));
             }
         }
     } catch (ClosedQueue& e) {
-        this->closed = true;
+        this->stop();
     } catch (const ConnectionClosedException& e) {
-        this->closed = true;
+        this->stop();
     } catch (...) {
-        std::cerr << "Something went wrong and an unknown exception was caught." << std::endl;
-        this->closed = true;
+        std::cerr << "Something went wrong and an unknown exception was caught in receiver."
+                  << std::endl;
+        this->stop();
     }
+}
+
+void Receiver::stop() {
+    this->closed = true;
+    try {
+        this->send_queue->close();
+    } catch (const QueueAlreadyClosed& e) {}
+    Thread::stop();
 }

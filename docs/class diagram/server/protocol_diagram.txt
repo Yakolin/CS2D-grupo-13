@@ -1,0 +1,56 @@
+@startuml
+
+skinparam linetype ortho
+skinparam nodesep 60
+skinparam ranksep 60
+skinparam classFontSize 14
+skinparam classFontStyle bold
+skinparam ArrowColor #333333
+
+abstract ClientAction{
+ # player_id : player_id_t
+ {abstract} action_to(player :IPlayerAction&) : void
+}
+
+class ServerProtocol{}
+
+class Move{
+ move_type : MoveType
+}
+class BuyWeapon{
+ weapon_code : WeaponCode
+}
+
+class Shoot{
+ mouse_x : coordinate_t
+ mouse_y : coordinate_t
+}
+
+class ShootBurst{
+ mouse_x : coordinate_t
+ mouse_y : coordinate_t
+}
+
+class Equip{
+ equip_type : EquipType
+}
+class MousePosition{
+  mouse_x : coordinate_t
+  mouse_y : coordinate_t
+}
+
+interface IPlayerAction{}
+
+ClientAction <|-- Move
+ClientAction <|-- BuyWeapon
+ClientAction <|-- Shoot
+ClientAction <|-- ShootBurst
+ClientAction <|-- Equip
+ClientAction <|-- MousePosition
+ClientAction --> IPlayerAction
+
+
+ServerProtocol --> ClientAction
+IPlayerAction <|.. Player
+
+@enduml

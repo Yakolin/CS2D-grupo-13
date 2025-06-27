@@ -67,7 +67,7 @@ Player:
   earned_points: 100
   multiplier_points: 15
 Timer:
-  time_buy: 2
+  time_buy: 15
   time_round: 120
   time_bomb: 25
   time_ending: 5

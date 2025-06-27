@@ -15,24 +15,24 @@ NC='\033[0m'
 set -e
 trap 'echo -e "${RED}Error: La instalación ha fallado en la línea $LINENO.${NC}"; exit 1' ERR
 
-if [ ! -d "$DIR" ]; then
-    echo -e "${BLUE}Clonando el repositorio...${NC}"
-    git clone "$REPO"
-else
-    echo -e "${BLUE}El repositorio ya existe, omitiendo clonación.${NC}"
-fi
+echo -e "${GREEN}Actualizando el sistema...${NC}"
+sudo apt update
+sudo apt upgrade -y
 
+echo -e "${GREEN}Instalando herramientas básicas...${NC}"
+sudo apt install -y git build-essential cmake make
+
+echo -e "${GREEN}Clonando el repositorio del juego...${NC}"
+git clone "$REPO"
 cd "$DIR"
 
-echo -e "${GREEN}Instalando dependencias...${NC}"
-sudo apt update
+echo -e "${GREEN}Instalando dependencias del juego...${NC}"
 sudo apt install -y \
-  git cmake make \
   libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev libsdl2-mixer-dev \
   qtbase5-dev qt5-qmake qtmultimedia5-dev \
   libyaml-cpp-dev \
-  libopusfile-dev libxmp-dev libfluidsynth-dev fluidsynth libwavpack-dev \
-  libfreetype6-dev
+  libopusfile-dev libxmp-dev libfluidsynth-dev fluidsynth \
+  libwavpack-dev libfreetype6-dev
 
 printf '%*s\n' "$(tput cols)" | tr ' ' '-'
 

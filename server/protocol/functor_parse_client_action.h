@@ -2,6 +2,8 @@
 #define FUNCTOR_PARSE_CLIENT_ACTION_H
 
 #include <memory>
+#include <string>
+#include <vector>
 
 #include "../../common/client_common_action.h"
 #include "../../common/game_info.h"

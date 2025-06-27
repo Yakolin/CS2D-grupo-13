@@ -2,8 +2,11 @@
 #define GAME_LOOP_H
 
 #include <fstream>
+#include <map>
 #include <memory>
+#include <string>
 #include <tuple>
+#include <vector>
 
 #include <yaml-cpp/yaml.h>
 

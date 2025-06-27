@@ -15,7 +15,6 @@ bool GamesMonitor::create_game(player_id_t& player_id, const CreateGame& create_
                 std::make_unique<GameLoop>(create_game.game_name, map_name);
         game_loop->add_player(player_id, skins, recv_queue, send_queue, game_info);
         games[game_name] = std::move(game_loop);
-        ;
         return true;
     }
     return false;

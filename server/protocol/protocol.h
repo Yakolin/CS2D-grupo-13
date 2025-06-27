@@ -60,7 +60,7 @@ private:
 
 
 public:
-    ServerProtocol(Socket& socket);
+    explicit ServerProtocol(Socket& socket);
     ~ServerProtocol();
 
     LobbyCommandType read_lobby_command();

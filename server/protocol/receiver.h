@@ -2,6 +2,7 @@
 #define RECEIVER_H
 
 #include <memory>
+#include <utility>
 #include <vector>
 
 #include "../../common/connection_closed_exception.h"

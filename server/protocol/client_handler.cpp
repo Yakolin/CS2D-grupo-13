@@ -23,7 +23,7 @@ void ClientHandler::stop() {
     try {
         this->socket.shutdown(2);
         this->socket.close();
-    } catch (LibError& e) {}
+    } catch (const LibError& e) {}
 }
 
 void ClientHandler::join() {

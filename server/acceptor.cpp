@@ -12,11 +12,7 @@ void Acceptor::run() {
         while (this->should_keep_running()) {
             Socket peer = socket_acceptor.accept();
             this->client_id_counter++;
-            try {
-                this->reap();
-            } catch (const std::runtime_error& e) {
-                std::cerr << "Error en el reap" << e.what() << '\n';
-            };
+            this->reap();
             clients.emplace(this->client_id_counter,
                             std::make_unique<ClientHandler>(this->client_id_counter,
                                                             std::move(peer), this->games_monitor));

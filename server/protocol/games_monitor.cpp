@@ -15,7 +15,7 @@ bool GamesMonitor::create_game(player_id_t& player_id, const CreateGame& create_
                 std::make_unique<GameLoop>(create_game.game_name, map_name);
         game_loop->add_player(player_id, skins, recv_queue, send_queue, game_info);
         games[game_name] = std::move(game_loop);
-        std::cout << "Partida creada" << game_name << std::endl;
+        ;
         return true;
     }
     return false;
@@ -25,7 +25,6 @@ bool GamesMonitor::join_game(player_id_t& player_id, const JoinGame& join_game,
                              std::shared_ptr<Queue<std::unique_ptr<ClientAction>>>& recv_queue,
                              std::shared_ptr<Queue<GameImage>>& send_queue, GameInfo& game_info) {
     std::lock_guard<std::mutex> lock(mutex);
-    std::cout << "Me uno a la partida" << player_id << std::endl;
     auto it = games.find(join_game.game_name);
     if (it != games.end()) {
         if (!it->second->is_full()) {
@@ -79,7 +78,6 @@ void GamesMonitor::reap() {
 void GamesMonitor::clear() {
     std::lock_guard<std::mutex> lock(mutex);
     for (auto& game: games) {
-        std::cout << "Shutdown game..." << std::endl;
         game.second->stop();
 
         // es un hilo aun no inicializado si devuelve true, si devuelve false es una partida que

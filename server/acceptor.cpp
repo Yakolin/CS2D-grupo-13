@@ -10,21 +10,17 @@ Acceptor::~Acceptor() {}
 void Acceptor::run() {
     try {
         while (this->should_keep_running()) {
-            std::cout << "esperando conexion..\n";
             Socket peer = socket_acceptor.accept();
-            std::cout << "un client se conecto\n";
             this->client_id_counter++;
             try {
                 this->reap();
             } catch (const std::runtime_error& e) {
                 std::cerr << "Error en el reap" << e.what() << '\n';
-            }
-            std::cout << "client id: " << this->client_id_counter << '\n';
+            };
             clients.emplace(this->client_id_counter,
                             std::make_unique<ClientHandler>(this->client_id_counter,
                                                             std::move(peer), this->games_monitor));
             clients[this->client_id_counter]->start();
-            std::cout << "client " << this->client_id_counter << " started\n";
         }
     } catch (const std::runtime_error& e) {
         std::cerr << "Error en el acceptor" << e.what() << '\n';

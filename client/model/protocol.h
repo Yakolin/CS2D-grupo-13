@@ -2,6 +2,7 @@
 #define PROTOCOL_H
 
 #include <string>
+#include <utility>
 #include <vector>
 
 #include <arpa/inet.h>

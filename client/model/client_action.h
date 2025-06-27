@@ -21,14 +21,14 @@ namespace ClientSpace {
 
 class Move: public MoveCommon, public InterfaceClientAction {
 public:
-    Move(MoveType& move_type);
+    explicit Move(MoveType& move_type);
     ~Move();
     void action(ClientProtocol& protocol) override;
 };
 
 class BuyWeapon: public BuyWeaponCommon, public InterfaceClientAction {
 public:
-    BuyWeapon(WeaponCode& weapon_code);
+    explicit BuyWeapon(WeaponCode& weapon_code);
     ~BuyWeapon();
     void action(ClientProtocol& protocol) override;
 };
@@ -84,7 +84,7 @@ public:
 
 class Equip: public EquipCommon, public InterfaceClientAction {
 public:
-    Equip(EquipType& equip_type);
+    explicit Equip(EquipType& equip_type);
     ~Equip();
     void action(ClientProtocol& protocol) override;
 };

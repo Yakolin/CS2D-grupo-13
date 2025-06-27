@@ -9,14 +9,15 @@
 #include <mutex>
 #include <queue>
 #include <stdexcept>
+#include <utility>
 
 struct ClosedQueue: public std::runtime_error {
     ClosedQueue(): std::runtime_error("The queue is closed") {}
 };
 
 struct QueueAlreadyClosed: public std::runtime_error {
-    QueueAlreadyClosed(): std::runtime_error("The queue is already closed."){};
-};
+    QueueAlreadyClosed(): std::runtime_error("The queue is already closed.") {};
+}
 
 /*
  * Multiproducer/Multiconsumer Blocking Queue (MPMC)

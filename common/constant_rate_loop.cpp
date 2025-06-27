@@ -3,7 +3,7 @@
 #include <chrono>
 #include <thread>
 
-using namespace std::chrono;
+using std::chrono;
 
 #define FPS 60
 #define FRAME_INTERVAL static_cast<int>((1.0f / FPS) * 1000)

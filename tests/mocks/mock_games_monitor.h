@@ -1,6 +1,10 @@
 #ifndef MOCK_GAMES_MONITOR_H
 #define MOCK_GAMES_MONITOR_H
 
+#include <memory>
+#include <string>
+#include <vector>
+
 #include <gmock/gmock.h>
 
 #include "../../common/lobby_action.h"

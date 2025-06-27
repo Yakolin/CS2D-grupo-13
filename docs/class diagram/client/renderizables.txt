@@ -1,0 +1,56 @@
+@startuml
+
+
+
+class MapView{
+   
+   
+  
+}
+
+class PlayerView{
+   
+   
+    }
+
+
+interface Renderizable{
+     draw(&renderer);
+}
+
+
+class WeaponView{
+  
+
+    }
+
+class Bullet{
+   
+}
+
+
+class FiedlOfView{
+   
+    
+}
+
+class Shopping{
+   
+    
+}
+
+Renderizable <|-- MapView
+Renderizable <|-- PlayerView
+Renderizable <|-- WeaponView
+Renderizable <|-- Bullet
+Renderizable <|-- FiedlOfView
+Renderizable <|-- Shopping
+
+
+
+
+
+
+
+
+@enduml

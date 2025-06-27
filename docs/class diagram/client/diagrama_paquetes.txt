@@ -1,0 +1,45 @@
+@startuml
+left to right direction
+
+' Recursos compartidos que GameView administra
+package "Recursos Compartidos" {
+    class ManagerTexture {
+        SDL_Render renderer
+    }
+    class GameConfig
+    class Camera
+}
+
+' Paquete principal del controlador del juego
+package "controladores de la vista" {
+    class GameView
+    class ManagerEvent
+    class SoundConfig
+}
+
+' Objetos renderizables dentro del entorno de juego
+package "Renderizables" {
+    class MapaView {
+        draw(&renderer)
+    }
+    class PlayerView {
+        draw(&renderer)
+    }
+    class WeaponView {
+        draw(&renderer)
+    }
+    class Bullet {
+        draw()
+    }
+    class HUD
+    class FOV {
+        draw(&renderer)
+    }
+    class Shopping {
+        draw(&renderer)
+    }
+}
+
+
+@enduml
+

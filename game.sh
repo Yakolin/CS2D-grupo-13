@@ -73,4 +73,6 @@ sudo cp server/game/Config/GameConfig.yaml "$CONFIG_DIR/server_config"
 sudo cp server/protocol/server_config.yaml "$CONFIG_DIR/server_config"
 
 printf '%*s\n' "$(tput cols)" | tr ' ' '-'
+chmod +x ./client.sh
+chmod +x ./server.sh
 echo -e "${GREEN}Instalación completa.${NC}"

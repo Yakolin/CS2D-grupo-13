@@ -1,5 +1,6 @@
 #ifndef AK_H
 #define AK_H
+#include <memory>
 
 #include "../../Config/GameConfig.h"
 #include "../FireableWeapon.h"

@@ -1,5 +1,6 @@
 #ifndef AWP_H
 #define AWP_H
+#include <memory>
 
 #include "../../Config/GameConfig.h"
 #include "../FireableWeapon.h"

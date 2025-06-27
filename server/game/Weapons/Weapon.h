@@ -28,7 +28,7 @@ protected:
     std::unique_ptr<FireMode> fire_mode;
 
     virtual damage_t calculate_damage(float distance) = 0;
-    WeaponCode get_weapon_code() { return IInteractuable::get_weapon_code(); }
+    WeaponCode get_weapon_code() override { return IInteractuable::get_weapon_code(); }
 
 public:
     explicit Weapon(WeaponCode code, damage_t damage, range_t range, width_t width,

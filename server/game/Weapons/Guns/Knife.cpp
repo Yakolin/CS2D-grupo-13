@@ -36,7 +36,7 @@ bool Knife::shoot_burst(ISpawneableZone& spawn, player_id_t id, Position& direct
     return false;
 }
 
-bool Knife::reload() { return false; };
+bool Knife::reload() { return false; }
 
 bool Knife::have_bullets() { return true; }
 

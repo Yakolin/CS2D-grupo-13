@@ -6,7 +6,7 @@ class Sound {
 public:
     SoundType sound;
     Sound(): sound(SoundType::NONE) {}
-    Sound(SoundType sound): sound(sound) {}
+    explicit Sound(SoundType sound): sound(sound) {}
     virtual ~Sound() = default;
 };
 #endif  // SOUND_H_

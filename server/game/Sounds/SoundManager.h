@@ -1,6 +1,7 @@
 #ifndef SOUND_MANAGER_H_
 #define SOUND_MANAGER_H_
 #include <memory>
+#include <utility>
 #include <vector>
 
 #include "../../../common/utility.h"
@@ -21,7 +22,7 @@ public:
     void emit_sound(std::shared_ptr<Sound> sound, const Position& pos) {
         sounds.push_back(std::make_pair(std::move(sound), pos));
     }
-    SoundImage get_sound_image(Position& player_pos);
+    SoundImage get_sound_image(const Position& player_pos);
     void reset() { sounds.clear(); }
 };
 #endif  // SOUND_MANAGER_H_

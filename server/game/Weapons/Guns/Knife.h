@@ -1,5 +1,6 @@
 #ifndef KNIFE_H
 #define KNIFE_H
+#include <memory>
 
 #include "../../Config/GameConfig.h"
 #include "../Weapon.h"

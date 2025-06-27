@@ -37,12 +37,12 @@ private:
     void read_weapons_dropped(std::vector<WeaponDropped>& weapons_dropped);
     void read_game_state_image(GameStateImage& game_state_image);
 
-    void send_byte_data(uint8_t& data);
-    void send_two_byte_data(uint16_t& data);
+    void send_byte_data(const uint8_t& data);
+    void send_two_byte_data(const uint16_t& data);
 
-    void send_string(std::string& string);
-    void send_common_shoot(player_command_t& shoot_command, coordinate_t& mouse_x,
-                           coordinate_t& mouse_y);
+    void send_string(const std::string& string);
+    void send_common_shoot(player_command_t& shoot_command, const coordinate_t& mouse_x,
+                           const coordinate_t& mouse_y);
 
 public:
     explicit ClientProtocol(Socket& socket);
@@ -59,13 +59,13 @@ public:
     void send_buy_weapon(WeaponCode& weapon_code);
     void send_buy_ammo(WeaponType& weapon_type, ammo_t& ammo_count);
     void send_reload();
-    void send_shoot(coordinate_t& mouse_x, coordinate_t& mouse_y);
-    void send_shoot_burst(coordinate_t& mouse_x, coordinate_t& mouse_y);
+    void send_shoot(const coordinate_t& mouse_x, const coordinate_t& mouse_y);
+    void send_shoot_burst(const coordinate_t& mouse_x, const coordinate_t& mouse_y);
     void send_plant_bomb();
     void send_defuse_bomb();
     void send_drop();
     void send_equip(EquipType& equip_type);
-    void send_mouse_position(coordinate_t& mouse_x, coordinate_t& mouse_y);
+    void send_mouse_position(const coordinate_t& mouse_x, const coordinate_t& mouse_y);
 
     GameInfo read_game_info();
     void send_acknowledge(Acknowledge& ack);

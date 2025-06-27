@@ -50,7 +50,6 @@ MapView::MapView(const MapInfo& info, Camera* camera_reseiver, ManageTexture* ma
     ids[BOX_AZTECT] = Object::BOX2;
     ids[BOX_ENTRENAMIENTO] = Object::BOX4;
     ids[BOX_DESIERTO] = Object::BOX5;
-
 }
 
 void MapView::update_weapon_dropped(const std::vector<WeaponDropped>& dropped) {

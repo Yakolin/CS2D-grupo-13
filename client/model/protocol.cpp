@@ -89,14 +89,14 @@ std::vector<std::string> ClientProtocol::read_list_games() {
     return games_list;
 }
 
-void ClientProtocol::send_byte_data(uint8_t& data) {
+void ClientProtocol::send_byte_data(const uint8_t& data) {
     this->socket.sendall(&data, sizeof(uint8_t));
     if (this->socket.is_stream_send_closed()) {
         throw ConnectionClosedException("Error al intentar enviar datos al servidor");
     }
 }
 
-void ClientProtocol::send_two_byte_data(uint16_t& data) {
+void ClientProtocol::send_two_byte_data(const uint16_t& data) {
     uint16_t data_to_send = htons(data);
     this->socket.sendall(&data_to_send, sizeof(uint16_t));
     if (this->socket.is_stream_send_closed()) {
@@ -104,7 +104,7 @@ void ClientProtocol::send_two_byte_data(uint16_t& data) {
     }
 }
 
-void ClientProtocol::send_string(std::string& string) {
+void ClientProtocol::send_string(const std::string& string) {
     uint16_t length = static_cast<uint16_t>(string.size());
     this->send_two_byte_data(length);
     this->socket.sendall(string.c_str(), string.size());
@@ -188,19 +188,19 @@ void ClientProtocol::send_reload() {
     this->send_byte_data(reload_header);
 }
 
-void ClientProtocol::send_common_shoot(player_command_t& shoot_command, coordinate_t& mouse_x,
-                                       coordinate_t& mouse_y) {
+void ClientProtocol::send_common_shoot(player_command_t& shoot_command, const coordinate_t& mouse_x,
+                                       const coordinate_t& mouse_y) {
     this->send_byte_data(shoot_command);
     this->send_two_byte_data(mouse_x);
     this->send_two_byte_data(mouse_y);
 }
 
-void ClientProtocol::send_shoot(coordinate_t& mouse_x, coordinate_t& mouse_y) {
+void ClientProtocol::send_shoot(const coordinate_t& mouse_x, const coordinate_t& mouse_y) {
     player_command_t shoot_header = static_cast<player_command_t>(PlayerCommandType::SHOOT);
     this->send_common_shoot(shoot_header, mouse_x, mouse_y);
 }
 
-void ClientProtocol::send_shoot_burst(coordinate_t& mouse_x, coordinate_t& mouse_y) {
+void ClientProtocol::send_shoot_burst(const coordinate_t& mouse_x, const coordinate_t& mouse_y) {
     player_command_t shoot_burst_header =
             static_cast<player_command_t>(PlayerCommandType::SHOOT_BURST);
     this->send_common_shoot(shoot_burst_header, mouse_x, mouse_y);
@@ -231,7 +231,7 @@ void ClientProtocol::send_equip(EquipType& equip_type) {
 }
 
 
-void ClientProtocol::send_mouse_position(coordinate_t& mouse_x, coordinate_t& mouse_y) {
+void ClientProtocol::send_mouse_position(const coordinate_t& mouse_x, const coordinate_t& mouse_y) {
     player_command_t watch_header = static_cast<player_command_t>(PlayerCommandType::WATCH);
     this->send_byte_data(watch_header);
     this->send_two_byte_data(mouse_x);

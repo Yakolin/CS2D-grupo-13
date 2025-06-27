@@ -153,7 +153,7 @@ std::unique_ptr<MousePosition> ServerProtocol::read_mouse_position(const player_
     return std::make_unique<MousePosition>(player_id, mouse_x, mouse_y);
 }
 
-void ServerProtocol::send_byte_data(uint8_t& data) {
+void ServerProtocol::send_byte_data(const uint8_t& data) {
     this->socket.sendall(&data, sizeof(uint8_t));
     if (this->socket.is_stream_send_closed()) {
         throw ConnectionClosedException("Error al intentar enviar datos al cliente");

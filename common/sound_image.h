@@ -1,5 +1,8 @@
 #ifndef SOUND_IMAGE_H_
 #define SOUND_IMAGE_H_
+#include <utility>
+#include <vector>
+
 #include "game_info.h"
 #include "player_command_types.h"
 #include "utility.h"

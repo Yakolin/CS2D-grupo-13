@@ -190,7 +190,7 @@ void ManagerEvent::handle_events(const SDL_Event& event) {
             press_start_x = event.button.x;
             press_start_y = event.button.y;
             if (shop.get_activa()) {
-                config_sound.play_sound(EffectType::MOUSE,0);
+                config_sound.play_sound(EffectType::MOUSE, 0);
                 auto code = shop.calculate_selection(press_start_x, press_start_y);
                 if (code != WeaponCode::NONE)
                     controller.sender_buy_weapon(code);

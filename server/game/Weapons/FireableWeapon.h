@@ -3,6 +3,9 @@
 #define FIREABLE_WEAPON_H_
 
 //  "Copyright 2025 Yaco Santamarina"
+#include <algorithm>
+#include <memory>
+#include <utility>
 
 #include "../../../common/game_image.h"
 

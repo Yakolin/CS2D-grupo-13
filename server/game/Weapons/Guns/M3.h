@@ -1,10 +1,11 @@
 #ifndef M3_H
 #define M3_H
 
+#include <memory>
+
 #include "../../Config/GameConfig.h"
 #include "../FireableWeapon.h"
 #include "FireMode/SemiAutomatic.h"
-
 class M3: public FireableWeapon {
 private:
     damage_t calculate_damage(float distance) override;

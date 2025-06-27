@@ -16,7 +16,7 @@ void SoundManager::handle_type(std::pair<std::shared_ptr<Sound>, Position>& soun
         }
     }
 }
-SoundImage SoundManager::get_sound_image(Position& player_pos) {
+SoundImage SoundManager::get_sound_image(const Position& player_pos) {
     for (auto& it: sounds) {
         int dx = player_pos.x - it.second.x;
         int dy = player_pos.y - it.second.y;

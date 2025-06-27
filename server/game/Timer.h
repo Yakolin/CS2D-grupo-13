@@ -33,7 +33,7 @@ class Timer {
                 return ending_duration;
             default:
                 return round_duration;
-        };
+        }
     }
     clock::time_point calculate_time_point() {
         switch (state) {
@@ -43,7 +43,7 @@ class Timer {
                 return ending_start_time;
             default:
                 return round_start_time;
-        };
+        }
     }
 
 public:

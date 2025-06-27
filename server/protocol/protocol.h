@@ -39,7 +39,7 @@ private:
 
     const std::string read_string();
 
-    void send_byte_data(uint8_t& data);
+    void send_byte_data(const uint8_t& data);
     void send_two_byte_data(uint16_t& data);
 
     void send_map_info(const MapInfo& map_info);

@@ -7,11 +7,6 @@ skinparam classFontStyle bold
 skinparam classAttributeIconSize 0
 skinparam ArrowColor #333333
 
-interface InterfaceGameManager {
-
-{abstract} void process(ClientAction& action)
-{abstract} void add_player(const player_id_t& player_id, Skins& skins)
-}
 class GameManager{
  GameImage generate_game_image()
  GameImage get_frame()
@@ -39,5 +34,4 @@ GameManager *--> Timer
 GameManager *--> SoundManager
 GameManager "1"*-->"n" Player
 GameManager o--> Bomb
-GameManager ..|> InterfaceGameManager
 @enduml

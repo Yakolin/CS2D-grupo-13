@@ -1,6 +1,7 @@
 #ifndef MENU_VIEW_H
 #define MENU_VIEW_H
 #include <map>
+#include <vector>
 
 #include "../../common/lobby_types.h"
 #include "../model/protocol.h"

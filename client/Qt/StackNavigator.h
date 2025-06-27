@@ -1,6 +1,9 @@
 #ifndef STACK_NAVIGATOR_H_
 #define STACK_NAVIGATOR_H_
+
 #include <QWidget>
+
+
 class StackNavigator {
 public:
     virtual void add_widget(QWidget* page) = 0;

@@ -21,6 +21,7 @@
 #include <iostream>
 #include <map>
 #include <string>
+#include <vector>
 
 #include "../../common/lobby_action.h"
 #include "../../common/lobby_types.h"

@@ -36,6 +36,7 @@
 #include <QWidget>
 #include <functional>
 #include <iostream>
+#include <utility>
 
 #define DEFAULT_STYLE \
     "QPushButton { background-color: transparent; color:rgb(255, 255, 255); font-size:     \

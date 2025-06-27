@@ -1,5 +1,7 @@
 #ifndef MANAGEREVENT_H
 #define MANAGEREVENT_H
+#include <map>
+
 #include <SDL2/SDL.h>
 
 #include "../../common/constant_rate_loop.h"

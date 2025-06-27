@@ -1,7 +1,9 @@
 #ifndef MAPVIEW_H
 #define MAPVIEW_H
+#include <algorithm>
 #include <iostream>
 #include <map>
+#include <unordered_map>
 #include <vector>
 
 #include <SDL.h>

@@ -1,5 +1,6 @@
 #ifndef TEXTUREMANAGER_H
 #define TEXTUREMANAGER_H
+#include <algorithm>
 #include <array>
 #include <cmath>
 #include <iostream>
@@ -8,6 +9,7 @@
 #include <stdexcept>
 #include <string>
 #include <unordered_map>
+#include <utility>
 #include <vector>
 
 #include <SDL2/SDL.h>

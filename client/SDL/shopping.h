@@ -2,6 +2,8 @@
 #define SHOPPIMNG_H
 #include <iostream>
 #include <map>
+#include <string>
+#include <unordered_map>
 #include <vector>
 
 #include <SDL.h>
@@ -18,8 +20,6 @@
 #include "gameConfig.h"
 #include "manageTexture.h"
 #include "renderizable.h"
-
-
 class Shopping: public Renderizable {
 
 

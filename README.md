@@ -42,48 +42,34 @@ Clasicos all y clean que realizan las operaciones de limpieza y all, en este cas
 
 # Instalacion
 
-Abrir una terminal y ejecutar las siguientes lineas:
-
-Clonar el repositorio:
-
+Descargarse el archivo `game.sh` y ejecutarlo 
 ```bash
-git clone git@github.com:Yakolin/CS2D-grupo-13.git
+./game.sh
 ```
 
-Desde la ruta en la que se ubica el repositorio, ejecutar la siguiente linea para moverse a la carpeta del juego
+Desde la ruta en la que se ubica el archivo instalado, ejecutar la siguiente linea para moverse a la carpeta del juego
 
 ```bash
 cd CS2D-grupo-13
 ```
-
-## Instalar el juego globalmente
-
-Una vez que estamos parado dentro de la carpeta del juego, debemos ejecutar la siguiente linea para instalar todas las dependencias
-
-```bash
-./install.sh
-```
-
-Esto permitira levantar el servidor y la vez levantar los multiples usuarios que quieran jugar
-
 # ¿Como jugar?
 
 ## Servidor
 
-Para poder jugar multiples partidas primero hace falta levantar un servidor en un puerto especificado, para eso hay que ejecutar la siguiente linea desde cualquier directorio, se podra elegir cualquier puerto, mas precisamente cualquier puerto no perteneciente a los _well_known_ports_ (puertos del [0, 1023])
+Una vez instalado y para poder jugar múltiples partidas, primero hace falta levantar un servidor en un puerto especificado, para eso hay que ejecutar la siguiente linea desde el directorio del Juego, es decir, dentro de la carpeta CS2D-grupo-13 creada al instalar el juego. 
 
 ```
-CS2D_server <n_puerto>
+./server.sh
 ```
 
 Esto mantendra abierto el servidor en la terminal.Para finalizarlo se debe escribir la letra **q** y pulsar **Enter**. Solo hace falta crear partidas dentro del servidor una vez que tus amigos se conecten
 
 ## Cliente
 
-Una vez hecho el paso anterior simplemente los jugadores se podran conectar al lobby, interfaz la cual se podran _Crear partidas_ y _Unirse a partidas_, para hacerlo se debe ejecutar la siguiente linea, parado en el directorio en el que fue clonado el repositorio, colocando en n_puerto el numero de puerto del servidor levantado anteriormente y su direccion IP
+Una vez hecho el paso anterior simplemente los jugadores se podrán conectar al lobby, interfaz la cual se podrán Crear partidas y Unirse a partidas, para hacerlo se debe ejecutar la siguiente linea, parado en el mismo lugar que ejecutaste el server. Podrás entrar al archivo y colocar el numero de puerto del servidor levantado anteriormente y su dirección IP.
 
 ```
-CS2D_client <ip_server> <n_puerto>
+./client.sh
 ```
 
 # Desinstalacion
